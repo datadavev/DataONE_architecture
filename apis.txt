@@ -1,0 +1,157 @@
+DataONE Application Programming Interfaces
+==========================================
+
+
+isAuthorized (sess, transID)
+read (ID, sess, transID)
+
+Member Node APIs
+----------------
+
+Authorization API
+~~~~~~~~~~~~~~~~~
+
+::
+
+  login (user, pw)
+  isAuth (token, GUID)
+
+CRUD API
+~~~~~~~~
+
+::
+
+  batchGet (objectsList)
+  checkDataQuality (GUID)
+  create (token, dataPackage)
+  create (token, workflowObject)
+  get (token, handle)
+  getChecksum (GUID)
+  getLogRecords (fromDate, toDate)
+  log (create, creationDate, ID)
+  register (memberToken, ID, metadata)
+
+Replication API
+~~~~~~~~~~~~~~~
+
+::
+
+  cancelReplication (sess, transID)
+  listAllObjects ()
+  listRecords ()
+  replicationSucceeds (transID)
+  startReplica (ID, sessionID, transID, srcMN)
+  sysOp (token)
+
+Server Authentication API
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Capabilities API
+~~~~~~~~~~~~~~~~
+
+::
+
+  serviceRequest (token)
+  verify (token)
+  getCapabilities ()
+  State of Health API
+  sohQuery (token, service)
+  
+Coordinating Node APIs
+----------------------
+
+Authentication API
+~~~~~~~~~~~~~~~~~~
+
+::
+
+  login (user, pw)
+  requestToken ()
+  newAccount (user, pw)
+
+Verify API
+~~~~~~~~~~
+
+::
+
+  isValidToken (token)
+  Authorization API
+  isAuth (token, GUID)
+  isAuth (token, resultset)
+  isValidToken (token)
+  setAccess (GUID, accessLevel)
+  takeOwnership (objectList)
+
+Query API
+~~~~~~~~~
+
+::
+
+  getAllCopies (token, ownerID)
+  getLinksAndCites (GUID, fromDate, toDate)
+  getLogRecords (GUID, fromDate, toDate)
+  getLogRecords (nodeID, fromDate, toDate)
+  query (token, query)
+  searchForData ()
+  usageQuery (token, GUID)
+
+CRUD API
+~~~~~~~~
+
+::
+
+  assertRelation (token, IDofSubject, relationship, IDofObject)
+  batchWrite (objectsList)
+  deleteRecords (token, listOfGUIDs)
+  get (token, GUID)
+  register (memberToken, ID, metadata)
+  resolve (GUID, token)
+  storeRecords ()
+  write ()
+
+Replication API
+~~~~~~~~~~~~~~~
+
+::
+
+  getDefaultReplicationPolicy (sess)
+  getMNReplicateList ()
+  getReplicationPolicy (sess, ID)
+  isReplicationNeeded ()
+  replicateMetadata ()
+  setDefaultReplicationPolicy (sess, policy)
+  setReplicationPolicy (sess, policy, ID)
+
+Synchronization API
+~~~~~~~~~~~~~~~~~~~
+
+::
+
+  pollForNewIDs ()
+  synchronize ()
+  verifyAllRecordsReceived ()
+  
+Register API
+~~~~~~~~~~~~
+
+::
+
+  addNodeCapabilities ()
+  register (token, capabilitiesURL)
+  registerForNotification (token, dataOwnerID)
+  scheduleSynch ()
+  verifyCapabilities ()
+
+Server Authentication API
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+State of Health API
+~~~~~~~~~~~~~~~~~~~
+
+::
+
+  actOnPendingEvent (event)
+  reportPendingEvent (event)
+  Admin Application
+  notify (adminID, nodeID, service)
+

@@ -1,0 +1,27 @@
+====================
+DataONE Architecture
+====================
+
+--------------------------
+DataONE Use Cases and APIs
+--------------------------
+
+:Date: 20090924
+
+.. contents:: Table of Contents
+
+.. include:: overview.txt
+
+.. include:: prioritization.txt
+
+
+Use Cases
+=========
+
+TODO: include all the individual use case text documents.
+
+
+
+.. include:: apis.txt
+
+

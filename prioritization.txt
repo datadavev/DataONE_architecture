@@ -1,0 +1,27 @@
+Use Case Implementation Priority
+================================
+
+Prioritizing system implementation to address the use cases involves several
+factors including:
+
+- Vision of the project. The system is being designed with some overall goals
+  described by the vision of the project proposal.
+
+- Requirements of the community. The stakeholders that comprise the user and
+  participant community quite likely has some opinion on functionalities of
+  the system that are important to them. If these are not properly addressed,
+  then the resulting system may appear as a failure to them.
+
+- Requirements of the sponsor. The sponsor has laid out goals in the RFP that
+  the project is responding to and also in the final agreement for conducting the work.
+
+- Dependencies between use cases. Implementation of functionality to address
+  some use cases will require implementation of some components not directly
+  specific in a use case.
+
+- Resources available for implementation. Some use cases may be identified as
+  high priority, but would require resources that would prevent implementation
+  of a number of other lower priority features.
+  
+
+
