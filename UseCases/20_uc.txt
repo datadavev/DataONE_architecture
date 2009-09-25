@@ -1,0 +1,40 @@
+Use Case 20 - Owner Retrieve Aggregate Logs
+-------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Data owners can request aggregated CRUD log for {time period/object id} for
+  all of 'their' objects.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/20_-_Data_owners_can_request_aggregated_CRUD....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

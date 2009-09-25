@@ -1,0 +1,43 @@
+Use Case 13 - User Authorization
+--------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+ User Authorization - Client requests service (get, put, query, delete, ...)
+ using session token.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/13_-_Client_requests_service_(get,_put,_query,....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- It would be great to factor out the authentication steps (#1, 2) from the
+  diagram and replace it with some sort of precondition like "Client has
+  authentication token." (PEA)
+

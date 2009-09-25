@@ -1,0 +1,39 @@
+Use Case 16 - Log CRUD Operations
+---------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+ All CRUD operations on metadata and data are logged at each node.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/16_-_All_CRUD_operations_on_metadata_and....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

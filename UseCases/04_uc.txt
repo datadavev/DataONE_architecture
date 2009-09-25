@@ -1,0 +1,51 @@
+Use Case 04 - CRUD (Create, Update Delete)
+------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Create, update or delete metadata record on a Member Node.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Are IDs are pegged to versions? If so, update might differ more radically
+  from create.
+
+- If delete is a metadata operation only, then will be very similar to update.
+  But if it is a physical operation, it becomes more complex. Will there be an
+  archival copy? Will member nodes that hold replicas be "forced" to destroy
+  the replicas?
+
+- Is submit from a member node a push or pull?
+
+- Should queuing of a submission within a member node be required for success?
+  (We assume yes, to guarantee replication of submissions).
+

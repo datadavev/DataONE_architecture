@@ -1,0 +1,40 @@
+Use Case 18 - MN Retrieve Aggregated Logs
+-----------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Member nodes can request aggregated CRUD log for {time period/object
+  id/userid} for all of 'their' objects.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/18_-_Member_Nodes_can_request_aggregated....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

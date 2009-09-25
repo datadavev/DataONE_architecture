@@ -1,0 +1,40 @@
+Use Case 25 - Detect Damaged Content
+------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  System should scans for damaged/defaced data and metadata using some
+  validation process.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/25_-_System_validates_metadata_and_data.png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

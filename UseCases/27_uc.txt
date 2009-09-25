@@ -1,0 +1,40 @@
+Use Case 27 - Metadata Version Migration
+----------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  CN should support forward migration of metadata documents from one version
+  to another within a standard and to other standards.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/27_-_Migration_--_CN_should_support_forward....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Should this apply to data as well?

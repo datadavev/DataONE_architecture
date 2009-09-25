@@ -1,0 +1,39 @@
+Use Case 11 - CRUD Workflow Objects
+-----------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Create / update / delete / search workflow objects.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/11_-_Create,_update,_delete,_search_workflow....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

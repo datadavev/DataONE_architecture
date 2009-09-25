@@ -1,0 +1,48 @@
+Use Case 15 - Account Management
+--------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  User Account Management - Create new user account on Identity Provider (also
+  edit, delete, ...).
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/15_-_Create_new_user_account_on_Identity....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- This diagram should include a step for email confirmation.
+
+- By default, accounts have no real privileges. To get higher privileges,
+  users may have to jump through more hoops (such as verifying their
+  association with a project/institution)
+
+- Presumably, if we are using external identity providers this user account
+  management functionality isn't provided by the CN. Right? (PEA)
+

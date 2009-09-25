@@ -1,0 +1,39 @@
+Use Case 08 - Replication Policy Communication
+----------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Communication of replication policy metadata among Member Nodes and Coordinating Nodes.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/08_-_Communication_of_Replication_Policy....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

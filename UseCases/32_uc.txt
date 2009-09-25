@@ -1,0 +1,40 @@
+Use Case 32 - Transfer Object Ownership
+---------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  User or organization takes over 'ownership' of a set of objects (write
+  access for orphaned records)
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/32_-_User_or_organization_takes_over_'ownership'....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Is there an authority for any given data/metadata object? 

@@ -1,0 +1,40 @@
+Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)
+------------------------------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Coordinating Nodes publish metadata in formats for other discovery services
+  like Google/Libraries/GCMD/etc.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/34_-_Discovery;_Coordinating_Nodes_publish....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

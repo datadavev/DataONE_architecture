@@ -1,0 +1,50 @@
+Use Case 14 - System Authentication and Authorization
+-----------------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+ System Authentication/Authorization - Server authenticates and performs
+ system operations (e.g. replication).
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/14_-_Server_authenticates_and_performs_system....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- I don't understand Step #7. To me the serviceRequest in step #3 is the
+  actual request for MN-B to do a "system operation", which kicks off the
+  verification steps #4 and #5. If this example service request is
+  replication, then step #3 should point to the replication API, and
+  internally MN-B decides that it must perform the verify step #4. Then step
+  #6 is the response to the system operation, and step #7 is not needed. (I
+  think that this diagram must be showing a kind of pre-approval process for
+  the operation in step #7, but it doesn't make sense to me because in step
+  #7, MN-B will just have to re-verify the token again.) (PEA)
+
+

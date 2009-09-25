@@ -1,0 +1,40 @@
+Use Case 10 - MN Status Reports
+-------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal 
+  Coordinating Node checks "liveness" of all Member Nodes - checks ping,
+  service x, load, space, bandwidth, transaction rate, ...
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/10_-_Coordinating_Node_checks_liveness_of....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

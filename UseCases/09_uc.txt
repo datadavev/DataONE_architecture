@@ -1,0 +1,40 @@
+Use Case 09 - Replicate MN to MN
+--------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Replicate data from Member Node to Member Node - (facilitated by Coordinating
+  Node or independently but notifying Coordinating Node of operation).
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/09_-_Replicate_data_from_Member_Node_to_Member....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

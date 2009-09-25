@@ -1,0 +1,43 @@
+Use Case 28 - Derived Product Original Change Notification
+----------------------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Relationships/Versioning - Derived products should be linked to source
+  objects so that notifications can be made to users of derived products when
+  source products change.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/28_-_Versioning_--_Derived_products_should....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Who can assert these relationships? The relevant object owners? Anybody?
+
+- How are relationships removed?

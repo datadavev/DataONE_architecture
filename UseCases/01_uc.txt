@@ -1,0 +1,57 @@
+Use Case 1 - CRUD Read()
+------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090924 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Get object identified by GUID (authenticated or not, notify subscriber of access).
+
+Summary 
+
+  A client has an identifier for some object within the DataONE system and is
+  retrieving the referenced object. The DataONE system must resolve the
+  identifier and return the object bytes after checking that the user has read
+  privileges on the object.  
+
+  Watchers (subscribers) of the object are notified of the retrieval (what are
+  they notified of?).
+
+.. image:: UseCases/images/01_-_Get_object_for_GUID_(anonymous_and_authenticated).png
+
+
+Actors
+  - Client requesting object
+  - Coordinating Node
+  - Member Node
+
+Preconditions 
+  - Client has authenticated to at the desired level (e.g. client
+    may not have authenticated, so access might be anonymous).
+
+Triggers
+  - Watchers are notified of the retrieval
+  - Operation is logged (are loggers a type of watcher?)
+
+Post Conditions
+  - The client has a copy of the object bytes (or an error message in the case
+    of failure)
+  - The log is updated with the results of the operation
+  - Watchers perform their processing
+
+
+Notes
+~~~~~
+
+- for the GET operation, the coordinating node does not need to check access,
+  because the member node will do this check before delivering the results.
+- Data sent to watchers might include: timestamp, object identifier, user id,
+  IP of client, 
+

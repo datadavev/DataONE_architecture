@@ -1,0 +1,39 @@
+Use Case 33 - Search for Data
+-----------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Clients should be able to search for data using CN metadata catalogs.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/33_-_Discovery;_Clients_should_be_able_to....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

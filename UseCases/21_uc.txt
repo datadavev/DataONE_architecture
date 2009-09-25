@@ -1,0 +1,39 @@
+Use Case 21 - Owner Subscribe to CRUD Operations
+------------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Data owners can subscribe to notification service for CRUD operations for objects they own.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/21_-_Data_owners_can_subscribe_to_notification....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

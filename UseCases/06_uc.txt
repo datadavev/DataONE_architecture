@@ -1,0 +1,39 @@
+Use Case 06 - MN Synchronize
+----------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Replicate / synchronize metadata record between Member Node and Coordinating Node.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/06_-_Synchronize_Metadata_between_Member....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

@@ -1,0 +1,45 @@
+Use Case 23 - Owner Expunge Content
+-----------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  User can find out where all copies of my data are in the system and can
+  expunge them.
+
+  
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/23_-_User_can_find_out_where_all_copies_of....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Dealing with inappropriate usage of (ie, copyrighted objects that are
+  stored)
+
+

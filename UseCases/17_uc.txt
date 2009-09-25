@@ -1,0 +1,39 @@
+Use Case 17 - CRUD Logs Aggregated at CNs
+-----------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  All CRUD logs are aggregated at coordinating nodes.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/17_-_All_CRUD_logs_are_aggregated_at_Coordinating....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

@@ -1,0 +1,64 @@
+Use Case 03 - Register MN
+-------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Register a new Member Node.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/03_-_Register_a_new_Member_Node.png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- Specify default replication policies
+
+- Also check for version updates
+
+- Should new nodes be registered with specified trust levels?
+
+- Data providers that use acceptable services can still be discovered and
+  accessed without registering in the DataONE registry ( Conflicting, as
+  someone has to register it)
+
+- Allow service providers to register their services, (such as data extraction
+  services) (ala GEOSS), but include mapping to higher semantic model
+
+- For well known services, registration system must be able to describe
+  constraints (e.g., allowable inputs, outputs, algorithms that can be
+  specified)
+
+- Services can be parameterized
+
+- Member node should be able to request the coordinating node to re-validate
+  its capabilities list.
+
+- Are there different levels of trust for member nodes? 
+
+
+

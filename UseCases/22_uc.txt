@@ -1,0 +1,40 @@
+Use Case 22 - Link/Citation Report for Owner
+--------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  User can get report of links/cites my data (also can view this as a referrer
+  log).
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/22_-_User_can_get_report_of_links,_cites....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx

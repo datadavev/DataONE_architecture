@@ -1,0 +1,50 @@
+Use Case 12 - User Authentication
+---------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  User Authentication - Person via client software authenticates against
+  Identify Provider to establish session token.
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/12_-_Person_authenticates_against_Identity....png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- To be a bit more abstract, it might be good to use something like
+  login(user, credentials) or login(subject) for the method signature. Here
+  "subject" would be similar to the `javax.security.auth.Subject
+  <http://java.sun.com/javase/6/docs/api/javax/security/auth/Subject.html>`_
+  concept. (PEA)
+
+- Can logins also happening against a MN, which simply proxies the request up
+  to the CN? (PEA)
+
+
+
