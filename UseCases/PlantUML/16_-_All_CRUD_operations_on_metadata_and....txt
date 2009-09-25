@@ -1,0 +1,13 @@
+@startuml
+title Interactions 16 - All CRUD operations on metadata and data are logged \nat each node 
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "CRUD API" as m_crud << Member Node >>
+app_client -> m_crud: create (token, dataPackage)
+note right
+See Use Case 4
+end note
+m_crud -> m_crud: log (create, creationDate, ID)
+m_crud -> m_crud: ack
+@enduml

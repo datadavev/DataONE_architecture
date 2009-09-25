@@ -1,0 +1,24 @@
+@startuml
+title Interactions 09 - Replicate data from Member Node to Member Node 
+participant "Replication API" as c_rep << Coordinating Node >>
+participant "CRUD API" as m_crud_a << Member Node A >>
+m_crud_a -> c_rep: replicateMetadata ()
+participant "CRUD API" as c_crud << Coordinating Node >>
+c_rep -> c_crud: write ()
+c_crud -> c_rep: ack
+c_rep -> m_crud_a: ack
+c_rep -> c_rep: isReplicationNeeded ()
+c_rep -> c_rep: T or F
+c_rep -> c_rep: getMNReplicateList ()
+c_rep -> c_rep: replicaList
+participant "Replication API" as m_rep_b << Member Node B >>
+c_rep -> m_rep_b: startReplica (ID, sessionID, transID, srcMN)
+m_crud_a -> m_rep_b: read (ID, sess, transID)
+participant "Authorization API" as c_authorize << Coordinating Node >>
+m_crud_a -> c_authorize: isAuthorized (sess, transID)
+c_authorize -> m_crud_a: T or F
+m_crud_a -> m_rep_b: object
+c_rep -> m_rep_b: replicationSucceeds (transID)
+c_rep -> m_rep_b: cancelReplication (sess, transID)
+m_rep_b -> c_rep: ack
+@enduml

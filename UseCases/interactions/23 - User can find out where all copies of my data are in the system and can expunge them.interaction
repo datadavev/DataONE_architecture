@@ -1,0 +1,18 @@
+actor "User (Data Owner)" as user
+user -> app_client
+app_client -> c_authenticate: login (user, pw)
+c_authenticate -> app_client: token or failure
+app_client -> c_query: getAllCopies (token, ownerID)
+c_query -> c_authorize: isAuth (token, resultset)
+c_authorize -> c_ver: isValidToken (token)
+c_ver -> c_authorize: T or F
+c_authorize -> c_query: T or F
+c_query -> app_client: records or fail
+app_client -> c_crud: deleteRecords (token, listOfGUIDs)
+c_crud -> app_client: ack or fail
+note right
+Can the Query API find out where all
+copies of my data are in the system
+or should this be handled by another
+API?
+end note

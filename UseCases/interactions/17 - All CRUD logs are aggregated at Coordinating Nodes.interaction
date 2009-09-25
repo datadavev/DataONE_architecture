@@ -1,0 +1,7 @@
+note left
+Assume Coordinating Node has authority for accessing Member Node log records.
+end note
+c_sync -> m_crud_a: getLogRecords (fromDate, toDate)
+m_crud_a -> c_sync: records or fail
+c_sync -> m_crud_b: getLogRecords (fromDate, toDate)
+m_crud_b -> c_sync: records or fail

@@ -1,0 +1,14 @@
+@startuml
+title Interactions 13 - Client requests service (get, put, query, delete, \n...) using session token 
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+app_client -> c_auth: login (user, pw)
+c_auth -> app_client: token or failure
+participant "CRUD API" as c_crud << Coordinating Node >>
+app_client -> c_crud: get (token, GUID)
+participant "Authorization API" as c_authorize << Coordinating Node >>
+c_crud -> c_authorize: isAuth (token, resultset)
+c_authorize -> c_crud: T or F
+c_crud -> app_client: resultset
+@enduml

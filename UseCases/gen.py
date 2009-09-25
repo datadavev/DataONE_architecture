@@ -41,20 +41,38 @@ apis = {
 }
 
 for ss in glob.glob ('*.interaction'):
-	in_file = open (ss, 'r')
-	out_file = open ('%s.txt' % ss, 'w')
+	path, fname = os.path.split (ss)
+	base, ext = os.path.splitext (fname)
+	print (base)
 
+	# Snip output filename at first space after lenght limit.
+	len_lim = 40
+	out_name = base.replace (' ', '_')
+	idx = base.find (' ', len_lim, -1)
+	if idx != -1:
+		out_name = out_name [:idx] + '...'
+
+	in_file = open (ss, 'r')
+	out_file = open ('%s.txt' % out_name, 'w')
+
+	# Start UML.
 	out_file.writelines ('@startuml\n')
 
 	# Generate title line from filename.
-	path, fname = os.path.split (ss)
-	base, ext = os.path.splitext (fname)
-	out_file.writelines ('title Interactions %s\n' % base)
-	
-	print (base)
+	out_file.writelines ('title Interactions ')
+	words = base.split (' ')
+	l = 0
+	for word in words:
+		if l > 40:
+			out_file.writelines ('\\n' + word + ' ')
+			l = 0
+		else:
+			out_file.writelines (word + ' ')
+			l += len (word)
+	out_file.writelines ('\n')
 
-	out_file.writelines ('autonumber\n')
-	out_file.writelines ('skin BlueModern\n')
+	#out_file.writelines ('autonumber\n')
+	#out_file.writelines ('skin BlueModern\n')
 	
 	declared = {}
 	
@@ -72,5 +90,5 @@ for ss in glob.glob ('*.interaction'):
 		# Output line.
 		out_file.writelines (line)
 
+	# End UML.
 	out_file.writelines ('@enduml\n')
-

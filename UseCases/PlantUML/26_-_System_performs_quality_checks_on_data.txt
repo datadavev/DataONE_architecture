@@ -1,0 +1,10 @@
+@startuml
+title Interactions 26 - System performs quality checks on data 
+participant "CRUD API" as m_crud_a << Member Node A >>
+participant "Synchronization API" as c_sync << Coordinating Node >>
+c_sync -> m_crud_a: checkDataQuality (GUID)
+m_crud_a -> c_sync: result
+participant "CRUD API" as m_crud_b << Member Node B >>
+c_sync -> m_crud_b: checkDataQuality (GUID)
+m_crud_b -> c_sync: result
+@enduml

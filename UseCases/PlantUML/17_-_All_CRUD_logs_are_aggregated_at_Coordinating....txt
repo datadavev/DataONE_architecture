@@ -1,0 +1,13 @@
+@startuml
+title Interactions 17 - All CRUD logs are aggregated at Coordinating \nNodes 
+note left
+Assume Coordinating Node has authority for accessing Member Node log records.
+end note
+participant "CRUD API" as m_crud_a << Member Node A >>
+participant "Synchronization API" as c_sync << Coordinating Node >>
+c_sync -> m_crud_a: getLogRecords (fromDate, toDate)
+m_crud_a -> c_sync: records or fail
+participant "CRUD API" as m_crud_b << Member Node B >>
+c_sync -> m_crud_b: getLogRecords (fromDate, toDate)
+m_crud_b -> c_sync: records or fail
+@enduml

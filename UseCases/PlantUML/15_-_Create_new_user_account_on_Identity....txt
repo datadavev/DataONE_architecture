@@ -1,0 +1,10 @@
+@startuml
+title Interactions 15 - Create new user account on Identity Provider \n(also edit, delete) 
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "Authentication API" as c_authenticate << Coordinating Node >>
+app_client -> c_authenticate: newAccount (user, pw)
+c_authenticate -> app_client: token or failure
+c_authenticate -> User: email confirmation
+@enduml

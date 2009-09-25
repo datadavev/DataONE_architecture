@@ -1,0 +1,8 @@
+@startuml
+title Interactions 30 - MN can notify CN about pending outages, severity \nand duration, and CNs may want to act on that knowledge \nto maintain seamless operation 
+participant "State of Health API" as c_health << Coordinating Node >>
+participant "State of Health API" as m_health << Member Node >>
+m_health -> c_health: reportPendingEvent ()
+c_health -> m_health: ack
+c_health -> c_health: actOnPendingEvent (event)
+@enduml

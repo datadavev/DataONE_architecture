@@ -1,0 +1,21 @@
+@startuml
+title Interactions 19 - General public can request aggregated download \nusage information by object id 
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "Authentication API" as c_authenticate << Coordinating Node >>
+app_client -> c_authenticate: login (user, pw)
+c_authenticate -> app_client: token or failure
+participant "Query API" as c_query << Coordinating Node >>
+app_client -> c_query: usageQuery (token, GUID)
+participant "Authorization API" as c_authorize << Coordinating Node >>
+c_query -> c_authorize: isAuth (token, resultset)
+c_authorize -> c_query: T or F
+c_query -> app_client: download usage records
+note right
+Can the Query API handle queries
+on log records or should this be
+handled by another API?
+(e.g. "Report API"?)
+end note
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+title Interactions 14 - Server authenticates and performs system operation \n(e.g. replication) 
+participant "Authentication API" as c_authenticate << Coordinating Node >>
+participant "Server Authentication API" as m_authenticate_a << Member Node A >>
+m_authenticate_a -> c_authenticate: login (user, pw)
+c_authenticate -> m_authenticate_a: token or failure
+participant "Server Authentication API" as m_authenticate_b << Member Node B >>
+m_authenticate_a -> m_authenticate_b: serviceRequest (token)
+participant "Verify API" as c_ver << Coordinating Node >>
+m_authenticate_b -> c_ver: verify (token)
+c_ver -> m_authenticate_b: T or F
+m_authenticate_b -> m_authenticate_a: ack or fail
+participant "Replication API" as m_rep_b << Member Node B >>
+participant "Replication API" as m_rep_a << Member Node A >>
+m_rep_a -> m_rep_b: sysOp (token)
+@enduml
