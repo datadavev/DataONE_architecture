@@ -6,12 +6,17 @@ DataONE Architecture
 DataONE Use Cases and APIs
 --------------------------
 
-:Date: 20090925
+**Change Log**
 
+:20090925: 
+ - Initial collation of all use cases into single document. 
+ - Recast all diagrams to interaction diagrams using PlantUML automated tools
+
+:20090924:
+ - Layout document structure, draft templates
+ 
 .. contents:: Table of Contents
-
 .. include:: overview.txt
-
 .. include:: prioritization.txt
 
 
@@ -19,76 +24,39 @@ Use Cases
 =========
 
 .. include:: UseCases/01_uc.txt
-
 .. include:: UseCases/02_uc.txt
-
 .. include:: UseCases/03_uc.txt
-
 .. include:: UseCases/04_uc.txt
-
 .. include:: UseCases/05_uc.txt
-
 .. include:: UseCases/06_uc.txt
-
 .. include:: UseCases/07_uc.txt
-
 .. include:: UseCases/08_uc.txt
-
 .. include:: UseCases/09_uc.txt
-
 .. include:: UseCases/10_uc.txt
-
 .. include:: UseCases/11_uc.txt
-
 .. include:: UseCases/12_uc.txt
-
 .. include:: UseCases/13_uc.txt
-
 .. include:: UseCases/14_uc.txt
-
 .. include:: UseCases/15_uc.txt
-
 .. include:: UseCases/16_uc.txt
-
 .. include:: UseCases/17_uc.txt
-
 .. include:: UseCases/18_uc.txt
-
 .. include:: UseCases/19_uc.txt
-
 .. include:: UseCases/20_uc.txt
-
 .. include:: UseCases/21_uc.txt
-
 .. include:: UseCases/22_uc.txt
-
 .. include:: UseCases/23_uc.txt
-
 .. include:: UseCases/24_uc.txt
-
 .. include:: UseCases/25_uc.txt
-
 .. include:: UseCases/26_uc.txt
-
 .. include:: UseCases/27_uc.txt
-
 .. include:: UseCases/28_uc.txt
-
 .. include:: UseCases/29_uc.txt
-
 .. include:: UseCases/30_uc.txt
-
 .. include:: UseCases/31_uc.txt
-
 .. include:: UseCases/32_uc.txt
-
 .. include:: UseCases/33_uc.txt
-
 .. include:: UseCases/34_uc.txt
-
-
-.. note:: 
-   TODO: include all the individual use case text documents.
 
 .. include:: apis.txt
 
