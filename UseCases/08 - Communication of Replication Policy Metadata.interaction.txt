@@ -1,0 +1,18 @@
+@startuml
+title Interactions 08 - Communication of Replication Policy Metadata
+autonumber
+skin BlueModern
+participant "Replication API" as c_rep << Coordinating Node >>
+participant "Replication API" as m_rep << Member Node >>
+m_rep -> c_rep: 1.a. setDefaultReplicationPolicy (sess, policy)
+m_rep -> c_rep: 1.b. setReplicationPolicy (sess, policy, ID)
+m_rep -> c_rep: 2.a. getDefaultReplicationPolicy (sess)
+m_rep -> c_rep: 2.b. getReplicationPolicy (sess, ID)
+c_rep -> m_rep: policy
+note right
+	Policy:
+	Where
+	When
+	What gets replicated
+end note
+@enduml

@@ -1,0 +1,6 @@
+c_sync -> m_rep: listAllObjects ()
+m_rep -> c_sync: objectsList
+c_sync -> m_crud: batchGet (objectsList)
+m_crud -> c_sync: objects
+c_sync -> c_sync: verifyAllObjectsReceived ()
+c_sync -> c_crud: batchWrite (objectsList)

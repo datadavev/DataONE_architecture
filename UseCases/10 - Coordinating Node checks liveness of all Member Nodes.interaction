@@ -1,0 +1,11 @@
+actor Admin
+Admin -> app_admin
+c_srv_auth -> c_authenticate: requestToken ()
+c_authenticate -> c_srv_auth: token or failure
+c_srv_auth -> m_authenticate: serviceRequest (token)
+m_authenticate -> c_ver: verify (token)
+c_ver -> m_authenticate: confirm or failure
+m_authenticate -> c_srv_auth: ack or failure
+c_health -> m_health: sohQuery (token, service)
+m_health -> c_health: sohResponse
+c_health -> app_admin: notify (adminID, nodeID, service)

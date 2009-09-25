@@ -1,0 +1,26 @@
+@startuml
+title Interactions 01 - Get object for GUID (anonymous and authenticated)
+autonumber
+skin BlueModern
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "Authorization API" as m_authorize << Member Node >>
+app_client -> m_authorize: login (user, pw)
+app_client <- m_authorize: token or failure
+participant "CRUD API" as c_crud << Coordinating Node >>
+app_client -> c_crud: resolve (GUID, token)
+participant "Authorization API" as c_authorize << Coordinating Node >>
+c_crud -> c_authorize: isAuth (token, GUID)
+participant "Verify API" as c_ver << Coordinating Node >>
+c_authorize -> c_ver: isValidToken (token)
+c_ver-> c_authorize: T or F
+c_authorize -> c_crud: T or F
+c_crud -> app_client: replica or handle list
+participant "CRUD API" as m_crud << Member Node >>
+app_client -> m_crud: get (token, handle)
+participant "Server Authentication API" as m_authenticate << Member Node >>
+m_crud -> m_authenticate: isAuth (token, GUID)
+m_authenticate -> m_crud: T or F
+m_crud -> app_client: object or unauth or doesNotExist
+@enduml

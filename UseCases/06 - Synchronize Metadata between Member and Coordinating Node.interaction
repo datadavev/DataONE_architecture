@@ -1,0 +1,5 @@
+c_sync -> c_sync: pollForNewIDs ()
+c_sync -> m_rep: listRecords ()
+m_rep -> c_sync: records
+c_sync -> c_crud: storeRecords
+c_sync -> c_sync: verifyAllRecordsReceived ()
