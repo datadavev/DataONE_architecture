@@ -20,7 +20,8 @@ Use Cases
 
 .. include:: UseCases/01_uc.txt
 
-TODO: include all the individual use case text documents.
+.. note:: 
+   TODO: include all the individual use case text documents.
 
 
 .. include:: apis.txt
