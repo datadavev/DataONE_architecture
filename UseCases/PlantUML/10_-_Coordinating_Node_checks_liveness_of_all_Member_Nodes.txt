@@ -1,0 +1,21 @@
+@startuml
+title Interactions: 10 - Coordinating Node checks liveness of all Member Nodes
+actor Admin
+participant "Admin" as app_admin << Application >>
+Admin -> app_admin
+participant "Server Authentication API" as c_srv_auth << Coordinating Node >>
+participant "Authentication API" as c_authenticate << Coordinating Node >>
+c_srv_auth -> c_authenticate: requestToken ()
+c_srv_auth <-- c_authenticate: token or failure
+participant "Server Authentication API" as m_authenticate << Member Node >>
+c_srv_auth -> m_authenticate: serviceRequest (token)
+participant "Verify API" as c_ver << Coordinating Node >>
+m_authenticate -> c_ver: verify (token)
+m_authenticate <-- c_ver: confirm or failure
+c_srv_auth <-- m_authenticate: ack or failure
+participant "State of Health API" as c_health << Coordinating Node >>
+participant "State of Health API" as m_health << Member Node >>
+c_health -> m_health: sohQuery (token, service)
+c_health <-- m_health: sohResponse
+app_admin <-- c_health: notify (adminID, nodeID, service)
+@enduml

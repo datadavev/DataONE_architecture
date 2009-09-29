@@ -1,0 +1,7 @@
+title 15 - Create new user account on Identity Provider (also edit, delete)
+
+actor User
+User -> app_client
+app_client -> c_authenticate: newAccount (user, pw)
+app_client <-- c_authenticate: token or failure
+User <-- c_authenticate: email confirmation

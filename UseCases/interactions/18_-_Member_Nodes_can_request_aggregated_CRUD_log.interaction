@@ -1,0 +1,14 @@
+title 18 - Member Nodes can request aggregated CRUD log for {time period, object id, user id} for all of 'their' objects
+
+c_query -> m_crud: getLogRecords (nodeID, fromDate, toDate)
+note right
+Assume Member Node has authority for
+accessing Coordinating Node log records.
+end note
+c_query <-- m_crud: records or fail
+note right
+Can the Query API handle queries
+on log records or should this be
+handled by another API?
+(e.g. "Report API"?)
+end note

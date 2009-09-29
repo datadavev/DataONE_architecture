@@ -1,0 +1,14 @@
+title 31 - Client can specify access and replication restrictions for their data and metadata objects, and supported timed embargoes
+
+actor "User (Data Owner)" as user
+user -> app_client
+note right
+Assume user authority for
+specifying restrictions
+end note
+app_client -> c_authorize: setAccess (GUID, accessLevel)
+app_client <-- c_authorize: ack or fail
+note right
+Users can be members of groups that can
+participate in access directives.
+end note

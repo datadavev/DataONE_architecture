@@ -1,15 +1,12 @@
-@startuml
-title Interactions: 03 - Register a new Member Node
+title 03 - Register a new Member Node
+
 
 actor Admin
-participant "Admin" as app_admin << Application >>
 Admin -> app_admin
 note right
 Assume admin authority for node registration.
 end note
-participant "Register API" as c_reg << Coordinating Node >>
 app_admin -> c_reg: register (token, capabilitiesURL)
-participant "Capabilities API" as m_cap << Member Node >>
 c_reg -> m_cap: getCapabilities ()
 c_reg <-- m_cap: capabilities
 c_reg -> c_reg: verifyCapabilities ()
@@ -23,4 +20,3 @@ Harvest process occurs asynchronously.
 Separate use case. 
 end note
 app_admin <-- c_reg: ack or fail
-@enduml

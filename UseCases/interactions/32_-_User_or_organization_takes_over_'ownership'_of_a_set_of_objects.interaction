@@ -1,0 +1,14 @@
+title 32 - User or organization takes over 'ownership' of a set of objects (write access for orphaned records)
+
+actor "User (User or Organization)" as user
+user -> app_client
+note right
+Assume user authority for
+specifying restrictions
+end note
+app_client -> c_authorize: takeOwnership (objectList)
+app_client <-- c_authorize: ack or fail
+note right
+Is there an authority for any
+given data / metadata object?
+end note

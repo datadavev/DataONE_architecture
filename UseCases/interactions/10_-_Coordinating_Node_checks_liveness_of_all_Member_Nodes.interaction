@@ -1,0 +1,13 @@
+title 10 - Coordinating Node checks liveness of all Member Nodes
+
+actor Admin
+Admin -> app_admin
+c_srv_auth -> c_authenticate: requestToken ()
+c_srv_auth <-- c_authenticate: token or failure
+c_srv_auth -> m_authenticate: serviceRequest (token)
+m_authenticate -> c_ver: verify (token)
+m_authenticate <-- c_ver: confirm or failure
+c_srv_auth <-- m_authenticate: ack or failure
+c_health -> m_health: sohQuery (token, service)
+c_health <-- m_health: sohResponse
+app_admin <-- c_health: notify (adminID, nodeID, service)

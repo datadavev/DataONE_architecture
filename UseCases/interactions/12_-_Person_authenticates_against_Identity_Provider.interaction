@@ -1,0 +1,6 @@
+title 12 - Person authenticates against Identity Provider
+
+actor User
+User -> app_client
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure

@@ -1,0 +1,18 @@
+title 09 - Replicate data from Member Node to Member Node
+
+m_crud_a -> c_rep: replicateMetadata ()
+c_rep -> c_crud: write ()
+c_rep <-- c_crud: ack
+c_rep -> m_crud_a: ack
+c_rep -> c_rep: isReplicationNeeded ()
+c_rep -> c_rep: T or F
+c_rep -> c_rep: getMNReplicateList ()
+c_rep -> c_rep: replicaList
+c_rep -> m_rep_b: startReplica (ID, sessionID, transID, srcMN)
+m_crud_a -> m_rep_b: read (ID, sess, transID)
+m_crud_a -> c_authorize: isAuthorized (sess, transID)
+m_crud_a <-- c_authorize: T or F
+m_crud_a -> m_rep_b: object
+c_rep -> m_rep_b: replicationSucceeds (transID)
+c_rep -> m_rep_b: cancelReplication (sess, transID)
+c_rep <-- m_rep_b: ack

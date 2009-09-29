@@ -1,0 +1,18 @@
+@startuml
+title Interactions: 04, 05 - Create, update, delete, search metadata, data objects in Member Node
+Actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "Authorization API" as m_authorize << Member Node >>
+app_client -> m_authorize: login (user, pw)
+app_client <-- m_authorize: token or failure
+participant "CRUD API" as m_crud << Member Node >>
+app_client -> m_crud: create (token, dataPackage)
+participant "CRUD API" as c_crud << Coordinating Node >>
+m_crud -> c_crud: register (memberToken, ID, metadata)
+participant "Synchronization API" as c_sync << Coordinating Node >>
+c_crud -> c_sync: synchronize ()
+c_crud <-- c_sync: ack or fail
+m_crud <-- c_crud: register status
+app_client <-- m_crud: status, ID
+@enduml

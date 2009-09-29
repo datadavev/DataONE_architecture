@@ -1,0 +1,10 @@
+title 28 - Versioning -- Derived products should be linked to source objects so that notifications can be made to users of derived products when source products change
+
+actor User
+User -> app_client
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure
+app_client -> c_crud: assertRelation (token, IDofSubject, relationship, IDofObject)
+c_sync <-- c_crud: synchronize ()
+c_crud <-- c_sync: ack or fail
+app_client <-- c_crud: status

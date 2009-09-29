@@ -1,0 +1,9 @@
+@startuml
+title Interactions: 12 - Person authenticates against Identity Provider
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+participant "Authentication API" as c_authenticate << Coordinating Node >>
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure
+@enduml

@@ -1,0 +1,10 @@
+title 13 - Client requests service (get, put, query, delete, ...) using session token
+
+actor User
+User -> app_client
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure
+app_client -> c_crud: get (token, GUID)
+c_crud -> c_authorize: isAuth (token, resultset)
+c_crud <-- c_authorize: T or F
+app_client <-- c_crud: resultset

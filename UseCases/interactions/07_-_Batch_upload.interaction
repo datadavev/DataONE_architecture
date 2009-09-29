@@ -1,0 +1,8 @@
+title 07 - Coordinating Node requests metadata, data list from new Member Node and then performs a batch upload.interaction
+
+c_sync -> m_rep: listAllObjects ()
+c_sync <-- m_rep: objectsList
+c_sync -> m_crud: batchGet (objectsList)
+c_sync <-- m_crud: objects
+c_sync -> c_sync: verifyAllObjectsReceived ()
+c_sync -> c_crud: batchWrite (objectsList)

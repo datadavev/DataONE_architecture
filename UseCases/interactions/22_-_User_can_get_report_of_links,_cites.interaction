@@ -1,0 +1,18 @@
+title 22 - User can get report of links, cites my data (also can view this as a referrer log)
+
+actor "User (Data Owner)" as user
+user -> app_client
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure
+app_client -> c_query: getLinksAndCites (GUID, fromDate, toDate)
+c_query -> c_authorize: isAuth (token, resultset)
+c_authorize -> c_ver: isValidToken (token)
+c_authorize <-- c_ver: T or F
+c_query <-- c_authorize: T or F
+app_client <-- c_query: records or fail
+note right
+Can the Query API handle queries
+on log records or should this be
+handled by another API?
+(e.g. "Report API"?)
+end note

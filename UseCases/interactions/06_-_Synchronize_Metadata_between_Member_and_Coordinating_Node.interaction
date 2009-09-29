@@ -1,0 +1,7 @@
+title 06 - Synchronize Metadata between Member and Coordinating Node
+
+c_sync -> c_sync: pollForNewIDs ()
+c_sync -> m_rep: listRecords ()
+c_sync <-- m_rep: records
+c_sync -> c_crud: storeRecords
+c_sync -> c_sync: verifyAllRecordsReceived ()

@@ -1,0 +1,11 @@
+@startuml
+title Interactions: 06 - Synchronize Metadata between Member and Coordinating Node
+participant "Synchronization API" as c_sync << Coordinating Node >>
+c_sync -> c_sync: pollForNewIDs ()
+participant "Replication API" as m_rep << Member Node >>
+c_sync -> m_rep: listRecords ()
+c_sync <-- m_rep: records
+participant "CRUD API" as c_crud << Coordinating Node >>
+c_sync -> c_crud: storeRecords
+c_sync -> c_sync: verifyAllRecordsReceived ()
+@enduml

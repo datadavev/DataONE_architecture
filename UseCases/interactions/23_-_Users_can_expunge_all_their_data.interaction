@@ -1,0 +1,20 @@
+title 23 - User can find out where all copies of my data are in the system and can expunge them
+
+actor "User (Data Owner)" as user
+user -> app_client
+app_client -> c_authenticate: login (user, pw)
+app_client <-- c_authenticate: token or failure
+app_client -> c_query: getAllCopies (token, ownerID)
+c_query -> c_authorize: isAuth (token, resultset)
+c_authorize -> c_ver: isValidToken (token)
+c_authorize <-- c_ver: T or F
+c_query <-- c_authorize: T or F
+app_client <-- c_query: records or fail
+app_client -> c_crud: deleteRecords (token, listOfGUIDs)
+app_client <-- c_crud: ack or fail
+note right
+Can the Query API find out where all
+copies of my data are in the system
+or should this be handled by another
+API?
+end note

@@ -1,10 +1,10 @@
 @startuml
-title Interactions 25 - System validates metadata and data 
+title Interactions: 25 - System validates metadata and data
 participant "CRUD API" as m_crud_a << Member Node A >>
 participant "Synchronization API" as c_sync << Coordinating Node >>
 c_sync -> m_crud_a: getChecksum (GUID)
-m_crud_a -> c_sync: checksum
+c_sync <-- m_crud_a: checksum
 participant "CRUD API" as m_crud_b << Member Node B >>
 c_sync -> m_crud_b: getChecksum (GUID)
-m_crud_b -> c_sync: checksum
+c_sync <-- m_crud_b: checksum
 @enduml

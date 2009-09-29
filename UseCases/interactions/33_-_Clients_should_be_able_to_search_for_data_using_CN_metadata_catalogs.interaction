@@ -1,0 +1,6 @@
+title 33 - Discovery; Clients should be able to search for data using CN metadata catalogs
+
+actor User
+User -> app_client
+app_client -> c_query: searchForData ()
+app_client <-- c_query: objectList
