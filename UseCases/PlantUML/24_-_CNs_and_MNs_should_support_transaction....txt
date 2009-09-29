@@ -1,3 +1,0 @@
-@startuml
-title Interactions 24 - CNs and MNs should support transaction sets 
-@enduml

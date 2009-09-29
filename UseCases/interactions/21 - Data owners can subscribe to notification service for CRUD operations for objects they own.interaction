@@ -1,9 +1,0 @@
-actor "User (Data Owner)" as user
-user -> app_client
-note left
-Assume user authority
-for notification registration.
-end note
-app_client -> c_reg: registerForNotification (token, dataOwnerID)
-c_reg -> app_client: ack or fail
-

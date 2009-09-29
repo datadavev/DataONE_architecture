@@ -1,4 +1,0 @@
-c_sync -> m_crud_a: getChecksum (GUID)
-m_crud_a -> c_sync: checksum
-c_sync -> m_crud_b: getChecksum (GUID)
-m_crud_b -> c_sync: checksum

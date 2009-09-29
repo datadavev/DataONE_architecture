@@ -1,5 +1,0 @@
-actor User
-User -> app_client
-app_client -> c_authenticate: newAccount (user, pw)
-c_authenticate -> app_client: token or failure
-c_authenticate -> User: email confirmation

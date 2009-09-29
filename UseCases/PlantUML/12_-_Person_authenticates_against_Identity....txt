@@ -1,8 +1,0 @@
-@startuml
-title Interactions 12 - Person authenticates against Identity Provider 
-actor User
-participant "Client" as app_client << Application >>
-User -> app_client
-app_client -> c_auth: login (user, pw)
-c_auth -> app_client: token or failure
-@enduml

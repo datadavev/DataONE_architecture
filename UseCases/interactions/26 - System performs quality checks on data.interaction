@@ -1,4 +1,0 @@
-c_sync -> m_crud_a: checkDataQuality (GUID)
-m_crud_a -> c_sync: result
-c_sync -> m_crud_b: checkDataQuality (GUID)
-m_crud_b -> c_sync: result

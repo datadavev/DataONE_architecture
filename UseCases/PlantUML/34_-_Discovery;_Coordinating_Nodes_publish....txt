@@ -1,3 +1,0 @@
-@startuml
-title Interactions 34 - Discovery; Coordinating Nodes publish metadata \nin formats for other discovery services like Google, \nLibraries, GCMD, etc. 
-@enduml
