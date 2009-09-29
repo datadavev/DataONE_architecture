@@ -1,5 +1,4 @@
-title 32 - User or organization takes over 'ownership' of a set of objects
-(write access for orphaned records)
+title 32 - User or organization takes over 'ownership' of a set of objects\n(write access for orphaned records)
 
 actor "User (User or Organization)" as user
 user -> app_client

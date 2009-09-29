@@ -1,5 +1,4 @@
-title 04, 05 - Create, update, delete, search metadata, data objects in Member
-Node
+title 04, 05 - Create, update, delete, search metadata, data objects in Member\nNode
 
 Actor User
 User -> app_client

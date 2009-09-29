@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 07 - Coordinating Node requests metadata, data list from new Member Node and then performs a batch upload.interaction
+title Interactions: 07 - Coordinating Node requests metadata, data list from new Member Node\nand then performs a batch upload.interaction
 participant "Synchronization API" as c_sync << Coordinating Node >>
 participant "Replication API" as m_rep << Member Node >>
 c_sync -> m_rep: listAllObjects ()

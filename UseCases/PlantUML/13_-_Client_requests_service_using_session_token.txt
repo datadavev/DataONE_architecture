@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 13 - Client requests service (get, put, query, delete, ...) using session token
+title Interactions: 13 - Client requests service (get, put, query, delete, ...) using session\ntoken
 actor User
 participant "Client" as app_client << Application >>
 User -> app_client

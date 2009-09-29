@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 19 - General public can request aggregated download usage information by object id
+title Interactions: 19 - General public can request aggregated download usage information by\nobject id
 actor User
 participant "Client" as app_client << Application >>
 User -> app_client

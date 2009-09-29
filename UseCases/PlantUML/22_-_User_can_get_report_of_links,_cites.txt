@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 22 - User can get report of links, cites my data (also can view this as a referrer log)
+title Interactions: 22 - User can get report of links, cites my data (also can view this as a\nreferrer log)
 actor "User (Data Owner)" as user
 participant "Client" as app_client << Application >>
 user -> app_client

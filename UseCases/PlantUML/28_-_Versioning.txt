@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 28 - Versioning -- Derived products should be linked to source objects so that notifications can be made to users of derived products when source products change
+title Interactions: 28 - Versioning -- Derived products should be linked to source objects so\nthat notifications can be made to users of derived products when source products\nchange
 actor User
 participant "Client" as app_client << Application >>
 User -> app_client

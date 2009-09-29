@@ -1,5 +1,4 @@
-title 13 - Client requests service (get, put, query, delete, ...) using session
-token
+title 13 - Client requests service (get, put, query, delete, ...) using session\ntoken
 
 actor User
 User -> app_client

@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 23 - User can find out where all copies of my data are in the system and can expunge them
+title Interactions: 23 - User can find out where all copies of my data are in the system and\ncan expunge them
 actor "User (Data Owner)" as user
 participant "Client" as app_client << Application >>
 user -> app_client

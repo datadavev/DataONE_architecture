@@ -43,7 +43,7 @@ apis = {
 	'c_health' : ('State of Health API', 'Coordinating Node'),
 }
 
-for ss in glob.glob ('interactions/*.interaction'):
+for ss in sorted (glob.glob ('interactions/*.interaction')):
 	path, fname = os.path.split (ss)
 	base, ext = os.path.splitext (fname)
 	print (base)

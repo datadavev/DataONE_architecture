@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 31 - Client can specify access and replication restrictions for their data and metadata objects, and supported timed embargoes
+title Interactions: 31 - Client can specify access and replication restrictions for their\ndata and metadata objects, and supported timed embargoes
 actor "User (Data Owner)" as user
 participant "Client" as app_client << Application >>
 user -> app_client

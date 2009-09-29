@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 18 - Member Nodes can request aggregated CRUD log for {time period, object id, user id} for all of 'their' objects
+title Interactions: 18 - Member Nodes can request aggregated CRUD log for {time period, object\nid, user id} for all of 'their' objects
 participant "CRUD API" as m_crud << Member Node >>
 participant "Query API" as c_query << Coordinating Node >>
 c_query -> m_crud: getLogRecords (nodeID, fromDate, toDate)

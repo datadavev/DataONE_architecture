@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 32 - User or organization takes over 'ownership' of a set of objects (write access for orphaned records)
+title Interactions: 32 - User or organization takes over 'ownership' of a set of objects\n(write access for orphaned records)
 actor "User (User or Organization)" as user
 participant "Client" as app_client << Application >>
 user -> app_client

@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 20 - Data owners can request aggregated CRUD log for {time, period, object id} for all of 'their' objects
+title Interactions: 20 - Data owners can request aggregated CRUD log for {time, period, object\nid} for all of 'their' objects
 actor "User (Data Owner)" as user
 participant "Client" as app_client << Application >>
 user -> app_client

@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 04, 05 - Create, update, delete, search metadata, data objects in Member Node
+title Interactions: 04, 05 - Create, update, delete, search metadata, data objects in Member\nNode
 Actor User
 participant "Client" as app_client << Application >>
 User -> app_client

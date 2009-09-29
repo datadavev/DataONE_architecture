@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 33 - Discovery; Clients should be able to search for data using CN metadata catalogs
+title Interactions: 33 - Discovery; Clients should be able to search for data using CN\nmetadata catalogs
 actor User
 participant "Client" as app_client << Application >>
 User -> app_client

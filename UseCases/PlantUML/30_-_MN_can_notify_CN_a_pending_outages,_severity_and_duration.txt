@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 30 - MN can notify CN about pending outages, severity and duration, and CNs may want to act on that knowledge to maintain seamless operation
+title Interactions: 30 - MN can notify CN about pending outages, severity and duration, and\nCNs may want to act on that knowledge to maintain seamless operation
 participant "State of Health API" as c_health << Coordinating Node >>
 participant "State of Health API" as m_health << Member Node >>
 m_health -> c_health: reportPendingEvent ()

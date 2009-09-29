@@ -1,5 +1,4 @@
-title 23 - User can find out where all copies of my data are in the system and
-can expunge them
+title 23 - User can find out where all copies of my data are in the system and\ncan expunge them
 
 actor "User (Data Owner)" as user
 user -> app_client

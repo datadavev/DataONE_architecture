@@ -1,5 +1,5 @@
 @startuml
-title Interactions: 21 - Data owners can subscribe to notification service for CRUD operations for objects they own
+title Interactions: 21 - Data owners can subscribe to notification service for CRUD operations\nfor objects they own
 actor "User (Data Owner)" as user
 participant "Client" as app_client << Application >>
 user -> app_client
