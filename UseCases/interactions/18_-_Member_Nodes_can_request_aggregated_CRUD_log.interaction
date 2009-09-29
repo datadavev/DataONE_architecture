@@ -1,4 +1,5 @@
-title 18 - Member Nodes can request aggregated CRUD log for {time period, object id, user id} for all of 'their' objects
+title 18 - Member Nodes can request aggregated CRUD log for {time period, object
+id, user id} for all of 'their' objects
 
 c_query -> m_crud: getLogRecords (nodeID, fromDate, toDate)
 note right

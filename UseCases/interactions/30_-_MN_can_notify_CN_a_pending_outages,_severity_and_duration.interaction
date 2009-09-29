@@ -1,4 +1,5 @@
-title 30 - MN can notify CN about pending outages, severity and duration, and CNs may want to act on that knowledge to maintain seamless operation
+title 30 - MN can notify CN about pending outages, severity and duration, and
+CNs may want to act on that knowledge to maintain seamless operation
 
 m_health -> c_health: reportPendingEvent ()
 m_health <-- c_health: ack

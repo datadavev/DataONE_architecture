@@ -1,4 +1,5 @@
-title 19 - General public can request aggregated download usage information by object id
+title 19 - General public can request aggregated download usage information by
+object id
 
 actor User
 User -> app_client

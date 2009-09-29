@@ -1,4 +1,5 @@
-title 33 - Discovery; Clients should be able to search for data using CN metadata catalogs
+title 33 - Discovery; Clients should be able to search for data using CN
+metadata catalogs
 
 actor User
 User -> app_client

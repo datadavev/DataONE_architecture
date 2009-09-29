@@ -1,4 +1,6 @@
-title 28 - Versioning -- Derived products should be linked to source objects so that notifications can be made to users of derived products when source products change
+title 28 - Versioning -- Derived products should be linked to source objects so
+that notifications can be made to users of derived products when source products
+change
 
 actor User
 User -> app_client
