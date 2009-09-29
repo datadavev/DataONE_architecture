@@ -1,12 +1,13 @@
-Use Case 02 - Get 
-------------------------
+Use Case 02 - List GUIDs By Search
+----------------------------------
 
 Author
   VDC TWG
 
 Date
+  - 20090927 Provided more detail to use case
   - 20090925 Adding to use case description and documentation
-  - 20090114 (TWG meeting).  Subsequent various modifications.
+  - 20090114 (TWG meeting).  Subsequent various modifications
 
 Version 
   Draft
@@ -15,23 +16,39 @@ Goal
   Get list of GUIDs from metadata search (anon and authenticated).
 
 Summary 
-
-  xxx
+  A user performs a search against the DataONE system and receives a list of
+  object identifiers (GUIDs) that match the search criteria. The list of GUIDs
+  is filtered such that only objects for which the user has read permission
+  will be returned.  
+  
+  This use case assumes that the search is being performed by submitting a
+  query against a CN.
+  
 
 .. image:: UseCases/images/02_-_Client_query_to_get_list_of_GUIDs_from....png
+   :width: 7.5in
 
 
 Actors
-  xxx
+  - Client performing search operation
+
+  - Coordinating Node
+ 
 
 Preconditions 
-  xxx
+  - Client has authenticated to at the desired level (e.g. client may not have
+    authenticated, so access might be anonymous).
+ 
   
 Triggers
-  xxx
+  - Operation is logged
  
 Post Conditions
-  xxx
+  - The client has a list of GUIDs for which they have permission to read and
+    match the supplied query, or an error message if the query was invalid.
+
+  - The log is updated with the request
+
 
 Notes
 ~~~~~
@@ -93,3 +110,10 @@ Notes
   important for both interactive sessions and for cases like workflows, where
   the session may run for days.
 
+- What logging level is required for the operation? Should the search appear
+  as a hit against each object? Just log the query (and perhaps who did it)?
+
+
+.. raw:: pdf
+
+   pageBreak

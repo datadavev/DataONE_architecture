@@ -5,33 +5,67 @@ Author
   VDC TWG
 
 Date
+  - 20090927 More detail added to use case description
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
+
 
 Version 
   Draft
 
+
 Goal
   Register a new Member Node.
 
-Summary 
 
-  xxx
+Summary 
+  This use case describes the technical process for addition of a new member
+  node (MN) to to the DataONE infrastructure. It is assumed that the
+  appropriate social contracts have been formed and the MN is operational,
+  ready to be connected.
+
+  The MN is identified by a URL which is the service endpoint. A DataONE
+  administrator adds the MN URL to the MN registry. A CN retrieves the
+  registration request from the message queue and queries the MN for
+  capabilities, then verifies those capabilities match what was advertised. If
+  everything is OK, the MN is made a live member of DataONE and replication of
+  content on the MN is scheduled. The new MN also becomes a receiver for
+  content replicated from other MNs.
 
 .. image:: UseCases/images/03_-_Register_a_new_Member_Node.png
 
 
 Actors
-  xxx
+  MN, CN, Administrator
 
-Preconditions 
-  xxx
+
+Preconditions
+  - The MN is operational
+
+  - There is an agreement between the DataONE operators and the MN operator
+    that the MN is to be added to DataONE
+
+  - The CNs are ready for receiving MN registrations
+
+
+Triggers   
+  - Notification is sent to MN administrators of the operation status
+
+  - Content replication from the new MN in initiated
+
+  - The new MN is added to the list of targets for replication
   
-Triggers
-  xxx
- 
-Post Conditions
-  xxx
+  - The system logs are updated
+
+
+Post Conditions 
+  - The new MN operates as part of the DataONE infrastructure
+
+  - DataONE infrastructure resources are incremented by the amount available
+    at the new MN
+
+  - The operation outcomes are logged
+
 
 Notes
 ~~~~~

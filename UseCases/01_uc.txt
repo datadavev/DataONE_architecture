@@ -15,7 +15,6 @@ Goal
   Get object identified by GUID (authenticated or not, notify subscriber of access).
 
 Summary 
-
   A client has an identifier for some object within the DataONE system and is
   retrieving the referenced object. The DataONE system must resolve the
   identifier and return the object bytes after checking that the user has read
@@ -25,6 +24,7 @@ Summary
   they notified of?).
 
 .. image:: UseCases/images/01_-_Get_object_for_GUID_(anonymous_and_authenticated).png
+   :height: 5in
 
 
 Actors
@@ -54,4 +54,9 @@ Notes
   because the member node will do this check before delivering the results.
 - Data sent to watchers might include: timestamp, object identifier, user id,
   IP of client, 
+
+.. raw:: pdf
+
+   pageBreak
+
 
