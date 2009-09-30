@@ -4,19 +4,22 @@ title 03 - Register a new Member Node
 actor Admin
 Admin -> app_admin
 note right
-Assume admin authority for node registration.
+  Assume admin authority for node registration.
 end note
-app_admin -> c_reg: register (token, capabilitiesURL)
+
+activate c_reg
+app_admin -> c_reg: register (auth_token, capabilitiesURL)
 c_reg -> m_cap: getCapabilities ()
 c_reg <-- m_cap: capabilities
 c_reg -> c_reg: verifyCapabilities ()
 note right
-Assume capabilities stored as any other metadata.
+ Assume capabilities stored as any other metadata.
 end note
 c_reg -> c_reg: addNodeCapabilities ()
 c_reg -> c_reg: scheduleSynch ()
 note right
-Harvest process occurs asynchronously.
-Separate use case. 
+ Harvest process occurs asynchronously.
+ Separate use case. 
 end note
 app_admin <-- c_reg: ack or fail
+deactivate c_reg

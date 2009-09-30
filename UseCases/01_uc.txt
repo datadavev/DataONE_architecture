@@ -1,3 +1,5 @@
+.. _UC01:
+
 Use Case 1 - CRUD Read()
 ------------------------
 
@@ -23,8 +25,7 @@ Summary
   Watchers (subscribers) of the object are notified of the retrieval (what are
   they notified of?).
 
-.. image:: UseCases/images/01_-_Get_object_for_GUID_(anonymous_and_authenticated).png
-   :height: 5in
+.. image:: UseCases/images/01_interaction.png
 
 
 Actors
@@ -33,8 +34,9 @@ Actors
   - Member Node
 
 Preconditions 
-  - Client has authenticated to at the desired level (e.g. client
-    may not have authenticated, so access might be anonymous).
+  - Client has authenticated to at the desired level (e.g. client may not have
+    authenticated, so access might be anonymous), and so an ``auth_token |
+    None`` is available.
 
 Triggers
   - Watchers are notified of the retrieval
@@ -50,10 +52,19 @@ Post Conditions
 Notes
 ~~~~~
 
-- for the GET operation, the coordinating node does not need to check access,
-  because the member node will do this check before delivering the results.
-- Data sent to watchers might include: timestamp, object identifier, user id,
-  IP of client, 
+1. For the GET operation, the coordinating node does not need to check access,
+   because the member node will do this check before delivering the results.
+
+2. For the GET operation, should isAuth() be performed only by CNs? Relying on
+   the MN system metadata requires trusted implementation of the MN system and
+   consistency of system metadata across all MNs (which will be the case, though
+   with uncertain latency). Requiring all isAuth() operations to be performed by
+   CNs will increase trust in the operation (assuming the operation is not
+   spoofed by a MN) though will increase load on CNs.
+
+3. Data sent to watchers might include: timestamp, object identifier, user id,
+   IP of client.
+
 
 .. raw:: pdf
 

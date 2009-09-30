@@ -2,11 +2,17 @@ title 02 - Client query to get list of GUIDs from metadata search
 
 actor User
 User -> app_client
-app_client -> m_authorize: login (user, pw)
-app_client <-- m_authorize: token or failure
-app_client -> c_query: query (token, query)
-c_query -> c_authorize: isAuth (token, resultset)
+
+activate c_query
+app_client -> c_query: query(auth_token, query)
+note right of c_query
+ The query response is a list of GUIDS.
+ Each GUID needs to be checked for read 
+ access by the auth_token.
+end note
+c_query -> c_authorize: isAuth(auth_token, resultset)
 c_authorize -> c_ver: isValidToken (token)
 c_authorize <-- c_ver: T or F
 c_query <-- c_authorize: T or F
 app_client <-- c_query: resultset
+deactivate c_query

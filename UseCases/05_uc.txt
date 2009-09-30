@@ -1,3 +1,5 @@
+.. _UC05:
+
 Use Case 05 - CRUD (Create, Update Delete)
 ------------------------------------------
 
@@ -15,10 +17,8 @@ Goal
   Create/Update/Delete data object in Member Node.
 
 Summary 
-
-  xxx
-
-.. image:: UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png
+  This is a dupe of UC04_ for now. May split out the update and delete
+  portions to different use cases at some point in the future.
 
 
 Actors

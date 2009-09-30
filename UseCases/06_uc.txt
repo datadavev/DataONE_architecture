@@ -1,3 +1,5 @@
+.. _UC06:
+
 Use Case 06 - MN Synchronize
 ----------------------------
 
@@ -5,6 +7,7 @@ Author
   VDC TWG
 
 Date
+  - 20090930 Filled out content, changed mode to pull from MN
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
@@ -16,24 +19,37 @@ Goal
 
 Summary 
 
-  xxx
+  As data packages, or portions there of are created or modified, the metadata
+  associated with those needs to be replicated to the coordinating nodes.
 
-.. image:: UseCases/images/06_-_Synchronize_Metadata_between_Member....png
+  The presence of new or changed information on a Member Node (MN) is made
+  known to a Coordinating Node (CN) through the status information in a
+  ``ping()`` response. If so indicated, the CN schedules a synchronization
+  operation with the MN, a list of changed object GUIDS is retrieved by the
+  CN, and the CN proceeds to retrieve and process each object identified.
+
+  If new data packages are present on the MN, then a MN-MN synchronization
+  process is scheduled.
+
+
+.. image:: UseCases/images/06_interaction.png
 
 
 Actors
-  xxx
+  Member Node, Coordinating Node
 
 Preconditions 
-  xxx
+  - Member Node has new or changed data packages
   
 Triggers
-  xxx
+  - Log
+  - Watchers for changes to MN, CN, or DataONE system
  
 Post Conditions
-  xxx
+  - MN is in sync with CN
 
 Notes
 ~~~~~
 
-xxx
+- Overloading ping() for notification of change seems a little bit of a hack,
+  though changing the name from ping() to status() makes it seem OK.

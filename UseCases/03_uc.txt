@@ -1,3 +1,5 @@
+.. _UC03:
+
 Use Case 03 - Register MN
 -------------------------
 
@@ -32,7 +34,7 @@ Summary
   content on the MN is scheduled. The new MN also becomes a receiver for
   content replicated from other MNs.
 
-.. image:: UseCases/images/03_-_Register_a_new_Member_Node.png
+.. image:: UseCases/images/03_interaction.png
 
 
 Actors
@@ -48,13 +50,15 @@ Preconditions
   - The CNs are ready for receiving MN registrations
 
 
-Triggers   
-  - Notification is sent to MN administrators of the operation status
+Triggers
+  - Synchronize capabilities metadata across CNs
 
-  - Content replication from the new MN in initiated
+  - Notify MN administrators of operation status (email?)
 
-  - The new MN is added to the list of targets for replication
+  - The new MN is added to CN list of targets for replication
   
+  - Schedule content replication from the new MN
+
   - The system logs are updated
 
 
@@ -65,6 +69,8 @@ Post Conditions
     at the new MN
 
   - The operation outcomes are logged
+  
+  - Synchronization of the MN commences as per scheduled operation
 
 
 Notes
@@ -76,9 +82,15 @@ Notes
 
 - Should new nodes be registered with specified trust levels?
 
+- Are there different levels of trust for member nodes? 
+
 - Data providers that use acceptable services can still be discovered and
-  accessed without registering in the DataONE registry ( Conflicting, as
-  someone has to register it)
+  accessed without registering in the DataONE registry (Conflicting, as
+  someone has to register it). 
+
+  However, a MN that has not registered but does expose DataONE services is
+  not part of the DataONE infrastructure and so does not participate in
+  replication or other DataONE services.
 
 - Allow service providers to register their services, (such as data extraction
   services) (ala GEOSS), but include mapping to higher semantic model
@@ -91,8 +103,3 @@ Notes
 
 - Member node should be able to request the coordinating node to re-validate
   its capabilities list.
-
-- Are there different levels of trust for member nodes? 
-
-
-

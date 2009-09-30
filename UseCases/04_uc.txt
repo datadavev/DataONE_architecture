@@ -1,3 +1,5 @@
+.. _UC04:
+
 Use Case 04 - CRUD (Create, Update Delete)
 ------------------------------------------
 
@@ -5,6 +7,7 @@ Author
   VDC TWG
 
 Date
+  - 20090929 Filling out details
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
@@ -15,23 +18,60 @@ Goal
   Create, update or delete metadata record on a Member Node.
 
 Summary 
+  A user is creating a new metadata record on a Member Node (MN). The
+  mechanism by which the user does this is out of scope for the DataONE
+  system, so this use case continues from the point where a new Data Package
+  is present on the MN.
 
-  xxx
+  The metadata is retrieved by the CN using a pull mechanism (CN requests
+  content from the MN).
 
-.. image:: UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png
+  The availability of new content on a MN is indicated by a flag in the
+  response to a ping() message issued by a CN. The CN then retrieves a list of
+  changes from the MN and for each change, retrieves the experiment metadata,
+  stores it and generates a search metadata document by extracting content
+  from the experiment metadata. The changes to the CN (stored experiment
+  metadata, update search metadata) are replicated to the other CNs (Use Case
+  ###). The CN schedules replication of the data package across other MNs
+  (`Use Case 06`__).
+
+__ UC06_
+
+.. image:: UseCases/images/04_interaction.png
 
 
 Actors
-  xxx
+  Member Node, additional Member Nodes, Coordinating Nodes
+  
+  
+Preconditions
 
-Preconditions 
-  xxx
+  - Use is authenticated and so client application has an auth_token for the process.
+
+  - DataONE system operational
+  
+  - MN is registered and is monitored
+  
   
 Triggers
-  xxx
+
+  - CN update of search metadata
+
+  - CN replication of metadata 
+
+  - Data Package replication across MNs
+
+  - Watchers notified of change
+  
  
 Post Conditions
-  xxx
+  
+  - New data package is replicated across MNs
+  
+  - Search metadata is updated
+  
+  - Operation recorded in logs
+
 
 Notes
 ~~~~~
@@ -48,4 +88,5 @@ Notes
 
 - Should queuing of a submission within a member node be required for success?
   (We assume yes, to guarantee replication of submissions).
+
 

@@ -47,12 +47,13 @@ for ss in sorted (glob.glob ('interactions/*.interaction')):
 	path, fname = os.path.split (ss)
 	base, ext = os.path.splitext (fname)
 	print (base)
+	imgid = base.split("_")[0]
 
 	in_file = open (ss, 'r')
 	out_file = open ('PlantUML/%s.txt' % base, 'w')
 
 	# Start UML.
-	out_file.writelines ('@startuml\n')
+	out_file.writelines ('@startuml %s_interaction.png\n' % imgid)
 
 	#out_file.writelines ('autonumber\n')
 	#out_file.writelines ('skin BlueModern\n')
