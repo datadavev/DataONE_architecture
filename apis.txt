@@ -8,13 +8,48 @@ read (ID, sess, transID)
 Member Node APIs
 ----------------
 
+These APIs are implemented by Member Nodes.
+
 Authorization API
 ~~~~~~~~~~~~~~~~~
+
+Provides a mechanism for a User to authenticate themselves with the DataONE
+system and verify that an operation is permitted for an authenticated User.
 
 ::
 
   login (user, pw)
   isAuth (token, GUID)
+  
+.. list-table:: Methods
+   :widths: 20 5 10 20 45
+   :header-rows: 1
+   
+   * - Path
+     - Parameters
+     - Method
+     - Returns
+     - Description
+
+   * - ``/login/``
+     - ``POST``
+     - ``user``, ``password``
+     - ``auth_token`` or FAIL
+     - Authenticates a user. The returned value is a composite of the user id
+       and authentication token
+
+   * - ``/<GUID>/isAuth/``
+     - ``GET``
+     - ``auth_token``, ``GUID``
+     - permissions 
+     - The token is passed in the HTTP authorization header. Permissions are
+       returned as a set of flags (can read, can write)?
+       
+.. Note::
+   Should add a mechanism for logging out, and perhaps convenience methods for
+   "canRead()" and "canWrite()" to verify that a user is able to read / write
+   an object
+
 
 CRUD API
 ~~~~~~~~

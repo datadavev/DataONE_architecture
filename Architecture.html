@@ -315,14 +315,14 @@ ul.auto-toc {
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#use-cases-overview" id="id38">Use Cases Overview</a></li>
-<li><a class="reference internal" href="#use-case-implementation-priority" id="id39">Use Case Implementation Priority</a></li>
-<li><a class="reference internal" href="#use-cases" id="id40">Use Cases</a></li>
-<li><a class="reference internal" href="#dataone-application-programming-interfaces" id="id41">DataONE Application Programming Interfaces</a></li>
+<li><a class="reference internal" href="#use-cases-overview" id="id39">Use Cases Overview</a></li>
+<li><a class="reference internal" href="#use-case-implementation-priority" id="id40">Use Case Implementation Priority</a></li>
+<li><a class="reference internal" href="#use-cases" id="id41">Use Cases</a></li>
+<li><a class="reference internal" href="#dataone-application-programming-interfaces" id="id42">DataONE Application Programming Interfaces</a></li>
 </ul>
 </div>
 <div class="section" id="use-cases-overview">
-<h1><a class="toc-backref" href="#id38">Use Cases Overview</a></h1>
+<h1><a class="toc-backref" href="#id39">Use Cases Overview</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -339,9 +339,9 @@ diagrams help define the interfaces and messages transmitted between
 components.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p class="last">TODO: Architecture overview diagram
-TODO: Component diagram
-TODO: Broad categories of use cases</p>
+<p>TODO: Architecture overview diagram</p>
+<p>TODO: Component diagram</p>
+<p class="last">TODO: Broad categories of use cases</p>
 </div>
 <div class="section" id="use-case-layout">
 <h2>Use Case Layout</h2>
@@ -380,7 +380,7 @@ categories.  Comments should be annotated with time and author.</dd>
 </div>
 </div>
 <div class="section" id="use-case-implementation-priority">
-<h1><a class="toc-backref" href="#id39">Use Case Implementation Priority</a></h1>
+<h1><a class="toc-backref" href="#id40">Use Case Implementation Priority</a></h1>
 <p>Prioritizing system implementation to address the use cases involves several
 factors including:</p>
 <ul class="simple">
@@ -401,48 +401,48 @@ of a number of other lower priority features.</li>
 </ul>
 </div>
 <div class="section" id="use-cases">
-<h1><a class="toc-backref" href="#id40">Use Cases</a></h1>
+<h1><a class="toc-backref" href="#id41">Use Cases</a></h1>
 <div class="contents local topic" id="id1">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#use-case-1-crud-read" id="id42">Use Case 1 - CRUD Read()</a></li>
-<li><a class="reference internal" href="#use-case-02-list-guids-by-search" id="id43">Use Case 02 - List GUIDs By Search</a></li>
-<li><a class="reference internal" href="#use-case-03-register-mn" id="id44">Use Case 03 - Register MN</a></li>
-<li><a class="reference internal" href="#use-case-04-crud-create-update-delete" id="id45">Use Case 04 - CRUD (Create, Update Delete)</a></li>
-<li><a class="reference internal" href="#use-case-05-crud-create-update-delete" id="id46">Use Case 05 - CRUD (Create, Update Delete)</a></li>
-<li><a class="reference internal" href="#use-case-06-mn-synchronize" id="id47">Use Case 06 - MN Synchronize</a></li>
-<li><a class="reference internal" href="#use-case-07-cn-batch-upload" id="id48">Use Case 07 - CN Batch Upload</a></li>
-<li><a class="reference internal" href="#use-case-08-replication-policy-communication" id="id49">Use Case 08 - Replication Policy Communication</a></li>
-<li><a class="reference internal" href="#use-case-09-replicate-mn-to-mn" id="id50">Use Case 09 - Replicate MN to MN</a></li>
-<li><a class="reference internal" href="#use-case-10-mn-status-reports" id="id51">Use Case 10 - MN Status Reports</a></li>
-<li><a class="reference internal" href="#use-case-11-crud-workflow-objects" id="id52">Use Case 11 - CRUD Workflow Objects</a></li>
-<li><a class="reference internal" href="#use-case-12-user-authentication" id="id53">Use Case 12 - User Authentication</a></li>
-<li><a class="reference internal" href="#use-case-13-user-authorization" id="id54">Use Case 13 - User Authorization</a></li>
-<li><a class="reference internal" href="#use-case-14-system-authentication-and-authorization" id="id55">Use Case 14 - System Authentication and Authorization</a></li>
-<li><a class="reference internal" href="#use-case-15-account-management" id="id56">Use Case 15 - Account Management</a></li>
-<li><a class="reference internal" href="#use-case-16-log-crud-operations" id="id57">Use Case 16 - Log CRUD Operations</a></li>
-<li><a class="reference internal" href="#use-case-17-crud-logs-aggregated-at-cns" id="id58">Use Case 17 - CRUD Logs Aggregated at CNs</a></li>
-<li><a class="reference internal" href="#use-case-18-mn-retrieve-aggregated-logs" id="id59">Use Case 18 - MN Retrieve Aggregated Logs</a></li>
-<li><a class="reference internal" href="#use-case-19-retrieve-object-download-summary" id="id60">Use Case 19 - Retrieve Object Download Summary</a></li>
-<li><a class="reference internal" href="#use-case-20-owner-retrieve-aggregate-logs" id="id61">Use Case 20 - Owner Retrieve Aggregate Logs</a></li>
-<li><a class="reference internal" href="#use-case-21-owner-subscribe-to-crud-operations" id="id62">Use Case 21 - Owner Subscribe to CRUD Operations</a></li>
-<li><a class="reference internal" href="#use-case-22-link-citation-report-for-owner" id="id63">Use Case 22 - Link/Citation Report for Owner</a></li>
-<li><a class="reference internal" href="#use-case-23-owner-expunge-content" id="id64">Use Case 23 - Owner Expunge Content</a></li>
-<li><a class="reference internal" href="#use-case-24-mns-and-cns-support-transactions" id="id65">Use Case 24 - MNs and CNs Support Transactions</a></li>
-<li><a class="reference internal" href="#use-case-25-detect-damaged-content" id="id66">Use Case 25 - Detect Damaged Content</a></li>
-<li><a class="reference internal" href="#use-case-26-data-quality-checks" id="id67">Use Case 26 - Data Quality Checks</a></li>
-<li><a class="reference internal" href="#use-case-27-metadata-version-migration" id="id68">Use Case 27 - Metadata Version Migration</a></li>
-<li><a class="reference internal" href="#use-case-28-derived-product-original-change-notification" id="id69">Use Case 28 - Derived Product Original Change Notification</a></li>
-<li><a class="reference internal" href="#use-case-29-cn-load-balancing" id="id70">Use Case 29 - CN Load Balancing</a></li>
-<li><a class="reference internal" href="#use-case-30-mn-outage-notification" id="id71">Use Case 30 - MN Outage Notification</a></li>
-<li><a class="reference internal" href="#use-case-31-manage-access-policies" id="id72">Use Case 31 - Manage Access Policies</a></li>
-<li><a class="reference internal" href="#use-case-32-transfer-object-ownership" id="id73">Use Case 32 - Transfer Object Ownership</a></li>
-<li><a class="reference internal" href="#use-case-33-search-for-data" id="id74">Use Case 33 - Search for Data</a></li>
-<li><a class="reference internal" href="#use-case-34-cns-support-other-discovery-mechanisms-e-g-google" id="id75">Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)</a></li>
+<li><a class="reference internal" href="#use-case-1-crud-read" id="id43">Use Case 1 - CRUD Read()</a></li>
+<li><a class="reference internal" href="#use-case-02-list-guids-by-search" id="id44">Use Case 02 - List GUIDs By Search</a></li>
+<li><a class="reference internal" href="#use-case-03-register-mn" id="id45">Use Case 03 - Register MN</a></li>
+<li><a class="reference internal" href="#use-case-04-crud-create-update-delete" id="id46">Use Case 04 - CRUD (Create, Update Delete)</a></li>
+<li><a class="reference internal" href="#use-case-05-crud-create-update-delete" id="id47">Use Case 05 - CRUD (Create, Update Delete)</a></li>
+<li><a class="reference internal" href="#use-case-06-mn-synchronize" id="id48">Use Case 06 - MN Synchronize</a></li>
+<li><a class="reference internal" href="#use-case-07-cn-batch-upload" id="id49">Use Case 07 - CN Batch Upload</a></li>
+<li><a class="reference internal" href="#use-case-08-replication-policy-communication" id="id50">Use Case 08 - Replication Policy Communication</a></li>
+<li><a class="reference internal" href="#use-case-09-replicate-mn-to-mn" id="id51">Use Case 09 - Replicate MN to MN</a></li>
+<li><a class="reference internal" href="#use-case-10-mn-status-reports" id="id52">Use Case 10 - MN Status Reports</a></li>
+<li><a class="reference internal" href="#use-case-11-crud-workflow-objects" id="id53">Use Case 11 - CRUD Workflow Objects</a></li>
+<li><a class="reference internal" href="#use-case-12-user-authentication" id="id54">Use Case 12 - User Authentication</a></li>
+<li><a class="reference internal" href="#use-case-13-user-authorization" id="id55">Use Case 13 - User Authorization</a></li>
+<li><a class="reference internal" href="#use-case-14-system-authentication-and-authorization" id="id56">Use Case 14 - System Authentication and Authorization</a></li>
+<li><a class="reference internal" href="#use-case-15-account-management" id="id57">Use Case 15 - Account Management</a></li>
+<li><a class="reference internal" href="#use-case-16-log-crud-operations" id="id58">Use Case 16 - Log CRUD Operations</a></li>
+<li><a class="reference internal" href="#use-case-17-crud-logs-aggregated-at-cns" id="id59">Use Case 17 - CRUD Logs Aggregated at CNs</a></li>
+<li><a class="reference internal" href="#use-case-18-mn-retrieve-aggregated-logs" id="id60">Use Case 18 - MN Retrieve Aggregated Logs</a></li>
+<li><a class="reference internal" href="#use-case-19-retrieve-object-download-summary" id="id61">Use Case 19 - Retrieve Object Download Summary</a></li>
+<li><a class="reference internal" href="#use-case-20-owner-retrieve-aggregate-logs" id="id62">Use Case 20 - Owner Retrieve Aggregate Logs</a></li>
+<li><a class="reference internal" href="#use-case-21-owner-subscribe-to-crud-operations" id="id63">Use Case 21 - Owner Subscribe to CRUD Operations</a></li>
+<li><a class="reference internal" href="#use-case-22-link-citation-report-for-owner" id="id64">Use Case 22 - Link/Citation Report for Owner</a></li>
+<li><a class="reference internal" href="#use-case-23-owner-expunge-content" id="id65">Use Case 23 - Owner Expunge Content</a></li>
+<li><a class="reference internal" href="#use-case-24-mns-and-cns-support-transactions" id="id66">Use Case 24 - MNs and CNs Support Transactions</a></li>
+<li><a class="reference internal" href="#use-case-25-detect-damaged-content" id="id67">Use Case 25 - Detect Damaged Content</a></li>
+<li><a class="reference internal" href="#use-case-26-data-quality-checks" id="id68">Use Case 26 - Data Quality Checks</a></li>
+<li><a class="reference internal" href="#use-case-27-metadata-version-migration" id="id69">Use Case 27 - Metadata Version Migration</a></li>
+<li><a class="reference internal" href="#use-case-28-derived-product-original-change-notification" id="id70">Use Case 28 - Derived Product Original Change Notification</a></li>
+<li><a class="reference internal" href="#use-case-29-cn-load-balancing" id="id71">Use Case 29 - CN Load Balancing</a></li>
+<li><a class="reference internal" href="#use-case-30-mn-outage-notification" id="id72">Use Case 30 - MN Outage Notification</a></li>
+<li><a class="reference internal" href="#use-case-31-manage-access-policies" id="id73">Use Case 31 - Manage Access Policies</a></li>
+<li><a class="reference internal" href="#use-case-32-transfer-object-ownership" id="id74">Use Case 32 - Transfer Object Ownership</a></li>
+<li><a class="reference internal" href="#use-case-33-search-for-data" id="id75">Use Case 33 - Search for Data</a></li>
+<li><a class="reference internal" href="#use-case-34-cns-support-other-discovery-mechanisms-e-g-google" id="id76">Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)</a></li>
 </ul>
 </div>
 <div class="section" id="use-case-1-crud-read">
-<h2><a class="toc-backref" href="#id42">Use Case 1 - CRUD Read()</a></h2>
+<span id="uc01"></span><h2><a class="toc-backref" href="#id43">Use Case 1 - CRUD Read()</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -465,7 +465,7 @@ privileges on the object.</p>
 they notified of?).</p>
 </dd>
 </dl>
-<img alt="UseCases/images/01_-_Get_object_for_GUID_(anonymous_and_authenticated).png" src="UseCases/images/01_-_Get_object_for_GUID_(anonymous_and_authenticated).png" style="height: 5in;" />
+<img alt="UseCases/images/01_interaction.png" src="UseCases/images/01_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd><ul class="first last simple">
@@ -476,8 +476,9 @@ they notified of?).</p>
 </dd>
 <dt>Preconditions</dt>
 <dd><ul class="first last simple">
-<li>Client has authenticated to at the desired level (e.g. client
-may not have authenticated, so access might be anonymous).</li>
+<li>Client has authenticated to at the desired level (e.g. client may not have
+authenticated, so access might be anonymous), and so an <tt class="docutils literal"><span class="pre">auth_token</span> <span class="pre">|</span>
+<span class="pre">None</span></tt> is available.</li>
 </ul>
 </dd>
 <dt>Triggers</dt>
@@ -497,16 +498,22 @@ of failure)</li>
 </dl>
 <div class="section" id="notes">
 <h3>Notes</h3>
-<ul class="simple">
-<li>for the GET operation, the coordinating node does not need to check access,
+<ol class="arabic simple">
+<li>For the GET operation, the coordinating node does not need to check access,
 because the member node will do this check before delivering the results.</li>
+<li>For the GET operation, should isAuth() be performed only by CNs? Relying on
+the MN system metadata requires trusted implementation of the MN system and
+consistency of system metadata across all MNs (which will be the case, though
+with uncertain latency). Requiring all isAuth() operations to be performed by
+CNs will increase trust in the operation (assuming the operation is not
+spoofed by a MN) though will increase load on CNs.</li>
 <li>Data sent to watchers might include: timestamp, object identifier, user id,
-IP of client,</li>
-</ul>
+IP of client.</li>
+</ol>
 </div>
 </div>
 <div class="section" id="use-case-02-list-guids-by-search">
-<h2><a class="toc-backref" href="#id43">Use Case 02 - List GUIDs By Search</a></h2>
+<span id="uc02"></span><h2><a class="toc-backref" href="#id44">Use Case 02 - List GUIDs By Search</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -530,7 +537,7 @@ will be returned.</p>
 query against a CN.</p>
 </dd>
 </dl>
-<img alt="UseCases/images/02_-_Client_query_to_get_list_of_GUIDs_from....png" src="UseCases/images/02_-_Client_query_to_get_list_of_GUIDs_from....png" style="width: 7.5in;" />
+<img alt="UseCases/images/02_interaction.png" src="UseCases/images/02_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd><ul class="first last simple">
@@ -559,9 +566,8 @@ match the supplied query, or an error message if the query was invalid.</li>
 </dl>
 <div class="section" id="id2">
 <h3>Notes</h3>
-<ul class="simple">
-<li>Two #2's on diagram. One to Authentication API and one to query API.</li>
-<li>lots of stuff buried in query. What information/interface is needed for
+<ul>
+<li><p class="first">lots of stuff buried in query. What information/interface is needed for
 resolution/expansion of the query? For example a particular user may be
 identified with a particular community which uses a particular ontology.
 Where are things like ontologies maintained and where are the interfaces
@@ -573,50 +579,66 @@ where the ontology contains representations of human subject information,
 meaning that &quot;cancer survivors&quot; includes this list of people. Or where the
 ontology provides geospatial information about restricted information
 (locations of USFS FIA plots). Similar issues apply to T&amp;E species
-information.</li>
-<li>Group structure representation: A user is a member of zero to many groups,
+information.</p>
+</li>
+<li><p class="first">Group structure representation: A user is a member of zero to many groups,
 authorization may be carried with that group membership. This is down in the
 verify API, which needs to take into account group membership and group
 permission inheritance. Question: What is the resolution for conflicting
-access permissions?</li>
-<li>Can a query be done at a member node? The diagram implies that the query is
+access permissions?</p>
+</li>
+<li><p class="first">Q. Can a query be done at a member node? The diagram implies that the query is
 only done at a coordinating node. A member node may have a subset (or the
 full set) of metadata and the user may wish to do the search only at a
 member node, knowing that the subset is restricted to data relevant to a
-community of practice.</li>
-<li>Where is the filtering done for the results, in terms of when does the
-result set get filtered to those which the user can see. Does the model
-allow the query service to do two searches and union the results? The first
-query might be against the set of records known to be publicly readable,
-with a follow-on query against the set of records known to have restricted
-access. Is this envisioning the query service generating a set of results
-(against the restricted records) and passing that list to the authorization
-API, or is this envisioning a one by one situation. Or does the
-authorization API pass back to the query service the list of records that
-the user is authorized to see, and that gets anded with the result set.</li>
-<li>How distributed is the database of users and their authorization records?
-Does the coordinating node have to know all authorization records, with that
+community of practice.</p>
+<p>A. First iteration will provide query service on CNs, though nothing to
+prevent MNs implementing query as well.</p>
+</li>
+<li><p class="first">Where is the filtering done for the results, in terms of when does the
+result set get filtered to those which the user can see?</p>
+<p>Q. Does the model allow the query service to do two searches and union the
+results? The first query might be against the set of records known to be
+publicly readable, with a follow-on query against the set of records known
+to have restricted access. Is this envisioning the query service generating
+a set of results (against the restricted records) and passing that list to
+the authorization API, or is this envisioning a one by one situation. Or
+does the authorization API pass back to the query service the list of
+records that the user is authorized to see, and that gets anded with the
+result set.</p>
+<p>A. The resultset is a list of GUIDs that needs to be vetted for read access.
+Hence query results can be merged (union) or joined as the output from such
+operations is always a list of GUIDs that will be vetted for read access.</p>
+</li>
+<li><p class="first">How distributed is the database of users and their authorization records?</p>
+<p>Q. Does the coordinating node have to know all authorization records, with that
 being replicated? Or is some amount of the authorization maintained by (for
 example) the &quot;owning&quot; member node and the search system may need to contact
 multiple authorization authorities for the records in a particular result
 set? It also implies that if the authorization information is at the
 coordinating node, that the authorization authority needs a means to
 validate the replicated authorization information to ensure that the info at
-the cn is up-to-date.</li>
-<li>Why does step 4 need to validate the token, given that the token was
-generated in step 2? Answer is that this is normal security validation of
-all user inputs once those have gone out of the control of the issuing
-service. Also applies to cases where tokens have a specific lifetime, and
-the token may be valid, but expired. Authorization token lifetimes are
-important for both interactive sessions and for cases like workflows, where
-the session may run for days.</li>
-<li>What logging level is required for the operation? Should the search appear
-as a hit against each object? Just log the query (and perhaps who did it)?</li>
+the cn is up-to-date.</p>
+<p>A. One scenario is that all authorization information is stored in the
+system metadata with each object. Then authorization can be performed by MNs
+or CNs.</p>
+</li>
+<li><p class="first">Q. Why does step 4 need to validate the token, given that the token was
+generated in step 2?</p>
+<p>A. This is normal security validation of all user inputs once those have
+gone out of the control of the issuing service. Also applies to cases where
+tokens have a specific lifetime, and the token may be valid, but expired.
+Authorization token lifetimes are important for both interactive sessions
+and for cases like workflows, where the session may run for days.</p>
+</li>
+<li><p class="first">What logging level is required for the operation? Should the search appear
+as a hit against each object? Just log the query (and perhaps who did it)?</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="use-case-03-register-mn">
-<h2><a class="toc-backref" href="#id44">Use Case 03 - Register MN</a></h2>
+<span id="uc03"></span><h2><a class="toc-backref" href="#id45">Use Case 03 - Register MN</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -645,7 +667,7 @@ content on the MN is scheduled. The new MN also becomes a receiver for
 content replicated from other MNs.</p>
 </dd>
 </dl>
-<img alt="UseCases/images/03_-_Register_a_new_Member_Node.png" src="UseCases/images/03_-_Register_a_new_Member_Node.png" />
+<img alt="UseCases/images/03_interaction.png" src="UseCases/images/03_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>MN, CN, Administrator</dd>
@@ -659,9 +681,10 @@ that the MN is to be added to DataONE</li>
 </dd>
 <dt>Triggers</dt>
 <dd><ul class="first last simple">
-<li>Notification is sent to MN administrators of the operation status</li>
-<li>Content replication from the new MN in initiated</li>
-<li>The new MN is added to the list of targets for replication</li>
+<li>Synchronize capabilities metadata across CNs</li>
+<li>Notify MN administrators of operation status (email?)</li>
+<li>The new MN is added to CN list of targets for replication</li>
+<li>Schedule content replication from the new MN</li>
 <li>The system logs are updated</li>
 </ul>
 </dd>
@@ -671,37 +694,51 @@ that the MN is to be added to DataONE</li>
 <li>DataONE infrastructure resources are incremented by the amount available
 at the new MN</li>
 <li>The operation outcomes are logged</li>
+<li>Synchronization of the MN commences as per scheduled operation</li>
 </ul>
 </dd>
 </dl>
 <div class="section" id="id3">
 <h3>Notes</h3>
-<ul class="simple">
-<li>Specify default replication policies</li>
-<li>Also check for version updates</li>
-<li>Should new nodes be registered with specified trust levels?</li>
-<li>Data providers that use acceptable services can still be discovered and
-accessed without registering in the DataONE registry ( Conflicting, as
-someone has to register it)</li>
-<li>Allow service providers to register their services, (such as data extraction
-services) (ala GEOSS), but include mapping to higher semantic model</li>
-<li>For well known services, registration system must be able to describe
+<ul>
+<li><p class="first">Specify default replication policies</p>
+</li>
+<li><p class="first">Also check for version updates</p>
+</li>
+<li><p class="first">Should new nodes be registered with specified trust levels?</p>
+</li>
+<li><p class="first">Are there different levels of trust for member nodes?</p>
+</li>
+<li><p class="first">Data providers that use acceptable services can still be discovered and
+accessed without registering in the DataONE registry (Conflicting, as
+someone has to register it).</p>
+<p>However, a MN that has not registered but does expose DataONE services is
+not part of the DataONE infrastructure and so does not participate in
+replication or other DataONE services.</p>
+</li>
+<li><p class="first">Allow service providers to register their services, (such as data extraction
+services) (ala GEOSS), but include mapping to higher semantic model</p>
+</li>
+<li><p class="first">For well known services, registration system must be able to describe
 constraints (e.g., allowable inputs, outputs, algorithms that can be
-specified)</li>
-<li>Services can be parameterized</li>
-<li>Member node should be able to request the coordinating node to re-validate
-its capabilities list.</li>
-<li>Are there different levels of trust for member nodes?</li>
+specified)</p>
+</li>
+<li><p class="first">Services can be parameterized</p>
+</li>
+<li><p class="first">Member node should be able to request the coordinating node to re-validate
+its capabilities list.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="use-case-04-crud-create-update-delete">
-<h2><a class="toc-backref" href="#id45">Use Case 04 - CRUD (Create, Update Delete)</a></h2>
+<span id="uc04"></span><h2><a class="toc-backref" href="#id46">Use Case 04 - CRUD (Create, Update Delete)</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
 <dt>Date</dt>
 <dd><ul class="first last simple">
+<li>20090929 Filling out details</li>
 <li>20090925 Adding to use case description and documentation</li>
 <li>20090114 (TWG meeting).  Subsequent various modifications.</li>
 </ul>
@@ -710,22 +747,54 @@ its capabilities list.</li>
 <dd>Draft</dd>
 <dt>Goal</dt>
 <dd>Create, update or delete metadata record on a Member Node.</dd>
+<dt>Summary</dt>
+<dd><p class="first">A user is creating a new metadata record on a Member Node (MN). The
+mechanism by which the user does this is out of scope for the DataONE
+system, so this use case continues from the point where a new Data Package
+is present on the MN.</p>
+<p>The metadata is retrieved by the CN using a pull mechanism (CN requests
+content from the MN).</p>
+<p class="last">The availability of new content on a MN is indicated by a flag in the
+response to a ping() message issued by a CN. The CN then retrieves a list of
+changes from the MN and for each change, retrieves the experiment metadata,
+stores it and generates a search metadata document by extracting content
+from the experiment metadata. The changes to the CN (stored experiment
+metadata, update search metadata) are replicated to the other CNs (Use Case
+###). The CN schedules replication of the data package across other MNs
+(<a class="reference internal" href="#uc06">Use Case 06</a>).</p>
+</dd>
 </dl>
-<p>Summary</p>
-<blockquote>
-xxx</blockquote>
-<img alt="UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png" src="UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png" />
+<img alt="UseCases/images/04_interaction.png" src="UseCases/images/04_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
-<dd>xxx</dd>
-<dt>Preconditions</dt>
-<dd>xxx</dd>
-<dt>Triggers</dt>
-<dd>xxx</dd>
-<dt>Post Conditions</dt>
-<dd>xxx</dd>
+<dd>Member Node, additional Member Nodes, Coordinating Nodes</dd>
 </dl>
-<div class="section" id="id4">
+<p>Preconditions</p>
+<blockquote>
+<ul class="simple">
+<li>Use is authenticated and so client application has an auth_token for the process.</li>
+<li>DataONE system operational</li>
+<li>MN is registered and is monitored</li>
+</ul>
+</blockquote>
+<p>Triggers</p>
+<blockquote>
+<ul class="simple">
+<li>CN update of search metadata</li>
+<li>CN replication of metadata</li>
+<li>Data Package replication across MNs</li>
+<li>Watchers notified of change</li>
+</ul>
+</blockquote>
+<p>Post Conditions</p>
+<blockquote>
+<ul class="simple">
+<li>New data package is replicated across MNs</li>
+<li>Search metadata is updated</li>
+<li>Operation recorded in logs</li>
+</ul>
+</blockquote>
+<div class="section" id="id5">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Are IDs are pegged to versions? If so, update might differ more radically
@@ -741,7 +810,7 @@ the replicas?</li>
 </div>
 </div>
 <div class="section" id="use-case-05-crud-create-update-delete">
-<h2><a class="toc-backref" href="#id46">Use Case 05 - CRUD (Create, Update Delete)</a></h2>
+<span id="uc05"></span><h2><a class="toc-backref" href="#id47">Use Case 05 - CRUD (Create, Update Delete)</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -755,51 +824,9 @@ the replicas?</li>
 <dd>Draft</dd>
 <dt>Goal</dt>
 <dd>Create/Update/Delete data object in Member Node.</dd>
-</dl>
-<p>Summary</p>
-<blockquote>
-xxx</blockquote>
-<img alt="UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png" src="UseCases/images/04,_05_-_Create,_update,_delete,_search_metadata,....png" />
-<dl class="docutils">
-<dt>Actors</dt>
-<dd>xxx</dd>
-<dt>Preconditions</dt>
-<dd>xxx</dd>
-<dt>Triggers</dt>
-<dd>xxx</dd>
-<dt>Post Conditions</dt>
-<dd>xxx</dd>
-</dl>
-<div class="section" id="id5">
-<h3>Notes</h3>
-<ul class="simple">
-<li>See all questions above (Use Case #4) for metadata operations.</li>
-<li>client should be able ask CN for a list of acceptable MNs to upload data
-with specific characteristics (e.g., size, institution, theme)</li>
-</ul>
-</div>
-</div>
-<div class="section" id="use-case-06-mn-synchronize">
-<h2><a class="toc-backref" href="#id47">Use Case 06 - MN Synchronize</a></h2>
-<dl class="docutils">
-<dt>Author</dt>
-<dd>VDC TWG</dd>
-<dt>Date</dt>
-<dd><ul class="first last simple">
-<li>20090925 Adding to use case description and documentation</li>
-<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
-</ul>
-</dd>
-<dt>Version</dt>
-<dd>Draft</dd>
-<dt>Goal</dt>
-<dd>Replicate / synchronize metadata record between Member Node and Coordinating Node.</dd>
-</dl>
-<p>Summary</p>
-<blockquote>
-xxx</blockquote>
-<img alt="UseCases/images/06_-_Synchronize_Metadata_between_Member....png" src="UseCases/images/06_-_Synchronize_Metadata_between_Member....png" />
-<dl class="docutils">
+<dt>Summary</dt>
+<dd>This is a dupe of <a class="reference internal" href="#uc04">UC04</a> for now. May split out the update and delete
+portions to different use cases at some point in the future.</dd>
 <dt>Actors</dt>
 <dd>xxx</dd>
 <dt>Preconditions</dt>
@@ -811,16 +838,21 @@ xxx</blockquote>
 </dl>
 <div class="section" id="id6">
 <h3>Notes</h3>
-<p>xxx</p>
+<ul class="simple">
+<li>See all questions above (Use Case #4) for metadata operations.</li>
+<li>client should be able ask CN for a list of acceptable MNs to upload data
+with specific characteristics (e.g., size, institution, theme)</li>
+</ul>
 </div>
 </div>
-<div class="section" id="use-case-07-cn-batch-upload">
-<h2><a class="toc-backref" href="#id48">Use Case 07 - CN Batch Upload</a></h2>
+<div class="section" id="use-case-06-mn-synchronize">
+<span id="uc06"></span><h2><a class="toc-backref" href="#id48">Use Case 06 - MN Synchronize</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
 <dt>Date</dt>
 <dd><ul class="first last simple">
+<li>20090930 Filled out content, changed mode to pull from MN</li>
 <li>20090925 Adding to use case description and documentation</li>
 <li>20090114 (TWG meeting).  Subsequent various modifications.</li>
 </ul>
@@ -828,12 +860,72 @@ xxx</blockquote>
 <dt>Version</dt>
 <dd>Draft</dd>
 <dt>Goal</dt>
-<dd>Batch Operations - Coordinating Node requests metadata /data list from new Member Node and then batch upload (disable indexing for example to improve insert performance).</dd>
+<dd>Replicate / synchronize metadata record between Member Node and Coordinating Node.</dd>
 </dl>
 <p>Summary</p>
 <blockquote>
-xxx</blockquote>
-<img alt="UseCases/images/07_-_Coordinating_Node_requests_metadata,....png" src="UseCases/images/07_-_Coordinating_Node_requests_metadata,....png" />
+<p>As data packages, or portions there of are created or modified, the metadata
+associated with those needs to be replicated to the coordinating nodes.</p>
+<p>The presence of new or changed information on a Member Node (MN) is made
+known to a Coordinating Node (CN) through the status information in a
+<tt class="docutils literal"><span class="pre">ping()</span></tt> response. If so indicated, the CN schedules a synchronization
+operation with the MN, a list of changed object GUIDS is retrieved by the
+CN, and the CN proceeds to retrieve and process each object identified.</p>
+<p>If new data packages are present on the MN, then a MN-MN synchronization
+process is scheduled.</p>
+</blockquote>
+<img alt="UseCases/images/06_interaction.png" src="UseCases/images/06_interaction.png" />
+<dl class="docutils">
+<dt>Actors</dt>
+<dd>Member Node, Coordinating Node</dd>
+<dt>Preconditions</dt>
+<dd><ul class="first last simple">
+<li>Member Node has new or changed data packages</li>
+</ul>
+</dd>
+<dt>Triggers</dt>
+<dd><ul class="first last simple">
+<li>Log</li>
+<li>Watchers for changes to MN, CN, or DataONE system</li>
+</ul>
+</dd>
+<dt>Post Conditions</dt>
+<dd><ul class="first last simple">
+<li>MN is in sync with CN</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="id7">
+<h3>Notes</h3>
+<ul class="simple">
+<li>Overloading ping() for notification of change seems a little bit of a hack,
+though changing the name from ping() to status() makes it seem OK.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="use-case-07-cn-batch-upload">
+<span id="uc07"></span><h2><a class="toc-backref" href="#id49">Use Case 07 - CN Batch Upload</a></h2>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090930 Flagged as dupe</li>
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>Batch Operations - Coordinating Node requests metadata /data list from new
+Member Node and then batch upload (disable indexing for example to improve
+insert performance).</dd>
+<dt>Summary</dt>
+<dd>This is a dupe of <a class="reference internal" href="#uc06">UC06</a> after refactoring that use case use a pull mechanism
+to retrieve changed records.</dd>
+</dl>
+<img alt="UseCases/images/07_-_Batch_upload.png" src="UseCases/images/07_-_Batch_upload.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -844,13 +936,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id7">
+<div class="section" id="id8">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-08-replication-policy-communication">
-<h2><a class="toc-backref" href="#id49">Use Case 08 - Replication Policy Communication</a></h2>
+<h2><a class="toc-backref" href="#id50">Use Case 08 - Replication Policy Communication</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -868,7 +960,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/08_-_Communication_of_Replication_Policy....png" src="UseCases/images/08_-_Communication_of_Replication_Policy....png" />
+<img alt="UseCases/images/08_interaction.png" src="UseCases/images/08_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -879,13 +971,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id8">
+<div class="section" id="id9">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-09-replicate-mn-to-mn">
-<h2><a class="toc-backref" href="#id50">Use Case 09 - Replicate MN to MN</a></h2>
+<h2><a class="toc-backref" href="#id51">Use Case 09 - Replicate MN to MN</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -904,7 +996,7 @@ Node or independently but notifying Coordinating Node of operation).</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/09_-_Replicate_data_from_Member_Node_to_Member....png" src="UseCases/images/09_-_Replicate_data_from_Member_Node_to_Member....png" />
+<img alt="UseCases/images/09_interaction.png" src="UseCases/images/09_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -915,13 +1007,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id9">
+<div class="section" id="id10">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-10-mn-status-reports">
-<h2><a class="toc-backref" href="#id51">Use Case 10 - MN Status Reports</a></h2>
+<h2><a class="toc-backref" href="#id52">Use Case 10 - MN Status Reports</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -940,7 +1032,7 @@ service x, load, space, bandwidth, transaction rate, ...</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/10_-_Coordinating_Node_checks_liveness_of....png" src="UseCases/images/10_-_Coordinating_Node_checks_liveness_of....png" />
+<img alt="UseCases/images/10_interaction.png" src="UseCases/images/10_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -951,13 +1043,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id10">
+<div class="section" id="id11">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-11-crud-workflow-objects">
-<h2><a class="toc-backref" href="#id52">Use Case 11 - CRUD Workflow Objects</a></h2>
+<h2><a class="toc-backref" href="#id53">Use Case 11 - CRUD Workflow Objects</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -975,7 +1067,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/11_-_Create,_update,_delete,_search_workflow....png" src="UseCases/images/11_-_Create,_update,_delete,_search_workflow....png" />
+<img alt="UseCases/images/11_interaction.png" src="UseCases/images/11_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -986,13 +1078,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id11">
+<div class="section" id="id12">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-12-user-authentication">
-<h2><a class="toc-backref" href="#id53">Use Case 12 - User Authentication</a></h2>
+<h2><a class="toc-backref" href="#id54">Use Case 12 - User Authentication</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1011,7 +1103,7 @@ Identify Provider to establish session token.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/12_-_Person_authenticates_against_Identity....png" src="UseCases/images/12_-_Person_authenticates_against_Identity....png" />
+<img alt="UseCases/images/12_interaction.png" src="UseCases/images/12_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1022,7 +1114,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id12">
+<div class="section" id="id13">
 <h3>Notes</h3>
 <ul class="simple">
 <li>To be a bit more abstract, it might be good to use something like
@@ -1035,7 +1127,7 @@ to the CN? (PEA)</li>
 </div>
 </div>
 <div class="section" id="use-case-13-user-authorization">
-<h2><a class="toc-backref" href="#id54">Use Case 13 - User Authorization</a></h2>
+<h2><a class="toc-backref" href="#id55">Use Case 13 - User Authorization</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1054,7 +1146,7 @@ using session token.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/13_-_Client_requests_service_(get,_put,_query,....png" src="UseCases/images/13_-_Client_requests_service_(get,_put,_query,....png" />
+<img alt="UseCases/images/13_interaction.png" src="UseCases/images/13_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1065,7 +1157,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id13">
+<div class="section" id="id14">
 <h3>Notes</h3>
 <ul class="simple">
 <li>It would be great to factor out the authentication steps (#1, 2) from the
@@ -1075,7 +1167,7 @@ authentication token.&quot; (PEA)</li>
 </div>
 </div>
 <div class="section" id="use-case-14-system-authentication-and-authorization">
-<h2><a class="toc-backref" href="#id55">Use Case 14 - System Authentication and Authorization</a></h2>
+<h2><a class="toc-backref" href="#id56">Use Case 14 - System Authentication and Authorization</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1094,7 +1186,7 @@ system operations (e.g. replication).</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/14_-_Server_authenticates_and_performs_system....png" src="UseCases/images/14_-_Server_authenticates_and_performs_system....png" />
+<img alt="UseCases/images/14_interaction.png" src="UseCases/images/14_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1105,7 +1197,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id14">
+<div class="section" id="id15">
 <h3>Notes</h3>
 <ul class="simple">
 <li>I don't understand Step #7. To me the serviceRequest in step #3 is the
@@ -1121,7 +1213,7 @@ the operation in step #7, but it doesn't make sense to me because in step
 </div>
 </div>
 <div class="section" id="use-case-15-account-management">
-<h2><a class="toc-backref" href="#id56">Use Case 15 - Account Management</a></h2>
+<h2><a class="toc-backref" href="#id57">Use Case 15 - Account Management</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1140,7 +1232,7 @@ edit, delete, ...).</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/15_-_Create_new_user_account_on_Identity....png" src="UseCases/images/15_-_Create_new_user_account_on_Identity....png" />
+<img alt="UseCases/images/15_interaction.png" src="UseCases/images/15_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1151,7 +1243,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id15">
+<div class="section" id="id16">
 <h3>Notes</h3>
 <ul class="simple">
 <li>This diagram should include a step for email confirmation.</li>
@@ -1164,7 +1256,7 @@ management functionality isn't provided by the CN. Right? (PEA)</li>
 </div>
 </div>
 <div class="section" id="use-case-16-log-crud-operations">
-<h2><a class="toc-backref" href="#id57">Use Case 16 - Log CRUD Operations</a></h2>
+<h2><a class="toc-backref" href="#id58">Use Case 16 - Log CRUD Operations</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1182,7 +1274,7 @@ management functionality isn't provided by the CN. Right? (PEA)</li>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/16_-_All_CRUD_operations_on_metadata_and....png" src="UseCases/images/16_-_All_CRUD_operations_on_metadata_and....png" />
+<img alt="UseCases/images/16_interaction.png" src="UseCases/images/16_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1193,13 +1285,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id16">
+<div class="section" id="id17">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-17-crud-logs-aggregated-at-cns">
-<h2><a class="toc-backref" href="#id58">Use Case 17 - CRUD Logs Aggregated at CNs</a></h2>
+<h2><a class="toc-backref" href="#id59">Use Case 17 - CRUD Logs Aggregated at CNs</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1217,7 +1309,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/17_-_All_CRUD_logs_are_aggregated_at_Coordinating....png" src="UseCases/images/17_-_All_CRUD_logs_are_aggregated_at_Coordinating....png" />
+<img alt="UseCases/images/17_interaction.png" src="UseCases/images/17_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1228,13 +1320,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id17">
+<div class="section" id="id18">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-18-mn-retrieve-aggregated-logs">
-<h2><a class="toc-backref" href="#id59">Use Case 18 - MN Retrieve Aggregated Logs</a></h2>
+<h2><a class="toc-backref" href="#id60">Use Case 18 - MN Retrieve Aggregated Logs</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1253,7 +1345,7 @@ id/userid} for all of 'their' objects.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/18_-_Member_Nodes_can_request_aggregated....png" src="UseCases/images/18_-_Member_Nodes_can_request_aggregated....png" />
+<img alt="UseCases/images/18_interaction.png" src="UseCases/images/18_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1264,13 +1356,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id18">
+<div class="section" id="id19">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-19-retrieve-object-download-summary">
-<h2><a class="toc-backref" href="#id60">Use Case 19 - Retrieve Object Download Summary</a></h2>
+<h2><a class="toc-backref" href="#id61">Use Case 19 - Retrieve Object Download Summary</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1289,7 +1381,7 @@ id.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/19_-_General_public_can_request_aggregated....png" src="UseCases/images/19_-_General_public_can_request_aggregated....png" />
+<img alt="UseCases/images/19_interaction.png" src="UseCases/images/19_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1300,13 +1392,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id19">
+<div class="section" id="id20">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-20-owner-retrieve-aggregate-logs">
-<h2><a class="toc-backref" href="#id61">Use Case 20 - Owner Retrieve Aggregate Logs</a></h2>
+<h2><a class="toc-backref" href="#id62">Use Case 20 - Owner Retrieve Aggregate Logs</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1325,7 +1417,7 @@ all of 'their' objects.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/20_-_Data_owners_can_request_aggregated_CRUD....png" src="UseCases/images/20_-_Data_owners_can_request_aggregated_CRUD....png" />
+<img alt="UseCases/images/20_interaction.png" src="UseCases/images/20_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1336,13 +1428,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id20">
+<div class="section" id="id21">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-21-owner-subscribe-to-crud-operations">
-<h2><a class="toc-backref" href="#id62">Use Case 21 - Owner Subscribe to CRUD Operations</a></h2>
+<h2><a class="toc-backref" href="#id63">Use Case 21 - Owner Subscribe to CRUD Operations</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1360,7 +1452,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/21_-_Data_owners_can_subscribe_to_notification....png" src="UseCases/images/21_-_Data_owners_can_subscribe_to_notification....png" />
+<img alt="UseCases/images/21_interaction.png" src="UseCases/images/21_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1371,13 +1463,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id21">
+<div class="section" id="id22">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-22-link-citation-report-for-owner">
-<h2><a class="toc-backref" href="#id63">Use Case 22 - Link/Citation Report for Owner</a></h2>
+<h2><a class="toc-backref" href="#id64">Use Case 22 - Link/Citation Report for Owner</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1396,7 +1488,7 @@ log).</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/22_-_User_can_get_report_of_links,_cites....png" src="UseCases/images/22_-_User_can_get_report_of_links,_cites....png" />
+<img alt="UseCases/images/22_interaction.png" src="UseCases/images/22_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1407,13 +1499,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id22">
+<div class="section" id="id23">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-23-owner-expunge-content">
-<h2><a class="toc-backref" href="#id64">Use Case 23 - Owner Expunge Content</a></h2>
+<h2><a class="toc-backref" href="#id65">Use Case 23 - Owner Expunge Content</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1432,7 +1524,7 @@ expunge them.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/23_-_User_can_find_out_where_all_copies_of....png" src="UseCases/images/23_-_User_can_find_out_where_all_copies_of....png" />
+<img alt="UseCases/images/23_interaction.png" src="UseCases/images/23_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1443,7 +1535,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id23">
+<div class="section" id="id24">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Dealing with inappropriate usage of (ie, copyrighted objects that are
@@ -1452,7 +1544,7 @@ stored)</li>
 </div>
 </div>
 <div class="section" id="use-case-24-mns-and-cns-support-transactions">
-<h2><a class="toc-backref" href="#id65">Use Case 24 - MNs and CNs Support Transactions</a></h2>
+<h2><a class="toc-backref" href="#id66">Use Case 24 - MNs and CNs Support Transactions</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1472,7 +1564,7 @@ metadata records).</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/24_-_CNs_and_MNs_should_support_transaction....png" src="UseCases/images/24_-_CNs_and_MNs_should_support_transaction....png" />
+<img alt="UseCases/images/24_interaction.png" src="UseCases/images/24_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1483,7 +1575,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id24">
+<div class="section" id="id25">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Does this include just one service, or sets of services that can be included
@@ -1493,7 +1585,7 @@ in a transaction?</li>
 </div>
 </div>
 <div class="section" id="use-case-25-detect-damaged-content">
-<h2><a class="toc-backref" href="#id66">Use Case 25 - Detect Damaged Content</a></h2>
+<h2><a class="toc-backref" href="#id67">Use Case 25 - Detect Damaged Content</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1512,7 +1604,7 @@ validation process.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/25_-_System_validates_metadata_and_data.png" src="UseCases/images/25_-_System_validates_metadata_and_data.png" />
+<img alt="UseCases/images/25_interaction.png" src="UseCases/images/25_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1523,13 +1615,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id25">
+<div class="section" id="id26">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-26-data-quality-checks">
-<h2><a class="toc-backref" href="#id67">Use Case 26 - Data Quality Checks</a></h2>
+<h2><a class="toc-backref" href="#id68">Use Case 26 - Data Quality Checks</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1547,7 +1639,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/26_-_System_performs_quality_checks_on_data.png" src="UseCases/images/26_-_System_performs_quality_checks_on_data.png" />
+<img alt="UseCases/images/26_interaction.png" src="UseCases/images/26_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1558,7 +1650,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id26">
+<div class="section" id="id27">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Is this more for verifying the quality of metadata? Otherwise how does it
@@ -1567,7 +1659,7 @@ differ from #25?</li>
 </div>
 </div>
 <div class="section" id="use-case-27-metadata-version-migration">
-<h2><a class="toc-backref" href="#id68">Use Case 27 - Metadata Version Migration</a></h2>
+<h2><a class="toc-backref" href="#id69">Use Case 27 - Metadata Version Migration</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1586,7 +1678,7 @@ to another within a standard and to other standards.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/27_-_Migration_--_CN_should_support_forward....png" src="UseCases/images/27_-_Migration_--_CN_should_support_forward....png" />
+<img alt="UseCases/images/27_interaction.png" src="UseCases/images/27_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1597,7 +1689,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id27">
+<div class="section" id="id28">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Should this apply to data as well?</li>
@@ -1605,7 +1697,7 @@ xxx</blockquote>
 </div>
 </div>
 <div class="section" id="use-case-28-derived-product-original-change-notification">
-<h2><a class="toc-backref" href="#id69">Use Case 28 - Derived Product Original Change Notification</a></h2>
+<h2><a class="toc-backref" href="#id70">Use Case 28 - Derived Product Original Change Notification</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1625,7 +1717,7 @@ source products change.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/28_-_Versioning_--_Derived_products_should....png" src="UseCases/images/28_-_Versioning_--_Derived_products_should....png" />
+<img alt="UseCases/images/28_interaction.png" src="UseCases/images/28_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1636,7 +1728,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id28">
+<div class="section" id="id29">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Who can assert these relationships? The relevant object owners? Anybody?</li>
@@ -1645,7 +1737,7 @@ xxx</blockquote>
 </div>
 </div>
 <div class="section" id="use-case-29-cn-load-balancing">
-<h2><a class="toc-backref" href="#id70">Use Case 29 - CN Load Balancing</a></h2>
+<h2><a class="toc-backref" href="#id71">Use Case 29 - CN Load Balancing</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1663,7 +1755,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/29_-_Load_balancing_between_Coordinating....png" src="UseCases/images/29_-_Load_balancing_between_Coordinating....png" />
+<img alt="UseCases/images/29_interaction.png" src="UseCases/images/29_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1674,13 +1766,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id29">
+<div class="section" id="id30">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-30-mn-outage-notification">
-<h2><a class="toc-backref" href="#id71">Use Case 30 - MN Outage Notification</a></h2>
+<h2><a class="toc-backref" href="#id72">Use Case 30 - MN Outage Notification</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1699,7 +1791,7 @@ want to act on that knowledge to maintain seamless operation.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/30_-_MN_can_notify_CN_about_pending_outages,....png" src="UseCases/images/30_-_MN_can_notify_CN_about_pending_outages,....png" />
+<img alt="UseCases/images/30_interaction.png" src="UseCases/images/30_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1710,13 +1802,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id30">
+<div class="section" id="id31">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-31-manage-access-policies">
-<h2><a class="toc-backref" href="#id72">Use Case 31 - Manage Access Policies</a></h2>
+<h2><a class="toc-backref" href="#id73">Use Case 31 - Manage Access Policies</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1735,7 +1827,7 @@ data and metadata objects. Also supports release time embargoes.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/31_-_Client_can_specify_access_and_replication....png" src="UseCases/images/31_-_Client_can_specify_access_and_replication....png" />
+<img alt="UseCases/images/31_interaction.png" src="UseCases/images/31_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1746,7 +1838,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id31">
+<div class="section" id="id32">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Users can be members of groups that can participate in access directives.</li>
@@ -1762,7 +1854,7 @@ policy delineation, including embargoes.</li>
 </div>
 </div>
 <div class="section" id="use-case-32-transfer-object-ownership">
-<h2><a class="toc-backref" href="#id73">Use Case 32 - Transfer Object Ownership</a></h2>
+<h2><a class="toc-backref" href="#id74">Use Case 32 - Transfer Object Ownership</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1781,7 +1873,7 @@ access for orphaned records)</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/32_-_User_or_organization_takes_over_'ownership'....png" src="UseCases/images/32_-_User_or_organization_takes_over_'ownership'....png" />
+<img alt="UseCases/images/32_interaction.png" src="UseCases/images/32_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1792,7 +1884,7 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id32">
+<div class="section" id="id33">
 <h3>Notes</h3>
 <ul class="simple">
 <li>Is there an authority for any given data/metadata object?</li>
@@ -1800,7 +1892,7 @@ xxx</blockquote>
 </div>
 </div>
 <div class="section" id="use-case-33-search-for-data">
-<h2><a class="toc-backref" href="#id74">Use Case 33 - Search for Data</a></h2>
+<h2><a class="toc-backref" href="#id75">Use Case 33 - Search for Data</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1818,7 +1910,7 @@ xxx</blockquote>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/33_-_Discovery;_Clients_should_be_able_to....png" src="UseCases/images/33_-_Discovery;_Clients_should_be_able_to....png" />
+<img alt="UseCases/images/33_interaction.png" src="UseCases/images/33_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1829,13 +1921,13 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id33">
+<div class="section" id="id34">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 <div class="section" id="use-case-34-cns-support-other-discovery-mechanisms-e-g-google">
-<h2><a class="toc-backref" href="#id75">Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)</a></h2>
+<h2><a class="toc-backref" href="#id76">Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -1854,7 +1946,7 @@ like Google/Libraries/GCMD/etc.</dd>
 <p>Summary</p>
 <blockquote>
 xxx</blockquote>
-<img alt="UseCases/images/34_-_Discovery;_Coordinating_Nodes_publish....png" src="UseCases/images/34_-_Discovery;_Coordinating_Nodes_publish....png" />
+<img alt="UseCases/images/34_interaction.png" src="UseCases/images/34_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -1865,24 +1957,67 @@ xxx</blockquote>
 <dt>Post Conditions</dt>
 <dd>xxx</dd>
 </dl>
-<div class="section" id="id34">
+<div class="section" id="id35">
 <h3>Notes</h3>
 <p>xxx</p>
 </div>
 </div>
 </div>
 <div class="section" id="dataone-application-programming-interfaces">
-<h1><a class="toc-backref" href="#id41">DataONE Application Programming Interfaces</a></h1>
+<h1><a class="toc-backref" href="#id42">DataONE Application Programming Interfaces</a></h1>
 <p>isAuthorized (sess, transID)
 read (ID, sess, transID)</p>
 <div class="section" id="member-node-apis">
 <h2>Member Node APIs</h2>
+<p>These APIs are implemented by Member Nodes.</p>
 <div class="section" id="authorization-api">
 <h3>Authorization API</h3>
+<p>Provides a mechanism for a User to authenticate themselves with the DataONE
+system and verify that an operation is permitted for an authenticated User.</p>
 <pre class="literal-block">
 login (user, pw)
 isAuth (token, GUID)
 </pre>
+<table border="1" class="docutils">
+<caption>Methods</caption>
+<colgroup>
+<col width="20%" />
+<col width="5%" />
+<col width="10%" />
+<col width="20%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Path</th>
+<th class="head">Parameters</th>
+<th class="head">Method</th>
+<th class="head">Returns</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">/login/</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">user</span></tt>, <tt class="docutils literal"><span class="pre">password</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">auth_token</span></tt> or FAIL</td>
+<td>Authenticates a user. The returned value is a composite of the user id
+and authentication token</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">/&lt;GUID&gt;/isAuth/</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">auth_token</span></tt>, <tt class="docutils literal"><span class="pre">GUID</span></tt></td>
+<td>permissions</td>
+<td>The token is passed in the HTTP authorization header. Permissions are
+returned as a set of flags (can read, can write)?</td>
+</tr>
+</tbody>
+</table>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Should add a mechanism for logging out, and perhaps convenience methods for
+&quot;canRead()&quot; and &quot;canWrite()&quot; to verify that a user is able to read / write
+an object</p>
+</div>
 </div>
 <div class="section" id="crud-api">
 <h3>CRUD API</h3>
@@ -1957,7 +2092,7 @@ searchForData ()
 usageQuery (token, GUID)
 </pre>
 </div>
-<div class="section" id="id35">
+<div class="section" id="id36">
 <h3>CRUD API</h3>
 <pre class="literal-block">
 assertRelation (token, IDofSubject, relationship, IDofObject)
@@ -1970,7 +2105,7 @@ storeRecords ()
 write ()
 </pre>
 </div>
-<div class="section" id="id36">
+<div class="section" id="id37">
 <h3>Replication API</h3>
 <pre class="literal-block">
 getDefaultReplicationPolicy (sess)
@@ -2000,7 +2135,7 @@ scheduleSynch ()
 verifyCapabilities ()
 </pre>
 </div>
-<div class="section" id="id37">
+<div class="section" id="id38">
 <h3>Server Authentication API</h3>
 </div>
 <div class="section" id="state-of-health-api">

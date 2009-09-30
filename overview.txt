@@ -10,9 +10,12 @@ entities external to the system) interact with system components. Interaction
 diagrams help define the interfaces and messages transmitted between
 components.
 
+
 .. note:: 
    TODO: Architecture overview diagram
+
    TODO: Component diagram
+
    TODO: Broad categories of use cases
 
 
