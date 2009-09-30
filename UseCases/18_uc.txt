@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/18_-_Member_Nodes_can_request_aggregated....png
+.. image:: UseCases/images/18_interaction.png
 
 
 Actors

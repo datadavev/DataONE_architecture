@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/15_-_Create_new_user_account_on_Identity....png
+.. image:: UseCases/images/15_interaction.png
 
 
 Actors

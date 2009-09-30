@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/17_-_All_CRUD_logs_are_aggregated_at_Coordinating....png
+.. image:: UseCases/images/17_interaction.png
 
 
 Actors

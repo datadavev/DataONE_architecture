@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/16_-_All_CRUD_operations_on_metadata_and....png
+.. image:: UseCases/images/16_interaction.png
 
 
 Actors

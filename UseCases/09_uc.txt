@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/09_-_Replicate_data_from_Member_Node_to_Member....png
+.. image:: UseCases/images/09_interaction.png
 
 
 Actors

@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/13_-_Client_requests_service_(get,_put,_query,....png
+.. image:: UseCases/images/13_interaction.png
 
 
 Actors

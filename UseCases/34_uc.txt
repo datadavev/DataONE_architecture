@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/34_-_Discovery;_Coordinating_Nodes_publish....png
+.. image:: UseCases/images/34_interaction.png
 
 
 Actors

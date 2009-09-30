@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/10_-_Coordinating_Node_checks_liveness_of....png
+.. image:: UseCases/images/10_interaction.png
 
 
 Actors

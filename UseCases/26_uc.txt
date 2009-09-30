@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/26_-_System_performs_quality_checks_on_data.png
+.. image:: UseCases/images/26_interaction.png
 
 
 Actors

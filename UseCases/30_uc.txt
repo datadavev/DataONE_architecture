@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/30_-_MN_can_notify_CN_about_pending_outages,....png
+.. image:: UseCases/images/30_interaction.png
 
 
 Actors

@@ -21,7 +21,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/31_-_Client_can_specify_access_and_replication....png
+.. image:: UseCases/images/31_interaction.png
 
 
 Actors

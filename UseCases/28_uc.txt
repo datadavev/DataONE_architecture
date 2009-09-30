@@ -20,7 +20,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/28_-_Versioning_--_Derived_products_should....png
+.. image:: UseCases/images/28_interaction.png
 
 
 Actors

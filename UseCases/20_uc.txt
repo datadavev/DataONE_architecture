@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/20_-_Data_owners_can_request_aggregated_CRUD....png
+.. image:: UseCases/images/20_interaction.png
 
 
 Actors

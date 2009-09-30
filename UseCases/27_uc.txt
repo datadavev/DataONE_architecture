@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/27_-_Migration_--_CN_should_support_forward....png
+.. image:: UseCases/images/27_interaction.png
 
 
 Actors

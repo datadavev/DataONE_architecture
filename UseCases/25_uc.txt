@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/25_-_System_validates_metadata_and_data.png
+.. image:: UseCases/images/25_interaction.png
 
 
 Actors

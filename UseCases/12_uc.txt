@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/12_-_Person_authenticates_against_Identity....png
+.. image:: UseCases/images/12_interaction.png
 
 
 Actors

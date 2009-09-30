@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/14_-_Server_authenticates_and_performs_system....png
+.. image:: UseCases/images/14_interaction.png
 
 
 Actors

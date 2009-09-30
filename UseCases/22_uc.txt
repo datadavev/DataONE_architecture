@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/22_-_User_can_get_report_of_links,_cites....png
+.. image:: UseCases/images/22_interaction.png
 
 
 Actors

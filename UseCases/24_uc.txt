@@ -20,7 +20,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/24_-_CNs_and_MNs_should_support_transaction....png
+.. image:: UseCases/images/24_interaction.png
 
 
 Actors

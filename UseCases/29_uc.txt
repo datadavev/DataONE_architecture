@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/29_-_Load_balancing_between_Coordinating....png
+.. image:: UseCases/images/29_interaction.png
 
 Actors
   xxx

@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/32_-_User_or_organization_takes_over_'ownership'....png
+.. image:: UseCases/images/32_interaction.png
 
 
 Actors

@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/21_-_Data_owners_can_subscribe_to_notification....png
+.. image:: UseCases/images/21_interaction.png
 
 
 Actors

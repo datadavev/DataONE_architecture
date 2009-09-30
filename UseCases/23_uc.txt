@@ -21,7 +21,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/23_-_User_can_find_out_where_all_copies_of....png
+.. image:: UseCases/images/23_interaction.png
 
 
 Actors

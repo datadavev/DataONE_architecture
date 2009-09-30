@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/19_-_General_public_can_request_aggregated....png
+.. image:: UseCases/images/19_interaction.png
 
 
 Actors

@@ -3,6 +3,10 @@
 
 import os, sys, re, glob
 
+SOURCEFOLDER = 'interactions'
+DESTFOLDER = 'PlantUML'
+
+
 apis = {
 	# Application
 	'app_client' : ('Client', 'Application'),
@@ -43,14 +47,17 @@ apis = {
 	'c_health' : ('State of Health API', 'Coordinating Node'),
 }
 
-for ss in sorted (glob.glob ('interactions/*.interaction')):
+if not os.path.isdir(DESTFOLDER):
+  os.mkdir(DESTFOLDER)
+  
+for ss in sorted (glob.glob ('%s/*.interaction' % SOURCEFOLDER)):
 	path, fname = os.path.split (ss)
 	base, ext = os.path.splitext (fname)
 	print (base)
 	imgid = base.split("_")[0]
 
 	in_file = open (ss, 'r')
-	out_file = open ('PlantUML/%s.txt' % base, 'w')
+	out_file = open ('%s/%s.txt' % (DESTFOLDER, base), 'w')
 
 	# Start UML.
 	out_file.writelines ('@startuml %s_interaction.png\n' % imgid)

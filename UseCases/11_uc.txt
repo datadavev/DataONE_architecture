@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/11_-_Create,_update,_delete,_search_workflow....png
+.. image:: UseCases/images/11_interaction.png
 
 
 Actors

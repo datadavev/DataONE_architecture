@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/33_-_Discovery;_Clients_should_be_able_to....png
+.. image:: UseCases/images/33_interaction.png
 
 
 Actors

@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/08_-_Communication_of_Replication_Policy....png
+.. image:: UseCases/images/08_interaction.png
 
 
 Actors
