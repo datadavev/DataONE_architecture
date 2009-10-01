@@ -39,10 +39,9 @@ Actors
 Preconditions 
   - Client has authenticated to at the desired level (e.g. client may not have
     authenticated, so access might be anonymous).
- 
   
 Triggers
-  - Operation is logged
+  - A search is performed against the DataONE system
  
 Post Conditions
   - The client has a list of GUIDs for which they have permission to read and

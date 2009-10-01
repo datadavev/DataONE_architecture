@@ -55,14 +55,11 @@ Preconditions
   
 Triggers
 
-  - CN update of search metadata
-
-  - CN replication of metadata 
-
-  - Data Package replication across MNs
-
-  - Watchers notified of change
+  - New data package is present on Member Node
   
+  - An existing data package is modified on a Member Node
+  
+  - A data package is deleted from a Member Node
  
 Post Conditions
   
@@ -71,6 +68,13 @@ Post Conditions
   - Search metadata is updated
   
   - Operation recorded in logs
+
+  - CN update of search metadata
+
+  - CN replication of metadata 
+
+  - Watchers notified of change
+  
 
 
 Notes
@@ -89,4 +93,4 @@ Notes
 - Should queuing of a submission within a member node be required for success?
   (We assume yes, to guarantee replication of submissions).
 
-
+- Can data packages be deleted or modified?

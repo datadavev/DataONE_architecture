@@ -39,8 +39,7 @@ Preconditions
     None`` is available.
 
 Triggers
-  - Watchers are notified of the retrieval
-  - Operation is logged (are loggers a type of watcher?)
+  - An object is requested from the DataONE system.
 
 Post Conditions
   - The client has a copy of the object bytes (or an error message in the case

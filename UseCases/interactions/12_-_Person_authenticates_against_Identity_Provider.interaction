@@ -2,5 +2,19 @@ title 12 - Person authenticates against Identity Provider
 
 actor User
 User -> app_client
-app_client -> c_authenticate: login (user, pw)
-app_client <-- c_authenticate: token or failure
+alt MN Login
+  app_client -> m_authorize: login(username, password)
+  activate m_authorize
+  participant "Authentication Subsystem" as auth_system
+  m_authorize -> auth_system: authorize(username, password, domain)
+  m_authorize <-- auth_system: auth_token or FAIL
+  app_client <-- m_authorize: auth_token or FAIL
+  deactivate m_authorize
+else CN Login
+  app_client -> c_authenticate: login(username, password)
+  activate c_authenticate
+  c_authenticate -> auth_system: authorize(username, password, domain)
+  c_authenticate <-- auth_system: auth_token or FAIL
+  app_client <-- c_authenticate: auth_token or FAIL
+  deactivate c_authenticate
+end MN Login

@@ -1,3 +1,5 @@
+.. _UC12:
+
 Use Case 12 - User Authentication
 ---------------------------------
 
@@ -5,6 +7,7 @@ Author
   VDC TWG
 
 Date
+  - 20091001 Filled out more details
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
@@ -16,23 +19,44 @@ Goal
   Identify Provider to establish session token.
 
 Summary 
+  Many operations in the DataONE system require user authentication to ensure
+  that the user's identity is known to the system, and that appropriate access
+  controls can be executed based on the identity.
 
-  xxx
+  The actual identity and authentication framework may exist outside of
+  DataONE (one possible example might be the emerging `CILogon service`_).
+
+  The authentication process might occur using either a Coordinating Node or a
+  Member Node (if it implements the DataONE authentication API).
 
 .. image:: UseCases/images/12_interaction.png
 
 
 Actors
-  xxx
+  User, Member Node, Coordinating Node, Authentication System
+
 
 Preconditions 
-  xxx
-  
+  - User is not authenticated in the system
+
+
 Triggers
-  xxx
+  - A user logs on to the DataONE system.
+
+  - A user tries to perform an operation in the DataONE system that requires
+    authentication.
+
  
 Post Conditions
-  xxx
+  - An ``auth_token`` is returned to the user (application) that can be used
+    for future interactions with the DataONE system.
+
+  - In the event of authentication failure, the ``auth_token`` will provide
+    identity equivalent to an anonymous user.
+
+  - The authentication operation is recorded in MN or CN logs (depending on
+    where the authentication attempt was made)
+
 
 Notes
 ~~~~~
@@ -46,5 +70,10 @@ Notes
 - Can logins also happening against a MN, which simply proxies the request up
   to the CN? (PEA)
 
+- Need to specify a time to live for auth_tokens. Is this part of the
+  authentication sub-system? If so, can the TTL be altered by the DataONE
+  system?
 
+
+.. _CILogon service: http://www.cilogon.org/service
 

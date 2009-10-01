@@ -23,7 +23,7 @@ Summary
   This is a dupe of UC06_ after refactoring that use case use a pull mechanism
   to retrieve changed records.
 
-.. image:: UseCases/images/07_-_Batch_upload.png
+.. image:: UseCases/images/07_interaction.png
 
 
 Actors

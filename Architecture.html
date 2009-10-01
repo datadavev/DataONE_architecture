@@ -483,8 +483,7 @@ authenticated, so access might be anonymous), and so an <tt class="docutils lite
 </dd>
 <dt>Triggers</dt>
 <dd><ul class="first last simple">
-<li>Watchers are notified of the retrieval</li>
-<li>Operation is logged (are loggers a type of watcher?)</li>
+<li>An object is requested from the DataONE system.</li>
 </ul>
 </dd>
 <dt>Post Conditions</dt>
@@ -553,7 +552,7 @@ authenticated, so access might be anonymous).</li>
 </dd>
 <dt>Triggers</dt>
 <dd><ul class="first last simple">
-<li>Operation is logged</li>
+<li>A search is performed against the DataONE system</li>
 </ul>
 </dd>
 <dt>Post Conditions</dt>
@@ -681,11 +680,8 @@ that the MN is to be added to DataONE</li>
 </dd>
 <dt>Triggers</dt>
 <dd><ul class="first last simple">
-<li>Synchronize capabilities metadata across CNs</li>
-<li>Notify MN administrators of operation status (email?)</li>
-<li>The new MN is added to CN list of targets for replication</li>
-<li>Schedule content replication from the new MN</li>
-<li>The system logs are updated</li>
+<li>A new Member Node is ready to be brought online and a DataONE
+administrator initiates the process.</li>
 </ul>
 </dd>
 <dt>Post Conditions</dt>
@@ -695,6 +691,9 @@ that the MN is to be added to DataONE</li>
 at the new MN</li>
 <li>The operation outcomes are logged</li>
 <li>Synchronization of the MN commences as per scheduled operation</li>
+<li>Synchronize capabilities metadata across CNs</li>
+<li>Notify MN administrators of operation status (email?)</li>
+<li>The new MN is added to CN list of targets for replication</li>
 </ul>
 </dd>
 </dl>
@@ -780,10 +779,9 @@ metadata, update search metadata) are replicated to the other CNs (Use Case
 <p>Triggers</p>
 <blockquote>
 <ul class="simple">
-<li>CN update of search metadata</li>
-<li>CN replication of metadata</li>
-<li>Data Package replication across MNs</li>
-<li>Watchers notified of change</li>
+<li>New data package is present on Member Node</li>
+<li>An existing data package is modified on a Member Node</li>
+<li>A data package is deleted from a Member Node</li>
 </ul>
 </blockquote>
 <p>Post Conditions</p>
@@ -792,6 +790,9 @@ metadata, update search metadata) are replicated to the other CNs (Use Case
 <li>New data package is replicated across MNs</li>
 <li>Search metadata is updated</li>
 <li>Operation recorded in logs</li>
+<li>CN update of search metadata</li>
+<li>CN replication of metadata</li>
+<li>Watchers notified of change</li>
 </ul>
 </blockquote>
 <div class="section" id="id5">
@@ -806,6 +807,7 @@ the replicas?</li>
 <li>Is submit from a member node a push or pull?</li>
 <li>Should queuing of a submission within a member node be required for success?
 (We assume yes, to guarantee replication of submissions).</li>
+<li>Can data packages be deleted or modified?</li>
 </ul>
 </div>
 </div>
@@ -885,13 +887,14 @@ process is scheduled.</p>
 </dd>
 <dt>Triggers</dt>
 <dd><ul class="first last simple">
-<li>Log</li>
-<li>Watchers for changes to MN, CN, or DataONE system</li>
+<li>New or changed content is present on a Member Node</li>
 </ul>
 </dd>
 <dt>Post Conditions</dt>
 <dd><ul class="first last simple">
 <li>MN is in sync with CN</li>
+<li>Log</li>
+<li>Watchers for changes to MN, CN, or DataONE system</li>
 </ul>
 </dd>
 </dl>
@@ -925,7 +928,7 @@ insert performance).</dd>
 <dd>This is a dupe of <a class="reference internal" href="#uc06">UC06</a> after refactoring that use case use a pull mechanism
 to retrieve changed records.</dd>
 </dl>
-<img alt="UseCases/images/07_-_Batch_upload.png" src="UseCases/images/07_-_Batch_upload.png" />
+<img alt="UseCases/images/07_interaction.png" src="UseCases/images/07_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>xxx</dd>
@@ -942,7 +945,7 @@ to retrieve changed records.</dd>
 </div>
 </div>
 <div class="section" id="use-case-08-replication-policy-communication">
-<h2><a class="toc-backref" href="#id50">Use Case 08 - Replication Policy Communication</a></h2>
+<span id="uc08"></span><h2><a class="toc-backref" href="#id50">Use Case 08 - Replication Policy Communication</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
@@ -955,25 +958,55 @@ to retrieve changed records.</dd>
 <dt>Version</dt>
 <dd>Draft</dd>
 <dt>Goal</dt>
-<dd>Communication of replication policy metadata among Member Nodes and Coordinating Nodes.</dd>
+<dd>Communication of replication policy metadata between Member Nodes and
+Coordinating Nodes.</dd>
 </dl>
 <p>Summary</p>
 <blockquote>
-xxx</blockquote>
+The replication policy of Member Nodes (MN) indicates factors such as the
+amount of storage space available, bandwidth constraints, the types of data
+and metadata that can be managed, and perhaps access control restrictions.
+This information is used by Coordinating Nodes (CN) to balance the
+distribution of data packages throughout the DataONE system to achieve the
+goals of data package persistence and accessibility.</blockquote>
 <img alt="UseCases/images/08_interaction.png" src="UseCases/images/08_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
-<dd>xxx</dd>
+<dd>Member Node, Coordinating Node</dd>
 <dt>Preconditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>Member Node is registered with a Coordinating Node</li>
+<li>Member Node is operational</li>
+</ul>
+</dd>
 <dt>Triggers</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>A Member Node changes available capacity, bandwidth or some other
+operating characteristic</li>
+<li>A Member Node changes available services</li>
+<li>A Member Node software stack is updated (e.g. new version)</li>
+</ul>
+</dd>
 <dt>Post Conditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>The DataONE system is updated with current state of available resources</li>
+<li>Change in replication policy may trigger a re-synchronization (e.g. if
+storage capacity shrinks or is enlarged)</li>
+<li>Operation is logged</li>
+<li>Watchers are notified in change in DataONE system property</li>
+</ul>
+</dd>
 </dl>
 <div class="section" id="id9">
 <h3>Notes</h3>
-<p>xxx</p>
+<ul class="simple">
+<li>The goal as stated originally for this use case was &quot;Communication of
+replication policy metadata among Member Nodes and Coordinating Nodes.&quot;</li>
+<li>There should be some restriction on how often replication policy can be
+changed to avoid thrashing that might occur for example, if a MN flips
+between significant differences in storage capacities (low to high, then low
+again).</li>
+</ul>
 </div>
 </div>
 <div class="section" id="use-case-09-replicate-mn-to-mn">
@@ -1084,12 +1117,13 @@ xxx</blockquote>
 </div>
 </div>
 <div class="section" id="use-case-12-user-authentication">
-<h2><a class="toc-backref" href="#id54">Use Case 12 - User Authentication</a></h2>
+<span id="uc12"></span><h2><a class="toc-backref" href="#id54">Use Case 12 - User Authentication</a></h2>
 <dl class="docutils">
 <dt>Author</dt>
 <dd>VDC TWG</dd>
 <dt>Date</dt>
 <dd><ul class="first last simple">
+<li>20091001 Filled out more details</li>
 <li>20090925 Adding to use case description and documentation</li>
 <li>20090114 (TWG meeting).  Subsequent various modifications.</li>
 </ul>
@@ -1099,20 +1133,42 @@ xxx</blockquote>
 <dt>Goal</dt>
 <dd>User Authentication - Person via client software authenticates against
 Identify Provider to establish session token.</dd>
+<dt>Summary</dt>
+<dd><p class="first">Many operations in the DataONE system require user authentication to ensure
+that the user's identity is known to the system, and that appropriate access
+controls can be executed based on the identity.</p>
+<p>The actual identity and authentication framework may exist outside of
+DataONE (one possible example might be the emerging <a class="reference external" href="http://www.cilogon.org/service">CILogon service</a>).</p>
+<p class="last">The authentication process might occur using either a Coordinating Node or a
+Member Node (if it implements the DataONE authentication API).</p>
+</dd>
 </dl>
-<p>Summary</p>
-<blockquote>
-xxx</blockquote>
 <img alt="UseCases/images/12_interaction.png" src="UseCases/images/12_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
-<dd>xxx</dd>
+<dd>User, Member Node, Coordinating Node, Authentication System</dd>
 <dt>Preconditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>User is not authenticated in the system</li>
+</ul>
+</dd>
 <dt>Triggers</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>A user logs on to the DataONE system.</li>
+<li>A user tries to perform an operation in the DataONE system that requires
+authentication.</li>
+</ul>
+</dd>
 <dt>Post Conditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>An <tt class="docutils literal"><span class="pre">auth_token</span></tt> is returned to the user (application) that can be used
+for future interactions with the DataONE system.</li>
+<li>In the event of authentication failure, the <tt class="docutils literal"><span class="pre">auth_token</span></tt> will provide
+identity equivalent to an anonymous user.</li>
+<li>The authentication operation is recorded in MN or CN logs (depending on
+where the authentication attempt was made)</li>
+</ul>
+</dd>
 </dl>
 <div class="section" id="id13">
 <h3>Notes</h3>
@@ -1123,6 +1179,9 @@ login(user, credentials) or login(subject) for the method signature. Here
 concept. (PEA)</li>
 <li>Can logins also happening against a MN, which simply proxies the request up
 to the CN? (PEA)</li>
+<li>Need to specify a time to live for auth_tokens. Is this part of the
+authentication sub-system? If so, can the TTL be altered by the DataONE
+system?</li>
 </ul>
 </div>
 </div>

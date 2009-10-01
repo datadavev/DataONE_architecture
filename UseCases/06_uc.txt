@@ -42,11 +42,14 @@ Preconditions
   - Member Node has new or changed data packages
   
 Triggers
-  - Log
-  - Watchers for changes to MN, CN, or DataONE system
+  - New or changed content is present on a Member Node
  
 Post Conditions
   - MN is in sync with CN
+
+  - Log
+
+  - Watchers for changes to MN, CN, or DataONE system
 
 Notes
 ~~~~~

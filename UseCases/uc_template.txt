@@ -5,8 +5,7 @@ Author
   VDC TWG
 
 Date
-  - 20090925 Adding to use case description and documentation
-  - 20090114 (TWG meeting).  Subsequent various modifications.
+  - $TM_DATE Initial version
 
 Version 
   Draft
@@ -18,7 +17,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/xxx
+.. image:: UseCases/images/XX_interaction.png
 
 
 Actors
@@ -37,3 +36,5 @@ Notes
 ~~~~~
 
 xxx
+
+

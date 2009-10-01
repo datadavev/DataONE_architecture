@@ -51,16 +51,8 @@ Preconditions
 
 
 Triggers
-  - Synchronize capabilities metadata across CNs
-
-  - Notify MN administrators of operation status (email?)
-
-  - The new MN is added to CN list of targets for replication
-  
-  - Schedule content replication from the new MN
-
-  - The system logs are updated
-
+  - A new Member Node is ready to be brought online and a DataONE
+    administrator initiates the process.
 
 Post Conditions 
   - The new MN operates as part of the DataONE infrastructure
@@ -71,6 +63,12 @@ Post Conditions
   - The operation outcomes are logged
   
   - Synchronization of the MN commences as per scheduled operation
+
+  - Synchronize capabilities metadata across CNs
+
+  - Notify MN administrators of operation status (email?)
+
+  - The new MN is added to CN list of targets for replication
 
 
 Notes

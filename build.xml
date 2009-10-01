@@ -30,7 +30,7 @@
           description="Generate documentation in PDF">
     <exec dir="${basedir}" executable="rst2pdf">
       <arg value="--default-dpi=100" />
-      <arg value="-s letter" />
+      <!-- <arg value="-s letter" /> -->
       <arg value="${basedir}/Architecture.txt" />
     </exec>
   </target>
