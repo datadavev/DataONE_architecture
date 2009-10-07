@@ -339,9 +339,18 @@ diagrams help define the interfaces and messages transmitted between
 components.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p>TODO: Architecture overview diagram</p>
-<p>TODO: Component diagram</p>
-<p class="last">TODO: Broad categories of use cases</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">TODO:</th><td class="field-body">Architecture overview diagram</td>
+</tr>
+<tr class="field"><th class="field-name">TODO:</th><td class="field-body">Component diagram</td>
+</tr>
+<tr class="field"><th class="field-name">TODO:</th><td class="field-body">Broad categories of use cases</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="use-case-layout">
 <h2>Use Case Layout</h2>
@@ -399,6 +408,14 @@ specific in a use case.</li>
 high priority, but would require resources that would prevent implementation
 of a number of other lower priority features.</li>
 </ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">TODO:</th><td class="field-body">Insert an initial prioritization of the use cases.</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="use-cases">
 <h1><a class="toc-backref" href="#id41">Use Cases</a></h1>
@@ -448,6 +465,7 @@ of a number of other lower priority features.</li>
 <dd>VDC TWG</dd>
 <dt>Date</dt>
 <dd><ul class="first last simple">
+<li>20091006 Added use case diagram</li>
 <li>20090924 Adding to use case description and documentation</li>
 <li>20090114 (TWG meeting).  Subsequent various modifications.</li>
 </ul>
@@ -465,7 +483,62 @@ privileges on the object.</p>
 they notified of?).</p>
 </dd>
 </dl>
+<div class="figure">
+<img alt="UseCases/images/01_uc.png" src="UseCases/images/01_uc.png" />
+</div>
+<!-- This block defines the use case diagram referenced above
+@startuml images/01_uc.png
+actor "User" as client
+usecase "12. Authentication" as authen
+note top of authen
+  Authentication may be provided
+  by an external service
+  such as CILogon
+end note
+
+package "DataONE"
+component "Coordinating Node" as CN
+component "Member Node" as MN
+usecase "13. Authorization" as author
+usecase "01. Get Object" as GET
+client - - GET
+CN - - GET
+MN - - GET
+GET ..> author: <<includes>>
+GET ..> authen: <<includes>>
+@enduml -->
+<div class="figure">
 <img alt="UseCases/images/01_interaction.png" src="UseCases/images/01_interaction.png" />
+<p class="caption">Sequence diagram for retrieving an object from DataONE.</p>
+</div>
+<!-- This block defines the interaction diagram referenced above.
+@startuml images/01_interaction.png
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+
+participant "CRUD API" as c_crud << Coordinating Node >>
+activate c_crud
+app_client -> c_crud: resolve(GUID, auth_token)
+participant "Authorization API" as c_authorize << Coordinating Node >>
+c_crud -> c_authorize: isAuth(auth_token, GUID)
+participant "Verify API" as c_ver << Coordinating Node >>
+c_authorize -> c_ver: isValidToken (token)
+c_authorize <- - c_ver: T or F
+c_crud <- - c_authorize: T or F
+app_client <- - c_crud: handle_list
+deactivate c_crud
+
+participant "CRUD API" as m_crud << Member Node >>
+activate m_crud
+app_client -> m_crud: get(auth_token, handle)
+participant "Server Authentication API" as m_authenticate << Member Node >>
+m_crud -> m_authenticate: isAuth(auth_token, GUID)
+m_crud <- - m_authenticate: T or F
+m_crud -> m_crud: log(get, UserID, GUID)
+app_client <- - m_crud: object or unauth or doesNotExist
+deactivate m_crud
+@enduml -->
 <dl class="docutils">
 <dt>Actors</dt>
 <dd><ul class="first last simple">
@@ -536,7 +609,50 @@ will be returned.</p>
 query against a CN.</p>
 </dd>
 </dl>
+<div class="figure">
+<img alt="useCases/images/02_uc.png" src="useCases/images/02_uc.png" />
+</div>
+<!-- @startuml images/02_uc.png
+actor User
+usecase "12. Authentication" as authen
+
+package "DataONE"
+  component "Coordinating Node" as CN
+  component "Member Node" as MN
+  usecase "13. Authorization" as author
+  usecase "02. Search Metadata" as SEARCH
+  User - - SEARCH
+  CN - - SEARCH
+  MN - - SEARCH
+  SEARCH ..> author: <<includes>>
+  SEARCH ..> authen: <<includes>>
+@enduml -->
+<div class="figure">
 <img alt="UseCases/images/02_interaction.png" src="UseCases/images/02_interaction.png" />
+<p class="caption">Client retrieves a list of GUIDs resulting from a metadata search.</p>
+</div>
+<!-- @startuml images/02_interaction.png
+actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+
+participant "Query API" as c_query << Coordinating Node >>
+activate c_query
+app_client -> c_query: query(auth_token, query)
+note right of c_query
+ The query response is a list of GUIDS.
+ Each GUID needs to be checked for read
+ access by the auth_token.
+end note
+participant "Authorization API" as c_authorize << Coordinating Node >>
+c_query -> c_authorize: isAuth(auth_token, resultset)
+participant "Verify API" as c_ver << Coordinating Node >>
+c_authorize -> c_ver: isValidToken (token)
+c_authorize <- - c_ver: T or F
+c_query <- - c_authorize: T or F
+app_client <- - c_query: resultset
+deactivate c_query
+@enduml -->
 <dl class="docutils">
 <dt>Actors</dt>
 <dd><ul class="first last simple">
@@ -666,7 +782,56 @@ content on the MN is scheduled. The new MN also becomes a receiver for
 content replicated from other MNs.</p>
 </dd>
 </dl>
+<div class="figure">
+<img alt="UseCases/images/03_uc.png" src="UseCases/images/03_uc.png" />
+</div>
+<!-- @startuml images/03_uc.png
+actor "User" as client
+usecase "12. Authentication" as authen
+
+package "DataONE"
+  actor "Administrator" as admin
+  admin ..|> client
+  component "Coordinating Node" as CN
+  component "Member Node" as MN
+  usecase "13. Authorization" as author
+  usecase "03. Register MN" as register
+  admin - - register
+  CN - - register
+  MN - - register
+  register ..> author: <<includes>>
+  register ..> authen: <<includes>>
+@enduml -->
+<div class="figure">
 <img alt="UseCases/images/03_interaction.png" src="UseCases/images/03_interaction.png" />
+</div>
+<!-- @startuml images/03_interaction.png
+actor Admin
+participant "Admin" as app_admin << Application >>
+Admin -> app_admin
+note right
+  Assume admin authority for node registration.
+end note
+
+participant "Register API" as c_reg << Coordinating Node >>
+activate c_reg
+app_admin -> c_reg: register (auth_token, capabilitiesURL)
+participant "Capabilities API" as m_cap << Member Node >>
+c_reg -> m_cap: getCapabilities ()
+c_reg <- - m_cap: capabilities
+c_reg -> c_reg: verifyCapabilities ()
+note right
+ Assume capabilities stored as any other metadata.
+end note
+c_reg -> c_reg: addNodeCapabilities ()
+c_reg -> c_reg: scheduleSynch ()
+note right
+ Harvest process occurs asynchronously.
+ Separate use case.
+end note
+app_admin <- - c_reg: ack or fail
+deactivate c_reg
+@enduml -->
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>MN, CN, Administrator</dd>
@@ -763,7 +928,53 @@ metadata, update search metadata) are replicated to the other CNs (Use Case
 (<a class="reference internal" href="#uc06">Use Case 06</a>).</p>
 </dd>
 </dl>
+<div class="figure">
+<img alt="UseCases/images/04_uc.png" src="UseCases/images/04_uc.png" />
+</div>
+<!-- This block defines the use case diagram referenced above
+@startuml images/04_uc.png
+actor "User" as client
+usecase "12. Authentication" as authen
+
+package "DataONE"
+  component "Coordinating Node" as CN
+  component "Member Node" as MN
+  usecase "13. Authorization" as author
+  usecase "04. Create Object" as create
+  usecase "06. MN Synchronize" as mn_sync
+  client - - create
+  CN - - create
+  MN - - create
+  create ..> author: <<includes>>
+  create ..> authen: <<includes>>
+  create ..> mn_sync: <<includes>>
+@enduml -->
+<div class="figure">
 <img alt="UseCases/images/04_interaction.png" src="UseCases/images/04_interaction.png" />
+<p class="caption">Create, update, delete, search metadata or data object in Member Node.</p>
+</div>
+<!-- @startuml images/04_interaction.png
+Actor User
+participant "Client" as app_client << Application >>
+User -> app_client
+
+participant "CRUD API" as m_crud << Member Node >>
+app_client -> m_crud: create(auth_token, dataPackage)
+activate m_crud
+participant "CRUD API" as c_crud << Coordinating Node >>
+  m_crud -> c_crud: validateGUID(GUID)
+  m_crud <- - c_crud: GUID
+  m_crud -> m_crud: store()
+deactivate m_crud
+
+participant "State of Health API" as c_health << Coordinating Node >>
+c_health -> m_crud: ping()
+activate c_health
+  c_health <- - m_crud: [ACK, NewData]
+participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_health -> c_sync: scheduleSynch(MN_ID)
+deactivate c_health
+@enduml -->
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>Member Node, additional Member Nodes, Coordinating Nodes</dd>
@@ -876,7 +1087,57 @@ CN, and the CN proceeds to retrieve and process each object identified.</p>
 <p>If new data packages are present on the MN, then a MN-MN synchronization
 process is scheduled.</p>
 </blockquote>
+<div class="figure">
+<img alt="UseCases/images/06_uc.png" src="UseCases/images/06_uc.png" />
+</div>
+<!-- @startuml images/06_uc.png
+
+package "DataONE"
+component "Coordinating Node" as CN
+component "Member Node" as MN
+usecase "13. Authorization" as author
+usecase "06. Synchronize Metadata" as SYNC
+usecase "XX. Notify Watchers" as NOTIFY
+CN - - SYNC
+MN - - SYNC
+SYNC ..> author: <<includes>>
+SYNC ..> NOTIFY: <<includes>>
+@enduml -->
+<div class="figure">
 <img alt="UseCases/images/06_interaction.png" src="UseCases/images/06_interaction.png" />
+<p class="caption">Synchronize Metadata between Member and Coordinating Node</p>
+</div>
+<!-- @startuml images/06_interaction.png
+participant "CRUD API" as m_crud << Member Node >>
+participant "State of Health API" as c_health << Coordinating Node >>
+c_health -> m_crud: ping()
+activate c_health
+  c_health <- - m_crud: [ACK, NewData]
+participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_health -> c_sync: scheduleSync(MN_ID)
+deactivate c_health
+
+participant "Replication API" as m_rep << Member Node >>
+c_sync -> m_rep: listChangedRecords()
+
+note right of c_sync
+  The RSS mechanism might be
+  appropriate for retrieving changes.
+end note
+
+c_sync <- - m_rep: GUID_list
+loop for each GUID
+  c_sync -> m_crud: getMetadata(system_token, GUID)
+  c_sync <- - m_crud: metadata
+participant "CRUD API" as c_crud << Coordinating Node >>
+  c_sync -> c_crud: create(GUID, metadata)
+  c_sync <- - c_crud: ack or FAIL
+  c_sync -> m_rep: notifyReplicated(system_token, GUID)
+  note over m_rep
+    What happens if the CN create() operation fails?
+  end note
+end
+@enduml -->
 <dl class="docutils">
 <dt>Actors</dt>
 <dd>Member Node, Coordinating Node</dd>
@@ -1016,6 +1277,7 @@ again).</li>
 <dd>VDC TWG</dd>
 <dt>Date</dt>
 <dd><ul class="first last simple">
+<li>20091001 Filled out description a bit more</li>
 <li>20090925 Adding to use case description and documentation</li>
 <li>20090114 (TWG meeting).  Subsequent various modifications.</li>
 </ul>
@@ -1023,26 +1285,56 @@ again).</li>
 <dt>Version</dt>
 <dd>Draft</dd>
 <dt>Goal</dt>
-<dd>Replicate data from Member Node to Member Node - (facilitated by Coordinating
-Node or independently but notifying Coordinating Node of operation).</dd>
+<dd>Replicate data from Member Node to Member Node.</dd>
 </dl>
 <p>Summary</p>
 <blockquote>
-xxx</blockquote>
+<p>Replication of content between Member Nodes (MN) is done to improve
+persistence of information (avoid data loss with loss of MN) and to improve
+accessibility (more choices for content retrieval can lower bandwidth
+requirements for any particular MN). The process of replication may be
+facilitated by a Coordinating Node (CN), or perhaps only between MNs. The
+interaction diagram presented here follows the former notion, where
+replication is facilitated by a CN.</p>
+<p>A full copy of a data package is made during the replication process, so the
+original experiment metadata and data is copied to the recipient MN. An
+important question is whether that content is stored in it's original form
+(for data this must be the case) or translated into a form that is supported
+by the MN (likely to be the case for experiment metadata).</p>
+<p>If experiment metadata is translated into a local dialect by a recipient MN,
+then it is important that the original metadata is preserved on the CNs, as
+it is always possible that the original MN where the content was published
+may go offline or be removed from the DataONE system.</p>
+</blockquote>
 <img alt="UseCases/images/09_interaction.png" src="UseCases/images/09_interaction.png" />
 <dl class="docutils">
 <dt>Actors</dt>
-<dd>xxx</dd>
+<dd>Member Node x2, Coordinating Node</dd>
 <dt>Preconditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>Content is present on a Member Node</li>
+</ul>
+</dd>
 <dt>Triggers</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>New data is available on a Member Node</li>
+<li>Information on a Member Node is altered</li>
+<li>Capabilities of a Member Node changes (accepting more or less content)</li>
+<li>Replication policy of DataONE or a Member Node changes</li>
+</ul>
+</dd>
 <dt>Post Conditions</dt>
-<dd>xxx</dd>
+<dd><ul class="first last simple">
+<li>Content is present on one more Member Node</li>
+<li>System metadata is updated to reflect the change</li>
+<li>Watchers are notified of the change</li>
+<li>Member Node and Coordinating Node logs are updated</li>
+</ul>
+</dd>
 </dl>
 <div class="section" id="id10">
 <h3>Notes</h3>
-<p>xxx</p>
+<p>Null.</p>
 </div>
 </div>
 <div class="section" id="use-case-10-mn-status-reports">
@@ -2205,15 +2497,15 @@ reportPendingEvent (event)
 Admin Application
 notify (adminID, nodeID, service)
 </pre>
-<!-- Comment: This document is formatted using reStructured Text, a plain text -->
-<!-- format that can be used to generate various renderings including HTML and -->
-<!-- PDF, assuming you have installed docutils and rst2pdf (Google is your -->
-<!-- friend) -->
-<!-- To generate a HTML version of this document:  rst2html -->
-<!-- Architecture.txt Architecture.html -->
-<!--  -->
-<!-- To generate a PDF version: -->
-<!-- rst2pdf - -default-dpi 100 Architecture.txt -->
+<!-- This document is formatted using reStructured Text, a plain text
+format that can be used to generate various renderings including HTML and
+PDF, assuming you have installed docutils and rst2pdf (Google is your
+friend)
+To generate a HTML version of this document:
+  rst2html.py Architecture.txt Architecture.html
+To generate a PDF version:
+  rst2pdf - -default-dpi 100 Architecture.txt
+Or use the included ant build.xml -->
 </div>
 </div>
 </div>

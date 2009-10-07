@@ -3,7 +3,7 @@ title 06 - Synchronize Metadata between Member and Coordinating Node
 c_health -> m_crud: ping()
 activate c_health
   c_health <-- m_crud: [ACK, NewData]
-  c_health -> c_sync: scheduleSynch(MN_ID)
+  c_health -> c_sync: scheduleSync(MN_ID)
 deactivate c_health
 
 c_sync -> m_rep: listChangedRecords()

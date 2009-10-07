@@ -25,9 +25,6 @@ Summary
   This information is used by Coordinating Nodes (CN) to balance the
   distribution of data packages throughout the DataONE system to achieve the
   goals of data package persistence and accessibility.
-  
-.. image:: UseCases/images/08_interaction.png
-
 
 Actors
   Member Node, Coordinating Node
@@ -60,8 +57,7 @@ Post Conditions
   
 
 
-Notes
-~~~~~
+**Notes**
 
 - The goal as stated originally for this use case was "Communication of
   replication policy metadata among Member Nodes and Coordinating Nodes."
@@ -70,3 +66,55 @@ Notes
   changed to avoid thrashing that might occur for example, if a MN flips
   between significant differences in storage capacities (low to high, then low
   again).
+
+.. raw:: pdf
+
+   PageBreak
+
+
+.. figure:: UseCases/images/08_uc.png
+
+..
+  @startuml images/08_uc.png
+  package "DataONE"
+    component "Coordinating Node" as CN
+    component "Member Node" as MN
+    usecase "13. Authorization" as author
+    usecase "01. MN Policy" as policy
+    usecase "XX. Notify Watchers" as NOTIFY
+    usecase "XX. CN Synchronize" as CNSYNC
+    CN -- policy
+    MN -- policy
+    policy ..> author: <<includes>>
+    policy ..> NOTIFY: <<includes>>
+    policy ..> CNSYNC: <<includes>>
+  @enduml
+
+----
+  
+.. figure:: UseCases/images/08_interaction.png
+
+   Communication of Replication Policy Metadata
+   
+..
+  @startuml images/08_interaction.png
+  participant "Replication API" as c_rep << Coordinating Node >>
+  participant "Replication API" as m_rep << Member Node >>
+  c_rep -> m_rep: ping()
+  m_rep --> c_rep: [ACK, PolicyChange]
+  m_rep -> c_rep: 1.a. setDefaultReplicationPolicy (system_token, policy)
+  m_rep -> c_rep: 1.b. setReplicationPolicy (sess, policy, ID)
+  m_rep -> c_rep: 2.a. getDefaultReplicationPolicy (sess)
+  m_rep -> c_rep: 2.b. getReplicationPolicy (sess, ID)
+  c_rep -> m_rep: policy
+  note right
+  	Policy:
+  	Where
+  	When
+  	What gets replicated
+  end note
+  @enduml
+
+.. raw:: pdf
+
+   PageBreak

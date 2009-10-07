@@ -14,8 +14,13 @@
 
 	<taskdef  name = "plantuml" classname = "net.sourceforge.plantuml.ant.PlantuTask" classpath = "${basedir}/UseCases/plantuml.jar"/>
 
+<!--
   <target name="diagrams" depends="interactions" description="Generate sequence diagrams">
     <plantuml dir = "${basedir}/UseCases/PlantUML" output = "${basedir}/UseCases/images"/>
+  </target>
+-->
+  <target name="diagrams" description="Generate all diagrams">
+    <plantuml dir = "${basedir}/UseCases" output = "${basedir}/UseCases/images"/>
   </target>
 
   <target name="html"

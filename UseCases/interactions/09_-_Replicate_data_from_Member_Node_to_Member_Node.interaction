@@ -1,5 +1,41 @@
 title 09 - Replicate data from Member Node to Member Node
 
+c_health -> m_crud: ping()
+activate c_health
+  c_health <-- m_crud: [ACK, NewData]
+  c_health -> c_sync: scheduleSync(MN_ID)
+deactivate c_health
+
+c_sync -> m_rep: listChangedRecords(auth_token)
+note right of c_sync
+  The RSS mechanism might be 
+  appropriate for retrieving changes.
+  auth_token identifies the CN 
+  retrieving content.
+end note
+c_sync <-- m_rep: GUID_list
+
+loop for each GUID
+  c_sync -> c_sync: getReplicas(GUID)
+  note right: Update of existing copies.
+  loop for each replica
+    c_sync -> c_sync: addUpdateTask(MN, GUID)
+  end
+  c_sync -> c_sync: getTargetMNs(GUID)
+  note right of c_sync:
+    The MN ids returned are valid targets
+    for the data package identified by GUID,
+    including consideration of size, access
+    rules, and so forth.
+  end note
+  loop for each MN
+    c_sync -> c_sync: addUpdateTask(MN, GUID)
+  end
+end
+
+m_rep -> c_sync
+
+
 m_crud_a -> c_rep: replicateMetadata ()
 c_rep -> c_crud: write ()
 c_rep <-- c_crud: ack

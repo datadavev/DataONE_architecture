@@ -37,8 +37,6 @@ Summary
 
 __ UC06_
 
-.. image:: UseCases/images/04_interaction.png
-
 
 Actors
   Member Node, additional Member Nodes, Coordinating Nodes
@@ -61,6 +59,7 @@ Triggers
   
   - A data package is deleted from a Member Node
  
+ 
 Post Conditions
   
   - New data package is replicated across MNs
@@ -77,8 +76,7 @@ Post Conditions
   
 
 
-Notes
-~~~~~
+**Notes**
 
 - Are IDs are pegged to versions? If so, update might differ more radically
   from create.
@@ -94,3 +92,65 @@ Notes
   (We assume yes, to guarantee replication of submissions).
 
 - Can data packages be deleted or modified?
+
+.. raw:: pdf
+
+   PageBreak
+   
+
+.. figure:: UseCases/images/04_uc.png
+
+.. 
+  This block defines the use case diagram referenced above
+  @startuml images/04_uc.png
+  actor "User" as client
+  usecase "12. Authentication" as authen
+
+  package "DataONE"
+    component "Coordinating Node" as CN
+    component "Member Node" as MN
+    usecase "13. Authorization" as author
+    usecase "04. Create Object" as create
+    usecase "06. MN Synchronize" as mn_sync
+    client -- create
+    CN -- create
+    MN -- create
+    create ..> author: <<includes>>
+    create ..> authen: <<includes>>
+    create ..> mn_sync: <<includes>>
+  @enduml
+
+
+----
+
+.. figure:: UseCases/images/04_interaction.png
+   
+   Create, update, delete, search metadata or data object in Member Node.
+
+..
+  @startuml images/04_interaction.png
+  Actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+
+  participant "CRUD API" as m_crud << Member Node >>
+  app_client -> m_crud: create(auth_token, dataPackage)
+  activate m_crud
+  participant "CRUD API" as c_crud << Coordinating Node >>
+    m_crud -> c_crud: validateGUID(GUID)
+    m_crud <-- c_crud: GUID
+    m_crud -> m_crud: store()
+  deactivate m_crud
+
+  participant "State of Health API" as c_health << Coordinating Node >>
+  c_health -> m_crud: ping()
+  activate c_health
+    c_health <-- m_crud: [ACK, NewData]
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+    c_health -> c_sync: scheduleSynch(MN_ID)
+  deactivate c_health
+  @enduml
+
+.. raw:: pdf
+
+   PageBreak

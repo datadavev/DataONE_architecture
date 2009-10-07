@@ -12,11 +12,11 @@ components.
 
 
 .. note:: 
-   TODO: Architecture overview diagram
+   :TODO: Architecture overview diagram
 
-   TODO: Component diagram
+   :TODO: Component diagram
 
-   TODO: Broad categories of use cases
+   :TODO: Broad categories of use cases
 
 
 Use Case Layout

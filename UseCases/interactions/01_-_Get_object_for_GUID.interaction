@@ -13,7 +13,7 @@ app_client <-- c_crud: handle_list
 deactivate c_crud
 
 activate m_crud
-app_client -> m_crud: getauth_token, handle)
+app_client -> m_crud: get(auth_token, handle)
 m_crud -> m_authenticate: isAuth(auth_token, GUID)
 m_crud <-- m_authenticate: T or F
 m_crud -> m_crud: log(get, UserID, GUID)

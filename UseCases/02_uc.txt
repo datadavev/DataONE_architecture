@@ -25,10 +25,6 @@ Summary
   
   This use case assumes that the search is being performed by submitting a
   query against a CN.
-  
-
-.. image:: UseCases/images/02_interaction.png
-
 
 Actors
   - Client performing search operation
@@ -50,8 +46,7 @@ Post Conditions
   - The log is updated with the request
 
 
-Notes
-~~~~~
+**Notes**
 
 - lots of stuff buried in query. What information/interface is needed for
   resolution/expansion of the query? For example a particular user may be
@@ -126,7 +121,60 @@ Notes
 - What logging level is required for the operation? Should the search appear
   as a hit against each object? Just log the query (and perhaps who did it)?
 
+.. raw:: pdf
+
+   PageBreak
+
+.. figure:: useCases/images/02_uc.png
+
+
+.. figure:: UseCases/images/02_interaction.png
+
+  Client retrieves a list of GUIDs resulting from a metadata search.
+
+.. 
+  @startuml images/02_uc.png
+  actor User
+  usecase "12. Authentication" as authen
+
+  package "DataONE"
+   component "Coordinating Node" as CN 
+   component "Member Node" as MN 
+   usecase "13. Authorization" as author
+   usecase "02. Search Metadata" as SEARCH
+   User -- SEARCH
+   CN -- SEARCH
+   MN -- SEARCH
+   SEARCH ..> author: <<includes>>
+   SEARCH ..> authen: <<includes>>
+  @enduml
+
+
+..
+  @startuml images/02_interaction.png
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+
+  participant "Query API" as c_query << Coordinating Node >>
+  activate c_query
+  app_client -> c_query: query(auth_token, query)
+  note right of c_query
+  The query response is a list of GUIDS.
+  Each GUID needs to be checked for read 
+  access by the auth_token.
+  end note
+  participant "Authorization API" as c_authorize << Coordinating Node >>
+  c_query -> c_authorize: isAuth(auth_token, resultset)
+  participant "Verify API" as c_ver << Coordinating Node >>
+  c_authorize -> c_ver: isValidToken (token)
+  c_authorize <-- c_ver: T or F
+  c_query <-- c_authorize: T or F
+  app_client <-- c_query: resultset
+  deactivate c_query
+  @enduml
+
 
 .. raw:: pdf
 
-   pageBreak
+   PageBreak
