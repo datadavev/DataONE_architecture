@@ -18,6 +18,91 @@ components.
 
    :TODO: Broad categories of use cases
 
+.. raw:: pdf
+
+   PageBreak
+
+
+.. figure:: images/dataone_components.png
+
+..
+  @startuml images/dataone_components.png
+    package "Coordinating Node" #EEEEEE
+      component "System Metadata" as CNsysmeta
+      component "Experiment Metadata" as CNexpmeta
+      component "Verify API" as CNverify
+      component "CN Replication" as CNrepl
+      component "MN Synchronization" as MNrepl
+      component "Identity and Auth" as CNIDAuth
+      component "Authorization and Control" as CNaccesscontrol
+      component "Search" as CNsearch
+      component "CRUD Service" as CNcrud
+      component "Metadata Parser" as CNparser
+      component "Health" as CNhealth
+      component "Logging" as CNlogging
+      component "Subscription" as CNsubscribe
+      
+    CNIDAuth -- CNcrud
+    CNIDAuth -- CNverify
+    CNaccesscontrol -- CNcrud
+    CNaccesscontrol -- CNverify
+    CNcrud -- CNlogging
+    CNcrud -- MNrepl
+    CNparser -- CNsearch
+    CNexpmeta -- CNparser
+    CNsubscribe -- CNIDAuth
+    CNrepl -- CNsysmeta
+    CNrepl -- CNexpmeta
+    MNrepl -- CNsysmeta
+    MNrepl -- CNlogging
+    CNhealth -- CNsysmeta
+    CNsubscribe -- CNsysmeta
+    CNexpmeta -- CNsysmeta
+    CNsearch -- CNlogging
+    CNsearch -- CNsubscribe
+    CNsearch -- CNaccesscontrol
+    
+    package "Member Node" #EEEEEE
+      component "Replication" as repl
+      component "Authentication" as MNauth
+      component "Health" as MNhealth
+      component "Capabilities" as MNcaps
+      component "CRUD" as MNcrud
+      component "Log" as MNlog
+      
+    repl -- CNrepl
+    CNrepl -- MNcrud
+    CNhealth -- MNhealth
+    MNcaps -- CNsysmeta
+    MNcrud -- CNcrud
+    MNcrud -- CNverify
+    MNcrud -- MNlog
+    MNcrud -- MNrepl
+    MNauth -- CNIDAuth
+    MNauth -- MNauth
+    MNauth -- CNverify
+    repl -- repl
+    MNlog -- MNrepl
+    
+    package "Investigator Toolkit" #EEEEEE
+      component client
+      component admin
+      
+    client -- CNcrud
+    client -- CNsearch
+    client -- MNauth
+    client -- CNIDAuth
+    client -- CNsubscribe
+    client -- CNaccesscontrol
+    admin ..|> client
+    admin -- CNIDAuth
+    admin -- CNhealth
+    admin -- MNhealth
+    
+    
+  @enduml
+
+
 
 Use Case Layout
 ---------------
