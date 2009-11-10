@@ -6,6 +6,24 @@
 DataONE Architecture
 ====================
 
+**Change Log**
+
+:20091110: 
+ - Incorporating many updates and edits
+ - Switch to Sphinx doc generator: easier to manage and better features
+
+:20090927:
+ - Split usecases into separate document
+ - Added page breaks for rst2pdf
+
+:20090925: 
+ - Initial collation of all use cases into single document. 
+ - Recast all diagrams to interaction diagrams using PlantUML automated tools
+
+:20090924:
+ - Layout document structure, draft templates
+
+
 
 This document describes portions of the DataONE_ infrastructure. Note that
 content is quite dynamic while the architecture design is being iterated for
