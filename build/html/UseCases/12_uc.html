@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 12 - User Authentication &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 13 - User Authorization" href="13_uc.html" />
+    <link rel="prev" title="Use Case 11 - CRUD Workflow Objects" href="11_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="13_uc.html" title="Use Case 13 - User Authorization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="11_uc.html" title="Use Case 11 - CRUD Workflow Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Use Case 12 - User Authentication</a><ul>
+<li><a class="reference external" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="11_uc.html"
+                                  title="previous chapter">Use Case 11 - CRUD Workflow Objects</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="13_uc.html"
+                                  title="next chapter">Use Case 13 - User Authorization</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/12_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-12-user-authentication">
+<span id="uc12"></span><h1>Use Case 12 - User Authentication<a class="headerlink" href="#use-case-12-user-authentication" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20091001 Filled out more details</li>
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>User Authentication - Person via client software authenticates against
+Identify Provider to establish session token.</dd>
+<dt>Summary</dt>
+<dd><p class="first">Many operations in the DataONE system require user authentication to ensure
+that the user&#8217;s identity is known to the system, and that appropriate access
+controls can be executed based on the identity.</p>
+<p>The actual identity and authentication framework may exist outside of
+DataONE (one possible example might be the emerging <a class="reference external" href="http://www.cilogon.org/service">CILogon service</a>).</p>
+<p class="last">The authentication process might occur using either a Coordinating Node or a
+Member Node (if it implements the DataONE authentication API).</p>
+</dd>
+<dt>Actors</dt>
+<dd>User, Member Node, Coordinating Node, Authentication System</dd>
+<dt>Preconditions</dt>
+<dd><ul class="first last simple">
+<li>User is not authenticated in the system</li>
+</ul>
+</dd>
+<dt>Triggers</dt>
+<dd><ul class="first last simple">
+<li>A user logs on to the DataONE system.</li>
+<li>A user tries to perform an operation in the DataONE system that requires
+authentication.</li>
+</ul>
+</dd>
+<dt>Post Conditions</dt>
+<dd><ul class="first last simple">
+<li>An <tt class="docutils literal"><span class="pre">auth_token</span></tt> is returned to the user (application) that can be used
+for future interactions with the DataONE system.</li>
+<li>In the event of authentication failure, the <tt class="docutils literal"><span class="pre">auth_token</span></tt> will provide
+identity equivalent to an anonymous user.</li>
+<li>The authentication operation is recorded in MN or CN logs (depending on
+where the authentication attempt was made)</li>
+</ul>
+</dd>
+</dl>
+<img alt="../_images/12_interaction.png" src="../_images/12_interaction.png" />
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To be a bit more abstract, it might be good to use something like
+login(user, credentials) or login(subject) for the method signature. Here
+&#8220;subject&#8221; would be similar to the <a class="reference external" href="http://java.sun.com/javase/6/docs/api/javax/security/auth/Subject.html">javax.security.auth.Subject</a>
+concept. (PEA)</li>
+<li>Can logins also happening against a MN, which simply proxies the request up
+to the CN? (PEA)</li>
+<li>Need to specify a time to live for auth_tokens. Is this part of the
+authentication sub-system? If so, can the TTL be altered by the DataONE
+system?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="13_uc.html" title="Use Case 13 - User Authorization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="11_uc.html" title="Use Case 11 - CRUD Workflow Objects"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

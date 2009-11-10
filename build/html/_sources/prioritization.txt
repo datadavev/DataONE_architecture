@@ -1,0 +1,172 @@
+Use Case Implementation Priority
+================================
+
+Introduction
+------------
+
+The DataONE Core Cyberinfrastructure Team / Virtual Data Center Technical
+Working Group (CCIT/VDC TWG, hereafter CCIT) was charged with developing a
+prioritization of the approximately three dozen use cases developed to date.
+The prioritization was to be shared with the DataONE Leadership Team in order
+to come to agreement for the development priorities for years 1 through 5.
+This agreement was considered an important deliverable for the DataONE kickoff
+meeting in October 2009.
+
+The CCIT reviewed existing documents, including the CI Preliminary Task List,
+the Service Interface Prioritization diagram, the DataONE – VDC June 2009
+Technical Working Group Meeting Report, and the DataNetONE Implementation Plan
+(primarily Objective 4) – see References, below. The use cases are defined in
+the DataONE Architecture document available at
+https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-documentation/Architecture.html.
+Goals and milestones expressed in the CI Preliminary Task List were
+foundational for developing the proposed prioritization (see Table 1).
+
+In some instances, use case implementations in the early years may be partial
+or limited implementations with work continuing in later years until
+completion. Examples of use cases that are likely to be improved over time are
+authentication, logging, search and retrieval, event notifications, etc. Work
+on other goals and milestones will begin as early as year 1, led by the
+appropriate working group, with the initial implementation in a subsequent
+year (e.g., scientific use cases; workflow support; ontology support). Certain
+goals and milestones (e.g., replication of data and metadata) will be met by
+evaluating alternatives and selecting a set of existing software applications.
+Additional details about Member Nodes will be provided in a separate document,
+forthcoming. This prioritization is mapped optimistically to the 5-year
+schedule: goals, milestones, and specific use cases that are the best
+candidates for potential deferral are indicated in the table and discussion
+below.
+
+The CCIT reviewed the prioritization, distributed it to the Leadership Team,
+and discussed the prioritization during a videoconference held October 13,
+2009. Improvements identified during the videoconference were incorporated
+into the document, which was then distributed at the DataONE kickoff meeting
+held October 20-22, 2009.
+
+
+Year 1 Use Cases
+----------------
+
+Goals and Milestones
+~~~~~~~~~~~~~~~~~~~~
+
+The year 1 goals and milestones for DataONE include:
+
+- Launching a network consisting of three Coordinating Nodes and three Member Nodes
+- Initial support for GUIDs (globally unique identifiers)
+- Formalize service APIs
+- Provide reference service / client implementations
+- Authentication using a short-term solution
+- Search and retrieval of data from all Member Nodes to demonstrate basic metadata interoperability (initial release)
+- DataONE user interface (initial release)
+- DataONE Investigator Toolkit (initial release)
+- Replication of data and metadata between Coordinating and Member Nodes, bootstrapped using existing repositories
+- Heartbeat / health monitoring (initial release)
+- Infrastructure (initial release)
+- Member Node registry services (initial release)
+
+Use Cases
+~~~~~~~~~
+
+Authentication Using Short-term Solution
+
+:doc:`Use Case 12<UseCases/12_uc>` - User Authentication: Person, via client software, authenticates
+against Identify Provider to establish session token. Many operations in the
+DataONE system require user authentication to ensure that the user's identity
+is known to the system, and that appropriate access controls can be executed
+based on the identity.
+
+:doc:`Use Case 14<UseCases/14_uc>` - System Authentication and Authorization: System
+Authentication/Authorization - Server authenticates and performs system
+operations (e.g. replication). This use case represents node-to-node
+authentication.
+
+Search and Retrieval, Indexing, Read Data and Metadata, Metadata
+Interoperability
+
+:doc:`Use Case 1<UseCases/01_uc>` - CRUD Read(): Get object identified by GUID (authenticated or not,
+notify subscriber of access). A client has an identifier for some object
+within the DataONE system and is retrieving the referenced object. The DataONE
+system must resolve the identifier and return the object bytes after checking
+that the user has read privileges on the object.
+
+:doc:`Use Case 02<UseCases/02_uc>` - List GUIDs By Search: Get list of GUIDs from metadata search
+(anonymous and authenticated). A user performs a search against the DataONE
+system and receives a list of object identifiers (GUIDs) that match the search
+criteria. The list of GUIDs is filtered such that only objects for which the
+user has read permission will be returned. This use case assumes that the
+search is being performed by submitting a query against a CN.
+
+Replication of Data and Metadata
+
+:doc:`Use Case 06<UseCases/06_uc>` - MN Synchronize: Replicate / synchronize metadata record between
+Member Node and Coordinating Node. As data packages, or portions thereof, are
+created or modified, the metadata associated with those needs to be replicated
+to the coordinating nodes. The presence of new or changed information on a
+Member Node (MN) is made known to a Coordinating Node (CN) through the status
+information in a ping() response. If so indicated, the CN schedules a
+synchronization operation with the MN, a list of changed object GUIDS is
+retrieved by the CN, and the CN proceeds to retrieve and process each object
+identified. If new data packages are present on the MN, then a MN-MN
+synchronization process is scheduled.
+
+:doc:`Use Case 09<UseCases/09_uc>` - Replicate MN to MN: Replicate data from Member Node to Member
+Node - (facilitated by Coordinating Node or independently but notifying
+Coordinating Node of operation).
+
+:doc:`Use Case 24<UseCases/24_uc>` - MNs and CNs Support Transactions: Transactions - CNs and MNs
+should support transaction sets where operations all complete successfully or
+get rolled back (e.g., upload both data and metadata records). Implementation
+of this use case could be deferred to year 2.
+
+Basic Heartbeat / Health Monitoring (candidate for deferral to year 2)
+
+:doc:`Use Case 10<UseCases/10_uc>` - MN Status Reports: Coordinating Node checks "liveness" of all
+Member Nodes. Implementation of this use case could be deferred to year 2.
+
+Basic Logging Infrastructure (candidate for deferral to year 2)
+
+:doc:`Use Case 16<UseCases/16_uc>` - Log CRUD Operations: All CRUD operations on metadata and data
+are logged at each node. Implementation of this use case could be deferred to
+year 2.
+
+:doc:`Use Case 17<UseCases/17_uc>` - CRUD Logs Aggregated at CNs: All CRUD logs are aggregated at
+coordinating nodes. Implementation of this use case could be deferred to year
+2.
+
+Basic Member Node Registry Services
+
+:doc:`Use Case 03<UseCases/03_uc>` - Register MN: Register a new Member Node. This use case describes
+the technical process for addition of a new member node (MN) to the DataONE
+infrastructure. It is assumed that the appropriate social contracts have been
+formed and the MN is operational, ready to be connected.
+
+
+
+Notes
+-----
+
+Prioritizing system implementation to address the use cases involves several
+factors including:
+
+- *Vision of the project*. The system is being designed with some overall goals
+  described by the vision of the project proposal.
+
+- *Requirements of the community*. The stakeholders that comprise the user and
+  participant community quite likely has some opinion on functionalities of
+  the system that are important to them. If these are not properly addressed,
+  then the resulting system may appear as a failure to them.
+
+- *Requirements of the sponsor*. The sponsor has laid out goals in the RFP that
+  the project is responding to and also in the final agreement for conducting the work.
+
+- *Dependencies between use cases*. Implementation of functionality to address
+  some use cases will require implementation of some components not directly
+  specific in a use case.
+
+- *Resources available for implementation*. Some use cases may be identified as
+  high priority, but would require resources that would prevent implementation
+  of a number of other lower priority features.
+  
+
+
+:TODO: Insert an initial prioritization of the use cases.

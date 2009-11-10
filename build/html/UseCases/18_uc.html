@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 18 - MN Retrieve Aggregated Logs &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 19 - Retrieve Object Download Summary" href="19_uc.html" />
+    <link rel="prev" title="Use Case 17 - CRUD Logs Aggregated at CNs" href="17_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="19_uc.html" title="Use Case 19 - Retrieve Object Download Summary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="17_uc.html" title="Use Case 17 - CRUD Logs Aggregated at CNs"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Use Case 18 - MN Retrieve Aggregated Logs</a><ul>
+<li><a class="reference external" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="17_uc.html"
+                                  title="previous chapter">Use Case 17 - CRUD Logs Aggregated at CNs</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="19_uc.html"
+                                  title="next chapter">Use Case 19 - Retrieve Object Download Summary</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/18_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-18-mn-retrieve-aggregated-logs">
+<h1>Use Case 18 - MN Retrieve Aggregated Logs<a class="headerlink" href="#use-case-18-mn-retrieve-aggregated-logs" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>Member nodes can request aggregated CRUD log for {time period/object
+id/userid} for all of &#8216;their&#8217; objects.</dd>
+</dl>
+<p>Summary</p>
+<blockquote>
+A Member Node should be able to request use information for any objects for
+which that Member Node is the origin (or defacto origin in the case where
+the original MN was decommissioned).</blockquote>
+<img alt="../_images/18_interaction.png" src="../_images/18_interaction.png" />
+<p>Actors</p>
+<blockquote>
+<ul class="simple">
+<li>Coordinating Node</li>
+<li>Member Node</li>
+</ul>
+</blockquote>
+<p>Preconditions</p>
+<blockquote>
+<ul class="simple">
+<li>Aggregate logs are accumulated by CNs</li>
+</ul>
+</blockquote>
+<p>Triggers</p>
+<blockquote>
+<ul class="simple">
+<li>MN Administrator requests aggregate logs</li>
+<li>Timed event</li>
+</ul>
+</blockquote>
+<p>Post Conditions</p>
+<blockquote>
+<ul class="simple">
+<li>Aggregate log information is available to the Member Node</li>
+</ul>
+</blockquote>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>This operation should really be a function for the administrative functions of
+the Investigator Toolkit. It is reasonable to expect that (especially for the
+first iteration of the infrastructure) MN administrators will want to peruse
+and evaluate the log data. In later stages, this information could be
+associated with content, so use statistics appear with search results.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="19_uc.html" title="Use Case 19 - Retrieve Object Download Summary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="17_uc.html" title="Use Case 17 - CRUD Logs Aggregated at CNs"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

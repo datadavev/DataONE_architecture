@@ -1,0 +1,45 @@
+Use Case 29 - CN Load Balancing
+-------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Load Balancing - Requests to coordinating nodes are load balanced.
+
+Summary 
+
+  xxx
+
+.. figure:: images/29_interaction.png
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx
+
+..
+  @startuml images/29_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 29 - Load balancing between Coordinating Nodes
+  @enduml
+  

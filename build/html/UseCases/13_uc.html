@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 13 - User Authorization &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 14 - System Authentication and Authorization" href="14_uc.html" />
+    <link rel="prev" title="Use Case 12 - User Authentication" href="12_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="14_uc.html" title="Use Case 14 - System Authentication and Authorization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="12_uc.html" title="Use Case 12 - User Authentication"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="12_uc.html"
+                                  title="previous chapter">Use Case 12 - User Authentication</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="14_uc.html"
+                                  title="next chapter">Use Case 14 - System Authentication and Authorization</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/13_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-13-user-authorization">
+<h1>Use Case 13 - User Authorization<a class="headerlink" href="#use-case-13-user-authorization" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>Determine if a user is authorized to perform some action on an object (e.g.
+get, put, query, delete, ...).</dd>
+</dl>
+<p>Summary</p>
+<blockquote>
+<p>User authorization is the procedure that is followed to determine if the
+authenticated user is authorized to perform some operation. The result will
+always be True or False.</p>
+<p>Note: Need to define which objects require access control / authorization</p>
+</blockquote>
+<p>Actors</p>
+<blockquote>
+<ul class="simple">
+<li>User</li>
+<li>Client application</li>
+<li>Member Node</li>
+<li>Coordinating Node</li>
+</ul>
+</blockquote>
+<p>Preconditions</p>
+<blockquote>
+<ul class="simple">
+<li>User is at some level of authentication (may be anonymous or logged in)</li>
+</ul>
+</blockquote>
+<p>Triggers</p>
+<blockquote>
+<ul class="simple">
+<li>User is requesting some operation to be performed on an object</li>
+<li>An operation acting as a proxy for a user performs some operation on an
+object</li>
+</ul>
+</blockquote>
+<p>Post Conditions</p>
+<blockquote>
+<ul class="simple">
+<li>The operation continues if the user is authorized or terminates raising an
+unauthorized exception.</li>
+</ul>
+</blockquote>
+<div class="figure">
+<img alt="../_images/13_interaction.png" src="../_images/13_interaction.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="14_uc.html" title="Use Case 14 - System Authentication and Authorization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="12_uc.html" title="Use Case 12 - User Authentication"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

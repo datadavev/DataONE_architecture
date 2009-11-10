@@ -1,0 +1,40 @@
+Use Case X - XXXXXXXXXXX
+------------------------
+
+Author
+  VDC TWG
+
+Date
+  - $TM_DATE Initial version
+
+Version 
+  Draft
+
+Goal
+  xxx
+
+Summary 
+
+  xxx
+
+.. image:: UseCases/images/XX_interaction.png
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+xxx
+
+

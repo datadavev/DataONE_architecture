@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 06 - MN Synchronize &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 07 - CN Batch Upload" href="07_uc.html" />
+    <link rel="prev" title="Use Case 05 - CRUD (Create, Update Delete)" href="05_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="07_uc.html" title="Use Case 07 - CN Batch Upload"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="05_uc.html" title="Use Case 05 - CRUD (Create, Update Delete)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="05_uc.html"
+                                  title="previous chapter">Use Case 05 - CRUD (Create, Update Delete)</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="07_uc.html"
+                                  title="next chapter">Use Case 07 - CN Batch Upload</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/06_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-06-mn-synchronize">
+<span id="uc06"></span><h1>Use Case 06 - MN Synchronize<a class="headerlink" href="#use-case-06-mn-synchronize" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090930 Filled out content, changed mode to pull from MN</li>
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>Replicate / synchronize metadata record between Member Node and Coordinating Node.</dd>
+</dl>
+<p>Summary</p>
+<blockquote>
+<p>As data packages, or portions there of are created or modified, the metadata
+associated with those needs to be replicated to the coordinating nodes.</p>
+<p>The presence of new or changed information on a Member Node (MN) is made
+known to a Coordinating Node (CN) through the status information in a
+<tt class="docutils literal"><span class="pre">ping()</span></tt> response. If so indicated, the CN schedules a synchronization
+operation with the MN, a list of changed object GUIDS is retrieved by the
+CN, and the CN proceeds to retrieve and process each object identified.</p>
+<p>If new data packages are present on the MN, then a MN-MN synchronization
+process is scheduled.</p>
+</blockquote>
+<dl class="docutils">
+<dt>Actors</dt>
+<dd>Member Node, Coordinating Node</dd>
+<dt>Preconditions</dt>
+<dd><ul class="first last simple">
+<li>Member Node has new or changed data packages</li>
+</ul>
+</dd>
+<dt>Triggers</dt>
+<dd><ul class="first last simple">
+<li>New or changed content is present on a Member Node</li>
+</ul>
+</dd>
+<dt>Post Conditions</dt>
+<dd><ul class="first last simple">
+<li>MN is in sync with CN</li>
+<li>Log</li>
+<li>Watchers for changes to MN, CN, or DataONE system</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Overloading ping() for notification of change seems a little bit of a hack,
+though changing the name from ping() to status() makes it seem OK.</li>
+</ul>
+<div class="figure">
+<img alt="../_images/06_uc.png" src="../_images/06_uc.png" />
+</div>
+<hr class="docutils" />
+<div class="figure">
+<img alt="../_images/06_interaction.png" src="../_images/06_interaction.png" />
+<p class="caption">Synchronize Metadata between Member and Coordinating Node</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="07_uc.html" title="Use Case 07 - CN Batch Upload"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="05_uc.html" title="Use Case 05 - CRUD (Create, Update Delete)"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

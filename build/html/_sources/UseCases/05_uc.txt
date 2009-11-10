@@ -1,0 +1,44 @@
+.. _UC05:
+
+Use Case 05 - CRUD (Create, Update Delete)
+------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20090925 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Create/Update/Delete data object in Member Node.
+
+Summary 
+  This is a dupe of UC04_ for now. May split out the update and delete
+  portions to different use cases at some point in the future.
+
+
+Actors
+  xxx
+
+Preconditions 
+  xxx
+  
+Triggers
+  xxx
+ 
+Post Conditions
+  xxx
+
+Notes
+~~~~~
+
+- See all questions above (Use Case #4) for metadata operations.
+
+- client should be able ask CN for a list of acceptable MNs to upload data
+  with specific characteristics (e.g., size, institution, theme)
+
+

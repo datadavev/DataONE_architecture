@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 08 - Replication Policy Communication &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 09 - Replicate MN to MN" href="09_uc.html" />
+    <link rel="prev" title="Use Case 07 - CN Batch Upload" href="07_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="09_uc.html" title="Use Case 09 - Replicate MN to MN"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="07_uc.html" title="Use Case 07 - CN Batch Upload"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="07_uc.html"
+                                  title="previous chapter">Use Case 07 - CN Batch Upload</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="09_uc.html"
+                                  title="next chapter">Use Case 09 - Replicate MN to MN</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/08_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-08-replication-policy-communication">
+<span id="uc08"></span><h1>Use Case 08 - Replication Policy Communication<a class="headerlink" href="#use-case-08-replication-policy-communication" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+<dt>Goal</dt>
+<dd>Communication of replication policy metadata between Member Nodes and
+Coordinating Nodes.</dd>
+</dl>
+<p>Summary</p>
+<blockquote>
+The replication policy of Member Nodes (MN) indicates factors such as the
+amount of storage space available, bandwidth constraints, the types of data
+and metadata that can be managed, and perhaps access control restrictions.
+This information is used by Coordinating Nodes (CN) to balance the
+distribution of data packages throughout the DataONE system to achieve the
+goals of data package persistence and accessibility.</blockquote>
+<dl class="docutils">
+<dt>Actors</dt>
+<dd>Member Node, Coordinating Node</dd>
+<dt>Preconditions</dt>
+<dd><ul class="first last simple">
+<li>Member Node is registered with a Coordinating Node</li>
+<li>Member Node is operational</li>
+</ul>
+</dd>
+<dt>Triggers</dt>
+<dd><ul class="first last simple">
+<li>A Member Node changes available capacity, bandwidth or some other
+operating characteristic</li>
+<li>A Member Node changes available services</li>
+<li>A Member Node software stack is updated (e.g. new version)</li>
+</ul>
+</dd>
+<dt>Post Conditions</dt>
+<dd><ul class="first last simple">
+<li>The DataONE system is updated with current state of available resources</li>
+<li>Change in replication policy may trigger a re-synchronization (e.g. if
+storage capacity shrinks or is enlarged)</li>
+<li>Operation is logged</li>
+<li>Watchers are notified in change in DataONE system property</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>The goal as stated originally for this use case was &#8220;Communication of
+replication policy metadata among Member Nodes and Coordinating Nodes.&#8221;</li>
+<li>There should be some restriction on how often replication policy can be
+changed to avoid thrashing that might occur for example, if a MN flips
+between significant differences in storage capacities (low to high, then low
+again).</li>
+</ul>
+<div class="figure">
+<img alt="../_images/08_uc.png" src="../_images/08_uc.png" />
+</div>
+<hr class="docutils" />
+<div class="figure">
+<img alt="../_images/08_interaction.png" src="../_images/08_interaction.png" />
+<p class="caption">Communication of Replication Policy Metadata</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="09_uc.html" title="Use Case 09 - Replicate MN to MN"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="07_uc.html" title="Use Case 07 - CN Batch Upload"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

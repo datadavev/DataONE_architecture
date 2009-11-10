@@ -1,0 +1,52 @@
+====================
+DataONE Architecture
+====================
+
+--------------------------
+DataONE Use Cases and APIs
+--------------------------
+
+**Change Log**
+
+:20090927:
+ - Split usecases into separate document
+ - Added page breaks for rst2pdf
+
+:20090925: 
+ - Initial collation of all use cases into single document. 
+ - Recast all diagrams to interaction diagrams using PlantUML automated tools
+
+:20090924:
+ - Layout document structure, draft templates
+
+.. |date| date:: %Y%m%d %H:%M
+
+.. header::
+
+   DataONE Architecture  -  |date|
+
+.. footer::
+
+   ###Section###  -  ###Page###
+
+.. section-numbering::
+ 
+.. contents:: Table of Contents 
+   :depth: 1
+.. include:: overview.txt
+.. include:: prioritization.txt
+.. include:: usecases.txt
+.. include:: apis.txt
+
+   
+.. 
+  This document is formatted using reStructured Text, a plain text
+  format that can be used to generate various renderings including HTML and
+  PDF, assuming you have installed docutils and rst2pdf (Google is your
+  friend) 
+  To generate a HTML version of this document:
+    rst2html.py Architecture.txt Architecture.html
+  To generate a PDF version:
+    rst2pdf --default-dpi 100 Architecture.txt
+  Or use the included ant build.xml
+

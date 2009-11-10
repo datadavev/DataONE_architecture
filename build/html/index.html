@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DataONE Architecture &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="" />
+    <link rel="next" title="Overview" href="overview.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Overview"
+             accesskey="N">next</a> |</li>
+        <li><a href="">DataONE Architecture v0.0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">DataONE Architecture</a><ul>
+</ul>
+</li>
+<li><a class="reference external" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            <h4>Next topic</h4>
+            <p class="topless"><a href="overview.html"
+                                  title="next chapter">Overview</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/index.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dataone-architecture">
+<h1>DataONE Architecture<a class="headerlink" href="#dataone-architecture" title="Permalink to this headline">¶</a></h1>
+<p><strong>Change Log</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">20091110:</th><td class="field-body"><ul class="first simple">
+<li>Incorporating many updates and edits</li>
+<li>Switch to Sphinx doc generator: easier to manage and better features</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">20090927:</th><td class="field-body"><ul class="first simple">
+<li>Split usecases into separate document</li>
+<li>Added page breaks for rst2pdf</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">20090925:</th><td class="field-body"><ul class="first simple">
+<li>Initial collation of all use cases into single document.</li>
+<li>Recast all diagrams to interaction diagrams using PlantUML automated tools</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">20090924:</th><td class="field-body"><ul class="first last simple">
+<li>Layout document structure, draft templates</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This document describes portions of the <a href="#id1"><span class="problematic" id="id2">DataONE_</span></a> infrastructure. Note that
+content is quite dynamic while the architecture design is being iterated for
+the first release.</p>
+<p>Contents:</p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference external" href="WhatIsData.html">What is Data (DataONE Perspective)?</a></li>
+<li class="toctree-l2"><a class="reference external" href="Replication.html">Replication Notes</a></li>
+<li class="toctree-l2"><a class="reference external" href="DataAndMetadata.html">Cross Domain Indexing and Access for Data and Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="usecasesoverview.html">Use Cases Overview</a><ul>
+<li class="toctree-l2"><a class="reference external" href="usecasesoverview.html#use-case-layout">Use Case Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="prioritization.html">Use Case Implementation Priority</a><ul>
+<li class="toctree-l2"><a class="reference external" href="prioritization.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference external" href="prioritization.html#year-1-use-cases">Year 1 Use Cases</a></li>
+<li class="toctree-l2"><a class="reference external" href="prioritization.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="usecases.html">Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference external" href="UseCases/01_uc.html">Use Case 01 - Get Object Identified by GUID</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/02_uc.html">Use Case 02 - List GUIDs By Search</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/03_uc.html">Use Case 03 - Register MN</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/04_uc.html">Use Case 04 - CRUD (Create, Update Delete)</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/05_uc.html">Use Case 05 - CRUD (Create, Update Delete)</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/06_uc.html">Use Case 06 - MN Synchronize</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/07_uc.html">Use Case 07 - CN Batch Upload</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/08_uc.html">Use Case 08 - Replication Policy Communication</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/09_uc.html">Use Case 09 - Replicate MN to MN</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/10_uc.html">Use Case 10 - MN Status Reports</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/11_uc.html">Use Case 11 - CRUD Workflow Objects</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/12_uc.html">Use Case 12 - User Authentication</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/13_uc.html">Use Case 13 - User Authorization</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/14_uc.html">Use Case 14 - System Authentication and Authorization</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/15_uc.html">Use Case 15 - Account Management</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/16_uc.html">Use Case 16 - Log CRUD Operations</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/17_uc.html">Use Case 17 - CRUD Logs Aggregated at CNs</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/18_uc.html">Use Case 18 - MN Retrieve Aggregated Logs</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/19_uc.html">Use Case 19 - Retrieve Object Download Summary</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/20_uc.html">Use Case 20 - Owner Retrieve Aggregate Logs</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/21_uc.html">Use Case 21 - Owner Subscribe to CRUD Operations</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/22_uc.html">Use Case 22 - Link/Citation Report for Owner</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/23_uc.html">Use Case 23 - Owner Expunge Content</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/24_uc.html">Use Case 24 - MNs and CNs Support Transactions</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/25_uc.html">Use Case 25 - Detect Damaged Content</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/26_uc.html">Use Case 26 - Data Quality Checks</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/27_uc.html">Use Case 27 - Metadata Version Migration</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/28_uc.html">Use Case 28 - Derived Product Original Change Notification</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/29_uc.html">Use Case 29 - CN Load Balancing</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/30_uc.html">Use Case 30 - MN Outage Notification</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/31_uc.html">Use Case 31 - Manage Access Policies</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/32_uc.html">Use Case 32 - Transfer Object Ownership</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/33_uc.html">Use Case 33 - Search for Data</a></li>
+<li class="toctree-l2"><a class="reference external" href="UseCases/34_uc.html">Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="apis.html">DataONE Application Programming Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference external" href="apis.html#member-node-apis">Member Node APIs</a></li>
+<li class="toctree-l2"><a class="reference external" href="apis.html#coordinating-node-apis">Coordinating Node APIs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference external" href="modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference external" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Overview"
+             >next</a> |</li>
+        <li><a href="">DataONE Architecture v0.0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

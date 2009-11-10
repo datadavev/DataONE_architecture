@@ -1,0 +1,143 @@
+.. _UC01:
+
+
+Use Case 01 - Get Object Identified by GUID
+-------------------------------------------
+
+Author
+  VDC TWG
+
+Date
+  - 20091006 Added use case diagram
+  - 20090924 Adding to use case description and documentation
+  - 20090114 (TWG meeting).  Subsequent various modifications.
+
+Version 
+  Draft
+
+Goal
+  Retrieve an object identified by GUID (authenticated or not, notify
+  subscriber of access).
+
+Summary 
+  A client has an identifier for some object within the DataONE system and is
+  retrieving the referenced object. The DataONE system must resolve the
+  identifier and return the object bytes after checking that the user has read
+  privileges on the object.  
+
+  Watchers (subscribers) of the object are notified of the retrieval (what are
+  they notified of?).
+
+Actors
+  - Client requesting object
+  - Coordinating Node
+  - Member Node
+
+Preconditions 
+  - Client has authenticated to at the desired level (e.g. client may not have
+    authenticated, so access might be anonymous), and so an ``auth_token |
+    None`` is available.
+
+Triggers
+  - An object is requested from the DataONE system.
+
+Post Conditions
+  - The client has a copy of the object bytes (or an error message in the case
+    of failure)
+  - The log is updated with the results of the operation
+  - Watchers perform their processing
+
+
+**Notes**
+
+1. For the GET operation, the coordinating node does not need to check access,
+   because the member node will do this check before delivering the results.
+
+2. For the GET operation, should isAuth() be performed only by CNs? Relying on
+   the MN system metadata requires trusted implementation of the MN system and
+   consistency of system metadata across all MNs (which will be the case, though
+   with uncertain latency). Requiring all isAuth() operations to be performed by
+   CNs will increase trust in the operation (assuming the operation is not
+   spoofed by a MN) though will increase load on CNs.
+
+3. Data sent to watchers might include: timestamp, object identifier, user id,
+   IP of client.
+
+
+.. raw:: pdf
+
+   PageBreak
+
+
+
+.. figure:: images/01_uc.png
+
+   Use case diagram showing actors and components involved in this action.
+   
+
+.. figure:: images/01_interaction.png
+
+   Sequence diagram for retrieving an object from DataONE.
+
+
+.. 
+  This block defines the use case diagram referenced above
+  @startuml images/01_uc.png
+    !include ../plantuml.conf
+    actor "User" as client
+    usecase "12. Authentication" as authen
+    note top of authen
+    Authentication may be provided 
+    by an external service
+    such as CILogon
+    end note
+
+    package "DataONE"
+      component "Coordinating Node" as CN
+      component "Member Node" as MN
+      usecase "13. Authorization" as author
+      usecase "01. Get Object" as GET
+      client -- GET
+      CN -- GET
+      MN -- GET
+      GET ..> author: <<includes>>
+      GET ..> authen: <<includes>>
+  @enduml
+
+
+..
+  This block defines the interaction diagram referenced above.
+  @startuml images/01_interaction.png
+    !include ../plantuml.conf
+    actor User
+    participant "Client" as app_client << Application >>
+    User -> app_client
+
+    participant "CRUD API" as c_crud << Coordinating Node >>
+    activate c_crud
+    app_client -> c_crud: resolve(GUID, auth_token)
+    participant "Authorization API" as c_authorize << Coordinating Node >>
+    c_crud -> c_authorize: isAuth(auth_token, GUID)
+    participant "Verify API" as c_ver << Coordinating Node >>
+    c_authorize -> c_ver: isValidToken (token)
+    c_authorize <-- c_ver: T or F
+    c_crud <-- c_authorize: T or F
+    app_client <-- c_crud: handle_list
+    deactivate c_crud
+
+    participant "CRUD API" as m_crud << Member Node >>
+    activate m_crud
+    app_client -> m_crud: get(auth_token, handle)
+    participant "Server Authentication API" as m_authenticate << Member Node >>
+    m_crud -> m_authenticate: isAuth(auth_token, GUID)
+    m_crud <-- m_authenticate: T or F
+    m_crud -> m_crud: log(get, UserID, GUID)
+    app_client <-- m_crud: object or unauth or doesNotExist
+    deactivate m_crud
+  @enduml
+
+
+.. raw:: pdf
+
+   PageBreak
+

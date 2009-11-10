@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Case 15 - Account Management &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="../index.html" />
+    <link rel="up" title="Use Cases" href="../usecases.html" />
+    <link rel="next" title="Use Case 16 - Log CRUD Operations" href="16_uc.html" />
+    <link rel="prev" title="Use Case 14 - System Authentication and Authorization" href="14_uc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="16_uc.html" title="Use Case 16 - Log CRUD Operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="14_uc.html" title="Use Case 14 - System Authentication and Authorization"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" accesskey="U">Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Use Case 15 - Account Management</a><ul>
+<li><a class="reference external" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="14_uc.html"
+                                  title="previous chapter">Use Case 14 - System Authentication and Authorization</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="16_uc.html"
+                                  title="next chapter">Use Case 16 - Log CRUD Operations</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UseCases/15_uc.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-case-15-account-management">
+<h1>Use Case 15 - Account Management<a class="headerlink" href="#use-case-15-account-management" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>VDC TWG</dd>
+<dt>Date</dt>
+<dd><ul class="first last simple">
+<li>20090925 Adding to use case description and documentation</li>
+<li>20090114 (TWG meeting).  Subsequent various modifications.</li>
+</ul>
+</dd>
+<dt>Version</dt>
+<dd>Draft</dd>
+</dl>
+<p>Goal</p>
+<blockquote>
+<p>Edit a user account.  This includes creating, deleting, editing.</p>
+<p>User Account Management - Create new user account on Identity Provider (also
+edit, delete, ...).</p>
+</blockquote>
+<p>Summary</p>
+<blockquote>
+<p>Perform basic account management operations. This process can be quite
+complex depending on the identity provider in use and the security policies
+that need to be addressed.</p>
+<p>The use case and interaction presented here assumes a simplistic operation
+that relies only upon email verification for the new account creation. A
+more sophisticated interaction might include administrative approval of the
+new account, selection of an identity provider to use, and assignment of
+roles based on the level of approval and the nature of the selected identity
+provider (i.e. trustworthiness of identity provider).</p>
+</blockquote>
+<p>Actors</p>
+<blockquote>
+<ul class="simple">
+<li>New User</li>
+<li>Administrator</li>
+<li>Identity provider</li>
+<li>Coordinating Node</li>
+</ul>
+</blockquote>
+<p>Preconditions</p>
+<blockquote>
+<ul class="simple">
+<li>System is operational and policy is in place to accept new users.</li>
+</ul>
+</blockquote>
+<p>Triggers</p>
+<blockquote>
+<ul class="simple">
+<li>A new user account is requested.</li>
+</ul>
+</blockquote>
+<p>Post Conditions</p>
+<blockquote>
+<ul class="simple">
+<li>New account is created (if accepted)</li>
+<li>Access control rules for new account are specified</li>
+<li>Account information is replicated across CNs</li>
+</ul>
+</blockquote>
+<div class="figure">
+<img alt="../_images/15_interaction.png" src="../_images/15_interaction.png" />
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>By default, accounts have no real privileges. To get higher privileges,
+users may have to jump through more hoops (such as verifying their
+association with a project/institution)</li>
+<li>Presumably, if we are using external identity providers this user account
+management functionality isn&#8217;t provided by the CN. Right? (PEA)</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="16_uc.html" title="Use Case 16 - Log CRUD Operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="14_uc.html" title="Use Case 14 - System Authentication and Authorization"
+             >previous</a> |</li>
+        <li><a href="../index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li>
+          <li><a href="../usecases.html" >Use Cases</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

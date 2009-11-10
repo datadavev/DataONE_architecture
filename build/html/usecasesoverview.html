@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Cases Overview &mdash; DataONE Architecture v0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.3',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="index.html" />
+    <link rel="next" title="Use Case Implementation Priority" href="prioritization.html" />
+    <link rel="prev" title="Cross Domain Indexing and Access for Data and Metadata" href="DataAndMetadata.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="prioritization.html" title="Use Case Implementation Priority"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DataAndMetadata.html" title="Cross Domain Indexing and Access for Data and Metadata"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Use Cases Overview</a><ul>
+<li><a class="reference external" href="#use-case-layout">Use Case Layout</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="DataAndMetadata.html"
+                                  title="previous chapter">Cross Domain Indexing and Access for Data and Metadata</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="prioritization.html"
+                                  title="next chapter">Use Case Implementation Priority</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/usecasesoverview.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-cases-overview">
+<h1>Use Cases Overview<a class="headerlink" href="#use-cases-overview" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">20090924</td>
+</tr>
+</tbody>
+</table>
+<p>An important early part in the process of system architecture is identifying
+the functional requirements that the resulting system should be able to
+address. Use cases are helpful for this as they describe how actors (typically
+entities external to the system) interact with system components. Interaction
+diagrams help define the interfaces and messages transmitted between
+components.</p>
+<div class="figure">
+<img alt="_images/dataone_components.png" src="_images/dataone_components.png" />
+</div>
+<div class="section" id="use-case-layout">
+<h2>Use Case Layout<a class="headerlink" href="#use-case-layout" title="Permalink to this headline">¶</a></h2>
+<p>Each use case document is structured following a common template which
+includes the following elements.</p>
+<dl class="docutils">
+<dt>Author</dt>
+<dd>Who generated the use case.  This will usually be &#8220;VDC TWG&#8221;.</dd>
+<dt>Date</dt>
+<dd>Date the use case was identified and known subsequent modifications.</dd>
+<dt>Version</dt>
+<dd>One of &#8220;Draft&#8221;, &#8220;Review&#8221;, &#8220;Published&#8221;</dd>
+<dt>Goal</dt>
+<dd>Brief description of what is intended with the use case.</dd>
+<dt>Summary</dt>
+<dd>An overview of the use case which includes the goal and major actors.</dd>
+<dt>Use case diagram</dt>
+<dd>A diagram representation of the use case, somewhat following the UML.</dd>
+<dt>Sequence diagram</dt>
+<dd>A sequence diagram that shows the operations involved in addressing the use
+case.</dd>
+<dt>Actors</dt>
+<dd>The participants in the use case - includes people and systems.</dd>
+<dt>Preconditions</dt>
+<dd>The conditions that must exist for the use case. For example, a particular
+use case may only be valid if the use has been authenticated.</dd>
+<dt>Triggers</dt>
+<dd>Describes the even that causes the use case to be initiated.</dd>
+<dt>Postconditions</dt>
+<dd>The state of the system after the use case - what conditions are true after
+the use case is completed.</dd>
+</dl>
+<p>Notes Miscellaneous notes and discussion items that can&#8217;t be placed in the
+various categories. Comments should be annotated with time and author.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The diagrams presented in these documents are all generated using
+the excellent <a class="reference external" href="http://plantuml.sourceforge.net">PlantUML</a>. PlantUML has saved us many hours of work generating
+these diagrams.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="prioritization.html" title="Use Case Implementation Priority"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DataAndMetadata.html" title="Cross Domain Indexing and Access for Data and Metadata"
+             >previous</a> |</li>
+        <li><a href="index.html">DataONE Architecture v0.0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, VDC Project, DataONE CCIT.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
