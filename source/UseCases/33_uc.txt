@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/33_interaction.png
+.. figure:: images/33_interaction.png
 
 
 Actors
@@ -37,3 +37,17 @@ Notes
 ~~~~~
 
 xxx
+
+..
+  @startuml images/33_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 33 - Discovery; Clients should be able to search for data using CN\nmetadata catalogs
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "Query API" as c_query << Coordinating Node >>
+  app_client -> c_query: searchForData ()
+  app_client <-- c_query: objectList
+  @enduml
+  

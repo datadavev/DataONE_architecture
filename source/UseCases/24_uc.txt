@@ -20,7 +20,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/24_interaction.png
+.. figure:: images/24_interaction.png
 
 
 Actors
@@ -42,3 +42,12 @@ Notes
   in a transaction?
 
 - Can transactions span multiple MNs? MNs and CNs?
+
+
+..
+  @startuml images/24_interaction.png
+  !include ../plantuml.conf
+  
+  title Interactions: 24 - CNs and MNs should support transaction sets
+  @enduml
+  

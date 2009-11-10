@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/25_interaction.png
+.. figure:: images/25_interaction.png
 
 
 Actors
@@ -38,3 +38,17 @@ Notes
 ~~~~~
 
 xxx
+
+..
+  @startuml images/25_interaction.png
+  title Interactions: 25 - System validates metadata and data
+
+  participant "CRUD API" as m_crud_a << Member Node A >>
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_sync -> m_crud_a: getChecksum (GUID)
+  c_sync <-- m_crud_a: checksum
+  participant "CRUD API" as m_crud_b << Member Node B >>
+  c_sync -> m_crud_b: getChecksum (GUID)
+  c_sync <-- m_crud_b: checksum
+  @enduml
+  

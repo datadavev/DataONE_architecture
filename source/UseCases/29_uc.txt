@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/29_interaction.png
+.. figure:: images/29_interaction.png
 
 Actors
   xxx
@@ -36,3 +36,10 @@ Notes
 ~~~~~
 
 xxx
+
+..
+  @startuml images/29_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 29 - Load balancing between Coordinating Nodes
+  @enduml
+  

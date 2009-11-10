@@ -18,7 +18,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/21_interaction.png
+.. figure:: images/21_interaction.png
 
 
 Actors
@@ -37,3 +37,20 @@ Notes
 ~~~~~
 
 xxx
+
+..
+  @startuml images/21_interaction.png
+  !include ../plantuml.conf
+
+  actor "User (Data Owner)" as user
+  participant "Client" as app_client << Application >>
+  user -> app_client
+  note left
+  Assume user authority
+  for notification registration.
+  end note
+  participant "Register API" as c_reg << Coordinating Node >>
+  app_client -> c_reg: registerForNotification (token, dataOwnerID)
+  app_client <-- c_reg: ack or fail
+
+  @enduml

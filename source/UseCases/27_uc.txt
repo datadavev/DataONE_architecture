@@ -19,7 +19,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/27_interaction.png
+.. figure:: images/27_interaction.png
 
 
 Actors
@@ -38,3 +38,11 @@ Notes
 ~~~~~
 
 - Should this apply to data as well?
+
+..
+  @startuml images/27_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 27 - Migration -- CN should support forward migration of metadata\ndocuments from one version to another within a standard and to other standards
+
+  @enduml
+  

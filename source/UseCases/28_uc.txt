@@ -20,7 +20,7 @@ Summary
 
   xxx
 
-.. image:: UseCases/images/28_interaction.png
+.. figure:: images/28_interaction.png
 
 
 Actors
@@ -41,3 +41,24 @@ Notes
 - Who can assert these relationships? The relevant object owners? Anybody?
 
 - How are relationships removed?
+
+
+..
+  @startuml images/28_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 28 - Versioning -- Derived products should be linked to source objects so\nthat notifications can be made to users of derived products when source products\nchange
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "Authentication API" as c_authenticate << Coordinating Node >>
+  app_client -> c_authenticate: login (user, pw)
+  app_client <-- c_authenticate: token or failure
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  app_client -> c_crud: assertRelation (token, IDofSubject, relationship, IDofObject)
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_sync <-- c_crud: synchronize ()
+  c_crud <-- c_sync: ack or fail
+  app_client <-- c_crud: status
+  @enduml
+  
