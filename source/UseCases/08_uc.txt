@@ -72,10 +72,11 @@ Post Conditions
    PageBreak
 
 
-.. figure:: UseCases/images/08_uc.png
+.. figure:: images/08_uc.png
 
 ..
   @startuml images/08_uc.png
+  !include ../plantuml.conf
   package "DataONE"
     component "Coordinating Node" as CN
     component "Member Node" as MN
@@ -92,12 +93,13 @@ Post Conditions
 
 ----
   
-.. figure:: UseCases/images/08_interaction.png
+.. figure:: images/08_interaction.png
 
    Communication of Replication Policy Metadata
    
 ..
   @startuml images/08_interaction.png
+  !include ../plantuml.conf
   participant "Replication API" as c_rep << Coordinating Node >>
   participant "Replication API" as m_rep << Member Node >>
   c_rep -> m_rep: ping()

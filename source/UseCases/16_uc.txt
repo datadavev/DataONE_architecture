@@ -16,24 +16,46 @@ Goal
 
 Summary 
 
-  xxx
-
-.. image:: UseCases/images/16_interaction.png
-
+  Logging is important for monitoring performance and stability of the system
+  as well as for ensuring appropriate attribution is given to contributors of
+  content. This use case describes the action of logging a user request for
+  content.
 
 Actors
-  xxx
+
+  - User
+
+  - Member Node
 
 Preconditions 
-  xxx
-  
+
+  - User has authenticated to desired level
+
 Triggers
-  xxx
- 
+
+  - User requests, modifies, or creates an object.
+
+
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - The operation is recorded in the log for the node.
 
-xxx
+
+.. figure:: images/16_interaction.png
+
+
+..
+  @startuml images/16_interaction.png
+  !include ../plantuml.conf
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "CRUD API" as m_crud << Member Node >>
+  app_client -> m_crud: create (token, dataPackage)
+  note right
+  See Use Case 4
+  end note
+  m_crud -> m_crud: log (userID, create, creationDate, ID)
+  m_crud --> app_client: ack
+  @enduml

@@ -58,10 +58,11 @@ Post Conditions
    PageBreak
    
 
-.. figure:: UseCases/images/06_uc.png
+.. figure:: images/06_uc.png
 
 ..
   @startuml images/06_uc.png
+  !include ../plantuml.conf
 
   package "DataONE"
   component "Coordinating Node" as CN
@@ -78,12 +79,13 @@ Post Conditions
 
 ----
 
-.. figure:: UseCases/images/06_interaction.png
+.. figure:: images/06_interaction.png
 
    Synchronize Metadata between Member and Coordinating Node
    
 ..
   @startuml images/06_interaction.png
+  !include ../plantuml.conf
   participant "CRUD API" as m_crud << Member Node >>
   participant "State of Health API" as c_health << Coordinating Node >>
   c_health -> m_crud: ping()

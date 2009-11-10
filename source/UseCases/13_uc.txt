@@ -12,32 +12,63 @@ Version
   Draft
 
 Goal
- User Authorization - Client requests service (get, put, query, delete, ...)
- using session token.
+  Determine if a user is authorized to perform some action on an object (e.g.
+  get, put, query, delete, ...).
 
 Summary 
 
-  xxx
+  User authorization is the procedure that is followed to determine if the
+  authenticated user is authorized to perform some operation. The result will
+  always be True or False.
 
-.. image:: UseCases/images/13_interaction.png
+  Note: Need to define which objects require access control / authorization
 
 
 Actors
-  xxx
+
+  - User
+
+  - Client application
+
+  - Member Node
+
+  - Coordinating Node
 
 Preconditions 
-  xxx
-  
+
+  - User is at some level of authentication (may be anonymous or logged in)
+
 Triggers
-  xxx
- 
+
+  - User is requesting some operation to be performed on an object
+
+  - An operation acting as a proxy for a user performs some operation on an
+    object
+
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - The operation continues if the user is authorized or terminates raising an
+    unauthorized exception.
 
-- It would be great to factor out the authentication steps (#1, 2) from the
-  diagram and replace it with some sort of precondition like "Client has
-  authentication token." (PEA)
 
+.. figure:: images/13_interaction.png
+
+
+..
+  @startuml images/13_interaction.png
+  !include ../plantuml.conf
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  participant "Authorization API" as c_authorize << Coordinating Node >>
+  app_client -> c_crud: get(auth_token, GUID)
+  c_crud -> c_authorize: isAuthorized(auth_token, method, resultset)
+  loop for each guid in resultset
+    c_authorize -> c_authorize: isAuthorized(auth_token, method, guid)
+  end
+  c_crud <-- c_authorize: T or F
+  app_client <-- c_crud: resultset or raise NotAuthorized
+  @enduml
+  

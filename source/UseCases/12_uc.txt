@@ -29,8 +29,6 @@ Summary
   The authentication process might occur using either a Coordinating Node or a
   Member Node (if it implements the DataONE authentication API).
 
-.. image:: UseCases/images/12_interaction.png
-
 
 Actors
   User, Member Node, Coordinating Node, Authentication System
@@ -58,6 +56,10 @@ Post Conditions
     where the authentication attempt was made)
 
 
+.. image:: images/12_interaction.png
+
+
+
 Notes
 ~~~~~
 
@@ -77,3 +79,34 @@ Notes
 
 .. _CILogon service: http://www.cilogon.org/service
 
+..
+  @startuml images/12_interaction.png
+  !include ../plantuml.conf
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  alt MN Login
+  participant "Authorization API" as m_authorize << Member Node >>
+    app_client -> m_authorize: login(username, password)
+    activate m_authorize
+    participant "Authentication Subsystem" as auth_system
+    m_authorize -> auth_system: authorize(username, password, domain)
+    m_authorize <-- auth_system: auth_token or FAIL
+    note right
+      The authentication system may be an external
+      service or could be operating on the CN.
+    end note
+    app_client <-- m_authorize: auth_token or FAIL
+    deactivate m_authorize
+  else CN Login
+  participant "Authentication API" as c_authenticate << Coordinating Node >>
+    app_client -> c_authenticate: login(username, password)
+    activate c_authenticate
+    c_authenticate -> auth_system: authorize(username, password, domain)
+    c_authenticate <-- auth_system: auth_token or FAIL
+    app_client <-- c_authenticate: auth_token or FAIL
+    deactivate c_authenticate
+  end MN Login
+  @enduml
+  

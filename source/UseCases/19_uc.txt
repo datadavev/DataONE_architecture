@@ -12,29 +12,56 @@ Version
   Draft
 
 Goal
-  General public can request aggregated download usage information by object
-  id.
+  General public can request aggregated download usage information for any
+  object ID (with anonymous read access)
 
 Summary 
 
-  xxx
-
-.. image:: UseCases/images/19_interaction.png
-
+  This operation provides an indication of the popularity for an object in
+  DataONE, somewhat equivalent to a citation index for a publication.
 
 Actors
-  xxx
+
+  - Anonymous user
+
+  - Coordinating Node
 
 Preconditions 
-  xxx
+
+  Use statistics have been recorded for a given object
   
 Triggers
-  xxx
- 
+  - Any user requests use logs for an object
+
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - Requesting user has a copy of use statistics for an object (if
+    authorized).
 
-xxx
+
+.. figure:: images/19_interaction.png
+
+
+..
+  @startuml images/19_interaction.png
+  !include ../plantuml.conf
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "Authentication API" as c_authenticate << Coordinating Node >>
+  app_client -> c_authenticate: login (user, pw)
+  app_client <-- c_authenticate: token or failure
+  participant "Query API" as c_query << Coordinating Node >>
+  app_client -> c_query: usageQuery (token, GUID)
+  participant "Authorization API" as c_authorize << Coordinating Node >>
+  c_query -> c_authorize: isAuth (token, resultset)
+  c_query <-- c_authorize: T or F
+  app_client <-- c_query: download usage records
+  note right
+  Can the Query API handle queries
+  on log records or should this be
+  handled by another API?
+  (e.g. "Report API"?)
+  end note
+  @enduml
+  

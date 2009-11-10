@@ -125,15 +125,16 @@ Post Conditions
 
    PageBreak
 
-.. figure:: useCases/images/02_uc.png
+.. figure:: images/02_uc.png
 
 
-.. figure:: UseCases/images/02_interaction.png
+.. figure:: images/02_interaction.png
 
   Client retrieves a list of GUIDs resulting from a metadata search.
 
 .. 
   @startuml images/02_uc.png
+  !include ../plantuml.conf
   actor User
   usecase "12. Authentication" as authen
 
@@ -152,6 +153,7 @@ Post Conditions
 
 ..
   @startuml images/02_interaction.png
+  !include ../plantuml.conf
   actor User
   participant "Client" as app_client << Application >>
   User -> app_client

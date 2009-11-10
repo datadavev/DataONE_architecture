@@ -106,10 +106,11 @@ Post Conditions
 
 
 
-.. figure:: UseCases/images/03_uc.png
+.. figure:: images/03_uc.png
 
 ..
   @startuml images/03_uc.png
+  !include ../plantuml.conf
   actor "User" as client
   usecase "12. Authentication" as authen
 
@@ -130,11 +131,12 @@ Post Conditions
 
 ----
 
-.. figure:: UseCases/images/03_interaction.png
+.. figure:: images/03_interaction.png
 
 
 ..
   @startuml images/03_interaction.png
+  !include ../plantuml.conf
   actor Admin
   participant "Admin" as app_admin << Application >>
   Admin -> app_admin

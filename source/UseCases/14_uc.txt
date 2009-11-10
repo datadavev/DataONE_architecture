@@ -12,39 +12,90 @@ Version
   Draft
 
 Goal
- System Authentication/Authorization - Server authenticates and performs
- system operations (e.g. replication).
+
+  A system process authenticates and performs some system operation (e.g.
+  replication). In this example, a Member Node authenticates to enable
+  transfer of content from MN A to MN B.
+
 
 Summary 
 
-  xxx
-
-.. image:: UseCases/images/14_interaction.png
-
+  System operations are required for many operations including the management
+  of content across Member Nodes and replication between Coordinating Nodes.
+  This use case describes the system level interactions required to perform a
+  system level operation.
 
 Actors
-  xxx
+  
+  - Coordinating Node
+
+  - Member Node(s)
 
 Preconditions 
-  xxx
-  
+
+  - Operational system
+
+
 Triggers
-  xxx
- 
+
+  - A system level operation is invoked.
+
+
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - The operation is completed
 
-- I don't understand Step #7. To me the serviceRequest in step #3 is the
-  actual request for MN-B to do a "system operation", which kicks off the
-  verification steps #4 and #5. If this example service request is
-  replication, then step #3 should point to the replication API, and
-  internally MN-B decides that it must perform the verify step #4. Then step
-  #6 is the response to the system operation, and step #7 is not needed. (I
-  think that this diagram must be showing a kind of pre-approval process for
-  the operation in step #7, but it doesn't make sense to me because in step
-  #7, MN-B will just have to re-verify the token again.) (PEA)
+  - The authentication token is optionally disposed
 
 
+.. figure:: images/14_uc.png
+
+.. figure:: images/14_interaction.png
+
+
+
+
+.. 
+  @startuml images/14_uc.png
+   !include ../plantuml.conf
+   usecase "12. User Authentication" as authen
+
+   component "Coordinating Node" as CN 
+   component "Member Node A" as MN_A 
+   component "Member Node B" as MN_B 
+   usecase "13. User Authorization" as author
+   usecase "14. System Operation" as SYSOP
+   usecase "9. Replicate MN to MN" as repl
+   CN -- SYSOP
+   MN_A -- SYSOP
+   MN_B -- SYSOP
+   SYSOP ..> author: <<includes>>
+   SYSOP ..> authen: <<includes>>
+   SYSOP ..> repl: <<includes>
+  @enduml
+
+
+..
+  @startuml images/14_interaction.png
+  !include ../plantuml.conf
+  participant "Replication API" as m_rep_a << Member Node A >>
+  participant "Replication API" as m_rep_b << Member Node B >>
+  participant "Authentication API" as c_authenticate << Coordinating Node >>
+  participant "Verify API" as c_ver << Coordinating Node >>
+  m_rep_a -> c_authenticate: login(user, pw)
+  note right
+    The user in this case is the DataONE 
+    identity given to MN A.
+  end note
+  m_rep_a <-- c_authenticate: token or failure
+  m_rep_a -> m_rep_b: getContent(token, ...)
+  m_rep_b -> c_ver: isAuthorized(token, ...)
+  m_rep_b <-- c_ver: True or False
+  m_rep_a <-- m_rep_b: content or Fail
+  note right
+    Member Node A is now in a modified 
+    state and should signal this during
+    next status request from a CN
+  end note
+  m_rep_a --> c_authenticate: logout(token)
+  @enduml

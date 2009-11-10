@@ -1,0 +1,157 @@
+Authentication in DataONE
+=========================
+
+:Author: Dave Vieglais
+:Status: Draft for comment
+:Date: 20091023
+
+This document outlines some simplistic approaches for authentication of users
+of the DataONE system. It is not intended to be comprehensive but rather to
+offer a common starting point for discussion about the topic in the context of
+the DataONE infrastructure.
+
+Overview
+--------
+
+Users and services authenticate in DataONE for the following purposes:
+
+- To confirm their identity
+
+Identity is utilized in the DataONE infrastructure to:
+
+- To indicate ownership of objects
+
+- To confirm or deny access to an object (read / write) through some access control rules
+
+Four scenarios of identify provider are investigated below: a) users are
+authenticated by Coordinating Nodes; b) Users are authenticated by Member
+Nodes (a user identity managed by "their" MN); c) Users are authenticated by a
+third party identity provider; and d) Users are authenticated by any scheme
+with algorithmic verification available at any node.
+
+The basic assumption in all cases is that the user authenticates using some
+credentials and a key (password or some other secret) and the identity
+provider returns a token that the user can pass around as proof that they have
+authenticated with the DataONE system at some time within the last XXX period
+of time.
+
+
+Scenario A: Authentication provided by CNs
+------------------------------------------
+
+.. image:: images/authenticate_case_a.png
+
+..
+  @startuml images/authenticate_case_a.png
+  actor User
+  participant MN1
+  participant MN2
+  participant CN
+  User -> MN1: login(D1.username, password)
+  activate MN1
+  MN1 -> CN: login(MN1, D1.username, password)
+  activate CN
+  CN -> MN1: token
+  deactivate CN
+  MN1 -> User: token
+  deactivate MN1
+  User -> MN2: get(token, GUID)
+  activate MN2
+  MN2 -> CN: verify(token)
+  activate CN
+  CN -> MN2: OK
+  deactivate CN
+  MN2 -> User: object
+  deactivate MN2
+  @enduml
+  
+- The Member Nodes must trust Coordinating Nodes as an identity provider
+- The CNs must trust that MNs are forwarding credentials appropriately
+
+Scenario B. Authentication provided by MN
+-----------------------------------------
+
+.. image:: images/authenticate_case_b.png
+
+..
+  @startuml images/authenticate_case_b.png
+  actor User
+  participant MN1
+  participant MN2
+  participant CN
+  User -> MN1: login(MN1.username, password)
+  activate MN1
+  MN1 -> User: token
+  deactivate MN1
+  alt MN verification
+    User -> MN2: get(token, GUID)
+    activate MN2
+    MN2 -> MN1: verify(token)
+    activate MN1
+    MN1 -> MN2: result
+    deactivate MN1
+    MN2 -> User: object
+    deactivate MN2
+  else CN verification
+    User -> MN2: get(token, GUID)
+    activate MN2
+    MN2 -> CN: verify(token)
+    activate CN
+    CN -> MN1: verify(token)  
+    activate MN1
+    MN1 -> CN: result
+    deactivate MN1
+    CN -> MN2: result
+    deactivate CN
+    MN2 -> User: object
+    deactivate MN2
+  end  
+  @enduml
+
+- token must have signature that indicates the issuing MN
+- MN2 trusts MN1 as an authentication provider
+
+Scenario C. Authentication through Third Party Identity Provider
+----------------------------------------------------------------
+
+.. image:: images/authenticate_case_c.png
+
+..
+  @startuml images/authenticate_case_c.png
+  actor User
+  participant MN1
+  participant "Third Party" as TP
+  User -> TP: login(TP.username, password)
+  TP -> User: token
+  User -> MN1: get(token, GUID)
+  activate MN1
+  MN1 -> TP: verify(token)
+  TP -> MN1: result
+  MN1 -> User: object
+  deactivate MN1
+  @enduml
+
+- MNs and CNs must trust the third party identity provider
+
+
+Scenario D. Authentication Verified Algorithmically by Any Node
+---------------------------------------------------------------
+
+.. image:: images/authenticate_case_d.png
+
+..
+  @startuml images/authenticate_case_d.png
+  actor User
+  participant MN1
+  participant "Identity Provider" as ident
+  User -> ident: login(username, password)
+  ident -> User: token
+  User -> MN1: get(token, GUID)
+  activate MN1
+  MN1 -> MN1: verify(token)
+  MN1 -> User: object
+  deactivate MN1
+  @enduml
+
+- Minimizes communication between Nodes for identity verification
+- All MNs and CNs must trust each other (to accept identity)

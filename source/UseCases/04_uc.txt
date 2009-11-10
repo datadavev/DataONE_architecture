@@ -35,7 +35,7 @@ Summary
   ###). The CN schedules replication of the data package across other MNs
   (`Use Case 06`__).
 
-__ UC06_
+__ :doc:`uc_06`
 
 
 Actors
@@ -98,11 +98,12 @@ Post Conditions
    PageBreak
    
 
-.. figure:: UseCases/images/04_uc.png
+.. figure:: images/04_uc.png
 
 .. 
   This block defines the use case diagram referenced above
   @startuml images/04_uc.png
+  !include ../plantuml.conf
   actor "User" as client
   usecase "12. Authentication" as authen
 
@@ -123,12 +124,13 @@ Post Conditions
 
 ----
 
-.. figure:: UseCases/images/04_interaction.png
+.. figure:: images/04_interaction.png
    
    Create, update, delete, search metadata or data object in Member Node.
 
 ..
   @startuml images/04_interaction.png
+  !include ../plantuml.conf
   Actor User
   participant "Client" as app_client << Application >>
   User -> app_client

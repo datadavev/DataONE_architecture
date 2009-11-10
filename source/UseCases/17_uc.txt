@@ -16,24 +16,45 @@ Goal
 
 Summary 
 
-  xxx
-
-.. image:: UseCases/images/17_interaction.png
+  Aggregation of CRUD operation logs is used to compute use statistics and
+  other summary types of operations. The original log information should be
+  viewable by administrators for some period of time.
 
 
 Actors
-  xxx
+
+  - Member Node(s)
+
+  - Coordinating Node
+
 
 Preconditions 
-  xxx
-  
+
+  - Log files are available to retrieve from Member Nodes
+
 Triggers
-  xxx
- 
+
+  - Timed event, logs are aggregated ever xxx days.
+
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - Aggregate logs are stored on Coordinating Node
 
-xxx
+  - Logs are synchronized between CNs
+
+  - Log processing is triggered on CNs
+
+.. figure:: images/17_interaction.png
+
+..
+  @startuml images/17_interaction.png
+  !include ../plantuml.conf
+  participant "CRUD API" as m_crud_a << Member Node A >>
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_sync -> m_crud_a: getLogRecords (token, fromDate, toDate)
+  c_sync <-- m_crud_a: records or fail
+  participant "CRUD API" as m_crud_b << Member Node B >>
+  c_sync -> m_crud_b: getLogRecords (token, fromDate, toDate)
+  c_sync <-- m_crud_b: records or fail
+  @enduml
+  

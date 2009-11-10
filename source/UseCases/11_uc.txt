@@ -16,24 +16,62 @@ Goal
 
 Summary 
 
-  xxx
+  This use case describes the management of a workflow object within the
+  DataONE infrastructure.
 
-.. image:: UseCases/images/11_interaction.png
+  It is not clear why this should be treated any differently from the
+  management of regular objects.
 
 
 Actors
-  xxx
+
+  - User
+
+  - Client application
+
+  - Member Node
+
+  - Coordinating Node
 
 Preconditions 
-  xxx
-  
+
+  - DataONE system is operational
+
+  - User has authenticated with the DataONE system
+
 Triggers
-  xxx
+
+  - User adds, deletes, or modifies a workflow object
  
 Post Conditions
-  xxx
 
-Notes
-~~~~~
+  - Workflow object is stored on a Member Node
 
-xxx
+  - Metadata about workflow object is stored on Coordinating Nodes
+
+  - Replication of workflow object across multiple Member Nodes is initiated
+
+
+.. figure:: images/11_interaction.png
+
+..
+  @startuml images/11_interaction.png
+  !include ../plantuml.conf
+  title Interactions: 11 - Create, update, delete, search workflow object
+
+  actor User
+  participant "Client" as app_client << Application >>
+  User -> app_client
+  participant "Authorization API" as m_authorize << Member Node >>
+  app_client -> m_authorize: login (user, pw)
+  app_client <-- m_authorize: token or failure
+  participant "CRUD API" as m_crud << Member Node >>
+  app_client -> m_crud: create (token, workflowObject)
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  m_crud -> c_crud: register (memberToken, ID, metadata)
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_crud -> c_sync: synchronize ()
+  c_crud <-- c_sync: ack or fail
+  m_crud <-- c_crud: register status
+  app_client <-- m_crud: status, ID
+  @enduml
