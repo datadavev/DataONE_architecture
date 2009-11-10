@@ -1,9 +1,0 @@
-title 17 - All CRUD logs are aggregated at Coordinating Nodes
-
-note left
-Assume Coordinating Node has authority for accessing Member Node log records.
-end note
-c_sync -> m_crud_a: getLogRecords (fromDate, toDate)
-c_sync <-- m_crud_a: records or fail
-c_sync -> m_crud_b: getLogRecords (fromDate, toDate)
-c_sync <-- m_crud_b: records or fail

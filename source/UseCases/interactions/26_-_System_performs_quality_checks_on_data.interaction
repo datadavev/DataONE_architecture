@@ -1,6 +1,0 @@
-title 26 - System performs quality checks on data
-
-c_sync -> m_crud_a: checkDataQuality (GUID)
-c_sync <-- m_crud_a: result
-c_sync -> m_crud_b: checkDataQuality (GUID)
-c_sync <-- m_crud_b: result

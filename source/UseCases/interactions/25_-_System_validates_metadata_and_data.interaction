@@ -1,6 +1,0 @@
-title 25 - System validates metadata and data
-
-c_sync -> m_crud_a: getChecksum (GUID)
-c_sync <-- m_crud_a: checksum
-c_sync -> m_crud_b: getChecksum (GUID)
-c_sync <-- m_crud_b: checksum

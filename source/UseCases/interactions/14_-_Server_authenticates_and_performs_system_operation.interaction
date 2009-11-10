@@ -1,9 +1,0 @@
-title 14 - Server authenticates and performs system operation (e.g. replication)
-
-m_authenticate_a -> c_authenticate: login (user, pw)
-m_authenticate_a <-- c_authenticate: token or failure
-m_authenticate_a -> m_authenticate_b: serviceRequest (token)
-c_ver <-- m_authenticate_b: verify (token)
-m_authenticate_b <-- c_ver: T or F
-m_authenticate_a <-- m_authenticate_b: ack or fail
-m_rep_a -> m_rep_b: sysOp (token)
