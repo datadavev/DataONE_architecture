@@ -5,6 +5,7 @@ Overview
    :maxdepth: 1
    
    WhatIsData
+   GUIDs
    Replication
    DataAndMetadata
    Authentication
