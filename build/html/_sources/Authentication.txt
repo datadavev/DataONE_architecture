@@ -23,11 +23,17 @@ Identity is utilized in the DataONE infrastructure to:
 
 - To confirm or deny access to an object (read / write) through some access control rules
 
-Four scenarios of identify provider are investigated below: a) users are
-authenticated by Coordinating Nodes; b) Users are authenticated by Member
-Nodes (a user identity managed by "their" MN); c) Users are authenticated by a
-third party identity provider; and d) Users are authenticated by any scheme
-with algorithmic verification available at any node.
+Four scenarios of identify provider are investigated below: 
+
+1. Users are authenticated by Coordinating Nodes;
+
+2. Users are authenticated by Member Nodes (a user identity managed by "their"
+   MN);
+
+3. Users are authenticated by a third party identity provider; and
+
+4. Users are authenticated by any scheme with algorithmic verification
+   available at any node.
 
 The basic assumption in all cases is that the user authenticates using some
 credentials and a key (password or some other secret) and the identity
@@ -36,22 +42,23 @@ authenticated with the DataONE system at some time within the last XXX period
 of time.
 
 
-Scenario A: Authentication provided by CNs
+Scenario 1: Authentication provided by CNs
 ------------------------------------------
 
 .. image:: images/authenticate_case_a.png
 
 ..
   @startuml images/authenticate_case_a.png
+  !include plantuml_fullsized.conf
   actor User
   participant MN1
   participant MN2
   participant CN
   User -> MN1: login(D1.username, password)
   activate MN1
-  MN1 -> CN: login(MN1, D1.username, password)
+  MN1 -> CN: login(D1.username, password)
   activate CN
-  CN -> MN1: token
+  CN --> MN1: token
   deactivate CN
   MN1 -> User: token
   deactivate MN1
@@ -59,22 +66,36 @@ Scenario A: Authentication provided by CNs
   activate MN2
   MN2 -> CN: verify(token)
   activate CN
-  CN -> MN2: OK
+  CN --> MN2: T or F
   deactivate CN
-  MN2 -> User: object
+  note right of MN2
+    verify() could be called from within 
+    isAuthorized() to avoid additional 
+    network call.
+  end note
+  MN2 -> CN: isAuthorized(token, GUID, OP_GET)
+  activate CN
+  CN -> MN2: T or F
+  deactivate CN
+  MN2 --> User: object
   deactivate MN2
   @enduml
   
 - The Member Nodes must trust Coordinating Nodes as an identity provider
+
 - The CNs must trust that MNs are forwarding credentials appropriately
 
-Scenario B. Authentication provided by MN
+- All accounts exist on and are managed by CNs
+
+
+Scenario 2. Authentication provided by MN
 -----------------------------------------
 
 .. image:: images/authenticate_case_b.png
 
 ..
   @startuml images/authenticate_case_b.png
+  !include plantuml_fullsized.conf
   actor User
   participant MN1
   participant MN2
@@ -88,22 +109,34 @@ Scenario B. Authentication provided by MN
     activate MN2
     MN2 -> MN1: verify(token)
     activate MN1
-    MN1 -> MN2: result
+    MN1 --> MN2: T or F
     deactivate MN1
-    MN2 -> User: object
+    MN2 -> MN1: isAuthorized(token, GUID, OP_GET)
+    activate MN1
+    MN1 --> MN2: result
+    deactivate MN1
+    MN2 --> User: object
     deactivate MN2
   else CN verification
     User -> MN2: get(token, GUID)
     activate MN2
     MN2 -> CN: verify(token)
     activate CN
-    CN -> MN1: verify(token)  
+    CN -> MN1: verify(token)
     activate MN1
-    MN1 -> CN: result
+    MN1 --> CN: T or F
     deactivate MN1
-    CN -> MN2: result
+    CN --> MN2: T or F
     deactivate CN
-    MN2 -> User: object
+    MN2 -> CN: isAuthorized(token, GUID, OP_GET)
+    activate CN
+    CN -> MN1: isAuthorized(token, GUID, OP_GET)  
+    activate MN1
+    MN1 --> CN: result
+    deactivate MN1
+    CN --> MN2: result
+    deactivate CN
+    MN2 --> User: object
     deactivate MN2
   end  
   @enduml
@@ -111,47 +144,55 @@ Scenario B. Authentication provided by MN
 - token must have signature that indicates the issuing MN
 - MN2 trusts MN1 as an authentication provider
 
-Scenario C. Authentication through Third Party Identity Provider
+
+Scenario 3. Authentication through Third Party Identity Provider
 ----------------------------------------------------------------
 
 .. image:: images/authenticate_case_c.png
 
 ..
   @startuml images/authenticate_case_c.png
+  !include plantuml_fullsized.conf
   actor User
   participant MN1
   participant "Third Party" as TP
   User -> TP: login(TP.username, password)
-  TP -> User: token
+  TP --> User: token
   User -> MN1: get(token, GUID)
   activate MN1
   MN1 -> TP: verify(token)
-  TP -> MN1: result
-  MN1 -> User: object
+  TP --> MN1: T or F
+  MN1 -> MN1: isAuthorized(token, GUID, OP_GET)
+  MN1 --> User: object
   deactivate MN1
   @enduml
 
 - MNs and CNs must trust the third party identity provider
 
+- Assuming access control rules are present on MN1
 
-Scenario D. Authentication Verified Algorithmically by Any Node
+
+Scenario 4. Authentication Verified Algorithmically by Any Node
 ---------------------------------------------------------------
 
 .. image:: images/authenticate_case_d.png
 
 ..
   @startuml images/authenticate_case_d.png
+  !include plantuml_fullsized.conf
   actor User
   participant MN1
   participant "Identity Provider" as ident
   User -> ident: login(username, password)
-  ident -> User: token
+  ident --> User: token
   User -> MN1: get(token, GUID)
   activate MN1
   MN1 -> MN1: verify(token)
-  MN1 -> User: object
+  MN1 -> MN1: isAuthorized(token, GUID, OP_GET)
+  MN1 --> User: object
   deactivate MN1
   @enduml
 
 - Minimizes communication between Nodes for identity verification
 - All MNs and CNs must trust each other (to accept identity)
+- Assuming access control rules are present on MN1

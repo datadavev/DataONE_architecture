@@ -180,14 +180,6 @@ Postconditions
 Notes Miscellaneous notes and discussion items that can't be placed in the
 various categories. Comments should be annotated with time and author.
 
-.. Note:: The diagrams presented in these documents are all generated using
-   the excellent PlantUML_. PlantUML has saved us many hours of work generating
-   these diagrams.
-
-
-.. _PlantUML: http://plantuml.sourceforge.net
- 
- 
 .. todo:: 
    - Architecture overview diagram
    - Component diagram

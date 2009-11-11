@@ -429,61 +429,65 @@ of a number of other lower priority features.</li>
 <div class="section" id="use-cases">
 <h3>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h3>
 <p>Authentication Using Short-term Solution</p>
-<p><a class="reference external" href="UseCases/12_uc.html"><em>Use Case 12</em></a> - User Authentication: Person, via client software, authenticates
-against Identify Provider to establish session token. Many operations in the
-DataONE system require user authentication to ensure that the user&#8217;s identity
-is known to the system, and that appropriate access controls can be executed
-based on the identity.</p>
-<p><a class="reference external" href="UseCases/14_uc.html"><em>Use Case 14</em></a> - System Authentication and Authorization: System
-Authentication/Authorization - Server authenticates and performs system
+<p><a class="reference external" href="UseCases/12_uc.html"><em>Use Case 12</em></a> - User Authentication: Person, via client
+software, authenticates against Identify Provider to establish session token.
+Many operations in the DataONE system require user authentication to ensure
+that the user&#8217;s identity is known to the system, and that appropriate access
+controls can be executed based on the identity.</p>
+<p><a class="reference external" href="UseCases/14_uc.html"><em>Use Case 14</em></a> - System Authentication and Authorization:
+System Authentication/Authorization - Server authenticates and performs system
 operations (e.g. replication). This use case represents node-to-node
 authentication.</p>
 <p>Search and Retrieval, Indexing, Read Data and Metadata, Metadata
 Interoperability</p>
-<p><a class="reference external" href="UseCases/01_uc.html"><em>Use Case 1</em></a> - CRUD Read(): Get object identified by GUID (authenticated or not,
-notify subscriber of access). A client has an identifier for some object
-within the DataONE system and is retrieving the referenced object. The DataONE
-system must resolve the identifier and return the object bytes after checking
-that the user has read privileges on the object.</p>
-<p><a class="reference external" href="UseCases/02_uc.html"><em>Use Case 02</em></a> - List GUIDs By Search: Get list of GUIDs from metadata search
-(anonymous and authenticated). A user performs a search against the DataONE
-system and receives a list of object identifiers (GUIDs) that match the search
-criteria. The list of GUIDs is filtered such that only objects for which the
-user has read permission will be returned. This use case assumes that the
-search is being performed by submitting a query against a CN.</p>
+<p><a class="reference external" href="UseCases/01_uc.html"><em>Use Case 1</em></a> - CRUD Read(): Get object identified by GUID
+(authenticated or not, notify subscriber of access). A client has an
+identifier for some object within the DataONE system and is retrieving the
+referenced object. The DataONE system must resolve the identifier and return
+the object bytes after checking that the user has read privileges on the
+object.</p>
+<p><a class="reference external" href="UseCases/02_uc.html"><em>Use Case 02</em></a> - List GUIDs By Search: Get list of GUIDs
+from metadata search (anonymous and authenticated). A user performs a search
+against the DataONE system and receives a list of object identifiers (GUIDs)
+that match the search criteria. The list of GUIDs is filtered such that only
+objects for which the user has read permission will be returned. This use case
+assumes that the search is being performed by submitting a query against a CN.</p>
 <p>Replication of Data and Metadata</p>
-<p><a class="reference external" href="UseCases/06_uc.html"><em>Use Case 06</em></a> - MN Synchronize: Replicate / synchronize metadata record between
-Member Node and Coordinating Node. As data packages, or portions thereof, are
-created or modified, the metadata associated with those needs to be replicated
-to the coordinating nodes. The presence of new or changed information on a
-Member Node (MN) is made known to a Coordinating Node (CN) through the status
-information in a ping() response. If so indicated, the CN schedules a
-synchronization operation with the MN, a list of changed object GUIDS is
-retrieved by the CN, and the CN proceeds to retrieve and process each object
-identified. If new data packages are present on the MN, then a MN-MN
+<p><a class="reference external" href="UseCases/06_uc.html"><em>Use Case 06</em></a> - MN Synchronize: Replicate / synchronize
+metadata record between Member Node and Coordinating Node. As data packages,
+or portions thereof, are created or modified, the metadata associated with
+those needs to be replicated to the coordinating nodes. The presence of new or
+changed information on a Member Node (MN) is made known to a Coordinating Node
+(CN) through the status information in a ping() response. If so indicated, the
+CN schedules a synchronization operation with the MN, a list of changed object
+GUIDS is retrieved by the CN, and the CN proceeds to retrieve and process each
+object identified. If new data packages are present on the MN, then a MN-MN
 synchronization process is scheduled.</p>
-<p><a class="reference external" href="UseCases/09_uc.html"><em>Use Case 09</em></a> - Replicate MN to MN: Replicate data from Member Node to Member
-Node - (facilitated by Coordinating Node or independently but notifying
-Coordinating Node of operation).</p>
-<p><a class="reference external" href="UseCases/24_uc.html"><em>Use Case 24</em></a> - MNs and CNs Support Transactions: Transactions - CNs and MNs
-should support transaction sets where operations all complete successfully or
-get rolled back (e.g., upload both data and metadata records). Implementation
-of this use case could be deferred to year 2.</p>
-<p>Basic Heartbeat / Health Monitoring (candidate for deferral to year 2)</p>
-<p><a class="reference external" href="UseCases/10_uc.html"><em>Use Case 10</em></a> - MN Status Reports: Coordinating Node checks &#8220;liveness&#8221; of all
-Member Nodes. Implementation of this use case could be deferred to year 2.</p>
-<p>Basic Logging Infrastructure (candidate for deferral to year 2)</p>
-<p><a class="reference external" href="UseCases/16_uc.html"><em>Use Case 16</em></a> - Log CRUD Operations: All CRUD operations on metadata and data
-are logged at each node. Implementation of this use case could be deferred to
-year 2.</p>
-<p><a class="reference external" href="UseCases/17_uc.html"><em>Use Case 17</em></a> - CRUD Logs Aggregated at CNs: All CRUD logs are aggregated at
-coordinating nodes. Implementation of this use case could be deferred to year
+<p><a class="reference external" href="UseCases/09_uc.html"><em>Use Case 09</em></a> - Replicate MN to MN: Replicate data from
+Member Node to Member Node - (facilitated by Coordinating Node or
+independently but notifying Coordinating Node of operation).</p>
+<p><a class="reference external" href="UseCases/24_uc.html"><em>Use Case 24</em></a> - MNs and CNs Support Transactions:
+Transactions - CNs and MNs should support transaction sets where operations
+all complete successfully or get rolled back (e.g., upload both data and
+metadata records). Implementation of this use case could be deferred to year
 2.</p>
+<p>Basic Heartbeat / Health Monitoring (candidate for deferral to year 2)</p>
+<p><a class="reference external" href="UseCases/10_uc.html"><em>Use Case 10</em></a> - MN Status Reports: Coordinating Node
+checks &#8220;liveness&#8221; of all Member Nodes. Implementation of this use case could
+be deferred to year 2.</p>
+<p>Basic Logging Infrastructure (candidate for deferral to year 2)</p>
+<p><a class="reference external" href="UseCases/16_uc.html"><em>Use Case 16</em></a> - Log CRUD Operations: All CRUD operations
+on metadata and data are logged at each node. Implementation of this use case
+could be deferred to year 2.</p>
+<p><a class="reference external" href="UseCases/17_uc.html"><em>Use Case 17</em></a> - CRUD Logs Aggregated at CNs: All CRUD
+logs are aggregated at coordinating nodes. Implementation of this use case
+could be deferred to year 2.</p>
 <p>Basic Member Node Registry Services</p>
-<p><a class="reference external" href="UseCases/03_uc.html"><em>Use Case 03</em></a> - Register MN: Register a new Member Node. This use case describes
-the technical process for addition of a new member node (MN) to the DataONE
-infrastructure. It is assumed that the appropriate social contracts have been
-formed and the MN is operational, ready to be connected.</p>
+<p><a class="reference external" href="UseCases/03_uc.html"><em>Use Case 03</em></a> - Register MN: Register a new Member Node.
+This use case describes the technical process for addition of a new member
+node (MN) to the DataONE infrastructure. It is assumed that the appropriate
+social contracts have been formed and the MN is operational, ready to be
+connected.</p>
 </div>
 </div>
 <div class="section" id="year-2-use-cases">

@@ -56,12 +56,12 @@ system and verify that an operation is permitted for an authenticated User.
 
 
 
-.. function:: isAuthorized (token, method, GUID)
+.. function:: isAuthorized (token, method, GUID) -> boolean
 
    Indicates if the operation identified by ``method`` on the object
    identified by GUID is permitted by user identified by ``token``.
 
-   :param token: The authentication token returned by ``login()``
+   :param token: The authentication token returned by :func:`login`
 
    :param method: Enumerated set of values indicating at least "read" and "write"
 
@@ -79,6 +79,64 @@ system and verify that an operation is permitted for an authenticated User.
    .. Note::
       Should perhaps add convenience methods for "canRead()" and "canWrite()" to
       verify that a user is able to read / write an object.
+
+.. function:: verify(token) -> boolean
+
+   Test if the provided token is valid.
+   
+   :param token: The authentication token returned by :func:`login`
+   
+   :rtype:
+     True if the supplied token is valid, otherwise False
+
+
+.. function:: setAccess (token, GUID, accessLevel) -> boolean
+
+   Set the access permissions for an object identified by GUID.
+
+   :param token: 
+      The authentication token returned by :func:`login`. Used to verify that
+      the calling user has authority to modify access control for the object.
+
+   :param GUID:  The object for which access control is being edited.
+
+   :param accessLevel: The desired privileges to be assigned to the object.
+
+   :rtype: True if the operation succeeds, otherwise False.
+
+   :raises InvalidToken: The supplied token is invalid.
+
+   :raises NotFound: The object identified by GUID was not found.
+
+   :raises NotAauthorized: The supplied identity does not have permission 
+     to alter access control rules for the object.
+
+   .. Note::
+    Should permissions cascade? e.g. Should setting permission on a Data
+    Package cascade to the contained objects as well (the experiment metadata
+    and data)?
+
+
+.. function:: setOwner(token, userid, objectList) -> objectList
+
+   Changes ownership of all objects in objectList to the identity specified by
+   userid.
+
+   :param token: 
+      The authentication token returned by :func:`login`. Used to verify that
+      the calling user has authority to take ownership of the object.
+
+   :param userid:
+      Identity of the user that will be taking ownership of the specified objects.
+
+   :param objectList: a list of object identifiers (GUIDs) that are to be modified.
+
+   :rtype: List of objects for which the operation failed.
+
+   :raises InvalidToken: The supplied token is invalid.
+
+   :raises NotAuthorized: The supplied identity does not have authority to change ownership.
+
 
 
 CRUD API
@@ -101,7 +159,7 @@ CRUD API
     bytes of data. For metadata objects, this will be the representation of
     the object as provided by the Member Node.
 
-   :raises Unauthorized: The supplied identity does not have READ permission on the object.
+   :raises NotAauthorized: The supplied identity does not have READ permission on the object.
 
    :raises NotFound: The object specified by GUID does not exist.
 
@@ -268,7 +326,9 @@ Verify API
    
 .. function:: isValidToken (token)
 
-.. function:: Authorization API
+
+Authorization API
+~~~~~~~~~~~~~~~~~
 
 .. function:: isAuth (token, GUID)
 

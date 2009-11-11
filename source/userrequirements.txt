@@ -6,8 +6,10 @@ User Requirements
 
 
 The user requirements outlined in this document drove much of the process for
-identification of the :doc:`DataONE functional Use Cases<usecases>` described
-elsewhere.
+identification of the :doc:`DataONE Functional Use Cases<usecases>` described
+elsewhere. The functional use cases were identified and prioritized over a
+series of meetings funded by the NSF sponsored "Virtual Data Center" (VDC) INTEROP_
+project.
 
 
 UR 01.  Core Functionality (proposed)
@@ -138,6 +140,10 @@ ongoing trade relationships.
 
 .. figure:: images/invasives.jpg
 
+   Figure 4: Some examples of economically important invasive species in the
+   United States.
+
+
 Specifically, DataNetONE addresses:
 
 - Volume – combines majority of digitized species occurrence information
@@ -160,9 +166,12 @@ Specifically, DataNetONE addresses:
 
 .. figure:: images/honeysuckle.jpg
 
-   Japanese honeysuckle (`Lonicera japonica`_) was brought to the United States
-   from Asia as ground cover to prevent erosion. As an invasive species, it
-   can topple small trees and schurbs by its weight. The resulting change in
-   forest structure may negatively affect songbird populations.
-   
-.. _Lonicera japonica: http://prototype.dataone.org/pilotcatalog/send/query?term1=Lonicera+japonica&term1attribute=fullText&op1=&term2=&term2attribute=fullText&op2=&term3=&term3attribute=overlaps&op3=&op4=during&term4=&term4attribute=beginDate&term5=&term5attribute=endDate&op5=&term6=All&term6=&term6=&term6=&term6=&term6=&term6attribute=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10attribute=lterSite&term7=&term7attribute=placeKey&term8=collection&term9=All&term9attribute=presentationCat&pageSize=10&queryString=+Entire+Document+%3A+Lonicera+japonica++and++Format%3A+All+and++from+sources%3A+All&instance=nbii
+   Figure 5. Japanese honeysuckle (`Lonicera japonica`_) was brought to the
+   United States from Asia as ground cover to prevent erosion. As an invasive
+   species, it can topple small trees and schurbs by its weight. The resulting
+   change in forest structure may negatively affect songbird populations.
+
+.. _Lonicera japonica:
+   http://prototype.dataone.org/pilotcatalog/send/query?term1=Lonicera+japonica&term1attribute=fullText&op1=&term2=&term2attribute=fullText&op2=&term3=&term3attribute=overlaps&op3=&op4=during&term4=&term4attribute=beginDate&term5=&term5attribute=endDate&op5=&term6=All&term6=&term6=&term6=&term6=&term6=&term6attribute=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10attribute=lterSite&term7=&term7attribute=placeKey&term8=collection&term9=All&term9attribute=presentationCat&pageSize=10&queryString=+Entire+Document+%3A+Lonicera+japonica++and++Format%3A+All+and++from+sources%3A+All&instance=nbii
+
+.. _INTEROP: http://nsf.gov/awardsearch/showAward.do?AwardNumber=0753138

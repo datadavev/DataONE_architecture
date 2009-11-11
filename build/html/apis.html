@@ -19,6 +19,7 @@
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="DataONE Architecture v0.0.3 documentation" href="index.html" />
     <link rel="prev" title="Use Case 34 - CNs Support Other Discovery Mechanisms (e.g. Google)" href="UseCases/34_uc.html" /> 
   </head>
@@ -55,12 +56,13 @@
 <li><a class="reference external" href="#coordinating-node-apis">Coordinating Node APIs</a><ul>
 <li><a class="reference external" href="#module-CN_authorization">Authentication API</a></li>
 <li><a class="reference external" href="#module-CN_verify">Verify API</a></li>
+<li><a class="reference external" href="#id1">Authorization API</a></li>
 <li><a class="reference external" href="#module-CN_query">Query API</a></li>
 <li><a class="reference external" href="#module-CN_crud">CRUD API</a></li>
 <li><a class="reference external" href="#module-CN_replication">Replication API</a></li>
 <li><a class="reference external" href="#module-CN_synchronization">Synchronization API</a></li>
 <li><a class="reference external" href="#module-CN_register">Register API</a></li>
-<li><a class="reference external" href="#id3">Server Authentication API</a></li>
+<li><a class="reference external" href="#id4">Server Authentication API</a></li>
 <li><a class="reference external" href="#module-CN_health">State of Health API</a></li>
 </ul>
 </li>
@@ -98,30 +100,31 @@
           <div class="body">
             
   <div class="section" id="dataone-application-programming-interfaces">
-<h1><a class="toc-backref" href="#id5">DataONE Application Programming Interfaces</a><a class="headerlink" href="#dataone-application-programming-interfaces" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id6">DataONE Application Programming Interfaces</a><a class="headerlink" href="#dataone-application-programming-interfaces" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#dataone-application-programming-interfaces" id="id5">DataONE Application Programming Interfaces</a><ul>
-<li><a class="reference internal" href="#member-node-apis" id="id6">Member Node APIs</a><ul>
-<li><a class="reference internal" href="#module-MN_authorization" id="id7">Authorization API</a></li>
-<li><a class="reference internal" href="#module-MN_crud" id="id8">CRUD API</a></li>
-<li><a class="reference internal" href="#module-MN_replication" id="id9">Replication API</a></li>
-<li><a class="reference internal" href="#server-authentication-api" id="id10">Server Authentication API</a></li>
-<li><a class="reference internal" href="#module-MN_capabilities" id="id11">Capabilities API</a></li>
-<li><a class="reference internal" href="#module-MN_health" id="id12">State of Health API</a></li>
+<li><a class="reference internal" href="#dataone-application-programming-interfaces" id="id6">DataONE Application Programming Interfaces</a><ul>
+<li><a class="reference internal" href="#member-node-apis" id="id7">Member Node APIs</a><ul>
+<li><a class="reference internal" href="#module-MN_authorization" id="id8">Authorization API</a></li>
+<li><a class="reference internal" href="#module-MN_crud" id="id9">CRUD API</a></li>
+<li><a class="reference internal" href="#module-MN_replication" id="id10">Replication API</a></li>
+<li><a class="reference internal" href="#server-authentication-api" id="id11">Server Authentication API</a></li>
+<li><a class="reference internal" href="#module-MN_capabilities" id="id12">Capabilities API</a></li>
+<li><a class="reference internal" href="#module-MN_health" id="id13">State of Health API</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#coordinating-node-apis" id="id13">Coordinating Node APIs</a><ul>
-<li><a class="reference internal" href="#module-CN_authorization" id="id14">Authentication API</a></li>
-<li><a class="reference internal" href="#module-CN_verify" id="id15">Verify API</a></li>
-<li><a class="reference internal" href="#module-CN_query" id="id16">Query API</a></li>
-<li><a class="reference internal" href="#module-CN_crud" id="id17">CRUD API</a></li>
-<li><a class="reference internal" href="#module-CN_replication" id="id18">Replication API</a></li>
-<li><a class="reference internal" href="#module-CN_synchronization" id="id19">Synchronization API</a></li>
-<li><a class="reference internal" href="#module-CN_register" id="id20">Register API</a></li>
-<li><a class="reference internal" href="#id3" id="id21">Server Authentication API</a></li>
-<li><a class="reference internal" href="#module-CN_health" id="id22">State of Health API</a></li>
+<li><a class="reference internal" href="#coordinating-node-apis" id="id14">Coordinating Node APIs</a><ul>
+<li><a class="reference internal" href="#module-CN_authorization" id="id15">Authentication API</a></li>
+<li><a class="reference internal" href="#module-CN_verify" id="id16">Verify API</a></li>
+<li><a class="reference internal" href="#id1" id="id17">Authorization API</a></li>
+<li><a class="reference internal" href="#module-CN_query" id="id18">Query API</a></li>
+<li><a class="reference internal" href="#module-CN_crud" id="id19">CRUD API</a></li>
+<li><a class="reference internal" href="#module-CN_replication" id="id20">Replication API</a></li>
+<li><a class="reference internal" href="#module-CN_synchronization" id="id21">Synchronization API</a></li>
+<li><a class="reference internal" href="#module-CN_register" id="id22">Register API</a></li>
+<li><a class="reference internal" href="#id4" id="id23">Server Authentication API</a></li>
+<li><a class="reference internal" href="#module-CN_health" id="id24">State of Health API</a></li>
 </ul>
 </li>
 </ul>
@@ -129,13 +132,13 @@
 </ul>
 </div>
 <div class="section" id="member-node-apis">
-<h2><a class="toc-backref" href="#id6">Member Node APIs</a><a class="headerlink" href="#member-node-apis" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Member Node APIs</a><a class="headerlink" href="#member-node-apis" title="Permalink to this headline">¶</a></h2>
 <p>These APIs are implemented by Member Nodes.</p>
 <div class="section" id="module-MN_authorization">
-<h3><a class="toc-backref" href="#id7">Authorization API</a><a class="headerlink" href="#module-MN_authorization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Authorization API</a><a class="headerlink" href="#module-MN_authorization" title="Permalink to this headline">¶</a></h3>
 <p>Provides a mechanism for a User to authenticate themselves with the DataONE
 system and verify that an operation is permitted for an authenticated User.</p>
-<span class="target" id="index-1"></span><dl class="function">
+<span class="target" id="index-12"></span><dl class="function">
 <dt id="MN_authorization.login">
 <tt class="descclassname">MN_authorization.</tt><tt class="descname">login</tt><big>(</big><em>user</em>, <em>password</em><span class="optional">[</span>, <em>auth_system</em><span class="optional">]</span><big>)</big> &rarr; token<a class="headerlink" href="#MN_authorization.login" title="Permalink to this definition">¶</a></dt>
 <dd><p>Authenticates a user for interaction with the DataONE system. The returned
@@ -196,7 +199,7 @@ within the DataONE system.</p>
 
 <dl class="function">
 <dt id="MN_authorization.isAuthorized">
-<tt class="descclassname">MN_authorization.</tt><tt class="descname">isAuthorized</tt><big>(</big><em>token</em>, <em>method</em>, <em>GUID</em><big>)</big><a class="headerlink" href="#MN_authorization.isAuthorized" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">MN_authorization.</tt><tt class="descname">isAuthorized</tt><big>(</big><em>token</em>, <em>method</em>, <em>GUID</em><big>)</big> &rarr; boolean<a class="headerlink" href="#MN_authorization.isAuthorized" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the operation identified by <tt class="docutils literal"><span class="pre">method</span></tt> on the object
 identified by GUID is permitted by user identified by <tt class="docutils literal"><span class="pre">token</span></tt>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -204,7 +207,7 @@ identified by GUID is permitted by user identified by <tt class="docutils litera
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>token</em> &#8211; The authentication token returned by <tt class="docutils literal"><span class="pre">login()</span></tt></li>
+<li><em>token</em> &#8211; The authentication token returned by <a title="MN_authorization.login" class="reference internal" href="#MN_authorization.login"><tt class="xref docutils literal"><span class="pre">login()</span></tt></a></li>
 <li><em>method</em> &#8211; Enumerated set of values indicating at least &#8220;read&#8221; and &#8220;write&#8221;</li>
 <li><em>GUID</em> &#8211; An identifier or list of identifiers that are to be tested for access.</li>
 </ul>
@@ -232,9 +235,99 @@ verify that a user is able to read / write an object.</p>
 </div>
 </dd></dl>
 
+<dl class="function">
+<dt id="MN_authorization.verify">
+<tt class="descclassname">MN_authorization.</tt><tt class="descname">verify</tt><big>(</big><em>token</em><big>)</big> &rarr; boolean<a class="headerlink" href="#MN_authorization.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the provided token is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>token</em> &#8211; The authentication token returned by <a title="MN_authorization.login" class="reference internal" href="#MN_authorization.login"><tt class="xref docutils literal"><span class="pre">login()</span></tt></a></td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body">True if the supplied token is valid, otherwise False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="MN_authorization.setAccess">
+<tt class="descclassname">MN_authorization.</tt><tt class="descname">setAccess</tt><big>(</big><em>token</em>, <em>GUID</em>, <em>accessLevel</em><big>)</big> &rarr; boolean<a class="headerlink" href="#MN_authorization.setAccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the access permissions for an object identified by GUID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><em>token</em> &#8211; The authentication token returned by <a title="MN_authorization.login" class="reference internal" href="#MN_authorization.login"><tt class="xref docutils literal"><span class="pre">login()</span></tt></a>. Used to verify that
+the calling user has authority to modify access control for the object.</li>
+<li><em>GUID</em> &#8211; The object for which access control is being edited.</li>
+<li><em>accessLevel</em> &#8211; The desired privileges to be assigned to the object.</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">True if the operation succeeds, otherwise False.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Raises InvalidToken:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first">The supplied token is invalid.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Raises NotFound:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first">The object identified by GUID was not found.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Raises NotAauthorized:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first last">The supplied identity does not have permission
+to alter access control rules for the object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Should permissions cascade? e.g. Should setting permission on a Data
+Package cascade to the contained objects as well (the experiment metadata
+and data)?</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="MN_authorization.setOwner">
+<tt class="descclassname">MN_authorization.</tt><tt class="descname">setOwner</tt><big>(</big><em>token</em>, <em>userid</em>, <em>objectList</em><big>)</big> &rarr; objectList<a class="headerlink" href="#MN_authorization.setOwner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes ownership of all objects in objectList to the identity specified by
+userid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><em>token</em> &#8211; The authentication token returned by <a title="MN_authorization.login" class="reference internal" href="#MN_authorization.login"><tt class="xref docutils literal"><span class="pre">login()</span></tt></a>. Used to verify that
+the calling user has authority to take ownership of the object.</li>
+<li><em>userid</em> &#8211; Identity of the user that will be taking ownership of the specified objects.</li>
+<li><em>objectList</em> &#8211; a list of object identifiers (GUIDs) that are to be modified.</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">List of objects for which the operation failed.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Raises InvalidToken:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first">The supplied token is invalid.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Raises NotAuthorized:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first last">The supplied identity does not have authority to change ownership.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="module-MN_crud">
-<h3><a class="toc-backref" href="#id8">CRUD API</a><a class="headerlink" href="#module-MN_crud" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">CRUD API</a><a class="headerlink" href="#module-MN_crud" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="MN_crud.get">
 <tt class="descclassname">MN_crud.</tt><tt class="descname">get</tt><big>(</big><em>token</em>, <em>GUID</em><big>)</big><a class="headerlink" href="#MN_crud.get" title="Permalink to this definition">¶</a></dt>
@@ -254,7 +347,7 @@ bytes of data. For metadata objects, this will be the representation of
 the object as provided by the Member Node.</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name" colspan="2">Raises Unauthorized:</th></tr>
+<tr class="field"><th class="field-name" colspan="2">Raises NotAauthorized:</th></tr>
 <tr><td>&nbsp;</td><td class="field-body"><p class="first">The supplied identity does not have READ permission on the object.</p>
 </td>
 </tr>
@@ -413,7 +506,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-MN_replication">
-<h3><a class="toc-backref" href="#id9">Replication API</a><a class="headerlink" href="#module-MN_replication" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Replication API</a><a class="headerlink" href="#module-MN_replication" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="MN_replication.cancelReplication">
 <tt class="descclassname">MN_replication.</tt><tt class="descname">cancelReplication</tt><big>(</big><em>sess</em>, <em>transID</em><big>)</big><a class="headerlink" href="#MN_replication.cancelReplication" title="Permalink to this definition">¶</a></dt>
@@ -446,10 +539,10 @@ system metadata)</p>
 
 </div>
 <div class="section" id="server-authentication-api">
-<h3><a class="toc-backref" href="#id10">Server Authentication API</a><a class="headerlink" href="#server-authentication-api" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Server Authentication API</a><a class="headerlink" href="#server-authentication-api" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="module-MN_capabilities">
-<h3><a class="toc-backref" href="#id11">Capabilities API</a><a class="headerlink" href="#module-MN_capabilities" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Capabilities API</a><a class="headerlink" href="#module-MN_capabilities" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="MN_capabilities.serviceRequest">
 <tt class="descclassname">MN_capabilities.</tt><tt class="descname">serviceRequest</tt><big>(</big><em>token</em><big>)</big><a class="headerlink" href="#MN_capabilities.serviceRequest" title="Permalink to this definition">¶</a></dt>
@@ -467,7 +560,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-MN_health">
-<h3><a class="toc-backref" href="#id12">State of Health API</a><a class="headerlink" href="#module-MN_health" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">State of Health API</a><a class="headerlink" href="#module-MN_health" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="MN_health.sohQuery">
 <tt class="descclassname">MN_health.</tt><tt class="descname">sohQuery</tt><big>(</big><em>token</em>, <em>service</em><big>)</big><a class="headerlink" href="#MN_health.sohQuery" title="Permalink to this definition">¶</a></dt>
@@ -476,9 +569,9 @@ system metadata)</p>
 </div>
 </div>
 <div class="section" id="coordinating-node-apis">
-<h2><a class="toc-backref" href="#id13">Coordinating Node APIs</a><a class="headerlink" href="#coordinating-node-apis" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Coordinating Node APIs</a><a class="headerlink" href="#coordinating-node-apis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="module-CN_authorization">
-<h3><a class="toc-backref" href="#id14">Authentication API</a><a class="headerlink" href="#module-CN_authorization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Authentication API</a><a class="headerlink" href="#module-CN_authorization" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_authorization.login">
 <tt class="descclassname">CN_authorization.</tt><tt class="descname">login</tt><big>(</big><em>user</em>, <em>password</em><big>)</big><a class="headerlink" href="#CN_authorization.login" title="Permalink to this definition">¶</a></dt>
@@ -496,17 +589,15 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_verify">
-<h3><a class="toc-backref" href="#id15">Verify API</a><a class="headerlink" href="#module-CN_verify" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Verify API</a><a class="headerlink" href="#module-CN_verify" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_verify.isValidToken">
 <tt class="descclassname">CN_verify.</tt><tt class="descname">isValidToken</tt><big>(</big><em>token</em><big>)</big><a class="headerlink" href="#CN_verify.isValidToken" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<tt class="descname">Authorization API</tt></dt>
-<dd></dd></dl>
-
+</div>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id17">Authorization API</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_verify.isAuth">
 <tt class="descclassname">CN_verify.</tt><tt class="descname">isAuth</tt><big>(</big><em>token</em>, <em>GUID</em><big>)</big><a class="headerlink" href="#CN_verify.isAuth" title="Permalink to this definition">¶</a></dt>
@@ -534,7 +625,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_query">
-<h3><a class="toc-backref" href="#id16">Query API</a><a class="headerlink" href="#module-CN_query" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Query API</a><a class="headerlink" href="#module-CN_query" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_query.getAllCopies">
 <tt class="descclassname">CN_query.</tt><tt class="descname">getAllCopies</tt><big>(</big><em>token</em>, <em>ownerID</em><big>)</big><a class="headerlink" href="#CN_query.getAllCopies" title="Permalink to this definition">¶</a></dt>
@@ -572,7 +663,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_crud">
-<h3><a class="toc-backref" href="#id17">CRUD API</a><a class="headerlink" href="#module-CN_crud" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">CRUD API</a><a class="headerlink" href="#module-CN_crud" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_crud.assertRelation">
 <tt class="descclassname">CN_crud.</tt><tt class="descname">assertRelation</tt><big>(</big><em>token</em>, <em>IDofSubject</em>, <em>relationship</em>, <em>IDofObject</em><big>)</big><a class="headerlink" href="#CN_crud.assertRelation" title="Permalink to this definition">¶</a></dt>
@@ -615,7 +706,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_replication">
-<h3><a class="toc-backref" href="#id18">Replication API</a><a class="headerlink" href="#module-CN_replication" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">Replication API</a><a class="headerlink" href="#module-CN_replication" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_replication.getDefaultReplicationPolicy">
 <tt class="descclassname">CN_replication.</tt><tt class="descname">getDefaultReplicationPolicy</tt><big>(</big><em>sess</em><big>)</big><a class="headerlink" href="#CN_replication.getDefaultReplicationPolicy" title="Permalink to this definition">¶</a></dt>
@@ -653,7 +744,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_synchronization">
-<h3><a class="toc-backref" href="#id19">Synchronization API</a><a class="headerlink" href="#module-CN_synchronization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">Synchronization API</a><a class="headerlink" href="#module-CN_synchronization" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_synchronization.pollForNewIDs">
 <tt class="descclassname">CN_synchronization.</tt><tt class="descname">pollForNewIDs</tt><big>(</big><big>)</big><a class="headerlink" href="#CN_synchronization.pollForNewIDs" title="Permalink to this definition">¶</a></dt>
@@ -671,7 +762,7 @@ system metadata)</p>
 
 </div>
 <div class="section" id="module-CN_register">
-<h3><a class="toc-backref" href="#id20">Register API</a><a class="headerlink" href="#module-CN_register" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Register API</a><a class="headerlink" href="#module-CN_register" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_register.addNodeCapabilities">
 <tt class="descclassname">CN_register.</tt><tt class="descname">addNodeCapabilities</tt><big>(</big><big>)</big><a class="headerlink" href="#CN_register.addNodeCapabilities" title="Permalink to this definition">¶</a></dt>
@@ -698,11 +789,11 @@ system metadata)</p>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="id3">
-<h3><a class="toc-backref" href="#id21">Server Authentication API</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id23">Server Authentication API</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="module-CN_health">
-<h3><a class="toc-backref" href="#id22">State of Health API</a><a class="headerlink" href="#module-CN_health" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">State of Health API</a><a class="headerlink" href="#module-CN_health" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="CN_health.actOnPendingEvent">
 <tt class="descclassname">CN_health.</tt><tt class="descname">actOnPendingEvent</tt><big>(</big><em>event</em><big>)</big><a class="headerlink" href="#CN_health.actOnPendingEvent" title="Permalink to this definition">¶</a></dt>
