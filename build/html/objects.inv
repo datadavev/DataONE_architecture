@@ -16,7 +16,7 @@ CN_synchronization mod apis.html
 MN_authorization mod apis.html
 CN_replication.replicateMetadata function apis.html
 CN_replication.setDefaultReplicationPolicy function apis.html
-MN_authorization.isAuthorized function apis.html
+MN_crud.get function apis.html
 CN_authorization.login function apis.html
 CN_health.notify function apis.html
 MN_crud.log function apis.html
@@ -28,7 +28,7 @@ CN_health.actOnPendingEvent function apis.html
 CN_query.getAllCopies function apis.html
 CN_replication.getDefaultReplicationPolicy function apis.html
 MN_capabilities.serviceRequest function apis.html
-MN_crud.get function apis.html
+MN_authorization.isAuthorized function apis.html
 CN_query.usageQuery function apis.html
 CN_crud.resolve function apis.html
 MN_authorization.setAccess function apis.html
