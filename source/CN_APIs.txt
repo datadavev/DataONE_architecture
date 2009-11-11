@@ -1,0 +1,244 @@
+Coordinating Node APIs
+----------------------
+
+Authentication API
+~~~~~~~~~~~~~~~~~~
+
+.. module:: CN_authorization
+   :synopsis: Methods for authentication and authorization
+
+
+.. exception:: InvalidCredentials
+
+.. exception:: AuthenticationTimeout
+
+.. exception:: InvalidToken
+
+.. exception:: NotFound
+
+.. exception:: IdentityAlreadyExists
+
+
+.. function:: login(user, password, [auth_system]) -> token
+
+  Authenticates a user for interaction with the DataONE system. The returned
+  token is trusted throughout the DataONE system as a reliable statement as
+  to the identity of the authenticated user.
+
+  :param user: User name for authentication
+
+  :param password: Secret used for verifying identity
+
+  :param auth_system: Place holder for support of multiple authentication services 
+    for a single user.
+
+  :rtype: A composite of the user id and authentication token.
+
+  :raises InvalidCredentials: The supplied credentials were invalid (password +
+    username don't jive)
+
+  :raises AuthenticationTimeout: A response from the authentication service was not received
+      before the operation timed out.
+
+  .. Note:: :func:`login` may delegate the actual login to an authentication service,
+     and a given user may utilize several authentication services.  If this is the 
+     case then an additional parameter identifying the authentication service to
+     use will be required.
+
+
+
+.. function:: requestToken ()
+
+   This operation is used by CN applications to obtain a token for system
+   level operations.
+
+   .. Note:: 
+      This could be a normal :func:`login` operation using a system user and
+      secret that is stored in a secure location.
+
+
+
+.. function:: setAccess (token, GUID, accessLevel) -> boolean
+
+   Set the access permissions for an object identified by GUID.
+
+   :param token: 
+      The authentication token returned by :func:`login`. Used to verify that
+      the calling user has authority to modify access control for the object.
+
+   :param GUID:  The object for which access control is being edited.
+
+   :param accessLevel: The desired privileges to be assigned to the object.
+
+   :rtype: True if the operation succeeds, otherwise False.
+
+   :raises InvalidToken: The supplied token is invalid.
+
+   :raises NotFound: The object identified by GUID was not found.
+
+   :raises NotAauthorized: The supplied identity does not have permission 
+     to alter access control rules for the object.
+
+   .. Note::
+    Should permissions cascade? e.g. Should setting permission on a Data
+    Package cascade to the contained objects as well (the experiment metadata
+    and data)?
+
+
+
+.. function:: setOwner(token, userid, objectList) -> objectList
+
+   Changes ownership of all objects in objectList to the identity specified by
+   userid.
+
+   :param token: 
+      The authentication token returned by :func:`login`. Used to verify that
+      the calling user has authority to take ownership of the object.
+
+   :param userid:
+      Identity of the user that will be taking ownership of the specified objects.
+
+   :param objectList: a list of object identifiers (GUIDs) that are to be modified.
+
+   :rtype: List of objects for which the operation failed.
+
+   :raises InvalidToken: The supplied token is invalid.
+
+   :raises NotAuthorized: The supplied identity does not have authority to change ownership.
+
+
+
+.. function::  newAccount(username, password, [auth_system]) -> identity_GUID
+
+   Create a new identity in the DataONE system. Note that there should
+   probably be a lot more metadata captred about the new user, and there
+   should be a mechanism for specifying the default access control rules for
+   the new account.
+
+   :param username: Requested username.  Must be unique within the DataONE system.
+
+   :param password: The secret associated with the account.
+
+   :param auth_system: Place holder for support of multiple authentication services 
+     for a single user.
+
+   :rtype:
+     GUID for the new identity, otherwise NULL.
+
+   :raises IdentityAlreadyExists: The provided identity already exists in the system 
+
+
+
+
+Query API
+~~~~~~~~~
+
+.. module:: CN_query
+   :synopsis: Handles queries against the experiment and other metadata held by CNs
+   
+.. function:: getAllCopies (token, ownerID)
+
+.. function:: getLinksAndCites (GUID, fromDate, toDate)
+
+.. function:: getLogRecords (GUID, fromDate, toDate)
+
+.. function:: getLogRecords (nodeID, fromDate, toDate)
+
+.. function:: query (token, query)
+
+.. function:: searchForData ()
+
+.. function:: usageQuery (token, GUID)
+
+
+CRUD API
+~~~~~~~~
+
+.. module:: CN_crud
+   :synopsis: Create, read, update, and delete operations for Coordinating Nodes
+   
+.. function:: assertRelation (token, IDofSubject, relationship, IDofObject)
+
+.. function:: batchWrite (objectsList)
+
+.. function:: deleteRecords (token, listOfGUIDs)
+
+.. function:: get (token, GUID)
+
+.. function:: register (memberToken, ID, metadata)
+
+.. function:: resolve (GUID, token)
+
+.. function:: storeRecords ()
+
+.. function:: write ()
+
+
+Replication API
+~~~~~~~~~~~~~~~
+
+.. module:: CN_replication
+   :synopsis: Manages replication of content between Member Nodes
+   
+.. function:: getDefaultReplicationPolicy (sess)
+
+.. function:: getMNReplicateList ()
+
+.. function:: getReplicationPolicy (sess, ID)
+
+.. function:: isReplicationNeeded ()
+
+.. function:: replicateMetadata ()
+
+.. function:: setDefaultReplicationPolicy (sess, policy)
+
+.. function:: setReplicationPolicy (sess, policy, ID)
+
+
+Synchronization API
+~~~~~~~~~~~~~~~~~~~
+
+.. module:: CN_synchronization
+   :synopsis: Manages synchronization between Coordinating Nodes
+   
+.. function:: pollForNewIDs ()
+
+.. function:: synchronize ()
+
+.. function:: verifyAllRecordsReceived ()
+
+  
+Register API
+~~~~~~~~~~~~
+
+.. module:: CN_register
+   :synopsis: Methods to manage registration of Member Nodes 
+
+.. function:: addNodeCapabilities ()
+
+.. function:: register (token, capabilitiesURL)
+
+.. function:: registerForNotification (token, dataOwnerID)
+
+.. function:: scheduleSynch ()
+
+.. function:: verifyCapabilities ()
+
+
+Server Authentication API
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+State of Health API
+~~~~~~~~~~~~~~~~~~~
+
+.. module:: CN_health
+   :synopsis: Methods for reporting on the state of health of a CN and on the entire DataONE infrastructure
+
+.. function:: actOnPendingEvent (event)
+
+.. function:: reportPendingEvent (event)
+
+.. function:: Admin Application
+
+.. function:: notify (adminID, nodeID, service)
+

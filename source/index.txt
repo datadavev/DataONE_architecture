@@ -3,6 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+..
+  Note that regularly updated HTML renderings of these documents are available at: 
+  
+  http://129.24.0.15/ArchitectureDocs/index.html
+
+
+
 DataONE Architecture
 ====================
 
@@ -50,3 +57,4 @@ Indices and tables
 
 
 .. _DataONE: http://dataone.org/
+

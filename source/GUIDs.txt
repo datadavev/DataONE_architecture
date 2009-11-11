@@ -1,0 +1,177 @@
+Globally Unique Identifiers in DataONE
+======================================
+
+
+
+
+
+Notes from the 20090602 Albuquerque Meeting
+-------------------------------------------
+
+These lightly edited notes were taken by Bruce Wilson during the discussion
+about identifiers held during the VDC-TWG 20090602 Albuquerque Meeting.  
+
+Original notes are located in subversion at:
+
+/documents/Projects/VDC/docs/20090602_04_ABQ_Meeting
+
+
+Design Goals
+~~~~~~~~~~~~
+
+From the DataONE perspective, an identifier is opaque. DataONE does not attach
+any meaning or resolution protocol based on the identifier.
+
+A call to return the object associated with a particular identifier should
+always return either identically the same object or n/a if that object is no
+longer available. This raises a number of implementation issues, noted below.
+Particular issues include how to handle data which is regularly updated and
+things like status changes.
+
+A member node may use its own internal identification scheme, but must be able
+to retrieve an object based on its DataONE globally unique identifier.
+
+Member nodes may generate their own unique identifiers, such as DOI's,
+Handles, PURLs, or UUID's. The only requirement is that the identifier is
+unique across the space of DataONE. This implies that CN's must have
+functionality to 
+
+(a) check that an identifier is unique and 
+
+(b) to "reserve" or stub-out an identifier while the MN goes through the
+    process of assembling the package to submit the object into DataONE.
+
+When an object is replicated from one MN to another MN, the receiving MN must
+be able to accept and resolve the supplied DataONE identifier. That is, an
+object, no matter where it is within the DataONE network must be retrievable
+by its DataONE identifier, regardless of location. There was a lot of
+discussion on this point, and this is my interpretation of the conclusion. I
+believe we came out with the point that if a receiving member node assigns its
+own permanent identifier, then that creates more confusion, requires the MN to
+register that second ID with the CNs, and we can have confusion regarding the
+citation (for example) of the piece of data. It also makes tracking things
+like metrics, since the originating MN must then find out all other
+identifiers for the data and search for all of those. And while it can be
+argued that nobody ìownsî the data, there is (currently) a culture and need
+for the original archive to feel like it still can get credit for that
+investment.
+
+A system doesn't need to maintain every version, but it does need to be able
+to identify every version.
+
+Identifiers also apply to metadata as well as data.
+
+
+Questions for Further Consideration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If a MN uses a DOI for a data set identifier, is it appropriate to include
+doi: in the identifier. For example, 10.3334/ORNLDAAC/840 is the DOI for a
+particular data set at the ORNL DAAC. Both "doi:10.3334/ORNLDAAC/840" and
+"10.3334/ORNLDAAC/840" can be presumed to be unique identifiers.  Which should
+be used? 
+
+BEW: My personal preference is to use the one with the resolution
+protocol included. That does, however, make the identifier more of a "smart"
+identifier, which is generally problematic.
+
+Where an identifier has a mechanism to resolve to multiple locations (such as
+is possible with an LSID and some DOI mechanisms) and that object is
+replicated from one MN to another MN, this would suggest that the originating
+MN needs to be notified of the additional location and has the option of
+registering the new location with the handle registration authority. This also
+means that if a replication is removed, the original MN should have the option
+of being notified, so that the resolution points are updated. Ideally, this
+should happen before the replica is removed (where possible), so that we
+eliminate (or at least minimize) the amount of time that an invalid resolution
+point is in someone else's system.
+
+Where an identifier (such as a Handle) has a URL resolution, what should that
+resolution be? ORNL DAAC DOI's resolve to a web page where a user (after
+logging in) can see and download the components of the data set. Our opinion
+is that the DOI resolving to a human interpretable description of the object
+is more important than a machine interpretable resolution point. Some thought
+and guidance on this point for the overall DataONE community of practice is
+desirable.
+
+Do we want/need a registry of name spaces? Where a MN uses a UUID (for
+example), there may not be a way to describe the name space for identifiers,
+unless the MN prefixes the UUID with some descriptor, which generally violates
+the general admonition about smart identifiers. It might, however, be helpful
+to have something like a set of regexps that describe the name space for a
+MN's identifiers, particularly if an automated way could be developed to look
+for potential collisions (non-null overlaps) between name spaces. BEW: My
+thought is that this is far from an initial feature, but the desirability of
+this as a possible future feature could have implications on the way we do
+things from the start.
+
+Can the metadata standards support multiple globally unique identifiers? For
+example, what happens in the case that a MN starts down the DOI path and then
+switches to LSID's because of economic costs, for example, and goes back and
+assigns an LSID to historical data sets. Those data sets now have both an LSID
+and a DOI. Where is this in the metadata? Is there a mechanism for indicating
+the preferred ID and the alternate ID's? Likewise, how should things be
+handled when a MN decides to register an object with e.g. GCMD and the
+namespace that GCMD allows for identifiers does not allow for the MN's
+preferred identifier. Can a MN update the metadata to show an alternate key
+with the GCMD identifier (data set is also known as)? What is the implication
+for the metadata identifier in such a case? This is an update operation to the
+metadata, which implies that the metadata identifier is changed. How would one
+update the old metadata record to indicate that it is:
+
+(a) deprecated and 
+
+(b) the id of the new metadata record?
+
+The above also relates to the issue of establishing predecessor-successor
+relationships between identifiers. How should this be done across the system?
+
+How do versions enter into the identifiers scheme? The general concept is that
+different versions of an object have different identifiers. What about having
+some type of an identifier that aggregates all versions of an object and which
+always points to the latest version of that object? How does D1 know that an
+object is a new version of an existing object? Update operation should take
+the old identifier and the new identifier. That would allow for the tracking
+of updates. A member node may track versions. Could create an interface
+specification for "latest version" where the CN calls the authoritative MN for
+the DS and asks for the identifier of the latest version of a particular
+identifier. Points back to the need for what amounts to meta-metadata - where
+the metadata object can be updated to indicate the status level of the data
+set (e.g. deprecated). Where is the identifier for something like World Ocean
+Data Base - this gets updated quarterly. They think of the fundamental unit as
+an observation point, which is either a location (e.g. buoy, possibly with
+different identifiers for different depths) or a leg of a trip, with multiple
+observations along a path.
+
+For identifiers, we may need to specify the character space. What happens when
+a MN stores unique identifiers in a database field that supports just ASCII,
+but a different MN does it's unique identifiers in some other character set?
+PURL is a possible unique identifier, but we can get into cases now where
+URL's have characters from other language character sets (such as Arabic,
+Kanji, Ö)
+
+What happens when a request for a replicated version of a data set comes to
+the replicate MN and the data set has been updated and the originating MN has
+not supplied the information about the update (e.g. they did an insert for the
+new version)?
+
+How do we assign ID's for a continuous data stream or for a subset calculated
+on the fly? Does this mean that every request for a continuous data stream
+gets its own data set identifier, which then gets stored in the D1 system
+someplace? What is the value to the overall enterprise for storing the data
+set identifiers for each request, particularly in the context of something
+like a stream, where the on-the-fly processing is used to get a dynamic subset
+or dynamic reprojection? Examples of this sort of situation include the stream
+gauge data or the Atmospheric Radiation Measurement (ARM) archive. Ameriflux
+Flux tower data is a simpler case, in that they work on the basis of a
+site-year as a unit of data. The World Oceanic DataBase, however, operates on
+a location (and possibly depth) as a unit of data. Many of these are updated
+quarterly. Each unit of data has an identifier, unique within WODB, and WODB
+publishes a data stream that indicates what data packages were updated at what
+point in time. It is possible to determine whether a particular data package
+changed between two points in time. The differences are human interpretable,
+but it is not possible (in any generally automated fashion) to recreate the
+data stream for a particular data package at an arbitrary point in prior time.
+
+Do the CN's need a method to determine the object type for an identifier? Do
+identifiers need to be unique across all types of identified objects?
