@@ -48,3 +48,5 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+.. _DataONE: http://dataone.org/
