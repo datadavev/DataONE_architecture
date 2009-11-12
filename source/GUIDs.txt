@@ -3,13 +3,11 @@ Globally Unique Identifiers in DataONE
 
 
 
-
-
 Notes from the 20090602 Albuquerque Meeting
 -------------------------------------------
 
-These lightly edited notes were taken by Bruce Wilson during the discussion
-about identifiers held during the VDC-TWG 20090602 Albuquerque Meeting.  
+These lightly edited notes were taken by Bruce Wilson of the group discussion
+about identifiers held during the VDC-TWG 20090602 Albuquerque Meeting.
 
 Original notes are located in subversion at:
 

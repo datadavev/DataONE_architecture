@@ -72,12 +72,24 @@ Post Conditions
 
 .. figure:: images/01_uc.png
 
-   Use case diagram showing actors and components involved in this action.
-   
+   Figure 1. Use case diagram showing actors and components involved in this action.
+
+
+.. figure:: images/01_interaction_a.png
+
+   Figure 2. Sequence for retrieving an object identified by a GUID from the
+   DataONE system. Note the dichotomy in response depending on whether the
+   object referenced by the GUID is a metadata document (record) or a data
+   object. In the case of metadata, the metadata document is returned. In the
+   case of data, a URL is returned that points drectly to a service endpoint
+   for retrieving the bytes (perhaps instead always return metadata, for a
+   data object it would be the system metadata?).
+
+
 
 .. figure:: images/01_interaction.png
 
-   Sequence diagram for retrieving an object from DataONE.
+   OLD: Sequence diagram for retrieving an object from DataONE.
 
 
 .. 
@@ -104,6 +116,38 @@ Post Conditions
       GET ..> authen: <<includes>>
   @enduml
 
+
+..
+  @startuml images/01_interaction_a.png
+  !include ../plantuml.conf
+  actor User
+  participant "Client" as app_client << Application >>
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  participant "Authorization API" as c_authorize << Coordinating Node >>
+  participant "Object Store" as c_ostore << Coordinating Node >>
+  participant "CRUD API" as m_crud << Member Node >>
+  User -> app_client
+  app_client -> c_crud: get(token, GUID)
+  c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
+  c_crud <-- c_authorize: T or F
+  c_crud -> c_crud: resolve(GUID) -> handle
+  alt System Metadata
+    c_crud -> c_ostore: read (handle)
+    c_crud <-- c_ostore: object (sysmeta)
+    c_crud --> app_client: object
+  else Experiment Metadata
+    c_crud -> c_ostore: read (handle)
+    c_crud <-- c_ostore: object (expmeta)
+    c_crud --> app_client: object
+  else Data
+    c_crud --> app_client: handle
+    app_client -> m_crud: get(token, handle)
+    m_crud -> c_authorize: isAuthorized(token, handle)
+    m_crud <-- c_authorize: T or F
+    app_client <-- m_crud: object
+  end
+  
+  @enduml
 
 ..
   This block defines the interaction diagram referenced above.
