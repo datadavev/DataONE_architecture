@@ -196,3 +196,68 @@ Scenario 4. Authentication Verified Algorithmically by Any Node
 - Minimizes communication between Nodes for identity verification
 - All MNs and CNs must trust each other (to accept identity)
 - Assuming access control rules are present on MN1
+
+
+Notes from 20090602 ABQ Meeting
+-------------------------------
+
+Access Control, Logging, Auditing -> Authentication + Identity Management
+
+* Centralized directory (LDAP)
+* Distributed directory (LDAP with referrals)
+* Distributed management, replicated (LDAP with replication)
+* GSI proxy certificates
+* OpenID
+* Shibboleth + InCommon
+
+
+Verifying Identity
+
+* Self registered (valid email, txt message, ...)
+* Real person
+* Member of xxx
+
+
+Access Control
+
+:Principals:
+  * User
+  * Member of group
+  * Public
+  * Authenticated user
+  * Site manager (for harvest, system operations, ...)
+  * Change request approval workflow
+  * group who have accepted intellectual rights
+
+Things to control:
+
+- Data
+
+  * read
+  * write
+  * change perms
+
+- Metadata
+
+  * read
+  * write
+  * change perms
+
+- Member Node Write
+- Perform certain API calls (e.g. register node)
+- Logs about {MNs, Data, ... }
+
+Special People
+
+- data curators
+- MN curators / IMs
+
+Expressing Permissions
+
+- SAML
+- eml-access
+- Others to consider?
+
+Attaching Permissions to Resources and Services
+
+
