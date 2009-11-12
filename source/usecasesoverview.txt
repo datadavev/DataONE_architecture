@@ -181,6 +181,4 @@ Notes Miscellaneous notes and discussion items that can't be placed in the
 various categories. Comments should be annotated with time and author.
 
 .. todo:: 
-   - Architecture overview diagram
-   - Component diagram
-   - Broad categories of use cases
+   Generate an overall architecture diagram that shows major internal components

@@ -1,6 +1,12 @@
 Coordinating Node APIs
 ----------------------
 
+
+.. todo:: 
+   The APIs need to be edited for consistency of method signatures and naming.
+   Update the sequence diagrams to reflect the edits to the API.
+
+
 Authentication API
 ~~~~~~~~~~~~~~~~~~
 

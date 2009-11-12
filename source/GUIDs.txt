@@ -2,6 +2,8 @@ Globally Unique Identifiers in DataONE
 ======================================
 
 
+.. todo:: Suggest an initial pattern (from paper notes)
+
 
 Notes from the 20090602 Albuquerque Meeting
 -------------------------------------------

@@ -1,5 +1,5 @@
-Items to be Completed
-=====================
+TO DO List
+==========
 
 .. todolist::
 

@@ -183,6 +183,9 @@ Coordinating Node Requirements
 This list of requirements for Coordinating Node functionality was obtained
 (probably) by a brainstorming session at the 20090602 ABQ VDC-TWG meeting.
 
+.. todo::
+   Estimate some times for the unknowns here.
+
 * IDs not discoverable until all CNs have confirmed copy
 
 * Metadata searches return in max xxx secs
