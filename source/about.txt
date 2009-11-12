@@ -41,7 +41,14 @@ within five minutes.
 Building the Documentation
 --------------------------
 
-Sphinx_ and PlantUML_ are required to build the design documents from the source.
+Sphinx_ and PlantUML_ are required to build the design documents from the
+source. Both of these have a dependency on graphviz_ for diagram generation.
+
+Graphviz is available on pre-built for many flavors of linux, windows, OS X,
+and can be installed on pretty much anything else that runs a c compiler. To
+install on ubuntu::
+
+  $ sudo apt-get install graphviz
 
 Sphinx can be installed on any system with Python using setuptools_ ::
 
@@ -64,6 +71,7 @@ To actually build a HTML copy of the documents::
   $ make html
 
 
+.. _graphviz: http://www.graphviz.org/
 
 .. _Sphinx: http://sphinx.pocoo.org/
 
