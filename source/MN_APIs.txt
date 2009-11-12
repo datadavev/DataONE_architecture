@@ -101,12 +101,17 @@ options.
 
 .. function:: verify(token) -> boolean
 
-   Test if the provided token is valid.
-   
+   Test if the provided token is valid. 
+
+   Note that there is a potential security issue here as open access to this
+   method enables a malicious user to potentially probe a large number of
+   generated tokens to determine properties of the system, and perhaps even
+   generate a token that matches a system token. Hence another level of
+   restriction (perhaps network level blocking / limiting) is necessary.
+
    :param token: The authentication token returned by :func:`login`
-   
-   :rtype:
-     True if the supplied token is valid, otherwise False
+
+   :rtype: True if the supplied token is valid, otherwise False
 
 
 
@@ -161,13 +166,19 @@ CRUD API
 
    .. Note:: There may be multiple representations of content (e.g. metadata as
       XML, RDF, or some other format).  May need to add another parameter to specify
-      the format.
+      the format, or perhaps rely on HTTP content negotiation for this.
 
 
 
 .. function:: batchGet(token, GUIDs) -> ?
 
   Identical to get() except that a list of identifiers is requested.
+
+  The issue here is how to serialize the results. There are some conceptual
+  mechanisms for handling structured markup such as XML, but no consistent
+  approaches for working with data blobs. Perhaps this method should apply
+  only to system metadata, for which the serialization can be defined
+  independently of all the other participating nodes?
 
   :param token: The authentication token returned by ``login()``
 
