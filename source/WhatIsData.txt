@@ -22,6 +22,10 @@ data package and its components have identifiers that are guaranteed to be
 unique within all the DataONE infrastructure.
 
 .. figure:: images/datapackage.png
+
+   **Figure 1.** Sketch of a data package. System metadata attributes are
+   likely to change significantly.
+
 ..
   @startuml images/datapackage.png
     Data: byte[]
@@ -66,78 +70,299 @@ The following metadata formats are of interest to the DataONE project for the
 initial version and are representative of the types of content that will need
 to be stored and parsed.
 
-:Dublin Core:
-  http://dublincore.org/documents/dces/
- 
-:Darwin Core:
-  http://code.google.com/p/darwincore/ 
+In all cases the descriptive text was retrieved from the URL provided with the
+description. Hence, look at the documentation provided at the URL for
+authoritative descriptions of the particular standard.
 
-:EML:
-  http://knb.ecoinformatics.org/software/eml
 
-:FGDC CSDGM:
+
+Dublin Core
+~~~~~~~~~~~
+
+- http://dublincore.org/documents/dces/
+
+The Dublin Core Metadata Element Set is a vocabulary of fifteen properties for
+use in resource description.
+
+
+
+Darwin Core
+~~~~~~~~~~~
+
+- http://rs.tdwg.org/dwc/index.htm 
+
+The Darwin Core is body of standards. It includes a glossary of terms (in
+other contexts these might be called properties, elements, fields, columns,
+attributes, or concepts) intended to facilitate the sharing of information
+about biological diversity by providing reference definitions, examples, and
+commentaries. The Darwin Core is primarily based on taxa, their occurrence in
+nature as documented by observations, specimens, and samples, and related
+information. Included are documents describing how these terms are managed,
+how the set of terms can be extended for new purposes, and how the terms can
+be used. The Simple Darwin Core [SIMPLEDWC] is a specification for one
+particular way to use the terms - to share data about taxa and their
+occurrences in a simply structured way - and is probably what is meant if
+someone suggests to "format your data according to the Darwin Core".
+
+
+
+EML
+~~~
+
+- http://knb.ecoinformatics.org/software/eml
+
+Ecological Metadata Language (EML) is a metadata specification developed by
+the ecology discipline and for the ecology discipline. It is based on prior
+work done by the Ecological Society of America and associated efforts
+(Michener et al., 1997, Ecological Applications). EML is implemented as a
+series of XML document types that can by used in a modular and extensible
+manner to document ecological data. Each EML module is designed to describe
+one logical part of the total metadata that should be included with any
+ecological dataset.
+
+
+
+FGDC CSDGM
+~~~~~~~~~~
+
+- http://www.fgdc.gov/metadata/geospatial-metadata-standards
+
+The Content Standard for Digital Geospatial Metadata (CSDGM), Vers. 2
+(FGDC-STD-001-1998) is the US Federal Metadata standard. The Federal
+Geographic Data Committee originally adopted the CSDGM in 1994 and revised it
+in 1998. According to Executive Order 12096 all Federal agencies are ordered
+to use this standard to document geospatial data created as of January, 1995.
+The standard is often referred to as the FGDC Metadata Standard and has been
+implemented beyond the federal level with State and local governments adopting
+the metadata standard as well.
+
+::
 
   -bio
   (word document available for descriptions, Matt has XSD of FGDCbio)
   (excel spreadsheet listing mapping,
-  xslt: EML->FGDC (lossy), FGDC->EML)
+   xslt: EML->FGDC (lossy), FGDC->EML)
   (mapping available for EML -> DC (Duane))
 
-:GCMD DIF:
-  Mapping to DC available at http://gcmd.nasa.gov/Aboutus/standards/dublin_to_dif.html
 
-:ISO 19137:
-  http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32555
 
-:NEXML:
-  http://nexml.org
+GCMD DIF
+~~~~~~~~
 
-:Water ML:
-  http://his.cuahsi.org/wofws.html
+Directory Interchange Format
 
-:Genbank internal format:
-  http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html
+- http://gcmd.nasa.gov/User/difguide/difman.html
 
-:ISO 19115:
-  - NA profile
-  - bio profile
-  - marine community metadata profile
-  - WMO profile
+The DIF does not compete with other metadata standards. It is simply the
+"container" for the metadata elements that are maintained in the IDN database,
+where validation for mandatory fields, keywords, personnel, etc. takes place.
 
-:Dryad Application Profile:
-  https://www.nescent.org/wg_dryad/Metadata_Profile
+The DIF is used to create directory entries which describe a group of data. A
+DIF consists of a collection of fields which detail specific information about
+the data. Eight fields are required in the DIF; the others expand upon and
+clarify the information. Some of the fields are text fields, others require
+the use of controlled keywords (sometimes known as "valids").
 
-:ADN:
-  - The purpose of the ADN (ADEPT/DLESE/NASA) metadata framework is to
-    describe resources typically used in learning environments (e.g. classroom
-    activities, lesson plans, modules, visualizations, some datasets) for
-    discovery by the Earth system education community.
+The DIF allows users of data to understand the contents of a data set and
+contains those fields which are necessary for users to decide whether a
+particular data set would be useful for their needs.
 
-  - http://www.dlese.org/Metadata/adn-item/
+- Mapping to DC available at http://gcmd.nasa.gov/Aboutus/standards/dublin_to_dif.html
 
-:GML Profiles:
-  - GML profiles are logical restrictions to GML, and may be expressed by a
-    document, an XML schema or both.
 
-  - http://en.wikipedia.org/wiki/Geography_Markup_Language#Profile
+ISO 19137
+~~~~~~~~~
 
-:CF (NetCDF, OpenDAP):
-  TODO
+http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32555
 
-:DDI:
-  TODO
+ISO 19137:2007 defines a core profile of the spatial schema specified in ISO
+19107 that specifies, in accordance with ISO 19106, a minimal set of geometric
+elements necessary for the efficient creation of application schemata.
 
-:GEML (Gene expression ML):
-  TODO
+It supports many of the spatial data formats and description languages already
+developed and in broad use within several nations or liaison organizations.
 
-:ESML (Earth science markup language ?):
-  TODO
 
-:CSR (Cruise Summary Report, oceanographic cruise data standard):
-  TODO
 
-Data Types
-----------
+NEXML
+~~~~~
+
+http://nexml.org
+
+The NEXUS file format is a commonly used format for phylogenetic data.
+Unfortunately, over time, the format has become overloaded - which has caused
+various problems. Meanwhile, new technologies around the XML standard have
+emerged. These technologies have the potential to greatly simplify, and
+improve robustness, in the processing of phylogenetic data:
+
+
+
+Water ML
+~~~~~~~~
+
+http://his.cuahsi.org/wofws.html
+
+Web services are computer applications that interact with and exchange
+information with other applications over the internet. The CUAHSI-HIS uses a
+family of web services, called WaterOneFlow, that have been developed as a
+standard mechanism for the TRANSFER of hydrologic data between hydrologic data
+servers (databases) and users. Web services streamline the often time
+consuming tasks of extracting data from a data source, transforming it into a
+usable format and loading it in to an analysis environment. Web services
+format the data as XML and the specific variety of XML that is generated by
+the WaterOneFlow web services is known as CUAHSI WaterML. The specifics of
+WaterML are documented in the OGC™ Discussion Paper, CUAHSI WaterMLWeb
+services are computer applications that interact with and exchange information
+with other applications over the internet. The CUAHSI-HIS uses a family of web
+services, called WaterOneFlow, that have been developed as a standard
+mechanism for the TRANSFER of hydrologic data between hydrologic data servers
+(databases) and users. Web services streamline the often time consuming tasks
+of extracting data from a data source, transforming it into a usable format
+and loading it in to an analysis environment. Web services format the data as
+XML and the specific variety of XML that is generated by the WaterOneFlow web
+services is known as CUAHSI WaterML. The specifics of WaterML are documented
+in the OGC™ Discussion Paper, CUAHSI WaterML.
+
+
+
+Genbank internal format
+~~~~~~~~~~~~~~~~~~~~~~~
+
+http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html
+
+
+
+ISO 19115
+~~~~~~~~~
+
+- http://en.wikipedia.org/wiki/ISO_19115
+
+ISO 19115 "Geographic Information - Metadata" is a standard of the
+International Organization for Standardization (ISO). It is a component of the
+series of ISO 191xx standards for Geospatial metadata. ISO 19115 defines how
+to describe geographical information and associated services, including
+contents, spatial-temporal purchases, data quality, access and rights to use.
+The standard defines more than 400 meta data elements, 20 core elements.
+
+- NA profile
+- bio profile
+- marine community metadata profile
+- WMO profile
+
+
+
+Dryad Application Profile
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://www.nescent.org/wg_dryad/Metadata_Profile
+
+The Dryad metadata team has developed a metadata application profile based on
+the Dublin Core Metadata Initiative Abstract Model (DCAM) following the Dublin
+Core guidelines for application profiles. The Dryad application profile is
+being developed to conform Dublin Core Singapore Framework, a framework
+aligning with Semantic Web development and deployment.
+
+
+
+ADN
+~~~
+
+- http://www.dlese.org/Metadata/adn-item/
+
+The purpose of the ADN (ADEPT/DLESE/NASA) metadata framework is to describe
+resources typically used in learning environments (e.g. classroom activities,
+lesson plans, modules, visualizations, some datasets) for discovery by the
+Earth system education community.
+
+
+
+GML Profiles
+~~~~~~~~~~~~
+
+- http://en.wikipedia.org/wiki/Geography_Markup_Language#Profile
+
+GML profiles are logical restrictions to GML, and may be expressed by a
+document, an XML schema or both.
+
+
+
+NetCDF-CF-OPeNDAP
+~~~~~~~~~~~~~~~~~
+
+- http://opendap.org/
+
+- http://www.oceanobs09.net/work/cwp_proposals/docs/100_Hankin_StandardsOceanDataInteroperability_CWPprop.doc
+
+
+
+
+DDI
+~~~
+
+- Data Documentation Initiative 
+
+- http://www.ddialliance.org/
+
+"The Data Documentation Initiative is an international effort to establish a
+standard for technical documentation describing social science data. A
+membership-based Alliance is developing the DDI specification, which is
+written in XML."
+
+
+
+MAGE
+~~~~
+
+- MicroArray and Gene Expression
+
+- http://www.mged.org/Workgroups/MAGE/mage.html
+
+"The group aims to provide a standard for the representation of microarray
+expression data that would facilitate the exchange of microarray information
+between different data systems."
+
+
+
+ESML
+~~~~
+
+- Earth Science Markup Language
+
+- http://esml.itsc.uah.edu/
+
+"Earth science data is archived and distributed in many different formats
+varying from character format, packed binary, "standard" scientific formats to
+self-describing formats. This heterogeneity results in data-application
+interoperability problems for scientific tools. The Earth Science Markup
+Language (ESML) is an elegant solution to this problem. ESML is an interchange
+technology that enables data (both structural and semantic) interoperability
+with applications without enforcing a standard format within the Earth science
+community."
+
+  
+
+
+CSR
+~~~
+
+- Cruise Summary Report
+
+- http://www.oceanteacher.org/oceanteacher/index.php/Cruise_Summary_Report_%28CSR%29
+
+- Oceanographic cruise data standard
+
+The Cruise Summary Report (CSR), previously known as ROSCOP (Report of
+Observations/Samples Collected by Oceanographic Programmes), is an established
+international standard designed to gather information about oceanographic
+data. ROSCOP was conceived in the late 1960s by the IOC to provide a low level
+inventory for tracking oceanographic data collected on Research Vessels.
+
+The ROSCOP form was extensively revised in 1990, and was re-named CSR (Cruise
+Summary Report), but the name ROSCOP still persists with many marine
+scientists. Most marine disciplines are represented in ROSCOP, including
+physical, chemical, and biological oceanography, fisheries, marine
+contamination/pollution, and marine meteorology. The ROSCOP database is
+maintained by ICES
 
 
 
@@ -145,8 +370,6 @@ Data Types
 
 Extracted Search Attributes
 ---------------------------
-
-
 
 Data that exists within the DataONE system is always accompanied by experiment
 metadata in one of the supported metadata schemes (e.g. Dublin Core, EML, or
@@ -163,11 +386,124 @@ The data and experiment metadata are tracked by additional metadata (the
 combination of the three units is called a DataONE Package.
 
 
-TODO::
-  List the supported metadata schemes and formats.
+Essential Elements
+~~~~~~~~~~~~~~~~~~
+
+- PI / Author
+
+  - name authority service is desired for some control over names appearing in metadata
+
+  - but for search, advantages to keep simple text representation
+
+  - goal of gradual increase in specificity
+
+
+- Keyword (uncontrolled keywords)
+
+- Key concept -key concepts drawn from a set of ontologies
+
+  - term
+
+  - namespace
+
+- Spatial bounding box (largest bounding rectangle)
+
+- Spatial window (series of spatial envelopes representative of the spatial locations of where the data is collected from / relevant to.).
+
+  - Spatial features (points, bounding boxes, polygons)
+
+  - centroid
+
+  - bounding box
+
+  - polygon
+
+  - ( not largest extent )
+
+  - ( need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search )
+
+
+- Named places
  
-TODO::
-  Define the minimal metadata requirements and quality constraints.
+  - term 
+
+  - type 
+
+  - context (Columbus OH, Columbus GA)
+
+  - namespace of gazeteer  
+
+
+- Temporal window
+
+  - Relative terms (e.g. paleo periods) need to be supported
+
+  - Date ranges
+
+  - Temporal coverage of the data set  (e.g. searches - during, before, after)
+  
+- Full text search / Text search on abstract
+
+
+Desirable Elements
+~~~~~~~~~~~~~~~~~~
+  
+- Title (2)
+
+- Type of data (format) (2)
+  
+  - original data
+
+  - summarized versions
+
+  - method used for processing (to generate summary, or original data)
+
+  - Resource type (spatial, models, observations, web service, ...)
+
+
+- Scientific variables (from a controlled vocabulary) (1)
+
+- Domain of data (physics, environmental, ...) (1)
+
+- Biological taxonomic extents (1)
+
+- Search by publication (1)
+
+
+Some Others
+~~~~~~~~~~~
+
+- Generator of data (instrument, application)
+
+- Related data (data sets, publications)
+
+- Quality / level of curation
+
+- Organizations involved in study
+
+- Size of data (bytes)
+
+- Number / location of replicas 
+
+- Dimensionality of data 
+
+- Units of measure (for sci variables)
+
+- Identifier (GUID)
+
+- Temporal coverage, low priority
+
+  - (publication date )
+
+  - creation date
+
+  - last modified date
+
+- Permissions on objects (e.g. available to read by user)
+
+
+
+
 
 
 Structure of a Data Package
@@ -187,7 +523,7 @@ Each DataONE Package has it's own unique identifier (guaranteed to be globally
 unique within the DataONE system). Additionally, each component of the D1
 package has it's own unique identifier. A user of the DataONE system may thus
 retrieve the data, experiment metadata, or D1 metadata through the DataONE
-service interface `Read()` method.
+service interface :func:`CN_crud.get` method.
 
 ::
 
@@ -206,10 +542,10 @@ service interface `Read()` method.
   +----------------------+    +-----------------+
 
 
-'''Figure 1.''' Conceptual structure of a DataONE Package with arbitrary
+**Figure 2.** Conceptual structure of a DataONE Package with arbitrary
 identifiers associated with each element.
 
-In the example presented in figure 1, the object with identifier "6f5f" refers
+In the example presented in figure 2, the object with identifier "6f5f" refers
 to the system metadata of the data package. The system metadata contains
 information about the data package, including the location of it's content
 (the data and the experiment metadata identifiers) and other attributes such
@@ -226,7 +562,7 @@ annotation references, and so forth.
 
 
 DataONE System Metadata Elements
-................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An instance of system metadata contains:
 
@@ -260,22 +596,24 @@ An instance of system metadata contains:
 Accessing Content
 -----------------
 
-Packages are accessed through the DataONE CRUD API through a REST service
-interface. The URL pattern for accessing content (`Read()`) is:
+Packages are accessed through the DataONE CRUD APIs which are implemented on
+Member Nodes and Coordinating Nodes.
 
-{{{
-HTTP GET target=http://dataone.org/content/<identifier>/
-}}}
+The following text assumes a simple REST interface by way of example. The URL
+pattern for accessing content (:func:`CN_crud.get`) is::
+
+  HTTP GET target=http://dataone.org/content/<identifier>/
+
 
 The content type returned depends on the target:
 
- Data:: 
+:Data:
   Returns an exact copy of the bytes originally stored.
 
- Experiment Metadata::
+:Experiment Metadata:
   Returns a copy of the metadata document in the original markup.
 
- System Metadata::
+:System Metadata:
   Returns a document expressed in JSON notation by default (other formats may
   be specified)
 
@@ -285,15 +623,15 @@ The content type returned depends on the target:
   +----------------+         http://dataone.org         HTTP
   |DataONE Package |                                    GET
   +----------------+-----+
-  | System Metadata      +--- /content/4e146f5f ------> JSON
-  |                      |    /content/4e146f5f/meta -> JSON
+  | System Metadata      +--- /content/6f5f-----------> JSON
+  |                      |    /content/6f5f/meta -----> JSON
   | +-----------------+  |
-  | |    Opaque       +--|--- /content/23cc3606 ------> Original Binary
-  | |    Content      |  |    /content/23cc3606/meta -> /content/4e146f5f
+  | |    Opaque       +--|--- /content/3606 ----------> Original Binary
+  | |    Content      |  |    /content/3606/meta -----> /content/4e146f5f
   | +-----------------+  |
   | +-----------------+  |
-  | |  Experiment     +--|--- /content/092c6270 ------> Equivalent
-  | |   Metadata      |  |    /content/092c6270/meta -> /content/4e146f5f
+  | |  Experiment     +--|--- /content/6270 ----------> Equivalent
+  | |   Metadata      |  |    /content/6270/meta -----> /content/4e146f5f
   | +-----------------+  |
   |                      |
   +----------------------+
@@ -301,17 +639,16 @@ The content type returned depends on the target:
 
 Some information about an identifier (the content size and mime-type) can be
 discovered prior to (or instead of) retrieval by invoking a HTTP HEAD
-operation on the same target URL:
+operation on the same target URL::
 
-{{{
-HTTP HEAD target=http://dataone.org/content/<identifier>/
-}}}
+  HTTP HEAD target=http://dataone.org/content/<identifier>/
+
 
 The ``content-location`` response header of the HEAD request always refers to
 the system metadata content which in turn always contains references to
-related components. That is, performing HEAD request on "23cc3606" would return
+related components. That is, performing HEAD request on "3606" would return
 the size, age etc of the data object, but content-location would contain a URL
-that would resolve to the system metadata "4e146f5f" for the object.
+that would resolve to the system metadata "6f5f" for the object.
 
  TODO::
   The operational consequences of doing this do not appear to be well defined
@@ -319,11 +656,9 @@ that would resolve to the system metadata "4e146f5f" for the object.
   evaluate behavior.
 
 Metadata about any identifier used in the DataONE system may be retrieved
-through the HTTP operation:
+through the HTTP operation::
 
-{{{
-HTTP GET target=http://dataone.org/content/<identifier>/meta/
-}}}
+  HTTP GET target=http://dataone.org/content/<identifier>/meta/
 
 In this case, the returned document will always be the DataONE system metadata.  
 
@@ -332,41 +667,45 @@ In this case, the returned document will always be the DataONE system metadata.
   URLs used in the DataONE system.
 
 
-== Mutability ==
+Mutability
+----------
 
 Data and experiment metadata are immutable for the first version of the
 DataONE system. As such, resolving the identifiers assigned to the data or the
 experiment metadata will always resolve to the same stream of bytes.
 
- TOTO:: 
-  Byte stream equivalence of replicated experiment metadata would require that
-  MNs record an exact copy of the metadata document received during
-  replication operations in addition to the content that would be extracted
-  and stored as part of the normal (existing) operations of a MN. Is this a
-  reasonable requirement for MNs? Since MNs are required to store a copy of
-  data, it seems reasonable to assume a copy of the metadata can be stored as well.
+.. Note::
+
+   TODO: Byte stream equivalence of replicated experiment metadata would
+   require that MNs record an exact copy of the metadata document received
+   during replication operations in addition to the content that would be
+   extracted and stored as part of the normal (existing) operations of a MN.
+   Is this a reasonable requirement for MNs? Since MNs are required to store a
+   copy of data, it seems reasonable to assume a copy of the metadata can be
+   stored as well.
 
 
-The DataONE `Update()` method will fail if attempting to modify an instance of
-data or experiment metadata. Hence the update operation is only valid for the
-system metadata portion of a data package.
+The DataONE :func:`CN_crud.update` method will fail if attempting to modify an
+instance of data or experiment metadata. Hence the update operation is only
+valid for the system metadata portion of a data package.
 
- TODO:: 
-  Is this reasonable? Likely that data owners may want to modify content after
-  adding to DataONE. Perhaps allow a time period where data and metadata can
-  be modified, after which it becomes more difficult (e.g. requiring
-  administrator intervention or consensus from trusted authority)?
+.. Note::
+   TODO: Is this reasonable? Likely that data owners may want to modify
+   content after adding to DataONE. Perhaps allow a time period where data and
+   metadata can be modified, after which it becomes more difficult (e.g.
+   requiring administrator intervention or consensus from trusted authority)?
 
 
 Deletion of content is only available to DataONE administrators (perhaps a
 curator role is required?).
 
- TODO::
-  Define the procedures for content deletion - who is responsible,
-procedures for contacting authors, timeliness of response.
+.. Note::
+   TODO: Define the procedures for content deletion - who is responsible,
+   procedures for contacting authors, timeliness of response.
 
 
-== Data Endianness ==
+Data Endianness
+---------------
 
 The data component of a D1 package is opaque to the D1 system (though this may
 change in the future), and so the endianness of the content does not affect
@@ -376,11 +715,14 @@ As such, the endianness of the data content should be recorded in the user
 supplied metadata (the experiment metadata), and where not present SHOULD be
 assumed to be least significant byte first (LSB, or small-endian).
 
- TODO::
-  Describe how endianness is specified in various experiment metadata formats.
+
+.. Note:: 
+   TODO: Describe how endianness is specified in various experiment metadata
+   formats.
 
 
-== Longevity ==
+Longevity
+---------
 
 An original copy of the data is maintained for a long as practicable (ideally,
 the original content is never deleted). Derived copies of content, such as
@@ -390,7 +732,8 @@ Document Format) always create a new data object that will be noted as an
 annotation recorded in the system metadata of the data package.
 
 
-== Metadata Character Encoding ==
+Metadata Character Encoding
+---------------------------
 
 All metadata, including the experiment metadata and D1 package metadata MUST
 be encoded in the UTF-8 encoding. The DataONE `Create()` and `Update()` methods
@@ -399,14 +742,15 @@ characters outside of the ASCII character set should be converted to UTF-8
 through appropriate mechanism before adding to DataONE.
 
 
-== Metadata Minimal Content ==
+Metadata Minimal Content
+------------------------
 
 Experiment metadata MUST contain a minimal set of fields to be accepted by the
 DataONE system.
 
- TODO::
-  List and define the minimal set of fields with examples. A starting point
-  would be the union of the required search properties and the information
-  required for accurate citation.
+.. Note::
+   TODO: List and define the minimal set of fields with examples. A starting
+   point would be the union of the required search properties and the
+   information required for accurate citation.
 
 

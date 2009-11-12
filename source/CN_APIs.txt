@@ -171,7 +171,7 @@ CRUD API
 
 .. function:: storeRecords ()
 
-.. function:: write ()
+.. function:: update()
 
 
 Replication API
