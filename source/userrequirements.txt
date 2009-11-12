@@ -175,3 +175,56 @@ Specifically, DataNetONE addresses:
    http://prototype.dataone.org/pilotcatalog/send/query?term1=Lonicera+japonica&term1attribute=fullText&op1=&term2=&term2attribute=fullText&op2=&term3=&term3attribute=overlaps&op3=&op4=during&term4=&term4attribute=beginDate&term5=&term5attribute=endDate&op5=&term6=All&term6=&term6=&term6=&term6=&term6=&term6attribute=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10attribute=lterSite&term7=&term7attribute=placeKey&term8=collection&term9=All&term9attribute=presentationCat&pageSize=10&queryString=+Entire+Document+%3A+Lonicera+japonica++and++Format%3A+All+and++from+sources%3A+All&instance=nbii
 
 .. _INTEROP: http://nsf.gov/awardsearch/showAward.do?AwardNumber=0753138
+
+
+Coordinating Node Requirements
+------------------------------
+
+This list of requirements for Coordinating Node functionality was obtained
+(probably) by a brainstorming session at the 20090602 ABQ VDC-TWG meeting.
+
+* IDs not discoverable until all CNs have confirmed copy
+
+* Metadata searches return in max xxx secs
+
+* CN can store and search > xxx metadata records
+
+* CN can store and search multiple metadata standards
+  - specifically (list Metadata_formats_of_interest.txt)
+
+* CN can load-balance to maximize performance
+
+* Any xxx CNs can be offline without affecting D1 services
+
+* xxx concurrent transactions can be supported
+  - different for different types of transaction e.g. delete vs. insert
+
+* Each CN should be available xxx% time
+
+* CN should expose MD in search within xxx secs of insert by MN
+
+* CN services should be designed to be independently scalable
+
+* CN services should be geographically replicated
+
+* CN have complete metadata copies from all MNs
+
+* D1 should be TRAC and/or DRAMBORA trusted repositories
+
+* CN should respect replication policies of MNs
+
+* CN should ensure that any given data set is available at any time (subject to policy restrictions) even when xxx% of MNs are offline
+
+* CNs must validate that:
+  - data are available at all replicas
+  - replicas are valid
+
+* CNs ensure that data are available in current formats (data format upgrade?)
+
+* CNs should be economical to run and maintain
+
+* CNs should be able to be remotely administered
+
+* CNs should be secure and deflect malicious intent
+
+* CNs should provide services to detect rogue data (viruses, copyright, )
