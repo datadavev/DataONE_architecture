@@ -5,6 +5,39 @@ These documents are generated using the excellent open source tools Sphinx_
 for the overall document processing and generation, and PlantUML_ for the
 various UML diagrams.
 
+Editing Content
+---------------
+
+All of these documents are formatted using reStructuredText_, which is simply
+well formatted plain text. In many respects it is similar to the plain text
+formatting used in wiki pages, though enriched by the many nice features of
+the Sphinx_ document builder.
+
+Formatting guidelines for Sphinx are available at http://sphinx.pocoo.org/contents.html
+
+In general, it is best to edit in UTF-8 using unix style new lines. Note that
+white space is significant and is used primarily for determining which
+formatting sections different blocks of text belong to.
+
+.. warning:: 
+
+   Do not use tabs! Set your editor to replace tabs with spaces. Mine is setup
+   with a tab = two spaces. If you do use tabs, then things can get a little
+   screwy when others using spaces only edit your content, so it's best to use
+   one or the other for indenting - and spaces have already been selected for
+   these documents.
+
+
+Any plain text editor will do the job, though my preference is TextMate_ on OS
+X (with the `reStructuredText bundle`_ installed it offers a nice preview
+feature). jEdit_ is another nice editor that I've used in the past, and there
+are a few plugins floating around to assist with reStructuredText formatting.
+
+Follow the normal procedures for working with the subversion repository. After
+checking in, your edits should appear in the `built out version`_ of the docs
+within five minutes.
+
+
 Building the Documentation
 --------------------------
 
@@ -26,18 +59,10 @@ The plantuml.conf file is in the DataONE subversion source tree.
 
 To actually build a HTML copy of the documents::
 
-  $ cd ~/Projects/DataONE/svn/documents/Projects/Infrastructure/Design
-  $ plantuml
-  $ <quit>
-  $ cd UseCases
-  $ plantuml
-  $ <quit>
-  $ cd ..
+  $ cd ~/Projects/DataONE/svn/documents/Projects/VDC/docs/service-api/api-documentation
+  $ plantuml source source/UseCases
   $ make html
 
-Note that plantuml currently (20091110) has a bug that prevents integration
-with the Makefile. The author has been contacted an a solution is in the works
-(he has been very responsive to suggestions so far).
 
 
 .. _Sphinx: http://sphinx.pocoo.org/
@@ -46,3 +71,12 @@ with the Makefile. The author has been contacted an a solution is in the works
 
 .. _setuptools: http://pypi.python.org/pypi/setuptools
 
+.. _built out version: http://129.24.0.15/ArchitectureDocs/
+
+.. _TextMate: http://macromates.com/
+
+.. _reStructuredText bundle: http://svn.textmate.org/trunk/Bundles/reStructuredText.tmbundle/
+
+.. _jEdit: http://www.jedit.org/
+
+.. _reStructuredText: http://docutils.sourceforge.net/docs/user/rst/quickref.html

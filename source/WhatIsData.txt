@@ -576,7 +576,8 @@ An instance of system metadata contains:
   Identifier of the owner of the instance.
 
 :Group:
-  Identifier of the group this instance belongs to. (Note: list of groups?)
+  Identifier of the group this instance belongs to. (Note: list of groups,
+  pointer to a list of groups?)
 
 :Permissions:
   Who can read, write the instance (similar to file permissions)
@@ -650,7 +651,7 @@ related components. That is, performing HEAD request on "3606" would return
 the size, age etc of the data object, but content-location would contain a URL
 that would resolve to the system metadata "6f5f" for the object.
 
- TODO::
+.. todo::
   The operational consequences of doing this do not appear to be well defined
   in the HTTP spec. Need to test against various browsers and libraries to
   evaluate behavior.
@@ -662,7 +663,7 @@ through the HTTP operation::
 
 In this case, the returned document will always be the DataONE system metadata.  
 
- TODO::
+.. todo::
   The URLs used here are place holders and may not represent the actual access
   URLs used in the DataONE system.
 
@@ -674,9 +675,8 @@ Data and experiment metadata are immutable for the first version of the
 DataONE system. As such, resolving the identifiers assigned to the data or the
 experiment metadata will always resolve to the same stream of bytes.
 
-.. Note::
-
-   TODO: Byte stream equivalence of replicated experiment metadata would
+.. todo::
+   Byte stream equivalence of replicated experiment metadata would
    require that MNs record an exact copy of the metadata document received
    during replication operations in addition to the content that would be
    extracted and stored as part of the normal (existing) operations of a MN.
@@ -689,8 +689,8 @@ The DataONE :func:`CN_crud.update` method will fail if attempting to modify an
 instance of data or experiment metadata. Hence the update operation is only
 valid for the system metadata portion of a data package.
 
-.. Note::
-   TODO: Is this reasonable? Likely that data owners may want to modify
+.. todo::
+   Is this reasonable? Likely that data owners may want to modify
    content after adding to DataONE. Perhaps allow a time period where data and
    metadata can be modified, after which it becomes more difficult (e.g.
    requiring administrator intervention or consensus from trusted authority)?
@@ -699,8 +699,8 @@ valid for the system metadata portion of a data package.
 Deletion of content is only available to DataONE administrators (perhaps a
 curator role is required?).
 
-.. Note::
-   TODO: Define the procedures for content deletion - who is responsible,
+.. todo::
+   Define the procedures for content deletion - who is responsible,
    procedures for contacting authors, timeliness of response.
 
 
@@ -716,8 +716,8 @@ supplied metadata (the experiment metadata), and where not present SHOULD be
 assumed to be least significant byte first (LSB, or small-endian).
 
 
-.. Note:: 
-   TODO: Describe how endianness is specified in various experiment metadata
+.. todo::
+   Describe how endianness is specified in various experiment metadata
    formats.
 
 
@@ -736,10 +736,10 @@ Metadata Character Encoding
 ---------------------------
 
 All metadata, including the experiment metadata and D1 package metadata MUST
-be encoded in the UTF-8 encoding. The DataONE `Create()` and `Update()` methods
-always expect UTF-8 encoded information, and so content that contains
-characters outside of the ASCII character set should be converted to UTF-8
-through appropriate mechanism before adding to DataONE.
+be encoded in the UTF-8 encoding. The DataONE :func:`CN_crud.create` and
+:func:`CN_crud.update` methods always expect UTF-8 encoded information, and so
+content that contains characters outside of the ASCII character set should be
+converted to UTF-8 through an appropriate mechanism before adding to DataONE.
 
 
 Metadata Minimal Content
@@ -748,8 +748,8 @@ Metadata Minimal Content
 Experiment metadata MUST contain a minimal set of fields to be accepted by the
 DataONE system.
 
-.. Note::
-   TODO: List and define the minimal set of fields with examples. A starting
+.. todo::
+   List and define the minimal set of fields with examples. A starting
    point would be the union of the required search properties and the
    information required for accurate citation.
 
