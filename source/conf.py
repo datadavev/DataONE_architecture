@@ -28,7 +28,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.ifconfig',
               'sphinx.ext.graphviz']
 
-#extensions.append('rst2pdf.pdfbuilder')
+extensions.append('rst2pdf.pdfbuilder')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -66,7 +66,7 @@ release = '0.0.3'
 #today_fmt = '%B %d, %Y'
 
 # List of documents that shouldn't be included in the build.
-#unused_docs = []
+unused_docs = ['UseCases/uc_template']
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
@@ -199,3 +199,8 @@ latex_documents = [
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+
+pdf_documents = [
+  ('index', 'DataONEArchitecture_0_0_3.pdf', u'DataONE Architecture Documentation',
+   u'VDC Project, DataONE CCIT', 'manual'),
+]
