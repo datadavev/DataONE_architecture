@@ -28,9 +28,9 @@ the Service Interface Prioritization diagram, the DataONE – VDC June 2009
 Technical Working Group Meeting Report, and the DataNetONE Implementation Plan
 (primarily Objective 4) – see References, below. The use cases are defined in
 the DataONE Architecture document available at
-https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-documentation/build/html.
-Goals and milestones expressed in the CI Preliminary Task List were
-foundational for developing the proposed prioritization (see Table 1).
+https://129.24.0.15/ArchitectureDocs. Goals and milestones expressed in the
+CI Preliminary Task List were foundational for developing the proposed
+prioritization (see Table 1).
 
 In some instances, use case implementations in the early years may be partial
 or limited implementations with work continuing in later years until
