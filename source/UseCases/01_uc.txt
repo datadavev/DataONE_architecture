@@ -1,6 +1,8 @@
 Use Case 01 - Get Object Identified by GUID
 -------------------------------------------
 
+.. index:: Use Case 01, Get
+
 Author
   VDC TWG
 

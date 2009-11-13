@@ -4,6 +4,8 @@ Use Cases
 .. toctree::
    :maxdepth: 1
 
+   usecasesoverview
+   prioritization
    UseCases/01_uc
    UseCases/02_uc
    UseCases/03_uc

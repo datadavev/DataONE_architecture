@@ -1,6 +1,8 @@
 Use Case 12 - User Authentication
 ---------------------------------
 
+.. index:: Use Case 12, authentication
+
 Author
   VDC TWG
 
@@ -26,6 +28,8 @@ Summary
 
   The authentication process might occur using either a Coordinating Node or a
   Member Node (if it implements the DataONE authentication API).
+  
+  See also some notes about discussion at :doc:`/Authentication`
 
 
 Actors
@@ -76,6 +80,7 @@ Post Conditions
 .. figure:: images/12_interaction.png
    :width: 100%
 
+   Interactions for use case 12.
 
 
 ..

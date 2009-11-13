@@ -44,6 +44,8 @@ Post Conditions
 .. figure:: images/16_interaction.png
    :width: 100%
 
+   Interactions for use case 16.
+
 
 ..
   @startuml images/16_interaction.png

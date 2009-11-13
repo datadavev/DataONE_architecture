@@ -59,13 +59,11 @@ A version of the entire document in PDF is also `available for download`_.
    :maxdepth: 2
    
    about
-   todo
    overview
    userrequirements
-   usecasesoverview
-   prioritization
    usecases
    apis
+   todo
 
 
 Indices and tables

@@ -54,6 +54,7 @@ associated with content, so use statistics appear with search results.
 .. image:: images/18_interaction.png
    :width: 100%
 
+   Interactions for use case 18.
 
 ..
   @startuml images/18_interaction.png

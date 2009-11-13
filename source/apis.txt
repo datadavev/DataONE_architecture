@@ -1,6 +1,135 @@
 DataONE Application Programming Interfaces
 ==========================================
 
+These APIs represents the interfaces exposed by the Coordinating and Member
+Nodes and the Investigator Toolkit. They do not describe interfaces used only
+internally by those components.
+
+
+.. figure:: images/dataone_components.png 
+   :width: 100%
+
+   Component diagram showing the various APIs and their interactions (a line
+   indicates communication between APIs).
+
+..
+  @startuml images/dataone_components.png
+    skinparam componentFontSize 8
+    skinparam componentFontName arial
+    skinparam packageFontSize 10
+    skinparam packageFontName arial
+    
+    package "Coordinating Node" #EEEEEE
+      component "Registration API" as CNregister
+      component "Verify API" as CNverify
+      component "CN Replication" as CNrepl
+      component "MN Synchronization" as MNrepl
+      component "Identity and Authentication" as CNIDAuth
+      component "Authorization and Control" as CNaccesscontrol
+      component "Search" as CNsearch
+      component "CRUD" as CNcrud
+      component "Health" as CNhealth
+      component "Logging" as CNlogging
+      component "Subscription" as CNsubscribe
+
+    package "Member Node" #EEEEEE
+      component "Replication" as repl
+      component "Authentication" as MNauth
+      component "Health" as MNhealth
+      component "Capabilities" as MNcaps
+      component "CRUD" as MNcrud
+      component "Log" as MNlog
+
+    package "Investigator Toolkit" #EEEEEE
+      component client
+      component admin
+      
+    CNIDAuth -- CNcrud
+    CNIDAuth -- CNverify
+    CNaccesscontrol -- CNcrud
+    CNaccesscontrol -- CNverify
+    CNcrud -- CNlogging
+    CNcrud -- MNrepl
+    CNcrud -- CNlogging
+    CNsubscribe -- CNIDAuth
+    MNrepl -- CNlogging
+    CNsearch -- CNlogging
+    CNsearch -- CNsubscribe
+    CNsearch -- CNaccesscontrol
+    CNregister -- CNlogging
+    CNrepl -- CNrepl
+    CNrepl -- CNlogging
+    
+      
+    MNcaps -- CNregister
+    repl -- MNrepl
+    CNhealth -- MNhealth
+    MNcrud -- CNcrud
+    MNcrud -- CNverify
+    MNcrud -- MNlog
+    MNcrud -- MNrepl
+    MNauth -- CNIDAuth
+    MNauth -- MNauth
+    MNauth -- CNverify
+    repl -- repl
+    MNlog -- MNrepl
+    
+    
+    client -- CNcrud
+    client -- CNsearch
+    client -- MNauth
+    client -- CNIDAuth
+    client -- CNsubscribe
+    client -- CNaccesscontrol
+    admin ..|> client
+    admin -- CNIDAuth
+    admin -- CNhealth
+    admin -- MNhealth
+    
+    
+  @enduml
+
+
+.. 
+  @startuml images/cn_components_x.png
+    package "Coordinating Node" #EEEEEE
+      component "Registration API" as CNregister
+      component "Verify API" as CNverify
+      component "CN Replication" as CNrepl
+      component "MN Synchronization" as MNrepl
+      component "Identity and Authentication" as CNIDAuth
+      component "Authorization and Control" as CNaccesscontrol
+      component "Search" as CNsearch
+      component "CRUD" as CNcrud
+      component "Health" as CNhealth
+      component "Logging" as CNlogging
+      component "Subscription" as CNsubscribe
+      component "System Metadata" as CNsysmeta
+      component "Experiment Metadata" as CNexpmeta
+      component "Metadata Parser" as CNparser
+
+  CNcrud --> CNexpmeta: write
+  CNcrud -- CNlogging
+  CNexpmeta -- CNparser
+  CNparser -- CNsysmeta
+  CNsearch -- CNsubscribe
+  CNsearch -- CNaccesscontrol
+  CNsearch -- CNlogging
+  CNaccesscontrol -- CNverify
+  CNverify -- CNIDAuth
+  CNsubscribe -- CNIDAuth
+  CNIDAuth -- CNcrud
+  CNcrud -- CNrepl
+  CNcrud -- MNrepl
+  CNrepl -- CNrepl
+  CNregister -- CNlogging
+  CNregister -- CNsysmeta
+  CNhealth -- CNsysmeta
+  @enduml
+
+
+
+
 .. toctree::
    :maxdepth: 2
 
@@ -8,6 +137,12 @@ DataONE Application Programming Interfaces
    CN_APIs
    ITK_APIs
 
+
+
+
+.. raw:: latex
+
+   \newpage
 
 
 

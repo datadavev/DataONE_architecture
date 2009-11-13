@@ -47,6 +47,8 @@ Post Conditions
 .. figure:: images/17_interaction.png
    :width: 100%
 
+   Interactions for use case 17.
+
 ..
   @startuml images/17_interaction.png
   !include ../plantuml.conf

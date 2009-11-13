@@ -38,6 +38,7 @@ xxx
 .. figure:: images/33_interaction.png
    :width: 100%
 
+   Interactions for use case 33.
 
 ..
   @startuml images/33_interaction.png

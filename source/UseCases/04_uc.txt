@@ -92,7 +92,16 @@ Post Conditions
 
 
 .. figure:: images/04_uc.png
-   :width: 100%
+   :width: 75%
+   
+   Use case 04.
+
+
+.. figure:: images/04_interaction.png
+  :width: 100%
+
+  Create, update, delete, search metadata or data object in Member Node.
+
 
 .. 
   This block defines the use case diagram referenced above
@@ -102,8 +111,8 @@ Post Conditions
   usecase "12. Authentication" as authen
 
   package "DataONE"
-    component "Coordinating Node" as CN
-    component "Member Node" as MN
+    actor "Coordinating Node" as CN
+    actor "Member Node" as MN
     usecase "13. Authorization" as author
     usecase "04. Create Object" as create
     usecase "06. MN Synchronize" as mn_sync
@@ -115,13 +124,6 @@ Post Conditions
     create ..> mn_sync: <<includes>>
   @enduml
 
-
-----
-
-.. figure:: images/04_interaction.png
-   :width: 100%
-   
-   Create, update, delete, search metadata or data object in Member Node.
 
 ..
   @startuml images/04_interaction.png

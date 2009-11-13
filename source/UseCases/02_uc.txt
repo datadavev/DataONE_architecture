@@ -1,6 +1,8 @@
 Use Case 02 - List GUIDs By Search
 ----------------------------------
 
+.. index:: Use Case 02, List
+
 Author
   VDC TWG
 
@@ -122,11 +124,14 @@ Post Conditions
 
 .. figure:: images/02_uc.png
    :width: 75%
+   
+   Use case 02.
 
-----
 
 .. figure:: images/02_interaction.png
    :width: 100%
+
+   Interactions for use case 02.
 
 .. 
   @startuml images/02_uc.png
@@ -135,8 +140,8 @@ Post Conditions
   usecase "12. Authentication" as authen
 
   package "DataONE"
-   component "Coordinating Node" as CN 
-   component "Member Node" as MN 
+   actor "Coordinating Node" as CN 
+   actor "Member Node" as MN 
    usecase "13. Authorization" as author
    usecase "02. Search Metadata" as SEARCH
    User -- SEARCH

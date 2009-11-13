@@ -1,5 +1,5 @@
-Use Case Implementation Priority
-================================
+Implementation Priority
+=======================
 
 :Submitted by: 
   DataONE Core Cyberinfrastructure Team / Virtual Data Center Technical

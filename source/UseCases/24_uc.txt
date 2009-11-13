@@ -18,7 +18,8 @@ Goal
 
 Summary 
 
-  xxx
+  Transactions help ensure stability of the system, so that the chance of
+  partial change to content is minimized.
 
 Actors
   xxx
@@ -42,6 +43,8 @@ Post Conditions
 
 .. figure:: images/24_interaction.png
    :width: 100%
+
+   Interactions for use case 24.
 
 ..
   @startuml images/24_interaction.png

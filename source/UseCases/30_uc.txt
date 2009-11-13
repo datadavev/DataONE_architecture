@@ -40,6 +40,8 @@ xxx
 .. figure:: images/30_interaction.png
    :width: 100%
 
+   Interactions for use case 30.
+
 ..
   @startuml images/30_interaction.png
   !include ../plantuml.conf

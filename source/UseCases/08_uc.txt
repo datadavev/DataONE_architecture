@@ -67,14 +67,23 @@ Post Conditions
 
 
 .. figure:: images/08_uc.png
+   :width: 75%
+   
+   Use case 08.
+
+
+.. figure:: images/08_interaction.png
    :width: 100%
+
+   Communication of Replication Policy Metadata
+
 
 ..
   @startuml images/08_uc.png
   !include ../plantuml.conf
   package "DataONE"
-    component "Coordinating Node" as CN
-    component "Member Node" as MN
+    actor "Coordinating Node" as CN
+    actor "Member Node" as MN
     usecase "13. Authorization" as author
     usecase "01. MN Policy" as policy
     usecase "XX. Notify Watchers" as NOTIFY
@@ -87,11 +96,7 @@ Post Conditions
   @enduml
 
 
-.. figure:: images/08_interaction.png
-   :width: 100%
 
-   Communication of Replication Policy Metadata
-   
 ..
   @startuml images/08_interaction.png
   !include ../plantuml.conf

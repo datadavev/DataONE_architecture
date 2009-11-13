@@ -101,13 +101,15 @@ Post Conditions
 
 
 .. figure:: images/03_uc.png
-   :width: 100%
+   :width: 75%
 
+   Use case 03.
 
 .. figure:: images/03_interaction.png
    :width: 100%
 
-   
+   Interactions for use case 03.
+
 ..
   @startuml images/03_uc.png
   !include ../plantuml.conf
@@ -117,8 +119,8 @@ Post Conditions
   package "DataONE"
     actor "Administrator" as admin
     admin ..|> client
-    component "Coordinating Node" as CN
-    component "Member Node" as MN
+    actor "Coordinating Node" as CN
+    actor "Member Node" as MN
     usecase "13. Authorization" as author
     usecase "03. Register MN" as register
     admin -- register

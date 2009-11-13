@@ -55,13 +55,15 @@ Post Conditions
 
 
 .. figure:: images/06_uc.png
-   :width: 100%
+   :width: 75%
+
+   Use case 06.
 
 
 .. figure:: images/06_interaction.png
    :width: 100%
 
-   Synchronize Metadata between Member and Coordinating Node
+   Synchronize metadata between Member and Coordinating Node
 
 
 ..
@@ -69,8 +71,8 @@ Post Conditions
   !include ../plantuml.conf
 
   package "DataONE"
-  component "Coordinating Node" as CN
-  component "Member Node" as MN
+  actor "Coordinating Node" as CN
+  actor "Member Node" as MN
   usecase "13. Authorization" as author
   usecase "06. Synchronize Metadata" as SYNC
   usecase "XX. Notify Watchers" as NOTIFY
