@@ -13,6 +13,16 @@ Authentication API
 .. module:: CN_authorization
    :synopsis: Methods for authentication and authorization
 
+::
+
+  login(user, password, [auth_system]) -> token
+  requestToken ()
+  setAccess (token, GUID, accessLevel) -> boolean
+  setOwner(token, userid, objectList) -> objectList
+  newAccount(username, password, [auth_system]) -> identity_GUID
+  verify(token) -> boolean
+
+
 
 .. exception:: InvalidCredentials
 
@@ -23,6 +33,7 @@ Authentication API
 .. exception:: NotFound
 
 .. exception:: IdentityAlreadyExists
+
 
 
 .. function:: login(user, password, [auth_system]) -> token
@@ -133,6 +144,20 @@ Authentication API
 
    :raises IdentityAlreadyExists: The provided identity already exists in the system 
 
+
+.. function:: verify(token) -> boolean
+
+  Test if the provided token is valid. 
+
+  Note that there is a potential security issue here as open access to this
+  method enables a malicious user to potentially probe a large number of
+  generated tokens to determine properties of the system, and perhaps even
+  generate a token that matches a system token. Hence another level of
+  restriction (perhaps network level blocking / limiting) is necessary.
+
+  :param token: The authentication token returned by :func:`login`
+
+  :rtype: True if the supplied token is valid, otherwise False
 
 
 

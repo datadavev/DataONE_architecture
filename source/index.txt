@@ -27,6 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20091113:
+  - Numerous edits, some rearrangement of chapters
+
 :20091112:
   - General editing
   - Setting up for PDF generation

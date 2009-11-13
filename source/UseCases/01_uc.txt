@@ -66,19 +66,20 @@ Post Conditions
 .. figure:: images/01_uc.png
    :width: 75%
 
-   Use case diagram showing actors and components involved in this action.
+   Use case 01 diagram showing actors and components involved in this action.
 
 
 .. figure:: images/01_interaction_a.png
    :width: 100%
 
-   Sequence for retrieving an object identified by a GUID from the
-   DataONE system. Note the dichotomy in response depending on whether the
-   object referenced by the GUID is a metadata document (record) or a data
-   object. In the case of metadata, the metadata document is returned. In the
-   case of data, a URL is returned that points drectly to a service endpoint
-   for retrieving the bytes (perhaps instead always return metadata, for a
-   data object it would be the system metadata?).
+   Sequence diagram for Use Case 01 illustrating the sequence for retrieving
+   an object identified by a GUID from the DataONE system. Note the dichotomy
+   in response depending on whether the object referenced by the GUID is a
+   metadata document (record) or a data object. In the case of metadata, the
+   metadata document is returned. In the case of data, a URL is returned that
+   points drectly to a service endpoint for retrieving the bytes (perhaps
+   instead always return metadata, for a data object it would be the system
+   metadata?).
 
 
 
