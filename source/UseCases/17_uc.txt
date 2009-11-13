@@ -45,6 +45,7 @@ Post Conditions
   - Log processing is triggered on CNs
 
 .. figure:: images/17_interaction.png
+   :width: 100%
 
 ..
   @startuml images/17_interaction.png
@@ -58,3 +59,7 @@ Post Conditions
   c_sync <-- m_crud_b: records or fail
   @enduml
   
+
+.. raw:: pdf
+
+   PageBreak

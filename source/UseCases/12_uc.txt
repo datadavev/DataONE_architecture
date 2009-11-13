@@ -1,5 +1,3 @@
-.. _UC12:
-
 Use Case 12 - User Authentication
 ---------------------------------
 
@@ -56,12 +54,7 @@ Post Conditions
     where the authentication attempt was made)
 
 
-.. image:: images/12_interaction.png
-
-
-
-Notes
-~~~~~
+**Notes**
 
 - To be a bit more abstract, it might be good to use something like
   login(user, credentials) or login(subject) for the method signature. Here
@@ -78,6 +71,12 @@ Notes
 
 
 .. _CILogon service: http://www.cilogon.org/service
+
+
+.. figure:: images/12_interaction.png
+   :width: 100%
+
+
 
 ..
   @startuml images/12_interaction.png
@@ -110,3 +109,7 @@ Notes
   end MN Login
   @enduml
   
+  
+.. raw:: pdf
+
+   PageBreak

@@ -19,9 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/25_interaction.png
-
-
 Actors
   xxx
 
@@ -34,10 +31,13 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/25_interaction.png
+   :width: 100%
 
 ..
   @startuml images/25_interaction.png
@@ -51,4 +51,9 @@ xxx
   c_sync -> m_crud_b: getChecksum (GUID)
   c_sync <-- m_crud_b: checksum
   @enduml
-  
+
+
+
+.. raw:: pdf
+
+   PageBreak

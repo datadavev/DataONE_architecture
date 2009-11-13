@@ -18,9 +18,6 @@ Summary
 
   xxx
 
-.. figure:: images/26_interaction.png
-
-
 Actors
   xxx
 
@@ -33,11 +30,15 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
+
 
 - Is this more for verifying the quality of metadata? Otherwise how does it
-  differ from #25?
+  differ from :doc:`Use Case 25<UseCases/25_uc>`?
+
+
+.. figure:: images/26_interaction.png
+   :width: 100%
 
 
 ..
@@ -53,4 +54,9 @@ Notes
   c_sync -> m_crud_b: checkDataQuality (GUID)
   c_sync <-- m_crud_b: result
   @enduml
-  
+
+
+
+.. raw:: pdf
+
+   PageBreak

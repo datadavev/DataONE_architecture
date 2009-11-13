@@ -1,5 +1,3 @@
-.. _UC05:
-
 Use Case 05 - CRUD (Create, Update Delete)
 ------------------------------------------
 
@@ -17,7 +15,7 @@ Goal
   Create/Update/Delete data object in Member Node.
 
 Summary 
-  This is a dupe of UC04_ for now. May split out the update and delete
+  This is a dupe of :doc:`Use Case 04<UseCases/04_uc>` for now. May split out the update and delete
   portions to different use cases at some point in the future.
 
 
@@ -33,12 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - See all questions above (Use Case #4) for metadata operations.
 
 - client should be able ask CN for a list of acceptable MNs to upload data
   with specific characteristics (e.g., size, institution, theme)
 
+.. raw:: pdf
+
+   PageBreak
 

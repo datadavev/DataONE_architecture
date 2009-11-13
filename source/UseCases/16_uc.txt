@@ -42,6 +42,7 @@ Post Conditions
 
 
 .. figure:: images/16_interaction.png
+   :width: 100%
 
 
 ..
@@ -59,3 +60,8 @@ Post Conditions
   m_crud -> m_crud: log (userID, create, creationDate, ID)
   m_crud --> app_client: ack
   @enduml
+
+
+.. raw:: pdf
+
+   PageBreak

@@ -53,12 +53,16 @@ Post Conditions
 - Overloading ping() for notification of change seems a little bit of a hack,
   though changing the name from ping() to status() makes it seem OK.
 
-.. raw:: pdf
-
-   PageBreak
-   
 
 .. figure:: images/06_uc.png
+   :width: 100%
+
+
+.. figure:: images/06_interaction.png
+   :width: 100%
+
+   Synchronize Metadata between Member and Coordinating Node
+
 
 ..
   @startuml images/06_uc.png
@@ -77,12 +81,6 @@ Post Conditions
   @enduml
 
 
-----
-
-.. figure:: images/06_interaction.png
-
-   Synchronize Metadata between Member and Coordinating Node
-   
 ..
   @startuml images/06_interaction.png
   !include ../plantuml.conf

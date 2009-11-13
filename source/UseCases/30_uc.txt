@@ -19,9 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/30_interaction.png
-
-
 Actors
   xxx
 
@@ -34,10 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+
+.. figure:: images/30_interaction.png
+   :width: 100%
 
 ..
   @startuml images/30_interaction.png
@@ -51,3 +52,8 @@ xxx
   c_health -> c_health: actOnPendingEvent (event)
   @enduml
   
+
+
+.. raw:: pdf
+
+   PageBreak

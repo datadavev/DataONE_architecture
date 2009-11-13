@@ -46,6 +46,7 @@ Post Conditions
 
 
 .. figure:: images/20_interaction.png
+   :width: 100%
 
 
 ..
@@ -74,4 +75,10 @@ Post Conditions
   (e.g. "Report API"?)
   end note
   @enduml
+
+
+
+.. raw:: pdf
+
+   PageBreak
   

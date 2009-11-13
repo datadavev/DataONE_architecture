@@ -19,8 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/22_interaction.png
-
 
 Actors
   xxx
@@ -34,10 +32,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/22_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/22_interaction.png
@@ -67,3 +69,8 @@ xxx
   end note
   @enduml
   
+
+
+.. raw:: pdf
+
+   PageBreak

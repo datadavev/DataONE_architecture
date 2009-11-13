@@ -18,8 +18,6 @@ Summary
 
   xxx
 
-.. figure:: images/29_interaction.png
-
 Actors
   xxx
 
@@ -32,10 +30,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/29_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/29_interaction.png
@@ -43,3 +45,8 @@ xxx
   title Interactions: 29 - Load balancing between Coordinating Nodes
   @enduml
   
+  
+
+.. raw:: pdf
+
+   PageBreak

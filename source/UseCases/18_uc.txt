@@ -21,8 +21,6 @@ Summary
   which that Member Node is the origin (or defacto origin in the case where
   the original MN was decommissioned).
 
-.. image:: images/18_interaction.png
-
 
 Actors
 
@@ -44,14 +42,17 @@ Post Conditions
 
   - Aggregate log information is available to the Member Node
 
-Notes
-~~~~~
+**Notes**
 
 This operation should really be a function for the administrative functions of
 the Investigator Toolkit. It is reasonable to expect that (especially for the
 first iteration of the infrastructure) MN administrators will want to peruse
 and evaluate the log data. In later stages, this information could be
 associated with content, so use statistics appear with search results.
+
+
+.. image:: images/18_interaction.png
+   :width: 100%
 
 
 ..
@@ -74,3 +75,7 @@ associated with content, so use statistics appear with search results.
   end note
   @enduml
   
+
+.. raw:: pdf
+
+   PageBreak

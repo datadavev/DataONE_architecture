@@ -1,5 +1,3 @@
-.. _UC03:
-
 Use Case 03 - Register MN
 -------------------------
 
@@ -100,14 +98,16 @@ Post Conditions
 - Member node should be able to request the coordinating node to re-validate
   its capabilities list.
 
-.. raw:: pdf
-
-   PageBreak
-
 
 
 .. figure:: images/03_uc.png
+   :width: 100%
 
+
+.. figure:: images/03_interaction.png
+   :width: 100%
+
+   
 ..
   @startuml images/03_uc.png
   !include ../plantuml.conf
@@ -128,11 +128,6 @@ Post Conditions
     register ..> authen: <<includes>>
   @enduml
   
-
-----
-
-.. figure:: images/03_interaction.png
-
 
 ..
   @startuml images/03_interaction.png

@@ -52,6 +52,7 @@ Post Conditions
 
 
 .. figure:: images/13_interaction.png
+   :width: 100%
 
 
 ..
@@ -72,3 +73,7 @@ Post Conditions
   app_client <-- c_crud: resultset or raise NotAuthorized
   @enduml
   
+
+.. raw:: pdf
+  
+   PageBreak

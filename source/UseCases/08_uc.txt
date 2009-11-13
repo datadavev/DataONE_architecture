@@ -1,5 +1,3 @@
-.. _UC08:
-
 Use Case 08 - Replication Policy Communication
 ----------------------------------------------
 
@@ -67,12 +65,9 @@ Post Conditions
   between significant differences in storage capacities (low to high, then low
   again).
 
-.. raw:: pdf
-
-   PageBreak
-
 
 .. figure:: images/08_uc.png
+   :width: 100%
 
 ..
   @startuml images/08_uc.png
@@ -91,9 +86,9 @@ Post Conditions
     policy ..> CNSYNC: <<includes>>
   @enduml
 
-----
-  
+
 .. figure:: images/08_interaction.png
+   :width: 100%
 
    Communication of Replication Policy Metadata
    
@@ -116,6 +111,7 @@ Post Conditions
   	What gets replicated
   end note
   @enduml
+
 
 .. raw:: pdf
 

@@ -21,9 +21,6 @@ Summary
 
   xxx
 
-.. figure:: images/31_interaction.png
-
-
 Actors
   xxx
 
@@ -36,13 +33,13 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Users can be members of groups that can participate in access directives.
 
 - I have removed the phrase "and replication" from the use case statement
-  because use case #8 deals with setting replication policies. (PEA)
+  because :doc:`Use Case 08<08_uc>` deals with setting replication policies.
+  (PEA)
 
 - Step #1, should have a signature of setAccess(token, GUID, accessPolicy).
   Even though the diagram says "Assume user authority for specifying
@@ -51,6 +48,9 @@ Notes
   limited, and access policy implies a possibly more sophisticated access
   policy delineation, including embargoes.
 
+
+.. figure:: images/31_interaction.png
+   :width: 100%
 
 ..
   @startuml images/31_interaction.png
@@ -74,3 +74,8 @@ Notes
   end note
   @enduml
   
+  
+
+.. raw:: pdf
+
+   PageBreak

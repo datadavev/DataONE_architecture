@@ -22,6 +22,7 @@ data package and its components have identifiers that are guaranteed to be
 unique within all the DataONE infrastructure.
 
 .. figure:: images/datapackage.png
+   :width: 3.75in
 
    **Figure 1.** Sketch of a data package. System metadata attributes are
    likely to change significantly.
@@ -366,7 +367,9 @@ maintained by ICES
 
 
 
+.. raw:: pdf
 
+   PageBreak
 
 Extracted Search Attributes
 ---------------------------
@@ -503,7 +506,9 @@ Some Others
 
 
 
-
+.. raw:: pdf
+   
+   PageBreak
 
 
 Structure of a Data Package
@@ -753,4 +758,6 @@ DataONE system.
    point would be the union of the required search properties and the
    information required for accurate citation.
 
+.. raw:: pdf
 
+  PageBreak

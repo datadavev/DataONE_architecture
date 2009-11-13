@@ -65,6 +65,7 @@ Post Conditions
 
 
 .. figure:: images/09_interaction.png
+   :width: 100%
 
 
 
@@ -135,4 +136,9 @@ Post Conditions
   c_rep -> m_rep_b: cancelReplication (sess, transID)
   c_rep <-- m_rep_b: ack
   @enduml
+
+
+.. raw:: pdf
+
+   PageBreak
 

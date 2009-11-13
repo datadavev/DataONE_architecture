@@ -1,5 +1,3 @@
-.. _UC04:
-
 Use Case 04 - CRUD (Create, Update Delete)
 ------------------------------------------
 
@@ -33,9 +31,7 @@ Summary
   from the experiment metadata. The changes to the CN (stored experiment
   metadata, update search metadata) are replicated to the other CNs (Use Case
   ###). The CN schedules replication of the data package across other MNs
-  (`Use Case 06`__).
-
-__ :doc:`uc_06`
+  (:doc:`Use Case 06<UseCases/06_uc>`).
 
 
 Actors
@@ -93,12 +89,10 @@ Post Conditions
 
 - Can data packages be deleted or modified?
 
-.. raw:: pdf
 
-   PageBreak
-   
 
 .. figure:: images/04_uc.png
+   :width: 100%
 
 .. 
   This block defines the use case diagram referenced above
@@ -125,6 +119,7 @@ Post Conditions
 ----
 
 .. figure:: images/04_interaction.png
+   :width: 100%
    
    Create, update, delete, search metadata or data object in Member Node.
 
@@ -152,6 +147,7 @@ Post Conditions
     c_health -> c_sync: scheduleSynch(MN_ID)
   deactivate c_health
   @enduml
+  
 
 .. raw:: pdf
 

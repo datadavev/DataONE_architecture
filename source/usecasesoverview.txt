@@ -11,12 +11,8 @@ diagrams help define the interfaces and messages transmitted between
 components.
 
 
-.. raw:: pdf
-
-   PageBreak
-
-
 .. figure:: images/dataone_components.png
+   :width: 100%
 
 ..
   @startuml images/dataone_components.png
@@ -134,6 +130,10 @@ components.
   @enduml
 
 
+.. raw:: pdf
+
+   PageBreak
+
 
 Use Case Layout
 ---------------
@@ -182,3 +182,9 @@ various categories. Comments should be annotated with time and author.
 
 .. todo:: 
    Generate an overall architecture diagram that shows major internal components
+
+
+.. raw:: pdf
+
+  PageBreak
+

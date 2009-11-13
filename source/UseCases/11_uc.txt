@@ -53,6 +53,7 @@ Post Conditions
 
 
 .. figure:: images/11_interaction.png
+   :width: 100%
 
 ..
   @startuml images/11_interaction.png
@@ -75,3 +76,9 @@ Post Conditions
   m_crud <-- c_crud: register status
   app_client <-- m_crud: status, ID
   @enduml
+
+
+
+.. raw:: pdf
+
+   PageBreak

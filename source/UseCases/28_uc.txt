@@ -20,9 +20,6 @@ Summary
 
   xxx
 
-.. figure:: images/28_interaction.png
-
-
 Actors
   xxx
 
@@ -35,12 +32,15 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Who can assert these relationships? The relevant object owners? Anybody?
 
 - How are relationships removed?
+
+
+.. figure:: images/28_interaction.png
+   :width: 100%
 
 
 ..
@@ -61,4 +61,10 @@ Notes
   c_crud <-- c_sync: ack or fail
   app_client <-- c_crud: status
   @enduml
+  
+
+.. raw:: pdf
+
+   PageBreak
+  
   

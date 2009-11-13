@@ -60,12 +60,7 @@ Post Conditions
   - Account information is replicated across CNs
 
 
-.. figure:: images/15_interaction.png
-
-
-
-Notes
-~~~~~
+**Notes**
 
 - By default, accounts have no real privileges. To get higher privileges,
   users may have to jump through more hoops (such as verifying their
@@ -73,6 +68,12 @@ Notes
 
 - Presumably, if we are using external identity providers this user account
   management functionality isn't provided by the CN. Right? (PEA)
+
+
+
+.. figure:: images/15_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/15_interaction.png
@@ -87,3 +88,7 @@ Notes
   User <-- c_authenticate: email confirmation
   @enduml
 
+
+.. raw:: pdf
+
+   PageBreak

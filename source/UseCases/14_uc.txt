@@ -49,8 +49,10 @@ Post Conditions
 
 
 .. figure:: images/14_uc.png
+   :width: 100%
 
 .. figure:: images/14_interaction.png
+   :width: 100%
 
 
 
@@ -99,3 +101,8 @@ Post Conditions
   end note
   m_rep_a --> c_authenticate: logout(token)
   @enduml
+  
+
+.. raw:: pdf
+  
+   PageBreak

@@ -18,9 +18,6 @@ Summary
 
   xxx
 
-.. figure:: images/33_interaction.png
-
-
 Actors
   xxx
 
@@ -33,10 +30,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/33_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/33_interaction.png
@@ -51,3 +52,8 @@ xxx
   app_client <-- c_query: objectList
   @enduml
   
+  
+
+.. raw:: pdf
+
+   PageBreak

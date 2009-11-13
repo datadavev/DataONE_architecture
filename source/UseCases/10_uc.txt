@@ -45,6 +45,7 @@ Post Conditions
 
 
 .. figure:: images/10_interaction.png
+   :width: 100%
 
 
 ..
@@ -70,3 +71,7 @@ Post Conditions
     app_admin <-- c_health: notify (adminID, nodeID, service)
   @enduml
   
+
+.. raw:: pdf
+
+   PageBreak

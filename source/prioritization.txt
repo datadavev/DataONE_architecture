@@ -470,3 +470,6 @@ Service Interface Prioritization (diagram), available at
 https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-diagrams/service-api-layers.png
 
 
+.. raw:: pdf
+
+   PageBreak

@@ -1,5 +1,3 @@
-.. _UC07:
-
 Use Case 07 - CN Batch Upload
 -----------------------------
 
@@ -21,11 +19,11 @@ Goal
 
 Summary
 
-  This is a dupe of :doc:`UC 06 <uc_06>` after refactoring that use case use a
-  pull mechanism to retrieve changed records. The intent is to streamline the
-  retrieval of large amounts of content from a MN, which perhaps involves
-  turning of indexing and other potentially time consuming operations to speed
-  the upload process.
+  This is a dupe of :doc:`Use Case 06 <UseCases/06_uc>` after refactoring that
+  use case use a pull mechanism to retrieve changed records. The intent is to
+  streamline the retrieval of large amounts of content from a MN, which
+  perhaps involves turning of indexing and other potentially time consuming
+  operations to speed the upload process.
 
 
 Actors
@@ -50,6 +48,7 @@ Post Conditions
 
 
 .. image:: images/07_interaction.png
+   :width: 100%
 
 ..
   @startuml images/07_interaction.png
@@ -67,3 +66,8 @@ Post Conditions
   participant "CRUD API" as c_crud << Coordinating Node >>
   c_sync -> c_crud: batchWrite (objectsList)
   @enduml
+
+
+.. raw:: pdf
+
+   PageBreak

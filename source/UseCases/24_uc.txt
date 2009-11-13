@@ -20,9 +20,6 @@ Summary
 
   xxx
 
-.. figure:: images/24_interaction.png
-
-
 Actors
   xxx
 
@@ -35,8 +32,7 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Does this include just one service, or sets of services that can be included
   in a transaction?
@@ -44,10 +40,18 @@ Notes
 - Can transactions span multiple MNs? MNs and CNs?
 
 
+.. figure:: images/24_interaction.png
+   :width: 100%
+
 ..
   @startuml images/24_interaction.png
   !include ../plantuml.conf
   
   title Interactions: 24 - CNs and MNs should support transaction sets
   @enduml
-  
+
+
+
+.. raw:: pdf
+
+   PageBreak

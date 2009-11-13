@@ -19,9 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/34_interaction.png
-
-
 Actors
   xxx
 
@@ -34,10 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/34_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/34_interaction.png
@@ -45,4 +46,10 @@ xxx
   
   title Interactions: 34 - Discovery; Coordinating Nodes publish metadata in formats for other\ndiscovery services like Google, Libraries, GCMD, etc.
   @enduml
+  
+
+.. raw:: pdf
+
+   PageBreak
+
   

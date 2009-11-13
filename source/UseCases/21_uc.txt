@@ -18,8 +18,6 @@ Summary
 
   xxx
 
-.. figure:: images/21_interaction.png
-
 
 Actors
   xxx
@@ -33,10 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 xxx
+
+
+.. figure:: images/21_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/21_interaction.png
@@ -54,3 +56,9 @@ xxx
   app_client <-- c_reg: ack or fail
 
   @enduml
+
+
+
+.. raw:: pdf
+
+   PageBreak

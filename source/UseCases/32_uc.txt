@@ -19,9 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/32_interaction.png
-
-
 Actors
   xxx
 
@@ -34,10 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Is there an authority for any given data/metadata object? 
+
+
+.. figure:: images/32_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/32_interaction.png
@@ -59,4 +60,10 @@ Notes
   given data / metadata object?
   end note
   @enduml
+  
+  
+
+.. raw:: pdf
+
+   PageBreak
   

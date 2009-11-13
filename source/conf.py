@@ -201,6 +201,10 @@ latex_documents = [
 #latex_use_modindex = True
 
 pdf_documents = [
-  ('index', 'DataONEArchitecture_0_0_3.pdf', u'DataONE Architecture Documentation',
+  ('index', 'DataONEArchitecture_0_0_3', u'DataONE Architecture Documentation',
    u'VDC Project, DataONE CCIT', 'manual'),
 ]
+
+pdf_default_dpi = 300
+
+pdf_stylesheets = ['sphinx', 'tenpoint', 'letter']

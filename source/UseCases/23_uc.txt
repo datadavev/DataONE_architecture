@@ -21,9 +21,6 @@ Summary
 
   xxx
 
-.. figure:: images/23_interaction.png
-
-
 Actors
   xxx
 
@@ -36,11 +33,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Dealing with inappropriate usage of (ie, copyrighted objects that are
   stored)
+
+
+.. figure:: images/23_interaction.png
+   :width: 100%
 
 ..
   @startuml images/23_interaction.png
@@ -73,3 +73,7 @@ Notes
   end note
   @enduml
   
+
+.. raw:: pdf
+
+   PageBreak

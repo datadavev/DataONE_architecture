@@ -1,6 +1,3 @@
-.. _UC01:
-
-
 Use Case 01 - Get Object Identified by GUID
 -------------------------------------------
 
@@ -64,18 +61,14 @@ Post Conditions
    IP of client.
 
 
-.. raw:: pdf
-
-   PageBreak
-
-
-
 .. figure:: images/01_uc.png
+   :width: 75%
 
    Figure 1. Use case diagram showing actors and components involved in this action.
 
 
 .. figure:: images/01_interaction_a.png
+   :width: 100%
 
    Figure 2. Sequence for retrieving an object identified by a GUID from the
    DataONE system. Note the dichotomy in response depending on whether the
@@ -88,6 +81,7 @@ Post Conditions
 
 
 .. figure:: images/01_interaction.png
+   :width: 100%
 
    OLD: Sequence diagram for retrieving an object from DataONE.
 

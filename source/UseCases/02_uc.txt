@@ -1,5 +1,3 @@
-.. _UC02:
-
 Use Case 02 - List GUIDs By Search
 ----------------------------------
 
@@ -121,16 +119,14 @@ Post Conditions
 - What logging level is required for the operation? Should the search appear
   as a hit against each object? Just log the query (and perhaps who did it)?
 
-.. raw:: pdf
-
-   PageBreak
 
 .. figure:: images/02_uc.png
+   :width: 75%
 
+----
 
 .. figure:: images/02_interaction.png
-
-  Client retrieves a list of GUIDs resulting from a metadata search.
+   :width: 100%
 
 .. 
   @startuml images/02_uc.png

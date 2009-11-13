@@ -46,7 +46,7 @@ Scenario 1: Authentication provided by CNs
 ------------------------------------------
 
 .. image:: images/authenticate_case_a.png
-
+   :width: 75%
 ..
   @startuml images/authenticate_case_a.png
   !include plantuml_fullsized.conf
@@ -92,6 +92,7 @@ Scenario 2. Authentication provided by MN
 -----------------------------------------
 
 .. image:: images/authenticate_case_b.png
+   :width: 100%
 
 ..
   @startuml images/authenticate_case_b.png
@@ -149,6 +150,7 @@ Scenario 3. Authentication through Third Party Identity Provider
 ----------------------------------------------------------------
 
 .. image:: images/authenticate_case_c.png
+   :width: 50%
 
 ..
   @startuml images/authenticate_case_c.png
@@ -176,6 +178,7 @@ Scenario 4. Authentication Verified Algorithmically by Any Node
 ---------------------------------------------------------------
 
 .. image:: images/authenticate_case_d.png
+   :width: 60%
 
 ..
   @startuml images/authenticate_case_d.png
@@ -260,4 +263,9 @@ Expressing Permissions
 
 Attaching Permissions to Resources and Services
 
+
+
+.. raw:: pdf
+   
+   PageBreak
 

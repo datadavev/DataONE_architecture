@@ -19,9 +19,6 @@ Summary
 
   xxx
 
-.. figure:: images/27_interaction.png
-
-
 Actors
   xxx
 
@@ -34,10 +31,14 @@ Triggers
 Post Conditions
   xxx
 
-Notes
-~~~~~
+**Notes**
 
 - Should this apply to data as well?
+
+
+.. figure:: images/27_interaction.png
+   :width: 100%
+
 
 ..
   @startuml images/27_interaction.png
@@ -46,3 +47,7 @@ Notes
 
   @enduml
   
+
+.. raw:: pdf
+
+   PageBreak

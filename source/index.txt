@@ -6,7 +6,19 @@
 ..
   Note that regularly updated HTML renderings of these documents are available at: 
   
-  http://129.24.0.15/ArchitectureDocs/index.html
+  http://mule1.dataone.org/ArchitectureDocs/index.html
+  
+  http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture_0_0_3.pdf
+
+
+.. header::
+   
+   ###Title###   - ###Page### -
+
+
+.. footer::
+
+   |today|
 
 
 
@@ -14,6 +26,10 @@ DataONE Architecture
 ====================
 
 **Change Log**
+
+:20091112:
+  - General editing
+  - Setting up for PDF generation
 
 :20091110: 
  - Incorporating many updates and edits
@@ -31,12 +47,13 @@ DataONE Architecture
  - Layout document structure, draft templates
 
 
-
 This document describes portions of the DataONE_ infrastructure. Note that
 content is quite dynamic while the architecture design is being iterated for
 the first release.
 
-Contents:
+Source of these documents is maintained in the project `subversion repository`_.
+
+A version of the entire document in PDF is also `available for download`_.
 
 .. toctree::
    :maxdepth: 2
@@ -60,3 +77,6 @@ Indices and tables
 
 .. _DataONE: http://dataone.org/
 
+.. _subversion repository: https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-documentation/
+
+.. _available for download: http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture_0_0_3.pdf
