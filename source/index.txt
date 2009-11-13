@@ -8,7 +8,7 @@
   
   http://mule1.dataone.org/ArchitectureDocs/index.html
   
-  http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture_0_0_3.pdf
+  http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture.pdf
 
 
 .. header::
@@ -80,4 +80,4 @@ Indices and tables
 
 .. _subversion repository: https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-documentation/
 
-.. _available for download: http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture_0_0_3.pdf
+.. _available for download: http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture.pdf

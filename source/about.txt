@@ -44,8 +44,8 @@ Building the Documentation
 Sphinx_ and PlantUML_ are required to build the design documents from the
 source. Both of these have a dependency on graphviz_ for diagram generation.
 
-Graphviz is available on pre-built for many flavors of linux, windows, OS X,
-and can be installed on pretty much anything else that runs a c compiler. To
+Graphviz is available pre-built for many flavors of linux, windows, OS X, and
+can be installed on pretty much anything else that runs a c compiler. To
 install on ubuntu::
 
   $ sudo apt-get install graphviz
@@ -69,6 +69,10 @@ To actually build a HTML copy of the documents::
   $ cd ~/Projects/DataONE/svn/documents/Projects/VDC/docs/service-api/api-documentation
   $ plantuml source source/UseCases
   $ make html
+
+To build a PDF copy, you will need to install latex and it's dependencies. Then run::
+
+  $ make latex; make -f build/latex/Makefile all-pdf
 
 
 .. _graphviz: http://www.graphviz.org/
