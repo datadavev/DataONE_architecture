@@ -248,3 +248,7 @@ State of Health API
 
 .. function:: notify (adminID, nodeID, service)
 
+
+.. raw:: pdf
+
+   PageBreak
