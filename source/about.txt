@@ -70,7 +70,7 @@ To actually build a HTML copy of the documents::
   $ plantuml source source/UseCases
   $ make html
 
-To build a PDF copy, you will need to install latex and it's dependencies. Then run::
+To build a PDF copy, you will need to install latex and its dependencies. Then run::
 
   $ make latex; make -f build/latex/Makefile all-pdf
 

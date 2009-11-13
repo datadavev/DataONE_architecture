@@ -26,9 +26,9 @@ will be domain agnostic, progressively expanding to broader domains and
 building on infrastructure and interoperability with DataNet partners.
 
 .. figure:: images/proposal_figure_1.png
-   :width: 100%
+   :width: 75%
 
-   Figure 1: DataONE Member Nodes form a robust, distributed network via
+   DataONE Member Nodes form a robust, distributed network via
    coordinating services provided by a set of Coordinating Nodes (i.e., Oak
    Ridge Campus, UC-Santa Barbara, and University of New Mexico) arranged in a
    high-availability configuration. Scientists and citizens interact with
@@ -44,6 +44,11 @@ building on infrastructure and interoperability with DataNet partners.
    services to ensure data availability and preservation (e.g., node
    registration [purple arrow] and monitoring via heartbeat services (red
    arrow]).
+
+
+.. raw:: latex
+
+  \newpage
 
 
 UR 02. Value Added Services (proposed)
@@ -75,11 +80,16 @@ FeederWatch).
 .. figure:: images/proposal_figure_2.png
    :width: 100%
 
-   Figure 2: DataONE value-added services enable scientists to address novel
+   DataONE value-added services enable scientists to address novel
    questions through integrating disparate data sources (top), supporting
    geospatial data processing (lower left), and providing scientific workflow
    solutions like Kepler (lower middle) and high-level analyses and
    visualizations like IBM ManyEyes.
+
+
+.. raw:: latex
+
+  \newpage
 
 
 UR 03. System Architecture (proposed)
@@ -110,15 +120,21 @@ implemented as DataNetONE expands in scope, sustainable funding, and
 international presence.
 
 .. figure:: images/proposal_figure_4.png
-   :width: 100%
+   :width: 95%
 
-   Figure 3: Main features of the DataNetONE architecture, emphasizing
+   Main features of the DataNetONE architecture, emphasizing
    distributed data storage at Member Nodes and metadata indexing and services
    provided by Coordinating Nodes. Communication between Member Nodes (e.g.,
    for replication), between Member Nodes and the Investigator Toolkit (e.g.,
    for inserting data), and between Member Nodes and Coordinating Nodes (e.g.,
    for metadata indexing) is all mediated via a common DataNetONE Service
    Interface that spans all node types.
+
+
+.. raw:: latex
+
+  \newpage
+
 
 UR 04. Spread and Impact of Invasive Species
 --------------------------------------------
@@ -142,9 +158,9 @@ inform policy makers on potential impact or savings associated with new or
 ongoing trade relationships.
 
 .. figure:: images/invasives.jpg
-   :width: 100%
+   :width: 75%
 
-   Figure 4: Some examples of economically important invasive species in the
+   Some examples of economically important invasive species in the
    United States.
 
 
@@ -169,10 +185,10 @@ Specifically, DataNetONE addresses:
   information
 
 .. figure:: images/honeysuckle.jpg
-   :width: 75%
+   :width: 50%
 
-   Figure 5. Japanese honeysuckle (`Lonicera japonica`_) was brought to the
-   United States from Asia as ground cover to prevent erosion. As an invasive
+   Japanese honeysuckle (`Lonicera japonica`_) was brought to the United
+   States from Asia as ground cover to prevent erosion. As an invasive
    species, it can topple small trees and schurbs by its weight. The resulting
    change in forest structure may negatively affect songbird populations.
 
@@ -180,6 +196,12 @@ Specifically, DataNetONE addresses:
    http://prototype.dataone.org/pilotcatalog/send/query?term1=Lonicera+japonica&term1attribute=fullText&op1=&term2=&term2attribute=fullText&op2=&term3=&term3attribute=overlaps&op3=&op4=during&term4=&term4attribute=beginDate&term5=&term5attribute=endDate&op5=&term6=All&term6=&term6=&term6=&term6=&term6=&term6attribute=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10=&term10attribute=lterSite&term7=&term7attribute=placeKey&term8=collection&term9=All&term9attribute=presentationCat&pageSize=10&queryString=+Entire+Document+%3A+Lonicera+japonica++and++Format%3A+All+and++from+sources%3A+All&instance=nbii
 
 .. _INTEROP: http://nsf.gov/awardsearch/showAward.do?AwardNumber=0753138
+
+
+
+.. raw:: latex
+
+   \newpage
 
 
 Coordinating Node Requirements
@@ -237,7 +259,3 @@ This list of requirements for Coordinating Node functionality was obtained
 
 * CNs should provide services to detect rogue data (viruses, copyright, )
 
-
-.. raw:: pdf
-   
-   PageBreak

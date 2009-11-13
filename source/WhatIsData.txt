@@ -24,7 +24,7 @@ unique within all the DataONE infrastructure.
 .. figure:: images/datapackage.png
    :width: 3.75in
 
-   **Figure 1.** Sketch of a data package. System metadata attributes are
+   Sketch of a data package. System metadata attributes are
    likely to change significantly.
 
 ..

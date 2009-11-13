@@ -3,7 +3,7 @@ Authentication in DataONE
 
 :Author: Dave Vieglais
 :Status: Draft for comment
-:Date: 20091023
+
 
 This document outlines some simplistic approaches for authentication of users
 of the DataONE system. It is not intended to be comprehensive but rather to
@@ -45,8 +45,14 @@ of time.
 Scenario 1: Authentication provided by CNs
 ------------------------------------------
 
-.. image:: images/authenticate_case_a.png
+.. figure:: images/authenticate_case_a.png
    :width: 75%
+
+   Authentication is provided by the CNs. The CNs may actually act as proxies
+   for some other identity service, but from a DataONE perspective, the CNs
+   are providing the authn/authz services.
+
+
 ..
   @startuml images/authenticate_case_a.png
   !include plantuml_fullsized.conf
@@ -88,11 +94,22 @@ Scenario 1: Authentication provided by CNs
 - All accounts exist on and are managed by CNs
 
 
+.. raw:: latex
+
+   \newpage
+
+
 Scenario 2. Authentication provided by MN
 -----------------------------------------
 
-.. image:: images/authenticate_case_b.png
+.. figure:: images/authenticate_case_b.png
    :width: 100%
+
+   Authentication provided by a Member Node. With MN verification and
+   authorization, those requests are forwarded to the appropriate MN
+   (presumably the correct MN is indicated as an attribute of the token). The
+   alternative is for verify / authz requests to always go to a Cn, which then
+   forwards the request to the appropriate MN.
 
 ..
   @startuml images/authenticate_case_b.png
@@ -145,12 +162,19 @@ Scenario 2. Authentication provided by MN
 - token must have signature that indicates the issuing MN
 - MN2 trusts MN1 as an authentication provider
 
+.. raw:: latex
+
+   \newpage
+
 
 Scenario 3. Authentication through Third Party Identity Provider
 ----------------------------------------------------------------
 
-.. image:: images/authenticate_case_c.png
-   :width: 50%
+.. figure:: images/authenticate_case_c.png
+   :width: 60%
+
+   Authentication and verification provided by some third party, with
+   authorization provided by the CNs.
 
 ..
   @startuml images/authenticate_case_c.png
@@ -174,11 +198,18 @@ Scenario 3. Authentication through Third Party Identity Provider
 - Assuming access control rules are present on MN1
 
 
+.. raw:: latex
+
+   \newpage
+
+
 Scenario 4. Authentication Verified Algorithmically by Any Node
 ---------------------------------------------------------------
 
-.. image:: images/authenticate_case_d.png
+.. figure:: images/authenticate_case_d.png
    :width: 60%
+
+   Tokens are verified by an algorithm. This requires trust in the algorithm.
 
 ..
   @startuml images/authenticate_case_d.png
@@ -199,6 +230,11 @@ Scenario 4. Authentication Verified Algorithmically by Any Node
 - Minimizes communication between Nodes for identity verification
 - All MNs and CNs must trust each other (to accept identity)
 - Assuming access control rules are present on MN1
+
+
+.. raw:: latex
+
+   \newpage
 
 
 Notes from 20090602 ABQ Meeting
@@ -263,9 +299,4 @@ Expressing Permissions
 
 Attaching Permissions to Resources and Services
 
-
-
-.. raw:: pdf
-   
-   PageBreak
 

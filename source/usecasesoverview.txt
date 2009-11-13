@@ -1,8 +1,6 @@
 Use Cases Overview
 ==================
 
-:Date: 20090924
-
 An important early part in the process of system architecture is identifying
 the functional requirements that the resulting system should be able to
 address. Use cases are helpful for this as they describe how actors (typically
@@ -11,8 +9,11 @@ diagrams help define the interfaces and messages transmitted between
 components.
 
 
-.. figure:: images/dataone_components.png
+.. figure:: images/dataone_components.png 
    :width: 100%
+
+   Component diagram showing the various APIs and their interactions (a line
+   indicates communication between APIs).
 
 ..
   @startuml images/dataone_components.png
@@ -179,9 +180,6 @@ Postconditions
 
 Notes Miscellaneous notes and discussion items that can't be placed in the
 various categories. Comments should be annotated with time and author.
-
-.. todo:: 
-   Generate an overall architecture diagram that shows major internal components
 
 
 .. raw:: pdf
