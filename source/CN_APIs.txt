@@ -238,22 +238,68 @@ Synchronization API
 
 .. function:: verifyAllRecordsReceived ()
 
-  
+
+
+.. function:: scheduleSync(nodeID)
+
+   Schedules a synchronization operation on the specified Member Node.
+
+   :param nodeID:  The member node that is being scheduled for synchronization.
+
+   :raises NotFound: The specified Member Node ID is invalid.
+
+
+
 Register API
 ~~~~~~~~~~~~
+
 
 .. module:: CN_register
    :synopsis: Methods to manage registration of Member Nodes 
 
-.. function:: addNodeCapabilities ()
 
-.. function:: register (token, capabilitiesURL)
+
+.. function:: addNodeCapabilities (nodeID, capabilities)
+
+   Adds the supplied capabilities to the system metadata describing the Member Node.
+
+   :param nodeID: A GUID that identifies the Member Node.
+
+   :param capabilities: 
+     A capabilities document that describes the resources and supported
+     services of the Member Node.
+
+
+
+.. function:: register (token, capabilitiesURL) -> boolean
+
+   Used to register a new Member Node.
+
+   :param token: An authentication token with priviledges to rgister a new Member Node.
+
+   :param capabilitiesURL: The URL from which capabilities will be retrieved.
+
+   :raises NotAuthorized: The supplied identity does not have authority to register a node.
+
+   :raises NotFound: The supplied capabilitiesURL does not resolve to a capabilities document
+
+   :rtype: True or False
+
+
 
 .. function:: registerForNotification (token, dataOwnerID)
 
-.. function:: scheduleSynch ()
 
-.. function:: verifyCapabilities ()
+
+.. function:: verifyCapabilities (nodeID, capabilities) -> boolean
+
+   Evaluates the supplied capabilities document. This may involve additional
+   interaction with the MN as various aspects are evaluated.
+
+.. todo:: 
+   The :func:`verifyCapabilities` will needto check functionality of the MN so
+   need to define a few service hooks for checking these properties.
+
 
 
 Server Authentication API

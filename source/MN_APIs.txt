@@ -129,6 +129,7 @@ CRUD API
 
 ::
 
+  describe(token, GUID) -> objectMetadata
   get(token, GUID) -> object
   batchGet(token, GUIDs) -> ?
   checkDataQuality (GUID)
@@ -149,6 +150,24 @@ CRUD API
 
 .. exception:: InsufficientResources
 
+
+.. function:: describe(token, GUID) -> objectMetadata
+
+   Describes the object located at the endpoint of a GUID. This is necessary
+   to enable a client (e.g. a CN doing synchronization of new content) to
+   determine what type of information is being referenced before it is
+   registered in the system metadata. Helps to avoid accidental download of
+   data objects rather than metadata.
+
+   It may also be possible / feasible / appropriate to utilize content
+   negotiation in the HTTP GET method as part of the :func:`get` operation to
+   retrieve this information (or perhaps HTTP HEAD).
+
+   :param token: Identity with privileges to read the GUID.
+
+   :param GUID: Identifier for the object in question.
+
+   :rtype: Metadata describing what the GUID refers to.
 
 
 .. function:: get(token, GUID) -> object
@@ -295,6 +314,13 @@ Replication API
 
 
 
+.. function:: listChangedRecords(token) -> GUIDs
+
+   List the records that have changed since the last synchronization event.
+
+   :param token: A token with authority to retrieve a list of changed records.
+
+
 
 
 Capabilities API
@@ -305,9 +331,11 @@ Capabilities API
 
 .. function::  serviceRequest (token)
 
-.. function::  verify (token)
+.. function::  getCapabilities () -> capabilities
 
-.. function::  getCapabilities ()
+   Returns a document describing the capabilities of the Member Node. 
+   
+   :rtype: Capabilities metadata document
 
 
 
@@ -319,7 +347,15 @@ State of Health API
    :synopsis: Reports on the status of a Member Node
 
 .. function::  sohQuery (token, service)
-  
+
+.. function:: ping() -> pingResponse
+
+   Low level "are you alive" operation. Response is simple ACK, but may be
+   reasonable to overload with a couple of flags that could indicate
+   availability of new data or change in capabilities.
+
+   :rtype pingResponse: A simple chunk of data, perhaps XML, or plain text.
+
 
 .. raw:: latex
 

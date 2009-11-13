@@ -96,23 +96,32 @@ Post Conditions
   deactivate c_health
 
   participant "Replication API" as m_rep << Member Node >>
-  c_sync -> m_rep: listChangedRecords()
+  c_sync -> m_rep: listChangedRecords(token)
 
   note right of c_sync
     The RSS mechanism might be 
     appropriate for retrieving changes.
+    
+    Also could consider sitemap for this.
+    
+    Note - the return is a list of all
+    objects.
   end note
+
 
   c_sync <-- m_rep: GUID_list
   loop for each GUID
-    c_sync -> m_crud: getMetadata(system_token, GUID)
+    c_sync -> m_crud: describe(token, GUID)
     c_sync <-- m_crud: metadata
+    c_sync -> m_crud: get(token, GUID)
+    c_sync <-- m_crud: object
   participant "CRUD API" as c_crud << Coordinating Node >>
     c_sync -> c_crud: create(GUID, metadata)
     c_sync <-- c_crud: ack or FAIL
     c_sync -> m_rep: notifyReplicated(system_token, GUID)
     note over m_rep
       What happens if the CN create() operation fails?
+      How far to roll back?
     end note
   end
   @enduml

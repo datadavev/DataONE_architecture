@@ -1,3 +1,7 @@
+.. raw:: latex
+
+  \newpage
+  
 Use Case 03 - Register MN
 -------------------------
 
@@ -140,8 +144,8 @@ Post Conditions
   note right
     Assume admin authority for node registration.
   end note
-
   participant "Register API" as c_reg << Coordinating Node >>
+  participant "Synchronization API" as c_sync << Coordinating Node >>
   activate c_reg
   app_admin -> c_reg: register (auth_token, capabilitiesURL)
   participant "Capabilities API" as m_cap << Member Node >>
@@ -152,7 +156,7 @@ Post Conditions
    Assume capabilities stored as any other metadata.
   end note
   c_reg -> c_reg: addNodeCapabilities ()
-  c_reg -> c_reg: scheduleSynch ()
+  c_reg -> c_sync: scheduleSynch ()
   note right
    Harvest process occurs asynchronously.
    Separate use case. 

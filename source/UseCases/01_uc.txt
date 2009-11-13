@@ -1,3 +1,8 @@
+.. raw:: latex
+
+  \newpage
+  
+
 Use Case 01 - Get Object Identified by GUID
 -------------------------------------------
 
@@ -89,6 +94,15 @@ Post Conditions
    OLD: Sequence diagram for retrieving an object from DataONE.
 
 
+.. raw:: latex
+
+  \newpage
+
+.. raw:: pdf
+
+  PageBreak
+
+
 .. 
   This block defines the use case diagram referenced above
   @startuml images/01_uc.png
@@ -177,8 +191,4 @@ Post Conditions
     deactivate m_crud
   @enduml
 
-
-.. raw:: latex
-
-   \newpage
 

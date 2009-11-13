@@ -1,3 +1,7 @@
+.. raw:: latex
+
+  \newpage
+
 Use Case 02 - List GUIDs By Search
 ----------------------------------
 
@@ -133,6 +137,17 @@ Post Conditions
 
    Interactions for use case 02.
 
+
+.. raw:: latex
+
+ \newpage
+
+.. raw:: pdf
+
+ PageBreak
+
+
+
 .. 
   @startuml images/02_uc.png
   !include ../plantuml.conf
@@ -182,6 +197,3 @@ Post Conditions
   @enduml
 
 
-.. raw:: latex
-
-   \newpage

@@ -67,7 +67,10 @@ Post Conditions
 .. figure:: images/09_interaction.png
    :width: 100%
 
-   Interactions for use case 09.
+   Interactions for use case 09. The diagram describes transfer of a single
+   object from MN_B to MN_A as directed by a CN. It isassumed that the object
+   does not exist on MN_B and the object has been identified as requiring
+   synchronization by the CN checking its status in the system metadata.
 
 
 ..
@@ -75,67 +78,26 @@ Post Conditions
   !include ../plantuml.conf
   title Interactions: 09 - Replicate data from Member Node to Member Node
 
-  participant "CRUD API" as m_crud << Member Node >>
-  participant "State of Health API" as c_health << Coordinating Node >>
-  c_health -> m_crud: ping()
-  activate c_health
-    c_health <-- m_crud: [ACK, NewData]
-  participant "Synchronization API" as c_sync << Coordinating Node >>
-    c_health -> c_sync: scheduleSync(MN_ID)
-  deactivate c_health
-
-  participant "Replication API" as m_rep << Member Node >>
-  c_sync -> m_rep: listChangedRecords(auth_token)
-  note right of c_sync
-    The RSS mechanism might be 
-    appropriate for retrieving changes.
-    auth_token identifies the CN 
-    retrieving content.
-  end note
-  c_sync <-- m_rep: GUID_list
-
-  loop for each GUID
-    c_sync -> c_sync: getReplicas(GUID)
-    note right: Update of existing copies.
-    loop for each replica
-      c_sync -> c_sync: addUpdateTask(MN, GUID)
-    end
-    c_sync -> c_sync: getTargetMNs(GUID)
-    note right of c_sync
-      The MN ids returned are valid targets
-      for the data package identified by GUID,
-      including consideration of size, access
-      rules, and so forth.
-    end note
-    loop for each MN
-      c_sync -> c_sync: addUpdateTask(MN, GUID)
-    end
-  end
-
-  m_rep -> c_sync
-
-
-  participant "Replication API" as c_rep << Coordinating Node >>
   participant "CRUD API" as m_crud_a << Member Node A >>
-  m_crud_a -> c_rep: replicateMetadata ()
-  participant "CRUD API" as c_crud << Coordinating Node >>
-  c_rep -> c_crud: write ()
-  c_rep <-- c_crud: ack
-  c_rep -> m_crud_a: ack
-  c_rep -> c_rep: isReplicationNeeded ()
-  c_rep -> c_rep: T or F
-  c_rep -> c_rep: getMNReplicateList ()
-  c_rep -> c_rep: replicaList
-  participant "Replication API" as m_rep_b << Member Node B >>
-  c_rep -> m_rep_b: startReplica (ID, sessionID, transID, srcMN)
-  m_crud_a -> m_rep_b: read (ID, sess, transID)
-  participant "Authorization API" as c_authorize << Coordinating Node >>
-  m_crud_a -> c_authorize: isAuthorized (sess, transID)
-  m_crud_a <-- c_authorize: T or F
-  m_crud_a -> m_rep_b: object
-  c_rep -> m_rep_b: replicationSucceeds (transID)
-  c_rep -> m_rep_b: cancelReplication (sess, transID)
-  c_rep <-- m_rep_b: ack
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  participant "CRUD API" as m_crud_b << Member Node B >>
+  
+  c_sync -> m_crud_b: synchronize(token, GUID)
+  m_crud_b --> c_sync: ACK
+  
+  m_crud_b -> m_crud_a: get(token, GUID)
+  m_crud_a --> m_crud_b: object
+  
+  m_crud_b -> c_sync: update(token, GUID)
+  c_sync --> m_crud_b: ACK
+  
+  note right
+    After retrieval, the MN tells the CN that 
+    the object has been replicated.  Alternative is
+    that the object is transfer is marked as 
+    provisional and verified later.
+  end note
+
   @enduml
 
 
