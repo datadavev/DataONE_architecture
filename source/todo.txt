@@ -5,6 +5,9 @@
 TO DO List
 ==========
 
+List of things that need to be completed in these documents to reach a final
+draft stage.
+
 .. todolist::
 
 

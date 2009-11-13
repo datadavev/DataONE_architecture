@@ -9,7 +9,6 @@ Overview
    Replication
    DataAndMetadata
    Authentication
-   about
 
 
 
