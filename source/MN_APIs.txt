@@ -356,6 +356,15 @@ State of Health API
 
    :rtype pingResponse: A simple chunk of data, perhaps XML, or plain text.
 
+.. function:: getStatus(token) -> currentStatus
+
+   Returns the current status of the MN, perhaps with some accumulation and
+   averaging over the last xxx minutes.
+
+   :param token: Identity with authority to retrieve the status information.
+
+   :rtype: A status document in an easily parsed syntax such as JSON or XML
+
 
 .. raw:: latex
 

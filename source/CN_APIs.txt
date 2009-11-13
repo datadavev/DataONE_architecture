@@ -320,6 +320,16 @@ State of Health API
 .. function:: notify (adminID, nodeID, service)
 
 
+.. function:: generateReport(token) -> statusReport
+
+   Returns a status report for all of the registered Member Nodes. The
+   informatio returned is used to give administrators information necessary to
+   maintain the infrastructure.
+
+   :param token: Identity with authority to generate reports.
+   
+   :rtype: Status report, ideally in XML + stylsheet or at least XHTML.
+
 .. raw:: latex
 
    \newpage

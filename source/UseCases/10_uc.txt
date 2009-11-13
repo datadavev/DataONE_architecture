@@ -15,13 +15,15 @@ Goal
   Coordinating Node checks "liveness" of all Member Nodes - checks ping,
   service x, load, space, bandwidth, transaction rate, ...
 
+
 Summary 
 
   As part of the infrastructure monitoring process, a CN checks on the
   "liveness" of all Member Nodes. This operation will be performed with
-  moderate frequency (perhaps in the order of once every few minutes). The
-  basic operation of pinging the MN to test for connectivity.
-  
+  moderate frequency (perhaps in the order of once every few minutes).
+
+  The responses from the MNs should report sufficient metrics to gauge their
+  performance in absolute terms and also relative to other MNs.
 
 
 Actors
@@ -32,46 +34,46 @@ Preconditions
   - CNs are operational
 
   - MN is registered
-  
+
 Triggers
 
   - Timed interval
 
   - Registration change
- 
+
 Post Conditions
 
   - Status metadata is updated at CNs
 
 
 .. figure:: images/10_interaction.png
-   :width: 100%
+   :width: 75%
 
-   Interactons for use case 10.
+   Interactons for use case 10. Describes a synchronous process for generating
+   a report. Most likely, a better mechanism would be for a background process
+   to be accumulating the necessary statistics from Member Nodes, then the
+   generateReport function would operate on the accumulated data
+   rather than forcing a fresh copy.
+
 
 ..
   @startuml images/10_interaction.png
   !include ../plantuml.conf
     actor Admin
     participant "Admin" as app_admin << Application >>
-    Admin -> app_admin
-    participant "Server Authentication API" as c_srv_auth << Coordinating Node >>
-    participant "Authentication API" as c_authenticate << Coordinating Node >>
-    c_srv_auth -> c_authenticate: requestToken ()
-    c_srv_auth <-- c_authenticate: token or failure
-    participant "Server Authentication API" as m_authenticate << Member Node >>
-    c_srv_auth -> m_authenticate: serviceRequest (token)
-    participant "Verify API" as c_ver << Coordinating Node >>
-    m_authenticate -> c_ver: verify (token)
-    m_authenticate <-- c_ver: confirm or failure
-    c_srv_auth <-- m_authenticate: ack or failure
+    Admin -> app_admin: login()
     participant "State of Health API" as c_health << Coordinating Node >>
     participant "State of Health API" as m_health << Member Node >>
-    c_health -> m_health: sohQuery (token, service)
-    c_health <-- m_health: sohResponse
-    app_admin <-- c_health: notify (adminID, nodeID, service)
+    app_admin -> c_health: generateReport(token)
+    loop for each MN
+      c_health -> m_health: getStatus(token)
+      m_health --> c_health: status
+    end
+    c_health -> c_health: processStatusReports()
+    c_health --> app_admin: statusReport
   @enduml
   
+
 
 .. raw:: latex
 
