@@ -59,6 +59,6 @@ xxx
 
 
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage

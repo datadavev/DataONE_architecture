@@ -136,7 +136,7 @@ Advantages:
   and/or inconsistent standards.
 
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 

@@ -130,9 +130,9 @@ components.
   @enduml
 
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 
 
 Use Case Layout

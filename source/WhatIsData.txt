@@ -367,9 +367,9 @@ maintained by ICES
 
 
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 
 Extracted Search Attributes
 ---------------------------

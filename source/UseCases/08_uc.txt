@@ -113,6 +113,6 @@ Post Conditions
   @enduml
 
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage

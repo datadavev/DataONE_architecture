@@ -38,7 +38,7 @@ Post Conditions
 - client should be able ask CN for a list of acceptable MNs to upload data
   with specific characteristics (e.g., size, institution, theme)
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 

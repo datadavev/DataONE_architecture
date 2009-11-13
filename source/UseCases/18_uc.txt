@@ -76,6 +76,6 @@ associated with content, so use statistics appear with search results.
   @enduml
   
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage

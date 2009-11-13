@@ -48,8 +48,8 @@ xxx
   @enduml
   
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 
   

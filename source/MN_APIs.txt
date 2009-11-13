@@ -321,7 +321,7 @@ State of Health API
 .. function::  sohQuery (token, service)
   
 
-.. raw:: pdf
+.. raw:: latex
 
-   PageBreak
+   \newpage
 
