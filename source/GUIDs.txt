@@ -4,6 +4,30 @@ Globally Unique Identifiers in DataONE
 
 .. todo:: Suggest an initial pattern (from paper notes)
 
+..
+!include plantuml.conf  
+  @startuml images/guid_a.png
+  title Conflicting IDs
+  participant "MN_A" as mn_a
+  participant "MN_B" as mn_b
+  participant "CN" as cn
+  participant "CN OStore" as cn_os
+  
+  mn_a -> cn: registerID("435")
+  cn -> cn_os: store("mn_a:435")
+  cn_os <-- cn: ACK
+  mn_a <-- cn: ACK
+
+  mn_b -> cn: registerID("435")
+  cn -> cn_os: store("mn_b:435")
+  cn_os <-- cn: ACK
+  mn_b <-- cn: ACK
+  
+  actor user
+  user -> cn: resolve("435")
+  user <-- cn: "mn_a:435", "mn_b:435"
+  @enduml
+
 
 Notes from the 20090602 Albuquerque Meeting
 -------------------------------------------
