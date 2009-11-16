@@ -29,6 +29,22 @@ unique within all the DataONE infrastructure.
 
 ..
   @startuml images/datapackage.png
+    
+    D1Object: GUID
+    D1Object: ObjectClass
+    D1Object: DateCreated
+    D1Object: DateModified
+    D1Object: location[]
+    D1Object: Owner
+    D1Object: AccessControlList
+    
+    D1Location: NodeID
+    D1Location: URL
+    
+    D1Object *-- D1Location
+    
+    
+    
     Data: byte[]
     ExperimentMetadata : document 
     DataPackage : SystemMetadata

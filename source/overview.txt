@@ -1,18 +1,190 @@
 Overview
 ========
 
+The DataONE system is fundamentally composed of three major components:
+
+:Member Nodes:
+
+  Existing and new data repositories. These systems offer heterogeneous
+  implementations across a variety of data types and support a variety of
+  metadata types. All data is stored on Member Nodes, and the DataONE
+  infrastructure assists with coordinating distribution of data between MNs.
+
+
+:Coordinating Nodes:
+
+  The operational core of DataONE. The coordinating nodes catalog data and
+  metadata, control the dispersion of data across Member Nodes, keep a replica
+  of all metadata, offer services for distributed identity, and offer search
+  and discovery capabilities.
+
+
+:Investigator Toolkit:
+
+  Initially provides a set of libraries for interacting with DataONE CNs and
+  MNs (i.e. a "client library"). As the project develops, the ITK will grow to
+  contain a rich set of applications and tools for interacting with the
+  content available in DataONE (and potentially other Data Nets).
+
+.. figure:: images/ServicesOverview.png
+   :width: 100%
+
+   General overview of the major components of DataONE and the services they
+   implement. It is invisaged that there will be very few CNs (3 in the first
+   year), many more MNs (hundreds), and even more instances of the ITK.
+
+
+In the initial version of DataONE, the system will be composed of three
+instances of Coordinating Nodes and at least three instances of Member Nodes.
+
+
+.. figure:: images/MNOverview.png
+   :width: 50%
+
+   Simple diagram of the MN structure. DataONE service APIs are implemented by
+   a component that interacts with the existing APIs of the Member Node.
+
+
+.. raw:: latex
+
+   \begin{landscape}
+
+.. figure:: images/CNOverview.png
+   :width: 100%
+
+   An estimate of CN components and the services they provide.
+
+
+.. raw:: latex
+
+   \end{landscape}
+
+..
+  @startuml images/MNOverview.png
+  
+  skinparam componentFontSize 8
+  skinparam componentFontName arial
+  skinparam packageFontSize 10
+  skinparam packageFontName arial
+  
+  () "CRUD" as mn_crud
+  () "Authorization" as mn_auth
+  () "Replication" as mn_repl
+  () "Health" as mn_health
+  () "Logging" as mn_logging
+  package "Member Node" #EEEEEE
+    component "Existing Services" as mn_existing
+    component "DataONE Services" as MN
+  mn_existing --> MN
+  mn_existing <-- MN
+  MN -- mn_crud
+  MN -- mn_auth
+  MN -- mn_repl
+  MN -- mn_health
+  MN -- mn_logging
+
+  @enduml
+
+
+..
+  @startuml images/CNOverview.png
+  !include plantuml.conf
+  
+  () "CRUD" as cn_crud
+  () "Authentication" as cn_authn
+  () "Authorization" as cn_authz
+  () "Replication" as cn_repl
+  () "Health" as cn_health
+  () "Logging" as cn_logging
+  () "Search" as cn_search
+  () "Registration" as cn_register
+
+  component "Object Store" as ostore
+  component "System Metadata" as sysm
+  component "Experiment Metadata\nParser / Validator" as eparser
+  component "Search Index" as index
+  component "Object Manager" as objectm
+  component "Identity Manager" as identm
+  component "Access Control" as access
+  component "MN Registry" as mnregister
+  component "Message Queue" as queue
+  component "Synchronizer" as sync
+  component "System Status" as status
+  component "System Log" as log
+  component "MN Replicator" as mn_repl
+  
+  identm -- cn_authn
+  access -- cn_authz
+  objectm -- cn_crud
+  objectm -- cn_repl
+  status -- cn_health
+  log -- cn_logging
+  index -- cn_search
+  mnregister -- cn_register
+
+  objectm .. sysm
+  objectm .. log
+  objectm .. status
+  objectm .. ostore
+  objectm .. access
+  objectm .. identm
+
+  sysm .. ostore
+  identm .. sysm
+  access .. sysm
+  mnregister .. sysm
+  mnregister .. queue
+  sync .. queue
+  sysm .. index
+  ostore .. index
+  eparser .. index
+  eparser .. ostore
+  eparser .. sysm
+    
+  @enduml
+
+
+.. figure:: images/new_data.png
+
+   New data has appeared on a MN. This diagram indicates what happens when new
+   data is present on a MN.
+
+..
+  @startuml images/new_data.png
+  title New data present on MN
+  (*) --> "CN Detects new data object" as A1
+  A1 --> "Get information about new object" as A2
+  A2 --> <> B1
+  --> [metadata] "Retrieve Metadata" as A3
+  --> [data] "test" as A4
+  A3 --> "Store Metadata, update system metadata" as A5
+  A5 --> ===B2===
+  --> "Parse Metadata"
+  --> "Update Search Index"
+  --> "Update system metadata: indexed"
+  --> (*)
+  ===B2=== --> "Find Host (MN2)"
+  --> "Request Host Copy (MN2)"
+  --> ===B3===
+  --> "Check MN transfer status" as A10
+  --> <> B4
+  --> [incomplete] A10
+  --> [done] "Update system metadata: new host"
+  --> (*)
+  ===B3=== --> "MN2 Get data from MN1"
+  --> "Retrieve Data"
+  --> "Done"
+  --> (*)
+  @enduml  
+  
+
 .. toctree::
    :maxdepth: 1
-   
+
    WhatIsData
    GUIDs
    Replication
    DataAndMetadata
    Authentication
-
-
-
-
-
 
    
