@@ -21,9 +21,9 @@ of data and accompanying metadata in DataONE is called a "data package". The
 data package and its components have identifiers that are guaranteed to be
 unique within all the DataONE infrastructure.
 
-.. figure:: images/datapackage.png
-   :width: 3.75in
-
+.. 
+  figure:: images/datapackage.png
+  :width: 3.75in
    Sketch of a data package. System metadata attributes are
    likely to change significantly.
 

@@ -89,7 +89,7 @@ referenced, regardless of which node the object is located on.
 
 
 .. figure:: UseCases/images/01_interaction_a.png
-   :width: 100%
+   :height: 7in
 
    General sequence of retrieving an object identified by some GUID (Use Case
    01).

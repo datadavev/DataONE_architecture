@@ -88,7 +88,7 @@ Post Conditions
   m_crud_b -> m_crud_a: get(token, GUID)
   m_crud_a --> m_crud_b: object
   
-  m_crud_b -> c_sync: update(token, GUID)
+  m_crud_b -> c_sync: synchronizationComplete(token, GUID)
   c_sync --> m_crud_b: ACK
   
   note right
