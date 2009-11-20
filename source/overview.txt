@@ -110,23 +110,23 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
   objectm -- cn_repl
   objectm -- cn_health
   objectm -- cn_authz
-  index -- cn_search
-  sysm -- cn_authn
-  sysm -- cn_register
+  objectm -- cn_search
+  objectm -- cn_authn
+  objectm -- cn_register
 
   objectm -- sysm
   objectm -- ostore
-  objectm .. log
-  sysm .. index
+  objectm -- log
+  sysm -- index
   sysm -- ostore
-  sysm .. log
-  ostore .. log
-  ostore .. index
-  eparser .. index
-  eparser .. ostore
-  eparser .. sysm
-  eparser .. log
-  index .. log
+  sysm -- log
+  ostore -- log
+  ostore -- index
+  eparser -- index
+  eparser -- ostore
+  eparser -- sysm
+  eparser -- log
+  index -- log
   
   note right of objectm
     The Content Manager implements most of the external 

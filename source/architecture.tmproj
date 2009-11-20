@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>index.txt</string>
+	<string>overview.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -19,7 +19,7 @@
 					<key>filename</key>
 					<string>apis.txt</string>
 					<key>lastUsed</key>
-					<date>2009-11-13T17:07:59Z</date>
+					<date>2009-11-16T17:02:12Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -61,21 +61,21 @@
 			<key>filename</key>
 			<string>GUIDs.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T01:51:39Z</date>
+			<date>2009-11-17T02:48:22Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>index.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T21:49:51Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2009-11-15T19:47:17Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>overview.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T15:50:46Z</date>
+			<date>2009-11-19T23:27:23Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -84,13 +84,13 @@
 					<key>filename</key>
 					<string>conf.py</string>
 					<key>lastUsed</key>
-					<date>2009-11-13T19:25:29Z</date>
+					<date>2009-11-17T01:34:08Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>plantuml.conf</string>
 					<key>lastUsed</key>
-					<date>2009-11-13T16:03:03Z</date>
+					<date>2009-11-17T01:34:23Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -108,7 +108,7 @@
 			<key>filename</key>
 			<string>prioritization.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T19:38:41Z</date>
+			<date>2009-11-18T18:51:23Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -144,7 +144,7 @@
 			<key>filename</key>
 			<string>WhatIsData.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T16:00:49Z</date>
+			<date>2009-11-17T02:55:30Z</date>
 		</dict>
 		<dict>
 			<key>expanded</key>
@@ -175,6 +175,20 @@
 			<key>firstVisibleLine</key>
 			<integer>294</integer>
 		</dict>
+		<key>GUIDs.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>11</integer>
+				<key>line</key>
+				<integer>91</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>72</integer>
+		</dict>
 		<key>MN_APIs.txt</key>
 		<dict>
 			<key>caret</key>
@@ -196,27 +210,27 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>139</integer>
+				<integer>0</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>107</integer>
+			<integer>0</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>135</integer>
+				<integer>3</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>139</integer>
+				<integer>0</integer>
 			</dict>
 		</dict>
 		<key>UseCases/09_uc.txt</key>
@@ -224,14 +238,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>13</integer>
+				<integer>75</integer>
 				<key>line</key>
-				<integer>67</integer>
+				<integer>69</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>52</integer>
+			<integer>53</integer>
 		</dict>
 		<key>UseCases/10_uc.txt</key>
 		<dict>
@@ -261,34 +275,122 @@
 			<key>firstVisibleLine</key>
 			<integer>42</integer>
 		</dict>
-		<key>index.txt</key>
+		<key>WhatIsData.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>29</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>apis.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>37</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>7</integer>
+		</dict>
+		<key>conf.py</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>195</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>166</integer>
+		</dict>
+		<key>overview.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>87</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>83</integer>
+		</dict>
+		<key>plantuml.conf</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>22</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+		</dict>
+		<key>prioritization.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>11</integer>
 				<key>line</key>
-				<integer>66</integer>
+				<integer>474</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>43</integer>
+			<integer>120</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>CN_APIs.txt</string>
-		<string>UseCases/24_uc.txt</string>
-		<string>UseCases/01_uc.txt</string>
-		<string>MN_APIs.txt</string>
-		<string>UseCases/10_uc.txt</string>
+		<string>overview.txt</string>
 		<string>UseCases/09_uc.txt</string>
-		<string>index.txt</string>
+		<string>prioritization.txt</string>
+		<string>GUIDs.txt</string>
+		<string>conf.py</string>
+		<string>plantuml.conf</string>
+		<string>apis.txt</string>
+		<string>UseCases/01_uc.txt</string>
+		<string>WhatIsData.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{1461, 126}, {963, 766}}</string>
+	<string>{{26, 27}, {859, 578}}</string>
 </dict>
 </plist>
