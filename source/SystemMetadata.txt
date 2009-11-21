@@ -21,6 +21,7 @@ maintained by Coordinating Nodes for every object in the system.
 
 System Metadata fields
 ----------------------
+
 :Identifier:
   The unique Unicode string that is used to canonically name and identify
   the object in DataONE.  Each object in DataONE is immutable, and therefore
@@ -30,8 +31,10 @@ System Metadata fields
   among the objects is specified in other metadata fields (see Obsoletes and
   ObsoletedBy), but this does not preclude the inclusion of version
   information in the identifier string.
+
   :Cardinality:
     1
+
   :ValueSpace: 
     IdentifierValue consisting of Unicode text excluding reserved characters 
     (whitespace and other characters to be determined)
@@ -40,8 +43,10 @@ System Metadata fields
   A reference to the Member Node that originally uploaded the associated
   object. This value should never change, even if a Member Node no longer
   exists.
+
   :Cardinality:
     1
+
   :ValueSpace: 
     MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
@@ -51,8 +56,10 @@ System Metadata fields
   OriginMemberNode, unless there has been a need to transfer authority for
   an object to a new node, such as when a Member Node becomes defunct.
   Replication should occur from the AuthoritativeMemberNode.
+
   :Cardinality:
     1
+
   :ValueSpace: 
     MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
@@ -61,43 +68,50 @@ System Metadata fields
   each replica that exists in the system, or is being replicated. Note that
   a Replica field exists even for the Authoritative/Origin Member Nodes so
   that the status of those objects can be tracked.
+
   :Cardinality:
     0..n
+
   :ValueSpace: 
     Contains child metadata fields only -- no values per se
 
-  :ReplicaMemberNode:
-    A reference to the Member Node that houses this replica, regardless of
-    whether it has arrived at the Member Node or not.  See ReplicationStatus
-    to determine if the replica is completely transferred.
-    :Cardinality:
-      1
-    :ValueSpace: 
-      MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
+:ReplicaMemberNode:
+  A reference to the Member Node that houses this replica, regardless of
+  whether it has arrived at the Member Node or not.  See ReplicationStatus
+  to determine if the replica is completely transferred.
 
-  :ReplicationStatus:
-    A flag indicating the status of the replica throughout its lifecycle.
-    Replicas start when they are queued for replication, then transition to
-    'Requested' state when the Coordinating Node asks the Member Node to
-    replicate the object, and then finish in 'Completed' state after the
-    object has been transferred and the Coordinating Node is notified that
-    the replication has completed. During the verification process a replica
-    may be found to be corrupt, at which point it transitions to
-    'Invalidated' to indicate that the replica is no longer valid and needs
-    to be transferred again.
-    :Cardinality:
-      1
-    :ValueSpace:
-      'Queued', 'Requested', 'Completed', 'Invalidated'
+  :Cardinality:
+    1
 
-  :DateReplicaVerified:
-    Most recent date for which this particular replica was verified against
-    its canonical checksum. Because of disk errors and other anomolies that 
-    consistently corrupt data, all replicas need to be verified by comparing 
-    them to their checksum.  Validation errors cause a change of
-    ReplicationStatus to 'Invalidated'.
-    :Cardinality:
-      1
+  :ValueSpace: 
+    MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
+
+:ReplicationStatus:
+  A flag indicating the status of the replica throughout its lifecycle.
+  Replicas start when they are queued for replication, then transition to
+  'Requested' state when the Coordinating Node asks the Member Node to
+  replicate the object, and then finish in 'Completed' state after the
+  object has been transferred and the Coordinating Node is notified that
+  the replication has completed. During the verification process a replica
+  may be found to be corrupt, at which point it transitions to
+  'Invalidated' to indicate that the replica is no longer valid and needs
+  to be transferred again.
+
+  :Cardinality:
+    1
+
+  :ValueSpace:
+    'Queued', 'Requested', 'Completed', 'Invalidated'
+
+:DateReplicaVerified:
+  Most recent date for which this particular replica was verified against
+  its canonical checksum. Because of disk errors and other anomolies that 
+  consistently corrupt data, all replicas need to be verified by comparing 
+  them to their checksum.  Validation errors cause a change of
+  ReplicationStatus to 'Invalidated'.
+
+  :Cardinality:
+    1
 
 :ReplicationPolicy:
   A controlled list of policy choices that determine how many replicas
@@ -107,8 +121,10 @@ System Metadata fields
   - number of replicas required
   - preferred MNs (social contract, functional properties (size, etc))
   - blocked MNs (political, other)
+
   :Cardinality:
     1
+
   .. Note::
     This field probably will be hierarchical, or some of its subfields could
     be broken out as root level fields.  Need to determine the volcabularies
@@ -118,8 +134,10 @@ System Metadata fields
   Person who submitted the associated abject to the DataONE Member 
   Node. The Submitter is by default the RightsHolder if a RightsHolder has
   not been specified. 
+
   :Cardinality:
     1
+
   :ValueSpace: PersonIdentifier drawn from the DataONE IdentityProviderService
 
 :RightsHolder:
@@ -128,33 +146,43 @@ System Metadata fields
   accessibility of the object. The RightsHolder has all rights to
   access the object, update the object, and grant permissions for the object, 
   even if additional access control rules are not specified for the object.
+
   :Cardinality:
     1
+
   :ValueSpace: PrincipalIdentifier drawn from the DataONE IdentityProviderService
-.. Note::
-  By allowing RightsHolder to be a group or organization, we are making the
-  disposition of the object ambiguous if members of the collective disagree.
-  It might be better to assign RightsHolder to one individual, and instruct
-  that individual to grant any needed additional permissions to other
-  individuals or groups.  The downside of this approach is that the
-  RightsHolder might not be accessible when a decision is needed (due to,
-  e.g., retirement, career change, death), which then orphans the object in
-  the system (which still may happen even if groups are allowed here).
+
+  .. Note::
+  
+     By allowing RightsHolder to be a group or organization, we are making the
+     disposition of the object ambiguous if members of the collective
+     disagree. It might be better to assign RightsHolder to one individual,
+     and instruct that individual to grant any needed additional permissions
+     to other individuals or groups. The downside of this approach is that the
+     RightsHolder might not be accessible when a decision is needed (due to,
+     e.g., retirement, career change, death), which then orphans the object in
+     the system (which still may happen even if groups are allowed here).
 
 :DateCreated: 
   Date and time (UTC) that the object was created in the DataONE system.
   Note this is independent of the publication or release date of the object.
+
   :Cardinality:
     1
+
   :ValueSpace: ISO 8601 Date-time value in UTC
 
 :DateExpires:
   Date and time (UTC) that the object expires in the DataONE system.
+
   :Cardinality:
     0..1
+
   :ValueSpace: ISO 8601 Date-time value in UTC
+
   .. Note::
-    Its unclear what it means to 'expire'.  Needs clarification.
+
+     Its unclear what it means to 'expire'.  Needs clarification.
 
 :DateEmbargoExpires:
   Objects can be marked as embargoed by setting this field to a date in the
@@ -164,24 +192,30 @@ System Metadata fields
   authomatically expires without further action by the submitter.  This
   approach is common in many data networks, and will simplify management for
   the networks.
+
   :Cardinality:
     0..1
+
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
 :DateSysMetadataCreated: 
   Date and time (UTC) that this system metadaat record was created in the 
   DataONE system.
+
   :Cardinality:
     1
+
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
 :DateSysMetadataModified: 
   Date and time (UTC) that this system metadata record was modified in the 
   DataONE system.
+
   :Cardinality:
     1
+
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
@@ -196,8 +230,10 @@ System Metadata fields
   of the EML 2.1 metadata specification, the DOCTYPE of the Biological Data
   Profile, the mime type of text/csv files, and the canonincal name of the
   NetCDF specification.
+
   :Cardinality:
     1
+
   :ValueSpace:
     One value from the DataONE ObjectFormatVocabulary, which may be an
     adopted vocabulary maintained by another organization.
@@ -207,23 +243,29 @@ System Metadata fields
   after network transfers.  The value is calculated using a standard
   hashing algorithm that is accepted by DataONE and that is indicated in
   ChecksumAlgorithm.
+
   :Cardinality:
     1
+
   :ValueSpace: Unicode (or ASCII?) string
 
 :CheckSumAlgorithm:
   The name of the checksum algorithm used to calculate the checksum for this
   object.
+
   :Cardinality:
     1
+
   :ValueSpace:
     AlgorithmName drawn from a DataONE controlled list of accepted
     algorithms.
 
 :Size:
   The number of bytes represented in by this object (in bytes).
+
   :Cardinality:
     1
+
   :ValueSpace:
     long integer
 
@@ -237,41 +279,56 @@ System Metadata fields
   rules are specified at that time, then the object is deemed to be private
   and the only user with access to the object (read, write, or otherwise) is
   the RightsHolder.
+
   :Cardinality:
     0..n
+
   :ValueSpace:
+  
     Three-tuple of the form (ruletype, service, principal) where:
+  
     - ruletype: 'allow', 'deny'
     - service: 'read', 'write', changePermissions
     - principal: PrincipalIdentifier drawn from the DataONE 
       IdentityProviderService
+  
   .. Note::
-  - EML has a simple set of permissions that are applied to users and groups
-    using the eml-access module
-  - Most other science metadata systems don't incorporate acls explicitly
-  - SAML is used broadly to represent these types of access rules
+
+     - EML has a simple set of permissions that are applied to users and
+       groups using the eml-access module
+
+     - Most other science metadata systems don't incorporate acls explicitly
+
+     - SAML is used broadly to represent these types of access rules
 
 :Obsoletes: 
   The Identifier of an object that is a prior version of the object
   described in this system metadata record and that is obsoleted by this object.
+
   :Cardinality:
     0..n
+
   :ValueSpace:
     IdentifierValue as described in the Identifier field.
+
   .. Note::
-    System metadata is mutable because it must reflect the current state of 
-    objects in the system.  For preservation purposes, Obsoletes and ObsoletedBy
-    may be better managed in the science metadata.
+     System metadata is mutable because it must reflect the current state of
+     objects in the system. For preservation purposes, Obsoletes and
+     ObsoletedBy may be better managed in the science metadata.
 
 :ObsoletedBy:
   The Identifier of an object that is a subsequent version of the object
   described in this system metadata record and that therefore obsoletes this 
   object.
+
   :Cardinality:
     0..n
+
   :ValueSpace:
     IdentifierValue as described in the Identifier field.
+    
   .. Note::
+  
     System metadata is mutable because it must reflect the current state of 
     objects in the system.  For preservation purposes, Obsoletes and ObsoletedBy
     may be better managed in the science metadata.
@@ -279,14 +336,18 @@ System Metadata fields
 :DerivedFrom:
   The identifier of an object from which information was derived in the
   process of creating the current object.
+
   :Cardinality:
     0..n
+
   :ValueSpace:
     IdentifierValue as described in the Identifier field.
+
   .. Note::
-    System metadata is mutable because it must reflect the current state of 
-    objects in the system.  For preservation purposes, DerivedFrom
-    may be better managed in the science metadata.
+     System metadata is mutable because it must reflect the current state of
+     objects in the system. For preservation purposes, DerivedFrom may be
+     better managed in the science metadata.
+
 
 CN Specific System Metadata
 ---------------------------
@@ -310,35 +371,47 @@ Notes and fields that probably do not belong in SystemMetadata
 Title () skip this - not really system metadata.
 
 Alternative identifiers (previously published identifiers)
-- Considered, but excluded because not needed for system operations
+
+  - Considered, but excluded because not needed for system operations
 
 Access endpoints (science or higher level metadata? URL, may be outside of dataone)
-- Considered, but excluded because not needed for system operations
+
+  - Considered, but excluded because not needed for system operations
 
 Ownership (originator)
-- Considered, but ownership is ambiguous and overlaps with RightsHolder in
-  ambiguous ways
+
+  - Considered, but ownership is ambiguous and overlaps with RightsHolder in
+    ambiguous ways
 
 Time modified 
-- not applicable since immutable
+
+  - not applicable since immutable
 
 Time accessed 
-- probably best to keep in logs)
+
+  - probably best to keep in logs)
 
 Preservation metadata
-- Other preservation metadata other than expiration date and checksum might
-  be needed
+
+  - Other preservation metadata other than expiration date and checksum might
+    be needed
 
 encoding, encryption, compression
-- these may belong here, or may belong in science metadata
+
+  - these may belong here, or may belong in science metadata
 
 :License:
+
   - belongs in science metadata? 
+
   - but also need controlled vocab for listing licenses- e.g. click thru)
+
   - its not clear what this really means for data, and might have negative
     consequences by imposing contract law on objects that would otherwise be
     unencumbered because copyright does not apply to data per se in the US
+
   - see the Creative Commons CC0 license for data
+
   :Cardinality:
     1
 
@@ -346,8 +419,10 @@ encoding, encryption, compression
   Boolean flag indicating whether authorization is required to provide read
   access to the data.  By skipping authorization steps the process of
   distributing data can be faster.
+
   :Cardinality:
     1
+
 .. Note::
   This field is really an optimization that is derived from the access
   control rules.  It is likely equivalent to an AC rule that allows
