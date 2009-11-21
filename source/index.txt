@@ -27,6 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20091120:
+  - Added section on System Metadata
+
 :20091113:
   - Numerous edits, some rearrangement of chapters
 

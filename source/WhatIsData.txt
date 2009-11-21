@@ -585,6 +585,11 @@ annotation references, and so forth.
 DataONE System Metadata Elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. Note::
+  
+  This block of system metadata fields is obsolete, but needs to be checked
+  against the new list developed in its own section.
+
 An instance of system metadata contains:
 
 :DateCreated:
