@@ -26,11 +26,11 @@ System Metadata fields
 
 .. attribute:: Identifier
 
-  The unique Unicode string that is used to canonically name and identify
-  the object in DataONE.  Each object in DataONE is immutable, and therefore
-  all objects must have unique Identifier. If two objects are related to one
+  The unique Unicode string that is used to canonically name and identify the
+  object in DataONE. Each object in DataONE is immutable, and therefore all
+  objects must have a unique Identifier. If two objects are related to one
   another (such as one object is a more recent version of another object),
-  each of these two objects will have unique identifiers.  The relationship
+  each of these two objects will have unique identifiers. The relationship
   among the objects is specified in other metadata fields (see Obsoletes and
   ObsoletedBy), but this does not preclude the inclusion of version
   information in the identifier string.
@@ -135,24 +135,28 @@ System Metadata fields
   should be maintained for a given object and any preferences or
   requirements as to which Member Nodes should or are allowed to house the
   replicas that are created.
+  
   - number of replicas required
+
   - preferred MNs (social contract, functional properties (size, etc))
+
   - blocked MNs (political, other)
 
   :Cardinality:
     1
 
   .. Note::
+
     This field probably will be hierarchical, or some of its subfields could
-    be broken out as root level fields.  Need to determine the volcabularies
+    be broken out as root level fields. Need to determine the volcabularies
     for these replication policies.
 
 
 .. attribute:: Submitter
 
-  Person who submitted the associated abject to the DataONE Member 
-  Node. The Submitter is by default the RightsHolder if a RightsHolder has
-  not been specified. 
+  Person who submitted the associated abject to the DataONE Member Node. The
+  Submitter is by default the RightsHolder if a RightsHolder has not been
+  specified.
 
   :Cardinality:
     1
@@ -162,11 +166,11 @@ System Metadata fields
 
 .. attribute:: RightsHolder
 
-  Person, Group, or Organization that has ultimate authority for object and
-  is authorized to make all decisions regarding the disposition and
-  accessibility of the object. The RightsHolder has all rights to
-  access the object, update the object, and grant permissions for the object, 
-  even if additional access control rules are not specified for the object.
+  Person, Group, or Organization that has ultimate authority for object and is
+  authorized to make all decisions regarding the disposition and accessibility
+  of the object. The RightsHolder has all rights to access the object, update
+  the object, and grant permissions for the object, even if additional access
+  control rules are not specified for the object.
 
   :Cardinality:
     1
@@ -229,7 +233,7 @@ System Metadata fields
 
 .. attribute:: DateSysMetadataCreated
 
-  Date and time (UTC) that this system metadaat record was created in the 
+  Date and time (UTC) that this system metadata record was created in the
   DataONE system.
 
   :Cardinality:
@@ -254,29 +258,28 @@ System Metadata fields
 .. attribute:: ObjectFormat
 
   Designation of the standard or format that should be used to interpret the
-  contents of the object.  For metadata objects, this is the namespace of
-  the metadata content standard, whereas for data objects it is a
-  well-known data representation format. DataONE maintains a list of formats
-  in use and their canonical FormatIdentifiers. The format identifier for an
-  object should imply its mime type for data objects and metadata type and
-  serialization format for metadata objects. Examples include the namespace
-  of the EML 2.1 metadata specification, the DOCTYPE of the Biological Data
-  Profile, the mime type of text/csv files, and the canonincal name of the
-  NetCDF specification.
+  contents of the object. For metadata objects, this is the namespace of the
+  metadata content standard, whereas for data objects it is a well-known data
+  representation format. DataONE maintains a list of formats in use and their
+  canonical FormatIdentifiers. The format identifier for an object should
+  imply its mime type for data objects and metadata type and serialization
+  format for metadata objects. Examples include the namespace of the EML 2.1
+  metadata specification, the DOCTYPE of the Biological Data Profile, the mime
+  type of text/csv files, and the canonincal name of the NetCDF specification.
 
   :Cardinality:
     1
 
   :ValueSpace:
-    One value from the DataONE ObjectFormatVocabulary, which may be an
-    adopted vocabulary maintained by another organization.
+    One value from the DataONE ObjectFormatVocabulary, which may be an adopted
+    vocabulary maintained by another organization.
 
 
 .. attribute:: Checksum
 
   A calculated hash value used to validate object integrity over time and
-  after network transfers.  The value is calculated using a standard
-  hashing algorithm that is accepted by DataONE and that is indicated in
+  after network transfers. The value is calculated using a standard hashing
+  algorithm that is accepted by DataONE and that is indicated in
   ChecksumAlgorithm.
 
   :Cardinality:
@@ -285,7 +288,7 @@ System Metadata fields
   :ValueSpace: Unicode (or ASCII?) string
 
 
-.. attribute:: CheckSumAlgorithm
+.. attribute:: ChecksumAlgorithm
 
   The name of the checksum algorithm used to calculate the checksum for this
   object.
@@ -294,8 +297,7 @@ System Metadata fields
     1
 
   :ValueSpace:
-    AlgorithmName drawn from a DataONE controlled list of accepted
-    algorithms.
+    AlgorithmName drawn from a DataONE controlled list of accepted algorithms.
 
 
 .. attribute:: Size
@@ -312,24 +314,24 @@ System Metadata fields
 .. attribute:: AccessRule
 
   A rule that is used to allow or deny a principal (user, group, or
-  organization) to perform a service (such as read or write) on an object in 
-  DataONE.  Rules are three-tuples (ruletype, service, principal) where
+  organization) to perform a service (such as read or write) on an object in
+  DataONE. Rules are three-tuples (ruletype, service, principal) where
   ruletype specifies whether the service should be allowed or denied by the
   principal. Default access control rules are specified by the
-  OriginMemberNode when the object is first registered in DataONE.  If no
-  rules are specified at that time, then the object is deemed to be private
-  and the only user with access to the object (read, write, or otherwise) is
-  the RightsHolder.
+  OriginMemberNode when the object is first registered in DataONE. If no rules
+  are specified at that time, then the object is deemed to be private and the
+  only user with access to the object (read, write, or otherwise) is the
+  RightsHolder.
 
   :Cardinality:
     0..n
 
-  :ValueSpace:
-  
-    Three-tuple of the form (ruletype, service, principal) where:
-  
+  :ValueSpace:  Three-tuple of the form (ruletype, service, principal) where:
+
     - ruletype: 'allow', 'deny'
+
     - service: 'read', 'write', changePermissions
+
     - principal: PrincipalIdentifier drawn from the DataONE 
       IdentityProviderService
   
@@ -394,6 +396,17 @@ System Metadata fields
      System metadata is mutable because it must reflect the current state of
      objects in the system. For preservation purposes, DerivedFrom may be
      better managed in the science metadata.
+
+
+.. Note::
+
+  There is a large set of similar problems that deal with relatedness of
+  objects within DataONE, of which obsolescence is one. Others include various
+  forms of annotation and associations between data sets specified manually or
+  through some automated process. Recording such a potentially large set of
+  relations and accessing them efficiently will be a challenge for a large
+  number of objects - and quite similar to those being addressed by various
+  RDF storage technologies.
 
 
 
