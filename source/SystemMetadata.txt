@@ -1,3 +1,5 @@
+.. module:: SystemMetadata
+
 System Metadata
 ===============
 
@@ -22,7 +24,8 @@ maintained by Coordinating Nodes for every object in the system.
 System Metadata fields
 ----------------------
 
-:Identifier:
+.. attribute:: Identifier
+
   The unique Unicode string that is used to canonically name and identify
   the object in DataONE.  Each object in DataONE is immutable, and therefore
   all objects must have unique Identifier. If two objects are related to one
@@ -39,7 +42,9 @@ System Metadata fields
     IdentifierValue consisting of Unicode text excluding reserved characters 
     (whitespace and other characters to be determined)
 
-:OriginMemberNode:
+
+.. attribute:: OriginMemberNode
+
   A reference to the Member Node that originally uploaded the associated
   object. This value should never change, even if a Member Node no longer
   exists.
@@ -50,7 +55,9 @@ System Metadata fields
   :ValueSpace: 
     MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
-:AuthoritativeMemberNode:
+
+.. attribute:: AuthoritativeMemberNode
+
   A reference to the Member Node that acts as the authoritative source for
   an object in the system.  The AuthoritativeMemberNode will often also be the 
   OriginMemberNode, unless there has been a need to transfer authority for
@@ -63,7 +70,9 @@ System Metadata fields
   :ValueSpace: 
     MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
-:Replica: 
+
+.. attribute:: Replica
+
   A container field used to repeatedly provide sseveral metadata fields about 
   each replica that exists in the system, or is being replicated. Note that
   a Replica field exists even for the Authoritative/Origin Member Nodes so
@@ -75,7 +84,9 @@ System Metadata fields
   :ValueSpace: 
     Contains child metadata fields only -- no values per se
 
-:ReplicaMemberNode:
+
+.. attribute:: ReplicaMemberNode
+
   A reference to the Member Node that houses this replica, regardless of
   whether it has arrived at the Member Node or not.  See ReplicationStatus
   to determine if the replica is completely transferred.
@@ -86,7 +97,9 @@ System Metadata fields
   :ValueSpace: 
     MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
-:ReplicationStatus:
+
+.. attribute:: ReplicationStatus
+
   A flag indicating the status of the replica throughout its lifecycle.
   Replicas start when they are queued for replication, then transition to
   'Requested' state when the Coordinating Node asks the Member Node to
@@ -103,7 +116,9 @@ System Metadata fields
   :ValueSpace:
     'Queued', 'Requested', 'Completed', 'Invalidated'
 
-:DateReplicaVerified:
+
+.. attribute:: DateReplicaVerified
+
   Most recent date for which this particular replica was verified against
   its canonical checksum. Because of disk errors and other anomolies that 
   consistently corrupt data, all replicas need to be verified by comparing 
@@ -113,7 +128,9 @@ System Metadata fields
   :Cardinality:
     1
 
-:ReplicationPolicy:
+
+.. attribute:: ReplicationPolicy
+
   A controlled list of policy choices that determine how many replicas
   should be maintained for a given object and any preferences or
   requirements as to which Member Nodes should or are allowed to house the
@@ -130,7 +147,9 @@ System Metadata fields
     be broken out as root level fields.  Need to determine the volcabularies
     for these replication policies.
 
-:Submitter:
+
+.. attribute:: Submitter
+
   Person who submitted the associated abject to the DataONE Member 
   Node. The Submitter is by default the RightsHolder if a RightsHolder has
   not been specified. 
@@ -140,7 +159,9 @@ System Metadata fields
 
   :ValueSpace: PersonIdentifier drawn from the DataONE IdentityProviderService
 
-:RightsHolder:
+
+.. attribute:: RightsHolder
+
   Person, Group, or Organization that has ultimate authority for object and
   is authorized to make all decisions regarding the disposition and
   accessibility of the object. The RightsHolder has all rights to
@@ -163,7 +184,9 @@ System Metadata fields
      e.g., retirement, career change, death), which then orphans the object in
      the system (which still may happen even if groups are allowed here).
 
-:DateCreated: 
+
+.. attribute:: DateCreated
+
   Date and time (UTC) that the object was created in the DataONE system.
   Note this is independent of the publication or release date of the object.
 
@@ -172,7 +195,9 @@ System Metadata fields
 
   :ValueSpace: ISO 8601 Date-time value in UTC
 
-:DateExpires:
+
+.. attribute:: DateExpires
+
   Date and time (UTC) that the object expires in the DataONE system.
 
   :Cardinality:
@@ -184,7 +209,9 @@ System Metadata fields
 
      Its unclear what it means to 'expire'.  Needs clarification.
 
-:DateEmbargoExpires:
+
+.. attribute:: DateEmbargoExpires
+
   Objects can be marked as embargoed by setting this field to a date in the
   future, and by providing access control rules that allow the public to
   read the object after the embargo date passes.  This allows people to
@@ -199,7 +226,9 @@ System Metadata fields
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
-:DateSysMetadataCreated: 
+
+.. attribute:: DateSysMetadataCreated
+
   Date and time (UTC) that this system metadaat record was created in the 
   DataONE system.
 
@@ -209,7 +238,9 @@ System Metadata fields
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
-:DateSysMetadataModified: 
+
+.. attribute:: DateSysMetadataModified
+
   Date and time (UTC) that this system metadata record was modified in the 
   DataONE system.
 
@@ -219,7 +250,9 @@ System Metadata fields
   :ValueSpace: 
     ISO 8601 Date-time value in UTC
 
-:ObjectFormat: 
+
+.. attribute:: ObjectFormat
+
   Designation of the standard or format that should be used to interpret the
   contents of the object.  For metadata objects, this is the namespace of
   the metadata content standard, whereas for data objects it is a
@@ -238,7 +271,9 @@ System Metadata fields
     One value from the DataONE ObjectFormatVocabulary, which may be an
     adopted vocabulary maintained by another organization.
 
-:Checksum: 
+
+.. attribute:: Checksum
+
   A calculated hash value used to validate object integrity over time and
   after network transfers.  The value is calculated using a standard
   hashing algorithm that is accepted by DataONE and that is indicated in
@@ -249,7 +284,9 @@ System Metadata fields
 
   :ValueSpace: Unicode (or ASCII?) string
 
-:CheckSumAlgorithm:
+
+.. attribute:: CheckSumAlgorithm
+
   The name of the checksum algorithm used to calculate the checksum for this
   object.
 
@@ -260,7 +297,9 @@ System Metadata fields
     AlgorithmName drawn from a DataONE controlled list of accepted
     algorithms.
 
-:Size:
+
+.. attribute:: Size
+
   The number of bytes represented in by this object (in bytes).
 
   :Cardinality:
@@ -269,7 +308,9 @@ System Metadata fields
   :ValueSpace:
     long integer
 
-:AccessRule:
+
+.. attribute:: AccessRule
+
   A rule that is used to allow or deny a principal (user, group, or
   organization) to perform a service (such as read or write) on an object in 
   DataONE.  Rules are three-tuples (ruletype, service, principal) where
@@ -301,7 +342,9 @@ System Metadata fields
 
      - SAML is used broadly to represent these types of access rules
 
-:Obsoletes: 
+
+.. attribute:: Obsoletes
+
   The Identifier of an object that is a prior version of the object
   described in this system metadata record and that is obsoleted by this object.
 
@@ -316,7 +359,9 @@ System Metadata fields
      objects in the system. For preservation purposes, Obsoletes and
      ObsoletedBy may be better managed in the science metadata.
 
-:ObsoletedBy:
+
+.. attribute:: ObsoletedBy
+
   The Identifier of an object that is a subsequent version of the object
   described in this system metadata record and that therefore obsoletes this 
   object.
@@ -333,7 +378,9 @@ System Metadata fields
     objects in the system.  For preservation purposes, Obsoletes and ObsoletedBy
     may be better managed in the science metadata.
 
-:DerivedFrom:
+
+.. attribute:: DerivedFrom
+
   The identifier of an object from which information was derived in the
   process of creating the current object.
 
@@ -347,6 +394,7 @@ System Metadata fields
      System metadata is mutable because it must reflect the current state of
      objects in the system. For preservation purposes, DerivedFrom may be
      better managed in the science metadata.
+
 
 
 CN Specific System Metadata
