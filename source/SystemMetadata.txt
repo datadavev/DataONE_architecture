@@ -85,48 +85,48 @@ System Metadata fields
     Contains child metadata fields only -- no values per se
 
 
-.. attribute:: ReplicaMemberNode
+  .. attribute:: ReplicaMemberNode
 
-  A reference to the Member Node that houses this replica, regardless of
-  whether it has arrived at the Member Node or not.  See ReplicationStatus
-  to determine if the replica is completely transferred.
+    A reference to the Member Node that houses this replica, regardless of
+    whether it has arrived at the Member Node or not.  See ReplicationStatus
+    to determine if the replica is completely transferred.
 
-  :Cardinality:
-    1
+    :Cardinality:
+      1
 
-  :ValueSpace: 
-    MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
-
-
-.. attribute:: ReplicationStatus
-
-  A flag indicating the status of the replica throughout its lifecycle.
-  Replicas start when they are queued for replication, then transition to
-  'Requested' state when the Coordinating Node asks the Member Node to
-  replicate the object, and then finish in 'Completed' state after the
-  object has been transferred and the Coordinating Node is notified that
-  the replication has completed. During the verification process a replica
-  may be found to be corrupt, at which point it transitions to
-  'Invalidated' to indicate that the replica is no longer valid and needs
-  to be transferred again.
-
-  :Cardinality:
-    1
-
-  :ValueSpace:
-    'Queued', 'Requested', 'Completed', 'Invalidated'
+    :ValueSpace: 
+      MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
 
-.. attribute:: DateReplicaVerified
+  .. attribute:: ReplicationStatus
 
-  Most recent date for which this particular replica was verified against
-  its canonical checksum. Because of disk errors and other anomolies that 
-  consistently corrupt data, all replicas need to be verified by comparing 
-  them to their checksum.  Validation errors cause a change of
-  ReplicationStatus to 'Invalidated'.
+    A flag indicating the status of the replica throughout its lifecycle.
+    Replicas start when they are queued for replication, then transition to
+    'Requested' state when the Coordinating Node asks the Member Node to
+    replicate the object, and then finish in 'Completed' state after the
+    object has been transferred and the Coordinating Node is notified that
+    the replication has completed. During the verification process a replica
+    may be found to be corrupt, at which point it transitions to
+    'Invalidated' to indicate that the replica is no longer valid and needs
+    to be transferred again.
 
-  :Cardinality:
-    1
+    :Cardinality:
+      1
+
+    :ValueSpace:
+      'Queued', 'Requested', 'Completed', 'Invalidated'
+
+
+  .. attribute:: DateReplicaVerified
+
+    Most recent date for which this particular replica was verified against
+    its canonical checksum. Because of disk errors and other anomolies that 
+    consistently corrupt data, all replicas need to be verified by comparing 
+    them to their checksum.  Validation errors cause a change of
+    ReplicationStatus to 'Invalidated'.
+
+    :Cardinality:
+      1
 
 
 .. attribute:: ReplicationPolicy

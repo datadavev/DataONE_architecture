@@ -51,7 +51,7 @@ copyright = u'2009, VDC Project, DataONE CCIT'
 # built documents.
 #
 # The short X.Y version.
-version = '0.0'
+version = '0.0.3'
 # The full version, including alpha/beta/rc tags.
 release = '0.0.3'
 
@@ -202,7 +202,7 @@ latex_preamble = '\\usepackage{pdflscape}'
 #latex_use_modindex = True
 
 pdf_documents = [
-  ('index', 'DataONEArchitecture_0_0_3', u'DataONE Architecture Documentation',
+  ('index', 'DataONEArchitecture_0_0_4', u'DataONE Architecture Documentation',
    u'VDC Project, DataONE CCIT', 'manual'),
 ]
 

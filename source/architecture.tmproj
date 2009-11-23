@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>overview.txt</string>
+	<string>conf.py</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -19,7 +19,7 @@
 					<key>filename</key>
 					<string>apis.txt</string>
 					<key>lastUsed</key>
-					<date>2009-11-16T17:02:12Z</date>
+					<date>2009-11-20T15:27:03Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -40,8 +40,6 @@
 					<date>2009-11-13T21:27:12Z</date>
 				</dict>
 			</array>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>APIs</string>
 		</dict>
@@ -61,21 +59,25 @@
 			<key>filename</key>
 			<string>GUIDs.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-17T02:48:22Z</date>
+			<date>2009-11-20T15:27:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>index.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-15T19:47:17Z</date>
+			<date>2009-11-21T03:04:43Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>overview.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-20T12:06:14Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2009-11-21T03:07:45Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>SystemMetadata.txt</string>
+			<key>lastUsed</key>
+			<date>2009-11-21T04:16:23Z</date>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -84,13 +86,15 @@
 					<key>filename</key>
 					<string>conf.py</string>
 					<key>lastUsed</key>
-					<date>2009-11-17T01:34:08Z</date>
+					<date>2009-11-21T04:16:23Z</date>
+					<key>selected</key>
+					<true/>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>plantuml.conf</string>
 					<key>lastUsed</key>
-					<date>2009-11-17T01:34:23Z</date>
+					<date>2009-11-20T15:27:03Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -108,7 +112,7 @@
 			<key>filename</key>
 			<string>prioritization.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-18T18:51:23Z</date>
+			<date>2009-11-20T15:27:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -126,7 +130,7 @@
 			<key>filename</key>
 			<string>usecases.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T19:38:33Z</date>
+			<date>2009-11-20T15:27:20Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -138,17 +142,15 @@
 			<key>filename</key>
 			<string>userrequirements.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T16:00:49Z</date>
+			<date>2009-11-21T02:52:56Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>WhatIsData.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-17T02:55:30Z</date>
+			<date>2009-11-20T15:27:04Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>UseCases</string>
 			<key>regexFolderFilter</key>
@@ -175,20 +177,6 @@
 			<key>firstVisibleLine</key>
 			<integer>294</integer>
 		</dict>
-		<key>GUIDs.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>11</integer>
-				<key>line</key>
-				<integer>91</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>72</integer>
-		</dict>
 		<key>MN_APIs.txt</key>
 		<dict>
 			<key>caret</key>
@@ -203,49 +191,19 @@
 			<key>firstVisibleLine</key>
 			<integer>326</integer>
 		</dict>
-		<key>UseCases/01_uc.txt</key>
+		<key>SystemMetadata.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>8</integer>
 				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>3</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-		</dict>
-		<key>UseCases/09_uc.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>75</integer>
-				<key>line</key>
-				<integer>69</integer>
+				<integer>389</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>53</integer>
+			<integer>373</integer>
 		</dict>
 		<key>UseCases/10_uc.txt</key>
 		<dict>
@@ -275,122 +233,74 @@
 			<key>firstVisibleLine</key>
 			<integer>42</integer>
 		</dict>
-		<key>WhatIsData.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>29</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>apis.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>37</integer>
-				<key>line</key>
-				<integer>17</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>7</integer>
-		</dict>
 		<key>conf.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>34</integer>
+				<integer>16</integer>
 				<key>line</key>
-				<integer>195</integer>
+				<integer>53</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>166</integer>
+			<integer>33</integer>
+		</dict>
+		<key>index.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>47</integer>
 		</dict>
 		<key>overview.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>17</integer>
 				<key>line</key>
-				<integer>87</integer>
+				<integer>219</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>83</integer>
+			<integer>184</integer>
 		</dict>
-		<key>plantuml.conf</key>
+		<key>userrequirements.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>23</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>22</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>23</integer>
-			</dict>
-		</dict>
-		<key>prioritization.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>11</integer>
-				<key>line</key>
-				<integer>474</integer>
+				<integer>187</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>120</integer>
+			<integer>231</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>overview.txt</string>
-		<string>UseCases/09_uc.txt</string>
-		<string>prioritization.txt</string>
-		<string>GUIDs.txt</string>
+		<string>userrequirements.txt</string>
+		<string>SystemMetadata.txt</string>
 		<string>conf.py</string>
-		<string>plantuml.conf</string>
-		<string>apis.txt</string>
-		<string>UseCases/01_uc.txt</string>
-		<string>WhatIsData.txt</string>
+		<string>overview.txt</string>
+		<string>index.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{26, 27}, {859, 578}}</string>
+	<string>{{401, 24}, {859, 745}}</string>
 </dict>
 </plist>
