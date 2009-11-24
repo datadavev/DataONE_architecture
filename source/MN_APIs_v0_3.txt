@@ -1,0 +1,262 @@
+Member Node APIs for V0.3
+-------------------------
+
+
+These APIs are implemented by Member Nodes for version 0.3.
+
+.. Work In Progress:: 
+   This is work in progress by Paul Allen. I've only just started!
+
+.. todo:: 
+   The APIs need to be edited for consistency of method signatures and naming.
+   Update the sequence diagrams to reflect the edits to the API.
+
+
+Authorization API
+~~~~~~~~~~~~~~~~~
+
+There is no authorization API for version 0.3.
+
+
+CRUD API
+~~~~~~~~
+
+.. module:: MN_crud
+   :synopsis: Create, read, update, and delete operations on member nodes
+
+::
+
+  getSystemMetadata(token, GUID) -> objectMetadata
+  get(token, GUID) -> object
+  getLogRecords(token, fromDate, toDate)
+  log (create, creationDate, ID)
+  
+
+.. exception:: NotFound
+
+.. exception:: NotAuthorized
+
+.. exception:: UnsupportedType
+
+.. exception:: InsufficientResources
+
+
+.. function:: describe(token, GUID) -> objectMetadata
+
+   Describes the object located at the endpoint of a GUID. This is necessary
+   to enable a client (e.g. a CN doing synchronization of new content) to
+   determine what type of information is being referenced before it is
+   registered in the system metadata. Helps to avoid accidental download of
+   data objects rather than metadata.
+
+   It may also be possible / feasible / appropriate to utilize content
+   negotiation in the HTTP GET method as part of the :func:`get` operation to
+   retrieve this information (or perhaps HTTP HEAD).
+
+   :param token: Identity with privileges to read the GUID.
+
+   :param GUID: Identifier for the object in question.
+
+   :rtype: Metadata describing what the GUID refers to.
+
+
+.. function:: get(token, GUID) -> object
+
+   Retrieve an object identified by GUID from the Member Node.
+
+   :param token: The authentication token returned by ``login()``
+
+   :param GUID: The identifier for the object to be retrieved.
+
+   :rtype: 
+    Bytes of the specified object. For data objects, this will be the actual
+    bytes of data. For metadata objects, this will be the representation of
+    the object as provided by the Member Node.
+
+   :raises NotAuthorized: The supplied identity does not have READ permission on the object.
+
+   :raises NotFound: The object specified by GUID does not exist.
+
+   .. Note:: There may be multiple representations of content (e.g. metadata as
+      XML, RDF, or some other format).  May need to add another parameter to specify
+      the format, or perhaps rely on HTTP content negotiation for this.
+
+
+
+.. function:: batchGet(token, GUIDs) -> ?
+
+  Identical to get() except that a list of identifiers is requested.
+
+  The issue here is how to serialize the results. There are some conceptual
+  mechanisms for handling structured markup such as XML, but no consistent
+  approaches for working with data blobs. Perhaps this method should apply
+  only to system metadata, for which the serialization can be defined
+  independently of all the other participating nodes?
+
+  :param token: The authentication token returned by ``login()``
+
+  :param GUIDs: The list of identifiers to retrieve.
+
+  :rtype: 
+   Bytes of the specified objects. **How are multiple objects serialized?**
+
+  :raises NotAuthorized: The supplied identity does not have READ permission on the object.
+
+  :raises NotFound: The object specified by GUID does not exist.
+
+
+
+.. function:: checkDataQuality (GUID)
+
+  TODO: need details on what this operation is supposed to be doing.
+
+  :param GUID: object to check
+
+
+
+.. function:: create (token, dataPackage) -> GUID
+
+  Adds a new data package to the Member Node. This mechanism is used by the
+  Coordinating Nodes to indicate a Member Node should add a copy of the data
+  package to itself.
+
+  The actual transfer of content should occur asynchronously, so this method
+  should return immediately after the operation has been scheduled.
+
+  :param token: The authentication token returned by ``login()``
+
+  :param dataPackage:
+   The information that is to be added to the Member Node. This will contain
+   GUIDs that at least identify the data and metadata that are to be added. It
+   is up to the MN to determine when the actual retrieval should occur.
+
+  :rtype: 
+   An identifier that can be used to check on the status of the operation. For
+   example, this could be a URL that points to a status document on the MN.
+
+  :raises NotAuthorized:
+
+  :raises UnsupportedType: 
+   The MN can not deal with the content specified in the data package.
+
+  :raises InsufficientResources:
+   The MN is unable to execute the transfer because it does not have
+   sufficient storage space for example.
+
+
+
+.. function:: create (token, workflowObject)
+
+.. Note:: Why is this method different from a regular create() operation?
+
+
+
+.. function:: getChecksum (GUID) -> checksum
+
+  Returns a checksum for the specified object using the system wide hashing
+  algorithm. The result is used to determine if two instances referenced by a
+  GUID are identical, hence it is important that the same algorithm is used throughout 
+
+  :param GUID: The identifier of the object the operation is being performed on.
+
+  :rtype: The checksum value originally computed for the specified object.
+
+  .. Note:: for an MN, this should probably be a computed value.  For CNs, it
+     should be the value originally calculated for the object (and retrieved from
+     system metadata)
+
+
+
+.. function:: getLogRecords(token, fromDate, toDate)
+
+  Retrieve log information from the MN for the specified date range (inclusive).
+
+
+
+.. function:: log (create, creationDate, ID)
+
+
+
+.. function:: register (memberToken, ID, metadata)
+
+  :param token: The authentication token returned by :func:`login`
+
+
+
+
+Replication API
+~~~~~~~~~~~~~~~
+
+.. module:: MN_replication
+   :synopsis: Handles CN directed replication of content between member nodes.
+
+.. function::  cancelReplication (sess, transID)
+
+.. function::  listAllObjects ()
+
+.. function::  listRecords ()
+
+.. function::  replicationSucceeds (transID)
+
+.. function::  startReplica (ID, sessionID, transID, srcMN)
+
+.. function::  sysOp (token)
+
+
+
+.. function:: listChangedRecords(token) -> GUIDs
+
+   List the records that have changed since the last synchronization event.
+
+   :param token: A token with authority to retrieve a list of changed records.
+
+
+
+
+Capabilities API
+~~~~~~~~~~~~~~~~
+
+.. module:: MN_capabilities
+   :synopsis: Reports the capabilities of a Member Node
+
+.. function::  serviceRequest (token)
+
+.. function::  getCapabilities () -> capabilities
+
+   Returns a document describing the capabilities of the Member Node. 
+   
+   :rtype: Capabilities metadata document
+
+
+
+
+State of Health API
+~~~~~~~~~~~~~~~~~~~
+
+.. module:: MN_health
+   :synopsis: Reports on the status of a Member Node
+
+.. function::  sohQuery (token, service)
+
+.. function:: ping() -> pingResponse
+
+   Low level "are you alive" operation. Response is simple ACK, but may be
+   reasonable to overload with a couple of flags that could indicate
+   availability of new data or change in capabilities.
+
+   :rtype pingResponse: A simple chunk of data, perhaps XML, or plain text.
+
+.. function:: getStatus(token) -> currentStatus
+
+   Returns the current status of the MN, perhaps with some accumulation and
+   averaging over the last xxx minutes.
+
+   :param token: Identity with authority to retrieve the status information.
+
+   :rtype: A status document in an easily parsed syntax such as JSON or XML
+
+
+.. raw:: latex
+
+   \newpage
+
