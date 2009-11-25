@@ -31,7 +31,10 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html:
+plantuml:
+	plantuml source source/UseCases
+
+html: 
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
