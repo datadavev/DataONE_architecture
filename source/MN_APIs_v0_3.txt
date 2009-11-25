@@ -26,18 +26,10 @@ CRUD API
   getSystemMetadata(token, GUID) -> objectMetadata
   get(token, GUID) -> object
   getLogRecords(token, fromDate, toDate)
-  log (create, creationDate, ID)
-  listChangedRecords(token, query)
-  
+  log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)
+
 
 .. exception:: NotFound
-
-.. exception:: NotAuthorized
-
-.. exception:: UnsupportedType
-
-.. exception:: InsufficientResources
-
 
 .. function:: getSystemMetadata(token, GUID) -> objectMetadata
 
@@ -49,16 +41,18 @@ CRUD API
 
    :param token: Identity with privileges to read the GUID.
 
-   :param GUID: Identifier for the object in question.
+   :param GUID: Identifier for the object in question. The GUID identifies a data or science metadata object.
 
-   :rtype: Metadata describing the object to which the GUID refers .
+   :returns: System metadata object describing the object.
+   
+   :raises NotFound: There is no data or metadata object identified by the given GUID. 
 
 
 .. function:: get(token, GUID) -> object
 
    Retrieve an object identified by GUID from the Member Node.
 
-   :param token: The authentication token returned by ``login()``
+   :param token: authentication token; ignored for V0.3
 
    :param GUID: The identifier for the object to be retrieved.
 
@@ -67,8 +61,6 @@ CRUD API
     bytes of data. For metadata objects, this will be the representation of
     the object as provided by the Member Node.
 
-   :raises NotAuthorized: The supplied identity does not have READ permission on the object.
-
    :raises NotFound: The object specified by GUID does not exist.
 
    .. Note:: There may be multiple representations of content (e.g. metadata as
@@ -76,14 +68,22 @@ CRUD API
       the format, or perhaps rely on HTTP content negotiation for this.
 
 
-
 .. function:: getLogRecords(token, fromDate, toDate)
 
   Retrieve log information from the MN for the specified date range (inclusive).
+  
+  :param token: authentication token; ignored for V0.3
+  
+  :param fromDate: specified by appropriate standard (ISO? W3C?)
+  
+  :param toDate: specified by appropriate standard (ISO? W3C?)
+  
+  :returns: the set of log records specified; format is not yet specified
 
 
+.. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)
 
-.. function:: log (create, creationDate, ID)
+   This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging information so that it can respond to ``getLogRecords(token, fromDate, toDate)``.
 
 
 Replication API
@@ -97,8 +97,9 @@ Note that MN-to-MN science metadata and data replication in V0.3 is handled out-
    :synopsis: Handles CN-directed replication of content between member nodes; also supports the initial harvesting of science metadata from a MN by a CN.
 
 ::
+
   listObjects(token query) -> GUIDs
-  synchronizationComete(token, GUID)
+  synchronizationComplete(token, GUID)
 
 .. exception:: InvalidCriteria
 
@@ -110,7 +111,7 @@ Note that MN-to-MN science metadata and data replication in V0.3 is handled out-
 
    Retrieve the list of GUIDs for objects owned by the MN that meet the query criteria. This method supports the synchronization of science metadata from a MN to a CN. The query specification must be rich enough
 
-   :param token: The authentication token; ignored for V0.3
+   :param token: authentication token; ignored for V0.3
 
    :param query: The criteria specifying the characteristics of the objects of interest. The structure of this query is not yet defined. It must be rich enough  so that a CN can ask "What science metadata objects do you own, that are not yet synchronized to a CN?" There are likely other queries that will need to be posed as well.
 
@@ -124,11 +125,13 @@ Note that MN-to-MN science metadata and data replication in V0.3 is handled out-
    
    This is a callback method used by a CN to indicate to a MN that it has completed replication of the science metadata identified by GUID. When called, the MN should somehow record that syncrhonization is complete for that object so that the next time it reponds to a ``listObjects(token, query)`` query the object will not be included as requiring synchronization.
    
-   :param token: The authentication token; ignored for V0.3
+   :param token: authentication token; ignored for V0.3
    
    :param GUID: The GUID of the science metadata object that is now synchronized with the CN. 
-
-   :returns: A simple ACK.
+   
+   .. note:: A CN could use this method to provide the MN with an updated version of the system metadata for the object if this method accepted a system metadata object instead of a simple GUID as a parameter.
+   
+   :returns: A simple acknowledgement.
    
    :raises InvalidIdentifier: The supplied GUID does not identify a science metadata object owned by the MN. 
    
@@ -155,12 +158,13 @@ Reports on the status of a Member Node.
   heartbeat() -> response
 
 .. function:: heartbeat() -> response
+  
+   .. note:: This method will be used by Use Case 10 "MN Status Reports" for V0.3, but that use case will require the use of ``getStatus(token)`` from this same API for later versions.
    
    Low level "Are you alive?" operation.  The member node should perform some minimal internal functionality testing before answering. However, heartbeat checks will be frequent (every few minutes) so the internal functionality test should not be high impact.
 
    :returns: A simple chunk of data, perhaps XML, or plain text. Response is a simple ACK, including the version number of the MN API supported by the MN, an indication if it considers itself fully functional or not, and a timestamp from the MN when the response was produced.  
 
-   .. Note:: This method will be used by Use Case 10 "MN Status Reports" for V0.3, but that use case will require the use of ``getStatus(token)`` from this same API for later versions.
 
 .. raw:: latex
 
