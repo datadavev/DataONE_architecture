@@ -2,7 +2,7 @@ Member Node APIs for V0.3
 -------------------------
 
 
-These APIs are implemented by Member Nodes for version 0.3. This is a reduced set of functionality compared to the full set of APIs envisioned for Member nodes.
+These APIs are implemented by Member Nodes for version 0.3. This is a reduced set of functionality compared to the full set of APIs envisioned for Member Nodes.
 
 .. todo:: 
    The APIs need to be edited for consistency of method signatures and naming.
@@ -12,14 +12,15 @@ These APIs are implemented by Member Nodes for version 0.3. This is a reduced se
 Authorization API
 ~~~~~~~~~~~~~~~~~
 
-There is no authorization API for this version.
+.. module:: MN_authorization_0.3
+   :synopsis: There is no authorization API for this version. All authorization and authentication will be handled by network configuration, out-of-band with respect to the MN APIs.
 
 
 CRUD API
 ~~~~~~~~
 
-.. module:: MN_crud
-   :synopsis: Create, read, update, and delete operations on member nodes
+.. module:: MN_crud_0.3
+   :synopsis: Read operations on member nodes. Also supports synchronization of science metadata between MNs and CNs. See the Replication API for support for replication of science metadata and data between MNs.
 
 ::
 
@@ -27,6 +28,7 @@ CRUD API
   get(token, GUID) -> object
   getLogRecords(token, fromDate, toDate)
   log (create, creationDate, ID)
+  listChangedRecords(token, query)
   
 
 .. exception:: NotFound
@@ -85,84 +87,65 @@ CRUD API
 .. function:: log (create, creationDate, ID)
 
 
-
-.. function:: register (memberToken, ID, metadata)
-
-  :param token: The authentication token returned by :func:`login`
-
-
-
-
 Replication API
 ~~~~~~~~~~~~~~~
 
-.. module:: MN_replication
-   :synopsis: Handles CN directed replication of content between member nodes.
-
-.. function::  cancelReplication (sess, transID)
-
-.. function::  listAllObjects ()
-
-.. function::  listRecords ()
-
-.. function::  replicationSucceeds (transID)
-
-.. function::  startReplica (ID, sessionID, transID, srcMN)
-
-.. function::  sysOp (token)
+.. module:: MN_replication_0.3
+   :synopsis: Handles CN-directed replication of content between member nodes. This API also supports the initial harvesting of science metadata from a MN by a CN. Method names used for the former include some form of "replication" in their name. Method names used for the latter include some form of "synchronize" in their name.
+   
+   Note that MN-to-MN science metadata and data replication in V0.3 is handled out-of-band with respect to this API so explicit API methods to support that are not included here in V0.3.
 
 
 
-.. function:: listChangedRecords(token) -> GUIDs
+.. function::  listObjects (token, query) -> GUIDs
 
-   List the records that have changed since the last synchronization event.
+   Retrieve the list of GUIDs for objects owned by the MN that meet the query criteria. This method supports the synchronization of science metadata from a MN to a CN. The query specification must be rich enough
 
-   :param token: A token with authority to retrieve a list of changed records.
+   :param token: The authentication token; ignored for V0.3
+
+   :param query: The criteria specifying types of objects of interest. The structure of this query is not yet defined. It must be rich enough  so that a CN can ask "What metadata objects do you own, that are not yet synchronized to a CN?" There are likely other queries that will need to be posed as well.
+
+   :returns: The list of GUIDs that match the query criteria. If none match, an empty list is returned.
+   
+   :raises InvalidCriteria: The MN cannot understand or parse the query criteria.
 
 
 
+.. function::  synchronizationComplete (token, GUID) -> response 
+   
+   This is a callback function used by a CN to indicate to a MN that it has completed replication of the science metadata identified by GUID. When called, the MN should somehow record that syncrhonization is complete for that object so that the next time it reponds to a ``listObjects()`` query the object will not be included as requiring synchronization.
+   
+   :param token: The authentication token; ignored for V0.3
+   
+   :param GUID: The GUID of the science metadata object that is now synchronized with the CN. 
+
+   :rtype response: A simple ACK.
+   
+   :raises InvalidIdentifier: The supplied GUID does not identify a science metadata object owned by the MN. 
+   
+   :raises InvalidOperation: The science metadata object identified by the GUID is already marked as synchronized.
 
 Capabilities API
 ~~~~~~~~~~~~~~~~
 
-.. module:: MN_capabilities
-   :synopsis: Reports the capabilities of a Member Node
-
-.. function::  serviceRequest (token)
-
-.. function::  getCapabilities () -> capabilities
-
-   Returns a document describing the capabilities of the Member Node. 
-   
-   :rtype: Capabilities metadata document
-
-
-
+.. module:: MN_capabilities_0.3
+   :synopsis: There is no capabilities API for this version.
 
 State of Health API
 ~~~~~~~~~~~~~~~~~~~
 
-.. module:: MN_health
+.. module:: MN_health_0.3
    :synopsis: Reports on the status of a Member Node
 
-.. function::  sohQuery (token, service)
+.. function:: heartbeat() -> heartbeatResponse
 
-.. function:: ping() -> pingResponse
+   Low level "are you alive?" operation. Response is a simple ACK, including the version number of the MN API supported by the MN and a timestamp from the MN when the response was produced. 
+   
+   **Use cases.**
+   
+  - This will be used by Use Case 10 "MN Status Reports" for V0.3, but that use case will require the use of ``getStatus(token)`` from this same API for later versions.
 
-   Low level "are you alive" operation. Response is simple ACK, but may be
-   reasonable to overload with a couple of flags that could indicate
-   availability of new data or change in capabilities.
-
-   :rtype pingResponse: A simple chunk of data, perhaps XML, or plain text.
-
-.. function:: getStatus(token) -> currentStatus
-
-   Returns the current status of the MN, perhaps with some accumulation and
-   averaging over the last xxx minutes.
-
-   :param token: Identity with authority to retrieve the status information.
-
-   :rtype: A status document in an easily parsed syntax such as JSON or XML
+   :rtype heartbeatResponse: A simple chunk of data, perhaps XML, or plain text.
 
 
 .. raw:: latex
