@@ -12,15 +12,14 @@ These APIs are implemented by Member Nodes for version 0.3. This is a reduced se
 Authorization API
 ~~~~~~~~~~~~~~~~~
 
-.. module:: MN_authorization_0.3
-   :synopsis: There is no authorization API for this version. All authorization and authentication will be handled by network configuration, out-of-band with respect to the MN APIs.
+There is no authorization API for this version. All authorization and authentication will be handled by network configuration, out-of-band with respect to the MN APIs.
 
 
 CRUD API
 ~~~~~~~~
 
-.. module:: MN_crud_0.3
-   :synopsis: Read operations on member nodes. Also supports synchronization of science metadata between MNs and CNs. See the Replication API for support for replication of science metadata and data between MNs.
+.. module:: MN_crud_0_3
+   :synopsis: Read operations on member nodes.
 
 ::
 
@@ -90,12 +89,22 @@ CRUD API
 Replication API
 ~~~~~~~~~~~~~~~
 
-.. module:: MN_replication_0.3
-   :synopsis: Handles CN-directed replication of content between member nodes. This API also supports the initial harvesting of science metadata from a MN by a CN. Method names used for the former include some form of "replication" in their name. Method names used for the latter include some form of "synchronize" in their name.
-   
-   Note that MN-to-MN science metadata and data replication in V0.3 is handled out-of-band with respect to this API so explicit API methods to support that are not included here in V0.3.
+The Replication API handles CN-directed replication of content between MNs and also supports the initial harvesting of science metadata from a MN by a CN. Method names used for the former include some form of "replication" in their name. Method names used for the latter include some form of "synchronize" in their name.
+ 
+Note that MN-to-MN science metadata and data replication in V0.3 is handled out-of-band with respect to this API so explicit API methods to support that are not included here in V0.3.
 
+.. module:: MN_replication_0_3
+   :synopsis: Handles CN-directed replication of content between member nodes; also supports the initial harvesting of science metadata from a MN by a CN.
 
+::
+  listObjects(token query) -> GUIDs
+  synchronizationComete(token, GUID)
+
+.. exception:: InvalidCriteria
+
+.. exception:: InvalidIdentifier
+
+.. exception:: InvalidOperation
 
 .. function::  listObjects (token, query) -> GUIDs
 
@@ -103,7 +112,7 @@ Replication API
 
    :param token: The authentication token; ignored for V0.3
 
-   :param query: The criteria specifying types of objects of interest. The structure of this query is not yet defined. It must be rich enough  so that a CN can ask "What metadata objects do you own, that are not yet synchronized to a CN?" There are likely other queries that will need to be posed as well.
+   :param query: The criteria specifying the characteristics of the objects of interest. The structure of this query is not yet defined. It must be rich enough  so that a CN can ask "What science metadata objects do you own, that are not yet synchronized to a CN?" There are likely other queries that will need to be posed as well.
 
    :returns: The list of GUIDs that match the query criteria. If none match, an empty list is returned.
    
@@ -111,42 +120,47 @@ Replication API
 
 
 
-.. function::  synchronizationComplete (token, GUID) -> response 
+.. function::  synchronizationComplete (token, GUID)
    
-   This is a callback function used by a CN to indicate to a MN that it has completed replication of the science metadata identified by GUID. When called, the MN should somehow record that syncrhonization is complete for that object so that the next time it reponds to a ``listObjects()`` query the object will not be included as requiring synchronization.
+   This is a callback method used by a CN to indicate to a MN that it has completed replication of the science metadata identified by GUID. When called, the MN should somehow record that syncrhonization is complete for that object so that the next time it reponds to a ``listObjects(token, query)`` query the object will not be included as requiring synchronization.
    
    :param token: The authentication token; ignored for V0.3
    
    :param GUID: The GUID of the science metadata object that is now synchronized with the CN. 
 
-   :rtype response: A simple ACK.
+   :returns: A simple ACK.
    
    :raises InvalidIdentifier: The supplied GUID does not identify a science metadata object owned by the MN. 
    
    :raises InvalidOperation: The science metadata object identified by the GUID is already marked as synchronized.
 
+
 Capabilities API
 ~~~~~~~~~~~~~~~~
 
-.. module:: MN_capabilities_0.3
-   :synopsis: There is no capabilities API for this version.
+There is no Capabilities API for this version.
+
+
 
 State of Health API
 ~~~~~~~~~~~~~~~~~~~
 
-.. module:: MN_health_0.3
-   :synopsis: Reports on the status of a Member Node
+Reports on the status of a Member Node.
 
-.. function:: heartbeat() -> heartbeatResponse
-
-   Low level "are you alive?" operation. Response is a simple ACK, including the version number of the MN API supported by the MN and a timestamp from the MN when the response was produced. 
+.. module:: MN_health_0_3
+   :synopsis: Reports on the status of a Member Node.
    
-   **Use cases.**
+::
+
+  heartbeat() -> response
+
+.. function:: heartbeat() -> response
    
-  - This will be used by Use Case 10 "MN Status Reports" for V0.3, but that use case will require the use of ``getStatus(token)`` from this same API for later versions.
+   Low level "Are you alive?" operation.  The member node should perform some minimal internal functionality testing before answering. However, heartbeat checks will be frequent (every few minutes) so the internal functionality test should not be high impact.
 
-   :rtype heartbeatResponse: A simple chunk of data, perhaps XML, or plain text.
+   :returns: A simple chunk of data, perhaps XML, or plain text. Response is a simple ACK, including the version number of the MN API supported by the MN, an indication if it considers itself fully functional or not, and a timestamp from the MN when the response was produced.  
 
+   .. Note:: This method will be used by Use Case 10 "MN Status Reports" for V0.3, but that use case will require the use of ``getStatus(token)`` from this same API for later versions.
 
 .. raw:: latex
 
