@@ -50,7 +50,7 @@ Post Conditions
 .. figure:: images/10_interaction.png
    :width: 75%
 
-   Interactons for use case 10. Describes a synchronous process for generating
+   Interactions for use case 10. Describes a synchronous process for generating
    a report. Most likely, a better mechanism would be for a background process
    to be accumulating the necessary statistics from Member Nodes, then the
    generateReport function would operate on the accumulated data
@@ -76,10 +76,11 @@ Post Conditions
       end
     end
     activate c_health
-    c_health -> c_health: processStatusReports() 
-    note right of c_health
-    internal process, not in the CN API
-    end note
+      note right of c_health
+      internal process, not in the CN API
+      end note
+      c_health -> c_health: processStatusReports() 
+    deactivate c_health
     c_health --> app_admin: statusReport
   @enduml
   
