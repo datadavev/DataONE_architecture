@@ -5,7 +5,7 @@ Author
   VDC TWG
 
 Date
-  - 20091126 Make consistent with V0.3 APIs.
+  - 20091126 [PEA] Make consistent with V0.3 APIs.
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
@@ -21,7 +21,7 @@ Summary
 
   As part of the infrastructure monitoring process, a CN checks on the
   "liveness" of all Member Nodes. This operation will be performed with
-  moderate frequency (perhaps in the order of once every few minutes).
+  moderate frequency (perhaps in the order of once every few minutes). The "lite" version of this use case, implemented for V0.3 is a simple heartbeat check with each Member Node. Later, more in-depth status information will be retrieved from Member Nodes using the ``MN_health.getStatus()`` method.
 
   The responses from the MNs should report sufficient metrics to gauge their
   performance in absolute terms and also relative to other MNs.
@@ -75,7 +75,11 @@ Post Conditions
         m_health --> c_health: status
       end
     end
-    c_health -> c_health: [internal process, not CN API] processStatusReports() 
+    activate c_health
+    c_health -> c_health: processStatusReports() 
+    note right of c_health
+    internal process, not in the CN API
+    end note
     c_health --> app_admin: statusReport
   @enduml
   
