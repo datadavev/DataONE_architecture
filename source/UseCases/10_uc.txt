@@ -5,12 +5,12 @@ Author
   VDC TWG
 
 Date
-  - 20091126 [PEA] Make consistent with V0.3 APIs.
+  - 20091126 [PEA] Make consistent with V0.3 API documentation.
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
 Version 
-  Draft
+  0.3
 
 Goal 
   Coordinating Node checks "liveness" of all Member Nodes - checks ping,
@@ -40,7 +40,7 @@ Triggers
 
   - Timed interval
 
-  - Registration change
+  - Registration change (not for V0.3)
 
 Post Conditions
 
@@ -50,7 +50,7 @@ Post Conditions
 .. figure:: images/10_interaction.png
    :width: 75%
 
-   Interactions for use case 10. Describes a synchronous process for generating
+   Interactions for use case 10. These interactions describe a synchronous process for generating
    a report. Most likely, a better mechanism would be for a background process
    to be accumulating the necessary statistics from Member Nodes, then the
    generateReport function would operate on the accumulated data
@@ -77,7 +77,8 @@ Post Conditions
     end
     activate c_health
       note right of c_health
-      internal process, not in the CN API
+      internal process, 
+      not in the CN API
       end note
       c_health -> c_health: processStatusReports() 
     deactivate c_health
