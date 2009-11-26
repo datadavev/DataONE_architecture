@@ -141,6 +141,9 @@ Post Conditions
   User -> app_client
   app_client -> c_crud: get(token, GUID)
   alt V0.3
+    note right of c_crud
+      no-op
+    end
   else After V0.3
   c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
   c_crud <-- c_authorize: T or F 
