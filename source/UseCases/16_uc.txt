@@ -36,8 +36,8 @@ Preconditions
 
 Triggers
 
-  - V0.3 - User requests an object (i.e.g, ``MN_CRUD.get()``)
-  - after V0.3 -User requests, modifies, or creates an object
+  - V0.3 - User requests an object, i.e., ``MN_crud.get()``
+  - after V0.3 - User requests, modifies, or creates an object
 
 
 Post Conditions

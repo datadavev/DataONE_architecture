@@ -65,7 +65,7 @@ Post Conditions
   end loop
   @enduml
   
-  
+..  
   @startuml images/10_interaction.png
   !include ../plantuml.conf
     actor Admin
