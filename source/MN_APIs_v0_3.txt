@@ -77,7 +77,7 @@ CRUD API
   :returns: the set of log records specified; format is not yet specified
 
 
-.. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)
+.. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest, ...)
 
    This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging infrastructure so that it can respond to ``getLogRecords()``.
 

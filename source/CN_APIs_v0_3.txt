@@ -55,6 +55,7 @@ CRUD API
 .. module:: CN_crud_0_3
    :synopsis: Read operations for Coordinating Nodes
 
+.. function:: getSystemMetdata(token, GUID)
 
 .. function:: get (token, GUID)
 
@@ -85,31 +86,12 @@ Replication API
 Synchronization API
 ~~~~~~~~~~~~~~~~~~~
 
-.. module:: CN_synchronization_0_3
-   :synopsis: Manages synchronization between Coordinating Nodes
-   
-.. function:: pollForNewIDs ()
-
-.. function:: synchronize ()
-
-.. function:: verifyAllRecordsReceived ()
-
-
-
-.. function:: scheduleSync(nodeID)
-
-   Schedules a synchronization operation on the specified Member Node.
-
-   :param nodeID:  The member node that is being scheduled for synchronization.
-
-   :raises NotFound: The specified Member Node ID is invalid.
-
-
+The Synchronization API manages synchronization of system metadata and science metadata among CNs. Since this will be handled out-of-band with respect to the CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
 
 Register API
 ~~~~~~~~~~~~
 
-The Register API is not implemented for this version. Instead, information about MNs is managed manually.
+Register API methods manage registration of Member Nodes and is not implemented for for V0.3. Instead, registry information about MNs is managed manually.
 
 
 Server Authentication API
@@ -118,6 +100,8 @@ Server Authentication API
 
 State of Health API
 ~~~~~~~~~~~~~~~~~~~
+
+The Health API contains methods for determining the status of the DataONE infrastructure, including both the CNs and MNs.
 
 .. module:: CN_health_0_3
    :synopsis: Methods for reporting on the state of health of a CN and on the entire DataONE infrastructure
