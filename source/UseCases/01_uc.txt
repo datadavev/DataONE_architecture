@@ -140,14 +140,17 @@ Post Conditions
   participant "CRUD API" as m_crud << Member Node >>
   User -> app_client
   app_client -> c_crud: get(token, GUID)
+  
   alt V0.3
     note right of c_crud
       no-op
-    end
+    end note
   else After V0.3
-  c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
-  c_crud <-- c_authorize: T or F 
+
+    c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
+    c_crud <-- c_authorize: T or F 
   end
+
   c_crud -> c_crud: resolve(GUID) -> system metadata GUID
   c_crud -> c_ostore: read (system metadata GUID)
   alt System Metadata
@@ -155,19 +158,19 @@ Post Conditions
   else Science Metadata
     note right of c_crud
       extract GUID of science metadata from system metadata
-    end
+    end note
     c_crud -> c_ostore: read (science metadata GUID)
     c_crud <-- c_ostore: science metadata object
     c_crud --> app_client: science metadata object
   else Data
     note right of c_crud
       extract GUID of data from system metadata
-    end
+    end note
     c_crud --> app_client: list of active MNs holding the data
     app_client -> m_crud: get(token, GUID)
     alt After V0.3
-    m_crud -> c_authorize: isAuthorized(token, handle)
-    m_crud <-- c_authorize: T or F
+      m_crud -> c_authorize: isAuthorized(token, handle)
+      m_crud <-- c_authorize: T or F
     end
     app_client <-- m_crud: data object
   end

@@ -57,11 +57,12 @@ Post Conditions
 
   actor User
   participant "Client" as app_client << Application >>
+  
   User -> app_client
   participant "CRUD API" as m_crud << Member Node >>
   app_client -> m_crud: get (token, GUID)
   note right
-  See Use Case 1, Use Case 4
+    See Use Case 1, Use Case 4
   end note
   m_crud -> m_crud: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest, ...)
   m_crud --> app_client: ack

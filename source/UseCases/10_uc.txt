@@ -76,8 +76,8 @@ Post Conditions
       end
     end
     note right of c_health
-    internal process, 
-    not in the CN API
+      internal process, 
+      not in the CN API
     end note
     c_health -> c_health: processStatusReports() 
     c_health --> app_admin: statusReport
