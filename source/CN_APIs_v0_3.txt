@@ -12,81 +12,135 @@ These APIs are implemented by Coordinating Nodes for version 0.3. This is a redu
 Authentication API
 ~~~~~~~~~~~~~~~~~~
 
+Methods for authentication and authorization.
+
 .. module:: CN_authorization_0_3
    :synopsis: Methods for authentication and authorization
 
 ::
 
   login(user, password, [auth_system]) -> token
-  requestToken ()
-  setAccess (token, GUID, accessLevel) -> boolean
-  setOwner(token, userid, objectList) -> objectList
-  newAccount(username, password, [auth_system]) -> identity_GUID
   verify(token) -> boolean
-
-
-
 
 
 Query API
 ~~~~~~~~~
 
+The Query API handles searches of science metadata and system metadata; also exposes log records held by CNs. This log-related functionality probably needs to be split out into the Logging and Alert API (not yet defined).
+
 .. module:: CN_query_0_3
-   :synopsis: Handles queries against the experiment and other metadata held by CNs
-   
-.. function:: getAllCopies (token, ownerID)
+   :synopsis: Handles queries against science metadata, system metdata, and log records held by CNs
 
-.. function:: getLinksAndCites (GUID, fromDate, toDate)
+::
 
-.. function:: getLogRecords (GUID, fromDate, toDate)
+  getLogRecords(token, fromDate, toDate) -> logRecords
+  search(token, query) -> list of GUIDs
 
-.. function:: getLogRecords (nodeID, fromDate, toDate)
 
-.. function:: query (token, query)
+.. function:: getLogRecords (token, fromDate, toDate) -> logRecords
 
-.. function:: searchForData ()
+  Retrieves consolidated log information for the specified date range (inclusive) for the entire DataONE infrastructure. 
 
-.. function:: usageQuery (token, GUID)
+:param token: authentication token
+
+:param fromDate: specified by appropriate standard (ISO? W3C?)
+
+:param toDate: specified by appropriate standard (ISO? W3C?)
+
+:returns: the set of log records specified; format is not yet specified; the set of records may be empty
+
+  .. todo:: 
+  - Format of the consolidated log records need to be specified.
+
+.. function:: search (token, query) -> list of metadata GUIDs
+
+  Search the metadata catalog and return GUIDs of metadata records that meet the criteria.
+  
+  :param token: authentication token; ignored for V0.3
+  
+  :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
+  
+  .. todo:
+     - Details of query specification for `search(token, query)` needs to be worked out. 
+     - Is returning a list of metadata GUIDs sufficent?
 
 
 CRUD API
 ~~~~~~~~
 
+V0.3 Read operations for Coordinating Nodes; also includes internal resolver.
+
 .. module:: CN_crud_0_3
    :synopsis: Read operations for Coordinating Nodes
+   
+::
+
+  getSystemMetadata(token, GUID) -> systemMetadata
+  get(token, GUID) -> metadata or list of MNs holding data
+  resolve(GUID) -> systemMetadataGUID
+  
+.. exception:: NotFound
 
 .. function:: getSystemMetdata(token, GUID)
 
-.. function:: get (token, GUID)
+  **Note** Not strictly required by V0.3 use cases, but probably useful for testing and development.
+  
+  Describes the object located at the endpoint of a GUID. This is necessary
+  to enable a client (e.g. a CN doing synchronization of new content) to
+  determine what type of information is being referenced before it is
+  registered in the system metadata. Helps to avoid accidental download of
+  data objects rather than metadata.
+  
+  **Note** This method cannot be used to retrieve the system metadata of a system metadata object. You can only pass in the GUID of data or a science metadata object.
 
-.. function:: resolve (GUID, token)
+  :param token: authentication token; ignored for V0.3
+
+  :param GUID: Identifier for the object in question. The GUID identifies a data or science metadata object.
+
+  :returns: System metadata object describing the object.
+  
+  :raises NotFound: There is no data or sciece metadata object identified by the given GUID.
+  
+
+.. function:: get (token, GUID) -> object or list of MNs holding the object
+
+  For metadata (system and science), retrieves the object identified by GUID. For data, a list of MNs holding the data is returned.
+
+  :param token: authentication token; ignored for V0.3
+
+  :param GUID: The identifier for the object to be retrieved.
+
+  :rtype: 
+  For system metadata objects, the system metadata itself is returned. For science metadata objects, this will be the byte stream of the science metadata oject. For data objects, **the data object itself is not returned**; instead a list of member nodes holding the data is returned.
+
+  :raises NotFound: The object specified by GUID does not exist.
+  
+  .. todo:: This method name should be changed since it has different semantics than the method of the same name on MNs.
+
+.. function:: resolve (GUID)
+
+  This method resolves the GUID of any object to the GUID of system metadata for that object.
+
+  **Note** This is an internal method and not exposed outside of CNs.
+
+  :param GUID: the GUID of a data object, a science metadata object, or a system metadata object
+
+  :returns: The GUID of the relevant system metadata object.
+
+  :raises NotFound: The object specified by GUID does not exist.
 
 
 Replication API
 ~~~~~~~~~~~~~~~
 
-.. module:: CN_replication_0_3
-   :synopsis: Manages replication of content between Member Nodes
-   
-.. function:: getDefaultReplicationPolicy (sess)
-
-.. function:: getMNReplicateList ()
-
-.. function:: getReplicationPolicy (sess, ID)
-
-.. function:: isReplicationNeeded ()
-
-.. function:: replicateMetadata ()
-
-.. function:: setDefaultReplicationPolicy (sess, policy)
-
-.. function:: setReplicationPolicy (sess, policy, ID)
+The Replication API handles replication of data and science metadata content among member nodes. Such replication is not part of V0.3 functionality, so there are no Replication API methods required.
 
 
 Synchronization API
 ~~~~~~~~~~~~~~~~~~~
 
 The Synchronization API manages synchronization of system metadata and science metadata among CNs. Since this will be handled out-of-band with respect to the CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
+
 
 Register API
 ~~~~~~~~~~~~

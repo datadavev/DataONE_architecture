@@ -38,6 +38,8 @@ CRUD API
    determine what type of information is being referenced before it is
    registered in the system metadata. Helps to avoid accidental download of
    data objects rather than metadata.
+   
+   **Note** This method cannot be used to retrieve the system metadata of a system metadata object. You can only pass in the GUID of data or a science metadata object.
 
    :param token: Identity with privileges to read the GUID.
 
@@ -45,7 +47,7 @@ CRUD API
 
    :returns: System metadata object describing the object.
    
-   :raises NotFound: There is no data or metadata object identified by the given GUID. 
+   :raises NotFound: There is no data or sciece metadata object identified by the given GUID. 
 
 
 .. function:: get(token, GUID) -> object
@@ -62,6 +64,8 @@ CRUD API
     the object as provided by the Member Node.
 
    :raises NotFound: The object specified by GUID does not exist.
+   
+   .. todo:: What happens if the GUID is valid within DataONE, but isn't on this MN? Is NotFound raised? Or, does the member node forward the request to a CN?
 
 
 .. function:: getLogRecords(token, fromDate, toDate)
@@ -75,11 +79,14 @@ CRUD API
   :param toDate: specified by appropriate standard (ISO? W3C?)
   
   :returns: the set of log records specified; format is not yet specified
+  
+  .. todo:: 
+   Format of the log records need to be specified.
 
 
 .. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest, ...)
 
-   This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging infrastructure so that it can respond to ``getLogRecords()``.
+   This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging infrastructure so that it can respond to `getLogRecords()`.
 
 
 Replication API
@@ -104,7 +111,7 @@ The Replication API handles CN-directed replication of content between MNs and a
 
 .. function::  listObjects (token, query) -> GUIDs
 
-   Retrieve the list of GUIDs for objects owned by the MN that meet the query criteria. This method supports the synchronization of science metadata from a MN to a CN. The query specification must be rich enough
+   Retrieve the list of GUIDs for objects owned by the MN that meet the query criteria. This method supports the synchronization of science metadata from a MN to a CN.
 
    :param token: authentication token; ignored for V0.3
 
@@ -114,7 +121,8 @@ The Replication API handles CN-directed replication of content between MNs and a
    
    :raises InvalidCriteria: The MN cannot understand or parse the query criteria.
 
-
+   .. todo:: 
+   Details of query specification for `listObjects(token, query)` needs to be worked out. 
 
 .. function::  synchronizationComplete (token, GUID)
    
@@ -160,6 +168,8 @@ Reports on the status of a Member Node.
 
    :returns: A simple chunk of data, perhaps XML, or plain text. Response is a simple ACK, including the version number of the MN API supported by the MN, an indication if it considers itself fully functional or not, and a timestamp from the MN when the response was produced.  
 
+   .. todo:: 
+      Metrics MNs are to collect and return for the ``getStatus()`` need to be defined.
 
 .. raw:: latex
 
