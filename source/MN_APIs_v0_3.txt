@@ -63,10 +63,6 @@ CRUD API
 
    :raises NotFound: The object specified by GUID does not exist.
 
-   .. Note:: There may be multiple representations of content (e.g. metadata as
-      XML, RDF, or some other format).  May need to add another parameter to specify
-      the format, or perhaps rely on HTTP content negotiation for this.
-
 
 .. function:: getLogRecords(token, fromDate, toDate)
 
@@ -83,18 +79,17 @@ CRUD API
 
 .. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)
 
-   This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging information so that it can respond to ``getLogRecords(token, fromDate, toDate)``.
+   This method is used exclusively internally by a MN. It really isn't part of external the API that must be implemented. However, a MN will need to implement some sort of logging infrastructure so that it can respond to ``getLogRecords()``.
 
 
 Replication API
 ~~~~~~~~~~~~~~~
 
-The Replication API handles CN-directed replication of content between MNs and also supports the initial harvesting of science metadata from a MN by a CN. Method names used for the former include some form of "replication" in their name. Method names used for the latter include some form of "synchronize" in their name.
- 
-Note that MN-to-MN science metadata and data replication in V0.3 is handled out-of-band with respect to this API so explicit API methods to support that are not included here in V0.3.
+The Replication API handles CN-directed replication of content between MNs and also supports the initial harvesting of science metadata from a MN by a CN. Method names used for the former (MN-to-MN replication) include some form of "replication" in their name. Method names used for the latter (MN-to-CN synchronization) include some form of "synchronize" in their name. Support for MN-to-MN replication is not part of the V0.3 APIs.
+
 
 .. module:: MN_replication_0_3
-   :synopsis: Handles CN-directed replication of content between member nodes; also supports the initial harvesting of science metadata from a MN by a CN.
+   :synopsis: Supports the harvesting of science metadata from a MN by a CN.
 
 ::
 
