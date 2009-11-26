@@ -12,12 +12,13 @@ Author
   VDC TWG
 
 Date
+  - 20091126 [PEA] Make consistent with V0.3 API documentation.
   - 20091006 Added use case diagram
   - 20090924 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
 Version 
-  Draft
+  0.3
 
 Goal
   Retrieve an object identified by GUID (authenticated or not, notify
@@ -29,7 +30,7 @@ Summary
   identifier and return the object bytes after checking that the user has read
   privileges on the object.  
 
-  Watchers (subscribers) of the object are notified of the retrieval (what are
+  After V0.3 - Watchers (subscribers) of the object are notified of the retrieval (what are
   they notified of?).
 
 Actors
@@ -46,10 +47,10 @@ Triggers
   - An object is requested from the DataONE system.
 
 Post Conditions
-  - The client has a copy of the object bytes (or an error message in the case
+  - V0.3 and after - The client has a copy of the object bytes (or an error message in the case
     of failure)
-  - The log is updated with the results of the operation
-  - Watchers perform their processing
+  - V0.3 and after - The log is updated with the results of the operation
+  - After V0.3 - Watchers perform their processing
 
 
 **Notes**
@@ -139,23 +140,32 @@ Post Conditions
   participant "CRUD API" as m_crud << Member Node >>
   User -> app_client
   app_client -> c_crud: get(token, GUID)
+  alt After V0.3
   c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
   c_crud <-- c_authorize: T or F
-  c_crud -> c_crud: resolve(GUID) -> handle
+  end
+  c_crud -> c_crud: resolve(GUID) -> system metadata GUID
+  c_crud -> c_ostore: read (system metadata GUID)
   alt System Metadata
-    c_crud -> c_ostore: read (handle)
-    c_crud <-- c_ostore: object (sysmeta)
-    c_crud --> app_client: object
-  else Experiment Metadata
-    c_crud -> c_ostore: read (handle)
-    c_crud <-- c_ostore: object (expmeta)
-    c_crud --> app_client: object
+    c_crud --> app_client: system metadata object
+  else Science Metadata
+    note right of c_crud
+      extract GUID of science metadata from system metadata
+    end
+    c_crud -> c_ostore: read (science metadata GUID)
+    c_crud <-- c_ostore: science metadata object
+    c_crud --> app_client: science metadata object
   else Data
-    c_crud --> app_client: handle
-    app_client -> m_crud: get(token, handle)
+    note right of c_crud
+      extract GUID of data from system metadata
+    end
+    c_crud --> app_client: list of active MNs holding the data
+    app_client -> m_crud: get(token, GUID)
+    alt After V0.3
     m_crud -> c_authorize: isAuthorized(token, handle)
     m_crud <-- c_authorize: T or F
-    app_client <-- m_crud: object
+    end
+    app_client <-- m_crud: data object
   end
   
   @enduml
