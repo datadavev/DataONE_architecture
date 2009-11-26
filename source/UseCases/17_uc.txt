@@ -49,13 +49,15 @@ Post Conditions
 
   - Log processing is triggered on CNs
 
-.. figure:: images/17_interaction.png
+.. figure:: images/17a_interaction.png
+   :width: 100%
+   
+.. figure:: images/17b_interaction.png
    :width: 100%
 
    Interactions for use case 17.
-
 ..
-  @startuml images/17_interaction.png
+  @startuml images/17a_interaction.png
   !include ../plantuml.conf
   participant "CRUD API" as m_crud << Member Node >>
   participant "Synchronization API" as c_sync << Coordinating Node >>
@@ -66,7 +68,7 @@ Post Conditions
   @enduml
   
 ..  
-  @startuml images/10_interaction.png
+  @startuml images/17b_interaction.png
   !include ../plantuml.conf
     actor Admin
     participant "Admin" as app_admin << Application >>
