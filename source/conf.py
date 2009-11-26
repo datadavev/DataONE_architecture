@@ -28,7 +28,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.ifconfig',
               'sphinx.ext.graphviz']
 
-extensions.append('rst2pdf.pdfbuilder')
+#extensions.append('rst2pdf.pdfbuilder')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -181,6 +181,8 @@ latex_font_size = '10pt'
 latex_documents = [
   ('index', 'DataONEArchitecture.tex', u'DataONE Architecture Documentation',
    u'VDC Project, DataONE CCIT', 'manual'),
+  ('MN_APIs_v0_3', 'MN_APIs_v0_3.tex', u'MN API Version 0.3',
+   u'VDC Project, DataONE CCIT', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -202,8 +204,10 @@ latex_preamble = '\\usepackage{pdflscape}'
 #latex_use_modindex = True
 
 pdf_documents = [
-  ('index', 'DataONEArchitecture_0_0_4', u'DataONE Architecture Documentation',
-   u'VDC Project, DataONE CCIT', 'manual'),
+  #('index', 'DataONEArchitecture_0_0_4', u'DataONE Architecture Documentation',
+  # u'VDC Project, DataONE CCIT', 'manual'),
+  ('MN_APIs_v0_3', 'MN_APIs_v0_3', u'MN API 0.3',
+  u'VDC Project, DataONE CCIT', 'manual'),
 ]
 
 pdf_default_dpi = 300
