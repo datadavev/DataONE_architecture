@@ -35,11 +35,11 @@ Actors
 
 Preconditions 
 
-  - Log files are available to retrieve from Member Nodes
+  - CNs are operational
 
 Triggers
 
-  - Timed event, logs are aggregated ever xxx days.
+  - Timed event, logs are aggregated every 24 hours.
 
 Post Conditions
 
@@ -57,15 +57,24 @@ Post Conditions
 ..
   @startuml images/17_interaction.png
   !include ../plantuml.conf
-  participant "CRUD API" as m_crud_a << Member Node A >>
+  participant "CRUD API" as m_crud << Member Node >>
   participant "Synchronization API" as c_sync << Coordinating Node >>
-  c_sync -> m_crud_a: getLogRecords (token, fromDate, toDate)
-  c_sync <-- m_crud_a: records or fail
-  participant "CRUD API" as m_crud_b << Member Node B >>
-  c_sync -> m_crud_b: getLogRecords (token, fromDate, toDate)
-  c_sync <-- m_crud_b: records or fail
+  loop for each MN
+    c_sync -> m_crud: getLogRecords (token, fromDate, toDate)
+    c_sync <-- m_crud: records or fail
+  end loop
   @enduml
   
+  
+  @startuml images/10_interaction.png
+  !include ../plantuml.conf
+    actor Admin
+    participant "Admin" as app_admin << Application >>
+    Admin -> app_admin: login()
+    participant "Query Health API" as c_query << Coordinating Node >>
+    app_admin -> c_query: getLogRecords (token, fromDate, toDate)
+    c_health --> app_admin: logRecords
+  @enduml
 
 .. raw:: latex
 
