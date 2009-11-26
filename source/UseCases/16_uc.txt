@@ -5,11 +5,12 @@ Author
   VDC TWG
 
 Date
+  - 20091126 [PEA] Make consistent with V0.3 APIs documentation.
   - 20090925 Adding to use case description and documentation
-  - 20090114 (TWG meeting).  Subsequent various modifications.
+  - 20090114 (TWG meeting). Subsequent various modifications.
 
 Version 
-  Draft
+  0.3
 
 Goal
  All CRUD operations on metadata and data are logged at each node.
@@ -20,6 +21,8 @@ Summary
   as well as for ensuring appropriate attribution is given to contributors of
   content. This use case describes the action of logging a user request for
   content.
+  
+  Member Nodes must support this use case for V0.3, though there isn't a specific externally accessible MN API method that must be implemented to do that. This use case supports the reporting of log information as required by Use Case 17.
 
 Actors
 
@@ -29,11 +32,12 @@ Actors
 
 Preconditions 
 
-  - User has authenticated to desired level
+  - User has authenticated, and is authorized for requested operation
 
 Triggers
 
-  - User requests, modifies, or creates an object.
+  - V0.3 - User requests an object.
+  - after V0.3 -User requests, modifies, or creates an object
 
 
 Post Conditions
@@ -55,11 +59,11 @@ Post Conditions
   participant "Client" as app_client << Application >>
   User -> app_client
   participant "CRUD API" as m_crud << Member Node >>
-  app_client -> m_crud: create (token, dataPackage)
+  app_client -> m_crud: get (token, GUID)
   note right
-  See Use Case 4
+  See Use Case 1, Use Case 4
   end note
-  m_crud -> m_crud: log (userID, create, creationDate, ID)
+  m_crud -> m_crud: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest, ...)
   m_crud --> app_client: ack
   @enduml
 
