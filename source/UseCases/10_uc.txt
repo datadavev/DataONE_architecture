@@ -5,6 +5,7 @@ Author
   VDC TWG
 
 Date
+  - 20091126 Make consistent with V0.3 APIs.
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
@@ -66,10 +67,15 @@ Post Conditions
     participant "State of Health API" as m_health << Member Node >>
     app_admin -> c_health: generateReport(token)
     loop for each MN
-      c_health -> m_health: getStatus(token)
-      m_health --> c_health: status
+      alt V0.3
+        c_health -> m_health: heartbeat()
+        m_health --> c_health: status
+      else after V0.3
+        c_health -> m_health: getStatus(token)
+        m_health --> c_health: status
+      end
     end
-    c_health -> c_health: processStatusReports()
+    c_health -> c_health: [internal process, not CN API] processStatusReports() 
     c_health --> app_admin: statusReport
   @enduml
   
