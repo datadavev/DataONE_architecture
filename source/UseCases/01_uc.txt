@@ -140,9 +140,10 @@ Post Conditions
   participant "CRUD API" as m_crud << Member Node >>
   User -> app_client
   app_client -> c_crud: get(token, GUID)
-  alt After V0.3
+  alt V0.3
+  else After V0.3
   c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
-  c_crud <-- c_authorize: T or F
+  c_crud <-- c_authorize: T or F 
   end
   c_crud -> c_crud: resolve(GUID) -> system metadata GUID
   c_crud -> c_ostore: read (system metadata GUID)
