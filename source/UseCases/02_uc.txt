@@ -11,15 +11,16 @@ Author
   VDC TWG
 
 Date
+  - 20091127 [PEA] Make consistent with V0.3 APIs
   - 20090927 Provided more detail to use case
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications
 
 Version 
-  Draft
+  0.3
 
 Goal
-  Get list of GUIDs from metadata search (anon and authenticated).
+  Get list of GUIDs from metadata search (anonymous and authenticated).
 
 Summary 
   A user performs a search against the DataONE system and receives a list of
@@ -176,22 +177,24 @@ Post Conditions
 
   participant "Query API" as c_query << Coordinating Node >>
   activate c_query
-  app_client -> c_query: query(auth_token, query)
-  note right of c_query
-  The query response is a list of GUIDS.
-  Each GUID needs to be checked for read 
-  access by the auth_token.
-  end note
-  participant "Authentication API" as c_authenticate << Coordinating Node >>
-  c_query -> c_authenticate: isAuthorized(token, resultset, OP_GET)
-  participant "Authentication API" as c_ver << Coordinating Node >>
-  c_authenticate -> c_ver: verify (token)
-  c_authenticate <-- c_ver: T or F
-  loop for each GUID in resultset
-    c_authenticate -> c_ver: isAuthorized(token, GUID, OP_GET)
+  app_client -> c_query: search(token, query)
+  alt After V0.3
+    note right of c_query
+    The query response is a list of GUIDS.
+    Each GUID needs to be checked for read 
+    access by the auth_token.
+    end note
+    participant "Authentication API" as c_authenticate << Coordinating Node >>
+    c_query -> c_authenticate: isAuthorized(token, resultset, OP_GET)
+    participant "Authentication API" as c_ver << Coordinating Node >>
+    c_authenticate -> c_ver: verify (token)
     c_authenticate <-- c_ver: T or F
-  end 
-  c_query <-- c_authenticate: T or F
+    loop for each GUID in resultset
+      c_authenticate -> c_ver: isAuthorized(token, GUID, OP_GET)
+      c_authenticate <-- c_ver: T or F
+      end 
+      c_query <-- c_authenticate: T or F
+  end
   app_client <-- c_query: resultset
   deactivate c_query
   @enduml
