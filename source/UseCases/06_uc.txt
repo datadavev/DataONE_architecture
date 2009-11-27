@@ -7,28 +7,23 @@ Author
   VDC TWG
 
 Date
+  - 20091127 [PEA] Made consistent with V0.3 APIs.
   - 20090930 Filled out content, changed mode to pull from MN
   - 20090925 Adding to use case description and documentation
   - 20090114 (TWG meeting).  Subsequent various modifications.
 
 Version 
-  Draft
+  0.3
 
 Goal
-  Replicate / synchronize metadata record between Member Node and Coordinating Node.
+  Science metadata records present in a Member Node are created in (synchronized to) Coordinating Node.
 
 Summary 
 
   As data packages, or portions there of are created or modified, the metadata
   associated with those needs to be replicated to the coordinating nodes.
 
-  The presence of new or changed information on a Member Node (MN) is made
-  known to a Coordinating Node (CN) through the status information in a
-  ``ping()`` response. If so indicated, the CN schedules a synchronization
-  operation with the MN, a list of changed object GUIDS is retrieved by the
-  CN, and the CN proceeds to retrieve and process each object identified.
-
-  If new data packages are present on the MN, then a MN-MN synchronization
+  After V0.3, if new data packages are present on the MN, then a MN-MN synchronization
   process is scheduled.
 
 
@@ -36,22 +31,13 @@ Actors
   Member Node, Coordinating Node
 
 Preconditions 
-  - Member Node has new or changed data packages
+  - CN and MN operational
   
 Triggers
-  - New or changed content is present on a Member Node
+  -  Member Node has new data package(s)
  
 Post Conditions
-  - MN is in sync with CN
-
-  - Log
-
-  - Watchers for changes to MN, CN, or DataONE system
-
-**Notes**
-
-- Overloading ping() for notification of change seems a little bit of a hack,
-  though changing the name from ping() to status() makes it seem OK.
+  - All system and science metadata records from a MN are also present on the CN
 
 
 .. figure:: images/06_uc.png
@@ -63,7 +49,9 @@ Post Conditions
 .. figure:: images/06_interaction.png
    :width: 100%
 
-   Synchronize metadata between Member and Coordinating Node
+   Sequence diagram for use case 06. Synchronize metadata between Member and Coordinating Node.
+   
+   .. todo:: This diagram is in process of being updated for V0.3.
 
 
 ..
