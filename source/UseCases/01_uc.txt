@@ -143,10 +143,7 @@ Post Conditions
   User -> app_client
   app_client -> c_crud: get(token, GUID)
   
-  alt V0.3
-
-  else After V0.3
-
+  alt After V0.3
     c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
     c_crud <-- c_authorize: T or F 
   end
@@ -157,14 +154,16 @@ Post Conditions
     c_crud --> app_client: system metadata object
   else Science Metadata
     note right of c_crud
-      extract GUID of science metadata from system metadata
+      extract GUID of science metadata 
+      from system metadata
     end note
     c_crud -> c_ostore: read (science metadata GUID)
     c_crud <-- c_ostore: science metadata object
     c_crud --> app_client: science metadata object
   else Data
     note right of c_crud
-      extract GUID of data from system metadata
+      extract list of MNs holding
+      data from system metadata
     end note
     c_crud --> app_client: list of active MNs holding the data
     app_client -> m_crud: get(token, GUID)
