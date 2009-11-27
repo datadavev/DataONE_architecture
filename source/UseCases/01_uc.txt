@@ -148,10 +148,10 @@ Post Conditions
     c_crud <-- c_authorize: T or F 
   end
   note right of c_crud
-    The mechanism to determine the 
+    The internal mechanism to determine the 
     GUID of the system metadata
     for a given GUID is not shown here
-  end
+  end note
   c_crud -> c_crud: getSystemMetadata(GUID) 
   alt System Metadata
     c_crud --> app_client: system metadata object
