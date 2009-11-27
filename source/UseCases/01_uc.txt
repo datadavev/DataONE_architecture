@@ -75,20 +75,16 @@ Post Conditions
    Use case 01 diagram showing actors and components involved in this action.
 
 
-.. figure:: images/01_interaction_a.png
+.. figure:: images/01_interaction_b.png
    :width: 100%
 
-   
 
    Sequence diagram for Use Case 01 illustrating the sequence for retrieving
    an object identified by a GUID from the DataONE system. Note the dichotomy
    in response depending on whether the object referenced by the GUID is a
    metadata document (record) or a data object. In the case of metadata, the
-   metadata document is returned. In the case of data, a URL is returned that
-   points drectly to a service endpoint for retrieving the bytes (perhaps
-   instead always return metadata, for a data object it would be the system
-   metadata?).
-
+   metadata document is returned. In the case of data, a list of Member nodes
+   is returned so that the client knows where it can retrieve the data.
 
 
 .. figure:: images/01_interaction.png
@@ -132,7 +128,7 @@ Post Conditions
 
 
 ..
-  @startuml images/01_interaction_a.png
+  @startuml images/01_interaction_b.png
   !include ../plantuml.conf
   actor User
   participant "Client" as app_client << Application >>
