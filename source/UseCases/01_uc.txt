@@ -142,9 +142,7 @@ Post Conditions
   app_client -> c_crud: get(token, GUID)
   
   alt V0.3
-    note right of c_crud
-      no-op
-    end note
+
   else After V0.3
 
     c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
