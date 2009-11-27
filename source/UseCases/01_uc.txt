@@ -80,7 +80,7 @@ Post Conditions
 
    
 
-   Interaction diagram for Use Case 01 illustrating the sequence for retrieving
+   Sequence diagram for Use Case 01 illustrating the sequence for retrieving
    an object identified by a GUID from the DataONE system. Note the dichotomy
    in response depending on whether the object referenced by the GUID is a
    metadata document (record) or a data object. In the case of metadata, the
