@@ -4,23 +4,16 @@ Coordinating Node APIs for V0.3
 
 These APIs are implemented by Coordinating Nodes for version 0.3. This is a reduced set of functionality compared to the full set of APIs envisioned for Coordinating Nodes.
 
-.. todo:: 
-   The APIs need to be edited for consistency of method signatures and naming.
-   Update the sequence diagrams to reflect the edits to the API.
-
 
 Authentication API
 ~~~~~~~~~~~~~~~~~~
 
 Methods for authentication and authorization.
 
+.. todo:: The authentication and authorization requirements for V0.3 are minimal due to using network configuration for authentication. What, if any, authentication or authorization mechanisms are required for admin access.
+
 .. module:: CN_authorization_0_3
    :synopsis: Methods for authentication and authorization
-
-::
-
-  login(user, password, [auth_system]) -> token
-  verify(token) -> boolean
 
 
 Query API
@@ -50,7 +43,7 @@ The Query API handles searches of science metadata and system metadata; also exp
 :returns: the set of log records specified; format is not yet specified; the set of records may be empty
 
   .. todo:: 
-  - Format of the consolidated log records need to be specified.
+  Format of the consolidated log records need to be specified.
 
 .. function:: search (token, query) -> list of metadata GUIDs
 
@@ -61,14 +54,13 @@ The Query API handles searches of science metadata and system metadata; also exp
   :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
   
   .. todo:
-     - Details of query specification for `search(token, query)` needs to be worked out. 
-     - Is returning a list of metadata GUIDs sufficent?
+     Details of query specification for `search(token, query)` needs to be worked out. 
 
 
 CRUD API
 ~~~~~~~~
 
-V0.3 Read operations for Coordinating Nodes; also includes internal resolver.
+V0.3 Read operations for Coordinating Nodes.
 
 .. module:: CN_crud_0_3
    :synopsis: Read operations for Coordinating Nodes
@@ -77,29 +69,28 @@ V0.3 Read operations for Coordinating Nodes; also includes internal resolver.
 
   getSystemMetadata(token, GUID) -> systemMetadata
   get(token, GUID) -> metadata or list of MNs holding data
-  resolve(GUID) -> systemMetadataGUID
   
 .. exception:: NotFound
 
-.. function:: getSystemMetdata(token, GUID)
+.. function:: getSystemMetadata(token, GUID) -> system metadata
 
-  **Note** Not strictly required by V0.3 use cases, but probably useful for testing and development.
-  
-  Describes the object located at the endpoint of a GUID. This is necessary
+  Describes the object identified by the GUID. This is necessary
   to enable a client (e.g. a CN doing synchronization of new content) to
   determine what type of information is being referenced before it is
   registered in the system metadata. Helps to avoid accidental download of
-  data objects rather than metadata.
-  
-  **Note** This method cannot be used to retrieve the system metadata of a system metadata object. You can only pass in the GUID of data or a science metadata object.
+  data objects rather than metadata. If the GUID identifies a system metadata 
+  object, then that system metadata objecct itself is returned instead of the 
+  metadata for the system metadata object (if there even is such a thing).
+
+  **Note** If we stick to strict semantics, this method cannot be used to retrieve the system metadata of a system metadata object, since there is no such thing. However if we do not stick to those semantics then getSystemMetadata(token, systemMetadataGUID) will return the same thing as get(token, systemMetaddataGUID).
 
   :param token: authentication token; ignored for V0.3
 
-  :param GUID: Identifier for the object in question. The GUID identifies a data or science metadata object.
+  :param GUID: Identifier for the object in question.
 
   :returns: System metadata object describing the object.
-  
-  :raises NotFound: There is no data or sciece metadata object identified by the given GUID.
+
+  :raises NotFound: There is no data, science metadata, or system metdata identified by the given GUID.
   
 
 .. function:: get (token, GUID) -> object or list of MNs holding the object
@@ -116,18 +107,6 @@ V0.3 Read operations for Coordinating Nodes; also includes internal resolver.
   :raises NotFound: The object specified by GUID does not exist.
   
   .. todo:: This method name should be changed since it has different semantics than the method of the same name on MNs.
-
-.. function:: resolve (GUID)
-
-  This method resolves the GUID of any object to the GUID of system metadata for that object.
-
-  **Note** This is an internal method and not exposed outside of CNs.
-
-  :param GUID: the GUID of a data object, a science metadata object, or a system metadata object
-
-  :returns: The GUID of the relevant system metadata object.
-
-  :raises NotFound: The object specified by GUID does not exist.
 
 
 Replication API
@@ -151,6 +130,7 @@ Register API methods manage registration of Member Nodes and is not implemented 
 Server Authentication API
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Server authentication is handled by network configuration for V0.3. No API calls are required.
 
 State of Health API
 ~~~~~~~~~~~~~~~~~~~
