@@ -147,9 +147,11 @@ Post Conditions
     c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
     c_crud <-- c_authorize: T or F 
   end
-
-  c_crud -> c_ostore: getSystemMetadata(GUID) 
-  c_crud <-- c_ostore: system metadata GUID
+  note to right of c_crud
+    The mechanism to determine the GUID of the system metadata
+    for a given GUID is not shown here
+  end
+  c_crud -> c_crud: getSystemMetadata(GUID) 
   alt System Metadata
     c_crud --> app_client: system metadata object
   else Science Metadata
