@@ -78,6 +78,10 @@ Post Conditions
   participant "Synchronization API" as c_sync << Coordinating Node >>
   participant "Replication API" as m_rep << Member Node >>
   c_sync -> m_rep: listObjects(token, query)
+  note right of c_crud
+    query asks for new 
+    science metadata objects
+  end note
   c_sync <-- m_rep: list of GUIDs
   loop for each GUID
     c_sync -> m_crud: describe(token, GUID)
