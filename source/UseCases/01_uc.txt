@@ -148,7 +148,8 @@ Post Conditions
     c_crud <-- c_authorize: T or F 
   end
 
-  c_crud -> c_ostore: getSystemMetadata(GUID) -> system metadata GUID
+  c_crud -> c_ostore: getSystemMetadata(GUID) 
+  c_crud <-- c_ostore: system metadata GUID
   alt System Metadata
     c_crud --> app_client: system metadata object
   else Science Metadata
