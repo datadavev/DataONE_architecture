@@ -6,6 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
+GRAPHVIZ      = /opt/local/bin/dot
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -32,7 +33,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 plantuml:
-	plantuml source source/UseCases
+	GRAPHVIZ_DOT=$(GRAPHVIZ) plantuml source source/UseCases
 
 html: 
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
