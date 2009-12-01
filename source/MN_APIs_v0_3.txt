@@ -80,8 +80,7 @@ CRUD API
   
   :returns: the set of log records specified; format is not yet specified
   
-  .. todo:: 
-  Format of the log records need to be specified.
+  .. todo:: Format of the log records need to be specified.
 
 
 .. function:: log (typeOfOperation, targetGUID, requestorIdentity, dateOfRequest, ...)
@@ -140,21 +139,21 @@ The Replication API handles CN-directed replication of content between MNs and a
    
    :raises InvalidOperation: The science metadata object identified by the GUID is already marked as synchronized.
 
-   .. function::  synchronizationFailed (token, GUID, problemDescription)
+.. function::  synchronizationFailed (token, GUID, problemDescription)
 
-      This is a callback method used by a CN to indicate to a MN that it cannot complete replication of the science metadata identified by GUID. When called, the MN should take steps to record the problem description and notify an administrator or the data owner of the issue.
+   This is a callback method used by a CN to indicate to a MN that it cannot complete replication of the science metadata identified by GUID. When called, the MN should take steps to record the problem description and notify an administrator or the data owner of the issue.
 
-      :param token: authentication token; ignored for V0.3
+   :param token: authentication token; ignored for V0.3
 
-      :param GUID: The GUID of the science metadata object that was to be synchronized with the CN. 
+   :param GUID: The GUID of the science metadata object that was to be synchronized with the CN. 
       
-      :param problemDescription: Further information about the problem causing the fail to synchronize. This might be an unsupported science metadata type, an invalid GUID, etc.
+   :param problemDescription: Further information about the problem causing the fail to synchronize. This might be an unsupported science metadata type, an invalid GUID, etc.
 
-      :returns: A simple acknowledgement.
+   :returns: A simple acknowledgement.
 
-      :raises InvalidIdentifier: The supplied GUID does not identify a science metadata object owned by the MN. 
+   :raises InvalidIdentifier: The supplied GUID does not identify a science metadata object owned by the MN. 
 
-      :raises InvalidOperation: The science metadata object identified by the GUID is already marked as synchronized.
+   :raises InvalidOperation: The science metadata object identified by the GUID is already marked as synchronized.
       
 
 Capabilities API

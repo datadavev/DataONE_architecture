@@ -27,6 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20091201: 
+  - Completed consistency of V0.3 APIs and Use Cases
+
 :20091120:
   - Added section on System Metadata
 

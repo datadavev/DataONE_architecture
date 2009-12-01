@@ -32,29 +32,27 @@ The Query API handles searches of science metadata and system metadata; also exp
 
 .. function:: getLogRecords (token, fromDate, toDate) -> logRecords
 
-  Retrieves consolidated log information for the specified date range (inclusive) for the entire DataONE infrastructure. 
+   Retrieves consolidated log information for the specified date range (inclusive) for the entire DataONE infrastructure. 
 
-:param token: authentication token
+   :param token: authentication token
 
-:param fromDate: specified by appropriate standard (ISO? W3C?)
+   :param fromDate: specified by appropriate standard (ISO? W3C?)
 
-:param toDate: specified by appropriate standard (ISO? W3C?)
+   :param toDate: specified by appropriate standard (ISO? W3C?)
 
-:returns: the set of log records specified; format is not yet specified; the set of records may be empty
+   :returns: the set of log records specified; format is not yet specified; the set of records may be empty
 
-  .. todo:: 
-  Format of the consolidated log records need to be specified.
+  .. todo:: Format of the consolidated log records need to be specified.
 
 .. function:: search (token, query) -> list of metadata GUIDs
 
-  Search the metadata catalog and return GUIDs of metadata records that meet the criteria.
+   Search the metadata catalog and return GUIDs of metadata records that meet the criteria.
   
   :param token: authentication token; ignored for V0.3
   
   :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
   
-  .. todo:
-     Details of query specification for `search(token, query)` needs to be worked out. 
+  .. todo: Details of query specification for `search(token, query)` needs to be worked out. 
 
 
 CRUD API
@@ -104,8 +102,7 @@ V0.3 Read operations for Coordinating Nodes.
 
   :param GUID: The identifier for the object to be retrieved.
 
-  :rtype: 
-  For system metadata objects, the system metadata itself is returned. For science metadata objects, this will be the byte stream of the science metadata oject. For data objects, **the data object itself is not returned**; instead a list of member nodes holding the data is returned.
+  :rtype: For system metadata objects, the system metadata itself is returned. For science metadata objects, this will be the byte stream of the science metadata oject. For data objects, **the data object itself is not returned**; instead a list of member nodes holding the data is returned.
 
   :raises NotFound: The object specified by GUID does not exist.
   
@@ -113,7 +110,7 @@ V0.3 Read operations for Coordinating Nodes.
   
 .. function::   create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
 
-  This is a method used internally by the CN, not exposed to MNs or the world. Stores the two given objects (systemMetadata, scienceMetadata) in a single atomic action. This method is used as part of the synchronization of science metadata between a MN and the CN.
+   This is a method used internally by the CN, not exposed to MNs or the world. Stores the two given objects (systemMetadata, scienceMetadata) in a single atomic action. This method is used as part of the synchronization of science metadata between a MN and the CN.
   
   :param systemMetadataGUID: the GUID of the system metadata
   
