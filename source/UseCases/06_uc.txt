@@ -20,7 +20,7 @@ Goal
 
 Summary 
 
-  As data packages, or portions there of are created or modified, the metadata
+  As data packagesare created the metadata
   associated with those needs to be replicated to the coordinating nodes.
 
   After V0.3, if new data packages are present on the MN, then a MN-MN synchronization
@@ -34,7 +34,7 @@ Preconditions
   - CN and MN operational
   
 Triggers
-  -  Member Node has new data package(s)
+  -  Periodic polling of MNs
  
 Post Conditions
   - All system and science metadata records from a MN are also present on the CN
@@ -70,36 +70,35 @@ Post Conditions
 
 
 ..
-@startuml images/06_interaction.png
-!include ../plantuml.conf
-participant "CRUD API" as m_crud << Member Node >>
-participant "Synchronization API" as c_sync << Coordinating Node >>
-participant "Replication API" as m_rep << Member Node >>
-c_sync -> m_rep: listObjects(token, query)
+  @startuml images/06_interaction.png
+  !include ../plantuml.conf
+  participant "CRUD API" as m_crud << Member Node >>
+  participant "Synchronization API" as c_sync << Coordinating Node >>
+  participant "Replication API" as m_rep << Member Node >>
+  c_sync -> m_rep: listObjects(token, query)
 
-note over m_rep
-  query asks for new 
-  science metadata objects
-end note
+  note over m_rep
+    query asks for new 
+    science metadata objects
+  end note
 
+  c_sync <-- m_rep: list of GUIDs
 
-c_sync <-- m_rep: list of GUIDs
-
-loop for each GUID
-  c_sync -> m_crud: getSystemMetadata(token, GUID)
-  c_sync <-- m_crud: system metadata
-  c_sync -> m_crud: get(token, science metadata GUID)
-  c_sync <-- m_crud: science metadata
-participant "CRUD API" as c_crud << Coordinating Node >>
-  c_sync -> c_crud: create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
-  c_sync <-- c_crud: ACK or FAIL
-  alt ACK
-    c_sync -> m_rep: synchronizationComplete(token, GUID)
-  else FAIL
-    c_sync -> m_rep: synchronizationFailed(token, GUID)
+  loop for each GUID
+    c_sync -> m_crud: getSystemMetadata(token, GUID)
+    c_sync <-- m_crud: system metadata
+    c_sync -> m_crud: get(token, science metadata GUID)
+    c_sync <-- m_crud: science metadata
+    participant "CRUD API" as c_crud << Coordinating Node >>
+    c_sync -> c_crud: create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
+    c_sync <-- c_crud: ACK or FAIL
+    alt ACK
+      c_sync -> m_rep: synchronizationComplete(token, GUID)
+    else FAIL
+      c_sync -> m_rep: synchronizationFailed(token, GUID)
+    end
   end
-end
-@enduml
+  @enduml
 
 
 .. raw:: latex
