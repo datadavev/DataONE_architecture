@@ -50,8 +50,6 @@ Post Conditions
    :width: 100%
 
    Sequence diagram for use case 06. Synchronize metadata between Member and Coordinating Node.
-   
-   .. todo:: This diagram is in process of being updated for V0.3.
 
 
 ..
@@ -98,7 +96,7 @@ participant "CRUD API" as c_crud << Coordinating Node >>
   alt ACK
     c_sync -> m_rep: synchronizationComplete(token, GUID)
   else FAIL
-    c_sync -> m_rep: synchronizationFail(token, GUID)
+    c_sync -> m_rep: synchronizationFailed(token, GUID)
   end
 end
 @enduml
