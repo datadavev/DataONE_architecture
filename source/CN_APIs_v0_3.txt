@@ -69,8 +69,11 @@ V0.3 Read operations for Coordinating Nodes.
 
   getSystemMetadata(token, GUID) -> systemMetadata
   get(token, GUID) -> metadata or list of MNs holding data
+  create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
   
 .. exception:: NotFound
+
+.. exception :: InvalidMetadataType
 
 .. function:: getSystemMetadata(token, GUID) -> system metadata
 
@@ -107,7 +110,20 @@ V0.3 Read operations for Coordinating Nodes.
   :raises NotFound: The object specified by GUID does not exist.
   
   .. todo:: This method name should be changed since it has different semantics than the method of the same name on MNs.
+  
+.. function::   create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
 
+  This is a method used internally by the CN, not exposed to MNs or the world. Stores the two given objects (systemMetadata, scienceMetadata) in a single atomic action. This method is used as part of the synchronization of science metadata between a MN and the CN.
+  
+  :param systemMetadataGUID: the GUID of the system metadata
+  
+  :param systemMetadata: the system metadata describing the data package (data and science metadata)
+  
+  :param scienceMetaDataGUID: the GUID of the science metadata
+  
+  :param scienceMetadata: the science metadata portion of the data package
+
+  :raises InvalidMetadataType: the science metadata is not of a type supported by the D1 system
 
 Replication API
 ~~~~~~~~~~~~~~~
