@@ -79,7 +79,7 @@ participant "Synchronization API" as c_sync << Coordinating Node >>
 participant "Replication API" as m_rep << Member Node >>
 c_sync -> m_rep: listObjects(token, query)
 
-note right of m_rep
+note over m_rep
   query asks for new 
   science metadata objects
 end note
@@ -93,13 +93,13 @@ loop for each GUID
   c_sync -> m_crud: get(token, science metadata GUID)
   c_sync <-- m_crud: science metadata
 participant "CRUD API" as c_crud << Coordinating Node >>
-  c_sync -> c_crud: create(GUID, metadata)
-  c_sync <-- c_crud: ack or FAIL
-  c_sync -> m_rep: synchronizationComplete(token, GUID)
-  note over m_rep
-    What happens if the CN create() operation fails?
-    How far to roll back?
-  end note
+  c_sync -> c_crud: create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
+  c_sync <-- c_crud: ACK or FAIL
+  alt ACK
+    c_sync -> m_rep: synchronizationComplete(token, GUID)
+  else FAIL
+    c_sync -> m_rep: synchronizationFail(token, GUID)
+  end
 end
 @enduml
 
