@@ -75,13 +75,6 @@ Post Conditions
 @startuml images/06_interaction.png
 !include ../plantuml.conf
 participant "CRUD API" as m_crud << Member Node >>
-participant "XXX State of Health API" as c_health << Coordinating Node >>
-c_health -> m_crud: ping()
-activate c_health
-  c_health <-- m_crud: [ACK, NewData]
-participant "Synchronization API" as c_sync << Coordinating Node >>
-  c_health -> c_sync: scheduleSync(MN_ID)
-deactivate c_health
 
 participant "Replication API" as m_rep << Member Node >>
 c_sync -> m_rep: listChangedRecords(token)
