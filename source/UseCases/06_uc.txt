@@ -72,32 +72,47 @@ Post Conditions
 
 
 ..
-  @startuml images/06_interaction.png
-  !include ../plantuml.conf
-  participant "CRUD API" as m_crud << Member Node >>
-  participant "Synchronization API" as c_sync << Coordinating Node >>
-  participant "Replication API" as m_rep << Member Node >>
-  c_sync -> m_rep: listObjects(token, query)
-  note right of c_crud
-    query asks for new 
-    science metadata objects
+@startuml images/06_interaction.png
+!include ../plantuml.conf
+participant "CRUD API" as m_crud << Member Node >>
+participant "State of Health API" as c_health << Coordinating Node >>
+c_health -> m_crud: ping()
+activate c_health
+  c_health <-- m_crud: [ACK, NewData]
+participant "Synchronization API" as c_sync << Coordinating Node >>
+  c_health -> c_sync: scheduleSync(MN_ID)
+deactivate c_health
+
+participant "Replication API" as m_rep << Member Node >>
+c_sync -> m_rep: listChangedRecords(token)
+
+note right of c_sync
+  The RSS mechanism might be 
+  appropriate for retrieving changes.
+  
+  Also could consider sitemap for this.
+  
+  Note - the return is a list of all
+  objects.
+end note
+
+
+c_sync <-- m_rep: GUID_list
+loop for each GUID
+  c_sync -> m_crud: getSystemMetadata(token, GUID)
+  c_sync <-- m_crud: metadata
+  c_sync -> m_crud: get(token, GUID)
+  c_sync <-- m_crud: object
+participant "CRUD API" as c_crud << Coordinating Node >>
+  c_sync -> c_crud: create(GUID, metadata)
+  c_sync <-- c_crud: ack or FAIL
+  c_sync -> m_rep: notifyReplicated(system_token, GUID)
+  note over m_rep
+    What happens if the CN create() operation fails?
+    How far to roll back?
   end note
-  c_sync <-- m_rep: list of GUIDs
-  loop for each GUID
-    c_sync -> m_crud: describe(token, GUID)
-    c_sync <-- m_crud: metadata
-    c_sync -> m_crud: get(token, GUID)
-    c_sync <-- m_crud: object
-  participant "CRUD API" as c_crud << Coordinating Node >>
-    c_sync -> c_crud: create(GUID, metadata)
-    c_sync <-- c_crud: ack or FAIL
-    c_sync -> m_rep: notifyReplicated(system_token, GUID)
-    note over m_rep
-      What happens if the CN create() operation fails?
-      How far to roll back?
-    end note
-  end
-  @enduml
+end
+@enduml
 
 
 .. raw:: latex
