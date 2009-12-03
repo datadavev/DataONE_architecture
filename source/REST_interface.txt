@@ -10,7 +10,9 @@ REST Interface
   DataONE Member Nodes and maps the v0.3 API methods to HTTP REST calls.
 
 
-The REST interface through which the methods described above are executed.
+The REST interface through which the methods described in the sections
+:doc:`MN_APIs_v0_3` and :doc:`CN_APIs_v0_3`.
+
 
 Basic information:
 
@@ -58,7 +60,14 @@ classes will occur through the same ``/object/`` collection interface.
 
 List of objects that are present on the node, ordered with newest first.
 Additional parameters specify the start index for the list, the number of
-items to retrieve, and the object class. 
+items to retrieve, and the object class.
+
+Implements the functions:
+
+- :func:`MN_replication_0_3.listObjects`
+
+- Possibly :func:`CN_query_0_3.search` if appropriate parameters are specified
+
 
 **Optional Parameters**
 
@@ -88,8 +97,8 @@ The structure of the response is::
     TOTAL       = integer, total number of items in collection
   RESPONSE_BODY = n*(guid + GUID_INFO)
     guid        = object identifier, string
-  GUID_INFO     = OBJECT_TYPE + HASH + TIME_STAMP + SIZE
-  OBJECT_TYPE   = 'data' | 'metadata' | 'system'
+  GUID_INFO     = OBJECT_CLASS + HASH + TIME_STAMP + SIZE
+  OBJECT_CLASS  = 'data' | 'metadata' | 'system'
   HASH          = SHA1 hash
   TIME_STAMP    = ISO8601 formatted date time, GMT, YYYY-MM-DDTHH:mm:SS.FFFZ
     YYYY        = Year
@@ -102,12 +111,14 @@ The structure of the response is::
   SIZE = Byte size of object
 
 
+.. note:: The object class should really be described with a URI.
+
 Expressed in JSON::
 
   {'start': <integer>,
    'count': <integer>,
    'total': <integer>,
-   'data': [<identifier>: {'otype':<object class>,
+   'data': [<identifier>: {'oclass':<object class>,
                            'hash':<SHA1 hash of object>,
                            'modified':<date time last modified>,
                            'size':<byte size of object>},
@@ -128,7 +139,7 @@ Expressed in XML::
             count='_integer_'
             total='_integer_'>
     <data guid='_identifier_'>
-      <otype>_object class_</otype>
+      <oclass>_object class_</oclass>
       <hash>_SHA1 hash of object</hash>
       <modified>_date time last modified_</modified>
       <size>_byte size of object_</size>
@@ -149,7 +160,7 @@ Expressed in RDF/XML::
     <rdf:Description rdf:about="_requesting URL_">
       <d1:data rdf:parseType="Collection">
         <rdf:Description rdf:about="http://mn1.dataone.org/object/_identifier_">
-          <d1:otype>_object class_</d1:otype>
+          <d1:oclass>_object class_</d1:oclass>
           <d1:hash>_SHA1 hash of object</d1:hash>
           <d1:modified>_date time last modified_</d1:modified>
           <d1:size>_byte size of object_</d1:size>
@@ -191,16 +202,16 @@ Retrieve a list of GUIDs from a member node in JSON format::
   {'start':0, 
    'count':1000, 
    'total':159734, 
-   'data':['ABC123':{'otype':'data',
+   'data':['ABC123':{'oclass':'data',
                      'hash':'b3a1617100c2b782fe5f9f2050dc714fdd05df28',
                      'modified':'2009-12-02T17:40:03.0Z',
                      'size':1040032112},
-           'DEF456':{'otype':'system',
+           'DEF456':{'oclass':'system',
                      'hash':'ee17560c8b77385b5bb8d8687820f9b82f3fdcdf',
                      'modified':'2009-11-04T12:22:04.4Z',
                      'size':285},
            ...,
-           'XYZ332':{'otype':'metadata',
+           'XYZ332':{'oclass':'metadata',
                      'hash': '008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07',
                      'modified':'2009-11-30T06:44:19.0Z',
                      'size':1044}]}
@@ -211,7 +222,7 @@ Retrieve a list of GUIDs from a member node in plain text format::
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
   #0,1000,159734
-  guid,otype,hash,modified,size
+  guid,oclass,hash,modified,size
   ABC123,data,b3a1617100c2b782fe5f9f2050dc714fdd05df28,2009-12-02T17:40:03.0Z,1040032112
   DEF456,system metadata,ee17560c8b77385b5bb8d8687820f9b82f3fdcdf,2009-11-04T12:22:04.4Z,285
   ...
@@ -235,7 +246,13 @@ Retrieve last modified information about the collection::
 ^^^^^^^^^^^^^^^^^^^
 
 Operates on individual items of the ``/object/`` collection identified by a
-GUID. The operation is equivalent to the ``get()`` method.
+GUID. 
+
+Implements the methods:
+
+- :func:`MN_crud_0_3.get`
+
+- :func:`CN_crud_0_3.get`
 
 
 .. table:: 
@@ -269,11 +286,19 @@ GUID. The operation is equivalent to the ``get()`` method.
 ``/object/<guid>/meta/``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requests the system metadata for the specified object. This operation is
-equivalent to the ``getSystemMetadata()`` operation. System metadata is not
+Requests the system metadata for the specified object. System metadata is not
 available for system metadata objects, and so the response will be a HTTP
-status 404 indicating the object was not found.
+status 404 indicating the object was not found if .
 
+Implements the methods:
+
+- :func:`MN_crud_0_3.getSystemMetadata`
+
+- :func:`MN_replication_0_3.synchronizationComplete`
+
+- :func:`MN_replication_0_3.synchronizationFailed`
+
+- :func:`CN_crud_0_3.getSystemMetadata`
 
 .. table:: 
   Responses to HTTP requests against ``/object/<guid>/meta/`` for different
