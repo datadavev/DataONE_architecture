@@ -170,6 +170,7 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
     
   @enduml
 
+
 ..
   figure:: images/new_data.png
   :height: 8.5in

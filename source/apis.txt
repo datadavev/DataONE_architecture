@@ -6,11 +6,13 @@ Nodes and the Investigator Toolkit. They do not describe interfaces used only
 internally by those components.
 
 
-.. figure:: images/dataone_components.png 
+.. 
+   figure:: images/dataone_components.png 
    :width: 100%
 
    Component diagram showing the various APIs and their interactions (a line
    indicates communication between APIs).
+
 
 ..
   @startuml images/dataone_components.png
@@ -133,12 +135,14 @@ internally by those components.
 .. toctree::
    :maxdepth: 2
 
+   REST_interface
    MN_APIs_v0_3
-   MN_APIs
    CN_APIs_v0_3
+
+..
+   MN_APIs
    CN_APIs
    ITK_APIs
-
 
 
 

@@ -1,0 +1,302 @@
+REST Interface
+--------------
+
+:status: DRAFT
+
+:author: Dave V.
+
+:About: 
+  This document proposes a Representational State Transfer (REST) model for
+  DataONE Member Nodes and maps the v0.3 API methods to HTTP REST calls.
+
+
+The REST interface through which the methods described above are executed.
+
+Basic information:
+
+- Content is modeled as collections, with GUIDs identifying individual items
+  of a collection.
+
+- The HTTP verbs GET, POST, PUT, DELETE are used for retrieving content,
+  creating content, updating content, and deleting content respectively.
+
+- If state information is required (e.g. authentication token), it is passed
+  in the HTTP headers.
+
+- Cache information should be respected. Caching is an important mechanism for
+  achieving scalability 
+
+Collections exposed by a Member Node include:
+
+:``/object/``:
+
+  Any object within the DataONE system that can be identified by a GUID.  
+
+:``/meta/``:
+
+  System metadata about any object within the DataONE system. 
+
+:``/log/``:
+
+  Log information.
+
+
+Object Collection
+~~~~~~~~~~~~~~~~~
+
+The ``/object/`` collection represents any object that can be identified by a
+GUID with in the DataONE system. These can be science data, science metadata,
+or system metadata entries. It is likely that additional object classes will
+be created in future version of DataONE to handle additional types of
+information such as relationships between objects and annotations. It is
+anticipated that fundamental access and manipulation of those new object
+classes will occur through the same ``/object/`` collection interface.
+
+
+``/object/``
+............
+
+List of objects that are present on the node, ordered with newest first.
+Additional parameters specify the start index for the list, the number of
+items to retrieve, and the object class. 
+
+**Optional Parameters**
+
+:start: Zero based index of the first item to retrieve.
+
+:count: Number of items to retrieve from the list
+
+:oclass: Restricts response to the specified object class
+
+
+**Response**
+
+The expected response when a user agent sends a GET request to a MN exposing
+the DataONE REST API ``/object/`` collection is an extract from the total list
+of identifiers that the MN is able to provide access to when the request was
+received. The format of the response is determined by the ``Accept:`` HTTP
+header provided by the client, and may be one of: ``application/json``
+(default), ``text/csv``, ``text/xml``, ``application/rdf+xml``. Regardless of
+the format, the response is always encoded using the UTF-8 character set.
+
+The structure of the response is::
+
+  RESPONSE      = RESPONSE_INFO + RESPONSE_BODY
+  RESPONSE_INFO = START + COUNT + TOTAL
+    START       = integer, zero based index of first item
+    COUNT       = integer, number of items in response
+    TOTAL       = integer, total number of items in collection
+  RESPONSE_BODY = n*(guid + GUID_INFO)
+    guid        = object identifier, string
+  GUID_INFO     = OBJECT_TYPE + HASH + TIME_STAMP + SIZE
+  OBJECT_TYPE   = 'data' | 'metadata' | 'system'
+  HASH          = SHA1 hash
+  TIME_STAMP    = ISO8601 formatted date time, GMT, YYYY-MM-DDTHH:mm:SS.FFFZ
+    YYYY        = Year
+    MM          = Month
+    DD          = Day
+    HH          = Hour
+    mm          = Minute
+    SS          = Second
+    FFF         = Fraction of second
+  SIZE = Byte size of object
+
+Expressed in JSON::
+
+  {'start': <integer>,
+   'count': <integer>,
+   'total': <integer>,
+   'data': [<identifier>: {'otype':<object class>,
+                           'hash':<SHA1 hash of object>,
+                           'modified':<date time last modified>,
+                           'size':<byte size of object>},
+             ...]}
+
+Expressed in CSV, one entry per line, comma delimiting fields, new line
+delimiting records::
+
+  #<start>,<count>,<total>
+  'guid',otype,hash,modified,size
+  <identifier>,<object class>,<SHA1 hash of object>,<date time last modified>,<byte size of object>
+
+
+Expressed in XML::
+
+  <response xmlns='http://ns.dataone.org/core/objects'
+            start='_integer_'
+            count='_integer_'
+            total='_integer_'>
+    <data guid='_identifier_'>
+      <otype>_object class_</otype>
+      <hash>_SHA1 hash of object</hash>
+      <modified>_date time last modified_</modified>
+      <size>_byte size of object_</size>
+    </data>
+    ...
+  </response>
+
+
+Expressed in RDF/XML::
+
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:d1='http://ns.dataone.org/core/objects/'>
+    <rdf:Description rdf:about="_requesting URL_">
+      <d1:start>_integer_</d1:start>
+      <d1:count>_integer_</d1:count>
+      <d1:total>_integer_</d1:total>
+    </rdf:Description>
+    <rdf:Description rdf:about="_requesting URL_">
+      <d1:data rdf:parseType="Collection">
+        <rdf:Description rdf:about="http://mn1.dataone.org/object/_identifier_">
+          <d1:otype>_object class_</d1:otype>
+          <d1:hash>_SHA1 hash of object</d1:hash>
+          <d1:modified>_date time last modified_</d1:modified>
+          <d1:size>_byte size of object_</d1:size>
+        </rdf:Description>
+      </d1:data>
+    </rdf:Description>
+  </rdf:RDF>
+
+
+.. table:: Response for HTTP operations on ``/object/`` for different HTTP request verbs
+
+  ====== ===========================================================================
+  Verb   Response
+  ====== ===========================================================================
+  HEAD   - ``Last-Modified:`` Date collection was last modified.
+         - ``Content-Type:`` Defaults to application/json, dependent on 
+             client ``Accept:`` parameter.
+
+  GET    List of GUIDs, expressed in JSON, CSV, xml, or RDF/xml. The
+         response is encoded using the encoding type specified in the client
+         ``Accept:`` header parameter which can be one of
+         ``application/json``, ``text/csv``, ``text/xml``, or
+         ``application/rdf+xml``.  Default is JSON.
+
+  POST   No operation
+
+  PUT    No operation
+
+  DELETE No operation
+  ====== ===========================================================================
+
+
+
+
+**Examples**
+
+Retrieve a list of GUIDs from a member node in JSON format::
+
+  curl -X GET -H "Accept: application/json" http://mn1.dataone.org/object/
+
+  {'start':0, 
+   'count':1000, 
+   'total':159734, 
+   'data':['ABC123':{'otype':'data',
+                     'hash':'b3a1617100c2b782fe5f9f2050dc714fdd05df28',
+                     'modified':'2009-12-02T17:40:03.0Z',
+                     'size':1040032112},
+           'DEF456':{'otype':'system',
+                     'hash':'ee17560c8b77385b5bb8d8687820f9b82f3fdcdf',
+                     'modified':'2009-11-04T12:22:04.4Z',
+                     'size':285},
+           ...,
+           'XYZ332':{'otype':'metadata',
+                     'hash': '008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07',
+                     'modified':'2009-11-30T06:44:19.0Z',
+                     'size':1044}]}
+
+
+Retrieve a list of GUIDs from a member node in plain text format::
+
+  curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
+
+  #0,1000,159734
+  guid,otype,hash,modified,size
+  ABC123,data,b3a1617100c2b782fe5f9f2050dc714fdd05df28,2009-12-02T17:40:03.0Z,1040032112
+  DEF456,system metadata,ee17560c8b77385b5bb8d8687820f9b82f3fdcdf,2009-11-04T12:22:04.4Z,285
+  ...
+  XYZ332,science metadata,008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07,2009-11-30T06:44:19.0Z,1044
+
+
+Retrieve last modified information about the collection::
+
+  curl -I http://mn1.dataone.org/object/
+  
+  HTTP/1.1 200 OK
+  Date: Wed, 02 Dec 2009 22:48:46 GMT
+  Last-Modified: Wed, 02 Dec 2009 17:40:03 GMT
+  Content-Length: *
+  Content-Type: application/json; charset=utf-8
+
+
+
+
+``/object/<guid>/``
+...................
+
+Operates on individual items of the ``/object/`` collection identified by a
+GUID. The operation is equivalent to the ``get()`` method.
+
+
+.. table:: 
+  Response to HTTP requests against ``/object/<guid>/`` for different verbs.
+  GET and HEAD operations are permitted from any origin. POST, PUT, and HEAD
+  operations are only permitted from Coordinating Nodes.
+
+  ====== ===========================================================================
+  Verb   Response
+  ====== ===========================================================================
+  HEAD   Returns basic information about the object.
+         - ``Last-Modified:`` Date collection was last modified.
+         - ``Content-Type:`` The MIME type of the object
+         - ``Size:`` Byte size of the object
+
+  GET    Returns the bytes of the object.
+
+  POST   Creates a new instance with the specified GUID.
+
+  PUT    Updates an existing instance identified by GUID.
+
+  DELETE Removes the specified instance from the collection.
+  ====== ===========================================================================
+
+**Examples**
+
+.. TODO:: Show some examples for operations.  Failures should be included.
+
+
+``/object/<guid>/meta/``
+........................
+
+Requests the system metadata for the specified object. This operation is
+equivalent to the ``getSystemMetadata()`` operation. System metadata is not
+available for system metadata objects, and so the response will be a HTTP
+status 404 indicating the object was not found.
+
+.. table:: 
+  Responses to HTTP requests against ``/object/<guid>/meta/`` for different
+  verbs.
+
+  ====== ===========================================================================
+  Verb   Response
+  ====== ===========================================================================
+  HEAD   Returns basic information about the system metadata object.
+         - ``Last-Modified:`` Date collection was last modified.
+         - ``Content-Type:`` The MIME type of the object
+         - ``Size:`` Byte size of the object
+
+  GET    Returns the bytes of the system metadata object.
+
+  POST   No Operation
+
+  PUT    Permitted by Coordinating Nodes only.  Used to update the system metadata, 
+         such as after a replication operation has successfully completed.
+
+  DELETE No Operation
+  ====== ===========================================================================
+
+
+**Examples**
+
+.. TODO:: Show some examples for operations.  Failures should be included.

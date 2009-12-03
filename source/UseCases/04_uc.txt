@@ -31,7 +31,7 @@ Summary
   from the experiment metadata. The changes to the CN (stored experiment
   metadata, update search metadata) are replicated to the other CNs (Use Case
   ###). The CN schedules replication of the data package across other MNs
-  (:doc:`Use Case 06<UseCases/06_uc>`).
+  (Use Case 06).
 
 
 Actors

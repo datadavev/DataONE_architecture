@@ -10,7 +10,7 @@
 			<key>filename</key>
 			<string>about.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T15:50:57Z</date>
+			<date>2009-11-26T22:57:14Z</date>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -77,7 +77,7 @@
 			<key>filename</key>
 			<string>SystemMetadata.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-21T04:16:23Z</date>
+			<date>2009-11-23T20:06:54Z</date>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -86,7 +86,7 @@
 					<key>filename</key>
 					<string>conf.py</string>
 					<key>lastUsed</key>
-					<date>2009-11-21T04:16:23Z</date>
+					<date>2009-11-28T14:21:12Z</date>
 					<key>selected</key>
 					<true/>
 				</dict>
@@ -94,7 +94,7 @@
 					<key>filename</key>
 					<string>plantuml.conf</string>
 					<key>lastUsed</key>
-					<date>2009-11-20T15:27:03Z</date>
+					<date>2009-11-26T22:57:13Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -112,7 +112,7 @@
 			<key>filename</key>
 			<string>prioritization.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-20T15:27:03Z</date>
+			<date>2009-11-23T21:09:41Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -140,9 +140,21 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>MN_APIs_v0_3.txt</string>
+			<key>lastUsed</key>
+			<date>2009-11-28T14:21:12Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>versions.txt</string>
+			<key>lastUsed</key>
+			<date>2009-11-24T20:22:22Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>userrequirements.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-21T02:52:56Z</date>
+			<date>2009-11-23T18:49:08Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -151,6 +163,8 @@
 			<date>2009-11-20T15:27:04Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>UseCases</string>
 			<key>regexFolderFilter</key>
@@ -191,33 +205,33 @@
 			<key>firstVisibleLine</key>
 			<integer>326</integer>
 		</dict>
-		<key>SystemMetadata.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>8</integer>
-				<key>line</key>
-				<integer>389</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>373</integer>
-		</dict>
-		<key>UseCases/10_uc.txt</key>
+		<key>MN_APIs_v0_3.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>31</integer>
+			<integer>0</integer>
+		</dict>
+		<key>SystemMetadata.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>77</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>70</integer>
 		</dict>
 		<key>UseCases/24_uc.txt</key>
 		<dict>
@@ -238,14 +252,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>53</integer>
+				<integer>31</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>33</integer>
+			<integer>18</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
 		</dict>
 		<key>index.txt</key>
 		<dict>
@@ -275,6 +305,20 @@
 			<key>firstVisibleLine</key>
 			<integer>184</integer>
 		</dict>
+		<key>prioritization.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>150</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>128</integer>
+		</dict>
 		<key>userrequirements.txt</key>
 		<dict>
 			<key>caret</key>
@@ -287,20 +331,32 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>231</integer>
+			<integer>125</integer>
+		</dict>
+		<key>versions.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>110</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>userrequirements.txt</string>
-		<string>SystemMetadata.txt</string>
+		<string>versions.txt</string>
+		<string>MN_APIs_v0_3.txt</string>
 		<string>conf.py</string>
-		<string>overview.txt</string>
-		<string>index.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{401, 24}, {859, 745}}</string>
+	<string>{{350, 208}, {904, 670}}</string>
 </dict>
 </plist>

@@ -51,7 +51,7 @@ and evaluate the log data. In later stages, this information could be
 associated with content, so use statistics appear with search results.
 
 
-.. image:: images/18_interaction.png
+.. figure:: images/18_interaction.png
    :width: 100%
 
    Interactions for use case 18.

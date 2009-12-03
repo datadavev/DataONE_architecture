@@ -19,7 +19,7 @@ Goal
 
 Summary
 
-  This is a dupe of :doc:`Use Case 06 <UseCases/06_uc>` after refactoring that
+  This is a dupe of Use Case 06 after refactoring that
   use case use a pull mechanism to retrieve changed records. The intent is to
   streamline the retrieval of large amounts of content from a MN, which
   perhaps involves turning of indexing and other potentially time consuming

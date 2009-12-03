@@ -5,11 +5,16 @@ Implementation Priority
   DataONE Core Cyberinfrastructure Team / Virtual Data Center Technical
   Working Group
 
+
 :Revisions: 
 
   - October 7, 2009; revised October 10, 2009; revised October 13, 2009
 
   - 20091110: Text from Word format transferred to plain text (this document)
+
+  - 20091123: Goals and milestones mapped to versions rather than years.
+    Previous year 1 = 0.x, years 2-3 = 1.x, years 4-5 = 2.x
+
 
 
 Introduction
@@ -64,7 +69,7 @@ Authentication: short- then long-term          X      X
 Search, retrieval, metadata interoperability   X      X      X
 DataONE User Interface                         X      X      X
 DataONE Investigator Toolkit                   X      X      X
-Replication of data and metadata               X
+Replication of data and metadata               X      X
 Heartbeat / health monitor (basic to robust)*  X      X      X
 Logging (basic to robust)*                     X      X   
 Member Node registry                           X      X
@@ -95,7 +100,7 @@ Table 1: Goal / milestone summary, by implementation version. Goals /
 milestones with asterisks could be deferred to the following year. X indicates
 the phase of development planned for implementation of that feature, and when
 appearing in multiple columns indicates that iterative development of that
-feature is likely. 
+feature is expected. 
 
 
 Notes
@@ -112,17 +117,17 @@ factors including:
   the system that are important to them. If these are not properly addressed,
   then the resulting system may appear as a failure to them.
 
-- *Requirements of the sponsor*. The sponsor has laid out goals in the RFP that
-  the project is responding to and also in the final agreement for conducting the work.
+- *Requirements of the sponsor*. The sponsor has laid out goals in the RFP
+  that the project is responding to and also in the final agreement for
+  conducting the work.
 
 - *Dependencies between use cases*. Implementation of functionality to address
   some use cases will require implementation of some components not directly
   specific in a use case.
 
-- *Resources available for implementation*. Some use cases may be identified as
-  high priority, but would require resources that would prevent implementation
-  of a number of other lower priority features.
-  
+- *Resources available for implementation*. Some use cases may be identified
+  as high priority, but would require resources that would prevent
+  implementation of a number of other lower priority features.
 
 
 Version 0.x Implementation
@@ -142,7 +147,8 @@ Goals and Milestones
 The goals and milestones for the version 0.x series of DataONE
 cyberinfrastructure include:
 
-- Launching a network consisting of three Coordinating Nodes and three Member Nodes
+- Launching a network consisting of three Coordinating Nodes and three Member
+  Nodes
 
 - Initial support for GUIDs (globally unique identifiers)
 
@@ -152,13 +158,15 @@ cyberinfrastructure include:
 
 - Authentication using a short-term solution
 
-- Search and retrieval of data from all Member Nodes to demonstrate basic metadata interoperability (initial release)
+- Search and retrieval of data from all Member Nodes to demonstrate basic
+  metadata interoperability (initial release)
 
 - DataONE user interface (initial release)
 
 - DataONE Investigator Toolkit (initial release)
 
-- Replication of data and metadata between Coordinating and Member Nodes, bootstrapped using existing repositories
+- Replication of data and metadata between Coordinating and Member Nodes,
+  bootstrapped using existing repositories
 
 - Heartbeat / health monitoring (initial release)
 
@@ -446,7 +454,7 @@ Version 2.x Implementation
 The version 2.x series builds upon the core functionality provided in the 1.x
 releases and generally addresses the more advanced science user requirements
 such as semantic integration of content and additional services for data
-extraction, conversion, analysis and visualization. 
+extraction, conversion, analysis and visualization.
 
 
 Goals and Milestones

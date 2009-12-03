@@ -15,7 +15,7 @@ Goal
   Create/Update/Delete data object in Member Node.
 
 Summary 
-  This is a dupe of :doc:`Use Case 04<UseCases/04_uc>` for now. May split out the update and delete
+  This is a dupe of Use Case 04 for now. May split out the update and delete
   portions to different use cases at some point in the future.
 
 
