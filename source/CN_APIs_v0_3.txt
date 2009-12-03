@@ -2,7 +2,9 @@ Coordinating Node APIs for V0.3
 -------------------------------
 
 
-These APIs are implemented by Coordinating Nodes for version 0.3. This is a reduced set of functionality compared to the full set of APIs envisioned for Coordinating Nodes.
+These APIs are implemented by Coordinating Nodes for version 0.3. This is a
+reduced set of functionality compared to the full set of APIs envisioned for
+Coordinating Nodes.
 
 
 Authentication API
@@ -10,7 +12,10 @@ Authentication API
 
 Methods for authentication and authorization.
 
-.. todo:: The authentication and authorization requirements for V0.3 are minimal due to using network configuration for authentication. What, if any, authentication or authorization mechanisms are required for admin access.
+.. todo:: 
+   The authentication and authorization requirements for V0.3 are minimal due
+   to using network configuration for authentication. What, if any,
+   authentication or authorization mechanisms are required for admin access.
 
 .. module:: CN_authorization_0_3
    :synopsis: Methods for authentication and authorization
@@ -19,10 +24,14 @@ Methods for authentication and authorization.
 Query API
 ~~~~~~~~~
 
-The Query API handles searches of science metadata and system metadata; also exposes log records held by CNs. This log-related functionality probably needs to be split out into the Logging and Alert API (not yet defined).
+The Query API handles searches of science metadata and system metadata; also
+exposes log records held by CNs. This log-related functionality probably needs
+to be split out into the Logging and Alert API (not yet defined).
 
 .. module:: CN_query_0_3
-   :synopsis: Handles queries against science metadata, system metdata, and log records held by CNs
+   :synopsis: 
+     Handles queries against science metadata, system metdata, and log
+     records held by CNs
 
 ::
 
@@ -32,27 +41,33 @@ The Query API handles searches of science metadata and system metadata; also exp
 
 .. function:: getLogRecords (token, fromDate, toDate) -> logRecords
 
-   Retrieves consolidated log information for the specified date range (inclusive) for the entire DataONE infrastructure. 
+   Retrieves consolidated log information for the specified date range
+   (inclusive) for the entire DataONE infrastructure.
 
    :param token: authentication token
 
-   :param fromDate: specified by appropriate standard (ISO? W3C?)
+   :param fromDate: 
+     specified by appropriate standard (ISO? W3C?)
 
-   :param toDate: specified by appropriate standard (ISO? W3C?)
+   :param toDate: 
+     specified by appropriate standard (ISO? W3C?)
 
-   :returns: the set of log records specified; format is not yet specified; the set of records may be empty
+   :returns:
+     the set of log records specified; format is not yet specified; the set of
+     records may be empty
 
-  .. todo:: Format of the consolidated log records need to be specified.
+   .. todo:: Format of the consolidated log records need to be specified.
+
 
 .. function:: search (token, query) -> list of metadata GUIDs
 
    Search the metadata catalog and return GUIDs of metadata records that meet the criteria.
   
-  :param token: authentication token; ignored for V0.3
+   :param token: authentication token; ignored for V0.3
   
-  :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
+   :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
   
-  .. todo: Details of query specification for `search(token, query)` needs to be worked out. 
+   .. todo: Details of query specification for `search(token, query)` needs to be worked out. 
 
 
 CRUD API
@@ -83,7 +98,11 @@ V0.3 Read operations for Coordinating Nodes.
   object, then that system metadata objecct itself is returned instead of the 
   metadata for the system metadata object (if there even is such a thing).
 
-  **Note** If we stick to strict semantics, this method cannot be used to retrieve the system metadata of a system metadata object, since there is no such thing. However if we do not stick to those semantics then getSystemMetadata(token, systemMetadataGUID) will return the same thing as get(token, systemMetaddataGUID).
+  **Note** If we stick to strict semantics, this method cannot be used to
+  retrieve the system metadata of a system metadata object, since there is no
+  such thing. However if we do not stick to those semantics then
+  getSystemMetadata(token, systemMetadataGUID) will return the same thing as
+  get(token, systemMetaddataGUID).
 
   :param token: authentication token; ignored for V0.3
 
@@ -92,52 +111,79 @@ V0.3 Read operations for Coordinating Nodes.
   :returns: System metadata object describing the object.
 
   :raises NotFound: There is no data, science metadata, or system metdata identified by the given GUID.
-  
+
+
 
 .. function:: get (token, GUID) -> object or list of MNs holding the object
 
-  For metadata (system and science), retrieves the object identified by GUID. For data, a list of MNs holding the data is returned.
+  For metadata (system and science), retrieves the object identified by GUID.
+  For data, a list of MNs holding the data is returned.
 
   :param token: authentication token; ignored for V0.3
 
   :param GUID: The identifier for the object to be retrieved.
 
-  :rtype: For system metadata objects, the system metadata itself is returned. For science metadata objects, this will be the byte stream of the science metadata oject. For data objects, **the data object itself is not returned**; instead a list of member nodes holding the data is returned.
+  :rtype:
+    For system metadata objects, the system metadata itself is returned. For
+    science metadata objects, this will be the byte stream of the science
+    metadata oject. For data objects, **the data object itself is not
+    returned**; instead a list of member nodes holding the data is returned.
 
   :raises NotFound: The object specified by GUID does not exist.
-  
-  .. todo:: This method name should be changed since it has different semantics than the method of the same name on MNs.
-  
-.. function::   create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
 
-   This is a method used internally by the CN, not exposed to MNs or the world. Stores the two given objects (systemMetadata, scienceMetadata) in a single atomic action. This method is used as part of the synchronization of science metadata between a MN and the CN.
-  
+   .. todo::
+      This method name should be changed since it has different semantics than
+      the method of the same name on MNs.
+
+
+
+.. function:: create(systemMetadataGUID, systemMetadata,
+                     scienceMetadataGUID, scienceMetadata)
+
+   This is a method used internally by the CN, not exposed to MNs or the
+   world. Stores the two given objects (systemMetadata, scienceMetadata) in a
+   single atomic action. This method is used as part of the synchronization of
+   science metadata between a MN and the CN.
+
   :param systemMetadataGUID: the GUID of the system metadata
-  
-  :param systemMetadata: the system metadata describing the data package (data and science metadata)
-  
+
+  :param systemMetadata:
+   The system metadata describing the data package (data and science metadata)
+
   :param scienceMetaDataGUID: the GUID of the science metadata
-  
+
   :param scienceMetadata: the science metadata portion of the data package
 
-  :raises InvalidMetadataType: the science metadata is not of a type supported by the D1 system
+  :raises InvalidMetadataType: 
+    the science metadata is not of a type supported by the D1 system
+
+
 
 Replication API
 ~~~~~~~~~~~~~~~
 
-The Replication API handles replication of data and science metadata content among member nodes. Such replication is not part of V0.3 functionality, so there are no Replication API methods required.
+The Replication API handles replication of data and science metadata content
+among member nodes. Such replication is not part of V0.3 functionality, so
+there are no Replication API methods required.
+
 
 
 Synchronization API
 ~~~~~~~~~~~~~~~~~~~
 
-The Synchronization API manages synchronization of system metadata and science metadata among CNs. Since this will be handled out-of-band with respect to the CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
+The Synchronization API manages synchronization of system metadata and science
+metadata among CNs. Since this will be handled out-of-band with respect to the
+CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
+
 
 
 Register API
 ~~~~~~~~~~~~
 
-Register API methods manage registration of Member Nodes and is not implemented for for V0.3. Instead, registry information about MNs is managed manually.
+Register API methods manage registration of Member Nodes and is not
+implemented for for V0.3. Instead, registry information about MNs is managed
+manually.
+
 
 
 Server Authentication API
@@ -145,10 +191,13 @@ Server Authentication API
 
 Server authentication is handled by network configuration for V0.3. No API calls are required.
 
+
+
 State of Health API
 ~~~~~~~~~~~~~~~~~~~
 
-The Health API contains methods for determining the status of the DataONE infrastructure, including both the CNs and MNs.
+The Health API contains methods for determining the status of the DataONE
+infrastructure, including both the CNs and MNs.
 
 .. module:: CN_health_0_3
    :synopsis: Methods for reporting on the state of health of a CN and on the entire DataONE infrastructure
@@ -159,7 +208,13 @@ The Health API contains methods for determining the status of the DataONE infras
 
 .. function:: generateReport(token) -> statusReport
 
-   .. note:: This method is used by Use Case 10 "MN Status Reports" for V0.3. However instead of a complete set of detailed status reports, the V0.3 implementation of the use case will utilize thee the ``MN_health_0_3.heartbeat()`` method to compile very basic information about the MNs. Later versions of this method will use the richer ``MN_health.getStatus(token)`` method.
+   .. note:: 
+      This method is used by Use Case 10 "MN Status Reports" for V0.3. However
+      instead of a complete set of detailed status reports, the V0.3
+      implementation of the use case will utilize thee the
+      ``MN_health_0_3.heartbeat()`` method to compile very basic information
+      about the MNs. Later versions of this method will use the richer
+      ``MN_health.getStatus(token)`` method.
 
    Returns a status report for all of the registered Member Nodes. The
    information returned is used to give administrators information necessary to

@@ -1,7 +1,7 @@
 REST Interface
 --------------
 
-:status: DRAFT
+:status: DRAFT.  MN portion outlined, CN portion still to do.
 
 :author: Dave V.
 
@@ -30,7 +30,7 @@ Collections exposed by a Member Node include:
 
 :``/object/``:
 
-  Any object within the DataONE system that can be identified by a GUID.  
+  Any object within the DataONE system that can be identified by a GUID. 
 
 :``/meta/``:
 
@@ -54,7 +54,7 @@ classes will occur through the same ``/object/`` collection interface.
 
 
 ``/object/``
-............
+^^^^^^^^^^^^
 
 List of objects that are present on the node, ordered with newest first.
 Additional parameters specify the start index for the list, the number of
@@ -100,6 +100,7 @@ The structure of the response is::
     SS          = Second
     FFF         = Fraction of second
   SIZE = Byte size of object
+
 
 Expressed in JSON::
 
@@ -158,29 +159,27 @@ Expressed in RDF/XML::
   </rdf:RDF>
 
 
-.. table:: Response for HTTP operations on ``/object/`` for different HTTP request verbs
+.. table:: 
+  Response for HTTP operations on ``/object/`` for different HTTP request verbs
 
-  ====== ===========================================================================
-  Verb   Response
-  ====== ===========================================================================
-  HEAD   - ``Last-Modified:`` Date collection was last modified.
-         - ``Content-Type:`` Defaults to application/json, dependent on 
-             client ``Accept:`` parameter.
+  ======= ===========================================================================
+  Verb    Response
+  ======= ===========================================================================
+  HEAD    Returns information about the collection in the headers, including last 
+          modified to indicate when the collection was last updated.
 
-  GET    List of GUIDs, expressed in JSON, CSV, xml, or RDF/xml. The
-         response is encoded using the encoding type specified in the client
-         ``Accept:`` header parameter which can be one of
-         ``application/json``, ``text/csv``, ``text/xml``, or
-         ``application/rdf+xml``.  Default is JSON.
+  GET     List of GUIDs, expressed in JSON, CSV, xml, or RDF/xml. The
+          response is encoded using the encoding type specified in the client
+          ``Accept:`` header parameter which can be one of
+          ``application/json``, ``text/csv``, ``text/xml``, or
+          ``application/rdf+xml``.  Default is JSON.
 
-  POST   No operation
+  POST    No operation
 
-  PUT    No operation
+  PUT     No operation
 
-  DELETE No operation
-  ====== ===========================================================================
-
-
+  DELETE  No operation
+  ======= ===========================================================================
 
 
 **Examples**
@@ -233,7 +232,7 @@ Retrieve last modified information about the collection::
 
 
 ``/object/<guid>/``
-...................
+^^^^^^^^^^^^^^^^^^^
 
 Operates on individual items of the ``/object/`` collection identified by a
 GUID. The operation is equivalent to the ``get()`` method.
@@ -261,42 +260,45 @@ GUID. The operation is equivalent to the ``get()`` method.
   DELETE Removes the specified instance from the collection.
   ====== ===========================================================================
 
+
 **Examples**
 
 .. TODO:: Show some examples for operations.  Failures should be included.
 
 
 ``/object/<guid>/meta/``
-........................
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Requests the system metadata for the specified object. This operation is
 equivalent to the ``getSystemMetadata()`` operation. System metadata is not
 available for system metadata objects, and so the response will be a HTTP
 status 404 indicating the object was not found.
 
+
 .. table:: 
   Responses to HTTP requests against ``/object/<guid>/meta/`` for different
   verbs.
 
-  ====== ===========================================================================
-  Verb   Response
-  ====== ===========================================================================
-  HEAD   Returns basic information about the system metadata object.
-         - ``Last-Modified:`` Date collection was last modified.
-         - ``Content-Type:`` The MIME type of the object
-         - ``Size:`` Byte size of the object
+  ======== ===========================================================================
+  Verb     Response
+  ======== ===========================================================================
+  HEAD     Returns basic information about the system metadata object.
+           - ``Last-Modified:`` Date collection was last modified.
+           - ``Content-Type:`` The MIME type of the object
+           - ``Size:`` Byte size of the object
 
-  GET    Returns the bytes of the system metadata object.
+  GET      Returns the bytes of the system metadata object.
 
-  POST   No Operation
+  POST     No Operation
 
-  PUT    Permitted by Coordinating Nodes only.  Used to update the system metadata, 
-         such as after a replication operation has successfully completed.
+  PUT      Permitted by Coordinating Nodes only.  Used to update the system metadata, 
+           such as after a replication operation has successfully completed.
 
-  DELETE No Operation
-  ====== ===========================================================================
+  DELETE   No Operation
+  ======== ===========================================================================
 
 
 **Examples**
 
 .. TODO:: Show some examples for operations.  Failures should be included.
+

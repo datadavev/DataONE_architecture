@@ -6,7 +6,7 @@ User Requirements
 
 
 The user requirements outlined in this document drove much of the process for
-identification of the :doc:`DataONE Functional Use Cases<usecases>` described
+identification of the :doc:`DataONE Functional Use Cases</usecases>` described
 elsewhere. The functional use cases were identified and prioritized over a
 series of meetings funded by the NSF sponsored "Virtual Data Center" (VDC) INTEROP_
 project.
@@ -243,7 +243,8 @@ This list of requirements for Coordinating Node functionality was obtained
 
 * CN should respect replication policies of MNs
 
-* CN should ensure that any given data set is available at any time (subject to policy restrictions) even when xxx% of MNs are offline
+* CN should ensure that any given data set is available at any time (subject
+  to policy restrictions) even when xxx% of MNs are offline
 
 * CNs must validate that:
   - data are available at all replicas
@@ -258,4 +259,5 @@ This list of requirements for Coordinating Node functionality was obtained
 * CNs should be secure and deflect malicious intent
 
 * CNs should provide services to detect rogue data (viruses, copyright, )
+
 

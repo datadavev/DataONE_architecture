@@ -38,7 +38,7 @@ Post Conditions
 - Users can be members of groups that can participate in access directives.
 
 - I have removed the phrase "and replication" from the use case statement
-  because :doc:`Use Case 08<08_uc>` deals with setting replication policies.
+  because :doc:`Use Case 08</UseCases/08_uc>` deals with setting replication policies.
   (PEA)
 
 - Step #1, should have a signature of setAccess(token, GUID, accessPolicy).
@@ -82,3 +82,4 @@ Post Conditions
 .. raw:: latex
 
    \newpage
+

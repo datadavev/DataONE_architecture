@@ -135,12 +135,12 @@ internally by those components.
 .. toctree::
    :maxdepth: 2
 
-   REST_interface
    MN_APIs_v0_3
    MN_APIs
    CN_APIs_v0_3
    CN_APIs
    ITK_APIs
+   REST_interface
 
 
 

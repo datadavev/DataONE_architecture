@@ -74,6 +74,13 @@ To build a PDF copy, you will need to install latex and its dependencies. Then r
 
   $ make latex; make -f build/latex/Makefile all-pdf
 
+Heading levels::
+
+  ===  Level 1
+  ---  Level 2
+  ~~~  Level 3
+  ...  Level 4
+
 
 .. _graphviz: http://www.graphviz.org/
 
