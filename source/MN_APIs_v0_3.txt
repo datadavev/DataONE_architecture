@@ -32,36 +32,23 @@ CRUD API
 .. exception:: NotFound
 
 
-
 .. function:: getSystemMetadata(token, GUID) -> system metadata
 
-   Describes the object identified by the GUID. This is necessary
-   to enable a client (e.g. a CN doing synchronization of new content) to
-   determine what type of information is being referenced before it is
-   registered in the system metadata. Helps to avoid accidental download of
-   data objects rather than metadata. If the GUID identifies a system metadata 
-   object, then that system metadata object itself is returned instead of the 
-   metadata for the system metadata object (if there even is such a thing).
+   Describes the science metadata or data object identified by the GUID 
+   by returing the system metadata object associated with the GUID.
 
-   **Note** If we stick to strict semantics, this method cannot be used to
-   retrieve the system metadata of a system metadata object, since there is no
-   such thing. However if we do not stick to those semantics then
-   getSystemMetadata(token, systemMetadataGUID) will return the same thing as
-   get(token, systemMetaddataGUID).
 
    :param token: authentication token; ignored for V0.3
 
-   :param GUID: Identifier for the object in question.
-
+   :param GUID: Identifier for the science data or science metedata object of interest.
+ 
    :returns: System metadata object describing the object.
 
-   :raises NotFound: 
-     There is no data, science metadata, or system metdata identified by the
-     given GUID.
+   :raises NotFound: There is no data or science metadata identified by the given GUID. 
 
    .. todo::
 
-     What happens if the GUID is valid within DataONE, but isn't on this MN?
+     Q. What happens if the GUID is valid within DataONE, but isn't on this MN?
      Is NotFound raised? Or, does the member node forward the request to a CN?
 
      A. Choices are: 1) raise NotFound. 2) resolve the GUID and return
@@ -83,7 +70,7 @@ CRUD API
     bytes of data. For metadata objects, this will be the representation of
     the object as provided by the Member Node.
 
-   :raises NotFound: The object specified by GUID does not exist.
+   :raises NotFound: The object specified by GUID does not exist at this node.
 
    .. todo:: 
 

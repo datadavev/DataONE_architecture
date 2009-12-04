@@ -40,5 +40,7 @@ Use Cases
    /UseCases/32_uc
    /UseCases/33_uc
    /UseCases/34_uc
+   /UseCases/35_uc
+   /UseCases/36_uc
 
 

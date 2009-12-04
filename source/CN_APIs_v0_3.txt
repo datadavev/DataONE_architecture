@@ -81,60 +81,72 @@ V0.3 Read operations for Coordinating Nodes.
 ::
 
   getSystemMetadata(token, GUID) -> systemMetadata
-  get(token, GUID) -> metadata or list of MNs holding data
+  get(token, GUID) -> metadata
+  resolve(token, GUID) -> systemMetadata???
   create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
   
 .. exception:: NotFound
 
 .. exception :: InvalidMetadataType
 
+.. exception :: InvalidArgument
+
+.. exception :: ObjectNotHere
+
 .. function:: getSystemMetadata(token, GUID) -> system metadata
 
-  Describes the object identified by the GUID. This is necessary
-  to enable a client (e.g. a CN doing synchronization of new content) to
-  determine what type of information is being referenced before it is
-  registered in the system metadata. Helps to avoid accidental download of
-  data objects rather than metadata. If the GUID identifies a system metadata 
-  object, then that system metadata objecct itself is returned instead of the 
-  metadata for the system metadata object (if there even is such a thing).
-
-  **Note** If we stick to strict semantics, this method cannot be used to
-  retrieve the system metadata of a system metadata object, since there is no
-  such thing. However if we do not stick to those semantics then
-  getSystemMetadata(token, systemMetadataGUID) will return the same thing as
-  get(token, systemMetaddataGUID).
+   Describes the science metadata or data object identified by the GUID 
+   by returing the system metadata object associated with the GUID.
 
   :param token: authentication token; ignored for V0.3
 
-  :param GUID: Identifier for the object in question.
+  :param GUID: Identifier for the science data or science metedata object of interest.
 
   :returns: System metadata object describing the object.
 
-  :raises NotFound: There is no data, science metadata, or system metdata identified by the given GUID.
+  :raises NotFound: There is no data or science metadata identified by the given GUID. 
+  
+  :raises InvalidArgument: The GUID requested identifies a system metadata object. 
 
 
+.. function:: get (token, GUID) -> metadata
 
-.. function:: get (token, GUID) -> object or list of MNs holding the object
-
-  For metadata (system and science), retrieves the object identified by GUID.
-  For data, a list of MNs holding the data is returned.
+   Retrieves the science metedata or system metadata object identified by the given GUID. 
+   If the object identified by the GUID is a data object, then an error is raised.
 
   :param token: authentication token; ignored for V0.3
 
-  :param GUID: The identifier for the object to be retrieved.
+  :param GUID: The identifier for the science metadata or system metadata object to be retrieved.
 
-  :rtype:
+  :returns:
     For system metadata objects, the system metadata itself is returned. For
-    science metadata objects, this will be the byte stream of the science
-    metadata oject. For data objects, **the data object itself is not
-    returned**; instead a list of member nodes holding the data is returned.
+    science metadata objects, this will be the exact byte stream of the science
+    metadata oject, as is was original ingested.
 
   :raises NotFound: The object specified by GUID does not exist.
+  
+  :raises ObjectNotHere: The object specified by the GUID is a data object and is not present on this (or any) CN. This response could be accompanied by the results of a standard resolve() method call to provide more information about the object.
 
    .. todo::
-      This method name should be changed since it has different semantics than
+      This method name could be changed since it has different semantics than
       the method of the same name on MNs.
+      
+      
+.. function:: resolve(token, dataGUID) -> list of MNs holding data
 
+   Resolves the locations of where the science data object identified by the GUID can be found.
+   
+   :param token: authentication token; ignored for V0.3
+   
+   :param dataGUID: Identifier for the science data object in question
+   
+   :returns: A structured list of information about the member nodes that hold the data
+
+   .. todo:: It seems that returning just a simple list of URLs for the service endpoints of the relevant MNs is not sufficient. Some sort of MN identifier also needs to be returned so that the caller can ask further information about MN (which would include the endpoint URL for the MN API implementation). Is there a use case that involves asking a CN for metadata describing a MN?
+
+   :raises NotFound: There is no science data object identified by the given GUID. 
+      
+   :raises InvalidArgument: The GUID requested identifies a science metadata object or a system metadata object. 
 
 
 .. function:: create(systemMetadataGUID, systemMetadata,

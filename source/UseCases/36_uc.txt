@@ -1,0 +1,57 @@
+Use Case 36 - Query Coordinating Node for location of data object
+-------------------------------------------------------------------
+
+Author
+  Paul Allen
+
+Date
+  - 20091204 Created.
+
+Version 
+  Draft
+
+Goal
+  Communicate the locations where a data object can be found
+
+Summary 
+
+  Within DataONE, a registered data object may be held on 
+  one or more Member Nodes (depending on replication policy). 
+  Clients must be able to ask a Coordinating Node for those locations.
+  
+  Ideally, the response to this query is a list of member node 
+  identifiers and the URL endpoint of their DataONE API implementation.
+
+Actors
+  - Coordinating Node
+  - Client requesting info
+
+Preconditions 
+  - Coordinating Nodes are operational
+  
+Triggers
+  - Request by client
+ 
+Post Conditions
+  - Client has more information about the Member Node
+
+
+.. figure:: images/36_interaction.png
+   :width: 100%
+
+
+   Interactions for use case 36.
+
+..
+  @startuml images/36_interaction.png
+  !include ../plantuml.conf
+  
+  title Interactions: 36 - Query Coordinating Node for location of data object
+  @enduml
+  
+
+.. raw:: latex
+
+   \newpage
+
+  
