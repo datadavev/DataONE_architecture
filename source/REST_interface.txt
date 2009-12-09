@@ -32,7 +32,7 @@ Collections exposed by a Member Node include:
 
 :``/object/``:
 
-  Any object within the DataONE system that can be identified by a GUID. 
+  The set of objects identified by a GUID that is currently available on the node.
 
 :``/meta/``:
 
