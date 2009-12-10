@@ -381,7 +381,7 @@ Replication
 
 .. attribute:: Replica
 
-  A container field used to repeatedly provide sseveral metadata fields about 
+  A container field used to repeatedly provide several metadata fields about 
   each replica that exists in the system, or is being replicated. Note that
   a Replica field exists even for the Authoritative/Origin Member Nodes so
   that the status of those objects can be tracked.
