@@ -79,11 +79,70 @@ the science or system metadata documents being the values.
 
 The CN-OS should support operations:
 
-Create
-Read
-Update
-Delete
-List
+- Create(guid)
+
+- Read(guid)
+
+- Update(guid)
+
+- Delete(guid)
+
+- List(start, stop, restriction)
+
+
+
+Metacat As Replicating Object Manager
+-------------------------------------
+
+Metacat_ is a flexible metadata database that utilizes XML as a common syntax
+for representing various types of metadata. In a general sense, Metacat can be
+considered functionally equivalent to an XML database.
+
+Metacat supports replication of documents between instances, with replication
+being triggered by several events:
+
+- Timer, at pre-specified intervals
+- Inserts, when a document is inserted locally
+- Updates, when a document is updated locally
+- Lock, when a lock is requested on a document (replication after lock received)
+
+With Metacat filling the role of the Coordinating Node Object Store, each CN
+Metacat instance of would replicate with the other instances on the CNs. The
+configuration for DataONE CNs would be something like:
+
+===== ========== ========= ============= ====
+host  server     replicate datareplicate hub
+===== ========== ========= ============= ====
+cn1   localhost  0         0             1
+        cn2      1         0             1   
+        cn3      1         0             1
+cn2   localhost  0         0             1
+        cn1      1         0             1   
+        cn3      1         0             1
+cn3   localhost  0         0             1
+        cn1      1         0             1   
+        cn2      1         0             1
+===== ========== ========= ============= ====
+
+
+Using a Distributed Lock Manager
+--------------------------------
+
+Apache Zookeeper_ can be used as a distributed lock manager to assist with
+synchronization of records especially across the CNs. Zookeeper is interesting
+because it can potentially scale to many more than three CNs.
+
+In this case we would create a globally synchronous lock on a specific GUID
+(essentially the same as the Lock operation of Metacat). The basic procedure
+is described in the `Zookeeper recipes`_.
+
+
+Distributed Execution Environment
+---------------------------------
+
+For example, hazelcast_. These types of solutions are typically developed with
+LAN clusters in mind, and may run into problems with higher latency networks.
+Interesting product though.
 
 
 File Based Object Store with Distributed Revision Control
@@ -135,6 +194,7 @@ Disadvantages
 - File replication only, need to implement mechanisms for search etc
 - No per-object access control
 - Potential for collisions for object instances
+- How to (automatically) resolve conflicts?
 - Limitations on the absolute number of files per folder / filesystem
 
 
@@ -152,6 +212,10 @@ Disadvantages
 
 .. _Zookeeper: http://hadoop.apache.org/zookeeper
 
+.. _Zookeeper recipes: http://hadoop.apache.org/zookeeper/docs/r3.1.1/recipes.html#sc_recipes_Locks
+
 .. _Metacat: http://knb.ecoinformatics.org/software/metacat/
 
 .. _Bazaar: http://bazaar-vcs.org/en/
+
+.. _hazelcast: http://www.hazelcast.com/

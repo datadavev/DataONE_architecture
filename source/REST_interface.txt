@@ -264,8 +264,11 @@ Implements the methods:
   Verb   Response
   ====== ===========================================================================
   HEAD   Returns basic information about the object.
+  
          - ``Last-Modified:`` Date collection was last modified.
+  
          - ``Content-Type:`` The MIME type of the object
+  
          - ``Size:`` Byte size of the object
 
   GET    Returns the bytes of the object.
@@ -279,6 +282,44 @@ Implements the methods:
 
 
 **Examples**
+
+
+Retrieve information about the object with identifier "ABC123"::
+
+  curl -I http://mn1.dataone.org/object/ABC123/
+
+  HTTP/1.1 200 OK
+  Date: Wed, 16 Dec 2009 13:58:34 GMT
+  Content-Length: 1040032112
+  Content-Type: application/octet-stream
+
+Retrieve the object with identifier "XYZ332"::
+
+  curl http://m1.dataone.org/object/XYZ332/
+  
+  ... data ...
+
+
+Attempt to retrieve a non-existent object (and show headers in response)::
+
+  curl -D - http://m1.dataone.org/object/XYZ33255/
+  
+  HTTP/1.1 404 Not Found
+  Content-Type: 
+  Date: Wed, 16 Dec 2009 13:58:34 GMT
+  Content-Length: 355
+  
+  
+  <html><head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>404 Not Found</title>
+  <body>
+  <p>The object with id &quot;XYZ33255&quot; is not available on this system.  
+  Forward the request to the entire DataONE system here: 
+  <a href="http://dataone.org/object/XYZ33255/">http://dataone.org/object/XYZ33255/</a>.
+  </body>
+  </html>  
+
 
 .. TODO:: Show some examples for operations.  Failures should be included.
 
@@ -308,8 +349,11 @@ Implements the methods:
   Verb     Response
   ======== ===========================================================================
   HEAD     Returns basic information about the system metadata object.
+  
            - ``Last-Modified:`` Date collection was last modified.
+  
            - ``Content-Type:`` The MIME type of the object
+  
            - ``Size:`` Byte size of the object
 
   GET      Returns the bytes of the system metadata object.
