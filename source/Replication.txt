@@ -114,14 +114,14 @@ configuration for DataONE CNs would be something like:
 host  server     replicate datareplicate hub
 ===== ========== ========= ============= ====
 cn1   localhost  0         0             1
-        cn2      1         0             1   
-        cn3      1         0             1
+ .      cn2      1         0             1   
+ .      cn3      1         0             1
 cn2   localhost  0         0             1
-        cn1      1         0             1   
-        cn3      1         0             1
+ .      cn1      1         0             1   
+ .      cn3      1         0             1
 cn3   localhost  0         0             1
-        cn1      1         0             1   
-        cn2      1         0             1
+ .      cn1      1         0             1   
+ .      cn2      1         0             1
 ===== ========== ========= ============= ====
 
 
