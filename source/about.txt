@@ -101,6 +101,3 @@ Heading levels::
 .. _reStructuredText: http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
 
-.. raw:: pdf
-   
-   PageBreak

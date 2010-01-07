@@ -27,6 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20100106:
+  - Numerous minor updates, consistency mostly
+
 :20091201: 
   - Completed consistency of V0.3 APIs and Use Cases
 
@@ -71,6 +74,7 @@ A version of the entire document in PDF is also `available for download`_.
    overview
    userrequirements
    usecases
+   versions
    apis
    todo
 

@@ -1,0 +1,120 @@
+Infrastructure Versions
+=======================
+
+Outline of functionality to be implemented in versions of the DataONE
+cyber-infrastructure. Version numbers are expressed in three parts:
+Major.Minor.Revision to reflect official releases of the software, where:
+
+:Major:
+
+  Is a significantly different release from the previous version number, may
+  provide significant additional features and may implement functionality that
+  is not backwards compatible with prior releases.
+
+:Minor:
+
+  Adds additional features to an existing release and maintains compatibility
+  within the current major version.
+
+:Revision:
+
+  Indicates a minor change from the current version, typically used to provide
+  bug fix releases. Will not usually add additional functionality.
+
+Three major versions are planned for the first five years of the DataONE
+project. These versions refer to the general implementation of the overall
+cyber-infrastructure, though for specific components (e.g. the Coordinating
+Node software stack or the Investigator Toolkit), it may be more appropriate
+for them to evolve their own versions (with some mapping between those and the
+general version of DataONE).
+
+**Version 0.x** represents the prototype implementations to be developed prior to
+the first public release of the infrastructure. The general progression of
+features for this series beyond the initial specifications involves
+configuration of test environments and core API implementation libraries that
+are then used to add DataONE features and functionality to various existing
+data resources and component applications. The end result of the 0.x series
+will be three coordinating nodes and at least three member nodes that
+implement DataONE functionality to replicate metadata and data, enable search
+and discovery, and supports remote administration and monitoring. Another
+important output from the prototyping activities will be documentation and
+guidelines for further implementation, detailing the results of stress tests
+and evaluation of simulated failures such as node failures and connectivity
+issues.
+
+**Version 1.x** is the first public release of the DataONE
+cyber-infrastructure and will represent a hardened and well-tested system that
+can reliably be placed in a core infrastructure role. Additional features will
+be added to the infrastructure throughout the 1.x series, with the majority of
+focus addressing the remaining performance and reliability questions as well
+the science use cases developed by various working groups during the first
+year of activity.
+
+**Version 2.x** represents more advanced functionality that builds upon the
+capabilities of the version 1.x series. Anticipated features of the 2.x series
+include content validation and quality control services (extending basic
+services implemented previously), more sophisticated event and notification
+facilities, support for content version migration strategies, and several
+service enhancements such as various data extraction, analysis, visualization
+and integration operations. An important aspect of the 2.x series development
+activities will be ensuring the system being implemented supports as far as
+possible the requirements of the scientific use cases identified throughout
+project.
+
+
+General Schedule for Infrastructure Version 0.x
+-----------------------------------------------
+
+.. table:: Approximate timeline and functionality for version releases.  
+
+   ======== ======== ===============================================================
+   Version  Due      Description
+   ======== ======== ===============================================================
+   0.1      2009/09  - General architecture laid out
+                     - Initial set of user requriements identified
+                     - Functional use cases for user requriements drafted
+   0.2      2009/11  - Major system components identified, service interfaces specified
+                     - Functional use cases filled out, edited for consistency
+                     - High level component interactions documented
+   0.3      2010/01  - Initial coding on low level functionality and schemas
+                     - Functional use cases addressed: 1, 36
+                     - Prototype specifications documented
+                     - Initial core software components identified
+                     - System Metadata schema defiend
+                     - CN Application library incompatibilities evaluated
+                     - Base inter-process communications enabled (Mercury - Metacat)
+                     - CN, MN API wrappers generated
+                     - Implement reference implementation of MN and CN
+                     - Low level logging incorporated into API wrappers
+   0.4      2010/02  - Iniital implementation of metadata replication and indexing
+                     - Functional use cases addressed: 2, 3, 6, 10
+                     - Initial implementation of selected MNs
+                     - CN Hardware procured
+                     - CN implementation using Metacat + Mercury with API wrapper
+                     - MN - CN communications secured
+                     - Mercury search index popualtion trigger implemented
+                     - CN-CN replication of metadata
+   0.5      2010/03  - Initial data replication implemented
+                     - Functional use cases addressed: 6, 16, 17
+                     - MN-MN transfer implemented
+                     - Basic search interface available
+                     - Basic log reporting enabled
+                     - Search operations implemented in ITK library
+   0.6      2010/04  - System self manages replication
+                     - Functional use cases addressed: 9, 24
+                     - CN controlling replication between MNs
+                     - Reporting interface for system status
+   0.7      2010/05  - Basic authorization and access control
+                     - Functional use cases addressed: 12
+                     - Initial implementation of centralized user authentication
+                     - Identity and credentials propogated through system
+   0.8      2010/06  - Basic authorization and access control
+                     - Funcational use cases addressed: 14  
+                     - Initial authorization subsystem implemented
+                     - Initial object access control implemented
+   0.9      1010/07  - Stress testing
+                     - Failure recovery test and evaluation
+                     - Writeup, lessons learned
+                     - Delegate key long term tasks to working groups
+   ======== ======== ===============================================================
+
