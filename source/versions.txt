@@ -112,7 +112,7 @@ General Schedule for Infrastructure Version 0.x
                      - Funcational use cases addressed: 14  
                      - Initial authorization subsystem implemented
                      - Initial object access control implemented
-   0.9      1010/07  - Stress testing
+   0.9      2010/07  - Stress testing
                      - Failure recovery test and evaluation
                      - Writeup, lessons learned
                      - Delegate key long term tasks to working groups

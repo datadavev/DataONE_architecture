@@ -34,13 +34,17 @@ Collections exposed by a Member Node include:
 
   The set of objects identified by a GUID that is currently available on the node.
 
-:``/meta/``:
-
-  System metadata about any object within the DataONE system. 
-
 :``/log/``:
 
   Log information.
+
+
+
+.. note:: 
+   Previous versions of this document referred to a ``/meta/`` collection. This
+   has been removed as it is redundant and can be emulated by
+   ``/object/?oclass=sysmeta`` for the collection, and ``/object/123/meta`` for
+   the sysmeta for a specific object.
 
 
 Object Collection
@@ -202,19 +206,22 @@ Retrieve a list of GUIDs from a member node in JSON format::
   {'start':0, 
    'count':1000, 
    'total':159734, 
-   'data':['ABC123':{'oclass':'data',
-                     'hash':'b3a1617100c2b782fe5f9f2050dc714fdd05df28',
-                     'modified':'2009-12-02T17:40:03.0Z',
-                     'size':1040032112},
-           'DEF456':{'oclass':'system',
-                     'hash':'ee17560c8b77385b5bb8d8687820f9b82f3fdcdf',
-                     'modified':'2009-11-04T12:22:04.4Z',
-                     'size':285},
+   'data':[{'guid': 'ABC123',
+            'oclass':'data',
+            'hash':'b3a1617100c2b782fe5f9f2050dc714fdd05df28',
+            'modified':'2009-12-02T17:40:03.0Z',
+            'size':1040032112},
+           {'guid':'DEF456',
+            'oclass':'system',
+            'hash':'ee17560c8b77385b5bb8d8687820f9b82f3fdcdf',
+            'modified':'2009-11-04T12:22:04.4Z',
+            'size':285},
            ...,
-           'XYZ332':{'oclass':'metadata',
-                     'hash': '008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07',
-                     'modified':'2009-11-30T06:44:19.0Z',
-                     'size':1044}]}
+           {'guid':'XYZ332',
+            'oclass':'metadata',
+            'hash': '008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07',
+            'modified':'2009-11-30T06:44:19.0Z',
+            'size':1044} ] }
 
 
 Retrieve a list of GUIDs from a member node in plain text format::
@@ -333,13 +340,14 @@ status 404 indicating the object was not found if .
 
 Implements the methods:
 
-- :func:`MN_crud_0_3.getSystemMetadata`
+- :func:`MN_crud_0_3.getSystemMetadata` (``GET /object/<guid>/meta/``)
 
-- :func:`MN_replication_0_3.synchronizationComplete`
+- :func:`MN_replication_0_3.synchronizationComplete` (``PUT /object/<guid>/meta/``)
 
-- :func:`MN_replication_0_3.synchronizationFailed`
+- :func:`MN_replication_0_3.synchronizationFailed` (``PUT /object/<guid>/meta/``)
 
-- :func:`CN_crud_0_3.getSystemMetadata`
+- :func:`CN_crud_0_3.getSystemMetadata` (``GET /object/<guid>/meta/``)
+
 
 .. table:: 
   Responses to HTTP requests against ``/object/<guid>/meta/`` for different
@@ -370,4 +378,12 @@ Implements the methods:
 **Examples**
 
 .. TODO:: Show some examples for operations.  Failures should be included.
+
+
+
+``/log/``
+^^^^^^^^^
+
+.. TODO:: Define parameters for request and content to be returned.
+
 
