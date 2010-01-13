@@ -119,14 +119,22 @@ The structure of the response is::
 
 Expressed in JSON::
 
-  {'start': <integer>,
-   'count': <integer>,
-   'total': <integer>,
-   'data': [<identifier>: {'oclass':<object class>,
-                           'hash':<SHA1 hash of object>,
-                           'modified':<date time last modified>,
-                           'size':<byte size of object>},
-             ...]}
+  {
+    'start': <integer>,
+    'count': <integer>,
+    'total': <integer>,
+    'data':
+    [
+      {
+        'guid':<identifier>,
+        'oclass':<object class>,
+        'hash':<SHA1 hash of object>,
+        'modified':<date time last modified>,
+        'size':<byte size of object>
+      },
+      ...
+    ]
+  }
 
 Expressed in CSV, one entry per line, comma delimiting fields, new line
 delimiting records::
