@@ -344,7 +344,8 @@ Attempt to retrieve a non-existent object (and show headers in response)::
 
 Requests the system metadata for the specified object. System metadata is not
 available for system metadata objects, and so the response will be a HTTP
-status 404 indicating the object was not found if .
+status 404 indicating the object was not found if a system metadata object is
+requested for another system metadata object.
 
 Implements the methods:
 
