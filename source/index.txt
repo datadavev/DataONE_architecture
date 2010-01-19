@@ -27,6 +27,11 @@ DataONE Architecture
 
 **Change Log**
 
+:20100119:
+  - Adding to REST and Versions
+  - Adding detail on logging information
+  - Switched to theme which offers better use of available screen area
+
 :20100106:
   - Numerous minor updates, consistency mostly
 

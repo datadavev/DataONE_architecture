@@ -19,7 +19,7 @@ Basic information:
 - Content is modeled as collections, with GUIDs identifying individual items
   of a collection.
 
-- The HTTP verbs GET, POST, PUT, DELETE are used for retrieving content,
+- The HTTP verbs HEAD, GET, POST, PUT, DELETE are used for retrieving content,
   creating content, updating content, and deleting content respectively.
 
 - If state information is required (e.g. authentication token), it is passed
@@ -39,6 +39,8 @@ Collections exposed by a Member Node include:
 
   Log information.
 
+
+An overview of mapping API methods to URLs in the REST interface.
 
 ======= ================================================== =========== ========================================
 Version API Method                                         Method      URL
@@ -208,7 +210,8 @@ Expressed in RDF/XML::
   Verb    Response
   ======= ===========================================================================
   HEAD    Returns information about the collection in the headers, including last 
-          modified to indicate when the collection was last updated.
+          modified to indicate when the collection was last updated.  Note that the 
+          HEAD response is the same as a GET response without a body.
 
   GET     List of GUIDs, expressed in JSON, CSV, xml, or RDF/xml. The
           response is encoded using the encoding type specified in the client
@@ -303,7 +306,7 @@ Implements the methods:
   
          - ``Content-Type:`` The MIME type of the object
   
-         - ``Size:`` Byte size of the object
+         - ``Content-Length:`` Byte size of the object
 
   GET    Returns the bytes of the object.
 
@@ -390,7 +393,7 @@ Implements the methods:
   
            - ``Content-Type:`` The MIME type of the object
   
-           - ``Size:`` Byte size of the object
+           - ``Content-Length:`` Byte size of the object
 
   GET      Returns the bytes of the system metadata object.
 
