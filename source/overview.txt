@@ -60,14 +60,11 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
 
    \end{landscape}
 
+
 ..
   @startuml images/MNOverview.png
-  
-  skinparam componentFontSize 8
-  skinparam componentFontName arial
-  skinparam packageFontSize 10
-  skinparam packageFontName arial
-  
+  !include plantuml.conf
+
   () "CRUD" as mn_crud
   () "Authorization" as mn_auth
   () "Replication" as mn_repl
@@ -100,34 +97,32 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
   () "Search" as cn_search
   () "Registration" as cn_register
 
-  component "Document Store" as ostore
-  component "System Directory" as sysm
-  component "Experiment Metadata\nParser / Validator" as eparser
-  component "Search Index" as index
-  component "Content Manager" as objectm
-  component "System Log" as log
+  
 
-  objectm -- cn_crud
-  objectm -- cn_repl
-  objectm -- cn_health
-  objectm -- cn_authz
-  objectm -- cn_search
-  objectm -- cn_authn
-  objectm -- cn_register
+  package "Coordinating Node" #EEEEEE
+    component "Document Store\n(Metacat)" as ostore
+    component "Science Metadata\nParser / Validator\n(Mercury)" as sparser
+    component "Search Index\n(Mercury / SOLR)" as index
+    component "CN_Service" as cn_service
+    component "System Log" as log
 
-  objectm -- sysm
-  objectm -- ostore
-  objectm -- log
-  sysm -- index
-  sysm -- ostore
-  sysm -- log
-  ostore -- log
-  ostore -- index
-  eparser -- index
-  eparser -- ostore
-  eparser -- sysm
-  eparser -- log
-  index -- log
+  cn_crud -- cn_service
+  cn_repl -- cn_service
+  cn_register -- cn_service
+  cn_health -- cn_service
+  cn_service -- cn_authz
+  cn_service -- cn_search
+  cn_service -- cn_authn
+
+  cn_service --> ostore
+  ostore --> cn_service
+  cn_service --> log
+  log --> cn_service
+  index --> cn_service
+  sparser --> index
+  ostore --> sparser
+  
+  @enduml
   
   note right of objectm
     The Content Manager implements most of the external 

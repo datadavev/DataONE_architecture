@@ -28,6 +28,7 @@ Basic information:
 - Cache information should be respected. Caching is an important mechanism for
   achieving scalability 
 
+
 Collections exposed by a Member Node include:
 
 :``/object/``:
@@ -39,6 +40,24 @@ Collections exposed by a Member Node include:
   Log information.
 
 
+======= ================================================== =========== ========================================
+Version API Method                                         Method      URL
+======= ================================================== =========== ========================================
+.       MN Operations
+0.3     :func:`MN_crud_0_3.getLogRecords`                   ``GET``     ``/log/``
+0.3     :func:`MN_replication_0_3.listObjects`              ``GET``     ``/object/``
+0.3     :func:`MN_crud_0_3.get`                             ``GET``     ``/object/<guid>``
+0.3     :func:`MN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
+0.3     :func:`MN_replication_0_3.synchronizationComplete`  ``PUT``     ``/object/<guid>/meta/``   
+0.3     :func:`MN_replication_0_3.synchronizationFailed`    ``PUT``     ``/object/<guid>/meta/``
+.       CN Operations
+0.3     :func:`CN_query_0_3.getLogRecords`                  ``GET``     ``/log/``
+0.3     :func:`CN_health_0_3.generateReport`                ``GET``     ``/log/report``
+0.3     :func:`CN_query_0_3.search`                         ``GET``     ``/object/``
+0.3     :func:`CN_crud_0_3.get`                             ``GET``     ``/object/<guid>`` 
+0.3     :func:`CN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
+0.3     :func:`CN_crud_0_3.resolve`                         ``GET``     ``/object/<guid>/locate/``
+======= ================================================== =========== ========================================
 
 .. note:: 
    Previous versions of this document referred to a ``/meta/`` collection. This
