@@ -214,7 +214,6 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
    WhatIsData
    GUIDs
    Replication
-   SystemMetadata
    DataAndMetadata
    Authentication
 

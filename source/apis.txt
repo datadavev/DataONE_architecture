@@ -13,7 +13,6 @@ internally by those components.
    Component diagram showing the various APIs and their interactions (a line
    indicates communication between APIs).
 
-
 ..
   @startuml images/dataone_components.png
     skinparam componentFontSize 8
@@ -134,7 +133,8 @@ internally by those components.
 
 .. toctree::
    :maxdepth: 2
-
+   
+   SystemMetadata
    MN_APIs_v0_3
    MN_APIs
    CN_APIs_v0_3

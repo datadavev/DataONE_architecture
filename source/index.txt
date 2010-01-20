@@ -27,6 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20100120:
+  - Moved system metadata description from Overview to APIs
+
 :20100119:
   - Adding to REST and Versions
   - Adding detail on logging information
