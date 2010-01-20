@@ -29,14 +29,12 @@ Basic information:
   achieving scalability 
 
 
-Collections exposed by a Member Node include:
+Collections exposed by Member Nodes and Coordinating Nodes include:
 
 :``/object/``:
-
   The set of objects identified by a GUID that is currently available on the node.
 
 :``/log/``:
-
   Log information.
 
 
@@ -72,12 +70,14 @@ Object Collection
 ~~~~~~~~~~~~~~~~~
 
 The ``/object/`` collection represents any object that can be identified by a
-GUID with in the DataONE system. These can be science data, science metadata,
+GUID within the DataONE system. These can be science data, science metadata,
 or system metadata entries. It is likely that additional object classes will
 be created in future version of DataONE to handle additional types of
 information such as relationships between objects and annotations. It is
 anticipated that fundamental access and manipulation of those new object
 classes will occur through the same ``/object/`` collection interface.
+
+The object collection is exposed by both MNs and CNs.
 
 
 ``/object/``
