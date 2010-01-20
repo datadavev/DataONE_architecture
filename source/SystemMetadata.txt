@@ -44,13 +44,13 @@ maintained by Coordinating Nodes for every object in the system.
   Group            Field                           Type              Cardinality
   ================ =============================== ================= ===========
   General          \                               \                 \
-  \                :attr:Identifier                IdentifierType    1
-  \                :attr:Created                   DateTime          1
-  \                :attr:Expires                   DateTime          0..1
-  \                :attr:SysMetadataCreated        DateTime          1
-  \                :attr:SysMetadataModified       DateTime          1
-  \                :attr:ObjectFormat              ObjectFormatType  1
-  \                :attr:Size                      LongInteger       1
+  \                :attr:`Identifier`              IdentifierType    1
+  \                :attr:`Created`                 DateTime          1
+  \                :attr:`Expires`                 DateTime          0..1
+  \                :attr:`SysMetadataCreated`      DateTime          1
+  \                :attr:`SysMetadataModified`     DateTime          1
+  \                :attr:`ObjectFormat`            ObjectFormatType  1
+  \                :attr:`Size`                    LongInteger       1
   Provenance       \                               \                 \ 
   \                :attr:`Submitter`               PrincipalType     1
   \                :attr:`RightsHolder`            PrincipalType     1

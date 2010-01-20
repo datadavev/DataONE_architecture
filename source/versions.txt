@@ -148,7 +148,7 @@ The simple client will be implemented in Python and should support the
 external APIs provided by both the CN and MN implementations. The client will
 be developed primarily to support test operations against the CN and MN,
 though should be developed with consideration as a general DataONE client
-tool.  This initial version of the client will be implemented in Python.
+tool.
 
 
 Detail for Version 0.4
