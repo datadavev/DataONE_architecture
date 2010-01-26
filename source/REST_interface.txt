@@ -302,11 +302,11 @@ Implements the methods:
   ====== ===========================================================================
   HEAD   Returns basic information about the object.
   
-         - ``Last-Modified:`` Date collection was last modified.
+         ``Last-Modified:`` Date collection was last modified.
   
-         - ``Content-Type:`` The MIME type of the object
+         ``Content-Type:`` The MIME type of the object
   
-         - ``Content-Length:`` Byte size of the object
+         ``Content-Length:`` Byte size of the object
 
   GET    Returns the bytes of the object.
 
@@ -389,11 +389,11 @@ Implements the methods:
   ======== ===========================================================================
   HEAD     Returns basic information about the system metadata object.
   
-           - ``Last-Modified:`` Date collection was last modified.
+           ``Last-Modified:`` Date collection was last modified.
   
-           - ``Content-Type:`` The MIME type of the object
+           ``Content-Type:`` The MIME type of the object
   
-           - ``Content-Length:`` Byte size of the object
+           ``Content-Length:`` Byte size of the object
 
   GET      Returns the bytes of the system metadata object.
 

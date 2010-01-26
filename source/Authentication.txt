@@ -207,7 +207,7 @@ Scenario 4. Authentication Verified Algorithmically by Any Node
 ---------------------------------------------------------------
 
 .. figure:: images/authenticate_case_d.png
-   :width: 60%
+   :width: 55%
 
    Tokens are verified by an algorithm. This requires trust in the algorithm.
 

@@ -48,12 +48,6 @@ Post Conditions
   
   title Interactions: 36 - Query Coordinating Node for location of data object
   
-  
   @enduml
   
 
-.. raw:: latex
-
-   \newpage
-
-  

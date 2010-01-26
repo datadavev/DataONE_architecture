@@ -45,7 +45,7 @@ Post Conditions
   @startuml images/35_interaction.png
   !include ../plantuml.conf
   
-  title Interactions: 35 - Query Coordinating Node for metadata decribing a Member Node
+  title Interactions: 35 - Query Coordinating Node for metadata describing a Member Node
   @enduml
   
 
