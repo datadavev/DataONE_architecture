@@ -105,6 +105,7 @@ been modified since 6AM on the first of January, 2010 UTC"::
   ../object/?qt=nvp&oclass=data&lastModified_gt=20100101T060000+00
 
 Suggestions for comparison operator suffixes:
+
 ======= ===========================
 Suffix  Comparison Operator
 ======= ===========================
