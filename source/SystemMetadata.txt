@@ -106,6 +106,9 @@ System Metadata fields
 
 .. attribute:: Identifier
 
+  The identifier of the object that is the primary subject of the system
+  metadata document.
+
   The unique Unicode string that is used to canonically name and identify the
   object in DataONE. Each object in DataONE is immutable, and therefore all
   objects must have a unique Identifier. If two objects are related to one
