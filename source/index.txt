@@ -27,7 +27,9 @@ DataONE Architecture
 
 **Change Log**
 
-:20100126: Added query document to APIs section.
+:20100126: 
+  - Added query document to APIs section.
+  - Added start of logging requirements
 
 :20100120:
   - Moved system metadata description from Overview to APIs

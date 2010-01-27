@@ -142,6 +142,7 @@ internally by those components.
    ITK_APIs
    REST_interface
    querying_content
+   logging
 
 
 

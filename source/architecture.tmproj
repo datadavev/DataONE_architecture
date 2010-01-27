@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>SystemMetadata.txt</string>
+	<string>versions.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>about.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-20T15:54:06Z</date>
+			<date>2010-01-26T18:55:51Z</date>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -19,33 +19,41 @@
 					<key>filename</key>
 					<string>apis.txt</string>
 					<key>lastUsed</key>
-					<date>2010-01-20T15:44:55Z</date>
+					<date>2010-01-26T18:55:56Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>CN_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2009-12-03T14:51:24Z</date>
+					<date>2010-01-26T18:56:03Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>ITK_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2009-11-12T17:50:28Z</date>
+					<date>2010-01-26T18:56:05Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>MN_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2009-12-03T14:37:23Z</date>
+					<date>2010-01-26T18:56:10Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>MN_APIs_v0_3.txt</string>
 					<key>lastUsed</key>
-					<date>2010-01-11T22:01:49Z</date>
+					<date>2010-01-26T18:56:14Z</date>
 				</dict>
 				<dict>
+					<key>filename</key>
+					<string>querying_content.txt</string>
+					<key>lastUsed</key>
+					<date>2010-01-26T18:56:25Z</date>
+				</dict>
+				<dict>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>themes</string>
 					<key>regexFolderFilter</key>
@@ -57,19 +65,19 @@
 					<key>filename</key>
 					<string>REST_interface.txt</string>
 					<key>lastUsed</key>
-					<date>2010-01-20T15:46:54Z</date>
+					<date>2010-01-26T18:59:12Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>CN_APIs_v0_3.txt</string>
 					<key>lastUsed</key>
-					<date>2010-01-13T10:29:22Z</date>
+					<date>2010-01-26T18:59:15Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>logging.txt</string>
 					<key>lastUsed</key>
-					<date>2010-01-19T17:26:05Z</date>
+					<date>2010-01-26T18:59:17Z</date>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -81,39 +89,37 @@
 			<key>filename</key>
 			<string>Authentication.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-13T16:01:58Z</date>
+			<date>2010-01-26T18:59:25Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>DataAndMetadata.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-12T22:30:40Z</date>
+			<date>2010-01-26T18:59:30Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>GUIDs.txt</string>
 			<key>lastUsed</key>
-			<date>2009-11-20T15:27:03Z</date>
+			<date>2010-01-26T18:59:39Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>index.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-20T15:54:33Z</date>
+			<date>2010-01-26T18:59:45Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>overview.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-20T15:46:56Z</date>
+			<date>2010-01-26T18:59:51Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>SystemMetadata.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-25T22:34:04Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2010-01-26T19:00:05Z</date>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -146,51 +152,55 @@
 			<key>filename</key>
 			<string>prioritization.txt</string>
 			<key>lastUsed</key>
-			<date>2009-12-03T15:05:23Z</date>
+			<date>2010-01-26T19:00:17Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>Replication.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-06T20:34:40Z</date>
+			<date>2010-01-26T19:00:25Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>todo.txt</string>
 			<key>lastUsed</key>
-			<date>2009-12-03T04:43:18Z</date>
+			<date>2010-01-26T19:00:29Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>usecases.txt</string>
 			<key>lastUsed</key>
-			<date>2009-12-03T14:37:25Z</date>
+			<date>2010-01-26T19:00:33Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>usecasesoverview.txt</string>
 			<key>lastUsed</key>
-			<date>2009-12-03T04:54:52Z</date>
+			<date>2010-01-26T19:00:40Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>versions.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-21T02:23:10Z</date>
+			<date>2010-01-26T19:01:11Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>userrequirements.txt</string>
 			<key>lastUsed</key>
-			<date>2009-12-03T14:37:27Z</date>
+			<date>2010-01-26T19:01:02Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>WhatIsData.txt</string>
 			<key>lastUsed</key>
-			<date>2010-01-06T20:34:41Z</date>
+			<date>2010-01-26T19:01:11Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>UseCases</string>
 			<key>regexFolderFilter</key>
@@ -203,66 +213,24 @@
 	<integer>203</integer>
 	<key>metaData</key>
 	<dict>
-		<key>MN_APIs_v0_3.txt</key>
+		<key>versions.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>21</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>118</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>127</integer>
-		</dict>
-		<key>SystemMetadata.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>203</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>154</integer>
-		</dict>
-		<key>UseCases/24_uc.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>58</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>42</integer>
-		</dict>
-		<key>logging.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>30</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>80</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>SystemMetadata.txt</string>
+		<string>versions.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
