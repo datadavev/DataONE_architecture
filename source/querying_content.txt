@@ -146,6 +146,10 @@ considering precedence rules.
 Metacat Path Query
 ------------------
 
+.. TODO::
+   - Rewrite this section to use the EarthGrid query syntax, which is more
+     readable and expresses the same concepts as the pathquery
+
 Metacat is an XML database, and so must support mechanisms for querying not
 just the attribute name, but also its location relative to other elements of
 the document (similar to XPath). The path query also indicates the elements
