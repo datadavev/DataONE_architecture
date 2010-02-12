@@ -113,7 +113,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: IpAddress
+.. attribute:: IPAddress
 
   The InternetProtocol address from which an originating event request
   originated.
