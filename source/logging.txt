@@ -12,6 +12,11 @@ information from member and coordinating nodes respectively.
 
 Logging is described in use case 16, 17, 18, 20, and potentially 19.
 
+.. toctree::
+   :maxdepth: 1
+
+   LoggingSchema
+
 
 Use Cases to be Supported
 -------------------------
