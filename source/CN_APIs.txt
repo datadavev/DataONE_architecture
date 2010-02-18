@@ -13,14 +13,16 @@ Authentication API
 .. module:: CN_authorization
    :synopsis: Methods for authentication and authorization
 
-::
-
-  login(user, password, [auth_system]) -> token
-  requestToken ()
-  setAccess (token, GUID, accessLevel) -> boolean
-  setOwner(token, userid, objectList) -> objectList
-  newAccount(username, password, [auth_system]) -> identity_GUID
-  verify(token) -> boolean
+======= ======================================================================
+Version Method
+======= ======================================================================
+.       ``login(user, password, [auth_system]) -> tokens``
+.       ``requestToken ()``
+.       ``setAccess (token, GUID, accessLevel) -> boolean``
+.       ``setOwner(token, userid, objectList) -> objectList``
+.       ``newAccount(username, password, [auth_system]) -> identity_GUID``
+.       ``verify(token) -> boolean``
+======= ======================================================================
 
 
 
@@ -54,14 +56,13 @@ Authentication API
   :raises InvalidCredentials: The supplied credentials were invalid (password +
     username don't jive)
 
-  :raises AuthenticationTimeout: A response from the authentication service was not received
-      before the operation timed out.
+  :raises AuthenticationTimeout: A response from the authentication service
+    was not received before the operation timed out.
 
   .. Note:: :func:`login` may delegate the actual login to an authentication service,
      and a given user may utilize several authentication services.  If this is the 
      case then an additional parameter identifying the authentication service to
      use will be required.
-
 
 
 .. function:: requestToken ()

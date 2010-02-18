@@ -1,7 +1,6 @@
 Coordinating Node APIs for V0.3
 -------------------------------
 
-
 These APIs are implemented by Coordinating Nodes for version 0.3. This is a
 reduced set of functionality compared to the full set of APIs envisioned for
 Coordinating Nodes.
@@ -61,13 +60,17 @@ to be split out into the Logging and Alert API (not yet defined).
 
 .. function:: search (token, query) -> list of metadata GUIDs
 
-   Search the metadata catalog and return GUIDs of metadata records that meet the criteria.
-  
+   Search the metadata catalog and return GUIDs of metadata records that meet
+   the criteria.
+
    :param token: authentication token; ignored for V0.3
-  
-   :param query: The criteria for matching the characteristics of the metadata objects of interest. The structure of this query is not yet defined.
-  
-   .. todo: Details of query specification for `search(token, query)` needs to be worked out. 
+
+   :param query: The criteria for matching the characteristics of the metadata
+     objects of interest. The structure of this query is described in
+     :doc:querying_content.
+
+   .. todo: Details of query specification for `search(token, query)` needs to
+     be worked out.
 
 
 CRUD API
@@ -87,11 +90,11 @@ V0.3 Read operations for Coordinating Nodes.
   
 .. exception:: NotFound
 
-.. exception :: InvalidMetadataType
+.. exception:: InvalidMetadataType
 
-.. exception :: InvalidArgument
+.. exception:: InvalidArgument
 
-.. exception :: ObjectNotHere
+.. exception:: ObjectNotHere
 
 .. function:: getSystemMetadata(token, GUID) -> system metadata
 
@@ -124,8 +127,11 @@ V0.3 Read operations for Coordinating Nodes.
     metadata oject, as is was original ingested.
 
   :raises NotFound: The object specified by GUID does not exist.
-  
-  :raises ObjectNotHere: The object specified by the GUID is a data object and is not present on this (or any) CN. This response could be accompanied by the results of a standard resolve() method call to provide more information about the object.
+
+  :raises ObjectNotHere: The object specified by the GUID is a data object and
+    is not present on this (or any) CN. This response could be accompanied by
+    the results of a standard resolve() method call to provide more information
+    about the object.
 
    .. todo::
       This method name could be changed since it has different semantics than
@@ -134,19 +140,30 @@ V0.3 Read operations for Coordinating Nodes.
       
 .. function:: resolve(token, dataGUID) -> list of MNs holding data
 
-   Resolves the locations of where the science data object identified by the GUID can be found.
+   Resolves the locations of any object in the DataONE system. The response
+   should be a list of get object URLs? or perhaps just known targets that
+   hold the object and then use introspection against the target to discover
+   the correct URL?
    
-   :param token: authentication token; ignored for V0.3
+    :param token: authentication token; ignored for V0.3
    
-   :param dataGUID: Identifier for the science data object in question
+    :param dataGUID: Identifier for the science data object in question
    
-   :returns: A structured list of information about the member nodes that hold the data
+    :returns: A structured list of information about the member nodes that
+   hold the data
 
-   .. todo:: It seems that returning just a simple list of URLs for the service endpoints of the relevant MNs is not sufficient. Some sort of MN identifier also needs to be returned so that the caller can ask further information about MN (which would include the endpoint URL for the MN API implementation). Is there a use case that involves asking a CN for metadata describing a MN?
+   .. todo:: It seems that returning just a simple list of URLs for the
+   service endpoints of the relevant MNs is not sufficient. Some sort of MN
+   identifier also needs to be returned so that the caller can ask further
+   information about MN (which would include the endpoint URL for the MN API
+   implementation). Is there a use case that involves asking a CN for metadata
+   describing a MN?
 
-   :raises NotFound: There is no science data object identified by the given GUID. 
-      
-   :raises InvalidArgument: The GUID requested identifies a science metadata object or a system metadata object. 
+   :raises NotFound: There is no science data object identified by the given
+   GUID.
+   
+    :raises InvalidArgument: The GUID requested identifies a science metadata
+   object or a system metadata object.
 
 
 .. function:: create(systemMetadataGUID, systemMetadata,

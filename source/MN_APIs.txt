@@ -22,6 +22,7 @@ options.
 
 ::
 
+
   login(user, password, [auth_system]) -> token
   logout(token)
   isAuthorized (token, method, GUID) -> boolean
@@ -300,6 +301,17 @@ Replication API
 .. module:: MN_replication
    :synopsis: Handles CN directed replication of content between member nodes.
 
+::
+
+  cancelReplication (sess, transID)
+  listAllObjects ()
+  listRecords ()
+  replicationSucceeds (transID)
+  startReplica (ID, sessionID, transID, srcMN)
+  sysOp (token)
+  listChangedRecords(token) -> GUIDs
+
+
 .. function::  cancelReplication (sess, transID)
 
 .. function::  listAllObjects ()
@@ -329,6 +341,12 @@ Capabilities API
 .. module:: MN_capabilities
    :synopsis: Reports the capabilities of a Member Node
 
+::
+
+  serviceRequest (token)
+  getCapabilities () -> capabilities
+
+
 .. function::  serviceRequest (token)
 
 .. function::  getCapabilities () -> capabilities
@@ -345,6 +363,13 @@ State of Health API
 
 .. module:: MN_health
    :synopsis: Reports on the status of a Member Node
+
+::
+
+  sohQuery (token, service)
+  ping() -> pingResponse
+  getStatus(token) -> currentStatus
+
 
 .. function::  sohQuery (token, service)
 

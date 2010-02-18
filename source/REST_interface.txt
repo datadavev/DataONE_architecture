@@ -38,7 +38,7 @@ Collections exposed by Member Nodes and Coordinating Nodes include:
   Log information.
 
 
-An overview of mapping API methods to URLs in the REST interface.
+An overview of mapping API methods to URLs in the REST interface. 
 
 ======= ================================================== =========== ========================================
 Version API Method                                         Method      URL
@@ -50,6 +50,13 @@ Version API Method                                         Method      URL
 0.3     :func:`MN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
 0.3     :func:`MN_replication_0_3.synchronizationComplete`  ``PUT``     ``/object/<guid>/meta/``   
 0.3     :func:`MN_replication_0_3.synchronizationFailed`    ``PUT``     ``/object/<guid>/meta/``
+0.4     :func:`MN_capabilities.getCapabilities`
+0.4     :func:`MN_health.getStatus`
+0.6     synchronize
+0.7     :func:`MN_authorization.login`
+0.7     :func:`MN_authorization.authorize`
+0.8     :func:`MN_authorization.isAuthorized`
+.
 .       CN Operations
 0.3     :func:`CN_query_0_3.getLogRecords`                  ``GET``     ``/log/``
 0.3     :func:`CN_health_0_3.generateReport`                ``GET``     ``/log/report``
@@ -57,6 +64,16 @@ Version API Method                                         Method      URL
 0.3     :func:`CN_crud_0_3.get`                             ``GET``     ``/object/<guid>`` 
 0.3     :func:`CN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
 0.3     :func:`CN_crud_0_3.resolve`                         ``GET``     ``/object/<guid>/locate/``
+0.4     :func:`CN_query.query`
+0.4     :func:`CN_register.register`
+0.4     :func:`CN_crud.create`
+0.6     synchronizationComplete
+0.6     beginTransaction
+0.6     commitTransaction
+0.6     rollbackTransaction
+0.7     :func:`CN_authorization.login`
+0.7     :func:`CN_authorization.authorize`
+0.8     :func:`CN_authorization.isAuthorized`
 ======= ================================================== =========== ========================================
 
 .. note:: 

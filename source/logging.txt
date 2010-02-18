@@ -49,71 +49,138 @@ Holdings**
 
 1. !!! Data volume – total size of data holdings in DataONE Member Nodes and
    Coordinating Nodes
+  
+  Recorded in: 
+    - Total (including replicas) data volume + unique object data volume 
+    - Sysmeta
+  
+  
 
 2. !!! Number of metadata records – quantity of metadata records held at a
    Coordinating Node (note: the concept of a record may vary across metadata
    standards)
+
+   - science metadata only
+
 
 3. !!! Number of data sets held by Member Nodes – (note: may be less
    meaningful as an absolute value because of the immense variability in data set
    granularity, but probably still useful in tracking the shape of the data
    accumulation curve)
 
+  - system metadata 
+
+
 4. !!! Number and types of software tools included in the Investigator Toolkit
+
+  - !!
+  - Mechanism to register external uses / implementations
+  - HTTP user-agent 
+
 
 5. !!! Number of different metadata schemas supported – (note: more metadata
    schemas is not necessarily better)
+
+  - object format from sysmeta
 
 
 **DataONE System Capacity**
 
 6. !!! Number of Member Nodes
 
+  - registry
+
 7. !!! Total storage capacity at Member Nodes
+
+  - per member node
+  - total
+  - part of MN registration and capabilities
 
 8. !!! Geographic coverage of Member Nodes – continents, regions, and countries
    covered
+   
+   - could potentially be part of capabilities (record physical location)
 
 9. !!! Number of Coordinating Nodes
 
+   - constant = 3
+   - general expansion over five years to all countries.
+
 10. !!! Total storage capacity at Coordinating Nodes
+
+  - disk space
 
 11. !!! Geographic coverage of Coordinating Nodes – continents, regions, and
     countries covered
 
+  - capabilities  / metadata 
 
 **DataONE Usage Statistics**
 
 12. !!! (CN LOG) Number of web hits on DataONE portal
 
+   - standard web hits from logs
+   - aggregated across CNs
+
 13. !!! (CN LOG) Number of DataONE users – (note: recording of individual IP
     addresses may be most readily implemented; requiring users to login to Member
     Nodes is not presently required)
+    
+    - Any users of MNs = D1 user
+    - Eventually can use authn subsystem
 
 14. !!! (supporting web site logs) Number of downloads of tools from the
-    Investigator Toolkit
+    Investigator Toolkit  --> "Number of times tools are downloaded"
+    
+    - Log analysis
+    - Text needs to be clarified.  ITK isn't a place
+    - supporting information (videos, documents, ...)
 
 15. !!! (CN LOG) Number of metadata catalog searches completed – (note: over
     time it may also be desirable to assess precision and recall of incoming
     searches)
+    
+    - part of the Mercury log (in mysql)
+    
 
 16. !!! (MN, CN LOG) Number of DataONE datasets downloaded (daily, weekly,
     monthly, annually) – (note: this may be straightforward if included in
     specifications for Member Node data, impossible otherwise)
+    
+    - Member node access logs - need to be aggregated
+    - What was pulled through D1.get() vs the native mechanisms of the MN
+    - 
 
 17. !!! (MN, CN LOG) Most frequently downloaded datasets
+
+
+  - Same as 16
 
 
 **Reliability and System Performance**
 
 18. !!! (CN heartbeat logs) Uptime (availability) of Coordinating Nodes 
 
+   - Need a monitoring service in addition to the CN service
+   - also need to consider geographic accessibility (users)
+
 19. !!! (MN heartbeat logs) Uptime (availability) of Member Nodes – (note:
     tracked if heartbeat is fully implemented)
 
+   - Same as 18
+
 20. !!! Server response time
 
+   - REST service performance
+   - Define a bunch of test queries that can be executed in parallel for load testing.
+
+
 21. !!! Response time of user interface
+
+  - Time for "page load" vs. number of concurrent users
+  
+  - Time for specific operations (test queries, test renderings, ...)
+
 
 
 **Community Engagement**

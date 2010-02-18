@@ -72,19 +72,16 @@ Post Conditions
 .. figure:: images/01_uc.png
    :width: 75%
 
-   Use case 01 diagram showing actors and components involved in this action.
+   Figure 1. Use case 01 diagram showing actors and components involved in
+   this action.
 
 
 .. figure:: images/01_interaction_b.png
    :width: 100%
 
 
-   Sequence diagram for Use Case 01 illustrating the sequence for retrieving
-   an object identified by a GUID from the DataONE system. Note the dichotomy
-   in response depending on whether the object referenced by the GUID is a
-   metadata document (record) or a data object. In the case of metadata, the
-   metadata document is returned. In the case of data, a list of Member nodes
-   is returned so that the client knows where it can retrieve the data.
+   Figure 2. Sequence diagram for Use Case 01 illustrating the sequence for
+   retrieving an object identified by a GUID from the DataONE system.
 
 
 .. figure:: images/01_interaction.png
@@ -128,7 +125,36 @@ Post Conditions
 
 
 ..
-  @startuml images/01_interaction_b.png
+  @startuml images/01_interaction_preauth.png
+  !include ../plantuml.conf
+  participant "Client" as app_client << Application >>
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  participant "Object Store" as c_ostore << Coordinating Node >>
+  participant "CRUD API" as m_crud << Member Node >>
+  
+  app_client -> c_crud: get(GUID)
+  c_crud -> c_ostore: sysmeta = getSystemMetadata(GUID)
+  c_ostore --> c_crud: sysmeta
+  note right of c_crud
+    CN retrieves sysmeta for GUID.  The
+    sysmeta contains the location of the
+    object.
+  end note
+  alt sysm.oclass == "sysmeta"
+    c_crud --> app_client: sysm
+  else sysm.oclass == "science metadata"
+    c_crud -> c_ostore: object = read(GUID)
+    c_ostore --> c_crud: object
+    c_crud --> app_client: object
+  else sysm.oclass == "data"
+    c_crud --> app_client: list of data locations
+    app_client -> m_crud: object = get(GUID)
+    m_crud --> app_client: object
+  end
+  @enduml
+
+..
+  startuml images/01_interaction_b.png
   !include ../plantuml.conf
   actor User
   participant "Client" as app_client << Application >>
@@ -139,7 +165,7 @@ Post Conditions
   User -> app_client
   app_client -> c_crud: get(token, GUID)
   
-  alt After V0.3
+  alt After V0.7
     c_crud -> c_authorize: isAuthorized(token, GUID, OP_GET)
     c_crud <-- c_authorize: T or F 
   end
@@ -166,18 +192,18 @@ Post Conditions
     end note
     c_crud --> app_client: list of active MNs holding the data
     app_client -> m_crud: get(token, GUID)
-    alt After V0.3
+    alt After V0.7
       m_crud -> c_authorize: isAuthorized(token, handle)
       m_crud <-- c_authorize: T or F
     end
     app_client <-- m_crud: data object
   end
   
-  @enduml
+  enduml
 
 ..
   This block defines the interaction diagram referenced above.
-  @startuml images/01_interaction.png
+  startuml images/01_interaction.png
     !include ../plantuml.conf
     actor User
     participant "Client" as app_client << Application >>
@@ -204,6 +230,6 @@ Post Conditions
     m_crud -> m_crud: log(get, UserID, GUID)
     app_client <-- m_crud: object or unauth or doesNotExist
     deactivate m_crud
-  @enduml
+  enduml
 
 
