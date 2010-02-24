@@ -101,8 +101,6 @@ The object collection is exposed by both MNs and CNs.
 ^^^^^^^^^^^^
 
 List of objects that are present on the node, ordered with newest first.
-Additional parameters specify the start index for the list, the number of
-items to retrieve, and the object class.
 
 Implements the functions:
 
@@ -115,10 +113,28 @@ Implements the functions:
 
 :start: Zero based index of the first item to retrieve.
 
-:count: Number of items to retrieve from the list
+:count: Number of items to retrieve
 
-:oclass: Restricts response to the specified object class
+:oclass: Restrict response to the specified object class. Wildcards allowed.
 
+:guid: Restrict response to the specified guid. Wildcards allowed.
+
+:hash: Restrict response to the specified hash.
+
+:sync: Restrict by synchronization status.
+
+======= ===========================
+Value   Filter by
+======= ===========================
+0       Unsynchronized
+1       Synchronized
+======= ===========================
+
+:lastModified: Restrict response to objects last modified at a specific
+ datetime. Range operators allowed.
+
+:lastAccessed: Restrict response to objects last accessed at a specific
+ datetime. Range operators allowed.
 
 **Response**
 
@@ -428,10 +444,82 @@ Implements the methods:
 .. TODO:: Show some examples for operations.  Failures should be included.
 
 
+Log Collection
+~~~~~~~~~~~~~~
+
+The ``/log/`` collection represents access records for all objects within the
+DataONE system. 
 
 ``/log/``
 ^^^^^^^^^
 
-.. TODO:: Define parameters for request and content to be returned.
+List of access records for all objects that are present on the node, ordered
+with newest first.
 
+Implements the functions:
 
+- :func:`MN_crud_0_3.getLogRecords`
+
+**Optional Parameters**
+
+The ``/log/`` collection supports the same optional parameters as the
+``/object/`` collection.
+
+Wildcards and Range Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Several of the REST calls support filtering using wildcards and/or range
+operators. When such filtering is supported, it is explicitly noted in the
+documentation for a given REST call.
+
+The basic approach is the use of name/value pairs (NVPs) in the URL to construct
+a filter for restricting results to a portion of a data set. All NVPs are
+combined using the AND operator.
+
+Wildcards are typically supported for string values and allow substring
+filters to be specified by including one or more of the following wildcard
+characters in the string.
+
+:\*: Match a string of zero or more random characters
+:\?: Match a single random character
+
+Range operators are typically supported for values that represent a continuous
+series, such as byte sizes and datetimes. A range operator is specified by
+appending it to a name. Valid range operators are:
+
+======= ===========================
+Suffix  Range Operator
+======= ===========================
+None    Equals (==) (default)
+_eq     Equals (==)
+_lt     Less than (<)
+_le     Less than or equals (<=)
+_gt     Greater than (>)
+_ge     Greater than or equals (>=)
+======= ===========================
+
+Wildcards and range operators cannot be combined in a single NVP.
+
+**Examples**
+
+Return only objects of type data that have been modified since 6AM on the first
+of January, 2010 UTC::
+
+  ../object/
+  ?qt=nvp
+  &oclass=data
+  &lastModified_gt=20100101T060000+00
+
+Return only objects of type system metadata that were last modified in 2005::
+
+  ../object/
+  ?qt=nvp
+  &oclass=metadata
+  &lastModified_ge=20050101T000000+00
+  &lastModified_lt=20060101T000000+00
+
+Return only objects of type data or metadata (filter out system metadata)::
+
+  ../object/
+  ?qt=nvp
+  &oclass=*data
