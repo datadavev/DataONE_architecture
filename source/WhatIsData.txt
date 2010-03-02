@@ -44,7 +44,7 @@ Glossary
 
   The term "Data Package" refers to the combination of all objects
   associated with a data set.  In the simplest case this would be four objects:
-  a data object, a science metadata object, and system metdata for each.
+  a data object, a science metadata object, and system metadata for each.
 
 
 :Coordinating Node:

@@ -138,32 +138,33 @@ V0.3 Read operations for Coordinating Nodes.
       the method of the same name on MNs.
       
       
-.. function:: resolve(token, dataGUID) -> list of MNs holding data
+.. function:: resolve(token, identifier) -> list of nodes
 
-   Resolves the locations of any object in the DataONE system. The response
-   should be a list of get object URLs? or perhaps just known targets that
-   hold the object and then use introspection against the target to discover
-   the correct URL?
+   Given an identifier, returns information that a client can use to retrieve
+   the identified target object form the DataONE system. The target may reside
+   on a MN or a CN. The actual content returned will be specific to the type
+   of interface implemented, and is described in detail in the documentation
+   for the implementation (e.g. REST implementation might differ from SOAP
+   implementation).
    
     :param token: authentication token; ignored for V0.3
    
-    :param dataGUID: Identifier for the science data object in question
+    :param identifier: Identifier for the object in question
    
-    :returns: A structured list of information about the member nodes that
-   hold the data
+    :returns: A list of nodes known to contain copies of the target object
 
-   .. todo:: It seems that returning just a simple list of URLs for the
-   service endpoints of the relevant MNs is not sufficient. Some sort of MN
-   identifier also needs to be returned so that the caller can ask further
-   information about MN (which would include the endpoint URL for the MN API
-   implementation). Is there a use case that involves asking a CN for metadata
-   describing a MN?
+   .. todo::
+     It seems that returning just a simple list of URLs for the service
+     endpoints of the relevant MNs is not sufficient. Some sort of MN
+     identifier also needs to be returned so that the caller can ask further
+     information about MN (which would include the endpoint URL for the MN API
+     implementation). Is there a use case that involves asking a CN for
+     metadata describing a MN?
 
-   :raises NotFound: There is no science data object identified by the given
-   GUID.
-   
-    :raises InvalidArgument: The GUID requested identifies a science metadata
-   object or a system metadata object.
+   :raises NotFound: There is no data object identified by the given GUID.
+
+   :raises InvalidArgument: The GUID requested identifies a science metadata
+     object or a system metadata object.
 
 
 .. function:: create(systemMetadataGUID, systemMetadata,

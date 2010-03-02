@@ -444,6 +444,105 @@ Implements the methods:
 .. TODO:: Show some examples for operations.  Failures should be included.
 
 
+``/object/<guid>/locate/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
+hold copies of the object identified by ``<guid>``.
+
+Implements the following methods:
+
+- :func:`CN_crud_0_3.resolve` (``GET /object/<guid>/locate/``)
+
+
+.. table:: 
+  Responses to HTTP requests against ``/object/<guid>/locate/`` for different
+  verbs.
+
+  ======== ===========================================================================
+  Verb     Response
+  ======== ===========================================================================
+  HEAD     Returns basic information resolve response document
+  
+           ``Last-Modified:`` Date the resolve information was last updated for that
+           identifier.  This is helpful to clients that may cache resolve responses.
+  
+  GET      Returns the resolve response document
+
+  POST     No Operation
+
+  PUT      No Operation
+
+  DELETE   No Operation
+  ======== ===========================================================================
+
+
+**Response**
+
+The representation of the response varies according to content type negotiation and should contain::
+
+  RESPONSE      = n*[NODE, FULL_URL]
+  NODE          = node service base url
+  FULL_URL      = full url for get object on the node
+
+The following representations show different encodings for the example
+identifier '1234' that is located on the following nodes:
+
+============================ =================================================
+Node Identifier              GET Object URL
+============================ =================================================
+mn1.dataone.org/mn           http://mn1.dataone.org/mn/object/1234
+mn2.dataone.org/some_base/mn http://mn2.dataone.org/some_base/mn/object/1234
+cn.dataone.org/mn            http://cn.dataone.org/object/1234
+============================ =================================================
+
+
+CSV representation::
+
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
+  'cn.dataone.org/mn','http://cn.dataone.org/object/1234'
+
+
+JSON representation::
+
+  [ ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object/1234'],
+    ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object/1234'], 
+    ['cn.dataone.org/mn', 'http://cn.dataone.org/object/1234'] ]
+
+
+XML representation::
+
+  <locations id='1234'>
+    <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object/1234' />
+    <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object/1234' />
+    <location node='cn.dataone.org/' href='http://cn.dataone.org/object/1234' />
+  </locations>
+
+
+HTML::
+
+  ...
+  <ol identifier='1234'>
+    <a href='http://mn1.dataone.org/mn/object/1234'>mn1.dataone.org/mn</a>
+    <a href='http://mn2.dataone.org/some_base/mn/object/1234'>mn1.dataone.org/some_base/mn</a>
+    <a href='http://cn.dataone.org/object/1234'>cn.dataone.org/</a>
+  </ol>
+  ...
+
+
+**Examples**
+
+Using CURL::
+
+  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/1234/locate/
+
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
+  'cn.dataone.org/mn','http://cn.dataone.org/object/1234'
+
+
+
 Log Collection
 ~~~~~~~~~~~~~~
 

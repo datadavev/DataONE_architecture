@@ -37,6 +37,14 @@ Follow the normal procedures for working with the subversion repository. After
 checking in, your edits should appear in the `built out version`_ of the docs
 within five minutes.
 
+The convention for different levels of heading used in these documents is::
+
+  ===  Level 1
+  ---  Level 2
+  ~~~  Level 3
+  ...  Level 4
+
+
 
 Building the Documentation
 --------------------------
@@ -73,13 +81,6 @@ To actually build a HTML copy of the documents::
 To build a PDF copy, you will need to install latex and its dependencies. Then run::
 
   $ make latex; make -f build/latex/Makefile all-pdf
-
-Heading levels::
-
-  ===  Level 1
-  ---  Level 2
-  ~~~  Level 3
-  ...  Level 4
 
 
 .. _graphviz: http://www.graphviz.org/

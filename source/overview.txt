@@ -1,6 +1,19 @@
 Overview
 ========
 
+The DataONE core cyberinfrastructure implements three significant
+functionalities:
+
+1. Persistent identifiers for all discrete objects in the system (i.e. data,
+metadata, system metadata, annotations, identities, node capabilities, and so
+forth)
+
+2. A consistent scheme for identifying users across all participating nodes.
+
+3. An extensive, extensible search mechanism to assist discovery.
+
+This functionality is available through a set of simple service interfaces and
+components described in these documents.
 
 The DataONE system is fundamentally composed of three major components:
 
@@ -9,7 +22,8 @@ The DataONE system is fundamentally composed of three major components:
   Existing and new data repositories. These systems offer heterogeneous
   implementations across a variety of data types and support a variety of
   metadata types. All data is stored on Member Nodes, and the DataONE
-  infrastructure assists with coordinating distribution of data between MNs.
+  infrastructure, in particular the Coordinating Nodes assist with
+  coordinating distribution of data between MNs.
 
 
 :Coordinating Nodes:

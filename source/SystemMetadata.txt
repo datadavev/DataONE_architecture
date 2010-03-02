@@ -46,7 +46,6 @@ maintained by Coordinating Nodes for every object in the system.
   General          \                               \                 \
   \                :attr:`Identifier`              IdentifierType    1
   \                :attr:`Created`                 DateTime          1
-  \                :attr:`Expires`                 DateTime          0..1
   \                :attr:`SysMetadataCreated`      DateTime          1
   \                :attr:`SysMetadataModified`     DateTime          1
   \                :attr:`ObjectFormat`            ObjectFormatType  1
@@ -150,6 +149,8 @@ System Metadata fields
 
 .. attribute:: Expires
 
+  ** DEPRECATED **
+  
   Date and time (UTC) that the object expires in the DataONE system.
 
   :Cardinality:
