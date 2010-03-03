@@ -1,0 +1,116 @@
+Natural History of System Metadata
+==================================
+
+This document describes the generation of system metadata associated with a
+data object and its associated science metadata document as they are added to
+a DataONE member node and subsequently propagated through the DataONE
+infrastructure.
+
+Process Overview
+----------------
+
+The general sequence of events are:
+
+1. Scientist using an ITK tool generates some science data and some science
+   metadata describing the science data.
+
+2. The ITK (perhaps with assistance from the user) populates the client
+   responsible fields of system metadata documents for the science data and
+   metadata.
+
+3. Not necessarily in this order: 
+
+   a) The ITK uploads the science data
+
+   b) The ITK uploads the science metadata
+
+4. On receipt, the MN updates the system metadata fields for which it is
+   responsible
+
+5. During a synchronization operation, the CN retrieves copies of the system
+   metadata documents and the science metadata document.
+
+6. The CN updates the system metadata replication information, and indicates
+   to the MN that it should update its copy of the system metadata objects.
+
+7. The CN issues a replication order to an MN, which retrieves copies of the
+   system metadata and associated objects (science data and metadata)
+
+8. On completion of replication the recipient MN updates its copy of the
+   system metadata and indicates to the CN that the replication process
+   completed.
+
+9. The CN updates the system metadata for the objects and ensures that the MN
+   copies of the system metadata are accurate.
+
+
+Process Detail
+--------------
+
+.. table:: Table 1. Identifiers used in the example sequence.
+
+   ============ ================================================
+   Identifier   Description
+   ============ ================================================
+   sciD.1       Science Data
+   sciM.1       Science metadata describing sciD_1
+   sysD.1       System metadata for object sciD.1
+   sysM.1       System metadata for object sciM.1
+   MN1          Member node that is initial recipient of data
+   MN2          Member node that receives a copy of the objects
+   ============ ================================================
+
+Step 1.
+~~~~~~~
+
+The scientist generates a data set and associated science metadata.
+
+Step 2.
+~~~~~~~
+
+Using tools in the ITK, the scientist generates two initial system metadata
+documents, one describing the science metadata (``sysm_M.1``), one describing the science
+data (``sysm_D.1``).
+
+.. table:: 
+   Table 2. Initial values of the system metadata for science data object
+   ``sciD.1`` and science metadata object ``sciM.1``
+
+   =========================== ========================================== ========================
+   Field                       sysD.1                                     sysM.1
+   =========================== ========================================== ========================
+   Identifier                  sciD.1                                     sciM.1
+   ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
+   Size                        8132                                       1450238
+   Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+   RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+   Obsoletes
+   ObsoletedBy
+   DerivedFrom
+   Describes                                                              sciD.1
+   DescribedBy                 sciM.1
+   Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+   ChecksumAlgorithm           SHA-1                                      SHA-1
+   AccessRule[1]
+   .RuleType                   Allow                                      Allow
+   .Service                    Read                                       Read
+   .Principal                  *                                          *
+   AccessRule[2]
+   .RuleType                   Allow                                      Allow
+   .Service                    Write                                      Write
+   .Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+   ReplicationPolicy
+   .PreferredMemberNode        MN2                                        MN2
+   .BlockedMemberNode
+   .ReplicationAllowed         true                                       true
+   .NumberReplicas             1                                          1 
+   DateUploaded
+   DataSysMetadataModified
+   OriginMemberNode
+   AuthoritativeMemberNode
+   Replica[1]
+   .ReplicaMemberNode
+   .ReplicationStatus
+   .ReplicaVerified
+   =========================== ========================================== ========================
+
