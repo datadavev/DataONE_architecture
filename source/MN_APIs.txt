@@ -134,8 +134,8 @@ CRUD API
   get(token, GUID) -> object
   batchGet(token, GUIDs) -> ?
   checkDataQuality (GUID)
-  create (token, dataPackage) -> GUID
-  create (token, workflowObject)
+  create(token, GUID, object, sysmeta) -> GUID
+  update(token, GUID, object, obsoletedGUID, sysmeta) -> GUID
   getChecksum (GUID) -> checksum
   getLogRecords(token, fromDate, toDate)
   log (create, creationDate, ID)
@@ -150,6 +150,8 @@ CRUD API
 .. exception:: UnsupportedType
 
 .. exception:: InsufficientResources
+
+.. exception:: IdentifierNotUnique
 
 
 .. function:: describe(token, GUID) -> objectMetadata
@@ -225,27 +227,39 @@ CRUD API
 
 
 
-.. function:: create (token, dataPackage) -> GUID
+.. function:: create(token, GUID, object, sysmeta) -> GUID
 
-  Adds a new data package to the Member Node. This mechanism is used by the
-  Coordinating Nodes to indicate a Member Node should add a copy of the data
-  package to itself.
-
-  The actual transfer of content should occur asynchronously, so this method
-  should return immediately after the operation has been scheduled.
+  Adds a new object to the Member Node, where the object is either a data
+  object or a science metadata object. This method is called by clients to
+  create new data objects on Member nodes.
 
   :param token: The authentication token returned by ``login()``
 
-  :param dataPackage:
-   The information that is to be added to the Member Node. This will contain
-   GUIDs that at least identify the data and metadata that are to be added. It
-   is up to the MN to determine when the actual retrieval should occur.
+  :param GUID: The globally unique identifier that should be used in
+   DataONE to identify and access the object.  This is an Unicode string
+   that follows the constraints on identifiers described in
+   :doc:`GUIDs`. If the identifier is already in use, an exception will be
+   raised and the client should try again with a different, unique
+   identifier.
+
+  :param object:
+   The data bytes that are to be added to the Member Node. 
+
+  :param sysmeta:
+   The system metadata document that provides basic information about the
+   object, including a reference to its identifier, access control
+   information, etc.  See :doc:`SystemMetadata` for a full description and
+   schema.
 
   :rtype: 
-   An identifier that can be used to check on the status of the operation. For
-   example, this could be a URL that points to a status document on the MN.
+   The identifier that was used to insert the document into the system. 
 
   :raises NotAuthorized:
+
+  :raises IdentifierNotUnique:
+   The requested identifier is already used by another object and therefore
+   can not be used for this object.  Clients should choose a new identifier
+   that is unique and retry the operation.
 
   :raises UnsupportedType: 
    The MN can not deal with the content specified in the data package.
@@ -255,11 +269,60 @@ CRUD API
    sufficient storage space for example.
 
 
+.. function:: update(token, GUID, object, obsoletedGUID, sysmeta) -> GUID
 
-.. function:: create (token, workflowObject)
+  Creates a new object on the Member Node that explicity updates and
+  obsoletes a previous object, where the object is either a data
+  object or a science metadata object. This method is called by clients to
+  update objects on Member nodes.  The object that is being obsoleted is
+  passed in as a parameter, and the Member Node should record the update by 
+  storing the Obsoletes and ObsoletedBy fields for the respective objects.
 
-.. Note:: Why is this method different from a regular create() operation?
+  :param token: The authentication token returned by ``login()``
 
+  :param GUID: The globally unique identifier that should be used in
+   DataONE to identify and access the object.  This is an Unicode string
+   that follows the constraints on identifiers described in
+   :doc:`GUIDs`. If the identifier is already in use, an exception will be
+   raised and the client should try again with a different, unique
+   identifier.
+
+  :param object:
+   The data bytes that are to be added to the Member Node. 
+
+  :param obsoletedGUID: The identifier of the object that is being updated.
+   If this identifier does not exist in the system, an error is raised and
+   the operation does not complete.  If the identifier is already in use, 
+   an exception will be raised and the client should try again with a 
+   different, unique identifier.
+
+  :param sysmeta:
+   The system metadata document that provides basic information about the
+   object, including a reference to its identifier, access control
+   information, obsoleted objects, etc.  See :doc:`SystemMetadata` for a 
+   full description and schema.
+
+  :rtype: 
+   The identifier that was used to insert the document into the system. 
+
+  :raises NotAuthorized:
+
+  :raises IdentifierNotUnique:
+   The requested identifier is already used by another object and therefore
+   can not be used for this object.  Clients should choose a new identifier
+   that is unique and retry the operation.
+
+  :raises UnsupportedType: 
+   The MN can not deal with the content specified in the data package.
+
+  :raises InsufficientResources:
+   The MN is unable to execute the transfer because it does not have
+   sufficient storage space for example.
+
+  :raises NotFound:
+   The update operation failed because the object which was supposed to be
+   updated in the system (indicated via the obsoletedGUID parameter) is not
+   present in the DataONE system, so update is an illegal operation.
 
 
 .. function:: getChecksum (GUID) -> checksum
