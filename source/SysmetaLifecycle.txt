@@ -1,6 +1,13 @@
 Natural History of System Metadata
 ==================================
 
+:Revisions:
+  ======== =========================================================
+  Date     Comment
+  ======== =========================================================
+  20100303 (D.V.) Initial draft
+  ======== =========================================================
+
 This document describes the generation of system metadata associated with a
 data object and its associated science metadata document as they are added to
 a DataONE member node and subsequently propagated through the DataONE
@@ -49,16 +56,17 @@ Process Detail
 
 .. table:: Table 1. Identifiers used in the example sequence.
 
-   ============ ================================================
-   Identifier   Description
-   ============ ================================================
-   sciD.1       Science Data
-   sciM.1       Science metadata describing sciD_1
-   sysD.1       System metadata for object sciD.1
-   sysM.1       System metadata for object sciM.1
-   MN1          Member node that is initial recipient of data
-   MN2          Member node that receives a copy of the objects
-   ============ ================================================
+   =============== ================================================
+   Identifier      Description
+   =============== ================================================
+   sciD.1          Science Data
+   sciM.1          Science metadata describing sciD_1
+   sysD.1          System metadata for object sciD.1
+   sysM.1          System metadata for object sciM.1
+   cn1.dataone.org A coordinating node
+   mn1.dataone.org Member node that is initial recipient of data
+   mn2.dataone.org Member node that receives a copy of the objects
+   =============== ================================================
 
 Step 1.
 ~~~~~~~
@@ -94,13 +102,13 @@ data (``sysm_D.1``).
    AccessRule[1]
    .RuleType                   Allow                                      Allow
    .Service                    Read                                       Read
-   .Principal                  *                                          *
+   .Principal                  \*                                         \*
    AccessRule[2]
    .RuleType                   Allow                                      Allow
    .Service                    Write                                      Write
    .Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
    ReplicationPolicy
-   .PreferredMemberNode        MN2                                        MN2
+   .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
    .BlockedMemberNode
    .ReplicationAllowed         true                                       true
    .NumberReplicas             1                                          1 
@@ -113,4 +121,273 @@ data (``sysm_D.1``).
    .ReplicationStatus
    .ReplicaVerified
    =========================== ========================================== ========================
+
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org
+R[1].ReplicationStatus     Queued
+R[1].ReplicaVerified       
+R[2].ReplicaMemberNode     
+R[2].ReplicationStatus     
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+Step 3.
+~~~~~~~
+
+Fictitious example of uploading content to a member node using DataONE client
+library:
+
+.. code-block:: python
+
+  import sys
+  import logging
+  from pyd1.client import *
+  from pyd1.exceptions import *
+  
+  # Optional explicit target specified
+  d1client = pyd1.client(target="mn1.dataone.org",
+                         identity="/home/vieglais/.d1/credentials",
+                         defaults="/home/vieglais/.d1/defaults.ini")
+  d1client.login()
+  
+  # The science data and metadata as files on disk
+  data_file = "/home/vieglais/data/mydata.csv"
+  meta_file = "/home/vieglais/data/mymeta.xml"
+
+  # Reserve a couple of identifiers
+  try:
+    data_id = d1client.reserve(u"sysD.1")
+    meta_id = d1client.reserve(u"sysM.1")
+  except d1_IdentifierInUse,e:
+    logging.fatal(repr(e))
+    sys.exit()
+
+  # Generate stub system metadata documents.  Default values
+  # for access rules etc are loaded from defaults.ini
+  sysm_data = d1client.generateSysMeta(id=data_id, 
+                                       format="text/csv",
+                                       describedBy=meta_id)
+  sysm_meta = d1client.generateSysMeta(id=meta_id, 
+                                       format="eml://ecoinformatics.org/eml-2.1.0",
+                                       describedBy=data_id)
+  # Open file handles for data and metadata
+  fdata = file(data_file, "r")
+  fmetadata = file(meta_file, "r")
+  
+  # Send the data to the member node
+  returned_data_id = d1client.create(data_id, fdata, sys_data)
+  returned_meta_id = d1client.create(meta_id, fmeta, sys_meta)
+  fdata.close()
+  fmeta.close()
+
+
+
+Step 4.
+~~~~~~~
+
+The data, metadata, and initial system metadata objects have been uploaded to
+the MN and the system metadata is updated with initial values provided by the
+MN.
+
+.. table:: 
+   Table 3. State of system metadata after upload to a member node.
+
+   =========================== ========================================== ==========================================
+   Field                       sysD.1                                     sysM.1
+   =========================== ========================================== ==========================================
+   Identifier                  sciD.1                                     sciM.1
+   ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
+   Size                        8132                                       1450238
+   Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+   RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+   Obsoletes
+   ObsoletedBy
+   DerivedFrom
+   Describes                                                              sciD.1
+   DescribedBy                 sciM.1
+   Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+   ChecksumAlgorithm           SHA-1                                      SHA-1
+   AccessRule[1]
+   .RuleType                   Allow                                      Allow
+   .Service                    Read                                       Read
+   .Principal                  \*                                         \*
+   AccessRule[2]
+   .RuleType                   Allow                                      Allow
+   .Service                    Write                                      Write
+   .Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+   ReplicationPolicy
+   .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+   .BlockedMemberNode
+   .ReplicationAllowed         true                                       true
+   .NumberReplicas             1                                          1 
+   DateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+   DataSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+   OriginMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
+   AuthoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
+   Replica[1]
+   .ReplicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
+   .ReplicationStatus          **Queued**                                 **Queued**
+   .ReplicaVerified
+   =========================== ========================================== ==========================================
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org
+R[1].ReplicationStatus     Queued
+R[1].ReplicaVerified       
+R[2].ReplicaMemberNode     
+R[2].ReplicationStatus     
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+Step 5.
+~~~~~~~
+
+A CN detects new content available on ``mn1.dataone.org`` through the listObjects() method.
+
+
+Step 6.
+~~~~~~~
+
+Copies of ``sciM.1``, ``sysM.1``, and ``sysD.1`` are retrieved to the CN, and
+the system metadata objects are updated.  There are three steps to this process:
+
+1. The CN requests a copy of the objects.
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org
+R[1].ReplicationStatus     Requested
+R[1].ReplicaVerified       
+R[2].ReplicaMemberNode     
+R[2].ReplicationStatus     
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+2. The CN receives a copy of the metadata and verifies the checksum
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Requested              Requested
+R[1].ReplicaVerified       
+R[2].ReplicaMemberNode     
+R[2].ReplicationStatus     
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+3. The CN indicates to the MN that the copy is complete, providing the time
+   stamp that it used for the verification.
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode     
+R[2].ReplicationStatus     
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+
+Step 7.
+~~~~~~~
+
+The CN initiates replication of content from ``mn1.dataone.org`` to ``mn2.dataone.org``.
+
+
+1. The CN sends a replication request to MN2, indicating that it should
+   retrieve the object from MN1.
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode                            mn2.dataone.org
+R[2].ReplicationStatus                            Queued
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+2. MN2 requests the content from MN1.
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
+R[2].ReplicationStatus     Requested              Queued                 Requested
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+3. MN1 checks with CN that the object was requested
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
+R[2].ReplicationStatus     Requested              Requested              Requested
+R[2].ReplicaVerified       
+========================== ====================== ====================== ======================
+
+
+4. MN2 verifies that the checksum is correct, then indicates to MN1 that the
+   copy was correctly transferred, forwarding the timestamp for when the
+   object was verified to MN1.
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
+R[2].ReplicationStatus     Completed              Requested              Completed
+R[2].ReplicaVerified       2010-03-04T20:00:00.0Z                        2010-03-04T20:00:00.0Z
+========================== ====================== ====================== ======================
+
+
+Step 8.
+~~~~~~~
+
+MN2 informs the coordinating node that it has retrieved a valid copy of the
+object from MN1, forwarding the time stamp for when the verification was made.  
+
+========================== ====================== ====================== ======================
+Property                   MN1                    CN                     MN2
+========================== ====================== ====================== ======================
+R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
+R[1].ReplicationStatus     Completed              Completed              Completed
+R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
+R[2].ReplicationStatus     Completed              Completed              Completed
+R[2].ReplicaVerified       2010-03-04T20:00:00.0Z 2010-03-04T20:00:00.0Z 2010-03-04T20:00:00.0Z
+========================== ====================== ====================== ======================
+
+
+Step 9.
+~~~~~~~
+
+CN verifies that its copy of system metadata is consistent with those of MN1
+and MN2 (using a checksum?)
 
