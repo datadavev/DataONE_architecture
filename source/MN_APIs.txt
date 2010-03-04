@@ -136,11 +136,11 @@ CRUD API
   checkDataQuality (GUID)
   create(token, GUID, object, sysmeta) -> GUID
   update(token, GUID, object, obsoletedGUID, sysmeta) -> GUID
+  delete (token, GUID)
   getChecksum (GUID) -> checksum
   getLogRecords(token, fromDate, toDate)
   log (create, creationDate, ID)
   register (memberToken, ID, metadata)
-
 
 
 .. exception:: NotFound
@@ -323,6 +323,38 @@ CRUD API
    The update operation failed because the object which was supposed to be
    updated in the system (indicated via the obsoletedGUID parameter) is not
    present in the DataONE system, so update is an illegal operation.
+
+
+.. function:: delete (token, GUID) -> GUID
+
+  Deletes an object from the Member Node, where the object is either a data
+  object or a science metadata object. This method is called by clients to
+  create delete objects on Member nodes.i Member Nodes must check that the
+  caller is authorized to perform this function.
+
+  :param token: The authentication token returned by ``login()``
+
+  :param GUID: The globally unique identifier that should be used in
+   DataONE to identify and delete the object.  This is an Unicode string
+   that follows the constraints on identifiers described in
+   :doc:`GUIDs`. 
+
+  :rtype: 
+   The identifier that was used to delete the document from the system. 
+
+  :raises NotAuthorized:
+
+  :raises NotFound:
+   The delete operation failed because the object which was supposed to be
+   deleted in the system (indicated via the GUID parameter) is not
+   present in the DataONE system, so delete is an illegal operation.
+
+  .. Note:: As DataONE is to be an archival system, we need to determine
+     what the semantics of the DELETE function really should be.  Can any
+     user delete their objects at any time?  What if they have published
+     and referenced the identifier in past?  Should DELETE simply be a
+     mechanism to move the object out of commonly found search mechanisms?
+     What about copyrighted or illegal content that is uploaded?
 
 
 .. function:: getChecksum (GUID) -> checksum

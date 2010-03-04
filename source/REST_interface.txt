@@ -11,7 +11,7 @@ REST Interface
 
 
 The REST interface through which the methods described in the sections
-:doc:`MN_APIs_v0_3` and :doc:`CN_APIs_v0_3`.
+:doc:`MN_APIs` and :doc:`CN_APIs`.
 
 
 Basic information:
@@ -44,12 +44,15 @@ An overview of mapping API methods to URLs in the REST interface.
 Version API Method                                         Method      URL
 ======= ================================================== =========== ========================================
 .       MN Operations
-0.3     :func:`MN_crud_0_3.getLogRecords`                   ``GET``     ``/log/``
-0.3     :func:`MN_replication_0_3.listObjects`              ``GET``     ``/object/``
-0.3     :func:`MN_crud_0_3.get`                             ``GET``     ``/object/<guid>``
-0.3     :func:`MN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
-0.3     :func:`MN_replication_0_3.synchronizationComplete`  ``PUT``     ``/object/<guid>/meta/``   
-0.3     :func:`MN_replication_0_3.synchronizationFailed`    ``PUT``     ``/object/<guid>/meta/``
+0.3     :func:`MN_crud.getLogRecords`                       ``GET``     ``/log/``
+0.3     :func:`MN_replication.listObjects`                  ``GET``     ``/object/``
+0.3     :func:`MN_crud.get`                                 ``GET``     ``/object/<guid>``
+0.4     :func:`MN_crud.create`                              ``GET``     ``/object/<guid>``
+0.4     :func:`MN_crud.update`                              ``GET``     ``/object/<guid>``
+0.9     :func:`MN_crud.delete`                              ``GET``     ``/object/<guid>``
+0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
+0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``   
+0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``
 0.4     :func:`MN_capabilities.getCapabilities`
 0.4     :func:`MN_health.getStatus`
 0.6     synchronize
@@ -58,12 +61,12 @@ Version API Method                                         Method      URL
 0.8     :func:`MN_authorization.isAuthorized`
 .
 .       CN Operations
-0.3     :func:`CN_query_0_3.getLogRecords`                  ``GET``     ``/log/``
-0.3     :func:`CN_health_0_3.generateReport`                ``GET``     ``/log/report``
-0.3     :func:`CN_query_0_3.search`                         ``GET``     ``/object/``
-0.3     :func:`CN_crud_0_3.get`                             ``GET``     ``/object/<guid>`` 
-0.3     :func:`CN_crud_0_3.getSystemMetadata`               ``GET``     ``/object/<guid>/meta/``
-0.3     :func:`CN_crud_0_3.resolve`                         ``GET``     ``/object/<guid>/locate/``
+0.3     :func:`CN_query.getLogRecords`                      ``GET``     ``/log/``
+0.3     :func:`CN_health.generateReport`                    ``GET``     ``/log/report``
+0.3     :func:`CN_query.search`                             ``GET``     ``/object/``
+0.3     :func:`CN_crud.get`                                 ``GET``     ``/object/<guid>`` 
+0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
+0.3     :func:`CN_crud.resolve`                             ``GET``     ``/object/<guid>/locate/``
 0.4     :func:`CN_query.query`
 0.4     :func:`CN_register.register`
 0.4     :func:`CN_crud.create`
@@ -104,9 +107,9 @@ List of objects that are present on the node, ordered with newest first.
 
 Implements the functions:
 
-- :func:`MN_replication_0_3.listObjects`
+- :func:`MN_replication.listObjects`
 
-- Possibly :func:`CN_query_0_3.search` if appropriate parameters are specified
+- Possibly :func:`CN_query.search` if appropriate parameters are specified
 
 
 **Optional Parameters**
@@ -320,9 +323,15 @@ GUID.
 
 Implements the methods:
 
-- :func:`MN_crud_0_3.get`
+- :func:`MN_crud.get`
 
-- :func:`CN_crud_0_3.get`
+- :func:`MN_crud.create`
+
+- :func:`MN_crud.update`
+
+- :func:`MN_crud.delete`
+
+- :func:`CN_crud.get`
 
 
 .. table:: 
@@ -341,13 +350,31 @@ Implements the methods:
   
          ``Content-Length:`` Byte size of the object
 
-  GET    Returns the bytes of the object.
+  GET    Returns the bytes of the object, implementing :func:`MN_crud.get` and
+         :func:`CN_crud.get`
 
-  POST   Creates a new instance with the specified GUID.
+  POST   Creates a new instance with the specified GUID, implementing 
+         :func:`MN_crud.create`. The DataONE authorization token should be placed 
+         in the appropriate HTTP Header field (to be determined), the GUID to be 
+         used is in the request URI, and the object content and sysmeta content are
+         encoded in the request body using `MIME-multipart Mixed Media Type
+         <http://tools.ietf.org/html/rfc2046#section-5.1.3>`_, where the 
+         object part has the name 'object', and the sysmeta part has the name 
+         'system_metadata'.
 
-  PUT    Updates an existing instance identified by GUID.
+  PUT    Updates an existing instance identified by GUID, implementing 
+         :func:`MN_crud.update`.  The DataONE authorization token should be placed 
+         in the appropriate HTTP Header field (to be determined), the GUID to be 
+         used is in the request URI, and the object content and sysmeta content are
+         encoded in the request body using `MIME-multipart Mixed Media Type
+         <http://tools.ietf.org/html/rfc2046#section-5.1.3>`_, where the 
+         object part has the name 'object', and the sysmeta part has the name 
+         'system_metadata'.  The obsoletedGUID parameter should be url-form-encoded 
+         in the query string with the name 'obsoletedGUID'.
 
-  DELETE Removes the specified instance from the collection.
+  DELETE Removes the specified instance from the collection, implementing
+         :func:`MN_crud.delete`. The DataONE authorization token should be placed
+         in the appropriate HTTP Header field (to be determined).
   ====== ===========================================================================
 
 
@@ -391,6 +418,21 @@ Attempt to retrieve a non-existent object (and show headers in response)::
   </html>  
 
 
+Create a new object with a given identifier::
+
+  curl -H "AuthToken: UR45W21A1S19ZE3CC9" \
+       -F "file=@datafile.csv;name=object" \
+       -F "file=@sysmeta.xml;name=systemmetdata" \
+       http://m1.dataone.org/object/XYZ33256/
+  
+  HTTP/1.1 200 Success
+  Content-Type: 
+  Date: Wed, 16 Dec 2009 13:58:34 GMT
+  Content-Length: 355
+  
+  XYZ33256
+
+
 .. TODO:: Show some examples for operations.  Failures should be included.
 
 
@@ -404,13 +446,13 @@ requested for another system metadata object.
 
 Implements the methods:
 
-- :func:`MN_crud_0_3.getSystemMetadata` (``GET /object/<guid>/meta/``)
+- :func:`MN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
 
-- :func:`MN_replication_0_3.synchronizationComplete` (``PUT /object/<guid>/meta/``)
+- :func:`MN_replication.synchronizationComplete` (``PUT /object/<guid>/meta/``)
 
-- :func:`MN_replication_0_3.synchronizationFailed` (``PUT /object/<guid>/meta/``)
+- :func:`MN_replication.synchronizationFailed` (``PUT /object/<guid>/meta/``)
 
-- :func:`CN_crud_0_3.getSystemMetadata` (``GET /object/<guid>/meta/``)
+- :func:`CN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
 
 
 .. table:: 
@@ -452,7 +494,7 @@ hold copies of the object identified by ``<guid>``.
 
 Implements the following methods:
 
-- :func:`CN_crud_0_3.resolve` (``GET /object/<guid>/locate/``)
+- :func:`CN_crud.resolve` (``GET /object/<guid>/locate/``)
 
 
 .. table:: 
@@ -557,7 +599,7 @@ with newest first.
 
 Implements the functions:
 
-- :func:`MN_crud_0_3.getLogRecords`
+- :func:`MN_crud.getLogRecords`
 
 **Optional Parameters**
 
