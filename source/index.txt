@@ -27,6 +27,12 @@ DataONE Architecture
 
 **Change Log**
 
+:20100304: 
+  - Rough merge of v0.3 APIs with full API descriptions
+  - Removed references to v0.3 APIS
+  - Added system metadata lifecycle document
+  - Revised system metadata elements (MJ) 
+
 :20100126: 
   - Added query document to APIs section.
   - Added start of logging requirements

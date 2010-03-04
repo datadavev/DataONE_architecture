@@ -363,11 +363,37 @@ h5 a.anchor:hover, h6 a.anchor:hover {
 table {
     border-collapse: collapse;
     margin: 0 -0.5em 0 -0.5em;
+    /*border-style: solid;*/
+    /*border-top-style: none;
+    border-width: 1px;
+    border-color: #666666;*/
+}
+
+table.field-list {
+  border: none;
+}
+
+table.field-list th td thead tbody {
+  border: none;
+}
+
+
+table thead {
+  background-color: #f0f0f0;
+  border: 1px solid #000;    
 }
 
 table td, table th {
     padding: 0.2em 0.5em 0.2em 0.5em;
 }
+
+/*table td {
+  border-bottom: 1px solid #ccc;
+}
+
+table td.adjacent {
+  border-left: 1px solid #ccc;
+}*/
 
 div.footer {
     /*background-color: #E3EFF1;*/

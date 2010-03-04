@@ -23,10 +23,10 @@ Synopsis
 
 This document provides an outline for approaches to querying content available
 in DataONE through the ``/object/`` collection exposed by the CNs and MNs
-(i.e. :func:`MN_replication_0_3.listObjects` and :func:`CN_query_0_3.search`
+(i.e. :func:`MN_replication.listObjects` and :func:`CN_query.search`
 methods). The same approach can be applied to the ``/log/`` collection exposed
-by the CNs and MNs (i.e. the :func:`CN_query_0_3.getLogRecords` and
-:func:`MN_crud_0_3.getLogRecords` methods).
+by the CNs and MNs (i.e. the :func:`CN_query.getLogRecords` and
+:func:`MN_crud.getLogRecords` methods).
 
 There are three types of query that can be readily supported by CNs
 (name-value pairs, Metacat path query, and Mercury SOLR query), and at least
