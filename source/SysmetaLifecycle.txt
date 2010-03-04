@@ -167,8 +167,8 @@ the science data (``sysm_D.1``).
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ========================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
+ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 Obsoletes
@@ -213,8 +213,8 @@ system metadata for which it is responsible.
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
+ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 Obsoletes
@@ -414,8 +414,8 @@ the science data (``sysm_D.1``).
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ========================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
+ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 Obsoletes
@@ -460,8 +460,8 @@ Member Node sets the values of several fields as indicted in the table below.
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
+ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 Obsoletes
@@ -668,8 +668,8 @@ the Coordinating Nodes.
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
+ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 Obsoletes
