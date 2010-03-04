@@ -1,7 +1,9 @@
-.. module:: SystemMetadata
-
 System Metadata
 ===============
+
+.. module:: SystemMetadata
+
+
 
 :Revisions:
   ======== ============================================================
@@ -45,37 +47,37 @@ maintained by Coordinating Nodes for every object in the system.
    **Table 1.** Quick reference to the System Metadata fields described in
    more detail below.
 
-  ================ =============================== ================= ===========
-  Group            Field                           Type              Cardinality
-  ================ =============================== ================= ===========
-  Client Provided  \                               \                 \
-  \                :attr:`Identifier`              IdentifierType    1
-  \                :attr:`ObjectFormat`            ObjectFormatType  1
-  \                :attr:`Size`                    LongInteger       1
-  \                :attr:`Submitter`               PrincipalType     1
-  \                :attr:`RightsHolder`            PrincipalType     1
-  \                :attr:`Obsoletes`               IdentifierType    0..n
-  \                :attr:`ObsoletedBy`             IdentifierType    0..n
-  \                :attr:`DerivedFrom`             IdentifierType    0..n
-  \                :attr:`Describes`               IdentifierType    0..n
-  \                :attr:`DescribedBy`             IdentifierType    0..n
-  \                :attr:`Checksum`                String            1
-  \                :attr:`ChecksumAlgorithm`       String            1
-  \                :attr:`EmbargoExpires`          DateTime          0..1
-  \                :attr:`AccessRule`              AccessRuleType    0..n
-  \                :attr:`ReplicationPolicy`       String            0..1
-  General          \                               \                 \
-  \                :attr:`DateUploaded`            DateTime          0..1
-  \                :attr:`DateSysMetadataModified` DateTime          0..1
-  Provenance       \                               \                 \ 
-  \                :attr:`OriginMemberNode`        NodeReferenceType 0..1
-  \                :attr:`AuthoritativeMemberNode` NodeReferenceType 0..1
-  Replication      \                               \                 \
-  \                :attr:`Replica`                 <<child nodes>>   0..n
-  \                :attr:`ReplicaMemberNode`       NodeReferenceType 1
-  \                :attr:`ReplicationStatus`       String            1
-  \                :attr:`ReplicaVerified`         DateTime          1
-  ================ =============================== ================= ===========
+   ================ =============================== ================= ===========
+   Group            Field                           Type              Cardinality
+   ================ =============================== ================= ===========
+   Client Provided  \                               \                 \
+   \                :attr:`Identifier`              IdentifierType    1
+   \                :attr:`ObjectFormat`            ObjectFormatType  1
+   \                :attr:`Size`                    LongInteger       1
+   \                :attr:`Submitter`               PrincipalType     1
+   \                :attr:`RightsHolder`            PrincipalType     1
+   \                :attr:`Obsoletes`               IdentifierType    0..n
+   \                :attr:`ObsoletedBy`             IdentifierType    0..n
+   \                :attr:`DerivedFrom`             IdentifierType    0..n
+   \                :attr:`Describes`               IdentifierType    0..n
+   \                :attr:`DescribedBy`             IdentifierType    0..n
+   \                :attr:`Checksum`                String            1
+   \                :attr:`ChecksumAlgorithm`       String            1
+   \                :attr:`EmbargoExpires`          DateTime          0..1
+   \                :attr:`AccessRule`              AccessRuleType    0..n
+   \                :attr:`ReplicationPolicy`       String            0..1
+   General          \                               \                 \
+   \                :attr:`DateUploaded`            DateTime          0..1
+   \                :attr:`DateSysMetadataModified` DateTime          0..1
+   Provenance       \                               \                 \ 
+   \                :attr:`OriginMemberNode`        NodeReferenceType 0..1
+   \                :attr:`AuthoritativeMemberNode` NodeReferenceType 0..1
+   Replication      \                               \                 \
+   \                :attr:`Replica`                 <<child nodes>>   0..n
+   \                :attr:`ReplicaMemberNode`       NodeReferenceType 1
+   \                :attr:`ReplicationStatus`       String            1
+   \                :attr:`ReplicaVerified`         DateTime          1
+   ================ =============================== ================= ===========
 
 .. _CCIT Meeting: https://repository.dataone.org/documents/Committees/CCIT/20091117_CCIT_Knoxville/
 

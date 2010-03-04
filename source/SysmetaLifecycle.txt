@@ -6,10 +6,10 @@ Natural History of System Metadata
   Date     Comment
   ======== ==================================================================
   20100303 (D.V.) Initial draft
-  20100304 1. (D.V.) Revised draft and added scenario where system 
-              metadata is stored only on the Coordinating Nodes
+  20100304 (D.V.) Revised draft and added scenario where system 
+           metadata is stored only on the Coordinating Nodes
 
-           2. Corrected DataSysMetadataModified changes in scenario B. 
+           Corrected DataSysMetadataModified changes in scenario B. 
   ======== ==================================================================
 
 This document describes the generation of system metadata associated with a
@@ -171,34 +171,34 @@ ObjectFormat                text/csv                                   eml://eco
 Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
+Obsoletes                   \                                          \
+ObsoletedBy                 \                                          \
+DerivedFrom                 \                                          \
+Describes                   \                                          sciD.1
+DescribedBy                 sciM.1                                     \
 Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
 ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
+AccessRule[1]               \                                          \
 .RuleType                   Allow                                      Allow
 .Service                    Read                                       Read
 .Principal                  \*                                         \*
-AccessRule[2]
+AccessRule[2]               \                                          \
 .RuleType                   Allow                                      Allow
 .Service                    Write                                      Write
 .Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy
+ReplicationPolicy           \                                          \
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
+.BlockedMemberNode          \                                          \
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
-DateUploaded
-DataSysMetadataModified
-OriginMemberNode
-AuthoritativeMemberNode
-Replica[1]
-.ReplicaMemberNode
-.ReplicationStatus
-.ReplicaVerified
+DateUploaded                \                                          \
+DataSysMetadataModified     \                                          \
+OriginMemberNode            \                                          \
+AuthoritativeMemberNode     \                                          \
+Replica[1]                  \                                          \
+.ReplicaMemberNode          \                                          \
+.ReplicationStatus          \                                          \
+.ReplicaVerified            \                                          \
 =========================== ========================================== ========================
 
 
@@ -217,34 +217,34 @@ ObjectFormat                text/csv                                   eml://eco
 Size                        1450238                                    8132
 Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
 RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
+Obsoletes                   \                                          \
+ObsoletedBy                 \                                          \
+DerivedFrom                 \                                          \
+Describes                   \                                          sciD.1
+DescribedBy                 sciM.1                                     \
 Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
 ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
+AccessRule[1]               \                                          \
 .RuleType                   Allow                                      Allow
 .Service                    Read                                       Read
 .Principal                  \*                                         \*
-AccessRule[2]
+AccessRule[2]               \                                          \
 .RuleType                   Allow                                      Allow
 .Service                    Write                                      Write
 .Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy
+ReplicationPolicy           \                                          \
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
+.BlockedMemberNode          \                                          \
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
 DateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
 DataSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
 OriginMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
 AuthoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
-Replica[1]
+Replica[1]                  \                                          \
 .ReplicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
 .ReplicationStatus          **Queued**                                 **Queued**
-.ReplicaVerified
+.ReplicaVerified            \                                          \
 =========================== ========================================== ==========================================
 
 

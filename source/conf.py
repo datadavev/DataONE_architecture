@@ -183,8 +183,6 @@ latex_font_size = '10pt'
 latex_documents = [
   ('index', 'DataONEArchitecture.tex', u'DataONE Architecture Documentation',
    u'VDC Project, DataONE CCIT', 'manual'),
-  ('MN_APIs_v0_3', 'MN_APIs_v0_3.tex', u'MN API Version 0.3',
-   u'VDC Project, DataONE CCIT', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
