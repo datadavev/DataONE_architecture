@@ -2,13 +2,15 @@ Natural History of System Metadata
 ==================================
 
 :Revisions:
-  ======== =========================================================
+======== ==================================================================
   Date     Comment
-  ======== =========================================================
+  ======== ==================================================================
   20100303 (D.V.) Initial draft
-  20100304 (D.V.) Revised draft and added scenario where system 
-           metadata is stored only on the Coordinating Nodes
-  ======== =========================================================
+  20100304 1. (D.V.) Revised draft and added scenario where system 
+              metadata is stored only on the Coordinating Nodes
+
+           2. Corrected DataSysMetadataModified changes in scenario B. 
+  ======== ==================================================================
 
 This document describes the generation of system metadata associated with a
 data object and its associated science metadata document as they are added to
@@ -52,11 +54,13 @@ exclusion of a couple of steps from scenario B.
 
    :B: The CN updates the system metadata replication information.
 
-6. :A: The CN issues a replication order to an MN, which retrieves copies of the
-       system metadata and associated objects (science data and metadata)
+6. The CN issues are replication order to an MN.
 
-   :B: The CN issues a replication order to an MN, which retrieves copies of
-       the various objects indicates by the CN.
+   :A: The recipient MN retrieves copies of the system metadata and 
+       associated objects (science data and metadata)
+
+   :B: The recipient MN retrieves copies of the various objects indicated 
+       by the CN
 
 7. The recipient MN requests content from the origin MN, which in turn
    verifies the request with the CN.
@@ -503,39 +507,24 @@ There is no change of state in system metadata resulting from this operation.
 Step B5.
 ~~~~~~~~
 
-Copies of ``sciM.1``, ``sysM.1``, and ``sysD.1`` are retrieved to the Coordinating Node, and
-the system metadata objects are updated on the Coordinating Node.
+Copies of ``sciM.1``, ``sysM.1``, and ``sysD.1`` are retrieved to the
+Coordinating Node, and the system metadata objects are updated on the
+Coordinating Node. For sake of brevity, only the elements from
+ReplicationPolicy onwards are shown in the remaining state tables since the
+remainder of the content does not change.
 
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+...
 ReplicationPolicy
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
 .BlockedMemberNode
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
 DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+DataSysMetadataModified     **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
 OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
 AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
 Replica[1]
@@ -559,32 +548,14 @@ calling the "replicate()" method on ``mn2.dataone.org``.
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+...
 ReplicationPolicy
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
 .BlockedMemberNode
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
 DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+DataSysMetadataModified     **2010-03-04T20:58:00.0Z**                 **2010-03-04T20:58:00.0Z**
 OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
 AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
 Replica[1]
@@ -615,32 +586,14 @@ each object is requested individually.)
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+...
 ReplicationPolicy
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
 .BlockedMemberNode
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
 DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+DataSysMetadataModified     **2010-03-04T20:59:00.0Z**                 **2010-03-04T20:59:00.0Z**
 OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
 AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
 Replica[1]
@@ -668,32 +621,14 @@ checksums and indicates to the Coordinating Node that transfer was successful.
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
 Identifier                  sciD.1                                     sciM.1
-ObjectFormat                eml://ecoinformatics.org/eml-2.1.0         text/csv
-Size                        8132                                       1450238
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+...
 ReplicationPolicy
 .PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
 .BlockedMemberNode
 .ReplicationAllowed         true                                       true
 .NumberReplicas             1                                          1 
 DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+DataSysMetadataModified     **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
 OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
 AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
 Replica[1]
@@ -719,6 +654,15 @@ Assuming the replication policy was for one replica to be created for
 system metadata documents (``sysM.1`` and ``sysD.1`` respectively) after
 synchronization of the Coordinating Nodes, would be something like the
 following.
+
+Note that synchronization between Coordinating Nodes does not trigger an
+update to the DataSysMetadataModified field. This is necessary to avoid a
+situation where the state of the metadata is never consistent between
+Coordinating Nodes.
+
+Note also that even though the replication policy of ``sciD.1`` indicates that
+NumberReplicas is one, there are actually three additional replicas stored on
+the Coordinating Nodes.
 
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
