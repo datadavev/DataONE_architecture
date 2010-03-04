@@ -147,7 +147,6 @@ member node using a DataONE client library might occur.
   fmeta.close()
 
 
-
 Process Detail - Scenario A
 ---------------------------
 
@@ -250,8 +249,8 @@ Replica[1]                  \                                          \
 
 Since there are many copies of system metadata from this point onwards, only
 the replication properties of the ``sysD.1`` document are considered,
-summarized in a table as follows. MN1 = ``mn1.dataone.org``, CN1 =
-``cn1.dataone.org``, and MN2 = ``mn2.dataone.org``.
+summarized in a table as follows. MN1, CN, MN2 = copy of system metadata on
+``mn1.dataone.org``, ``cn1.dataone.org``, ``mn2.dataone.org`` respectively.
 
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
@@ -398,6 +397,9 @@ R[2].ReplicaVerified       2010-03-04T20:00:00.0Z **2010-03-04T20:00:00.0Z** 201
 Process Detail - Scenario B.
 ----------------------------
 
+This scenario uses the notion that system metadata is stored on the CNs only.
+
+
 Step B1.
 ~~~~~~~~
 
@@ -531,10 +533,6 @@ Replica[1]
 .ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
 .ReplicationStatus          **Completed**                              **Completed**
 .ReplicaVerified            **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
-Replica[2]
-.ReplicaMemberNode                                                     **cn1.dataone.org**
-.ReplicationStatus                                                     **Completed**
-.ReplicaVerified                                                       **2010-03-04T19:13:52.0Z**   
 =========================== ========================================== ==========================================
 
 Step B6.
@@ -563,13 +561,9 @@ Replica[1]
 .ReplicationStatus          Completed                                  Completed  
 .ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
 Replica[2]
-.ReplicaMemberNode          **mn2.dataone.org**                        cn1.dataone.org
-.ReplicationStatus          **Queued**                                 Completed  
-.ReplicaVerified                                                       2010-03-04T19:13:52.0Z     
-Replica[3]
-.ReplicaMemberNode                                                     **mn2.dataone.org**
-.ReplicationStatus                                                     **Queued**
-.ReplicaVerified                                                                                  
+.ReplicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
+.ReplicationStatus          **Queued**                                 **Queued**
+.ReplicaVerified                                                       
 =========================== ========================================== ==========================================
 
 
@@ -601,13 +595,9 @@ Replica[1]
 .ReplicationStatus          Completed                                  Completed  
 .ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
 Replica[2]
-.ReplicaMemberNode          **mn2.dataone.org**                        cn1.dataone.org
-.ReplicationStatus          **Requested**                              Completed  
-.ReplicaVerified                                                       2010-03-04T19:13:52.0Z     
-Replica[3]
-.ReplicaMemberNode                                                     **mn2.dataone.org**
-.ReplicationStatus                                                     **Requested**
-.ReplicaVerified                                                                                  
+.ReplicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
+.ReplicationStatus          **Requested**                              **Requested**
+.ReplicaVerified                                                       
 =========================== ========================================== ==========================================
 
 
@@ -636,13 +626,9 @@ Replica[1]
 .ReplicationStatus          Completed                                  Completed  
 .ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
 Replica[2]
-.ReplicaMemberNode          mn2.dataone.org                            cn1.dataone.org
-.ReplicationStatus          **Completed**                              Completed  
-.ReplicaVerified            **2010-03-04T21:00:00.0Z**                 2010-03-04T19:13:52.0Z     
-Replica[3]
-.ReplicaMemberNode                                                     mn2.dataone.org
-.ReplicationStatus                                                     **Completed**
-.ReplicaVerified                                                       **2010-03-04T21:00:00.0Z**
+.ReplicaMemberNode          mn2.dataone.org                            mn2.dataone.org
+.ReplicationStatus          **Completed**                              **Completed**
+.ReplicaVerified            **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
 =========================== ========================================== ==========================================
 
 
@@ -701,19 +687,7 @@ Replica[1]
 .ReplicationStatus          Completed                                  Completed  
 .ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
 Replica[2]
-.ReplicaMemberNode          mn2.dataone.org                            cn1.dataone.org
+.ReplicaMemberNode          mn2.dataone.org                            mn2.dataone.org
 .ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T21:00:00.0Z                     2010-03-04T19:13:52.0Z     
-Replica[3]
-.ReplicaMemberNode                                                     mn2.dataone.org
-.ReplicationStatus                                                     Completed
-.ReplicaVerified                                                       2010-03-04T21:00:00.0Z
-Replica[4]
-.ReplicaMemberNode                                                     **cn2.dataone.org**
-.ReplicationStatus                                                     **Completed**
-.ReplicaVerified                                                       **2010-03-04T22:00:00.0Z**
-Replica[5]
-.ReplicaMemberNode                                                     **cn3.dataone.org**
-.ReplicationStatus                                                     **Completed**
-.ReplicaVerified                                                       **2010-03-04T22:00:00.0Z**
+.ReplicaVerified            2010-03-04T21:00:00.0Z                     2010-03-04T21:00:00.0Z
 =========================== ========================================== ==========================================
