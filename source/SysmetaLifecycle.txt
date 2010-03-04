@@ -7,13 +7,16 @@ Natural History of System Metadata
   ======== =========================================================
   20100303 (D.V.) Initial draft
   20100304 (D.V.) Revised draft and added scenario where system 
-  \        metadata is stored only on the Coordinating Nodes
+           metadata is stored only on the Coordinating Nodes
   ======== =========================================================
 
 This document describes the generation of system metadata associated with a
 data object and its associated science metadata document as they are added to
 a DataONE member node and subsequently propagated through the DataONE
 infrastructure.
+
+.. contents::
+   :depth: 1
 
 
 Process Overview
