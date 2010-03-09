@@ -16,6 +16,7 @@ Version Method
 .       ``setOwner(token, userid, objectList) -> objectList``
 .       ``newAccount(username, password, [auth_system]) -> identity_GUID``
 .       ``verify(token) -> boolean``
+.       ``reserveId(token, scope, format) -> GUID``
 ======= ======================================================================
 
 
@@ -248,6 +249,8 @@ CRUD API
 
 .. function:: update()
 
+.. function:: reserveId(scope, format)
+
 
 ::
 
@@ -357,6 +360,32 @@ CRUD API
 
   :raises InvalidMetadataType: 
     the science metadata is not of a type supported by the D1 system
+
+
+.. function:: reserveId(token, scope, format) -> GUID
+
+   Given an optional scope and format, reserves and returns an identifier within 
+   that scope and format that is unique and will not be used by any other sessions.
+   Future calls to create() and update() that reference this ID must originate from
+   the session in which the identifier was reserved, otherwise an error is raised on
+   those methods.
+
+    :param token: authentication token; ignored for V0.3
+   
+    :param scope: an optional string to be used to qualify the scope of the 
+      identifer namespace, which is applied differently depending on the format 
+      requested. If scope is not supplied, a default scope will be used.
+   
+    :param format: the optional name of the identifier format to be used, drawn from 
+      a DataONE-specific vocabulary of identifier format names, including 
+      several common syntaxes such as DOI, LSID, UUID, and LSRN, among others. If
+      the format is not supplied by the caller, the CN service will use a default 
+      identifier format, which may change over time.
+
+    :returns: The GUID that was reserved
+
+    :raises InvalidArgument: The format requested is not a valid format accepted by
+      this service
 
 
 
