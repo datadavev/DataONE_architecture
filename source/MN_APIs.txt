@@ -692,6 +692,7 @@ HTTP Exception Handling Codes
 The following HTTP codes are used in HTTP response header when an exception
 needs to be raised from one of the MemberNodes. The current exceptions from
 Member Node operations that need to be mapped to these codes are:
+
 * MN_authorization: InvalidCredentials, AuthenticationTimeout, InvalidToken
 * MN_crud: NotFound, NotAuthorized, UnsupportedType, InsufficientResources, IdentifierNotUnique, UnsupportedType, InsufficientResources
 * MN_replication: InvalidCriteria, InvalidIdentifier, InvalidOperation
