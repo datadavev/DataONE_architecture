@@ -686,3 +686,31 @@ State of Health API
 
    \newpage
 
+HTTP Exception Handling Codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following HTTP codes are used in HTTP response header when an exception
+needs to be raised from one of the MemberNodes. The current exceptions from
+Member Node operations that need to be mapped to these codes are:
+* MN_authorization: InvalidCredentials, AuthenticationTimeout, InvalidToken
+* MN_crud: NotFound, NotAuthorized, UnsupportedType, InsufficientResources, IdentifierNotUnique, UnsupportedType, InsufficientResources
+* MN_replication: InvalidCriteria, InvalidIdentifier, InvalidOperation
+
+Here are candidate HTTP error codes, that need to be mapped to these
+exceptions.
+
+==== ================ =======================================================
+Code Meaning          Description
+==== ================ =======================================================
+400  Bad Request      Bad request if the request REST operation is invalid,
+                      serialization is erroneous, mime type is not supported, 
+                      or resource is not supported.
+401  Unauthorized     Authentication failure. Credentails are required or 
+                      were invalid. Corresponds to InvalidCredentials.
+403  Forbidden        The current user does not have the right to perform 
+                      the requested action.
+404  Not Found        The object does not exist.
+==== ================ =======================================================
+
+.. Note:: We still need to define error message formats (e.g., XML) for the 
+   content of the returned error documents.
