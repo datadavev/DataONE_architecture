@@ -26,13 +26,6 @@ CRUD API
   resolve(token, GUID) -> systemMetadata???
   create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
   
-.. exception:: NotFound
-
-.. exception:: InvalidMetadataType
-
-.. exception:: InvalidArgument
-
-.. exception:: ObjectNotHere
 
 .. function:: getSystemMetadata(token, GUID) -> system metadata
 
@@ -45,9 +38,15 @@ CRUD API
 
   :returns: System metadata object describing the object.
 
-  :raises NotFound: There is no data or science metadata identified by the given GUID. 
-  
-  :raises InvalidArgument: The GUID requested identifies a system metadata object. 
+  :rtype: SystemMetadata
+
+  :raise: Exceptions.NotAuthorized
+
+  :raises Exceptions.NotFound: There is no data or science metadata identified
+    by the given GUID.
+
+  :raises Exceptions.InvalidRequest: The GUID requested identifies a system metadata
+    object.
 
 
 .. function:: get (token, GUID) -> metadata
@@ -67,18 +66,22 @@ CRUD API
     science metadata objects, this will be the exact byte stream of the science
     metadata oject, as is was original ingested.
 
-  :raises NotFound: The object specified by GUID does not exist.
+  :rtype: ByteStream
 
-  :raises ObjectNotHere: The object specified by the GUID is a data object and
-    is not present on this (or any) CN. This response could be accompanied by
-    the results of a standard resolve() method call to provide more information
-    about the object.
+  :raise: Exceptions.NotAuthorized
+
+  :raises Exceptions.NotFound: The object specified by GUID does not exist.
+
+  :raises Exceptions.NotFound: The object specified by the GUID is a data
+    object and is not present on this (or any) CN. This response could be
+    accompanied by the results of a standard resolve() method call to provide
+    more information about the object.
 
    .. todo::
       This method name could be changed since it has different semantics than
       the method of the same name on MNs.
-      
-      
+
+
 .. function:: resolve(token, identifier) -> list of nodes
 
    Given an identifier, returns information that a client can use to retrieve
@@ -87,12 +90,14 @@ CRUD API
    of interface implemented, and is described in detail in the documentation
    for the implementation (e.g. REST implementation might differ from SOAP
    implementation).
-   
+
     :param token: authentication token; ignored for V0.3
-   
+
     :param identifier: Identifier for the object in question
-   
+
     :returns: A list of nodes known to contain copies of the target object
+
+    :rtype: NodeList
 
    .. todo::
      It seems that returning just a simple list of URLs for the service
@@ -102,10 +107,13 @@ CRUD API
      implementation). Is there a use case that involves asking a CN for
      metadata describing a MN?
 
-   :raises NotFound: There is no data object identified by the given GUID.
+   :raise: Exceptions.NotAuthorized
 
-   :raises InvalidArgument: The GUID requested identifies a science metadata
-     object or a system metadata object.
+   :raises Exceptions.NotFound: There is no data object identified by the
+     given GUID.
+
+   :raises Exceptions.InvalidRequest: The GUID requested identifies a science
+     metadata object or a system metadata object.
 
 
 .. function:: create(systemMetadataGUID, systemMetadata,
@@ -116,6 +124,9 @@ CRUD API
    single atomic action. This method is used as part of the synchronization of
    science metadata between a MN and the CN.
 
+   .. TODO:: Should this method be protected by authorization (i.e. include an
+     authorization token)?
+
   :param systemMetadataGUID: the GUID of the system metadata
 
   :param systemMetadata:
@@ -125,7 +136,11 @@ CRUD API
 
   :param scienceMetadata: the science metadata portion of the data package
 
-  :raises InvalidMetadataType: 
+  :returns: ?
+  
+  .. TODO:: Define what is returned (if anything)
+
+  :raises exceptions.InvalidMetadataType: 
     the science metadata is not of a type supported by the D1 system
 
 
@@ -151,5 +166,9 @@ CRUD API
 
     :returns: The GUID that was reserved
 
-    :raises InvalidArgument: The format requested is not a valid format accepted by
-      this service
+    :rtype: GUID
+
+    :raises Exceptions.NotAuthorized: 
+
+    :raises Exceptions.InvalidArgument: The format requested is not a valid
+      format accepted by this service

@@ -7,6 +7,9 @@ CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
 
 .. module:: CN_synchronization
    :synopsis: Manages synchronization between Coordinating Nodes
+
+.. TODO:: flesh these out.
+
    
 .. function:: pollForNewIDs ()
 
@@ -22,5 +25,5 @@ CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
 
    :param nodeID:  The member node that is being scheduled for synchronization.
 
-   :raises NotFound: The specified Member Node ID is invalid.
+   :raises Exceptions.NotFound: The specified Member Node ID is invalid.
 

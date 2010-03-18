@@ -140,6 +140,7 @@ internally by those components.
    CN_APIs
    ITK_APIs
    Exceptions
+   Types
    REST_interface
    querying_content
    logging

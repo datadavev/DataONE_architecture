@@ -33,6 +33,12 @@ to be split out into the Logging and Alert API (not yet defined).
      the set of log records specified; format is not yet specified; the set of
      records may be empty
 
+   :rtype: LogRecords
+
+   :raises: Exceptions.NotAuthorized
+
+   :raises: Exceptions.InvalidRequest
+
    .. todo:: Format of the consolidated log records need to be specified.
 
 
@@ -47,10 +53,19 @@ to be split out into the Logging and Alert API (not yet defined).
      objects of interest. The structure of this query is described in
      :doc:querying_content.
 
+   :returns: A list of objects that match the specfied search criteria
+   
+   :rtype: GuidList
+
+   :raises: Exceptions.NotAuthorized
+
+   :raises: Exceptions.InvalidRequest
+
    .. todo: Details of query specification for `search(token, query)` needs to
      be worked out.
 
 
+.. TODO:: Flesh these out...
 
 .. function:: getAllCopies (token, ownerID)
 

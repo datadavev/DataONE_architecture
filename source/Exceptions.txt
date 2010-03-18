@@ -47,6 +47,18 @@ Exceptions
    The parameters provided in the call were invalid.
 
 
+.. exception:: IdentityAlreadyExists
+
+   The requested identifier already exists in the DataONE system so can not be
+   reserved as a new identifier.
+
+
+.. exception:: InvalidMetadataType
+
+
+.. exception:: ObjectNotHere
+
+
 
 HTTP Exception Handling Codes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,18 @@
+Data Types in CICore
+--------------------
+
+.. module:: Types
+   :synopsis: Catalog of data types (structures) used by the DataONE cicore.
+
+
+GUID
+
+AuthToken
+
+ObjectList
+
+GuidList
+
+LogRecords
+
+SystemMetadata

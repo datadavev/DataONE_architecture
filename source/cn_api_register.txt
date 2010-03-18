@@ -10,7 +10,7 @@ manually.
 
 
 
-.. function:: addNodeCapabilities (nodeID, capabilities)
+.. function:: addNodeCapabilities (nodeID, capabilities) -> boolean
 
    Adds the supplied capabilities to the system metadata describing the Member Node.
 
@@ -20,6 +20,9 @@ manually.
      A capabilities document that describes the resources and supported
      services of the Member Node.
 
+   :returns: True if the operation succeeds
+
+   :rtype: Boolean
 
 
 .. function:: register (token, capabilitiesURL) -> boolean
@@ -30,11 +33,15 @@ manually.
 
    :param capabilitiesURL: The URL from which capabilities will be retrieved.
 
-   :raises NotAuthorized: The supplied identity does not have authority to register a node.
+   :raises exceptions.NotAuthorized: The supplied identity does not have
+     authority to register a node.
 
-   :raises NotFound: The supplied capabilitiesURL does not resolve to a capabilities document
+   :raises Exceptions.NotFound: The supplied capabilitiesURL does not resolve
+     to a capabilities document
 
-   :rtype: True or False
+   :rtype: Boolean
+
+   :returns: True if the registration operation succeeds
 
 
 
@@ -46,6 +53,7 @@ manually.
 
    Evaluates the supplied capabilities document. This may involve additional
    interaction with the MN as various aspects are evaluated.
+
 
 .. todo:: 
    The :func:`verifyCapabilities` will needto check functionality of the MN so
