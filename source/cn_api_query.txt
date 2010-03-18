@@ -1,0 +1,68 @@
+Query API
+~~~~~~~~~
+
+The Query API handles searches of science metadata and system metadata; also
+exposes log records held by CNs. This log-related functionality probably needs
+to be split out into the Logging and Alert API (not yet defined).
+
+.. module:: CN_query
+   :synopsis: 
+     Handles queries against science metadata, system metdata, and log
+     records held by CNs
+
+::
+
+  getLogRecords(token, fromDate, toDate) -> logRecords
+  search(token, query) -> list of GUIDs
+
+
+.. function:: getLogRecords (token, fromDate, toDate) -> logRecords
+
+   Retrieves consolidated log information for the specified date range
+   (inclusive) for the entire DataONE infrastructure.
+
+   :param token: authentication token
+
+   :param fromDate: 
+     specified by appropriate standard (ISO? W3C?)
+
+   :param toDate: 
+     specified by appropriate standard (ISO? W3C?)
+
+   :returns:
+     the set of log records specified; format is not yet specified; the set of
+     records may be empty
+
+   .. todo:: Format of the consolidated log records need to be specified.
+
+
+.. function:: search (token, query) -> list of metadata GUIDs
+
+   Search the metadata catalog and return GUIDs of metadata records that meet
+   the criteria.
+
+   :param token: authentication token; ignored for V0.3
+
+   :param query: The criteria for matching the characteristics of the metadata
+     objects of interest. The structure of this query is described in
+     :doc:querying_content.
+
+   .. todo: Details of query specification for `search(token, query)` needs to
+     be worked out.
+
+
+
+.. function:: getAllCopies (token, ownerID)
+
+.. function:: getLinksAndCites (GUID, fromDate, toDate)
+
+.. function:: getLogRecords (GUID, fromDate, toDate)
+
+.. function:: getLogRecords (nodeID, fromDate, toDate)
+
+.. function:: query (token, query)
+
+.. function:: searchForData ()
+
+.. function:: usageQuery (token, GUID)
+

@@ -1,0 +1,137 @@
+Exceptions Raised by MN and CN APIs
+-----------------------------------
+
+All exceptions raised by APIS methods in DataONE cicore should include three
+basic elements of information:
+
+============ ===============================================================
+Element      Description
+============ ===============================================================
+code         The error code.  This is the HTTP error code (i.e. 4xx)
+error_detail A more detailed error code which provides a precise indication 
+             of where the exception was raised.
+description  A human readable message describing what happened
+============ ===============================================================
+
+There will be conditions encountered where exceptions are raised in the APIs
+which are not exposed to HTTP.  In these cases, the ``error_detail`` and 
+``description`` values must be included.
+
+TODO:: Define what code should be used in place of the HTTP error code.
+
+
+Exceptions
+~~~~~~~~~~
+
+.. module:: Exceptions
+   :synopsis: Exceptions that are raised by MN, CN, and ITK software.
+
+.. exception:: InvalidCredentials
+
+.. exception:: AuthenticationTimeout
+
+.. exception:: InvalidToken
+
+.. exception:: NotFound
+
+.. exception:: NotAuthorized
+
+.. exception:: UnsupportedType
+
+.. exception:: InsufficientResources
+
+.. exception:: IdentifierNotUnique
+
+.. exception:: InvalidRequest
+
+   The parameters provided in the call were invalid.
+
+
+
+HTTP Exception Handling Codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following HTTP codes are used in HTTP response header when an exception
+needs to be raised from one of the MemberNodes. The current exceptions from
+Member Node operations that need to be mapped to these codes are:
+
+:MN_authorization: InvalidCredentials, AuthenticationTimeout, InvalidToken
+
+:MN_crud: NotFound, NotAuthorized, UnsupportedType, InsufficientResources, 
+  IdentifierNotUnique, UnsupportedType
+
+:MN_replication: InvalidCriteria, InvalidIdentifier, InvalidOperation
+
+Here are candidate HTTP error codes, that need to be mapped to these
+exceptions.
+
+==== =================== =======================================================
+Code Meaning             Description
+==== =================== =======================================================
+400  Bad Request         Bad request if the request REST operation is invalid,
+                         serialization is erroneous, mime type is not supported, 
+                         or resource is not supported.
+401  Unauthorized        Authentication failure. Credentials are required or 
+                         were invalid. Corresponds to InvalidCredentials.
+403  Forbidden           The current user does not have the right to perform 
+                         the requested action.
+404  Not Found           The object does not exist.
+405  Method not allowed  The HTTP method used is not allowed on this resource.
+                         Response must include an Allow header indicating valid
+                         HTTP methods.
+406  Not Acceptable      The resource identified by the request is only capable 
+                         of generating response entities which have content 
+                         characteristics not acceptable according to the accept 
+                         headers sent in the request.
+408  Request Timeout     The client did not produce a request within the time 
+                         that the server was prepared to wait.
+409  Conflict            The request could not be completed due to a conflict 
+                         with the current state of the resource.
+410  Gone                The resource is known to be permanently deleted (as 
+                         opposed to 404 which indicates uncertainty about the
+                         state of the object).   
+413  Request Entity Too  The server is refusing to process a request because 
+     Large               the request entity is larger than the server is willing 
+                         or able to process.
+415  Unsupported Media   The server is refusing to service the request because 
+     Type                the entity of the request is in a format not supported 
+                         by the requested resource for the requested method. 
+==== =================== =======================================================
+
+.. Note:: We still need to define error message formats (e.g., XML) for the 
+   content of the returned error documents.
+
+The body of the corresponding error messages should be encoded according to
+the format indicted by the Accept content type header of the request. This
+should default to a format that is easily readable by a web browser (e.g.
+xhtml).
+
+====================== ===== ==================================================
+Exception              Code  Description
+====================== ===== ==================================================
+InvalidCredentials     401   The supplied credentials could not be verified
+AuthenticationTimeout  408   The client took too long to complete the request
+InvalidToken           401   The supplied authentication token is not valid
+NotFound               404   The referenced object could not be located
+NotAuthorized          401   Access to the indicated resource is not permitted 
+                             with the supplied credentials
+UnsupportedType        400   Treated as an invalid request.  Response should 
+                             indicate the problem with the supplied data.
+InsufficientResources  413   This could be 400, 413, or 415, though none of 
+                             these correspond with the semantics of the error 
+                             condition.
+IdentifierNotUnique    409   The supplied identifier already exists so conflicts 
+                             with the state of the resource
+UnsupportedType        406   This could be 400 or 406
+InvalidCriteria        400   The request is by definition, malformed, hence 400
+InvalidIdentifier      404   The indicated resource doesn't exist
+InvalidOperation       409   Not sure if this exception is even necessary, but 
+                             technically this is a state of conflict with the
+                             resource.
+====================== ===== ==================================================
+
+Response body should contain:
+
+- Include http code in body + header
+- Detailed code that breaks down more specifically (e.g. 401 + detail)
+- Human readable string

@@ -1,0 +1,23 @@
+Replication API
+~~~~~~~~~~~~~~~
+
+The Replication API handles replication of data and science metadata content
+among member nodes. Such replication is not part of V0.3 functionality.
+
+
+.. module:: CN_replication
+   :synopsis: Manages replication of content between Member Nodes
+   
+.. function:: getDefaultReplicationPolicy (sess)
+
+.. function:: getMNReplicateList ()
+
+.. function:: getReplicationPolicy (sess, ID)
+
+.. function:: isReplicationNeeded ()
+
+.. function:: replicateMetadata ()
+
+.. function:: setDefaultReplicationPolicy (sess, policy)
+
+.. function:: setReplicationPolicy (sess, policy, ID)

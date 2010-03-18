@@ -20,6 +20,10 @@ Version Method
 0.3     :func:`MN_replication.synchronizationComplete` ``(token, GUID)``
 0.3     :func:`MN_replication.synchronizationFailed` ``(token, GUID, problemDescription)``
 0.3     :func:`MN_health.heartbeat` ``() -> response``
+.       :func:`MN_authorization.login` ``(user, password, [auth_system]) -> token``
+.       :func:`MN_authorization.logout` ``(token)``
+.       :func:`MN_authorization.isAuthorized` ``(token, method, GUID) -> boolean``
+.       :func:`MN_authorization.verify` ``verify(token) -> boolean``
 ======= =======================================================================
 
 
@@ -41,21 +45,12 @@ options.
 
 ::
 
-
   login(user, password, [auth_system]) -> token
   logout(token)
   isAuthorized (token, method, GUID) -> boolean
   verify(token) -> boolean
 
 .. index:: authenticate, authorize
-
-
-.. exception:: InvalidCredentials
-
-.. exception:: AuthenticationTimeout
-
-.. exception:: InvalidToken
-
 
 
 .. function:: login(user, password, [auth_system]) -> token
@@ -73,12 +68,12 @@ options.
 
    :rtype: A composite of the user id and authentication token.
 
-   :raises InvalidCredentials: The supplied credentials were invalid (password +
-     username don't jive)
+   :raises Exceptions.InvalidCredentials: The supplied credentials were
+      invalid (password + username don't jive)
 
-   :raises AuthenticationTimeout: A response from the authentication service was not received
-       before the operation timed out.
-   
+   :raises Exceptions.AuthenticationTimeout: A response from the
+      authentication service was not received before the operation timed out.
+
    .. Note:: :func:`login` may delegate the actual login to an authentication service,
       and a given user may utilize several authentication services.  If this is the 
       case then an additional parameter identifying the authentication service to
@@ -162,34 +157,26 @@ CRUD API
   register (memberToken, ID, metadata)
 
 
-.. exception:: NotFound
-
-.. exception:: NotAuthorized
-
-.. exception:: UnsupportedType
-
-.. exception:: InsufficientResources
-
-.. exception:: IdentifierNotUnique
-
 
 .. function:: describe(token, GUID) -> objectMetadata
 
-   Describes the object located at the endpoint of a GUID. This is necessary
-   to enable a client (e.g. a CN doing synchronization of new content) to
-   determine what type of information is being referenced before it is
-   registered in the system metadata. Helps to avoid accidental download of
-   data objects rather than metadata.
-
-   It may also be possible / feasible / appropriate to utilize content
-   negotiation in the HTTP GET method as part of the :func:`get` operation to
-   retrieve this information (or perhaps HTTP HEAD).
+   This method provides a lighter weight mechanism than
+   :func:`getSystemMetadata` for a client to determine basic properties of the
+   referenced object. The response should indicate properties that are
+   typically returned in a HTTP HEAD request: the date late modified, the size
+   of the object, the mime-type of the object.
 
    :param token: Identity with privileges to read the GUID.
 
    :param GUID: Identifier for the object in question.
 
-   :rtype: Metadata describing what the GUID refers to.
+   :rtype: Tuple of (mime-type, size, date last modified) expressed in
+     appropriate format, default being xhtml.
+
+   :raises: Exceptions.NotAuthorized
+
+   :raises: Exceptions.NotFound
+
 
 
 .. function:: getSystemMetadata(token, GUID) -> system metadata
@@ -201,9 +188,12 @@ CRUD API
 
    :param GUID: Identifier for the science data or science metedata object of interest.
  
-   :returns: System metadata object describing the object.
+   :rtype: System metadata object describing the object.
 
-   :raises NotFound: There is no data or science metadata identified by the given GUID. 
+   :raises: Exceptions.NotAuthorized
+
+   :raises Exceptions.NotFound: There is no data or science metadata
+      identified by the given GUID.
 
    .. todo::
 
@@ -214,8 +204,6 @@ CRUD API
      redirect. 3) redirect to a CN. 4) resolve the GUID and proxy content.
 
      Options 1 or 3 seem most reasonable, with inclination towards 3.
-
-
 
 
 .. function:: get(token, GUID) -> object
@@ -231,15 +219,17 @@ CRUD API
     bytes of data. For metadata objects, this will be the representation of
     the object as provided by the Member Node.
 
-   :raises NotAuthorized: The supplied identity does not have READ permission on the object.
+   :raises Exceptions.NotAuthorized: The supplied identity does not have READ
+      permission on the object.
 
-   :raises NotFound: The object specified by GUID does not exist at this node.
+   :raises Exceptions.NotFound: The object specified by GUID does not exist at
+      this node.
 
    .. Note:: There may be multiple representations of content (e.g. metadata as
       XML, RDF, or some other format).  May need to add another parameter to specify
       the format, or perhaps rely on HTTP content negotiation for this.
 
-   .. todo:: 
+   .. TODO:: 
    
       What happens if the GUID is valid within DataONE, but isn't on this MN?
       Is NotFound raised? Or, does the member node forward the request to a
@@ -264,15 +254,18 @@ CRUD API
   :rtype: 
    Bytes of the specified objects. **How are multiple objects serialized?**
 
-  :raises NotAuthorized: The supplied identity does not have READ permission on the object.
+  :raises Exceptions.NotAuthorized: The supplied identity does not have READ
+     permission on the object.
 
-  :raises NotFound: The object specified by GUID does not exist.
+  :raises Exceptions.NotFound: The object specified by GUID does not exist.
 
+  .. TODO:: batchGet specifies that multiple objects may be retrieved in a
+     single call. How are these objects packaged in the response?
 
 
 .. function:: checkDataQuality (GUID)
 
-  TODO: need details on what this operation is supposed to be doing.
+  .. TODO:: need details on what this operation is supposed to be doing.
 
   :param GUID: object to check
 
@@ -280,18 +273,17 @@ CRUD API
 
 .. function:: create(token, GUID, object, sysmeta) -> GUID
 
-  Adds a new object to the Member Node, where the object is either a data
-  object or a science metadata object. This method is called by clients to
-  create new data objects on Member nodes.
+   Adds a new object to the Member Node, where the object is either a data
+   object or a science metadata object. This method is called by clients to
+   create new data objects on Member nodes.
 
   :param token: The authentication token returned by ``login()``
 
-  :param GUID: The globally unique identifier that should be used in
-   DataONE to identify and access the object.  This is an Unicode string
-   that follows the constraints on identifiers described in
-   :doc:`GUIDs`. If the identifier is already in use, an exception will be
-   raised and the client should try again with a different, unique
-   identifier.
+  :param GUID: The globally unique identifier that should be used in DataONE
+    to identify and access the object. This is an Unicode string that follows
+    the constraints on identifiers described in :doc:`GUIDs`. If the identifier
+    is already in use, an exception will be raised and the client should try
+    again with a different, unique identifier.
 
   :param object:
    The data bytes that are to be added to the Member Node. 
@@ -305,17 +297,17 @@ CRUD API
   :rtype: 
    The identifier that was used to insert the document into the system. 
 
-  :raises NotAuthorized:
+  :raises Exceptions.NotAuthorized:
 
-  :raises IdentifierNotUnique:
+  :raises Exceptions.IdentifierNotUnique:
    The requested identifier is already used by another object and therefore
    can not be used for this object.  Clients should choose a new identifier
    that is unique and retry the operation.
 
-  :raises UnsupportedType: 
+  :raises Exceptions.UnsupportedType: 
    The MN can not deal with the content specified in the data package.
 
-  :raises InsufficientResources:
+  :raises Exceptions.InsufficientResources:
    The MN is unable to execute the transfer because it does not have
    sufficient storage space for example.
 
@@ -356,21 +348,21 @@ CRUD API
   :rtype: 
    The identifier that was used to insert the document into the system. 
 
-  :raises NotAuthorized:
+  :raises Exceptions.NotAuthorized:
 
-  :raises IdentifierNotUnique:
+  :raises Exceptions.IdentifierNotUnique:
    The requested identifier is already used by another object and therefore
    can not be used for this object.  Clients should choose a new identifier
    that is unique and retry the operation.
 
-  :raises UnsupportedType: 
+  :raises Exceptions.UnsupportedType: 
    The MN can not deal with the content specified in the data package.
 
-  :raises InsufficientResources:
+  :raises Exceptions.InsufficientResources:
    The MN is unable to execute the transfer because it does not have
    sufficient storage space for example.
 
-  :raises NotFound:
+  :raises Exceptions.NotFound:
    The update operation failed because the object which was supposed to be
    updated in the system (indicated via the obsoletedGUID parameter) is not
    present in the DataONE system, so update is an illegal operation.
@@ -393,9 +385,9 @@ CRUD API
   :rtype: 
    The identifier that was used to delete the document from the system. 
 
-  :raises NotAuthorized:
+  :raises Exceptions.NotAuthorized:
 
-  :raises NotFound:
+  :raises Exceptions.NotFound:
    The delete operation failed because the object which was supposed to be
    deleted in the system (indicated via the GUID parameter) is not
    present in the DataONE system, so delete is an illegal operation.
@@ -418,6 +410,8 @@ CRUD API
 
   :rtype: The checksum value originally computed for the specified object.
 
+  :raises Exceptions.NotFound:
+
   .. Note:: for an MN, this should probably be a computed value.  For CNs, it
      should be the value originally calculated for the object (and retrieved from
      system metadata)
@@ -435,8 +429,12 @@ CRUD API
 
    :param toDate: specified by appropriate standard (ISO? W3C?)
 
-   :returns: the set of log records specified; format is not yet specified
+   :rtype: the set of log records specified; format is not yet specified
 
+   :raises Exceptions.NotAuthorized:
+
+   :raises: Exceptions.InvalidRequest:
+   
    .. todo:: Format of the log records need to be specified.
 
 
@@ -447,11 +445,19 @@ CRUD API
    implement some sort of logging infrastructure so that it can respond to
    `getLogRecords()`.
 
+   :raises: Exceptions.InvalidRequest:
 
 
-.. function:: register (memberToken, ID, metadata)
+.. function:: register (token, ID, metadata)
 
-  :param token: The authentication token returned by :func:`login`
+   .. TODO:: Describe this operation.
+
+   :param token: The authentication token returned by :func:`login`
+
+   :param ID:
+
+   :param metadata:
+
 
 
 
@@ -485,13 +491,6 @@ MN-to-MN replication is not part of the V0.3 APIs.
   synchronizationFailed(token, GUID, problemDescription)
 
 
-.. exception:: InvalidCriteria
-
-.. exception:: InvalidIdentifier
-
-.. exception:: InvalidOperation
-
-
 .. function::  cancelReplication (sess, transID)
 
 .. function::  listAllObjects ()
@@ -503,7 +502,6 @@ MN-to-MN replication is not part of the V0.3 APIs.
 .. function::  startReplica (ID, sessionID, transID, srcMN)
 
 .. function::  sysOp (token)
-
 
 
 .. function:: listChangedRecords(token) -> GUIDs
@@ -533,12 +531,16 @@ MN-to-MN replication is not part of the V0.3 APIs.
      The list of GUIDs that match the query criteria. If none match, an empty
      list is returned.
 
-   :raises InvalidCriteria: The MN cannot understand or parse the query criteria.
+   :raises Exceptions.NotAuthorized:
 
-   .. todo:: Details of query specification for `listObjects(token, query)` needs to be worked out. 
+   :raises Exceptions.InvalidRequest: The MN cannot understand or parse the
+     query criteria.
+
+   .. TODO:: Details of query specification for `listObjects(token, query)`
+      needs to be worked out.
 
 
-.. function::  synchronizationComplete (token, GUID)
+.. function:: synchronizationComplete (token, GUID)
 
    This is a callback method used by a CN to indicate to a MN that it has
    completed replication of the science metadata identified by GUID. When
@@ -561,14 +563,17 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
    :returns: A simple acknowledgement.
 
-   :raises InvalidIdentifier: 
+   .. TODO:: Define "a simple acknowledgement"
+
+   :raises Exceptions.NotAuthorized:
+
+   :raises Exceptions.InvalidIdentifier: 
      The supplied GUID does not identify a science metadata object owned by
      the MN.
 
-   :raises InvalidOperation: 
+   :raises Exceptions.InvalidOperation: 
      The science metadata object identified by the GUID is already marked as
      synchronized.
-
 
 
 .. function::  synchronizationFailed (token, GUID, problemDescription)
@@ -590,6 +595,8 @@ MN-to-MN replication is not part of the V0.3 APIs.
       etc.
 
    :returns: A simple acknowledgement.
+
+   :raises Exceptions.NotAuthorized:
 
    :raises InvalidIdentifier: 
      The supplied GUID does not identify a science metadata object owned by
@@ -687,84 +694,3 @@ State of Health API
    \newpage
 
 
-HTTP Exception Handling Codes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following HTTP codes are used in HTTP response header when an exception
-needs to be raised from one of the MemberNodes. The current exceptions from
-Member Node operations that need to be mapped to these codes are:
-
-:MN_authorization: InvalidCredentials, AuthenticationTimeout, InvalidToken
-
-:MN_crud: NotFound, NotAuthorized, UnsupportedType, InsufficientResources, 
-  IdentifierNotUnique, UnsupportedType
-
-:MN_replication: InvalidCriteria, InvalidIdentifier, InvalidOperation
-
-Here are candidate HTTP error codes, that need to be mapped to these
-exceptions.
-
-==== =================== =======================================================
-Code Meaning             Description
-==== =================== =======================================================
-400  Bad Request         Bad request if the request REST operation is invalid,
-                         serialization is erroneous, mime type is not supported, 
-                         or resource is not supported.
-401  Unauthorized        Authentication failure. Credentials are required or 
-                         were invalid. Corresponds to InvalidCredentials.
-403  Forbidden           The current user does not have the right to perform 
-                         the requested action.
-404  Not Found           The object does not exist.
-405  Method not allowed  The HTTP method used is not allowed on this resource.
-                         Response must include an Allow header indicating valid
-                         HTTP methods.
-406  Not Acceptable      The resource identified by the request is only capable 
-                         of generating response entities which have content 
-                         characteristics not acceptable according to the accept 
-                         headers sent in the request.
-408  Request Timeout     The client did not produce a request within the time 
-                         that the server was prepared to wait.
-409  Conflict            The request could not be completed due to a conflict 
-                         with the current state of the resource.
-410  Gone                The resource is known to be permanently deleted (as 
-                         opposed to 404 which indicates uncertainty about the
-                         state of the object).   
-413  Request Entity Too  The server is refusing to process a request because 
-     Large               the request entity is larger than the server is willing 
-                         or able to process.
-415  Unsupported Media   The server is refusing to service the request because 
-     Type                the entity of the request is in a format not supported 
-                         by the requested resource for the requested method. 
-==== =================== =======================================================
-
-.. Note:: We still need to define error message formats (e.g., XML) for the 
-   content of the returned error documents.
-
-The body of the corresponding error messages should be encoded according to
-the format indicted by the Accept content type header of the request. This
-should default to a format that is easily readable by a web browser (e.g.
-xhtml).
-
-====================== ===== ==================================================
-Exception              Code  Description
-====================== ===== ==================================================
-InvalidCredentials     401   The supplied credentials could not be verified
-AuthenticationTimeout  408   The client took too long to complete the request
-InvalidToken           401   The supplied authentication token is not valid
-NotFound               404   The referenced object could not be located
-NotAuthorized          401   Access to the indicated resource is not permitted 
-                             with the supplied credentials
-UnsupportedType        400   Treated as an invalid request.  Response should 
-                             indicate the problem with the supplied data.
-InsufficientResources  413   This could be 400, 413, or 415, though none of 
-                             these correspond with the semantics of the error 
-                             condition.
-IdentifierNotUnique    409   The supplied identifier already exists so conflicts 
-                             with the state of the resource
-UnsupportedType        406   This could be 400 or 406
-InvalidCriteria        400   The request is by definition, malformed, hence 400
-InvalidIdentifier      404   The indicated resource doesn't exist
-InvalidOperation       409   Not sure if this exception is even necessary, but 
-                             technically this is a state of conflict with the
-                             resource.
-====================== ===== ==================================================

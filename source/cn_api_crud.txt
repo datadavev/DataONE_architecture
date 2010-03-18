@@ -1,0 +1,155 @@
+CRUD API
+~~~~~~~~
+
+.. module:: CN_crud
+   :synopsis: Create, read, update, and delete operations for Coordinating Nodes
+   
+.. function:: assertRelation (token, IDofSubject, relationship, IDofObject)
+
+.. function:: batchWrite (objectsList)
+
+.. function:: deleteRecords (token, listOfGUIDs)
+
+.. function:: register (memberToken, ID, metadata)
+
+.. function:: storeRecords ()
+
+.. function:: update()
+
+.. function:: reserveId(scope, format)
+
+
+::
+
+  getSystemMetadata(token, GUID) -> systemMetadata
+  get(token, GUID) -> metadata
+  resolve(token, GUID) -> systemMetadata???
+  create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
+  
+.. exception:: NotFound
+
+.. exception:: InvalidMetadataType
+
+.. exception:: InvalidArgument
+
+.. exception:: ObjectNotHere
+
+.. function:: getSystemMetadata(token, GUID) -> system metadata
+
+   Describes the science metadata or data object identified by the GUID 
+   by returing the system metadata object associated with the GUID.
+
+  :param token: authentication token; ignored for V0.3
+
+  :param GUID: Identifier for the science data or science metedata object of interest.
+
+  :returns: System metadata object describing the object.
+
+  :raises NotFound: There is no data or science metadata identified by the given GUID. 
+  
+  :raises InvalidArgument: The GUID requested identifies a system metadata object. 
+
+
+.. function:: get (token, GUID) -> metadata
+
+   Retrieves the science metedata or system metadata object identified by the
+   given GUID. If the object identified by the GUID is a data object, then an
+   error is raised.
+
+  :param token: authentication token; ignored for V0.3
+
+  :param GUID:
+    The identifier for the science metadata or system metadata object to be
+    retrieved.
+
+  :returns:
+    For system metadata objects, the system metadata itself is returned. For
+    science metadata objects, this will be the exact byte stream of the science
+    metadata oject, as is was original ingested.
+
+  :raises NotFound: The object specified by GUID does not exist.
+
+  :raises ObjectNotHere: The object specified by the GUID is a data object and
+    is not present on this (or any) CN. This response could be accompanied by
+    the results of a standard resolve() method call to provide more information
+    about the object.
+
+   .. todo::
+      This method name could be changed since it has different semantics than
+      the method of the same name on MNs.
+      
+      
+.. function:: resolve(token, identifier) -> list of nodes
+
+   Given an identifier, returns information that a client can use to retrieve
+   the identified target object form the DataONE system. The target may reside
+   on a MN or a CN. The actual content returned will be specific to the type
+   of interface implemented, and is described in detail in the documentation
+   for the implementation (e.g. REST implementation might differ from SOAP
+   implementation).
+   
+    :param token: authentication token; ignored for V0.3
+   
+    :param identifier: Identifier for the object in question
+   
+    :returns: A list of nodes known to contain copies of the target object
+
+   .. todo::
+     It seems that returning just a simple list of URLs for the service
+     endpoints of the relevant MNs is not sufficient. Some sort of MN
+     identifier also needs to be returned so that the caller can ask further
+     information about MN (which would include the endpoint URL for the MN API
+     implementation). Is there a use case that involves asking a CN for
+     metadata describing a MN?
+
+   :raises NotFound: There is no data object identified by the given GUID.
+
+   :raises InvalidArgument: The GUID requested identifies a science metadata
+     object or a system metadata object.
+
+
+.. function:: create(systemMetadataGUID, systemMetadata,
+                     scienceMetadataGUID, scienceMetadata)
+
+   This is a method used internally by the CN, not exposed to MNs or the
+   world. Stores the two given objects (systemMetadata, scienceMetadata) in a
+   single atomic action. This method is used as part of the synchronization of
+   science metadata between a MN and the CN.
+
+  :param systemMetadataGUID: the GUID of the system metadata
+
+  :param systemMetadata:
+   The system metadata describing the data package (data and science metadata)
+
+  :param scienceMetaDataGUID: the GUID of the science metadata
+
+  :param scienceMetadata: the science metadata portion of the data package
+
+  :raises InvalidMetadataType: 
+    the science metadata is not of a type supported by the D1 system
+
+
+.. function:: reserveId(token, scope, format) -> GUID
+
+   Given an optional scope and format, reserves and returns an identifier within 
+   that scope and format that is unique and will not be used by any other sessions.
+   Future calls to create() and update() that reference this ID must originate from
+   the session in which the identifier was reserved, otherwise an error is raised on
+   those methods.
+
+    :param token: authentication token; ignored for V0.3
+   
+    :param scope: an optional string to be used to qualify the scope of the 
+      identifer namespace, which is applied differently depending on the format 
+      requested. If scope is not supplied, a default scope will be used.
+   
+    :param format: the optional name of the identifier format to be used, drawn from 
+      a DataONE-specific vocabulary of identifier format names, including 
+      several common syntaxes such as DOI, LSID, UUID, and LSRN, among others. If
+      the format is not supplied by the caller, the CN service will use a default 
+      identifier format, which may change over time.
+
+    :returns: The GUID that was reserved
+
+    :raises InvalidArgument: The format requested is not a valid format accepted by
+      this service
