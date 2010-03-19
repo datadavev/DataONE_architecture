@@ -22,23 +22,23 @@ Coordinating Node APIs
 
 
 
-======= ======================================================================
-Version Method
-======= ======================================================================
-.       :func:`CN_authorization.login` ``(user, password, [auth_system]) -> tokens``
-.       :func:`CN_authorization.requestToken` ``()``
-.       :func:`CN_authorization.setAccess` ``(token, GUID, accessLevel) -> boolean``
-.       :func:`CN_authorization.setOwner` ``(token, userid, objectList) -> objectList``
-.       :func:`CN_authorization.newAccount` ``(username, password, [auth_system]) -> identity_GUID``
-.       :func:`CN_authorization.verify` ``(token) -> boolean``
-.       :func:`CN_query.getLogRecords` ``(token, fromDate, toDate) -> logRecords``
-.       :func:`CN_query.search` ``(token, query) -> list of GUIDs``
-.       :func:`CN_crud.getSystemMetadata` ``(token, GUID) -> systemMetadata``
-.       :func:`CN_crud.get` ``(token, GUID) -> metadata``
-.       :func:`CN_crud.resolve` ``(token, GUID) -> systemMetadata???``
-.       :func:`CN_crud.create` ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)``
-.       :func:`CN_crud.reserveId` ``(token, scope, format) -> GUID``
-======= ======================================================================
+======= ========= ======================================================================
+Version Use Cases Method
+======= ========= ======================================================================
+.       .         :func:`CN_authorization.login` ``(user, password, [auth_system]) -> tokens``
+.       .         :func:`CN_authorization.requestToken` ``()``
+.       .         :func:`CN_authorization.setAccess` ``(token, GUID, accessLevel) -> boolean``
+.       .         :func:`CN_authorization.setOwner` ``(token, userid, objectList) -> objectList``
+.       .         :func:`CN_authorization.newAccount` ``(username, password, [auth_system]) -> identity_GUID``
+.       .         :func:`CN_authorization.verify` ``(token) -> boolean``
+.       .         :func:`CN_query.getLogRecords` ``(token, fromDate, toDate) -> logRecords``
+.       .         :func:`CN_query.search` ``(token, query) -> list of GUIDs``
+.       .         :func:`CN_crud.getSystemMetadata` ``(token, GUID) -> systemMetadata``
+.       .         :func:`CN_crud.get` ``(token, GUID) -> metadata``
+.       .         :func:`CN_crud.resolve` ``(token, GUID) -> systemMetadata???``
+.       .         :func:`CN_crud.create` ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)``
+.       .         :func:`CN_crud.reserveId` ``(token, scope, format) -> GUID``
+======= ========= ======================================================================
 
 
 

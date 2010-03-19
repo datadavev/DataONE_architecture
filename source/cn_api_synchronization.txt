@@ -1,17 +1,20 @@
 Synchronization API
 ~~~~~~~~~~~~~~~~~~~
 
-The Synchronization API manages synchronization of system metadata and science
-metadata among CNs. Since this will be handled out-of-band with respect to the
-CN APIs for V0.3, there are no Synchronization API methods required for V0.3.
+The Synchronization API manages :term:`synchronization` of system metadata and
+science metadata among CNs.
+
+
+.. Note:: Since this will be handled out-of-band with respect to the CN APIs
+  for V0.3, there are no Synchronization API methods required for V0.3.
 
 .. module:: CN_synchronization
-   :synopsis: Manages synchronization between Coordinating Nodes
+   :synopsis: Manages synchronization of content between Coordinating Nodes.
 
 .. TODO:: flesh these out.
 
    
-.. function:: pollForNewIDs ()
+.. function:: pollForNewIDs() -> GuidList
 
 .. function:: synchronize ()
 

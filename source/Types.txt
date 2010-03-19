@@ -4,17 +4,193 @@ Data Types in CICore
 .. module:: Types
    :synopsis: Catalog of data types (structures) used by the DataONE cicore.
 
+.. Note:: Here we use the Sphinx ``class`` directives to identify data
+  structures. This is not meant to imply that these structures are implemented
+  as classes - it is merely a convenience mechanism for documentation.
 
-GUID
+.. Note:: Class structures are described using the Google `Protocol Buffer
+  Language`_ . This is for convenience only, and the IDL used will probably
+  change in the future.
 
-AuthToken
+========= =============================
+Version   Structure
+========= =============================
+.         :class:`AuthToken`
+.         :class:`GUID`
+.         :class:`GuidList`
+.         :class:`ObjectList`
+.         :class:`LogRecord`
+.         :class:`LogRecords`
+.         :class:`SystemMetadata`
+.         :class:`DescribeResponse`
+.         :class:`MNCapabilities`
+.         :class:`MNHeartbeatResponse`
+.         :class:`MNStatus`
+.         :class:`PingResponse`
+========= =============================
 
-ObjectList
+----
 
-GuidList
+.. class:: DateTime
 
-LogRecords
+  A string that completely identifies a specific point in time.
 
-SystemMetadata
+  - Must include date and time
+  - If not specified, then the time zone is 0, i.e. GMT
 
-DescribeResponse  (mime-type, size, date last modified)
+  Valid representations include:
+  
+  - `HTTP Full Date`_ format
+  - `YYYY-MM-DDTHH:MM:SS.mmmmmm`
+  - `YYYYMMDDTHHMMSS.mmmmmm`
+  - `YYYY-MM-DDTHH:MM:SS.mmmmmm+HH:MM`
+  - `YYYYMMDDTHHMMSS.mmmmmm+HHMM`
+
+
+.. _HTTP Full Date: http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
+
+----
+
+.. class:: GUID
+
+  An identifier in the DataONE system. This is equivalent to a unicode string
+  of printable characters. All representations of GUIDs must be encoded in
+  7-bit ASCII or UTF-8.
+
+----
+
+
+.. class:: AuthToken
+
+  An AuthToken is used to identify a principal and to assert that the identity
+  of the principal has been verified by the DataONE authentication infrastructure.
+
+----
+
+
+.. class:: GuidList
+
+   A list of GUIDs, so a list of unicode strings.
+
+   ::
+   
+     message GuidList {
+       repeated string guid = 1
+     }
+
+
+----
+
+.. class:: ObjectList
+
+  A list of objects. This provides more information than the GuidList by
+  combining a GUID with the DescribeResponse.
+  
+  ::
+  
+    message ObjectList {
+      
+      message ObjectInfo {
+        required string guid = 1
+        required string DescribeResponse info = 2
+      }
+    
+      repeated DescribeResponse describeresponse = 1
+    }
+
+----
+
+.. class:: LogRecord
+
+  A single log entry as reported by a Member Node or Coordinating Node through
+  the getLogRecords methods.
+
+  :: 
+
+    message LogRecord {
+      required string timestamp = 1
+    }
+
+----
+
+.. class:: LogRecords
+
+  A list of LogRecord instances.
+
+  ::
+
+    message LogRecords {
+      repeated LogRecord entry = 1
+    }
+
+----
+
+.. class:: SystemMetadata
+
+  A set of low level information about an object in the DataONE system.
+  SystemMetadata is described in :mod:`SystemMetadata`.
+
+----
+
+.. class:: DescribeResponse  
+
+  Provides a hint about the type, size and state of an object.
+
+  ::
+
+    message DescribeResponse {
+      required string objectformat = 1
+      required uint64 size = 2
+      required DateTime last_modified = 3
+    }
+
+
+  .. attribute:: objectformat
+
+     The value of the :attr:`SystemMetadata.ObjectFormat` entry available in
+     the :class:`SystemMetadata`.
+
+  .. attribute:: size
+
+     The size in bytes of the object
+
+  .. attribute:: last_modified
+
+     A DateTime value that indicates when the object was last modified. Note
+     that all time stamps in DataONE refer to UTC if no time zone information
+     is provided with the value. Note that since content in DataONE is
+     intended to be static, this value will refer to the time that the object
+     was created on the system responding to the request.
+
+----
+
+
+.. class:: MNCapabilities
+
+  Describes the capabilities of a MemberNode.
+
+----
+
+
+.. class:: MNHeartbeatResponse
+
+  The response from :func:`MN_health.heartbeat`
+
+----
+
+
+.. class:: MNStatus
+
+  The response from :func:`MN_health.getStatus`
+
+----
+
+
+.. class:: PingResponse
+
+  The response from :func:`MN_health.ping`
+
+
+
+
+.. _Protocol Buffer Language: http://code.google.com/apis/protocolbuffers/docs/overview.html

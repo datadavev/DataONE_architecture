@@ -1,0 +1,64 @@
+State of Health API
+~~~~~~~~~~~~~~~~~~~
+
+.. module:: MN_health
+   :synopsis: Reports on the status of a Member Node
+
+::
+
+  sohQuery (token, service)
+  ping() -> pingResponse
+  getStatus(token) -> currentStatus
+
+  ## from v0.3 ##
+  heartbeat() -> response
+  
+
+.. function::  sohQuery (token, service)
+
+.. function:: ping() -> PingResponse
+
+   Low level "are you alive" operation. Response is simple ACK, but may be
+   reasonable to overload with a couple of flags that could indicate
+   availability of new data or change in capabilities.
+
+   :returns: A simple chunk of data, perhaps XML, or plain text.
+
+   :rtype: class:`Types.PingResponse`
+
+
+.. function:: getStatus(token) -> currentStatus
+
+   Returns the current status of the MN, perhaps with some accumulation and
+   averaging over the last xxx minutes.
+
+   :param token: Identity with authority to retrieve the status information.
+
+   :returns: A status document in an easily parsed syntax such as JSON or XML
+   
+   :rtype: :class:`Types.MNStatus`
+
+
+
+.. function:: heartbeat() -> MNHeartbeatResponse
+
+   .. note::
+      This method will be used by Use Case 10 "MN Status Reports" for V0.3,
+      but that use case will require the use of ``getStatus(token)`` from this
+      same API for later versions.
+
+   Low level "Are you alive?" operation. The member node should perform some
+   minimal internal functionality testing before answering. However, heartbeat
+   checks will be frequent (every few minutes) so the internal functionality
+   test should not be high impact.
+
+   :returns: 
+     A simple chunk of data, perhaps XML, or plain text. Response is a simple
+     ACK, including the version number of the MN API supported by the MN, an
+     indication if it considers itself fully functional or not, and a
+     timestamp from the MN when the response was produced.
+
+   :rtype: :class:`Types.MNHeartbeatResponse`
+
+   .. todo:: 
+      Metrics MNs are to collect and return for the ``getStatus()`` need to be defined.

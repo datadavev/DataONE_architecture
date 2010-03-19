@@ -1,0 +1,24 @@
+
+Capabilities API
+~~~~~~~~~~~~~~~~
+
+.. module:: MN_capabilities
+   :synopsis: Reports the capabilities of a Member Node
+
+::
+
+  serviceRequest (token)
+  getCapabilities () -> MNCapabilities
+
+
+.. function::  serviceRequest (token)
+
+.. function::  getCapabilities () -> MNCapabilities
+
+   Returns a document describing the capabilities of the Member Node. 
+   
+   :returns: Capabilities of the Member Node.
+   
+   :rtype: MNCapabilities
+
+

@@ -1,0 +1,112 @@
+Authorization API
+~~~~~~~~~~~~~~~~~
+
+For Version 0.3: There is no authorization API for this version. All
+authorization and authentication will be handled by network configuration,
+out-of-band with respect to the MN APIs.
+
+
+.. module:: MN_authorization
+   :synopsis: Authentication and authorization operations for Member Nodes
+
+Provides a mechanism for a User (:term:`principle`) to authenticate themselves
+with the DataONE system and verify that an operation is permitted for an
+authenticated User. See the document :doc:`Authentication` for more details on
+some authentication options.
+
+::
+
+  login(user, password, [auth_system]) -> token
+  logout(token)
+  isAuthorized (token, method, GUID) -> boolean
+  verify(token) -> boolean
+
+.. index:: authenticate, authorize
+
+
+.. function:: login(user, password, [auth_system]) -> token
+
+   Authenticates a user for interaction with the DataONE system. The returned
+   :term:`token` is trusted throughout the DataONE system as a reliable
+   statement as to the identity of the authenticated user.
+
+   :param user: User name for authentication
+
+   :param password: Secret used for verifying identity
+
+   :param auth_system: Place holder for support of multiple authentication services 
+     for a single user.
+
+   :rtype: AuthToken
+
+   :returns: A composite of the user id and authentication token.
+
+   :raises Exceptions.InvalidCredentials: The supplied credentials were
+      invalid (password + username don't jive)
+
+   :raises Exceptions.AuthenticationTimeout: A response from the
+      authentication service was not received before the operation timed out.
+
+   .. Note:: :func:`login` may delegate the actual login to an authentication service,
+      and a given user may utilize several authentication services.  If this is the 
+      case then an additional parameter identifying the authentication service to
+      use will be required.
+
+
+
+.. function:: logout(token)
+
+   Revokes trust in the supplied token, making it invalid for further use
+   within the DataONE system.
+
+   :param token: The authentication token returned by :func:`login`
+
+   :rtype: No return
+
+
+
+.. function:: isAuthorized (token, method, GUID) -> boolean
+
+   Indicates if the operation identified by ``method`` on the object
+   identified by GUID is permitted by user identified by ``token``.
+
+   :param token: The authentication token returned by :func:`login`
+
+   :param method: Enumerated set of values indicating at least "read" and "write"
+
+   :param GUID: An identifier or list of identifiers that are to be tested for access.
+
+   :returns: 
+    True if the operation is permitted, otherwise False. If GUID is a list,
+    then the return is the equivalent of boolean AND of the test results for
+    all elements in the list.
+
+   :rtype: Boolean
+
+   :raises Exceptions.InvalidToken: The supplied token is invalid.
+
+   :raises Exceptions.NotFound: The object identified by GUID was not found.
+
+   .. Note::
+      Should perhaps add convenience methods for "canRead()" and "canWrite()" to
+      verify that a user is able to read / write an object.
+
+
+
+.. function:: verify(token) -> boolean
+
+   Test if the provided token is valid. 
+
+   Note that there is a potential security issue here as open access to this
+   method enables a malicious user to potentially probe a large number of
+   generated tokens to determine properties of the system, and perhaps even
+   generate a token that matches a system token. Hence another level of
+   restriction (perhaps network level blocking / limiting) is necessary.
+
+   :param token: The authentication token returned by :func:`login`
+
+   :returns: True if the supplied token is valid, otherwise False
+
+   :rtype: Boolean
+
+

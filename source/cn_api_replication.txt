@@ -12,7 +12,7 @@ among member nodes. Such replication is not part of V0.3 functionality.
    
 .. function:: getDefaultReplicationPolicy (sess)
 
-.. function:: getMNReplicateList ()
+.. function:: getMNReplicateList()
 
 .. function:: getReplicationPolicy (sess, ID)
 
