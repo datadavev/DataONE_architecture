@@ -39,10 +39,10 @@ out-of-band with respect to the MN APIs.
 .. module:: MN_authorization
    :synopsis: Authentication and authorization operations for Member Nodes
 
-Provides a mechanism for a User (principle) to authenticate themselves with the DataONE
-system and verify that an operation is permitted for an authenticated User.
-See the document :doc:`Authentication` for more details on some authentication
-options.
+Provides a mechanism for a User (:term:`principle`) to authenticate themselves
+with the DataONE system and verify that an operation is permitted for an
+authenticated User. See the document :doc:`Authentication` for more details on
+some authentication options.
 
 ::
 
@@ -57,8 +57,8 @@ options.
 .. function:: login(user, password, [auth_system]) -> token
 
    Authenticates a user for interaction with the DataONE system. The returned
-   token is trusted throughout the DataONE system as a reliable statement as
-   to the identity of the authenticated user.
+   :term:`token` is trusted throughout the DataONE system as a reliable
+   statement as to the identity of the authenticated user.
 
    :param user: User name for authentication
 
@@ -67,7 +67,9 @@ options.
    :param auth_system: Place holder for support of multiple authentication services 
      for a single user.
 
-   :rtype: A composite of the user id and authentication token.
+   :rtype: AuthToken
+
+   :returns: A composite of the user id and authentication token.
 
    :raises Exceptions.InvalidCredentials: The supplied credentials were
       invalid (password + username don't jive)
@@ -104,14 +106,16 @@ options.
 
    :param GUID: An identifier or list of identifiers that are to be tested for access.
 
-   :rtype: 
+   :returns: 
     True if the operation is permitted, otherwise False. If GUID is a list,
     then the return is the equivalent of boolean AND of the test results for
     all elements in the list.
 
-   :raises InvalidToken: The supplied token is invalid.
+   :rtype: Boolean
 
-   :raises MN_crud.NotFound: The object identified by GUID was not found.
+   :raises Exceptions.InvalidToken: The supplied token is invalid.
+
+   :raises Exceptions.NotFound: The object identified by GUID was not found.
 
    .. Note::
       Should perhaps add convenience methods for "canRead()" and "canWrite()" to
@@ -131,7 +135,9 @@ options.
 
    :param token: The authentication token returned by :func:`login`
 
-   :rtype: True if the supplied token is valid, otherwise False
+   :returns: True if the supplied token is valid, otherwise False
+
+   :rtype: Boolean
 
 
 
