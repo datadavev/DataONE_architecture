@@ -95,7 +95,7 @@ A version of the entire document in PDF is also `available for download`_.
    versions
    apis
    todo
-
+   glossary
 
 Indices and tables
 ==================

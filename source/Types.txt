@@ -16,3 +16,5 @@ GuidList
 LogRecords
 
 SystemMetadata
+
+DescribeResponse  (mime-type, size, date last modified)

@@ -16,6 +16,7 @@ Version Method
 0.3     :func:`MN_crud.get` ``(token, GUID) -> object``
 0.3     :func:`MN_crud.getLogRecords` ``(token, fromDate, toDate)``
 0.3     :func:`MN_crud.log` ``(typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)``
+.       :func:`MN_crud.describe` ``(token, GUID) -> (mime-type, size, date last modified)``
 0.3     :func:`MN_replication.listObjects` ``(token, query) -> list of GUIDs``
 0.3     :func:`MN_replication.synchronizationComplete` ``(token, GUID)``
 0.3     :func:`MN_replication.synchronizationFailed` ``(token, GUID, problemDescription)``
@@ -38,7 +39,7 @@ out-of-band with respect to the MN APIs.
 .. module:: MN_authorization
    :synopsis: Authentication and authorization operations for Member Nodes
 
-Provides a mechanism for a User to authenticate themselves with the DataONE
+Provides a mechanism for a User (principle) to authenticate themselves with the DataONE
 system and verify that an operation is permitted for an authenticated User.
 See the document :doc:`Authentication` for more details on some authentication
 options.
@@ -134,8 +135,6 @@ options.
 
 
 
-
-
 CRUD API
 ~~~~~~~~
 
@@ -144,21 +143,21 @@ CRUD API
 
 ::
 
-  describe(token, GUID) -> objectMetadata
-  get(token, GUID) -> object
+  describe(token, GUID) -> DescribeResponse
+  get(token, GUID) -> ByteStream
   batchGet(token, GUIDs) -> ?
-  checkDataQuality (GUID)
+  checkDataQuality (GUID) -> ?
   create(token, GUID, object, sysmeta) -> GUID
   update(token, GUID, object, obsoletedGUID, sysmeta) -> GUID
-  delete (token, GUID)
+  delete (token, GUID) -> Boolean
   getChecksum (GUID) -> checksum
-  getLogRecords(token, fromDate, toDate)
-  log (create, creationDate, ID)
-  register (memberToken, ID, metadata)
+  getLogRecords(token, fromDate, toDate) -> LogRecords
+  log (create, creationDate, ID) -> ?
+  register (memberToken, ID, metadata) -?
 
 
 
-.. function:: describe(token, GUID) -> objectMetadata
+.. function:: describe(token, GUID) -> DescribeResponse
 
    This method provides a lighter weight mechanism than
    :func:`getSystemMetadata` for a client to determine basic properties of the
@@ -170,7 +169,9 @@ CRUD API
 
    :param GUID: Identifier for the object in question.
 
-   :rtype: Tuple of (mime-type, size, date last modified) expressed in
+   :rtype: DescribeResponse
+
+   :returns: Tuple of (mime-type, size, date last modified) expressed in
      appropriate format, default being xhtml.
 
    :raises: Exceptions.NotAuthorized
