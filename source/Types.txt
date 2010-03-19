@@ -95,14 +95,18 @@ Version   Structure
        required string description = 3
      }
 
+
   .. attribute:: code
+
     The error code.  This is the HTTP error code (i.e. 4xx)
 
   .. attribute:: error_detail
+
     A more detailed error code which provides a precise indication of where
     the exception was raised.
 
   .. attribute:: description
+
     A human readable message describing what happened
 
 ----
