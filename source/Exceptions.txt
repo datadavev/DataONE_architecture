@@ -2,7 +2,8 @@ Exceptions Raised by MN and CN APIs
 -----------------------------------
 
 All exceptions raised by APIS methods in DataONE cicore should include three
-basic elements of information:
+basic elements of information as detailed in :class:`Types.ErrorMessage`,
+repeated here for convenience.
 
 ============ ===============================================================
 Element      Description

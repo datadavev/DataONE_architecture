@@ -18,6 +18,7 @@ Version   Structure
 .         :class:`AuthToken`
 .         :class:`GUID`
 .         :class:`GuidList`
+.         :class:`ErrorMessage`
 .         :class:`ObjectList`
 .         :class:`LogRecord`
 .         :class:`LogRecords`
@@ -40,11 +41,13 @@ Version   Structure
 
   Valid representations include:
   
-  - `HTTP Full Date`_ format
+  - `HTTP Full Date`_ format.  e.g. `Sun, 06 Nov 1994 08:49:37 GMT`
   - `YYYY-MM-DDTHH:MM:SS.mmmmmm`
   - `YYYYMMDDTHHMMSS.mmmmmm`
   - `YYYY-MM-DDTHH:MM:SS.mmmmmm+HH:MM`
   - `YYYYMMDDTHHMMSS.mmmmmm+HHMM`
+
+  The milliseconds may be left off if that precision is not available.
 
 
 .. _HTTP Full Date: http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
@@ -78,6 +81,29 @@ Version   Structure
        repeated string guid = 1
      }
 
+----
+
+.. class:: ErrorMessage
+
+   The information that is returned with :doc:`Exceptions`.
+
+   ::
+   
+     message ErrorMessage {
+       requried int32 code  = 1
+       required string error_detail = 2
+       required string description = 3
+     }
+
+  .. attribute:: code
+    The error code.  This is the HTTP error code (i.e. 4xx)
+
+  .. attribute:: error_detail
+    A more detailed error code which provides a precise indication of where
+    the exception was raised.
+
+  .. attribute:: description
+    A human readable message describing what happened
 
 ----
 
