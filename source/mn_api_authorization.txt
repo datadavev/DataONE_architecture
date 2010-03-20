@@ -16,7 +16,7 @@ some authentication options.
 
 ::
 
-  login(user, password, [auth_system]) -> token
+  login(user, password, [auth_system]) -> AuthToken
   logout(token)
   isAuthorized (token, method, GUID) -> boolean
   verify(token) -> boolean
@@ -24,7 +24,7 @@ some authentication options.
 .. index:: authenticate, authorize
 
 
-.. function:: login(user, password, [auth_system]) -> token
+.. function:: login(user, password, [auth_system]) -> AuthToken
 
    Authenticates a user for interaction with the DataONE system. The returned
    :term:`token` is trusted throughout the DataONE system as a reliable

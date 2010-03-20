@@ -28,6 +28,7 @@ Version   Structure
 .         :class:`MNHeartbeatResponse`
 .         :class:`MNStatus`
 .         :class:`PingResponse`
+.         :class:`Checksum`
 ========= =============================
 
 ----
@@ -78,7 +79,7 @@ Version   Structure
    ::
    
      message GuidList {
-       repeated string guid = 1
+       repeated string guid = 1;
      }
 
 ----
@@ -90,9 +91,9 @@ Version   Structure
    ::
    
      message ErrorMessage {
-       requried int32 code  = 1
-       required string error_detail = 2
-       required string description = 3
+       requried int32 code = 1;
+       required string error_detail = 2;
+       required string description = 3;
      }
 
 
@@ -121,11 +122,11 @@ Version   Structure
     message ObjectList {
       
       message ObjectInfo {
-        required string guid = 1
-        required string DescribeResponse info = 2
+        required string guid = 1;
+        required string DescribeResponse info = 2;
       }
     
-      repeated DescribeResponse describeresponse = 1
+      repeated DescribeResponse describeresponse = 1;
     }
 
 ----
@@ -138,7 +139,7 @@ Version   Structure
   :: 
 
     message LogRecord {
-      required string timestamp = 1
+      required string timestamp = 1;
     }
 
 ----
@@ -150,7 +151,7 @@ Version   Structure
   ::
 
     message LogRecords {
-      repeated LogRecord entry = 1
+      repeated LogRecord entry = 1;
     }
 
 ----
@@ -169,9 +170,9 @@ Version   Structure
   ::
 
     message DescribeResponse {
-      required string objectformat = 1
-      required uint64 size = 2
-      required DateTime last_modified = 3
+      required string objectformat = 1;
+      required uint64 size = 2;
+      required DateTime last_modified = 3;
     }
 
 
@@ -220,7 +221,24 @@ Version   Structure
 
   The response from :func:`MN_health.ping`
 
+----
 
+.. class:: Checksum
+
+  Represents the value of a computed checksum.
+
+  ::
+
+    message ChecksumAlgorithm {
+      SHA-1 = 0;
+      SHA-224 = 1;
+      ...
+    }
+
+    message Checksum {
+      required ChecksumAlgorithm algorithm = 1;
+      required string value = 2;
+    }
 
 
 .. _Protocol Buffer Language: http://code.google.com/apis/protocolbuffers/docs/overview.html
