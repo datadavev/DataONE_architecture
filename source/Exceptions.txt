@@ -33,7 +33,84 @@ Exceptions
 
 .. exception:: InvalidToken
 
-.. exception:: NotFound
+----
+
+
+.. exception:: NotFound(code, error_detail, description)
+
+   Used to indicate that an object is not present on the node where the
+   exception was raised.
+
+   :param code: This will be the HTTP 401 status code.
+
+   :type code: integer
+
+   :param error_detail: The call which caused the error to be generated and
+     the parameters that were supplied with the call.
+
+   :type error_detail: dictionary
+
+   :param GUID: The identifier of the object that was requested.
+
+   :type GUID: :class:`Types.GUID`
+
+   :param description: A human readable description of the error.
+
+   :type description: string
+
+Examples of an error raised by a request to :func:`MN_crud.get` object
+`123XYZ` from a Member Node.
+
+In HTML:
+
+.. code-block:: html
+
+  <html>
+    <body>
+      <p class='error_code'>401</p>
+      <p class='error_detail'>
+        <dl>
+          <dt>method</dt><dd>MN_crud.get</dd>
+          <dt>GUID</dt><dd>123XYZ</dd>
+        </dl>
+      </p>
+      <div class='description'>
+        <p class='message'>The specified object does not exist on this node.<p>
+        <p>Please try <a class='hint' href='http://cn.dataone.org/cn/resolve/123XYZ'>
+           resolving</a> at a <a href='http://dataone.org'>DataONE</a> coordinating node.</p>
+      </div>
+    </body>
+  </html>
+
+
+In XML:
+
+.. code-block:: xml
+
+  <error code='401'>
+    <error_detail>
+      <key>method</key><value>MN_crud.get</value>
+      <key>GUID</key><value>123XYZ</value>
+    </error_detail>
+    <description>
+      <message>The specified object does not exist on this node.</message>
+      <hint>http://cn.dataone.org/cn/resolve/123XYZ</hint>
+    <description>
+  </error>
+
+
+In JSON::
+
+  {'code':401,
+   'error_detail':{'method': 'MN_crud.get',
+                   'GUID': '123XYZ'},
+   'description': {'message': 'The specified object does not exist on this node.',
+                   'hint':'http://cn.dataone.org/cn/resolve/123XYZ'}
+   }
+
+
+----
+
 
 .. exception:: NotAuthorized
 

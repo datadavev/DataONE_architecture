@@ -91,7 +91,7 @@ Version   Structure
    ::
    
      message ErrorMessage {
-       requried int32 code = 1;
+       required int32 code = 1;
        required string error_detail = 2;
        required string description = 3;
      }
