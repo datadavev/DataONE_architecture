@@ -49,32 +49,32 @@ maintained by Coordinating Nodes for every object in the system.
    Group            Field                           Type                             Cardinality
    ================ =============================== ================================ ===========
    Client Provided  \                               \                                \
-   \                :attr:`Identifier`              :class:`Types.IdentifierType`    1
-   \                :attr:`ObjectFormat`            :class:`Types.ObjectFormatType`  1
-   \                :attr:`Size`                    LongInteger                      1
-   \                :attr:`Submitter`               :class:`Types.PrincipalType`     1
-   \                :attr:`RightsHolder`            :class:`Types.PrincipalType`     1
-   \                :attr:`Obsoletes`               :class:`Types.IdentifierType`    0..n
-   \                :attr:`ObsoletedBy`             :class:`Types.IdentifierType`    0..n
-   \                :attr:`DerivedFrom`             :class:`Types.IdentifierType`    0..n
-   \                :attr:`Describes`               :class:`Types.IdentifierType`    0..n
-   \                :attr:`DescribedBy`             :class:`Types.IdentifierType`    0..n
-   \                :attr:`Checksum`                String                           1
-   \                :attr:`ChecksumAlgorithm`       String                           1
-   \                :attr:`EmbargoExpires`          :class:`Types.DateTime`          0..1
-   \                :attr:`AccessRule`              :class:`Types.AccessRuleType`    0..n
-   \                :attr:`ReplicationPolicy`       String                           0..1
+   \                :attr:`identifier`              :class:`Types.IdentifierType`    1
+   \                :attr:`objectFormat`            :class:`Types.ObjectFormatType`  1
+   \                :attr:`size`                    LongInteger                      1
+   \                :attr:`submitter`               :class:`Types.PrincipalType`     1
+   \                :attr:`rightsHolder`            :class:`Types.PrincipalType`     1
+   \                :attr:`obsoletes`               :class:`Types.IdentifierType`    0..n
+   \                :attr:`obsoletedBy`             :class:`Types.IdentifierType`    0..n
+   \                :attr:`derivedFrom`             :class:`Types.IdentifierType`    0..n
+   \                :attr:`describes`               :class:`Types.IdentifierType`    0..n
+   \                :attr:`describedBy`             :class:`Types.IdentifierType`    0..n
+   \                :attr:`checksum`                String                           1
+   \                :attr:`checksumAlgorithm`       String                           1
+   \                :attr:`embargoExpires`          :class:`Types.DateTime`          0..1
+   \                :attr:`accessRule`              :class:`Types.AccessRuleType`    0..n
+   \                :attr:`replicationPolicy`       String                           0..1
    General          \                               \                                \
-   \                :attr:`DateUploaded`            :class:`Types.DateTime`          0..1
-   \                :attr:`DateSysMetadataModified` :class:`Types.DateTime`          0..1
+   \                :attr:`dateUploaded`            :class:`Types.DateTime`          0..1
+   \                :attr:`dateSysMetadataModified` :class:`Types.DateTime`          0..1
    Provenance       \                               \                                \ 
-   \                :attr:`OriginMemberNode`        :class:`Types.NodeReferenceType` 0..1
-   \                :attr:`AuthoritativeMemberNode` :class:`Types.NodeReferenceType` 0..1
+   \                :attr:`originMemberNode`        :class:`Types.NodeReferenceType` 0..1
+   \                :attr:`authoritativeMemberNode` :class:`Types.NodeReferenceType` 0..1
    Replication      \                               \                                \
-   \                :attr:`Replica`                 <<child nodes>>                  0..n
-   \                :attr:`ReplicaMemberNode`       :class:`Types.NodeReferenceType` 1
-   \                :attr:`ReplicationStatus`       String                           1
-   \                :attr:`ReplicaVerified`         :class:`Types.DateTime`          1
+   \                :attr:`replica`                 <<child nodes>>                  0..n
+   \                :attr:`replicaMemberNode`       :class:`Types.NodeReferenceType` 1
+   \                :attr:`replicationStatus`       String                           1
+   \                :attr:`replicaVerified`         :class:`Types.DateTime`          1
    ================ =============================== ================================ ===========
 
 .. _CCIT Meeting: https://repository.dataone.org/documents/Committees/CCIT/20091117_CCIT_Knoxville/
@@ -84,7 +84,7 @@ maintained by Coordinating Nodes for every object in the system.
 System Metadata fields
 ----------------------
 
-.. attribute:: Identifier
+.. attribute:: identifier
 
   The identifier of the object that is the primary subject of the system
   metadata document.
@@ -111,7 +111,7 @@ System Metadata fields
   :Required Version: 0.3
 
 
-.. attribute:: DateUploaded
+.. attribute:: dateUploaded
 
   Date and time (UTC) that the object was uploaded into the DataONE system,
   which is typically the time that the object is first created on a Member
@@ -129,7 +129,7 @@ System Metadata fields
   :Required Version: 0.3
 
 
-.. attribute:: DateSysMetadataModified
+.. attribute:: dateSysMetadataModified
 
   Date and time (UTC) that this system metadata record was last modified in the 
   DataONE system. Initially this is the same timestamp as DateUploaded,
@@ -146,7 +146,7 @@ System Metadata fields
   :Required Version: 0.3
 
 
-.. attribute:: ObjectFormat
+.. attribute:: objectFormat
 
   Designation of the standard or format that should be used to interpret the
   contents of the object. For metadata objects, this is the namespace of the
@@ -169,7 +169,7 @@ System Metadata fields
   :Required Version: 0.3
 
 
-.. attribute:: Size
+.. attribute:: size
 
   The number of bytes represented in by this object (in bytes).
 
@@ -187,7 +187,7 @@ System Metadata fields
 Provenance
 ^^^^^^^^^^
 
-.. attribute:: Submitter
+.. attribute:: submitter
 
   Principal who submitted the associated abject to the DataONE Member Node. The
   Submitter is by default the RightsHolder if a RightsHolder has not been
@@ -204,7 +204,7 @@ Provenance
   :Required Version: 0.5
 
 
-.. attribute:: RightsHolder
+.. attribute:: rightsHolder
 
   Principal that has ultimate authority for object and is authorized to make all
   decisions regarding the disposition and accessibility of the object. The
@@ -234,7 +234,7 @@ Provenance
      the system (which still may happen even if groups are allowed here).
 
 
-.. attribute:: OriginMemberNode
+.. attribute:: originMemberNode
 
   A reference to the Member Node that originally uploaded the associated
   object. This value should never change, even if a Member Node no longer
@@ -251,7 +251,7 @@ Provenance
   :Required Version: 0.3
 
 
-.. attribute:: AuthoritativeMemberNode
+.. attribute:: authoritativeMemberNode
 
   A reference to the Member Node that acts as the authoritative source for
   an object in the system.  The AuthoritativeMemberNode will often also be the 
@@ -270,7 +270,7 @@ Provenance
   :Required Version: 0.3
 
 
-.. attribute:: Obsoletes
+.. attribute:: obsoletes
 
   The Identifier of an object that is a prior version of the object
   described in this system metadata record and that is obsoleted by this object.
@@ -291,7 +291,7 @@ Provenance
   :Required Version: 0.5
 
 
-.. attribute:: ObsoletedBy
+.. attribute:: obsoletedBy
 
   The Identifier of an object that is a subsequent version of the object
   described in this system metadata record and that therefore obsoletes this 
@@ -314,7 +314,7 @@ Provenance
   :Required Version: 0.5
 
 
-.. attribute:: DerivedFrom
+.. attribute:: derivedFrom
 
   The identifier of an object from which information was derived in the
   process of creating the current object.
@@ -335,7 +335,7 @@ Provenance
   :Required Version: 0.5
 
 
-.. attribute:: Describes
+.. attribute:: describes
 
   The Identifier of an object for which this object provides a metadata
   description.  For example, the current object might represent a set of
@@ -353,7 +353,7 @@ Provenance
   :Required Version: 0.5
 
 
-.. attribute:: DescribedBy
+.. attribute:: describedBy
 
   The Identifier of an object that provides a metadata description for the
   current object.  For example, the current object might represent  binary
@@ -384,7 +384,7 @@ Provenance
 Replication
 ^^^^^^^^^^^
 
-.. attribute:: Replica
+.. attribute:: replica
 
   A container field used to repeatedly provide several metadata fields about 
   each replica that exists in the system, or is being replicated. Note that
@@ -402,7 +402,7 @@ Replication
   :Required Version: 0.3
 
 
-  .. attribute:: ReplicaMemberNode
+  .. attribute:: replicaMemberNode
 
     A reference to the Member Node that houses this replica, regardless of
     whether it has arrived at the Member Node or not.  See ReplicationStatus
@@ -419,7 +419,7 @@ Replication
     :Required Version: 0.3
 
 
-  .. attribute:: ReplicationStatus
+  .. attribute:: replicationStatus
 
     A flag indicating the status of the replica throughout its lifecycle.
     Replicas start when they are queued for replication, then transition to
@@ -442,7 +442,7 @@ Replication
     :Required Version: 0.3
 
 
-  .. attribute:: ReplicaVerified
+  .. attribute:: replicaVerified
 
     Most recent Date and time (UTC) for which this particular replica was verified against
     its canonical checksum. Because of disk errors and other anomolies that 
@@ -461,7 +461,7 @@ Replication
     :Required Version: 0.3
 
 
-.. attribute:: ReplicationPolicy
+.. attribute:: replicationPolicy
 
   A controlled list of policy choices that determine how many replicas
   should be maintained for a given object and any preferences or
@@ -493,7 +493,7 @@ Replication
 Data Consistency
 ^^^^^^^^^^^^^^^^
 
-.. attribute:: Checksum
+.. attribute:: checksum
 
   A calculated hash value used to validate object integrity over time and
   after network transfers. The value is calculated using a standard hashing
@@ -511,7 +511,7 @@ Data Consistency
   :Required Version: 0.3
 
 
-.. attribute:: ChecksumAlgorithm
+.. attribute:: checksumAlgorithm
 
   The name of the checksum algorithm used to calculate the checksum for this
   object.
@@ -530,7 +530,7 @@ Data Consistency
 Access Control
 ^^^^^^^^^^^^^^
 
-.. attribute:: EmbargoExpires
+.. attribute:: embargoExpires
 
   Objects can be marked as embargoed by setting this field to a date in the
   future, and by providing access control rules that allow the public to
@@ -551,7 +551,7 @@ Access Control
   :Required Version: 0.5
 
 
-.. attribute:: AccessRule
+.. attribute:: accessRule
 
   A rule that is used to allow or deny a principal to perform a service (such as
   read or write) on an object in DataONE. Rules are three-tuples (ruletype,

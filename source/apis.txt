@@ -149,23 +149,23 @@ internally by those components.
 .. table:: Ranges of exception :term:`detail code`\s that are expressed by the
    different APIs.
 
-  ============== =============================================================
-  Detail Range   API
-  ============== =============================================================
-  .              :mod:`CN_crud`
-  .              :mod:`CN_authorization`
-  .              :mod:`CN_query`
-  .              :mod:`CN_replication`
-  .              :mod:`CN_synchronization`
-  .              :mod:`CN_register`
-  .              :mod:`CN_health`
-  .              :mod:`MN_crud`
-  .              :mod:`MN_authorization`
-  .              :mod:`MN_replication`
-  .              :mod:`MN_capabilities`
-  .              :mod:`MN_health`
-  .              :mod:`ITK_APIs`
-  ============== =============================================================
+  ==================== =============================================================
+  Error Detail Range   API
+  ==================== =============================================================
+  .                    :mod:`CN_crud`
+  .                    :mod:`CN_authorization`
+  .                    :mod:`CN_query`
+  .                    :mod:`CN_replication`
+  .                    :mod:`CN_synchronization`
+  .                    :mod:`CN_register`
+  .                    :mod:`CN_health`
+  .                    :mod:`MN_crud`
+  .                    :mod:`MN_authorization`
+  .                    :mod:`MN_replication`
+  .                    :mod:`MN_capabilities`
+  .                    :mod:`MN_health`
+  .                    :mod:`ITK_APIs`
+  ==================== =============================================================
 
 .. raw:: latex
 

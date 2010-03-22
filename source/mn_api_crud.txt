@@ -55,13 +55,13 @@ operations on a :term:`Member Node`.
      
    :raises Exceptions.NotAuthorized: 
       :code: 401
-      :detail_code: 11001
+      :detail_code: 
 
       The provided identity does not have READ permission on the object.
 
    :raises Exceptions.NotFound: 
       :code: 404
-      :detail_code: 14001
+      :detail_code: 
 
       The object specified by GUID does not exist at this node. The
       description should include a reference to the resolve method.
@@ -120,7 +120,7 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.NotAuthorized:
     :code: 401
-    :detail_code: 11002
+    :detail_code: 
     
     The provided identity does not have permission to WRITE to the Member Node.
 
@@ -458,6 +458,9 @@ operations on a :term:`Member Node`.
      :code:
      :detail_code: 
 
+----
+
+.. Note:: Stuff past here seems to be a bit bogus.  Needs to be revisted.
 
 ----
 

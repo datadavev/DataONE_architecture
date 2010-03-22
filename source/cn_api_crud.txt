@@ -3,40 +3,31 @@ CRUD API
 
 .. module:: CN_crud
    :synopsis: Create, read, update, and delete operations for Coordinating Nodes
-   
-.. function:: assertRelation (token, IDofSubject, relationship, IDofObject)
 
-.. function:: batchWrite (objectsList)
+The ``CN_crud`` API implements methods that enable object management
+operations on a :term:`Coordinating Node`.
 
-.. function:: deleteRecords (token, listOfGUIDs)
+.. Table:: Methods exposed by the CN_crud API.
 
-.. function:: register (memberToken, ID, metadata)
+  =================  ==========================================================
+  Function           Parameters
+  =================  ==========================================================
+  getSystemMetadata  ``(token, GUID) ->`` :class:`Types.SystemMetadata`
+  get                ``(token, GUID) ->`` bytes
+  resolve            ``(token, GUID) ->`` :class:`Types.ObjectLocationList`
+  create             ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata) ->``
+  reserveId          ``(token, [scope, format]) ->`` :class:`Types.IdentifierType`
+  =================  ==========================================================
 
-.. function:: storeRecords ()
-
-.. function:: update()
-
-.. function:: reserveId(scope, format)
-
-
-=================  ==========================================================
-Function           Parameters
-=================  ==========================================================
-getSystemMetadata  ``(token, GUID) ->`` :class:`Types.SystemMetadata`
-get                ``(token, GUID) ->`` bytes
-resolve            ``(token, GUID) ->`` systemMetadata???
-create             ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata) ->``
-reserveId          .
-=================  ==========================================================
 
 ----
 
-.. function:: getSystemMetadata(token, GUID) -> :class:`Types.SystemMetadata`
+.. function:: getSystemMetadata(token, GUID) -> SystemMetadata
 
    Describes the science metadata or data object identified by the GUID 
    by returing the system metadata object associated with the GUID.
 
-  :param token: authentication token; ignored for V0.3
+  :param token: authentication token
 
   :type token: :class:`Types.AuthToken`
 
@@ -48,19 +39,33 @@ reserveId          .
 
   :rtype: :class:`Types.SystemMetadata`
 
-  :raise: Exceptions.NotAuthorized
+  :raises Exceptions.NotAuthorized:
+    :code: 401
+    :detail_code: 
 
-  :raises Exceptions.NotFound: There is no data or science metadata identified
-    by the given GUID.
+    The provided identity does not have READ permission on the object.
 
-  :raises Exceptions.InvalidRequest: The GUID requested identifies a system metadata
-    object.
+  :raises Exceptions.NotFound: 
+    :code: 404
+    :detail_code:
+
+    There is no data or science metadata identified by the given GUID.
+
+  :raises Exceptions.InvalidRequest:
+    :code: 400
+    :detail_code:
+     
+    The GUID requested identifies a system metadata object.
+
 
 ----
 
 .. function:: get (token, GUID) -> bytes
 
-   Retrieves the science metedata or system metadata object identified by the
+   Retrieves the object identified by GUID from the node. If the object is not
+   present on the node, then an :exc:`Exceptions.NotFound` error is raised.
+
+   science metedata or system metadata object identified by the
    given GUID. If the object identified by the GUID is a data object, then an
    error is raised.
 
@@ -81,18 +86,23 @@ reserveId          .
 
   :rtype: bytes
 
-  :raise: Exceptions.NotAuthorized
+  :raises Exceptions.NotAuthorized:
+    :code: 401
+    :detail_code:
 
-  :raises Exceptions.NotFound: The object specified by GUID does not exist.
+  :raises Exceptions.NotFound: 
+    :code: 404
+    :detail_code:
 
-  :raises Exceptions.NotFound: The object specified by the GUID is a data
-    object and is not present on this (or any) CN. This response could be
-    accompanied by the results of a standard resolve() method call to provide
-    more information about the object.
+    The object specified by the GUID is a data object and is not present on
+    this (or any) CN. This response could be accompanied by the results of a
+    standard resolve() method call to provide more information about the
+    object.
+
 
 ----
 
-.. function:: resolve(token, identifier) -> :class:`Types.ObjectLocationList`
+.. function:: resolve(token, identifier) -> ObjectLocationList
 
    Given an identifier, returns information that a client can use to retrieve
    the identified target object form the DataONE system. The target may reside
@@ -107,34 +117,39 @@ reserveId          .
 
     :param identifier: Identifier for the object in question
 
-    :returns: A list of nodes known to contain copies of the target object
+    :returns: 
+      A list of nodes known to contain copies of the target object, plus the
+      URLs known to resolve to the node get methods.
 
     :rtype: :class:`Types.ObjectLocationList`
 
-   .. todo::
-     It seems that returning just a simple list of URLs for the service
-     endpoints of the relevant MNs is not sufficient. Some sort of MN
-     identifier also needs to be returned so that the caller can ask further
-     information about MN (which would include the endpoint URL for the MN API
-     implementation). Is there a use case that involves asking a CN for
-     metadata describing a MN?
+   :raise Exceptions.NotAuthorized:
+     :code: 401
+     :detail_code:
 
-   :raise: Exceptions.NotAuthorized
+   :raises Exceptions.NotFound: 
+     :code: 404
+     :detail_code:
 
-   :raises Exceptions.NotFound: There is no data object identified by the
-     given GUID.
+     There is no data object identified by the given GUID.
 
-   :raises Exceptions.InvalidRequest: The GUID requested identifies a science
-     metadata object or a system metadata object.
+   :raises Exceptions.InvalidRequest: 
+     :code: 400
+     :detail_code
 
+     The GUID requested identifies a science metadata object or a system
+     metadata object.
+
+
+----
 
 .. function:: create(systemMetadataGUID, systemMetadata,
                      scienceMetadataGUID, scienceMetadata)
 
    This is a method used internally by the CN, not exposed to MNs or the
    world. Stores the two given objects (systemMetadata, scienceMetadata) in a
-   single atomic action. This method is used as part of the synchronization of
-   science metadata between a MN and the CN.
+   single atomic action. This method is used as part of the :term:`Member Node
+   synchronization` of science metadata between a MN and the CN.
 
    .. TODO:: Should this method be protected by authorization (i.e. include an
      authorization token)?
@@ -152,11 +167,16 @@ reserveId          .
   
   .. TODO:: Define what is returned (if anything)
 
-  :raises exceptions.InvalidMetadataType: 
-    the science metadata is not of a type supported by the D1 system
+  :raises exceptions.UnspportedMetadataType: 
+    :code: 400
+    :detail_code: 
+
+    The science metadata is not of a type supported by the D1 system
 
 
-.. function:: reserveId(token, scope, format) -> GUID
+----
+
+.. function:: reserveId(token, [scope, format]) -> GUID
 
    Given an optional scope and format, reserves and returns an identifier within 
    that scope and format that is unique and will not be used by any other sessions.
@@ -164,13 +184,15 @@ reserveId          .
    the session in which the identifier was reserved, otherwise an error is raised on
    those methods.
 
-    :param token: authentication token; ignored for V0.3
+    :param token: authentication token
 
     :type token: :class:`Types.AuthToken`
 
     :param scope: an optional string to be used to qualify the scope of the 
       identifer namespace, which is applied differently depending on the format 
       requested. If scope is not supplied, a default scope will be used.
+
+    :type scope: 
    
     :param format: the optional name of the identifier format to be used, drawn from 
       a DataONE-specific vocabulary of identifier format names, including 
@@ -178,11 +200,75 @@ reserveId          .
       the format is not supplied by the caller, the CN service will use a default 
       identifier format, which may change over time.
 
+    :type format: :class:`Types.IdentifierFormatType`
+
     :returns: The GUID that was reserved
 
-    :rtype: GUID
+    :rtype: :class:`Types.IdentifierType`
 
-    :raises Exceptions.NotAuthorized: 
+    :raises Exceptions.NotAuthorized:
+      :code: 401
+      :detail_code:
 
-    :raises Exceptions.InvalidArgument: The format requested is not a valid
-      format accepted by this service
+      Supplied credentials do not have WRITE privileges.
+
+    :raises Exceptions.InvalidRequest: 
+      :code: 400
+      :detail_code:
+
+      The format requested is not a valid format accepted by this service.
+
+----
+
+.. function:: assertRelation (token, IDofSubject, relationship, IDofObject) -> boolean
+
+   Tests that the specified relationship between IDofSubject and IDofObject exists.
+
+   :param token: authentication token
+
+   :type token: :class:`Types.AuthToken`
+
+   :param IDofSubject: The subject of the relationship being tested 
+
+   :type IDofSubject: :class:`Types.IdentifierType`
+
+   :param relationship: The relationship between IDofSubject and IDofObject being tested.
+
+   :type relationship: ???
+
+   :param IDofObject: The object of the relationship being tested.
+
+   :type IDofObject: :class:`Types.IdentifierType`
+
+   :raises Exceptions.NotAuthorized:
+     :code: 401
+     :detail_code:
+
+   :raises NotFound:
+     :code: 404
+     :detail_code: 
+
+   :raises InvalidRequest:
+     :code: 400
+     :detail_code:
+
+     Raised if the parameters are incorrect (e.g. unknown relationship type specfied)
+
+----
+
+.. TODO:: Clean up this cruft.
+
+----
+
+
+.. function:: batchWrite (objectsList)
+
+.. function:: deleteRecords (token, listOfGUIDs)
+
+.. function:: register (memberToken, ID, metadata)
+
+.. function:: storeRecords ()
+
+.. function:: update()
+
+

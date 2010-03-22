@@ -10,25 +10,26 @@ Exceptions Raised by MN and CN APIs
 
 Summary of exceptions listed here and the corresponding code and detail_code.
 
-============================= ===== ==================================================
-Exception                     Code  Description
-============================= ===== ==================================================
-:exc:`AuthenticationTimeout`  408   The client took too long to complete the request
-:exc:`IdentifierNotUnique`    409   The supplied identifier already exists so conflicts 
-                                    with the state of the resource
-:exc:`InsufficientResources`  413   This could be 400, 413, or 415, though none of 
-                                    these correspond with the semantics of the error 
-                                    condition.
-:exc:`InvalidCredentials`     401   The supplied credentials could not be verified
-:exc:`InvalidRequest`         400   .
-:exc:`InvalidSystemMetadata`  400   .
-:exc:`InvalidToken`           401   The supplied authentication token is not valid
-:exc:`NotAuthorized`          401   Access to the indicated resource is not permitted 
-                                    with the supplied credentials
-:exc:`NotFound`               404   The referenced object could not be located
-:exc:`UnsupportedType`        400   Treated as an invalid request.  Response should 
-                                    indicate the problem with the supplied data.
-============================= ===== ==================================================
+============================== ===== ==================================================
+Exception                      Code  Description
+============================== ===== ==================================================
+:exc:`AuthenticationTimeout`   408   The client took too long to complete the request
+:exc:`IdentifierNotUnique`     409   The supplied identifier already exists so conflicts 
+                                     with the state of the resource
+:exc:`InsufficientResources`   413   This could be 400, 413, or 415, though none of 
+                                     these correspond with the semantics of the error 
+                                     condition.
+:exc:`InvalidCredentials`      401   The supplied credentials could not be verified
+:exc:`InvalidRequest`          400   .
+:exc:`InvalidSystemMetadata`   400   .
+:exc:`InvalidToken`            401   The supplied authentication token is not valid
+:exc:`NotAuthorized`           401   Access to the indicated resource is not permitted 
+                                     with the supplied credentials
+:exc:`NotFound`                404   The referenced object could not be located
+:exc:`UnsupportedMetadataType` 400   The supplied science metadata can not be processed
+:exc:`UnsupportedType`         400   Treated as an invalid request.  Response should 
+                                     indicate the problem with the supplied data.
+============================== ===== ==================================================
 
 
 General
@@ -420,6 +421,33 @@ The Exceptions
      string values.
 
    :type trace_information: dictionary
+
+----
+
+.. exception:: UnsupportedMetadataType(detail_code, description, [trace_information])
+
+  The science metadata document submitted is not of a type that is recognized
+  by the DataONE system.
+
+  :code: 400
+
+  :param detail_code: Set by the method raising the exception.
+
+  :type detail_code: integer
+
+  :description: Human readable description that can assist the caller in determining 
+    how to avoid the problem.
+
+  :type description: string
+
+  :param trace_information: 
+    Optional set of key-value pairs that can include the name of the method
+    that raised the error plus other details such as parameters used in the
+    call that can be helpful for debugging. Sensitive information such as
+    passwords must **never** be logged or recorded in error messages.
+
+  :type trace_information: dictionary
+
 
 
 ----

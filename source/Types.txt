@@ -15,31 +15,66 @@ Data Types in CICore
 ========= =============================
 Version   Structure
 ========= =============================
-.         :class:`DateTime`
 .         :class:`AccessRuleType`
-.         :class:`IdentifierType`
-.         :class:`PrincipalType`
-.         :class:`NodeReferenceType`
-.         :class:`ObjectFormatType`
 .         :class:`AuthToken`
-.         :class:`IdentifierList`
-.         :class:`PrincipalType`
+.         :class:`Checksum`
+.         :class:`DateTime`
+.         :class:`DescribeResponse`
 .         :class:`ErrorMessage`
-.         :class:`ObjectList`
+.         :class:`EventType`
+.         :class:`IdentifierFormatType`
+.         :class:`IdentifierList`
+.         :class:`IdentifierType`
 .         :class:`LogRecord`
 .         :class:`LogRecords`
-.         :class:`SystemMetadata`
-.         :class:`DescribeResponse`
 .         :class:`MNCapabilities`
 .         :class:`MNHeartbeatResponse`
 .         :class:`MNStatus`
-.         :class:`PingResponse`
-.         :class:`Checksum`
+.         :class:`NodeReferenceType`
+.         :class:`ObjectFormatType`
+.         :class:`ObjectList`
 .         :class:`ObjectLocationList`
-.         :class:`EventType`
+.         :class:`PingResponse`
+.         :class:`PrincipalType`
+.         :class:`SystemMetadata`
 ========= =============================
 
 ----
+
+.. class:: AccessRuleType
+
+   An access rule.
+
+
+----
+
+.. class:: AuthToken
+
+  An AuthToken is used to identify a principal and to assert that the identity
+  of the principal has been verified by the DataONE authentication infrastructure.
+
+
+----
+
+.. class:: Checksum
+
+  Represents the value of a computed checksum.
+
+  ::
+
+    message ChecksumAlgorithm {
+      SHA-1 = 0;
+      SHA-224 = 1;
+      ...
+    }
+
+    message Checksum {
+      required ChecksumAlgorithm algorithm = 1;
+      required string value = 2;
+    }
+
+----
+
 
 .. class:: DateTime
 
@@ -63,68 +98,35 @@ Version   Structure
 
 ----
 
-.. class:: AccessRuleType
+.. class:: DescribeResponse  
 
-   An access rule.
+  Provides a hint about the type, size and state of an object.
 
-----
+  ::
 
-.. class:: IdentifierType
-
-  An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
-  equivalent to a unicode string of printable characters. All representations
-  of identifiers must be encoded in 7-bit ASCII or UTF-8.                 
-
-
-----
-
-.. class:: PrincipalType
-
-  Person (user), group, or organization.
-
-  PrincipalIdentifier drawn from the DataONE IdentityProviderService/
-
-  Used by :mod:`SystemMetadata`
+    message DescribeResponse {
+      required string objectformat = 1;
+      required uint64 size = 2;
+      required DateTime last_modified = 3;
+    }
 
 
-----
+  .. attribute:: objectformat
 
-.. class:: NodeReferenceType
+     The value of the :attr:`SystemMetadata.ObjectFormat` entry available in
+     the :class:`SystemMetadata`.
 
-  MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
+  .. attribute:: size
 
+     The size in bytes of the object
 
-----
+  .. attribute:: last_modified
 
-.. class:: ObjectFormatType
-
-  One value from the DataONE Object Format Vocabulary, which may be an adopted
-  vocabulary maintained by another organization. ObjectFormatType is currently
-  (prototype implementation)a string, however it seems likely that this will
-  require a more structured type in the future as the requirements of this
-  type are better defined.
-
-
-----
-
-.. class:: AuthToken
-
-  An AuthToken is used to identify a principal and to assert that the identity
-  of the principal has been verified by the DataONE authentication infrastructure.
-
-
-----
-
-
-.. class:: IdentifierList
-
-   A list of GUIDs, so a list of unicode strings.
-
-   ::
-   
-     message GuidList {
-       repeated string guid = 1;
-     }
+     A DateTime value that indicates when the object was last modified. Note
+     that all time stamps in DataONE refer to UTC if no time zone information
+     is provided with the value. Note that since content in DataONE is
+     intended to be static, this value will refer to the time that the object
+     was created on the system responding to the request.
 
 ----
 
@@ -161,24 +163,64 @@ Version   Structure
 
     A human readable message describing what happened
 
+
 ----
 
-.. class:: ObjectList
+.. class:: EventType
 
-  A list of objects. This provides more information than the GuidList by
-  combining a GUID with the DescribeResponse.
-  
+  The contolled list of events that are logged, which will include 'CREATE',
+  'UPDATE', 'DELETE', 'READ', and 'REPLICATE' events
+
   ::
-  
-    message ObjectList {
-      
-      message ObjectInfo {
-        required string guid = 1;
-        required string DescribeResponse info = 2;
-      }
-    
-      repeated DescribeResponse describeresponse = 1;
+
+    message EventType {
+      CREATE = 0;
+      READ = 1;
+      UPDATE = 2;
+      DELETE = 3;
+      REPLICATE = 4;
     }
+
+
+----
+
+.. class:: IdentifierFormatType
+
+  Initially an enumerated list of strings that specify different types of identifiers.
+
+  ::
+
+    message IdentifierFormatType {
+      enum IdentifierFormat {
+        OID = 0;
+        LSID = 1;
+        UUID = 2;
+        LSRN = 3;
+      }
+    }
+
+.. TODO:: There's a few more of these that need to be specified.
+
+----
+
+.. class:: IdentifierType
+
+  An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
+  equivalent to a unicode string of printable characters. All representations
+  of identifiers must be encoded in 7-bit ASCII or UTF-8.                 
+
+
+----
+
+.. class:: IdentifierList
+
+   A list of GUIDs, so a list of unicode strings.
+
+   ::
+   
+     message GuidList {
+       repeated string guid = 1;
+     }
 
 ----
 
@@ -193,6 +235,7 @@ Version   Structure
       required string timestamp = 1;
     }
 
+
 ----
 
 .. class:: LogRecords
@@ -205,47 +248,8 @@ Version   Structure
       repeated LogRecord entry = 1;
     }
 
-----
-
-.. class:: SystemMetadata
-
-  A set of low level information about an object in the DataONE system.
-  SystemMetadata is described in :mod:`SystemMetadata`.
 
 ----
-
-.. class:: DescribeResponse  
-
-  Provides a hint about the type, size and state of an object.
-
-  ::
-
-    message DescribeResponse {
-      required string objectformat = 1;
-      required uint64 size = 2;
-      required DateTime last_modified = 3;
-    }
-
-
-  .. attribute:: objectformat
-
-     The value of the :attr:`SystemMetadata.ObjectFormat` entry available in
-     the :class:`SystemMetadata`.
-
-  .. attribute:: size
-
-     The size in bytes of the object
-
-  .. attribute:: last_modified
-
-     A DateTime value that indicates when the object was last modified. Note
-     that all time stamps in DataONE refer to UTC if no time zone information
-     is provided with the value. Note that since content in DataONE is
-     intended to be static, this value will refer to the time that the object
-     was created on the system responding to the request.
-
-----
-
 
 .. class:: MNCapabilities
 
@@ -267,29 +271,41 @@ Version   Structure
 
 ----
 
+.. class:: NodeReferenceType
 
-.. class:: PingResponse
+  MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
-  The response from :func:`MN_health.ping`
 
 ----
 
-.. class:: Checksum
+.. class:: ObjectFormatType
 
-  Represents the value of a computed checksum.
+  One value from the DataONE Object Format Vocabulary, which may be an adopted
+  vocabulary maintained by another organization. ObjectFormatType is currently
+  (prototype implementation)a string, however it seems likely that this will
+  require a more structured type in the future as the requirements of this
+  type are better defined.
 
+
+----
+
+.. class:: ObjectList
+
+  A list of objects. This provides more information than the GuidList by
+  combining a GUID with the DescribeResponse.
+  
   ::
-
-    message ChecksumAlgorithm {
-      SHA-1 = 0;
-      SHA-224 = 1;
-      ...
+  
+    message ObjectList {
+      
+      message ObjectInfo {
+        required string guid = 1;
+        required string DescribeResponse info = 2;
+      }
+    
+      repeated DescribeResponse describeresponse = 1;
     }
 
-    message Checksum {
-      required ChecksumAlgorithm algorithm = 1;
-      required string value = 2;
-    }
 
 ----
 
@@ -310,24 +326,32 @@ Version   Structure
       required string url = 2;
     }
 
-----
-
-.. class:: EventType
-
-  The contolled list of events that are logged, which will include 'CREATE',
-  'UPDATE', 'DELETE', 'READ', and 'REPLICATE' events
-
-  ::
-
-    message EventType {
-      CREATE = 0;
-      READ = 1;
-      UPDATE = 2;
-      DELETE = 3;
-      REPLICATE = 4;
-    }
 
 ----
+
+.. class:: PingResponse
+
+  The response from :func:`MN_health.ping`
+
+
+----
+
+.. class:: PrincipalType
+
+  Person (user), group, or organization.
+
+  PrincipalIdentifier drawn from the DataONE IdentityProviderService/
+
+  Used by :mod:`SystemMetadata`
+
+
+----
+
+.. class:: SystemMetadata
+
+  A set of low level information about an object in the DataONE system.
+  SystemMetadata is described in :mod:`SystemMetadata`.
+
 
 
 .. _Protocol Buffer Language: http://code.google.com/apis/protocolbuffers/docs/overview.html
