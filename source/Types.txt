@@ -36,6 +36,7 @@ Version   Structure
 .         :class:`PingResponse`
 .         :class:`Checksum`
 .         :class:`ObjectLocationList`
+.         :class:`EventType`
 ========= =============================
 
 ----
@@ -308,5 +309,25 @@ Version   Structure
       required string node = 1;
       required string url = 2;
     }
+
+----
+
+.. class:: EventType
+
+  The contolled list of events that are logged, which will include 'CREATE',
+  'UPDATE', 'DELETE', 'READ', and 'REPLICATE' events
+
+  ::
+
+    message EventType {
+      CREATE = 0;
+      READ = 1;
+      UPDATE = 2;
+      DELETE = 3;
+      REPLICATE = 4;
+    }
+
+----
+
 
 .. _Protocol Buffer Language: http://code.google.com/apis/protocolbuffers/docs/overview.html
