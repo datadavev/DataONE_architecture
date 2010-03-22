@@ -35,6 +35,7 @@ Version   Structure
 .         :class:`MNStatus`
 .         :class:`PingResponse`
 .         :class:`Checksum`
+.         :class:`ObjectLocationList`
 ========= =============================
 
 ----
@@ -92,13 +93,15 @@ Version   Structure
   MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
 
 
-
 ----
 
 .. class:: ObjectFormatType
 
   One value from the DataONE Object Format Vocabulary, which may be an adopted
-  vocabulary maintained by another organization.
+  vocabulary maintained by another organization. ObjectFormatType is currently
+  (prototype implementation)a string, however it seems likely that this will
+  require a more structured type in the future as the requirements of this
+  type are better defined.
 
 
 ----
@@ -107,6 +110,7 @@ Version   Structure
 
   An AuthToken is used to identify a principal and to assert that the identity
   of the principal has been verified by the DataONE authentication infrastructure.
+
 
 ----
 
@@ -131,8 +135,15 @@ Version   Structure
    
      message ErrorMessage {
        required int32 code = 1;
-       required string error_detail = 2;
+       required int32 detail_code = 2;
        required string description = 3;
+       
+       message KVPair {
+         required string key = 1;
+         required string value = 2;
+       }
+       
+       repeated KVPair trace_information = 4;
      }
 
 
@@ -279,5 +290,23 @@ Version   Structure
       required string value = 2;
     }
 
+----
+
+.. class:: ObjectLocationList
+
+   Provides a list of ``node``, ``get request URL`` that provides a list of
+   nodes known to hold a copy of an object, and the get() method URL that
+   might be used to retrieve the object from each node.
+
+  ::
+  
+    message ObjectLocationList {
+      repeated ObjectLocation location = 1;
+    }
+
+    message ObjectLocation {
+      required string node = 1;
+      required string url = 2;
+    }
 
 .. _Protocol Buffer Language: http://code.google.com/apis/protocolbuffers/docs/overview.html

@@ -1,7 +1,7 @@
 Investigator Toolkit APIs
 -------------------------
 
-
+.. module:: ITK_APIs
 
 .. todo:: 
    Obviously need to flesh this out a bit.

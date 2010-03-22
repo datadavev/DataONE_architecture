@@ -19,26 +19,34 @@ CRUD API
 .. function:: reserveId(scope, format)
 
 
-::
+=================  ==========================================================
+Function           Parameters
+=================  ==========================================================
+getSystemMetadata  ``(token, GUID) ->`` :class:`Types.SystemMetadata`
+get                ``(token, GUID) ->`` bytes
+resolve            ``(token, GUID) ->`` systemMetadata???
+create             ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata) ->``
+reserveId          .
+=================  ==========================================================
 
-  getSystemMetadata(token, GUID) -> systemMetadata
-  get(token, GUID) -> metadata
-  resolve(token, GUID) -> systemMetadata???
-  create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
-  
+----
 
-.. function:: getSystemMetadata(token, GUID) -> system metadata
+.. function:: getSystemMetadata(token, GUID) -> :class:`Types.SystemMetadata`
 
    Describes the science metadata or data object identified by the GUID 
    by returing the system metadata object associated with the GUID.
 
   :param token: authentication token; ignored for V0.3
 
+  :type token: :class:`Types.AuthToken`
+
   :param GUID: Identifier for the science data or science metedata object of interest.
+
+  :type GUID: :class:`Types.IdentifierType`
 
   :returns: System metadata object describing the object.
 
-  :rtype: SystemMetadata
+  :rtype: :class:`Types.SystemMetadata`
 
   :raise: Exceptions.NotAuthorized
 
@@ -48,8 +56,9 @@ CRUD API
   :raises Exceptions.InvalidRequest: The GUID requested identifies a system metadata
     object.
 
+----
 
-.. function:: get (token, GUID) -> metadata
+.. function:: get (token, GUID) -> bytes
 
    Retrieves the science metedata or system metadata object identified by the
    given GUID. If the object identified by the GUID is a data object, then an
@@ -57,16 +66,20 @@ CRUD API
 
   :param token: authentication token; ignored for V0.3
 
+  :type token: :class:`Types.AuthToken`
+
   :param GUID:
     The identifier for the science metadata or system metadata object to be
     retrieved.
+
+  :type GUID: :class:`Types.IdentifierType`
 
   :returns:
     For system metadata objects, the system metadata itself is returned. For
     science metadata objects, this will be the exact byte stream of the science
     metadata oject, as is was original ingested.
 
-  :rtype: ByteStream
+  :rtype: bytes
 
   :raise: Exceptions.NotAuthorized
 
@@ -77,12 +90,9 @@ CRUD API
     accompanied by the results of a standard resolve() method call to provide
     more information about the object.
 
-   .. todo::
-      This method name could be changed since it has different semantics than
-      the method of the same name on MNs.
+----
 
-
-.. function:: resolve(token, identifier) -> list of nodes
+.. function:: resolve(token, identifier) -> :class:`Types.ObjectLocationList`
 
    Given an identifier, returns information that a client can use to retrieve
    the identified target object form the DataONE system. The target may reside
@@ -93,11 +103,13 @@ CRUD API
 
     :param token: authentication token; ignored for V0.3
 
+    :type token: :class:`Types.AuthToken`
+
     :param identifier: Identifier for the object in question
 
     :returns: A list of nodes known to contain copies of the target object
 
-    :rtype: NodeList
+    :rtype: :class:`Types.ObjectLocationList`
 
    .. todo::
      It seems that returning just a simple list of URLs for the service
@@ -153,7 +165,9 @@ CRUD API
    those methods.
 
     :param token: authentication token; ignored for V0.3
-   
+
+    :type token: :class:`Types.AuthToken`
+
     :param scope: an optional string to be used to qualify the scope of the 
       identifer namespace, which is applied differently depending on the format 
       requested. If scope is not supplied, a default scope will be used.

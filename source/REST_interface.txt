@@ -486,19 +486,19 @@ Implements the methods:
 .. TODO:: Show some examples for operations.  Failures should be included.
 
 
-``/object/<guid>/locate/``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``/object/<guid>/resolve/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
 hold copies of the object identified by ``<guid>``.
 
 Implements the following methods:
 
-- :func:`CN_crud.resolve` (``GET /object/<guid>/locate/``)
+- :func:`CN_crud.resolve` (``GET /object/<guid>/resolve/``)
 
 
 .. table:: 
-  Responses to HTTP requests against ``/object/<guid>/locate/`` for different
+  Responses to HTTP requests against ``/object/<guid>/resolve/`` for different
   verbs.
 
   ======== ===========================================================================
