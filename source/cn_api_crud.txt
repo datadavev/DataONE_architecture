@@ -15,8 +15,9 @@ operations on a :term:`Coordinating Node`.
   getSystemMetadata  ``(token, GUID) ->`` :class:`Types.SystemMetadata`
   get                ``(token, GUID) ->`` bytes
   resolve            ``(token, GUID) ->`` :class:`Types.ObjectLocationList`
-  create             ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata) ->``
+  create             ``(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata) ->`` ?
   reserveId          ``(token, [scope, format]) ->`` :class:`Types.IdentifierType`
+  assertRelation     ``(token, IDofSubject, relationship, IDofObject) ->`` boolean
   =================  ==========================================================
 
 

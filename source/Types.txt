@@ -16,6 +16,7 @@ Data Types in CICore
 Version   Structure
 ========= =============================
 .         :class:`AccessRuleType`
+.         :class:`AuthenticationSystemType`
 .         :class:`AuthToken`
 .         :class:`Checksum`
 .         :class:`DateTime`
@@ -44,6 +45,13 @@ Version   Structure
 .. class:: AccessRuleType
 
    An access rule.
+
+----
+
+..class:: AuthenticationSystemType
+
+  Place holder for support of multiple authentication services for a single
+  user.
 
 
 ----
