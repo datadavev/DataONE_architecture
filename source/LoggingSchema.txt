@@ -38,14 +38,14 @@ upon a request for logging.
   Group            Field                           Type              Cardinality
   ================ =============================== ================= ===========
   Log              \                               \                 \
-  \                :attr:`EntryId`                 IdentifierType    1
-  \                :attr:`Identifier`              IdentifierType    1
-  \                :attr:`IPAddress`               String            1
-  \                :attr:`UserAgent`               String            1
-  \                :attr:`Principal`               PrincipalType     1
-  \                :attr:`Event`                   EventType         1
-  \                :attr:`LogDate`                 DateTime          1
-  \                :attr:`MemberNode`              NodeReferenceType 1
+  \                :attr:`entryId`                 IdentifierType    1
+  \                :attr:`identifier`              IdentifierType    1
+  \                :attr:`ipAddress`               String            1
+  \                :attr:`userAgent`               String            1
+  \                :attr:`principal`               PrincipalType     1
+  \                :attr:`event`                   EventType         1
+  \                :attr:`logDate`                 DateTime          1
+  \                :attr:`memberNode`              NodeReferenceType 1
   ================ =============================== ================= ===========
 
 Logging Types
@@ -59,7 +59,7 @@ Logging Types
 Logging fields
 --------------
 
-.. attribute:: EntryId
+.. attribute:: entryId
 
   The identifier of a particular log record, used to differentiate it from
   other log records on the same objects.
@@ -75,7 +75,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: Identifier
+.. attribute:: identifier
 
   The identifier of the object on which a logged event occurred.
 
@@ -91,7 +91,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: LogDate
+.. attribute:: logDate
 
   Date and time (UTC) that the event was logged in the DataONE system.
 
@@ -106,7 +106,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: IPAddress
+.. attribute:: ipAddress
 
   The InternetProtocol address from which an originating event request
   originated.
@@ -121,7 +121,7 @@ Logging fields
 
   :Required Version: 0.3
 
-.. attribute:: UserAgent
+.. attribute:: userAgent
 
   A string indicating the type of client software agent that was used by the
   user to connect to the service and originate the logged event.
@@ -137,7 +137,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: Event
+.. attribute:: event
 
   The type of event that was logged, such as an object insertion or
   deletion.
@@ -153,7 +153,7 @@ Logging fields
   :Required Version: 0.3
 
 
-.. attribute:: Principal
+.. attribute:: principal
 
   Principal who generated the event through a request to the node. If the
   event was recorded without identifying the principal, then the principal
@@ -169,7 +169,7 @@ Logging fields
 
   :Required Version: 0.3
 
-.. attribute:: MemberNode
+.. attribute:: memberNode
 
   The Member Node Identifier of the node on which this logged event
   occurred.  This field is used to distinguish log records that occur at the
