@@ -10,134 +10,30 @@ This document describes the concept of "data" within the first iteration of
 the DataONE system.
 
 
-Glossary
---------
-
-:Data: 
-
-  Typically refers to scientific data. Where ambiguity between the science
-  data and another form of data, the full term "science data" should be used.  
-  DataONE services always return exact copies of the original data as submitted 
-  to DataONE.
-
-
-:Metadata:
-
-  Data describing data. There are currently two distinct forms of metadata
-  managed by DataONE, "science metadata" and "system metadata".
-
-
-:Science Metadata:
-
-  A set of information that describes a science data set. Science metadata
-  will typically take the form of a document, generally expressed in a dialect
-  of XML.
-
-
-:System Metadata:
-
-  Information used by DataONE to describe content (science data or science
-  metadata) managed by DataONE.
-
-
-:Data Package:
-
-  The term "Data Package" refers to the combination of all objects
-  associated with a data set.  In the simplest case this would be four objects:
-  a data object, a science metadata object, and system metadata for each.
-
-
-:Coordinating Node:
-
-  A DataONE Coordinating Node (commonly referred to as "CN") is a service that
-  manages content in the entire DataONE system. There are at least three CNs in
-  DataONE, with content replicated across all three (i.e. the CN contents are 
-  eventually consistent).  The CNs store all original copies of science metadata
-  and provide discovery services to assist users in searching and retrieving 
-  content from the system.
-
-
-:Member Node:
-
-  A DataONE Member Node (MN) is a service that stores data and metadata and may
-  store content replicated from other MNs as directed by the CNs.
-
-
-:Investigator Toolkit:
-
-  The DataONE Investigator Toolkit (ITK) is a set of tools that assist users in
-  interacting with the DataONE system.   
-
-
-
 Overview
 --------
 
 Data in the context of DataONE is a discrete unit of digital content that is
 expected to represent information obtained from some experiment or scientific
-study. The data is accompanied by "science metadata", which is a separate unit
-of digital content that describes properties of the data. Each unit of science
-data or science metadata is accompanied by a "system metadata" document which
-contains attributes that describe the digital object it accompanies (e.g.
-hash, time stamps, ownership, relationships). 
+study. The :term:`data` is accompanied by :term:`science metadata`, which is a
+separate unit of digital content that describes properties of the data. Each
+unit of science data or science metadata is accompanied by a :term:`system
+metadata` document which contains attributes that describe the digital object
+it accompanies (e.g. hash, time stamps, ownership, relationships).
 
-.. figure:: images/d1_data.png
-   :width: 3.75in
+In the initial version of DataONE, science data are treated as opaque sets of
+bytes and are stored on :term:`Member Node`\s (MN). A copy of the science
+metadata is held by the :term:`Coordinating Node`\s (CN) and is parsed to
+extract attributes to assist the discovery process (i.e. users searching for
+content).
 
-   Core data elements of DataONE
-
-.. 
-  @startuml images/d1_data.png
-  
-  Object: Identifier: string
-  
-  ScienceData: 
-  
-  ScienceMetadata:
-  
-  SystemMetadata: Created: dateTime
-  SystemMetadata: Expires: dateTime
-  SystemMetadata: SysMetadataCreated: dateTime
-  SystemMetadata: SysMetadataModified: dateTime
-  SystemMetadata: ObjectFormat: ObjectFormatType
-  SystemMetadata: Size: decimal
-  SystemMetadata: Submitter: PrincipalType
-  SystemMetadata: RightsHolder: PrincipalType
-  SystemMetadata: OriginMemberNode: NodeReferenceType
-  SystemMetadata: AuthoritativeMemberNode: NodeReferenceType
-  SystemMetadata: Obsoletes: IdentifierType [0..*]
-  SystemMetadata: ObsoletedBy: IdentifierType [0..*]
-  SystemMetadata: DerivedFrom: IdentifierType [0..*]
-  SystemMetadata: Describes: IdentifierType [0..*]
-  SystemMetadata: DescribedBy: IdentifierType [0..*]
-  SystemMetadata: Replica: ReplicaType [0..*]
-  SystemMetadata: Checksum: string
-  SystemMetadata: ChecksumAlgorithm: ChecksumAlgorithmType
-  SystemMetadata: EmbargoExpires: dateTime [0..1]
-  SystemMetadata: AccessRule: AccessRuleType [0..*]
-  
-  ScienceData --|> Object
-  ScienceMetadata --|> Object
-  SystemMetadata --|> Object
- 
-  SystemMetadata -- "1" ScienceMetadata
-  SystemMetadata -- "1"  ScienceData
-
-  @enduml
-
-
-In the initial version of DataONE, science data are treated as opaque sets of bytes
-and are stored on Member Nodes (MN). A copy of the science metadata is held
-by the Coordinating Nodes (CN) and is parsed to extract attributes that to assist
-the discovery process.
-
-This behavior is likely to change in the future to enable processing of the
-data with operations such as translation (e.g. for format migration),
-extraction (e.g. for rendering), and merging (e.g. to combine multiple
-instances of data that are expressed in different formats). Such operations
-rely upon a stable, accessible framework supporting reliable data access, and
-so are targeted after the initial requirements of DataONE are met and the core
-infrastructure is demonstrably robust.
+The opaqueness of data in DataONE is likely to change in the future to enable
+processing of the data with operations such as translation (e.g. for format
+migration), extraction (e.g. for rendering), and merging (e.g. to combine
+multiple instances of data that are expressed in different formats). Such
+operations rely upon a stable, accessible framework supporting reliable data
+access, and so are targeted after the initial requirements of DataONE are met
+and the core infrastructure is demonstrably robust.
 
 
 Metadata Types
@@ -148,9 +44,8 @@ initial version and are representative of the types of content that will need
 to be stored and parsed.
 
 In all cases the descriptive text was retrieved from the URL provided with the
-description. Hence, look at the documentation provided at the URL for
-authoritative descriptions of the particular standard.
-
+description, and so where there is discrepancy, the referenced location (or
+the currently authoritative location) takes precedence.
 
 
 Dublin Core
@@ -160,7 +55,6 @@ Dublin Core
 
 The Dublin Core Metadata Element Set is a vocabulary of fifteen properties for
 use in resource description.
-
 
 
 Darwin Core
@@ -182,7 +76,6 @@ occurrences in a simply structured way - and is probably what is meant if
 someone suggests to "format your data according to the Darwin Core".
 
 
-
 EML
 ~~~
 
@@ -196,7 +89,6 @@ series of XML document types that can by used in a modular and extensible
 manner to document ecological data. Each EML module is designed to describe
 one logical part of the total metadata that should be included with any
 ecological dataset.
-
 
 
 FGDC CSDGM
@@ -220,7 +112,6 @@ the metadata standard as well.
   (excel spreadsheet listing mapping,
    xslt: EML->FGDC (lossy), FGDC->EML)
   (mapping available for EML -> DC (Duane))
-
 
 
 GCMD DIF
@@ -258,7 +149,6 @@ elements necessary for the efficient creation of application schemata.
 
 It supports many of the spatial data formats and description languages already
 developed and in broad use within several nations or liaison organizations.
-
 
 
 NEXML
@@ -446,6 +336,29 @@ maintained by ICES
 .. raw:: latex
 
    \newpage
+
+Identifying Metadata Types
+--------------------------
+
+It is a requirement (#???) of DataONE that users are able to search the
+holdings, and so a mechanism for indexing the content and therefore a
+mechanism for specifying how to retrieve attribute values from the different
+:term:`science metadata` formats is required. This in turn requires that the
+system is able to accurately determine the format of the metadata in order to
+utilize the correct parser for extracting the necessary attribute values for
+indexing.
+
+
+- GDFR_
+- UDFR_
+- PROMON_
+
+.. _GDFR: http://www.gdfr.info/docs.htm
+
+.. _UDFR: http://www.udfr.org/
+
+.. _PRONOM: http://www.nationalarchives.gov.uk/PRONOM/Default.aspx
+
 
 Extracted Search Attributes
 ---------------------------

@@ -54,7 +54,7 @@ exclusion of a couple of steps from scenario B.
 
    :B: The CN updates the system metadata replication information.
 
-6. The CN issues are replication order to an MN.
+6. The CN issues a replication order to an MN.
 
    :A: The recipient MN retrieves copies of the system metadata and 
        associated objects (science data and metadata)
@@ -89,7 +89,7 @@ indicated in table 1.
    Identifier      Description
    =============== ================================================
    sciD.1          Science Data
-   sciM.1          Science metadata describing sciD_1
+   sciM.1          Science metadata describing sciD.1
    sysD.1          System metadata for object sciD.1
    sysM.1          System metadata for object sciM.1
    cn1.dataone.org A coordinating node
@@ -98,8 +98,8 @@ indicated in table 1.
    =============== ================================================
 
 
-The following fictitious provides an example of how uploading content to a
-member node using a DataONE client library might occur.
+The following fictitious script provides an example of how uploading content
+to a member node using a DataONE client library might occur.
 
 .. code-block:: python
 
@@ -139,10 +139,10 @@ member node using a DataONE client library might occur.
   
   # Send the data to the member node
   target_node = 'mn1.dataone.org'
-  data_sysid = d1client.create(target=target_node,
-                               data_id, fdata, sys_data)
-  meta_sysid = d1client.create(target=target_node,
-                               meta_id, fmeta, sys_meta)
+  data_sysid = d1client.create(data_id, fdata, sys_data,
+                               target=target_node)
+  meta_sysid = d1client.create(meta_id, fmeta, sys_meta,
+                               target=target_node)
   fdata.close()
   fmeta.close()
 
