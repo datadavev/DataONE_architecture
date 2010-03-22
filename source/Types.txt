@@ -37,6 +37,7 @@ Version   Structure
 .         :class:`ObjectLocationList`
 .         :class:`PingResponse`
 .         :class:`PrincipalType`
+.         :class:`QueryType`
 .         :class:`SystemMetadata`
 ========= =============================
 
@@ -187,6 +188,7 @@ Version   Structure
       UPDATE = 2;
       DELETE = 3;
       REPLICATE = 4;
+      INSERT = 5;
     }
 
 
@@ -352,6 +354,31 @@ Version   Structure
 
   Used by :mod:`SystemMetadata`
 
+
+----
+
+.. class:: QueryType
+
+   Queries are used to identify a subset of objects from a collection. The
+   form of query used by the DataONE system is likely to evolve significantly
+   as the project proceeds. The query specification listed here applies to the
+   prototype implementations (i.e. pre-version 1.0).
+
+   ::
+
+     message QueryType{
+       required FilterEnum filterType = 1 [default= NVP];
+       required FilterStruct filter = 2;
+
+       enum FilterEnum {
+         NVP = 1;
+         SOLR = 2;
+         EarthGrid = 3;
+       }
+
+     }
+
+     
 
 ----
 

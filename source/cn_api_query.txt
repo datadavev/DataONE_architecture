@@ -1,20 +1,57 @@
 Query API
 ~~~~~~~~~
 
-The Query API handles searches of science metadata and system metadata; also
-exposes log records held by CNs. This log-related functionality probably needs
-to be split out into the Logging and Alert API (not yet defined).
-
 .. module:: CN_query
    :synopsis: 
      Handles queries against science metadata, system metdata, and log
      records held by CNs
 
+The Query API handles searches of science metadata and system metadata.  It also 
+exposes log records held by CNs. This log-related functionality probably needs
+to be split out into the Logging and Alert API (not yet defined).
+
+
+
+====================== =================================
+Function               Parameters
+====================== =================================
+:func:`search`         ``(token, query) ->`` :class:`Types.ObjectList`
+:func:`getLogRecords`  ``(token, query) ->`` :class:`Types.LogRecords`
+====================== =================================
+
+
 ::
 
-  getLogRecords(token, fromDate, toDate) -> logRecords
   search(token, query) -> list of GUIDs
+  getLogRecords(token, fromDate, toDate) -> logRecords
 
+
+----
+
+.. function:: search (token, query) -> list of metadata GUIDs
+
+   Search the metadata catalog and return GUIDs of metadata records that meet
+   the criteria.
+
+   :param token: authentication token; ignored for V0.3
+
+   :param query: The criteria for matching the characteristics of the metadata
+     objects of interest. The structure of this query is described in
+     :doc:querying_content.
+
+   :returns: A list of objects that match the specfied search criteria
+   
+   :rtype: GuidList
+
+   :raises: Exceptions.NotAuthorized
+
+   :raises: Exceptions.InvalidRequest
+
+   .. todo: Details of query specification for `search(token, query)` needs to
+     be worked out.
+
+
+----
 
 .. function:: getLogRecords (token, fromDate, toDate) -> logRecords
 
@@ -42,30 +79,11 @@ to be split out into the Logging and Alert API (not yet defined).
    .. todo:: Format of the consolidated log records need to be specified.
 
 
-.. function:: search (token, query) -> list of metadata GUIDs
-
-   Search the metadata catalog and return GUIDs of metadata records that meet
-   the criteria.
-
-   :param token: authentication token; ignored for V0.3
-
-   :param query: The criteria for matching the characteristics of the metadata
-     objects of interest. The structure of this query is described in
-     :doc:querying_content.
-
-   :returns: A list of objects that match the specfied search criteria
-   
-   :rtype: GuidList
-
-   :raises: Exceptions.NotAuthorized
-
-   :raises: Exceptions.InvalidRequest
-
-   .. todo: Details of query specification for `search(token, query)` needs to
-     be worked out.
-
+----
 
 .. TODO:: Flesh these out...
+
+----
 
 .. function:: getAllCopies (token, ownerID)
 

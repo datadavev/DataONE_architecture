@@ -34,19 +34,19 @@ upon a request for logging.
    **Table 1.** Quick reference to the Logging fields described in
    more detail below.
 
-  ================ =============================== ================= ===========
-  Group            Field                           Type              Cardinality
-  ================ =============================== ================= ===========
-  Log              \                               \                 \
-  \                :attr:`entryId`                 IdentifierType    1
-  \                :attr:`identifier`              IdentifierType    1
-  \                :attr:`ipAddress`               String            1
-  \                :attr:`userAgent`               String            1
-  \                :attr:`principal`               PrincipalType     1
-  \                :attr:`event`                   EventType         1
-  \                :attr:`logDate`                 DateTime          1
-  \                :attr:`memberNode`              NodeReferenceType 1
-  ================ =============================== ================= ===========
+  ======= ==================== ================================ ===========
+  Group   Field                Type                             Cardinality
+  ======= ==================== ================================ ===========
+  Log     \                    \                                \
+  \       :attr:`entryId`      :class:`Types.IdentifierType`    1
+  \       :attr:`identifier`   :class:`Types.IdentifierType`    1
+  \       :attr:`ipAddress`    String                           1
+  \       :attr:`userAgent`    String                           1
+  \       :attr:`principal`    :class:`Types.PrincipalType`     1
+  \       :attr:`event`        :class:`Types.EventType`         1
+  \       :attr:`logDate`      :class:`Types.DateTime`          1
+  \       :attr:`memberNode`   :class:`Types.NodeReferenceType` 1
+  ======= ==================== ================================ ===========
 
 
 Logging fields
@@ -189,10 +189,12 @@ to the structure of a populated log document.
 .. literalinclude:: schemas/log_instance_example.xml
    :language: xml
 
+
 Log Schema Document
 -------------------
 
 The XSD schema file for the LoggingSchema is included here for reference.
 
 .. literalinclude:: schemas/logging.xsd
+   :language: xml
 
