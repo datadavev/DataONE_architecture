@@ -188,3 +188,11 @@ to the structure of a populated log document.
 
 .. literalinclude:: schemas/log_instance_example.xml
    :language: xml
+
+Log Schema Document
+-------------------
+
+The XSD schema file for the LoggingSchema is included here for reference.
+
+.. literalinclude:: schemas/logging.xsd
+
