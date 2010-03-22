@@ -15,9 +15,15 @@ Data Types in CICore
 ========= =============================
 Version   Structure
 ========= =============================
+.         :class:`DateTime`
+.         :class:`AccessRuleType`
+.         :class:`IdentifierType`
+.         :class:`PrincipalType`
+.         :class:`NodeReferenceType`
+.         :class:`ObjectFormatType`
 .         :class:`AuthToken`
-.         :class:`GUID`
-.         :class:`GuidList`
+.         :class:`IdentifierList`
+.         :class:`PrincipalType`
 .         :class:`ErrorMessage`
 .         :class:`ObjectList`
 .         :class:`LogRecord`
@@ -55,14 +61,47 @@ Version   Structure
 
 ----
 
-.. class:: GUID
+.. class:: AccessRuleType
 
-  An identifier in the DataONE system. This is equivalent to a unicode string
-  of printable characters. All representations of GUIDs must be encoded in
-  7-bit ASCII or UTF-8.
+   An access rule.
 
 ----
 
+.. class:: IdentifierType
+
+  An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
+  equivalent to a unicode string of printable characters. All representations
+  of identifiers must be encoded in 7-bit ASCII or UTF-8.                 
+
+
+----
+
+.. class:: PrincipalType
+
+  Person (user), group, or organization.
+
+  PrincipalIdentifier drawn from the DataONE IdentityProviderService/
+
+  Used by :mod:`SystemMetadata`
+
+
+----
+
+.. class:: NodeReferenceType
+
+  MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
+
+
+
+----
+
+.. class:: ObjectFormatType
+
+  One value from the DataONE Object Format Vocabulary, which may be an adopted
+  vocabulary maintained by another organization.
+
+
+----
 
 .. class:: AuthToken
 
@@ -72,7 +111,7 @@ Version   Structure
 ----
 
 
-.. class:: GuidList
+.. class:: IdentifierList
 
    A list of GUIDs, so a list of unicode strings.
 

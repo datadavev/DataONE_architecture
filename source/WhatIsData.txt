@@ -48,6 +48,33 @@ description, and so where there is discrepancy, the referenced location (or
 the currently authoritative location) takes precedence.
 
 
+.. table:: Types of :term:`science metadata` and their corresponding
+   :attr:`SystemMetdata.ObjectFormat` identifier.
+
+  ============================ ==========================================================
+  Name                         Object Format
+  ============================ ==========================================================
+  Dublin Core                  .
+  Darwin Core                  .
+  EML                          .
+  FGDC CSDGM                   .
+  GCMD DIF                     .
+  ISO 19137                    .
+  NEXML                        .
+  Water ML                     .
+  Genbank internal format      .
+  ISO 19115                    .
+  Dryad Application Profile    .
+  ADN                          .
+  GML Profiles                 .
+  NetCDF-CF-OPeNDAP            .
+  DDI                          .
+  MAGE                         .
+  ESML                         .
+  CSR                          .
+  ============================ ==========================================================
+
+
 Dublin Core
 ~~~~~~~~~~~
 
@@ -358,136 +385,6 @@ indexing.
 .. _UDFR: http://www.udfr.org/
 
 .. _PRONOM: http://www.nationalarchives.gov.uk/PRONOM/Default.aspx
-
-
-Extracted Search Attributes
----------------------------
-
-Data that exists within the DataONE system is always accompanied by science
-metadata in one of the supported metadata schemes (e.g. Dublin Core, EML, or
-another supported scheme) and expressed in one of the supported formats (e.g.
-XML, RDF-XML). The science metadata is also replicated with the data (where
-the Member Node (MN) supports the format and scheme) and additional copies are
-replicated across the Coordinating Nodes (CNs). The science metadata is
-parsed by the CNs to extract information for verification the content meets
-minimal metadata content and consistency requirements, and to support search
-operations.
-
-
-Essential Elements
-~~~~~~~~~~~~~~~~~~
-
-- PI / Author
-
-  - name authority service is desired for some control over names appearing in metadata
-
-  - but for search, advantages to keep simple text representation
-
-  - goal of gradual increase in specificity
-
-
-- Keyword (uncontrolled keywords)
-
-- Key concept -key concepts drawn from a set of ontologies
-
-  - term
-
-  - namespace
-
-- Spatial bounding box (largest bounding rectangle)
-
-- Spatial window (series of spatial envelopes representative of the spatial locations of where the data is collected from / relevant to.).
-
-  - Spatial features (points, bounding boxes, polygons)
-
-  - centroid
-
-  - bounding box
-
-  - polygon
-
-  - ( not largest extent )
-
-  - ( need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search )
-
-
-- Named places
- 
-  - term 
-
-  - type 
-
-  - context (Columbus OH, Columbus GA)
-
-  - namespace of gazeteer  
-
-
-- Temporal window
-
-  - Relative terms (e.g. paleo periods) need to be supported
-
-  - Date ranges
-
-  - Temporal coverage of the data set  (e.g. searches - during, before, after)
-  
-- Full text search / Text search on abstract
-
-
-Desirable Elements
-~~~~~~~~~~~~~~~~~~
-  
-- Title (2)
-
-- Type of data (format) (2)
-  
-  - original data
-
-  - summarized versions
-
-  - method used for processing (to generate summary, or original data)
-
-  - Resource type (spatial, models, observations, web service, ...)
-
-
-- Scientific variables (from a controlled vocabulary) (1)
-
-- Domain of data (physics, environmental, ...) (1)
-
-- Biological taxonomic extents (1)
-
-- Search by publication (1)
-
-
-Some Others
-~~~~~~~~~~~
-
-- Generator of data (instrument, application)
-
-- Related data (data sets, publications)
-
-- Quality / level of curation
-
-- Organizations involved in study
-
-- Size of data (bytes)
-
-- Number / location of replicas 
-
-- Dimensionality of data 
-
-- Units of measure (for sci variables)
-
-- Identifier (GUID)
-
-- Temporal coverage, low priority
-
-  - (publication date )
-
-  - creation date
-
-  - last modified date
-
-- Permissions on objects (e.g. available to read by user)
 
 
 

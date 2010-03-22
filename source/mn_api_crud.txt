@@ -17,9 +17,9 @@ operations on a :term:`Member Node`.
     :func:`describe`          ``(token, GUID) ->`` :class:`Types.DescribeResponse`
     :func:`getSystemMetadata` ``(token, GUID) ->`` :class:`Types.SystemMetadata`
     :func:`get`               ``(token, GUID) -> bytes``
-    :func:`create`            ``(token, GUID, object, sysmeta) ->`` :class:`Types.GUID`
-    :func:`update`            ``(token, GUID, object, obsoletedGUID, sysmeta) ->`` :class:`Types.GUID`
-    :func:`delete`            ``(token, GUID) ->`` :class:`Types.GUID`
+    :func:`create`            ``(token, GUID, object, sysmeta) ->`` :class:`Types.IdentifierType`
+    :func:`update`            ``(token, GUID, object, obsoletedGUID, sysmeta) ->`` :class:`Types.IdentifierType`
+    :func:`delete`            ``(token, GUID) ->`` :class:`Types.IdentifierType`
     :func:`getChecksum`       ``(token, GUID, [ChecksumAlgorithm]) ->`` :class:`Types.Checksum`
     :func:`getLogRecords`     ``(token, fromDate, toDate) ->`` :class:`Types.LogRecords`
     ========================= ===================================================
@@ -47,7 +47,7 @@ operations on a :term:`Member Node`.
 
    :param GUID: Identifier for the object in question.
 
-   :type GUID: :class:`Types.GUID`
+   :type GUID: :class:`Types.IdentifierType`
 
    :rtype: :class:`Types.DescribeResponse`
 
@@ -78,7 +78,7 @@ operations on a :term:`Member Node`.
    :param GUID: Identifier for the science data or science metedata object of
      interest.
 
-   :type GUID: :class:`Types.GUID`
+   :type GUID: :class:`Types.IdentifierType`
 
    :rtype: System metadata object describing the object.
 
@@ -111,7 +111,7 @@ operations on a :term:`Member Node`.
 
    :param GUID: The identifier for the object to be retrieved.
 
-   :type GUID: :class:`Types.GUID`
+   :type GUID: :class:`Types.IdentifierType`
 
    :rtype: bytes
 
@@ -157,7 +157,7 @@ operations on a :term:`Member Node`.
     use, :exc:`Exceptions.IdentifierNotUnique` will be raised and the
     client should try again with a different, unique identifier.
 
-  :type GUID: :class:`Types.GUID`
+  :type GUID: :class:`Types.IdentifierType`
 
   :param object:
    The data bytes that are to be added to the Member Node. 
@@ -172,7 +172,7 @@ operations on a :term:`Member Node`.
 
   :type sysmeta: :class:`Types.SystemMetadata`
 
-  :rtype: :class:`Types.GUID`
+  :rtype: :class:`Types.IdentifierType`
 
   :returns: 
    The identifier that was used to insert the document into the system. 
@@ -214,7 +214,7 @@ operations on a :term:`Member Node`.
    raised and the client should try again with a different, unique
    identifier.
 
-  :type GUID: :class:`Types.GUID`
+  :type GUID: :class:`Types.IdentifierType`
 
   :param object:
    The data bytes that are to be added to the Member Node. 
@@ -227,7 +227,7 @@ operations on a :term:`Member Node`.
    an exception will be raised and the client should try again with a 
    different, unique identifier.
 
-  :type obsoletedGUID: :class:`Types.GUID`
+  :type obsoletedGUID: :class:`Types.IdentifierType`
 
   :param sysmeta:
    The system metadata document that provides basic information about the
@@ -239,7 +239,7 @@ operations on a :term:`Member Node`.
   :returns: 
    The identifier that was used to insert the document into the system. 
 
-  :rtype: :class:`Types.GUID`
+  :rtype: :class:`Types.IdentifierType`
 
   :raises Exceptions.NotAuthorized:
 
@@ -281,12 +281,12 @@ operations on a :term:`Member Node`.
 
   :param GUID: The identifier of the object to be deleted.
 
-  :type GUID: :class:`Types.GUID`
+  :type GUID: :class:`Types.IdentifierType`
 
   :returns: 
    The identifier that was used to delete the document from the system. 
 
-  :rtype: :class:`Types.GUID`
+  :rtype: :class:`Types.IdentifierType`
 
   :raises Exceptions.NotAuthorized:
 
@@ -321,7 +321,7 @@ operations on a :term:`Member Node`.
   :param GUID: The identifier of the object the operation is being performed
     on.
 
-  :type GUID: :class:`Types.GUID`
+  :type GUID: :class:`Types.IdentifierType`
 
   :param ChecksumAlgorithm: 
     The name of an algorithm that will be used to compute a checksum of the
