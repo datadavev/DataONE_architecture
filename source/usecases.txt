@@ -42,6 +42,7 @@ Use Cases
    /UseCases/34_uc
    /UseCases/35_uc
    /UseCases/36_uc
+   /UseCases/37_uc
 
 ..
   Comment.
