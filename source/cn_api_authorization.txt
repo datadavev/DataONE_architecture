@@ -6,15 +6,15 @@ Coordinating Node Authorization API
 
 .. table:: Methods expressed by the :mod:`CN_authorization`.
 
-   ================== ==========================================
-   Function           Parameters
-   ================== ==========================================
-   :func:`login`      ``(user, password, [auth_system]) ->`` :class:`Types.AuthToken`
-   :func:`setAccess`  ``(token, GUID, accessLevel) ->`` boolean
-   :func:`setOwner`   ``(token, userid, objectList) ->`` :class:`Types.IdentifierList`
-   :func:`newAccount` ``(username, password, [authSystem]) ->`` :class:`Types.PrincipalType`
-   :func:`verify`     ``(token) ->`` boolean
-   ================== ==========================================
+   =================== ==========================================
+   Function            Parameters
+   =================== ==========================================
+   :func:`login`       ``(user, password, [authSystem]) ->`` :class:`Types.AuthToken`
+   :func:`setAccess`   ``(token, GUID, accessLevel) ->`` boolean
+   :func:`setOwner`    ``(token, userid, GUID) ->`` :class:`Types.IdentifierType`
+   :func:`newAccount`  ``(username, password, [authSystem]) ->`` :class:`Types.PrincipalType`
+   :func:`verifyToken` ``(token) ->`` boolean
+   =================== ==========================================
 
 
 ----
@@ -43,14 +43,14 @@ Coordinating Node Authorization API
   :rtype: :class:`Types.AuthToken`
 
   :raises Exceptions.InvalidCredentials: 
-    :code: 401
-    :detail_code:
+    :errorCode: 401
+    :detailCode:
 
     The supplied credentials were invalid (password + username don't jive)
 
   :raises Exceptions.AuthenticationTimeout: 
-    :code: 408
-    :detail_code:
+    :errorCode: 408
+    :detailCode:
 
     A response from the authentication service was not received before the
     operation timed out.
@@ -86,21 +86,15 @@ Coordinating Node Authorization API
 
    :rtype: boolean
 
-   :raises Exceptions.InvalidToken: 
-     :code: 401
-     :detail_code: 
-
-     The supplied token is invalid.
-
    :raises Exceptions.NotFound: 
-     :code: 404
-     :detail_code: 
+     :errorCode: 404
+     :detailCode: 
 
    The object identified by GUID was not found.
 
    :raises Exceptions.NotAuthorized: 
-     :code: 401
-     :detail_code:
+     :errorCode: 401
+     :detailCode:
 
      The supplied identity does not have permission to alter access control
      rules for the object.
@@ -112,10 +106,10 @@ Coordinating Node Authorization API
 
 ----
 
-.. function:: setOwner(token, userid, objectList) -> IdentifierList
+.. function:: setOwner(token, GUID, userId) -> IdentifierType
 
-   Changes ownership of all objects in objectList to the identity specified by
-   userid.
+   Changes ownership of the specified object to the identity specified by
+   userid. 
 
    :param token: 
       The authentication token returned by :func:`login`. Used to verify that
@@ -128,25 +122,31 @@ Coordinating Node Authorization API
 
    :type userid:  :class:`Types.PrincipalType`
 
-   :param objectList: a list of object identifiers (GUIDs) that are to be modified.
+   :param GUID: Identifier indicating the object to be modified.
 
-   :type objectList: :class:`Types.IdentifierList`
+   :type GUID: :class:`Types.IdentifierType`
 
-   :returns: List of objects for which the operation failed.
+   :returns: Identifier of object if successful.
 
-   :rtype: :class:`Types.IdentifierList`
+   :rtype: :class:`Types.IdentifierType`
 
    :raises Exceptions.InvalidToken: 
-     :code: 401
-     :detail_code:
+     :errorCode: 401
+     :detailCode:
 
      The supplied token is invalid.
 
    :raises Exceptions.NotAuthorized: 
-     :code: 401
-     :detail_code:
+     :errorCode: 401
+     :detailCode:
 
      The supplied identity does not have authority to change ownership.
+
+  :raises Exceptions.NotFound:
+    :errorCode: 404
+    :detailCode: 
+
+    The specified object does not exist on the node processing the call.
 
 
 ----
@@ -176,16 +176,22 @@ Coordinating Node Authorization API
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.IdentifierAlreadyExists: 
-     :code: 409
-     :detail_code:
+   :raises Exceptions.IdentifierNotUnique: 
+     :errorCode: 409
+     :detailCode:
 
      The provided identity already exists in the system
 
+   :raises Exceptions.InvalidCredentials:
+     :errorCode: 401
+     :detailCode:
+
+     Raised if the supplied credentials are invalid, such as a password that
+     is too weak or an innapropriate user name.
 
 ----
 
-.. function:: verify(token) -> boolean
+.. function:: verifyToken(token) -> boolean
 
   Test if the provided token is valid. 
 
