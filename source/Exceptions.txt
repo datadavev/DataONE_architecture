@@ -8,50 +8,53 @@ Exceptions Raised by MN and CN APIs
 .. contents::
 
 
-Summary of exceptions listed here and the corresponding code and detail_code.
+.. table:: Summary of exceptions listed here and the corresponding errorCode.
 
-============================== ===== ==================================================
-Exception                      Code  Description
-============================== ===== ==================================================
-:exc:`AuthenticationTimeout`   408   The client took too long to complete the request
-:exc:`IdentifierNotUnique`     409   The supplied identifier already exists so conflicts 
-                                     with the state of the resource
-:exc:`InsufficientResources`   413   This could be 400, 413, or 415, though none of 
-                                     these correspond with the semantics of the error 
-                                     condition.
-:exc:`InvalidCredentials`      401   The supplied credentials could not be verified
-:exc:`InvalidRequest`          400   .
-:exc:`InvalidSystemMetadata`   400   .
-:exc:`InvalidToken`            401   The supplied authentication token is not valid
-:exc:`NotAuthorized`           401   Access to the indicated resource is not permitted 
-                                     with the supplied credentials
-:exc:`NotFound`                404   The referenced object could not be located
-:exc:`UnsupportedMetadataType` 400   The supplied science metadata can not be processed
-:exc:`UnsupportedType`         400   Treated as an invalid request.  Response should 
-                                     indicate the problem with the supplied data.
-============================== ===== ==================================================
+  ============================== ========= ==================================================
+  Exception                      errorCode Description
+  ============================== ========= ==================================================
+  :exc:`AuthenticationTimeout`   408       The client took too long to complete the request
+  :exc:`IdentifierNotUnique`     409       The supplied identifier already exists so conflicts 
+                                           with the state of the resource
+  :exc:`InsufficientResources`   413       This could be 400, 413, or 415, though none of 
+                                           these correspond with the semantics of the error 
+                                           condition.
+  :exc:`InvalidCredentials`      401       The supplied credentials could not be verified
+  :exc:`InvalidRequest`          400       Parameters provided to the call were malformed or 
+                                           inappropriate.
+  :exc:`InvalidSystemMetadata`   400       System Metadata document is invalid, malformed,
+                                           incomplete, or contains erroneous information.
+  :exc:`InvalidToken`            401       The supplied authentication token is not valid
+  :exc:`NotAuthorized`           401       Access to the indicated resource is not permitted 
+                                           with the supplied credentials
+  :exc:`NotFound`                404       The referenced object could not be located
+  :exc:`UnsupportedMetadataType` 400       The supplied science metadata can not be processed
+  :exc:`UnsupportedType`         400       Treated as an invalid request.  Response should 
+                                           indicate the problem with the supplied data.
+  ============================== ========= ==================================================
 
 
 General
 ~~~~~~~
 
 All exceptions raised by APIS methods in DataONE cicore must include three
-basic elements of information and an optional element ``trace_information`` as
+basic elements of information and an optional element ``traceInformation`` as
 detailed in :class:`Types.ErrorMessage`, repeated here for convenience.
 
 ================= ===============================================================
 Element           Description
 ================= ===============================================================
-code              The error code.  This is the HTTP error code (i.e. 4xx)
-detail_code       An error code that can be mapped to a specific location in the 
+errorCode         The error code.  This is the HTTP error code (i.e. 4xx)
+detailCode        A code that can be mapped to a specific location in the 
                   source code of the implementation.
 description       A human readable message describing what happened
-trace_information A more detailed error code which provides a precise indication 
-                  of where the exception was raised.
+traceInformation  An optional dictionary of values that provides more information about
+                  the error condition (e.g. calling parameters).  Note that traceInformation
+                  should never contain sensitive information.
 ================= ===============================================================
 
 There will be conditions encountered where exceptions are raised in the APIs
-which are not exposed to HTTP. In these cases, the ``error_detail`` and
+which are not exposed to HTTP. In these cases, the ``detailCode`` and
 ``description`` values must be included, and the code should be set to an
 appropriate value.
 
@@ -59,19 +62,8 @@ appropriate value.
 HTTP Exception Handling Codes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following HTTP codes are used in HTTP response header when an exception
-needs to be raised from one of the MemberNodes. The current exceptions from
-Member Node operations that need to be mapped to these codes are:
-
-:MN_authorization: InvalidCredentials, AuthenticationTimeout, InvalidToken
-
-:MN_crud: NotFound, NotAuthorized, UnsupportedType, InsufficientResources, 
-  IdentifierNotUnique, UnsupportedType
-
-:MN_replication: InvalidCriteria, InvalidIdentifier, InvalidOperation
-
-Here are candidate HTTP error codes that need to be mapped to these
-exceptions.
+HTTP error codes of relevance to the DataONE cicore are repeated here for
+convenience. Refer to the `HTTP specification`_ for a complete reference.
 
 ==== =================== ==========================================
 Code Meaning             Description
@@ -106,6 +98,8 @@ Code Meaning             Description
                          by the requested resource for the requested method. 
 ==== =================== ==========================================
 
+.. _HTTP specification: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
 
 Serializing Exception Information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,9 +125,9 @@ In HTML:
       <p>
         <dl>
           <dt>Code</dt>
-          <dd class='error_code'>404</dd>
+          <dd class='errorCode'>404</dd>
           <dt>Detail Code</dt>
-          <dd class='detail_code'>14001</dd>
+          <dd class='detailCode'>14001</dd>
         </dl>
       </p>
       <div class='description'>
@@ -141,7 +135,7 @@ In HTML:
         <p>Please try <a class='hint' href='http://cn.dataone.org/cn/resolve/123XYZ'>
            resolving</a> at a <a href='http://dataone.org'>DataONE</a> coordinating node.</p>
       </div>
-      <div class='trace_information'>
+      <div class='traceInformation'>
         <dt>identifier</dt>
         <dd>123XYZ</dd>
         <dt>method</dt>
@@ -155,25 +149,25 @@ In XML:
 
 .. code-block:: xml
 
-  <error code='404' detail_code='14001'>
+  <error errorCode='404' detailCode='14001'>
     <description>
       <message>The specified object does not exist on this node.</message>
       <hint>http://cn.dataone.org/cn/resolve/123XYZ</hint>
     <description>
-    <trace_information>
+    <traceInformation>
       <value key='identifier'>123XYZ</identifier>
       <value key='method'>mn.get</value>
-    </trace_information>
+    </traceInformation>
   </error>
 
 
 In JSON::
 
-  {'code':404,
-   'detail_code': 14001,
+  {'errorCode':404,
+   'detailCode': 14001,
    'description': {'message': 'The specified object does not exist on this node.',
                    'hint':'http://cn.dataone.org/cn/resolve/123XYZ'},
-   'trace_information': {'identifier':'123XYZ',
+   'traceInformation': {'identifier':'123XYZ',
                          'method': 'mn.get'}
    }
 
@@ -187,225 +181,231 @@ Log message body::
 The Exceptions
 ~~~~~~~~~~~~~~
 
-.. exception:: AuthenticationTimeout(detail_code, description, [trace_information])
+.. exception:: AuthenticationTimeout(detailCode, description, [traceInformation])
 
-   The authentication request timed out.  
+   The authentication request timed out.
 
-  :code: 408
+   :errorCode: 408
 
-  :param detail_code: Set by the method raising the exception.
+   :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+   :type detailCode: integer
+
+   :description: Human readable description that can assist the caller in determining 
+     how to avoid the problem.
+
+   :type description: string
+
+   :param traceInformation: 
+     Optional set of key-value pairs that can include the name of the method
+     that raised the error plus other details such as parameters used in the
+     call that can be helpful for debugging. Sensitive information such as
+     passwords must **never** be logged or recorded in error messages.
+
+   :type traceInformation: dictionary
+
+
+----
+
+.. exception:: IdentifierNotUnique(detailCode, identifier, description, [traceInformation])
+
+   The provided identifier conflicts with an existing identifier in the
+   DataONE system. When serializing, the identifier in conflict should be
+   rendered in traceInformation as the value of an ``identifier`` key.
+
+  :errorCode: 409
+
+  :param detailCode: Set by the method raising the exception.
+
+  :type detailCode: integer
+
+  :param identifier: The identifier value that is in conflict
+
+  :type identifier: :class:`Types.IdentifierType`
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
-    Optional set of key-value pairs that can include the name of the method
-    that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
+  :param traceInformation: 
+    Optional additional information to assist with debugging.
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: IdentifierNotUnique
+.. exception:: InsufficientResources(detailCode, description, [traceInformation])
 
-  The provided identifier conflicts with an existing identifier in the DataONE system.
+  There are insufficient resources at the node to support the requested operation.  
 
-  :code: 409
+  :errorCode: 413
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
+    call that can be helpful for debugging. 
 
-  :type trace_information: dictionary
-
-----
-
-.. exception:: InsufficientResources
-
-  There are insufficient resources at the node to support the requested operation.
-
-  :code: 413
-
-  :param detail_code: Set by the method raising the exception.
-
-  :type detail_code: integer
-
-  :description: Human readable description that can assist the caller in determining 
-    how to avoid the problem.
-
-  :type description: string
-
-  :param trace_information: 
-    Optional set of key-value pairs that can include the name of the method
-    that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
-
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: InvalidCredentials(detail_code, description, [trace_information])
+.. exception:: InvalidCredentials(detailCode, description, [traceInformation])
 
-    Indicates that the credentials supplied are invalid for some reason.
-    
-    :code: 401
+    Indicates that the credentials supplied (to login() for example) are
+    invalid for some reason.
 
-    :param detail_code: Set by the method raising the exception.
+    :errorCode: 401
 
-    :type detail_code: integer
+    :param detailCode: Set by the method raising the exception.
+
+    :type detailCode: integer
 
     :description: Human readable description that can assist the caller in determining 
       how to avoid the problem.
 
     :type description: string
 
-    :param trace_information: 
+    :param traceInformation: 
        Can include the name of the method that raised the error and perhaps
        the username. Obviously, the supplied password or other sensitive
        information should not be included.
 
-    :type trace_information: dictionary
+    :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: InvalidRequest
+.. exception:: InvalidRequest(detailCode, description, [traceInformation])
 
-   The parameters provided in the call were invalid.
+   The parameters provided in the call were invalid. The names and values of
+   parameters should included in traceInformation.
 
-  :code: 400
+  :errorCode: 400
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
+    call that can be helpful for debugging. 
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: InvalidSystemMetadata
+.. exception:: InvalidSystemMetadata(detailCode, description, [traceInformation])
 
    The supplied system metadata is invalid. This could be because some
    required field is not set, the metadata document is malformed, or the value
    of some field is not valid.
 
-  :code: 400
+   The content of traceInformation should contain additional information about
+   the error encountered (e.g. name of the field with bad value, if the
+   document is malformed)
 
-  :param detail_code: Set by the method raising the exception.
+  :errorCode: 400
 
-  :type detail_code: integer
+  :param detailCode: Set by the method raising the exception.
+
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
-    Optional set of key-value pairs that can include the name of the method
-    that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
+  :param traceInformation: 
+    Key-value pairs that should include additional information about the error
+    that was encountered while processing the SystemMetadata document.
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: InvalidToken(detail_code, description, [trace_information])
+.. exception:: InvalidToken(detailCode, description, [traceInformation])
 
    The supplied authentication token could not be verified as being valid.
 
-  :code: 401
+  :errorCode: 401
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
     call that can be helpful for debugging. Sensitive information such as
     passwords must **never** be logged or recorded in error messages.
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: NotAuthorized(detail_code, description, [trace_information])
+.. exception:: NotAuthorized(detailCode, description, [traceInformation])
 
    The supplied identity information is not authorized for the requested operation.
 
-  :code: 401
+  :errorCode: 401
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
     call that can be helpful for debugging. Sensitive information such as
     passwords must **never** be logged or recorded in error messages.
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: NotFound(detail_code, identifier, description, [trace_information])
+.. exception:: NotFound(detailCode, identifier, description, [traceInformation])
 
    Used to indicate that an object is not present on the node where the
    exception was raised.
 
-   :code: 404
+   :errorCode: 404
 
-   :param detail_code: 
+   :param detailCode: 
      The detail code is set by the particular method that raises the exception.
 
-   :type detail_code: integer
+   :type detailCode: integer
 
    :param identifier: The identifier of the object that was requested.
 
@@ -415,66 +415,64 @@ The Exceptions
 
    :type description: string
 
-   :param trace_information: 
+   :param traceInformation: 
      Optional. Additional information that can be used to assist debugging an
      error condition, consisting of a dictionary with string or integer keys and 
      string values.
 
-   :type trace_information: dictionary
+   :type traceInformation: dictionary
 
 ----
 
-.. exception:: UnsupportedMetadataType(detail_code, description, [trace_information])
+.. exception:: UnsupportedMetadataType(detailCode, description, [traceInformation])
 
   The science metadata document submitted is not of a type that is recognized
   by the DataONE system.
 
-  :code: 400
+  :errorCode: 400
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
-    call that can be helpful for debugging. Sensitive information such as
-    passwords must **never** be logged or recorded in error messages.
+    call that can be helpful for debugging. 
 
-  :type trace_information: dictionary
-
+  :type traceInformation: dictionary
 
 
 ----
 
-.. exception:: UnsupportedType(detail_code, description, [trace_information])
+.. exception:: UnsupportedType(detailCode, description, [traceInformation])
 
   The information presented appears to be unsupported. This error might be
   encountered when attempting to register unrecognized science metadata for
   example.
 
-  :code: 400
+  :errorCode: 400
 
-  :param detail_code: Set by the method raising the exception.
+  :param detailCode: Set by the method raising the exception.
 
-  :type detail_code: integer
+  :type detailCode: integer
 
   :description: Human readable description that can assist the caller in determining 
     how to avoid the problem.
 
   :type description: string
 
-  :param trace_information: 
+  :param traceInformation: 
     Optional set of key-value pairs that can include the name of the method
     that raised the error plus other details such as parameters used in the
     call that can be helpful for debugging. Sensitive information such as
     passwords must **never** be logged or recorded in error messages.
 
-  :type trace_information: dictionary
+  :type traceInformation: dictionary
 
 

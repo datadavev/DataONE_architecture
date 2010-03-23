@@ -54,14 +54,14 @@ operations on a :term:`Member Node`.
      the object as provided by the Member Node. 
      
    :raises Exceptions.NotAuthorized: 
-      :code: 401
-      :detail_code: 
+      :errorCode: 401
+      :detailCode: 
 
       The provided identity does not have READ permission on the object.
 
    :raises Exceptions.NotFound: 
-      :code: 404
-      :detail_code: 
+      :errorCode: 404
+      :detailCode: 
 
       The object specified by GUID does not exist at this node. The
       description should include a reference to the resolve method.
@@ -119,35 +119,35 @@ operations on a :term:`Member Node`.
    The identifier that was used to insert the document into the system. 
 
   :raises Exceptions.NotAuthorized:
-    :code: 401
-    :detail_code: 
+    :errorCode: 401
+    :detailCode: 
     
     The provided identity does not have permission to WRITE to the Member Node.
 
   :raises Exceptions.IdentifierNotUnique:
-    :code: 409
-    :detail_code: 
+    :errorCode: 409
+    :detailCode: 
 
     The requested identifier is already used by another object and therefore
     can not be used for this object. Clients should choose a new identifier
     that is unique and retry the operation.
 
   :raises Exceptions.UnsupportedType: 
-    :code: 400
-    :detail_code: 
+    :errorCode: 400
+    :detailCode: 
 
     The MN can not deal with the content specified in the data package.
 
   :raises Exceptions.InsufficientResources:
-    :code: 413
-    :detail_code: 
+    :errorCode: 413
+    :detailCode: 
 
     The MN is unable to execute the transfer because it does not have
     sufficient storage space for example.
 
   :raises Exceptions.InvalidSystemMetadata:
-    :code: 400
-    :detail_code:
+    :errorCode: 400
+    :detailCode:
 
     The supplied system metadata is invalid. This could be because some
     required field is not set, the metadata document is malformed, or the
@@ -204,41 +204,41 @@ operations on a :term:`Member Node`.
   :rtype: :class:`Types.IdentifierType`
 
   :raises Exceptions.NotAuthorized:
-    :code: 401
-    :detail_code: 
+    :errorCode: 401
+    :detailCode: 
 
   :raises Exceptions.IdentifierNotUnique:
-    :code: 409
-    :detail_code: 
+    :errorCode: 409
+    :detailCode: 
 
    The requested identifier is already used by another object and therefore
    can not be used for this object.  Clients should choose a new identifier
    that is unique and retry the operation.
 
   :raises Exceptions.UnsupportedType: 
-    :code: 400
-    :detail_code: 
+    :errorCode: 400
+    :detailCode: 
 
    The MN can not deal with the content specified in the data package.
 
   :raises Exceptions.InsufficientResources:
-    :code: 413
-    :detail_code: 
+    :errorCode: 413
+    :detailCode: 
 
    The MN is unable to execute the transfer because it does not have
    sufficient storage space for example.
 
   :raises Exceptions.NotFound:
-    :code: 404
-    :detail_code: 
+    :errorCode: 404
+    :detailCode: 
 
    The update operation failed because the object which was supposed to be
    updated in the system (indicated via the obsoletedGUID parameter) is not
    present in the DataONE system, so update is an illegal operation.
 
   :raises Exceptions.InvalidSystemMetadata:
-    :code: 400
-    :detail_code:
+    :errorCode: 400
+    :detailCode:
 
     The supplied system metadata is invalid. This could be because some
     required field is not set, the metadata document is malformed, or the
@@ -246,7 +246,6 @@ operations on a :term:`Member Node`.
 
 
 ----
-
 
 .. function:: delete (token, GUID) -> IdentifierType
 
@@ -274,12 +273,12 @@ operations on a :term:`Member Node`.
   :rtype: :class:`Types.IdentifierType`
 
   :raises Exceptions.NotAuthorized:
-    :code: 401
-    :detail_code: 
+    :errorCode: 401
+    :detailCode: 
 
   :raises Exceptions.NotFound:
-    :code: 404
-    :detail_code: 
+    :errorCode: 404
+    :detailCode: 
 
    The delete operation failed because the object is not present on the node
    servicing the request.
@@ -324,12 +323,12 @@ operations on a :term:`Member Node`.
      appropriate format, default being xhtml.
 
    :raises: Exceptions.NotAuthorized
-     :code: 401
-     :detail_code: 
+     :errorCode: 401
+     :detailCode: 
 
    :raises: Exceptions.NotFound
-     :code: 404
-     :detail_code: 
+     :errorCode: 404
+     :detailCode: 
 
 ----
 
@@ -358,12 +357,12 @@ operations on a :term:`Member Node`.
    :rtype: :class:`Types.SystemMetadata`
 
    :raises: Exceptions.NotAuthorized
-     :code: 401
-     :detail_code: 
+     :errorCode: 401
+     :detailCode: 
 
    :raises Exceptions.NotFound: 
-     :code: 404
-     :detail_code: 
+     :errorCode: 404
+     :detailCode: 
 
      There is no data or science metadata identified by the given GUID on the
      node where the request was serviced. The error message should provide a
@@ -402,15 +401,22 @@ operations on a :term:`Member Node`.
   :rtype: :class:`Types.Checksum`
 
   :raises Exceptions.NotAuthorized:
-    :code:
-    :detail_code: 
+    :errorCode:
+    :detailCode: 
 
   :raises Exceptions.NotFound:
-    :code:
-    :detail_code: 
+    :errorCode:
+    :detailCode: 
 
+  :raises Exceptions.InvalidRequest:
+    :errorCode: 400
+    :detailCode:
 
-----
+    A supplied parameter was invalid, most likely an unsupported checksum
+    algorithm was specified, in which case the error message should include an
+    enumeration of supported checksum algorithms.
+    
+     ----
 
 .. function:: getLogRecords(token, fromDate, toDate) -> LogRecords
 
@@ -435,12 +441,12 @@ operations on a :term:`Member Node`.
    :rtype: :class:`Types.LogRecords`
 
    :raises Exceptions.NotAuthorized:
-     :code: 401
-     :detail_code: 
+     :errorCode: 401
+     :detailCode: 
 
    :raises: Exceptions.InvalidRequest:
-     :code: 400
-     :detail_code: 
+     :errorCode: 400
+     :detailCode: 
 
      The request parameters were malformed or an invalid date range was specified.
 
@@ -455,8 +461,8 @@ operations on a :term:`Member Node`.
    `getLogRecords()`.
 
    :raises: Exceptions.InvalidRequest:
-     :code:
-     :detail_code: 
+     :errorCode:
+     :detailCode: 
 
 ----
 

@@ -41,20 +41,20 @@ operations on a :term:`Coordinating Node`.
   :rtype: :class:`Types.SystemMetadata`
 
   :raises Exceptions.NotAuthorized:
-    :code: 401
-    :detail_code: 
+    :errorCode: 401
+    :detailCode: 
 
     The provided identity does not have READ permission on the object.
 
   :raises Exceptions.NotFound: 
-    :code: 404
-    :detail_code:
+    :errorCode: 404
+    :detailCode:
 
     There is no data or science metadata identified by the given GUID.
 
   :raises Exceptions.InvalidRequest:
-    :code: 400
-    :detail_code:
+    :errorCode: 400
+    :detailCode:
      
     The GUID requested identifies a system metadata object.
 
@@ -88,12 +88,12 @@ operations on a :term:`Coordinating Node`.
   :rtype: bytes
 
   :raises Exceptions.NotAuthorized:
-    :code: 401
-    :detail_code:
+    :errorCode: 401
+    :detailCode:
 
   :raises Exceptions.NotFound: 
-    :code: 404
-    :detail_code:
+    :errorCode: 404
+    :detailCode:
 
     The object specified by the GUID is a data object and is not present on
     this (or any) CN. This response could be accompanied by the results of a
@@ -125,21 +125,20 @@ operations on a :term:`Coordinating Node`.
     :rtype: :class:`Types.ObjectLocationList`
 
    :raise Exceptions.NotAuthorized:
-     :code: 401
-     :detail_code:
+     :errorCode: 401
+     :detailCode:
 
    :raises Exceptions.NotFound: 
-     :code: 404
-     :detail_code:
+     :errorCode: 404
+     :detailCode:
 
      There is no data object identified by the given GUID.
 
    :raises Exceptions.InvalidRequest: 
-     :code: 400
-     :detail_code
+     :errorCode: 400
+     :detailCode
 
-     The GUID requested identifies a science metadata object or a system
-     metadata object.
+     The GUID requested identifies a system metadata object.
 
 
 ----
@@ -169,8 +168,8 @@ operations on a :term:`Coordinating Node`.
   .. TODO:: Define what is returned (if anything)
 
   :raises exceptions.UnspportedMetadataType: 
-    :code: 400
-    :detail_code: 
+    :errorCode: 400
+    :detailCode: 
 
     The science metadata is not of a type supported by the D1 system
 
@@ -208,14 +207,14 @@ operations on a :term:`Coordinating Node`.
     :rtype: :class:`Types.IdentifierType`
 
     :raises Exceptions.NotAuthorized:
-      :code: 401
-      :detail_code:
+      :errorCode: 401
+      :detailCode:
 
       Supplied credentials do not have WRITE privileges.
 
     :raises Exceptions.InvalidRequest: 
-      :code: 400
-      :detail_code:
+      :errorCode: 400
+      :detailCode:
 
       The format requested is not a valid format accepted by this service.
 
@@ -242,16 +241,16 @@ operations on a :term:`Coordinating Node`.
    :type IDofObject: :class:`Types.IdentifierType`
 
    :raises Exceptions.NotAuthorized:
-     :code: 401
-     :detail_code:
+     :errorCode: 401
+     :detailCode:
 
    :raises NotFound:
-     :code: 404
-     :detail_code: 
+     :errorCode: 404
+     :detailCode: 
 
    :raises InvalidRequest:
-     :code: 400
-     :detail_code:
+     :errorCode: 400
+     :detailCode:
 
      Raised if the parameters are incorrect (e.g. unknown relationship type specfied)
 

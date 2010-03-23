@@ -122,7 +122,7 @@ Version   Structure
 
   .. attribute:: objectformat
 
-     The value of the :attr:`SystemMetadata.ObjectFormat` entry available in
+     The value of the :attr:`SystemMetadata.objectFormat` entry available in
      the :class:`SystemMetadata`.
 
   .. attribute:: size
@@ -131,11 +131,11 @@ Version   Structure
 
   .. attribute:: last_modified
 
-     A DateTime value that indicates when the object was last modified. Note
-     that all time stamps in DataONE refer to UTC if no time zone information
-     is provided with the value. Note that since content in DataONE is
-     intended to be static, this value will refer to the time that the object
-     was created on the system responding to the request.
+     A :class:`DateTime` value that indicates when the object was last
+     modified. Note that all time stamps in DataONE refer to UTC if no time
+     zone information is provided with the value. Note that since content in
+     DataONE is intended to be static, this value will refer to the time that
+     the object was created on the system responding to the request.
 
 ----
 
@@ -146,8 +146,8 @@ Version   Structure
    ::
    
      message ErrorMessage {
-       required int32 code = 1;
-       required int32 detail_code = 2;
+       required int32 errorCode = 1;
+       required int32 detailCode = 2;
        required string description = 3;
        
        message KVPair {
@@ -155,7 +155,7 @@ Version   Structure
          required string value = 2;
        }
        
-       repeated KVPair trace_information = 4;
+       repeated KVPair traceInformation = 4;
      }
 
 
@@ -172,13 +172,18 @@ Version   Structure
 
     A human readable message describing what happened
 
+  .. attribute:: trace_information
+
+    A dictionary of key, value pairs that can provide more information about
+    the error condition.
+
 
 ----
 
 .. class:: EventType
 
   The contolled list of events that are logged, which will include 'CREATE',
-  'UPDATE', 'DELETE', 'READ', and 'REPLICATE' events
+  'UPDATE', 'DELETE', 'READ', 'REPLICATE' events
 
   ::
 
@@ -216,8 +221,9 @@ Version   Structure
 .. class:: IdentifierType
 
   An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
-  equivalent to a unicode string of printable characters. All representations
-  of identifiers must be encoded in 7-bit ASCII or UTF-8.                 
+  equivalent to a unicode string of printable characters, excluding
+  whitespace. All representations of identifiers must be encoded in 7-bit
+  ASCII or UTF-8.
 
 
 ----
@@ -229,7 +235,7 @@ Version   Structure
    ::
    
      message GuidList {
-       repeated string guid = 1;
+       repeated IdentifierType guid = 1;
      }
 
 ----
@@ -243,6 +249,7 @@ Version   Structure
 
     message LogRecord {
       required string timestamp = 1;
+      
     }
 
 

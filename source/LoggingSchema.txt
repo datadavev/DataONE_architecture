@@ -7,7 +7,7 @@ Logging Schema
   ======== ============================================================
   Date     Comment
   ======== ============================================================
-  20100322 (M.J.) Added addiitonal fields from SBA CCIT meeting
+  20100322 (M.J.) Added additional fields from SBA CCIT meeting
   20100210 (M.J.) First draft 
   ======== ============================================================
 
