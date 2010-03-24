@@ -1,6 +1,8 @@
 Metadata Attributes for Discovery
 =================================
 
+.. module:: SearchMetadata
+
 This document describes the attributes pulled from :term:`science metadata`
 documents that are used to assist discovery (i.e. search) of content in the DataONE system.
 
@@ -12,15 +14,43 @@ Data that exists within the DataONE system is always accompanied by science
 metadata in one of the supported metadata schemes (e.g. Dublin Core, EML, or
 another supported scheme) and expressed in one of the supported formats (e.g.
 XML, RDF-XML). The science metadata is also replicated with the data (where
-the Member Node (MN) supports the format and scheme) and additional copies are
-replicated across the Coordinating Nodes (CNs). The science metadata is
-parsed by the CNs to extract information for verification the content meets
-minimal metadata content and consistency requirements, and to support search
+the Member Node supports the format and scheme) and additional copies are
+replicated across the Coordinating Nodes. The science metadata is parsed by
+the CNs to extract information to verify the content provides at least the
+minimal metadata content and meets consistency requirements. Attributes
+extracted from the science metadata are also used to support search
 operations.
+
+
+Searching content in DataONE involves the process of matching a user provided
+value with some value extracted from the science metadata.
+
+Values can be simple (e.g. string, integer, floating point, date) or compound
+(e.g. spatial coordinate constructed from two floats - the latitude and
+longitude and a string - the coordinate system identifier).
+
+
+Expression in science metadata
+
+Expression in extracted values that are indexed
+
+Expression in a query
+
+
+Required Query Expressions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Search the authors of content.
+
+Search the keywords of content
 
 
 Essential Elements
 ~~~~~~~~~~~~~~~~~~
+
+.. attribute:: author
+
+   
 
 - PI / Author
 
@@ -31,7 +61,13 @@ Essential Elements
   - goal of gradual increase in specificity
 
 
+
+.. attribute:: keyWord
+
 - Keyword (uncontrolled keywords)
+
+
+.. attribute:: keyConcept
 
 - Key concept -key concepts drawn from a set of ontologies
 

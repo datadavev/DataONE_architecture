@@ -48,33 +48,47 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
 
 
+----
+
 .. function::  listObjects (token, query) -> ObjectList
 
    Retrieve the list of GUIDs for objects owned by the MN that meet the query
    criteria. This method supports the synchronization of science metadata from
    a MN to a CN.
 
-   :param token: authentication token; ignored for V0.3
+   :param token: authentication token
+
+   :type token: :class:`Types.AuthToken`
 
    :param query: 
      The criteria specifying the characteristics of the objects of interest.
-     The structure of this query is not yet defined. It must be rich enough so
-     that a CN can ask "What science metadata objects do you own, that are not
-     yet synchronized to a CN?" There are likely other queries that will need
-     to be posed as well.
+     It must be rich enough so that a CN can ask "What science metadata
+     objects do you own, that are not yet synchronized to a CN?" There are
+     likely other queries that will need to be posed as well.
+
+   :type query: :class:`Types.QueryType`
 
    :returns: 
      The list of GUIDs that match the query criteria. If none match, an empty
      list is returned.
 
+   :rtype: :class:`Types.ObjectList`
+
    :raises Exceptions.NotAuthorized:
+     :errorCode: 401
+     :detailCode: 
 
-   :raises Exceptions.InvalidRequest: The MN cannot understand or parse the
-     query criteria.
+   :raises Exceptions.InvalidRequest: 
+     :errorCode: 400
+     :detailCode:
 
-   .. TODO:: Details of query specification for `listObjects(token, query)`
-      needs to be worked out.
+     The MN cannot understand or parse the query criteria.
 
+.. TODO:: Details of query specification for `listObjects(token, query)` needs
+     to be worked out.
+
+
+----
 
 .. function:: synchronizationComplete (token, GUID)
 

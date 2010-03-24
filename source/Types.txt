@@ -49,7 +49,7 @@ Version   Structure
 
 ----
 
-..class:: AuthenticationSystemType
+.. class:: AuthenticationSystemType
 
   Place holder for support of multiple authentication services for a single
   user.
@@ -159,11 +159,11 @@ Version   Structure
      }
 
 
-  .. attribute:: code
+  .. attribute:: errorCode
 
     The error code.  This is the HTTP error code (i.e. 4xx)
 
-  .. attribute:: error_detail
+  .. attribute:: detailCode
 
     A more detailed error code which provides a precise indication of where
     the exception was raised.
@@ -172,7 +172,7 @@ Version   Structure
 
     A human readable message describing what happened
 
-  .. attribute:: trace_information
+  .. attribute:: traceInformation
 
     A dictionary of key, value pairs that can provide more information about
     the error condition.
@@ -193,7 +193,6 @@ Version   Structure
       UPDATE = 2;
       DELETE = 3;
       REPLICATE = 4;
-      INSERT = 5;
     }
 
 

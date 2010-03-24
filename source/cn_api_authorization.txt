@@ -6,15 +6,16 @@ Coordinating Node Authorization API
 
 .. table:: Methods expressed by the :mod:`CN_authorization`.
 
-   =================== ==========================================
-   Function            Parameters
-   =================== ==========================================
-   :func:`login`       ``(user, password, [authSystem]) ->`` :class:`Types.AuthToken`
-   :func:`setAccess`   ``(token, GUID, accessLevel) ->`` boolean
-   :func:`setOwner`    ``(token, userid, GUID) ->`` :class:`Types.IdentifierType`
-   :func:`newAccount`  ``(username, password, [authSystem]) ->`` :class:`Types.PrincipalType`
-   :func:`verifyToken` ``(token) ->`` boolean
-   =================== ==========================================
+   ==================== ==========================================
+   Function             Parameters
+   ==================== ==========================================
+   :func:`login`        ``(user, password, [authSystem]) ->`` :class:`Types.AuthToken`
+   :func:`setAccess`    ``(token, GUID, accessLevel) ->`` boolean
+   :func:`setOwner`     ``(token, userid, GUID) ->`` :class:`Types.IdentifierType`
+   :func:`newAccount`   ``(username, password, [authSystem]) ->`` :class:`Types.PrincipalType`
+   :func:`verifyToken`  ``(token) ->`` boolean
+   :func:`isAuthorized` ``(token, GUID, operation) ->`` boolean 
+   ==================== ==========================================
 
 
 ----
@@ -208,6 +209,28 @@ Coordinating Node Authorization API
   :returns: True if the supplied token is valid, otherwise False
 
   :rtype: boolean
+
+  :raises Exceptions.NotAuthorized:
+    :errorCode: 401
+    :detailCode: 
+
+    This error is raised if the request comes from a black listed source (e.g.
+    a temporary block may be imposed on a source that calls this method too
+    many times within some time interval)
+
+
+----
+
+.. function:: isAuthorized(token, GUID, operation) -> boolean
+
+   Test if the user identified by the provided token has authorization for
+   operation on the object identified by GUID.
+
+  :raises Exceptions.NotFound:
+    :errorCode: 404
+    :detailCode: 
+
+    The specified object does not exist on the node.
 
 
 ----

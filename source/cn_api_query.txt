@@ -11,7 +11,6 @@ exposes log records held by CNs. This log-related functionality probably needs
 to be split out into the Logging and Alert API (not yet defined).
 
 
-
 ====================== =================================
 Function               Parameters
 ====================== =================================
@@ -53,7 +52,7 @@ Function               Parameters
 
 ----
 
-.. function:: getLogRecords (token, fromDate, toDate) -> logRecords
+.. function:: getLogRecords (token, fromDate, toDate) -> LogRecords
 
    Retrieves consolidated log information for the specified date range
    (inclusive) for the entire DataONE infrastructure.

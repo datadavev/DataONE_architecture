@@ -415,8 +415,9 @@ operations on a :term:`Member Node`.
     A supplied parameter was invalid, most likely an unsupported checksum
     algorithm was specified, in which case the error message should include an
     enumeration of supported checksum algorithms.
-    
-     ----
+
+
+----
 
 .. function:: getLogRecords(token, fromDate, toDate) -> LogRecords
 
