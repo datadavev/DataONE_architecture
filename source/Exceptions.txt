@@ -130,16 +130,15 @@ In HTML:
           <dd class='detailCode'>14001</dd>
         </dl>
       </p>
-      <div class='description'>
-        <p class='message'>The specified object does not exist on this node.<p>
-        <p>Please try <a class='hint' href='http://cn.dataone.org/cn/resolve/123XYZ'>
-           resolving</a> at a <a href='http://dataone.org'>DataONE</a> coordinating node.</p>
-      </div>
+      <p class='description'>The specified object does not exist on this node.</p>
       <div class='traceInformation'>
         <dt>identifier</dt>
         <dd>123XYZ</dd>
         <dt>method</dt>
         <dd>mn.get</dd>
+        <dt>hint</dt>
+        <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a> 
+            at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
       </div>
     </body>
   </html>
@@ -150,13 +149,11 @@ In XML:
 .. code-block:: xml
 
   <error errorCode='404' detailCode='14001'>
-    <description>
-      <message>The specified object does not exist on this node.</message>
-      <hint>http://cn.dataone.org/cn/resolve/123XYZ</hint>
-    <description>
+    <description>The specified object does not exist on this node.</description>
     <traceInformation>
-      <value key='identifier'>123XYZ</identifier>
+      <value key='identifier'>123XYZ</value>
       <value key='method'>mn.get</value>
+      <value key='hint'>http://cn.dataone.org/cn/resolve/123XYZ</value>
     </traceInformation>
   </error>
 
@@ -165,10 +162,10 @@ In JSON::
 
   {'errorCode':404,
    'detailCode': 14001,
-   'description': {'message': 'The specified object does not exist on this node.',
-                   'hint':'http://cn.dataone.org/cn/resolve/123XYZ'},
+   'description': 'The specified object does not exist on this node.',
    'traceInformation': {'identifier':'123XYZ',
-                         'method': 'mn.get'}
+                         'method': 'mn.get',
+                         'hint':'http://cn.dataone.org/cn/resolve/123XYZ'}
    }
 
 
