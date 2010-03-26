@@ -76,11 +76,11 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
    :raises Exceptions.NotAuthorized:
      :errorCode: 401
-     :detailCode: 
+     :detailCode: 1520
 
    :raises Exceptions.InvalidRequest: 
      :errorCode: 400
-     :detailCode:
+     :detailCode: 1540
 
      The MN cannot understand or parse the query criteria.
 

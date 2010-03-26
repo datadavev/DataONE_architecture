@@ -45,13 +45,13 @@ Coordinating Node Authorization API
 
   :raises Exceptions.InvalidCredentials: 
     :errorCode: 401
-    :detailCode:
+    :detailCode: 4360
 
     The supplied credentials were invalid (password + username don't jive)
 
   :raises Exceptions.AuthenticationTimeout: 
     :errorCode: 408
-    :detailCode:
+    :detailCode: 4380
 
     A response from the authentication service was not received before the
     operation timed out.
@@ -89,13 +89,13 @@ Coordinating Node Authorization API
 
    :raises Exceptions.NotFound: 
      :errorCode: 404
-     :detailCode: 
+     :detailCode: 4400
 
    The object identified by GUID was not found.
 
    :raises Exceptions.NotAuthorized: 
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4420
 
      The supplied identity does not have permission to alter access control
      rules for the object.
@@ -133,19 +133,19 @@ Coordinating Node Authorization API
 
    :raises Exceptions.InvalidToken: 
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4480
 
      The supplied token is invalid.
 
    :raises Exceptions.NotAuthorized: 
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4440
 
      The supplied identity does not have authority to change ownership.
 
   :raises Exceptions.NotFound:
     :errorCode: 404
-    :detailCode: 
+    :detailCode: 4460
 
     The specified object does not exist on the node processing the call.
 
@@ -179,13 +179,13 @@ Coordinating Node Authorization API
 
    :raises Exceptions.IdentifierNotUnique: 
      :errorCode: 409
-     :detailCode:
+     :detailCode: 4500
 
      The provided identity already exists in the system
 
    :raises Exceptions.InvalidCredentials:
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4520
 
      Raised if the supplied credentials are invalid, such as a password that
      is too weak or an innapropriate user name.
@@ -212,7 +212,7 @@ Coordinating Node Authorization API
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode: 
+    :detailCode: 4540
 
     This error is raised if the request comes from a black listed source (e.g.
     a temporary block may be imposed on a source that calls this method too
@@ -228,10 +228,17 @@ Coordinating Node Authorization API
 
   :raises Exceptions.NotFound:
     :errorCode: 404
-    :detailCode: 
+    :detailCode: 4560
 
     The specified object does not exist on the node.
 
+  :raises Exceptions.NotAuthorized:
+    :errorCode: 401
+    :detailCode: 4580
+
+    This error is raised if the request comes from a black listed source (e.g.
+    a temporary block may be imposed on a source that calls this method too
+    many times within some time interval)
 
 ----
 

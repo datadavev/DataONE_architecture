@@ -42,19 +42,19 @@ operations on a :term:`Coordinating Node`.
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode: 
+    :detailCode: 4040
 
     The provided identity does not have READ permission on the object.
 
   :raises Exceptions.NotFound: 
     :errorCode: 404
-    :detailCode:
+    :detailCode: 4060
 
     There is no data or science metadata identified by the given GUID.
 
   :raises Exceptions.InvalidRequest:
     :errorCode: 400
-    :detailCode:
+    :detailCode: 4080
      
     The GUID requested identifies a system metadata object.
 
@@ -89,11 +89,11 @@ operations on a :term:`Coordinating Node`.
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode:
+    :detailCode: 4000
 
   :raises Exceptions.NotFound: 
     :errorCode: 404
-    :detailCode:
+    :detailCode: 4020
 
     The object specified by the GUID is a data object and is not present on
     this (or any) CN. This response could be accompanied by the results of a
@@ -126,17 +126,17 @@ operations on a :term:`Coordinating Node`.
 
    :raise Exceptions.NotAuthorized:
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4120
 
    :raises Exceptions.NotFound: 
      :errorCode: 404
-     :detailCode:
+     :detailCode: 4140
 
      There is no data object identified by the given GUID.
 
    :raises Exceptions.InvalidRequest: 
      :errorCode: 400
-     :detailCode
+     :detailCode: 4160
 
      The GUID requested identifies a system metadata object.
 
@@ -169,7 +169,7 @@ operations on a :term:`Coordinating Node`.
 
   :raises exceptions.UnspportedMetadataType: 
     :errorCode: 400
-    :detailCode: 
+    :detailCode: 4100
 
     The science metadata is not of a type supported by the D1 system
 
@@ -208,13 +208,13 @@ operations on a :term:`Coordinating Node`.
 
     :raises Exceptions.NotAuthorized:
       :errorCode: 401
-      :detailCode:
+      :detailCode: 4180
 
       Supplied credentials do not have WRITE privileges.
 
     :raises Exceptions.InvalidRequest: 
       :errorCode: 400
-      :detailCode:
+      :detailCode: 4200
 
       The format requested is not a valid format accepted by this service.
 
@@ -242,15 +242,15 @@ operations on a :term:`Coordinating Node`.
 
    :raises Exceptions.NotAuthorized:
      :errorCode: 401
-     :detailCode:
+     :detailCode: 4220
 
    :raises NotFound:
      :errorCode: 404
-     :detailCode: 
+     :detailCode: 4240
 
    :raises InvalidRequest:
      :errorCode: 400
-     :detailCode:
+     :detailCode: 4260
 
      Raised if the parameters are incorrect (e.g. unknown relationship type specfied)
 

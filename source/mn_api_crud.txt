@@ -55,13 +55,13 @@ operations on a :term:`Member Node`.
      
    :raises Exceptions.NotAuthorized: 
       :errorCode: 401
-      :detailCode: 
+      :detailCode: 1000
 
       The provided identity does not have READ permission on the object.
 
    :raises Exceptions.NotFound: 
       :errorCode: 404
-      :detailCode: 
+      :detailCode: 1020
 
       The object specified by GUID does not exist at this node. The
       description should include a reference to the resolve method.
@@ -120,13 +120,13 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode: 
+    :detailCode: 1100
     
     The provided identity does not have permission to WRITE to the Member Node.
 
   :raises Exceptions.IdentifierNotUnique:
     :errorCode: 409
-    :detailCode: 
+    :detailCode: 1120
 
     The requested identifier is already used by another object and therefore
     can not be used for this object. Clients should choose a new identifier
@@ -134,20 +134,20 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.UnsupportedType: 
     :errorCode: 400
-    :detailCode: 
+    :detailCode: 1140
 
     The MN can not deal with the content specified in the data package.
 
   :raises Exceptions.InsufficientResources:
     :errorCode: 413
-    :detailCode: 
+    :detailCode: 1160
 
     The MN is unable to execute the transfer because it does not have
     sufficient storage space for example.
 
   :raises Exceptions.InvalidSystemMetadata:
     :errorCode: 400
-    :detailCode:
+    :detailCode: 1180
 
     The supplied system metadata is invalid. This could be because some
     required field is not set, the metadata document is malformed, or the
@@ -205,11 +205,11 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode: 
+    :detailCode: 1200
 
   :raises Exceptions.IdentifierNotUnique:
     :errorCode: 409
-    :detailCode: 
+    :detailCode: 1220
 
    The requested identifier is already used by another object and therefore
    can not be used for this object.  Clients should choose a new identifier
@@ -217,20 +217,20 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.UnsupportedType: 
     :errorCode: 400
-    :detailCode: 
+    :detailCode: 1240
 
    The MN can not deal with the content specified in the data package.
 
   :raises Exceptions.InsufficientResources:
     :errorCode: 413
-    :detailCode: 
+    :detailCode: 1260
 
    The MN is unable to execute the transfer because it does not have
    sufficient storage space for example.
 
   :raises Exceptions.NotFound:
     :errorCode: 404
-    :detailCode: 
+    :detailCode: 1280
 
    The update operation failed because the object which was supposed to be
    updated in the system (indicated via the obsoletedGUID parameter) is not
@@ -238,7 +238,7 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.InvalidSystemMetadata:
     :errorCode: 400
-    :detailCode:
+    :detailCode: 1300
 
     The supplied system metadata is invalid. This could be because some
     required field is not set, the metadata document is malformed, or the
@@ -274,11 +274,11 @@ operations on a :term:`Member Node`.
 
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
-    :detailCode: 
+    :detailCode: 1320
 
   :raises Exceptions.NotFound:
     :errorCode: 404
-    :detailCode: 
+    :detailCode: 1340
 
    The delete operation failed because the object is not present on the node
    servicing the request.
@@ -324,11 +324,11 @@ operations on a :term:`Member Node`.
 
    :raises: Exceptions.NotAuthorized
      :errorCode: 401
-     :detailCode: 
+     :detailCode: 1360
 
    :raises: Exceptions.NotFound
      :errorCode: 404
-     :detailCode: 
+     :detailCode: 1380
 
 ----
 
@@ -358,15 +358,19 @@ operations on a :term:`Member Node`.
 
    :raises: Exceptions.NotAuthorized
      :errorCode: 401
-     :detailCode: 
+     :detailCode: 1040
 
    :raises Exceptions.NotFound: 
      :errorCode: 404
-     :detailCode: 
+     :detailCode: 1060
 
      There is no data or science metadata identified by the given GUID on the
      node where the request was serviced. The error message should provide a
      hint to use the :func:`CN_crud.resolve` mechanism.
+
+   :raises: Exceptions.InvalidRequest
+     :errorCode: 400
+     :errorDetail: 1080
 
 ----
 
@@ -401,16 +405,16 @@ operations on a :term:`Member Node`.
   :rtype: :class:`Types.Checksum`
 
   :raises Exceptions.NotAuthorized:
-    :errorCode:
-    :detailCode: 
+    :errorCode: 401
+    :detailCode: 1400
 
   :raises Exceptions.NotFound:
-    :errorCode:
-    :detailCode: 
+    :errorCode: 404
+    :detailCode: 1420
 
   :raises Exceptions.InvalidRequest:
     :errorCode: 400
-    :detailCode:
+    :detailCode: 1440
 
     A supplied parameter was invalid, most likely an unsupported checksum
     algorithm was specified, in which case the error message should include an
@@ -443,11 +447,11 @@ operations on a :term:`Member Node`.
 
    :raises Exceptions.NotAuthorized:
      :errorCode: 401
-     :detailCode: 
+     :detailCode: 1460
 
    :raises: Exceptions.InvalidRequest:
      :errorCode: 400
-     :detailCode: 
+     :detailCode: 1480
 
      The request parameters were malformed or an invalid date range was specified.
 
@@ -462,8 +466,8 @@ operations on a :term:`Member Node`.
    `getLogRecords()`.
 
    :raises: Exceptions.InvalidRequest:
-     :errorCode:
-     :detailCode: 
+     :errorCode: 400
+     :detailCode: 1500
 
 ----
 

@@ -43,8 +43,12 @@ Function               Parameters
    :rtype: GuidList
 
    :raises: Exceptions.NotAuthorized
+     :errorCode: 401
+     :detailCode: 4280
 
    :raises: Exceptions.InvalidRequest
+     :errorCode: 400
+     :detailCode: 4300
 
    .. todo: Details of query specification for `search(token, query)` needs to
      be worked out.
@@ -69,14 +73,18 @@ Function               Parameters
      the set of log records specified; format is not yet specified; the set of
      records may be empty
 
-   :rtype: LogRecords
+   :rtype: :class:`Types.LogRecords`
 
    :raises: Exceptions.NotAuthorized
+     :errorCode: 401
+     :detailCode: 4320
 
    :raises: Exceptions.InvalidRequest
+     :errorCode: 400
+     :detailCode: 4320
 
-   .. todo:: Format of the consolidated log records need to be specified.
-
+.. TODO:: This method should really accept a simple query type to specify the
+    set of log records to be retrieved.
 
 ----
 
@@ -88,13 +96,13 @@ Function               Parameters
 
 .. function:: getLinksAndCites (GUID, fromDate, toDate)
 
-.. function:: getLogRecords (GUID, fromDate, toDate)
-
 .. function:: getLogRecords (nodeID, fromDate, toDate)
 
 .. function:: query (token, query)
+    This is a DUPE of search().  Clean up use cases.
 
 .. function:: searchForData ()
+    This is a DUPE of search(). Clean up use cases.
 
 .. function:: usageQuery (token, GUID)
 
