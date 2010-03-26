@@ -330,9 +330,9 @@ objects
 
 Description
 ^^^^^^^^^^^
-Authenticity is the "quality of being what it 
-purports to be" This includes the conepts of fixity, integrity, and the 
-use of digital signatures. 
+Authenticity is the "quality of being what it purports to be" This 
+includes the conepts of fixity, integrity, and the use of digital 
+signatures. 
 
 What PREMIS suggests
 ^^^^^^^^^^^^^^^^^^^^
