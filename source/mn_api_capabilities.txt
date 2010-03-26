@@ -8,17 +8,17 @@ Capabilities API
 ::
 
   serviceRequest (token)
-  getCapabilities () -> MNCapabilities
+  getCapabilities () -> Capabilities
 
 
 .. function::  serviceRequest (token)
 
-.. function::  getCapabilities () -> MNCapabilities
+.. function::  getCapabilities () -> Capabilities
 
    Returns a document describing the capabilities of the Member Node. 
    
    :returns: Capabilities of the Member Node.
    
-   :rtype: MNCapabilities
+   :rtype: Capabilities
 
 

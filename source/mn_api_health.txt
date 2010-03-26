@@ -36,11 +36,11 @@ State of Health API
 
    :returns: A status document in an easily parsed syntax such as JSON or XML
    
-   :rtype: :class:`Types.MNStatus`
+   :rtype: :class:`Types.Status`
 
 
 
-.. function:: heartbeat() -> MNHeartbeatResponse
+.. function:: heartbeat() -> HeartbeatResponse
 
    .. note::
       This method will be used by Use Case 10 "MN Status Reports" for V0.3,
@@ -58,7 +58,7 @@ State of Health API
      indication if it considers itself fully functional or not, and a
      timestamp from the MN when the response was produced.
 
-   :rtype: :class:`Types.MNHeartbeatResponse`
+   :rtype: :class:`Types.HeartbeatResponse`
 
    .. todo:: 
       Metrics MNs are to collect and return for the ``getStatus()`` need to be defined.

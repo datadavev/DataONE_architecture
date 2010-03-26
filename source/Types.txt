@@ -18,19 +18,18 @@ Version   Structure
 .         :class:`AccessRuleType`
 .         :class:`AuthenticationSystemType`
 .         :class:`AuthToken`
+.         :class:`Capabilities`
 .         :class:`Checksum`
 .         :class:`DateTime`
 .         :class:`DescribeResponse`
 .         :class:`ErrorMessage`
 .         :class:`EventType`
+.         :class:`HeartbeatResponse`
 .         :class:`IdentifierFormatType`
 .         :class:`IdentifierList`
 .         :class:`IdentifierType`
 .         :class:`LogRecord`
 .         :class:`LogRecords`
-.         :class:`MNCapabilities`
-.         :class:`MNHeartbeatResponse`
-.         :class:`MNStatus`
 .         :class:`NodeReferenceType`
 .         :class:`ObjectFormatType`
 .         :class:`ObjectList`
@@ -38,6 +37,7 @@ Version   Structure
 .         :class:`PingResponse`
 .         :class:`PrincipalType`
 .         :class:`QueryType`
+.         :class:`Status`
 .         :class:`SystemMetadata`
 ========= =============================
 
@@ -61,6 +61,13 @@ Version   Structure
 
   An AuthToken is used to identify a principal and to assert that the identity
   of the principal has been verified by the DataONE authentication infrastructure.
+
+
+----
+
+.. class:: Capabilities
+
+  Describes the capabilities of a MemberNode.
 
 
 ----
@@ -198,6 +205,12 @@ Version   Structure
 
 ----
 
+.. class:: HeartbeatResponse
+
+  The response from :func:`MN_health.heartbeat`
+
+----
+
 .. class:: IdentifierFormatType
 
   Initially an enumerated list of strings that specify different types of identifiers.
@@ -264,26 +277,6 @@ Version   Structure
       repeated LogRecord entry = 1;
     }
 
-
-----
-
-.. class:: MNCapabilities
-
-  Describes the capabilities of a MemberNode.
-
-----
-
-
-.. class:: MNHeartbeatResponse
-
-  The response from :func:`MN_health.heartbeat`
-
-----
-
-
-.. class:: MNStatus
-
-  The response from :func:`MN_health.getStatus`
 
 ----
 
@@ -385,6 +378,12 @@ Version   Structure
      }
 
      
+----
+
+.. class:: Status
+
+  The response from :func:`MN_health.getStatus`
+
 
 ----
 
