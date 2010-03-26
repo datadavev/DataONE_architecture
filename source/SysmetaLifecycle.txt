@@ -165,39 +165,39 @@ the science data (``sysm_D.1``).
 =========================== ========================================== ========================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ========================
-Identifier                  sciD.1                                     sciM.1
-ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
-Size                        1450238                                    8132
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes                   \                                          \
-ObsoletedBy                 \                                          \
-DerivedFrom                 \                                          \
-Describes                   \                                          sciD.1
-DescribedBy                 sciM.1                                     \
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]               \                                          \
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]               \                                          \
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy           \                                          \
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode          \                                          \
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                \                                          \
-DataSysMetadataModified     \                                          \
-OriginMemberNode            \                                          \
-AuthoritativeMemberNode     \                                          \
-Replica[1]                  \                                          \
-.ReplicaMemberNode          \                                          \
-.ReplicationStatus          \                                          \
-.ReplicaVerified            \                                          \
+identifier                  sciD.1                                     sciM.1
+objectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+size                        1450238                                    8132
+submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+rightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+obsoletes                   \                                          \
+obsoletedBy                 \                                          \
+derivedFrom                 \                                          \
+describes                   \                                          sciD.1
+describedBy                 sciM.1                                     \
+checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+checksumAlgorithm           SHA-1                                      SHA-1
+accessRule[1]               \                                          \
+.rule                       Allow                                      Allow
+.service                    Read                                       Read
+.principal                  \*                                         \*
+accessRule[2]               \                                          \
+.rule                       Allow                                      Allow
+.service                    Write                                      Write
+.principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+replicationPolicy           \                                          \
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode          \                                          \
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                \                                          \
+dateSysMetadataModified     \                                          \
+originMemberNode            \                                          \
+authoritativeMemberNode     \                                          \
+replica[1]                  \                                          \
+.replicaMemberNode          \                                          \
+.replicationStatus          \                                          \
+.replicaVerified            \                                          \
 =========================== ========================================== ========================
 
 
@@ -211,39 +211,39 @@ system metadata for which it is responsible.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
-ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
-Size                        1450238                                    8132
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes                   \                                          \
-ObsoletedBy                 \                                          \
-DerivedFrom                 \                                          \
-Describes                   \                                          sciD.1
-DescribedBy                 sciM.1                                     \
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]               \                                          \
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]               \                                          \
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy           \                                          \
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode          \                                          \
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
-DataSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
-OriginMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
-AuthoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
-Replica[1]                  \                                          \
-.ReplicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
-.ReplicationStatus          **Queued**                                 **Queued**
-.ReplicaVerified            \                                          \
+identifier                  sciD.1                                     sciM.1
+objectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+size                        1450238                                    8132
+submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+rightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+obsoletes                   \                                          \
+obsoletedBy                 \                                          \
+derivedFrom                 \                                          \
+describes                   \                                          sciD.1
+describedBy                 sciM.1                                     \
+checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+checksumAlgorithm           SHA-1                                      SHA-1
+accessRule[1]               \                                          \
+.rule                       Allow                                      Allow
+.service                    Read                                       Read
+.principal                  \*                                         \*
+accessRule[2]               \                                          \
+.rule                       Allow                                      Allow
+.service                    Write                                      Write
+.principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+replicationPolicy           \                                          \
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode          \                                          \
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+dateSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+originMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
+authoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
+replica[1]                  \                                          \
+.replicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
+.replicationStatus          **Queued**                                 **Queued**
+.replicaVerified            \                                          \
 =========================== ========================================== ==========================================
 
 
@@ -255,9 +255,9 @@ summarized in a table as follows. MN1, CN, MN2 = copy of system metadata on
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org
-R[1].ReplicationStatus     Queued
-R[1].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org
+R[1].replicationStatus     Queued
+R[1].replicaVerified       
 ========================== ====================== ====================== ======================
 
 
@@ -281,9 +281,9 @@ the system metadata objects are updated.  There are three steps to this process:
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org
-R[1].ReplicationStatus     **Requested**
-R[1].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org
+R[1].replicationStatus     **Requested**
+R[1].replicaVerified       
 ========================== ====================== ====================== ======================
 
 
@@ -292,9 +292,9 @@ R[1].ReplicaVerified
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org        **mn1.dataone.org**
-R[1].ReplicationStatus     Requested              **Requested**
-R[1].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org        **mn1.dataone.org**
+R[1].replicationStatus     Requested              **Requested**
+R[1].replicaVerified       
 ========================== ====================== ====================== ======================
 
 
@@ -305,9 +305,9 @@ R[1].ReplicaVerified
 ========================== ========================== ========================== ==========================
 Property                   MN1                        CN                         MN2
 ========================== ========================== ========================== ==========================
-R[1].ReplicaMemberNode     mn1.dataone.org            mn1.dataone.org
-R[1].ReplicationStatus     **Completed**              **Completed**
-R[1].ReplicaVerified       **2010-03-04T19:13:51.0Z** **2010-03-04T19:13:51.0Z**
+R[1].replicaMemberNode     mn1.dataone.org            mn1.dataone.org
+R[1].replicationStatus     **Completed**              **Completed**
+R[1].replicaVerified       **2010-03-04T19:13:51.0Z** **2010-03-04T19:13:51.0Z**
 ========================== ========================== ========================== ==========================
 
 
@@ -322,12 +322,12 @@ The CN initiates replication of content from ``mn1.dataone.org`` to ``mn2.dataon
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org
-R[1].ReplicationStatus     Completed              Completed
-R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
-R[2].ReplicaMemberNode                            **mn2.dataone.org**
-R[2].ReplicationStatus                            **Queued**
-R[2].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org        mn1.dataone.org
+R[1].replicationStatus     Completed              Completed
+R[1].replicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].replicaMemberNode                            **mn2.dataone.org**
+R[2].replicationStatus                            **Queued**
+R[2].replicaVerified       
 ========================== ====================== ====================== ======================
 
 
@@ -336,12 +336,12 @@ R[2].ReplicaVerified
 ========================== ====================== ====================== ==========================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ==========================
-R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        **mn1.dataone.org**
-R[1].ReplicationStatus     Completed              Completed              **Completed**
-R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z **2010-03-04T19:13:51.0Z**
-R[2].ReplicaMemberNode     **mn2.dataone.org**    mn2.dataone.org        **mn2.dataone.org**
-R[2].ReplicationStatus     **Requested**          Queued                 **Requested**
-R[2].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org        mn1.dataone.org        **mn1.dataone.org**
+R[1].replicationStatus     Completed              Completed              **Completed**
+R[1].replicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z **2010-03-04T19:13:51.0Z**
+R[2].replicaMemberNode     **mn2.dataone.org**    mn2.dataone.org        **mn2.dataone.org**
+R[2].replicationStatus     **Requested**          Queued                 **Requested**
+R[2].replicaVerified       
 ========================== ====================== ====================== ==========================
 
 
@@ -350,12 +350,12 @@ R[2].ReplicaVerified
 ========================== ====================== ====================== ======================
 Property                   MN1                    CN                     MN2
 ========================== ====================== ====================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
-R[1].ReplicationStatus     Completed              Completed              Completed
-R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
-R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
-R[2].ReplicationStatus     Requested              **Requested**          Requested
-R[2].ReplicaVerified       
+R[1].replicaMemberNode     mn1.dataone.org        mn1.dataone.org        mn1.dataone.org
+R[1].replicationStatus     Completed              Completed              Completed
+R[1].replicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z
+R[2].replicaMemberNode     mn2.dataone.org        mn2.dataone.org        mn2.dataone.org
+R[2].replicationStatus     Requested              **Requested**          Requested
+R[2].replicaVerified       
 ========================== ====================== ====================== ======================
 
 
@@ -366,12 +366,12 @@ R[2].ReplicaVerified
 ========================== ========================== ========================== ==========================
 Property                   MN1                        CN                         MN2
 ========================== ========================== ========================== ==========================
-R[1].ReplicaMemberNode     mn1.dataone.org            mn1.dataone.org            mn1.dataone.org
-R[1].ReplicationStatus     Completed                  Completed                  Completed
-R[1].ReplicaVerified       2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z
-R[2].ReplicaMemberNode     mn2.dataone.org            mn2.dataone.org            mn2.dataone.org
-R[2].ReplicationStatus     **Completed**              Requested                  **Completed**
-R[2].ReplicaVerified       **2010-03-04T20:00:00.0Z**                            **2010-03-04T20:00:00.0Z**
+R[1].replicaMemberNode     mn1.dataone.org            mn1.dataone.org            mn1.dataone.org
+R[1].replicationStatus     Completed                  Completed                  Completed
+R[1].replicaVerified       2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z
+R[2].replicaMemberNode     mn2.dataone.org            mn2.dataone.org            mn2.dataone.org
+R[2].replicationStatus     **Completed**              Requested                  **Completed**
+R[2].replicaVerified       **2010-03-04T20:00:00.0Z**                            **2010-03-04T20:00:00.0Z**
 ========================== ========================== ========================== ==========================
 
 
@@ -384,12 +384,12 @@ object from MN1, forwarding the time stamp for when the verification was made.
 ========================== ====================== ========================== ======================
 Property                   MN1                    CN                         MN2
 ========================== ====================== ========================== ======================
-R[1].ReplicaMemberNode     mn1.dataone.org        mn1.dataone.org            mn1.dataone.org
-R[1].ReplicationStatus     Completed              Completed                  Completed
-R[1].ReplicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z
-R[2].ReplicaMemberNode     mn2.dataone.org        mn2.dataone.org            mn2.dataone.org
-R[2].ReplicationStatus     Completed              **Completed**              Completed
-R[2].ReplicaVerified       2010-03-04T20:00:00.0Z **2010-03-04T20:00:00.0Z** 2010-03-04T20:00:00.0Z
+R[1].replicaMemberNode     mn1.dataone.org        mn1.dataone.org            mn1.dataone.org
+R[1].replicationStatus     Completed              Completed                  Completed
+R[1].replicaVerified       2010-03-04T19:13:51.0Z 2010-03-04T19:13:51.0Z     2010-03-04T19:13:51.0Z
+R[2].replicaMemberNode     mn2.dataone.org        mn2.dataone.org            mn2.dataone.org
+R[2].replicationStatus     Completed              **Completed**              Completed
+R[2].replicaVerified       2010-03-04T20:00:00.0Z **2010-03-04T20:00:00.0Z** 2010-03-04T20:00:00.0Z
 ========================== ====================== ========================== ======================
 
 
@@ -415,39 +415,39 @@ the science data (``sysm_D.1``).
 =========================== ========================================== ========================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ========================
-Identifier                  sciD.1                                     sciM.1
-ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
-Size                        1450238                                    8132
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded
-DataSysMetadataModified
-OriginMemberNode
-AuthoritativeMemberNode
-Replica[1]
-.ReplicaMemberNode
-.ReplicationStatus
-.ReplicaVerified
+identifier                  sciD.1                                     sciM.1
+objectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+size                        1450238                                    8132
+submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+rightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+obsoletes
+obsoletedBy
+derivedFrom
+describes                                                              sciD.1
+describedBy                 sciM.1
+checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+checksumAlgorithm           SHA-1                                      SHA-1
+accessRule[1]
+.rule                       Allow                                      Allow
+.service                    Read                                       Read
+.principal                  \*                                         \*
+accessRule[2]
+.rule                       Allow                                      Allow
+.service                    Write                                      Write
+.principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded
+dateSysMetadataModified
+originMemberNode
+authoritativeMemberNode
+replica[1]
+.replicaMemberNode
+.replicationStatus
+.replicaVerified
 =========================== ========================================== ========================
 
 
@@ -461,47 +461,47 @@ Member Node sets the values of several fields as indicted in the table below.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
-ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
-Size                        1450238                                    8132
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
-DataSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
-OriginMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
-AuthoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
-Replica[1]
-.ReplicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
-.ReplicationStatus          **Queued**                                 **Queued**
-.ReplicaVerified
+identifier                  sciD.1                                     sciM.1
+objectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+size                        1450238                                    8132
+submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+rightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+obsoletes
+obsoletedBy
+derivedFrom
+describes                                                              sciD.1
+describedBy                 sciM.1
+checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+checksumAlgorithm           SHA-1                                      SHA-1
+accessRule[1]
+.ruleType                   Allow                                      Allow
+.service                    Read                                       Read
+.principal                  \*                                         \*
+accessRule[2]
+.ruleType                   Allow                                      Allow
+.service                    Write                                      Write
+.principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+dateSysMetadataModified     **2010-03-04T18:13:51.0Z**                 **2010-03-04T18:14:45.0Z**
+originMemberNode            **mn1.dataone.org**                        **mn1.dataone.org**
+authoritativeMemberNode     **mn1.dataone.org**                        **mn1.dataone.org**
+replica[1]
+.replicaMemberNode          **mn1.dataone.org**                        **mn1.dataone.org**
+.replicationStatus          **Queued**                                 **Queued**
+.replicaVerified
 =========================== ========================================== ==========================================
 
 
 Step B4.
 ~~~~~~~~
 
-A CN detects new content available on ``mn1.dataone.org`` through the
-listObjects() method.
+A CN detects new content available on ``mn1.dataone.org`` through
+:func:`MN_replication.listObjects`.
 
 There is no change of state in system metadata resulting from this operation.
 
@@ -518,21 +518,21 @@ remainder of the content does not change.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
+identifier                  sciD.1                                     sciM.1
 ...
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
-OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
-AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
-Replica[1]
-.ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
-.ReplicationStatus          **Completed**                              **Completed**
-.ReplicaVerified            **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+dateSysMetadataModified     **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
+originMemberNode            mn1.dataone.org                            mn1.dataone.org
+authoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
+replica[1]
+.replicaMemberNode          mn1.dataone.org                            mn1.dataone.org
+.replicationStatus          **Completed**                              **Completed**
+.replicaVerified            **2010-03-04T19:13:51.0Z**                 **2010-03-04T19:13:52.0Z**
 =========================== ========================================== ==========================================
 
 Step B6.
@@ -545,25 +545,25 @@ calling the "replicate()" method on ``mn2.dataone.org``.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
+identifier                  sciD.1                                     sciM.1
 ...
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     **2010-03-04T20:58:00.0Z**                 **2010-03-04T20:58:00.0Z**
-OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
-AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
-Replica[1]
-.ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
-.ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
-Replica[2]
-.ReplicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
-.ReplicationStatus          **Queued**                                 **Queued**
-.ReplicaVerified                                                       
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+dateSysMetadataModified     **2010-03-04T20:58:00.0Z**                 **2010-03-04T20:58:00.0Z**
+originMemberNode            mn1.dataone.org                            mn1.dataone.org
+authoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
+replica[1]
+.replicaMemberNode          mn1.dataone.org                            mn1.dataone.org
+.replicationStatus          Completed                                  Completed  
+.replicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
+replica[2]
+.replicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
+.replicationStatus          **Queued**                                 **Queued**
+.replicaVerified                                                       
 =========================== ========================================== ==========================================
 
 
@@ -579,25 +579,25 @@ each object is requested individually.)
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
+identifier                  sciD.1                                     sciM.1
 ...
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     **2010-03-04T20:59:00.0Z**                 **2010-03-04T20:59:00.0Z**
-OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
-AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
-Replica[1]
-.ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
-.ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
-Replica[2]
-.ReplicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
-.ReplicationStatus          **Requested**                              **Requested**
-.ReplicaVerified                                                       
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+dateSysMetadataModified     **2010-03-04T20:59:00.0Z**                 **2010-03-04T20:59:00.0Z**
+originMemberNode            mn1.dataone.org                            mn1.dataone.org
+authoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
+replica[1]
+.replicaMemberNode          mn1.dataone.org                            mn1.dataone.org
+.replicationStatus          Completed                                  Completed  
+.replicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
+replica[2]
+.replicaMemberNode          **mn2.dataone.org**                        **mn2.dataone.org**
+.replicationStatus          **Requested**                              **Requested**
+.replicaVerified                                                       
 =========================== ========================================== ==========================================
 
 
@@ -610,25 +610,25 @@ checksums and indicates to the Coordinating Node that transfer was successful.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
+identifier                  sciD.1                                     sciM.1
 ...
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
-OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
-AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
-Replica[1]
-.ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
-.ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
-Replica[2]
-.ReplicaMemberNode          mn2.dataone.org                            mn2.dataone.org
-.ReplicationStatus          **Completed**                              **Completed**
-.ReplicaVerified            **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+dateSysMetadataModified     **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
+originMemberNode            mn1.dataone.org                            mn1.dataone.org
+authoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
+replica[1]
+.replicaMemberNode          mn1.dataone.org                            mn1.dataone.org
+.replicationStatus          Completed                                  Completed  
+.replicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
+replica[2]
+.replicaMemberNode          mn2.dataone.org                            mn2.dataone.org
+.replicationStatus          **Completed**                              **Completed**
+.replicaVerified            **2010-03-04T21:00:00.0Z**                 **2010-03-04T21:00:00.0Z**
 =========================== ========================================== ==========================================
 
 
@@ -653,41 +653,72 @@ the Coordinating Nodes.
 =========================== ========================================== ==========================================
 Field                       sysD.1                                     sysM.1
 =========================== ========================================== ==========================================
-Identifier                  sciD.1                                     sciM.1
-ObjectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
-Size                        1450238                                    8132
-Submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-RightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
-Obsoletes
-ObsoletedBy
-DerivedFrom
-Describes                                                              sciD.1
-DescribedBy                 sciM.1
-Checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
-ChecksumAlgorithm           SHA-1                                      SHA-1
-AccessRule[1]
-.RuleType                   Allow                                      Allow
-.Service                    Read                                       Read
-.Principal                  \*                                         \*
-AccessRule[2]
-.RuleType                   Allow                                      Allow
-.Service                    Write                                      Write
-.Principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
-ReplicationPolicy
-.PreferredMemberNode        mn2.dataone.org                            mn2.dataone.org
-.BlockedMemberNode
-.ReplicationAllowed         true                                       true
-.NumberReplicas             1                                          1 
-DateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-DataSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
-OriginMemberNode            mn1.dataone.org                            mn1.dataone.org
-AuthoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
-Replica[1]
-.ReplicaMemberNode          mn1.dataone.org                            mn1.dataone.org
-.ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
-Replica[2]
-.ReplicaMemberNode          mn2.dataone.org                            mn2.dataone.org
-.ReplicationStatus          Completed                                  Completed  
-.ReplicaVerified            2010-03-04T21:00:00.0Z                     2010-03-04T21:00:00.0Z
+identifier                  sciD.1                                     sciM.1
+objectFormat                text/csv                                   eml://ecoinformatics.org/eml-2.1.0
+size                        1450238                                    8132
+submitter                   uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+rightsHolder                uid=jones,o=NCEAS,dc=ecoinformatics,dc=org uid=jones,o=NCEAS,dc=ecoinformatics,dc=org
+obsoletes
+obsoletedBy
+derivedFrom
+describes                                                              sciD.1
+describedBy                 sciM.1
+checksum                    2e01e17467891f7c933dbaa00e1459d23db3fe4f   9967467891f7c933dbaa00e1459d23db3f342
+checksumAlgorithm           SHA-1                                      SHA-1
+accessRule[1]
+.ruleType                   Allow                                      Allow
+.service                    Read                                       Read
+.principal                  \*                                         \*
+accessRule[2]
+.ruleType                   Allow                                      Allow
+.service                    Write                                      Write
+.principal                  o=NCEAS,dc=ecoinformatics,dc=org           o=NCEAS,dc=ecoinformatics,dc=org
+replicationPolicy
+.preferredMemberNode        mn2.dataone.org                            mn2.dataone.org
+.blockedMemberNode
+.replicationAllowed         true                                       true
+.numberReplicas             1                                          1 
+dateUploaded                2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+dateSysMetadataModified     2010-03-04T18:13:51.0Z                     2010-03-04T18:14:45.0Z
+originMemberNode            mn1.dataone.org                            mn1.dataone.org
+authoritativeMemberNode     mn1.dataone.org                            mn1.dataone.org
+replica[1]
+.replicaMemberNode          mn1.dataone.org                            mn1.dataone.org
+.replicationStatus          Completed                                  Completed  
+.replicaVerified            2010-03-04T19:13:51.0Z                     2010-03-04T19:13:52.0Z  
+replica[2]
+.replicaMemberNode          mn2.dataone.org                            mn2.dataone.org
+.replicationStatus          Completed                                  Completed  
+.replicaVerified            2010-03-04T21:00:00.0Z                     2010-03-04T21:00:00.0Z
 =========================== ========================================== ==========================================
+
+
+Conclusions
+-----------
+
+Maintaining complete copies of system metadata on all nodes is cumbersome and
+seems to be overly complicated. However, it is still necessary for Member
+Nodes to provide accurate information for some elements of the system metadata
+(to assist with transfer verification, to validate a data object is intact).
+
+As such, it seems that scenario B above is the most tractable and provides the
+desired functionality for tracking content in the DataONE infrastructure. The
+role of system metadata on Member Nodes and Coordinating Nodes is further
+clarified below.
+
+The recommendations are:
+
+- Complete, authoritative copies of system metadata are maintained on the
+  Coordinating Nodes.
+
+- A system metadata record becomes authoritative once the replicationStatus is
+  set to complete after initial transfer of content to the Coordinating Node
+  (step B5 above)
+
+- Member Nodes still provide access to system metadata through the
+  :func:`MN_crud.getSystemMetadata` calls, though the copy of system metadata
+  returned is authoritative for the properties controlled by the Member Nodes
+  only.
+
+- Member Nodes should not return any of the :attr:`SystemMetdata.replica`
+  attributes.
