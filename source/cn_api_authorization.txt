@@ -226,6 +226,8 @@ Coordinating Node Authorization API
    Test if the user identified by the provided token has authorization for
    operation on the object identified by GUID.
 
+  :raises Exceptions.InvalidToken: The supplied token is invalid.
+
   :raises Exceptions.NotFound:
     :errorCode: 404
     :detailCode: 4560

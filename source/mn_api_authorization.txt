@@ -18,7 +18,7 @@ some authentication options.
 
   login(user, password, [auth_system]) -> AuthToken
   logout(token)
-  isAuthorized (token, method, GUID) -> boolean
+  isAuthorized (token, GUID, operation) -> boolean
   verify(token) -> boolean
 
 .. index:: authenticate, authorize
@@ -65,16 +65,17 @@ some authentication options.
 
 
 
-.. function:: isAuthorized (token, method, GUID) -> boolean
+.. function:: isAuthorized (token, GUID, operation) -> boolean
 
-   Indicates if the operation identified by ``method`` on the object
+   Indicates if the operation identified by ``operation`` on the object
    identified by GUID is permitted by user identified by ``token``.
 
    :param token: The authentication token returned by :func:`login`
 
-   :param method: Enumerated set of values indicating at least "read" and "write"
-
    :param GUID: An identifier or list of identifiers that are to be tested for access.
+
+   :param operation: Enumerated set of values indicating at least "read" and
+   "write" and "changePermission"
 
    :returns: 
     True if the operation is permitted, otherwise False. If GUID is a list,
@@ -86,6 +87,14 @@ some authentication options.
    :raises Exceptions.InvalidToken: The supplied token is invalid.
 
    :raises Exceptions.NotFound: The object identified by GUID was not found.
+
+   :raises Exceptions.NotAuthorized:
+     :errorCode: 401
+     :detailCode: 4580
+
+     This error is raised if the request comes from a black listed source (e.g.
+     a temporary block may be imposed on a source that calls this method too
+     many times within some time interval)
 
    .. Note::
       Should perhaps add convenience methods for "canRead()" and "canWrite()" to
