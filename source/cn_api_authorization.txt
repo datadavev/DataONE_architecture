@@ -13,7 +13,7 @@ Coordinating Node Authorization API
    :func:`setAccess`    ``(token, GUID, accessLevel) ->`` boolean
    :func:`setOwner`     ``(token, userid, GUID) ->`` :class:`Types.IdentifierType`
    :func:`newAccount`   ``(username, password, [authSystem]) ->`` :class:`Types.PrincipalType`
-   :func:`verifyToken`  ``(token) ->`` boolean
+   :func:`verify`       ``(token) ->`` boolean
    :func:`isAuthorized` ``(token, GUID, operation) ->`` boolean 
    ==================== ==========================================
 
@@ -192,7 +192,7 @@ Coordinating Node Authorization API
 
 ----
 
-.. function:: verifyToken(token) -> boolean
+.. function:: verify(token) -> boolean
 
   Test if the provided token is valid. 
 

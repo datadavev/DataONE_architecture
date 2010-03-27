@@ -109,4 +109,12 @@ some authentication options.
 
    :rtype: Boolean
 
+   :raises Exceptions.NotAuthorized:
+     :errorCode: 401
+     :detailCode: 
+
+     This error is raised if the request comes from a black listed source (e.g.
+     a temporary block may be imposed on a source that calls this method too
+     many times within some time interval)
+
 
