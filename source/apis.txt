@@ -135,6 +135,7 @@ internally by those components.
    :maxdepth: 2
    
    SystemMetadata
+   SystemMetadataAnalysis
    SysmetaLifecycle
    MN_APIs
    CN_APIs

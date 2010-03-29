@@ -1,5 +1,5 @@
-User Requirements
-=================
+User Scenarios
+==============
 
 .. toctree::
    :maxdepth: 1
@@ -12,7 +12,7 @@ series of meetings funded by the NSF sponsored "Virtual Data Center" (VDC) INTER
 project.
 
 
-UR 01.  Core Functionality (proposed)
+US 01.  Core Functionality (proposed)
 -------------------------------------
 
 DataONE provides the distributed framework (which is comprised of Member and
@@ -26,7 +26,7 @@ will be domain agnostic, progressively expanding to broader domains and
 building on infrastructure and interoperability with DataNet partners.
 
 .. figure:: images/proposal_figure_1.png
-   :width: 75%
+   :figwidth: 100%
 
    DataONE Member Nodes form a robust, distributed network via
    coordinating services provided by a set of Coordinating Nodes (i.e., Oak
@@ -51,7 +51,7 @@ building on infrastructure and interoperability with DataNet partners.
   \newpage
 
 
-UR 02. Value Added Services (proposed)
+US 02. Value Added Services (proposed)
 --------------------------------------
 
 DataONE is not the end, but rather the means to enable scientists and citizens
@@ -78,7 +78,7 @@ Laboratory of Ornithology citizen science efforts (e.g., eBird, Project
 FeederWatch).
 
 .. figure:: images/proposal_figure_2.png
-   :width: 100%
+   :figwidth: 100%
 
    DataONE value-added services enable scientists to address novel
    questions through integrating disparate data sources (top), supporting
@@ -92,7 +92,7 @@ FeederWatch).
   \newpage
 
 
-UR 03. System Architecture (proposed)
+US 03. System Architecture (proposed)
 -------------------------------------
 
 The DataONE architecture must embrace the highly dispersed and independent
@@ -120,7 +120,7 @@ implemented as DataNetONE expands in scope, sustainable funding, and
 international presence.
 
 .. figure:: images/proposal_figure_4.png
-   :width: 90%
+   :figwidth: 100%
 
    Main features of the DataNetONE architecture, emphasizing
    distributed data storage at Member Nodes and metadata indexing and services
@@ -136,7 +136,7 @@ international presence.
   \newpage
 
 
-UR 04. Spread and Impact of Invasive Species
+US 04. Spread and Impact of Invasive Species
 --------------------------------------------
 
 Invasive species are:
@@ -158,7 +158,7 @@ inform policy makers on potential impact or savings associated with new or
 ongoing trade relationships.
 
 .. figure:: images/invasives.jpg
-   :width: 70%
+   :width: 100%
 
    Some examples of economically important invasive species in the
    United States.
@@ -185,7 +185,7 @@ Specifically, DataNetONE addresses:
   information
 
 .. figure:: images/honeysuckle.jpg
-   :width: 40%
+   :figwidth: 100%
 
    Japanese honeysuckle (`Lonicera japonica`_) was brought to the United
    States from Asia as ground cover to prevent erosion. As an invasive
