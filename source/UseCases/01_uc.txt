@@ -133,7 +133,7 @@ Post Conditions
   participant "Authorization API" as n_authorize << Node >>
   participant "Object Store" as n_ostore << Node >>
   app_client -> n_crud: get(token, GUID)
-  n_crud -> n_authorize: isAuthorized(token, GUID, OP_GET)
+  n_crud -> n_authorize: isAuthorized(token, GUID, READ)
   n_crud <- n_authorize: True, False, Err.NotFound
   alt NotFound
     app_client <- n_crud: Err.NotFound
@@ -142,6 +142,7 @@ Post Conditions
   else True
     n_crud -> n_ostore: read(GUID)
     n_crud <- n_ostore: bytes
+    n_crud --> n_crud: log(READ)
     app_client <- n_crud: bytes
   end
   @enduml

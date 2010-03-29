@@ -20,22 +20,19 @@ Summary
   Replication of content between Member Nodes (MN) is done to improve
   persistence of information (avoid data loss with loss of MN) and to improve
   accessibility (more choices for content retrieval can lower bandwidth
-  requirements for any particular MN). The process of replication may be
-  facilitated by a Coordinating Node (CN), or perhaps only between MNs. The
-  interaction diagram presented here follows the former notion, where
-  replication is facilitated by a CN.
+  requirements for any particular MN). The process of replication is controlled
+  by a Coordinating Node (CN). 
 
-  A full copy of a data package is made during the replication process, so the
-  original experiment metadata and data is copied to the recipient MN. An
-  important question is whether that content is stored in it's original form
-  (for data this must be the case) or translated into a form that is supported
-  by the MN (likely to be the case for experiment metadata).  
+  A full copy of science data and metadata is made during the replication
+  process, so the original science metadata and data is copied to the
+  recipient MN.
 
-  If experiment metadata is translated into a local dialect by a recipient MN,
-  then it is important that the original metadata is preserved on the CNs, as
+  Data is copied across as an exact copy. Science metadata may be transformed
+  into another format if the original can not be supported. 
+
+  It is important that the original metadata is preserved on the CNs, as
   it is always possible that the original MN where the content was published
   may go offline or be removed from the DataONE system.
-  
 
 
 Actors
@@ -43,9 +40,14 @@ Actors
 
 Preconditions 
   - Content is present on a Member Node
-  
+
+  - The content has been registered with the DataONE system (i.e. Member Node
+    Synchronization has occurred for the data and metadata)
+
 Triggers
- - New data is available on a Member Node
+
+ - A Coordinating Node detects that there are insufficient copies of the
+   object(s) in question.
 
  - Information on a Member Node is altered
 
@@ -53,9 +55,11 @@ Triggers
 
  - Replication policy of DataONE or a Member Node changes
 
+ - A Member Node goes offline
+
 
 Post Conditions
-  - Content is present on one more Member Node
+  - Content is present on the recipient Member Node
 
   - System metadata is updated to reflect the change
 
@@ -65,10 +69,10 @@ Post Conditions
 
 
 .. figure:: images/09_interaction.png
-   :width: 75%
+   :figwidth: 100%
 
    Interactions for use case 09. The diagram describes transfer of a single
-   object from MN_B to MN_A as directed by a CN. It isassumed that the object
+   object from MN_B to MN_A as directed by a CN. It is assumed that the object
    does not exist on MN_B and the object has been identified as requiring
    synchronization by the CN checking its status in the system metadata.
 
@@ -78,25 +82,48 @@ Post Conditions
   !include ../plantuml.conf
   title Interactions: 09 - Replicate data from Member Node to Member Node
 
-  participant "CRUD API" as m_crud_a << Member Node A >>
-  participant "Synchronization API" as c_sync << Coordinating Node >>
+  participant "Replication API" as c_sync << Coordinating Node >>
   participant "CRUD API" as m_crud_b << Member Node B >>
+  participant "CRUD API" as m_crud_a << Member Node A >>
   
-  c_sync -> m_crud_b: synchronize(token, GUID)
-  m_crud_b --> c_sync: ACK
+  c_sync -> c_sync: setReplicationStatus(GUID, Queued)
+  activate c_sync
+    c_sync -> m_crud_b: replicate(token, GUID)
+  deactivate c_sync
   
-  m_crud_b -> m_crud_a: get(token, GUID)
-  m_crud_a --> m_crud_b: object
-  
-  m_crud_b -> c_sync: synchronizationComplete(token, GUID)
-  c_sync --> m_crud_b: ACK
-  
-  note right
-    After retrieval, the MN tells the CN that 
-    the object has been replicated.  Alternative is
-    that the object is transfer is marked as 
-    provisional and verified later.
-  end note
+  activate m_crud_b
+    m_crud_b -> c_sync: verifyReplicationRequest(GUID)
+    activate c_sync
+      c_sync -> c_sync: setReplicationStatus(GUID, Requested)
+      c_sync --> m_crud_b: OK
+    deactivate c_sync
+
+    m_crud_b -> m_crud_a: get(token, GUID)
+    activate m_crud_a
+      m_crud_a --> m_crud_a: log(GUID, REPLICATE)
+      m_crud_a -> m_crud_b: bytes
+    deactivate m_crud_a
+    m_crud_b -> c_sync: getChecksum(GUID)
+    note right
+      The MN must verify the checksum of the 
+      object before committing storage 
+      of the object.
+    end note
+    c_sync --> m_crud_b: checksum
+    m_crud_b -> m_crud_b: create(token, GUID, bytes)
+    m_crud_b --> m_crud_b: log(GUID, REPLICATE)
+    m_crud_b -> c_sync: signalReplicationComplete(token, GUID)
+    activate c_sync
+      c_sync -> c_sync: setReplicationStatus(GUID, Completed)
+      note right
+        CN updates the SystemMetadata for GUID,
+        setting appropriate values of replica with
+        the member node, time stamp, and status.
+      end note
+      c_sync --> c_sync: log(GUID, REPLICATE)
+      c_sync --> m_crud_b: OK
+    deactivate c_sync
+  deactivate m_crud_b
 
   @enduml
 

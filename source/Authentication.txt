@@ -42,6 +42,26 @@ authenticated with the DataONE system at some time within the last XXX period
 of time.
 
 
+Authentication in HTTP
+----------------------
+
+The process for retrieving a protected resource through HTTP involves several
+interactions between the client and server. If the client is already
+authenticated, or includes credentials in the request, then the process
+commences at step 3.
+
+1. A client issues a request to access some resource
+
+2. The server responds with a 401 "Authenticate" message
+
+3. The client repeats the request including appropriate credentials
+
+4.a) If the credentials have suitable access, then the content is returned (200)
+
+4.b) If the credentials do not have suitable access, then a 403 "Forbidden" message is returned
+
+
+
 Scenario 1: Authentication provided by CNs
 ------------------------------------------
 

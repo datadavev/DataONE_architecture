@@ -22,8 +22,13 @@ Glossary
     objects stored in the :term:`DataONE` system, and provides mechanisms for
     search and retrieval of all content. Coordinating Nodes store all original
     copies of :term:`science metadata`. All Coordinating Node content is
-    synchronized between other Coordinating Nodes. Coordinating Nodes drive
+    replicated between other Coordinating Nodes. Coordinating Nodes drive
     the replication of content between Member Nodes.
+
+Coordinating Node Replication
+  In DataONE, refers to the process by which content that appears on any one
+  Coordinating Node is mirrored to all other Coordinating Nodes. See also 
+  :term:`Member Node synchronization`.
 
   Data
     Typically refers to scientific data. Where ambiguity between the science
@@ -84,11 +89,6 @@ Glossary
 
   science metadata
     Metadata that describes the data that is replicated across the Member Nodes.
-
-  synchronization
-    In DataONE, refers to the process by which content that appears on any one
-    Coordinating Node is mirrored to all other Coordinating Nodes. See also 
-    :term:`Member Node synchronization`.
 
   sysmeta
     See :term:`system metadata`

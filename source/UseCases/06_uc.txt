@@ -41,15 +41,18 @@ Post Conditions
 
 
 .. figure:: images/06_uc.png
-   :width: 75%
+   :figwidth: 100%
 
    Use case 06.
 
 
 .. figure:: images/06_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
-   Sequence diagram for use case 06. Synchronize metadata between Member and Coordinating Node.
+   Sequence diagram for use case 06. Synchronize metadata between Member and
+   Coordinating Node. Note that the log messages record a REPLICATE rather
+   than a READ event. The MN determines this through the User Agent header (NB
+   - this assumes that CNs only call MN.get to do replication).
 
 
 ..
@@ -72,31 +75,27 @@ Post Conditions
 ..
   @startuml images/06_interaction.png
   !include ../plantuml.conf
-  participant "CRUD API" as m_crud << Member Node >>
+  participant "CRUD API" as c_crud << Coordinating Node >>
   participant "Synchronization API" as c_sync << Coordinating Node >>
   participant "Replication API" as m_rep << Member Node >>
-  c_sync -> m_rep: listObjects(token, query)
+  participant "CRUD API" as m_crud << Member Node >>
 
-  note over m_rep
-    query asks for new 
-    science metadata objects
-  end note
+  c_sync -> m_rep: listObjects(token, query)
 
   c_sync <-- m_rep: list of GUIDs
 
   loop for each GUID
     c_sync -> m_crud: getSystemMetadata(token, GUID)
-    c_sync <-- m_crud: system metadata
-    c_sync -> m_crud: get(token, science metadata GUID)
-    c_sync <-- m_crud: science metadata
-    participant "CRUD API" as c_crud << Coordinating Node >>
-    c_sync -> c_crud: create(systemMetadataGUID, systemMetadata, scienceMetadataGUID, scienceMetadata)
-    c_sync <-- c_crud: ACK or FAIL
-    alt ACK
-      c_sync -> m_rep: synchronizationComplete(token, GUID)
-    else FAIL
-      c_sync -> m_rep: synchronizationFailed(token, GUID)
+    m_crud --> m_crud: log (REPLICATE)
+    c_sync <-- m_crud: SystemMetadata
+    c_sync -> c_sync: parse -> data_GUID
+    alt GUID refers to ScienceMetadata
+      c_sync -> m_crud: get(token, GUID)
+      m_crud --> m_crud: log (REPLICATE)
+      c_sync <-- m_crud: ScienceMetadata
+      c_sync -> c_crud: create(GUID, ScienceMetadata)
     end
+    c_sync -> c_crud: create(GUID, SystemMetadata)
   end
   @enduml
 
