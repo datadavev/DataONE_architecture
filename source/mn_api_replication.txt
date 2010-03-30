@@ -55,9 +55,9 @@ MN-to-MN replication is not part of the V0.3 APIs.
    Retrieve the list of GUIDs for objects owned by the MN that match the
    calling parameters. This method is required to support the process of
    :term:`Member Node synchronization`. At a minimum, this method should be
-   able to return::
+   able to return a list of objects that match::
 
-     endtime <= SystemMetadata.dateSysMetadataModified
+     startTime <= SystemMetadata.dateSysMetadataModified
 
    but is expected to also support date range (by also specifying
    ``endTime``), and should also support slicing of the matching set of
@@ -77,11 +77,12 @@ MN-to-MN replication is not part of the V0.3 APIs.
    :type endTime: :class:`Types.DateTime`
 
    :param replicaStatus: 
+
      Indicates if replicated objects should be returned in the list (i.e. any
-     entries in the :attr:`SystemMetadata.replica`). If ``0``, then no objects
-     that have been replicated should be returned. If ``1``, then any objects
-     can be returned, regardless of replication status. The default value is
-     ``1``.
+     entries present in the :attr:`SystemMetadata.replica`). If ``0``, then no
+     objects that have been replicated should be returned. If ``1``, then any
+     objects can be returned, regardless of replication status. The default
+     value is ``1``.
 
    :type replicaStatus: integer (0 | 1)
 
