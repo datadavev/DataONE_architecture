@@ -85,6 +85,8 @@ Version API Method                                         Method      URL
    ``/object/?oclass=sysmeta`` for the collection, and ``/object/123/meta`` for
    the sysmeta for a specific object.
 
+.. note::
+   GUID is used interchangeably with the term 'identifier' in this document. For all purposes of DataONE, a 'guid' is an identifier.
 
 Object Collection
 ~~~~~~~~~~~~~~~~~
@@ -118,26 +120,17 @@ Implements the functions:
 
 :count: Number of items to retrieve
 
-:oclass: Restrict response to the specified object class. Wildcards allowed.
+:objectFormat: Restrict response to the specified object class. Wildcards allowed.
 
-:guid: Restrict response to the specified guid. Wildcards allowed.
+:identifier: Restrict response to the specified guid. Wildcards allowed.
 
-:hash: Restrict response to the specified hash.
+:checksum: Restrict response to the specified hash.
 
-:sync: Restrict by synchronization status.
+:startTime: Specifies the begining of the time range from which to return object (>=). Queries against systemMetadata.dateSysMetadataModified
 
-======= ===========================
-Value   Filter by
-======= ===========================
-0       Unsynchronized
-1       Synchronized
-======= ===========================
+:endTime: Specifies the end of the time range to which to return object (<=). Queries against systemMetadata.dateSysMetadataModified
 
-:lastModified: Restrict response to objects last modified at a specific
- datetime. Range operators allowed.
-
-:lastAccessed: Restrict response to objects last accessed at a specific
- datetime. Range operators allowed.
+.. note:: startTime <= systemMetadata.dateSysMetadataModified <= endTime
 
 
 **Response**
@@ -160,8 +153,9 @@ The structure of the response is::
   RESPONSE_BODY = n*(guid + GUID_INFO)
     guid        = object identifier, string
   GUID_INFO     = OBJECT_CLASS + HASH + TIME_STAMP + SIZE
-  OBJECT_CLASS  = 'data' | 'metadata' | 'system'
-  HASH          = SHA1 hash
+  OBJECT_CLASS  = 'data' | 'metadata' 
+  HASH          = SHA-1 | SHA-224 | MD5 hash
+  HASH_TYPE	= algorithm type
   TIME_STAMP    = ISO8601 formatted date time, GMT, YYYY-MM-DDTHH:mm:SS.FFFZ
     YYYY        = Year
     MM          = Month
@@ -181,13 +175,16 @@ Expressed in JSON::
     'start': <integer>,
     'count': <integer>,
     'total': <integer>,
-    'data':
+    'objectInfo':
     [
       {
-        'guid':<identifier>,
-        'oclass':<object class>,
-        'hash':<SHA1 hash of object>,
-        'modified':<date time last modified>,
+        'identifier':<identifier>,
+        'objectFormat':<object class>,
+        'checksum': {
+		'algorithm':<checkSum Algorithm Type>, 
+		'value':<SHA1 hash of object>
+	},
+        'dateSysMedatadataModified':<date time last modified>,
         'size':<byte size of object>
       },
       ...
@@ -198,24 +195,24 @@ Expressed in CSV, one entry per line, comma delimiting fields, new line
 delimiting records::
 
   #<start>,<count>,<total>
-  'guid',otype,hash,modified,size
-  <identifier>,<object class>,<SHA1 hash of object>,<date time last modified>,<byte size of object>
+  identifier,objectFormat,algorithm,checksum,dateSysMedatadataModified,size
+  "<identifier>","<object class>","<SHA-1 | SHA-224 | MD5 | ...>","<SHA1 hash of object>","<date time last modified>",<byte size of object>
 
 
 Expressed in XML::
 
-  <response xmlns='http://ns.dataone.org/core/objects'
+  <ObjectList xmlns='http://ns.dataone.org/core/objects'
             start='_integer_'
             count='_integer_'
             total='_integer_'>
-    <data guid='_identifier_'>
-      <oclass>_object class_</oclass>
-      <hash>_SHA1 hash of object</hash>
-      <modified>_date time last modified_</modified>
+    <objectInfo identifier='_identifier_'>
+      <objectFormat>_object class_</objectFormat>
+      <checksum algorithm='SHA-1 | SHA-224 | MD5 | ...'>_SHA1 hash of object</checksum>
+      <dateSysMedatadataModified>_date time last modified_</dateSysMedatadataModified>
       <size>_byte size of object_</size>
-    </data>
+    </objectInfo>
     ...
-  </response>
+  </ObjectList>
 
 
 Expressed in RDF/XML::
@@ -228,14 +225,14 @@ Expressed in RDF/XML::
       <d1:total>_integer_</d1:total>
     </rdf:Description>
     <rdf:Description rdf:about="_requesting URL_">
-      <d1:data rdf:parseType="Collection">
+      <d1:objectInfo rdf:parseType="Collection">
         <rdf:Description rdf:about="http://mn1.dataone.org/object/_identifier_">
-          <d1:oclass>_object class_</d1:oclass>
-          <d1:hash>_SHA1 hash of object</d1:hash>
-          <d1:modified>_date time last modified_</d1:modified>
+          <d1:objectFormat>_object class_</d1:objectFormat>
+          <d1:checksum d1:algorithm='SHA-1 | SHA-224 | MD5 | ...'>_SHA1 hash of object</d1:checksum>
+          <d1:dateSysMedatadataModified>_date time last modified_</d1:dateSysMedatadataModified>
           <d1:size>_byte size of object_</d1:size>
         </rdf:Description>
-      </d1:data>
+      </d1:objectInfo>
     </rdf:Description>
   </rdf:RDF>
 
@@ -270,25 +267,26 @@ Retrieve a list of GUIDs from a member node in JSON format::
 
   curl -X GET -H "Accept: application/json" http://mn1.dataone.org/object/
 
-  {'start':0, 
-   'count':1000, 
-   'total':159734, 
-   'data':[{'guid': 'ABC123',
-            'oclass':'data',
-            'hash':'b3a1617100c2b782fe5f9f2050dc714fdd05df28',
-            'modified':'2009-12-02T17:40:03.0Z',
-            'size':1040032112},
-           {'guid':'DEF456',
-            'oclass':'system',
-            'hash':'ee17560c8b77385b5bb8d8687820f9b82f3fdcdf',
-            'modified':'2009-11-04T12:22:04.4Z',
-            'size':285},
-           ...,
-           {'guid':'XYZ332',
-            'oclass':'metadata',
-            'hash': '008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07',
-            'modified':'2009-11-30T06:44:19.0Z',
-            'size':1044} ] }
+  {'start':0,
+   'count':1000,
+   'total':159734,
+   'objectInfo':[{'identifier': 'ABC123',
+  	  'objectFormat':'data',
+  	  'checksum': {
+  	     'algorithm':'SHA-1', 
+  	     'value':'b3a1617100c2b782fe5f9f2050dc714fdd05df28'
+  	   },
+  	  'dateSysMetadataModified':'2009-12-02T17:40:03.0Z',
+  	  'size':1040032112},
+  	 ...,
+  	 {'identifier':'XYZ332',
+  	  'objectFormat':'metadata',
+  	  'checksum': {
+  	     'algorithm':'SHA-1', 
+  	     'value':'008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07'
+  	   },
+  	  'dateSysMetadataModified':'2009-11-30T06:44:19.0Z',
+  	  'size':1044} ] }
 
 
 Retrieve a list of GUIDs from a member node in plain text format::
@@ -296,11 +294,10 @@ Retrieve a list of GUIDs from a member node in plain text format::
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
   #0,1000,159734
-  guid,oclass,hash,modified,size
-  ABC123,data,b3a1617100c2b782fe5f9f2050dc714fdd05df28,2009-12-02T17:40:03.0Z,1040032112
-  DEF456,system metadata,ee17560c8b77385b5bb8d8687820f9b82f3fdcdf,2009-11-04T12:22:04.4Z,285
+  identifier,objectFormat,algorithm,checksum, dateSysMedatadataModified,size
+  "ABC123","data","SHA-1","b3a1617100c2b782fe5f9f2050dc714fdd05df28","2009-12-02T17:40:03.0Z",1040032112
   ...
-  XYZ332,science metadata,008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07,2009-11-30T06:44:19.0Z,1044
+  "XYZ332","science metadata","SHA-1","008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07","2009-11-30T06:44:19.0Z",1044
 
 
 Retrieve last modified information about the collection::
