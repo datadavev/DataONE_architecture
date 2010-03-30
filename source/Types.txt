@@ -78,14 +78,19 @@ Version   Structure
 
   ::
 
-    message ChecksumAlgorithm {
+    enum ChecksumAlgorithmEnum 
+    {
       SHA-1 = 0;
       SHA-224 = 1;
-      ...
+      SHA-356 = 2;
+      SHA-384 = 3;
+      SHA-512 = 4;
+      MD5 = 5;
     }
 
-    message Checksum {
-      required ChecksumAlgorithm algorithm = 1;
+    message Checksum 
+    {
+      required ChecksumAlgorithmEnum algorithm = 1  [default = SHA-1];
       required string value = 2;
     }
 
@@ -119,15 +124,23 @@ Version   Structure
   Provides a hint about the type, size and state of an object.
 
   ::
-
-    message DescribeResponse {
-      required string objectformat = 1;
-      required uint64 size = 2;
-      required DateTime last_modified = 3;
+  
+    message ObjectFormat
+    {
+      required string objectFormat = 1;
     }
 
 
-  .. attribute:: objectformat
+    message DescribeResponse 
+    {
+      required ObjectFormat objectFormat = 1;
+      required uint64 size = 2;
+      required DateTime dateSysMetadataModified = 3;
+      required Checksum checksum = 4;
+    }
+
+
+  .. attribute:: objectFormat
 
      The value of the :attr:`SystemMetadata.objectFormat` entry available in
      the :class:`SystemMetadata`.
@@ -136,13 +149,15 @@ Version   Structure
 
      The size in bytes of the object
 
-  .. attribute:: last_modified
+  .. attribute:: dateSysMetadataModified
 
-     A :class:`DateTime` value that indicates when the object was last
-     modified. Note that all time stamps in DataONE refer to UTC if no time
-     zone information is provided with the value. Note that since content in
-     DataONE is intended to be static, this value will refer to the time that
-     the object was created on the system responding to the request.
+     A :class:`DateTime` value that indicates when the SystemMetadata
+     associated with the object was last modified. 
+
+  .. attribute:: checksum
+
+     A :class:`Cheksum` value that provides the computed cheksum value of the
+     referenced object.
 
 ----
 
@@ -152,12 +167,14 @@ Version   Structure
 
    ::
    
-     message ErrorMessage {
+     message ErrorMessage 
+     {
        required int32 errorCode = 1;
        required int32 detailCode = 2;
        required string description = 3;
        
-       message KVPair {
+       message KVPair 
+       {
          required string key = 1;
          required string value = 2;
        }
@@ -242,12 +259,12 @@ Version   Structure
 
 .. class:: IdentifierList
 
-   A list of GUIDs, so a list of unicode strings.
+   A list of idenitfiers, so a list of unicode strings.
 
    ::
    
-     message GuidList {
-       repeated IdentifierType guid = 1;
+     message IdentifierList {
+       repeated IdentifierType identifier = 1;
      }
 
 ----
@@ -300,40 +317,90 @@ Version   Structure
 
 .. class:: ObjectList
 
-  A list of objects. This provides more information than the GuidList by
-  combining a GUID with the DescribeResponse.
+  A list of objects. This provides more information than the :class:`IdentifierList` by
+  adding an identifier to the :class:`DescribeResponse`.
   
   ::
   
-    message ObjectList {
-      
-      message ObjectInfo {
-        required string guid = 1;
-        required string DescribeResponse info = 2;
+    message ObjectInfo
+    {
+      extend DescribeResponse
+      {
+        required string identifier = 5
       }
-    
-      repeated DescribeResponse describeresponse = 1;
     }
+  
+    message ObjectList 
+    {
+      required int start = 0;
+      required int count = 1;
+      required int total = 2;
+      repeated ObjectInfo objectInfo = 3;
+    }
+
+  .. attribute:: identifier
+
+     Identifier of the object in the describe response.
+
+  .. attribute:: start
+
+     An integer that indicates zero-based offset of the first entry in
+     objectInfo from the start of the list of entries from which this list was
+     drawn (such as the results of :func:`CN_query.search` or
+     :func:`MN_replication.listObjects`)
+
+  .. attribute:: count
+
+     The total number of entries returned in :attr:`objectInfo`.
+
+  .. attribute:: total
+
+     The total number of entries in the list from which this list was drawn.
+
+  .. attribute:: objectInfo
+
+     List of ObjectInfo structures, which are an extension of :class:`DescribeResponse`
 
 
 ----
 
 .. class:: ObjectLocationList
 
-   Provides a list of ``node``, ``get request URL`` that provides a list of
-   nodes known to hold a copy of an object, and the get() method URL that
-   might be used to retrieve the object from each node.
+   A list of nodes and full :func:`CN_crud.get` and / or :func:`MN_crud.get`
+   URLs that can be used to retrieve the object.
 
   ::
   
     message ObjectLocationList {
-      repeated ObjectLocation location = 1;
+      required IdentifierType identifier = 1;
+      repeated ObjectLocation locations = 2;
     }
 
     message ObjectLocation {
       required string node = 1;
       required string url = 2;
     }
+
+  .. attribute:: identifier
+
+     The identifier that this ObjectLocationList refers to.
+
+  .. attribute:: locations
+
+     List of ObjectLocation entries that indicate the nodes on which the object
+     is located.
+
+  .. attribute:: node
+
+     A node identifier. Currently, this should be the node name + base path. For
+     example, a member node with domain name "mn1.dataone.org" that serves
+     content from /mn would be identified as ``mn1.dataone.org/mn``
+
+  .. attribute:: url
+
+     The full URL for retrieving the object. For example, if identifer was
+     "ABX154", then for the Member Node indicated above, this entry would be
+     ``http://mn1.dataone.org/mn/object/ABX154``
 
 
 ----
@@ -364,20 +431,48 @@ Version   Structure
    prototype implementations (i.e. pre-version 1.0).
 
    ::
-
-     message QueryType{
-       required FilterEnum filterType = 1 [default= NVP];
-       required FilterStruct filter = 2;
-
-       enum FilterEnum {
-         NVP = 1;
-         SOLR = 2;
-         EarthGrid = 3;
-       }
-
+    
+     enum FilterTypeEnum 
+     {
+       NVP = 1;
+       SOLR = 3;
+       EARTHGRID = 4;
+     }
+     
+     enum LogicalOperator
+     {
+       LOP_OR = 0;
+       LOP_AND = 1;
      }
 
-     
+     message NameValuePair
+     {
+       required string name = 0;
+       required string value= 1;
+     }
+
+     message NameValuePairFilter
+     {
+       optional LogicalOperator LOP = 1 [default = LOP_AND];
+       repeated NameValuePair nvpair = 2;
+     }
+
+     message SOLRFilter
+     {
+       required string filter = 0;
+       optional string facetFilter = 1;
+     }
+
+     message EarthGridFilter
+     {
+       required string filter = 0;
+     }
+
+
+Expressing a NVP query in a URL
+
+
+
 ----
 
 .. class:: Status
