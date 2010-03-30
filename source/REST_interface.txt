@@ -9,18 +9,21 @@ REST Interface
   This document proposes a Representational State Transfer (REST) model for
   DataONE Member Nodes and maps the v0.3 API methods to HTTP REST calls.
 
+.. contents::
+   :local: 
+
 
 The REST interface through which the methods described in the sections
 :doc:`MN_APIs` and :doc:`CN_APIs`.
-
 
 Basic information:
 
 - Content is modeled as collections, with GUIDs identifying individual items
   of a collection.
 
-- The HTTP verbs HEAD, GET, POST, PUT, DELETE are used for retrieving content,
-  creating content, updating content, and deleting content respectively.
+- The HTTP verbs HEAD, GET, POST, PUT, DELETE are used for retrieving
+  information about content, retrieving content, creating content, updating
+  content, and deleting content respectively.
 
 - If state information is required (e.g. authentication token), it is passed
   in the HTTP headers.
@@ -31,13 +34,16 @@ Basic information:
 - Several URL patterns listed below support parameters. These should be
   interpreted without regard to case (i.e. case insensitive).
 
-Collections exposed by Member Nodes and Coordinating Nodes include:
+Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s include:
 
 :``/object/``:
-  The set of objects identified by a GUID that is currently available on the node.
+  The set of objects available for retrieval from the node.
 
 :``/log/``:
-  Log information.
+  Log records held on the node.
+
+:``/reserve/``:
+  Identifiers that have been reserved for future use.
 
 
 An overview of mapping API methods to URLs in the REST interface. 
@@ -53,8 +59,8 @@ Version API Method                                         Method      URL
 0.4     :func:`MN_crud.update`                              ``PUT``     `/object/<guid>/`_
 0.9     :func:`MN_crud.delete`                              ``DELETE``  `/object/<guid>/`_
 0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     `/object/<guid>/meta/`_
-0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``_
-0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``_
+0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``
+0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``
 0.4     :func:`MN_capabilities.getCapabilities`
 0.4     :func:`MN_health.getStatus`
 0.6     synchronize
@@ -67,8 +73,11 @@ Version API Method                                         Method      URL
 0.3     :func:`CN_health.generateReport`                    ``GET``     ``/log/report``
 0.3     :func:`CN_query.search`                             ``GET``     `/object/`_
 0.3     :func:`CN_crud.get`                                 ``GET``     `/object/<guid>/`_ 
-0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
+0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     `/object/<guid>/meta/`_
 0.3     :func:`CN_crud.resolve`                             ``GET``     `/object/<guid>/resolve/`_
+0.4     UNDEF - `CN_crud.listReservedIdentifiers`           ``GET``     `/reserve/`_
+0.4     :func:`CN_crud.reserveIdentifier`                   ``POST``    `/reserve/<guid>/`_
+0.4     UNDEF :func:`CN_crud.deleteReservedIdentifier`      ``DELETE``  `/reserve/<guid>/`_
 0.4     :func:`CN_query.query`
 0.4     :func:`CN_register.register`
 0.4     :func:`CN_crud.create`
@@ -317,6 +326,8 @@ Retrieve last modified information about the collection::
   Content-Type: application/json; charset=utf-8
 
 
+----
+
 
 ``/object/<guid>/``
 ^^^^^^^^^^^^^^^^^^^
@@ -453,6 +464,8 @@ Implemented by the methods:
   XYZ33256
 
 
+----
+
 
 ``/object/<guid>/meta/``
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -554,6 +567,8 @@ identified by "XYZ333"
     </traceInformation>
   </error>
 
+
+----
 
 
 ``/object/<guid>/resolve/``
@@ -665,6 +680,31 @@ Using CURL::
   'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
   'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
+
+----
+
+
+Reserve Collection
+------------------
+
+
+``/object/reserve/``
+^^^^^^^^^^^^^^^^^^^^
+
+Implemented by the methods:
+
+- :func:`CN_crud.listReservedIdentifiers` (``GET /reserve/``)
+
+- :func:`CN_crud.reserveIdentifier` (``POST /object/<guid>/``)
+
+- :func:`CN_crud.deleteReservedIdentifier` (``DELETE /object/<guid>/``)
+
+
+.. TODO:: Discuss and flesh these out.
+
+
+
+----
 
 
 Log Collection
