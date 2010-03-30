@@ -31,10 +31,9 @@ Glossary
     :term:`Member Node synchronization`.
 
   Data
-    Typically refers to scientific data. Where ambiguity between the science
-    data and another form of data, the full term "science data" should be
-    used. DataONE services always return exact copies of the original data as
-    submitted to DataONE.
+    Typically refers to :term:`science data`. Where ambiguity between the
+    science data and another form of data, the full term "science data" should
+    be used. 
 
   DataONE
     An NSF sponsored project implementing cyberinfrastructure according to
@@ -86,6 +85,11 @@ Glossary
   replication
     In DataONE, refers to the transfer of content between Member Nodes as
     directed by the Coordinating Nodes.  
+
+  science data
+    Science data that is stored in the DataONE system. See :doc:`WhatIsData`
+    for a description of what is considered data in DataONE. DataONE services
+    always return exact copies of the original data as submitted to DataONE.
 
   science metadata
     Metadata that describes the data that is replicated across the Member Nodes.

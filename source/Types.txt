@@ -147,16 +147,16 @@ Version   Structure
 
   .. attribute:: size
 
-     The size in bytes of the object
+     Size of the object in bytes
 
   .. attribute:: dateSysMetadataModified
 
-     A :class:`DateTime` value that indicates when the SystemMetadata
-     associated with the object was last modified. 
+     A :class:`DateTime` value that indicates when the :term:`system metadata`
+     associated with the object was last modified.
 
   .. attribute:: checksum
 
-     A :class:`Cheksum` value that provides the computed cheksum value of the
+     A :class:`Checksum` value that provides the computed checksum value of the
      referenced object.
 
 ----

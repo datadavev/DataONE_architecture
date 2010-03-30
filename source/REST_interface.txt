@@ -45,11 +45,11 @@ Version API Method                                         Method      URL
 ======= ================================================== =========== ========================================
 .       MN Operations
 0.3     :func:`MN_crud.getLogRecords`                       ``GET``     ``/log/``
-0.3     :func:`MN_replication.listObjects`                  ``GET``     ``/object/``
-0.3     :func:`MN_crud.get`                                 ``GET``     ``/object/<guid>``
-0.4     :func:`MN_crud.create`                              ``GET``     ``/object/<guid>``
-0.4     :func:`MN_crud.update`                              ``GET``     ``/object/<guid>``
-0.9     :func:`MN_crud.delete`                              ``GET``     ``/object/<guid>``
+0.3     :func:`MN_replication.listObjects`                  ``GET``     `/object/`_
+0.3     :func:`MN_crud.get`                                 ``GET``     `/object/<guid>/`_
+0.4     :func:`MN_crud.create`                              ``GET``     `/object/<guid>/`_
+0.4     :func:`MN_crud.update`                              ``GET``     `/object/<guid>/`_
+0.9     :func:`MN_crud.delete`                              ``GET``     `/object/<guid>/`_
 0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
 0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``   
 0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``
@@ -63,8 +63,8 @@ Version API Method                                         Method      URL
 .       CN Operations
 0.3     :func:`CN_query.getLogRecords`                      ``GET``     ``/log/``
 0.3     :func:`CN_health.generateReport`                    ``GET``     ``/log/report``
-0.3     :func:`CN_query.search`                             ``GET``     ``/object/``
-0.3     :func:`CN_crud.get`                                 ``GET``     ``/object/<guid>`` 
+0.3     :func:`CN_query.search`                             ``GET``     `/object/`_
+0.3     :func:`CN_crud.get`                                 ``GET``     `/object/<guid>/`_ 
 0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
 0.3     :func:`CN_crud.resolve`                             ``GET``     ``/object/<guid>/locate/``
 0.4     :func:`CN_query.query`
@@ -88,16 +88,16 @@ Version API Method                                         Method      URL
 .. note::
    GUID is used interchangeably with the term 'identifier' in this document. For all purposes of DataONE, a 'guid' is an identifier.
 
+
 Object Collection
 ~~~~~~~~~~~~~~~~~
 
-The ``/object/`` collection represents any object that can be identified by a
-GUID within the DataONE system. These can be science data, science metadata,
-or system metadata entries. It is likely that additional object classes will
-be created in future version of DataONE to handle additional types of
-information such as relationships between objects and annotations. It is
-anticipated that fundamental access and manipulation of those new object
-classes will occur through the same ``/object/`` collection interface.
+The ``/object/`` collection represents any object that can be identified
+within the DataONE system. These can be :term:`science data`, :term:`science
+metadata`, or potentially other types of objects (e.g. :term:`principal`\s,
+work flows, relationships). It is anticipated that fundamental access and
+manipulation of those new object classes will occur through the same
+``/object/`` collection interface.
 
 The object collection is exposed by both MNs and CNs.
 
@@ -116,32 +116,37 @@ Implements the functions:
 
 **Optional Parameters**
 
-:start: Zero based index of the first item to retrieve.
+:start: Zero based index of the first item to return
 
-:count: Number of items to retrieve
+:count: Maximum number of items to return
 
-:objectFormat: Restrict response to the specified object class. Wildcards allowed.
+:objectFormat: Restrict the response to the specified object class. 
 
-:identifier: Restrict response to the specified guid. Wildcards allowed.
+:startTime: 
+  Specifies the beginning of the time range from which to return object (>=).
+  Queries against :attr:`SystemMetadata.dateSysMetadataModified`
 
-:checksum: Restrict response to the specified hash.
+:endTime: 
+  Specifies the end of the time range to which to return object (<=). Queries
+  against :attr:`SystemMetadata.dateSysMetadataModified`
 
-:startTime: Specifies the begining of the time range from which to return object (>=). Queries against systemMetadata.dateSysMetadataModified
-
-:endTime: Specifies the end of the time range to which to return object (<=). Queries against systemMetadata.dateSysMetadataModified
-
-.. note:: startTime <= systemMetadata.dateSysMetadataModified <= endTime
+.. note:: startTime <= :attr:`SystemMetadata.dateSysMetadataModified` <= endTime
 
 
 **Response**
 
-The expected response when a user agent sends a GET request to a MN exposing
-the DataONE REST API ``/object/`` collection is an extract from the total list
-of identifiers that the MN is able to provide access to when the request was
-received. The format of the response is determined by the ``Accept:`` HTTP
-header provided by the client, and may be one of: ``application/json``
-(default), ``text/csv``, ``text/xml``, ``application/rdf+xml``. Regardless of
-the format, the response is always encoded using the UTF-8 character set.
+The expected response when a user agent sends a GET request to a Member Node
+exposing the DataONE REST API ``/object/`` collection is an extract from the
+total list of identifiers that the Member Node is able to provide access to
+when the request was received. 
+
+The format of the response is determined by the ``Accept:`` HTTP header
+provided by the client, and may be one of: ``application/json`` (default),
+``text/csv``, ``text/xml``, ``application/rdf+xml``. Regardless of the format,
+the response is always encoded using the UTF-8 character set.
+
+If the requested format is not available, then the node should return an error
+code (:exc:`Exceptions.NotImplemented`, with errorCode set to 406).
 
 The structure of the response is::
 
@@ -167,8 +172,6 @@ The structure of the response is::
   SIZE = Byte size of object
 
 
-.. note:: The object class should really be described with a URI.
-
 Expressed in JSON::
 
   {
@@ -178,14 +181,15 @@ Expressed in JSON::
     'objectInfo':
     [
       {
-        'identifier':<identifier>,
-        'objectFormat':<object class>,
-        'checksum': {
-		'algorithm':<checkSum Algorithm Type>, 
-		'value':<SHA1 hash of object>
-	},
-        'dateSysMedatadataModified':<date time last modified>,
-        'size':<byte size of object>
+        'identifier':<IdentifierType>,
+        'objectFormat':<ObjectFormatType>,
+        'checksum': 
+        {
+          'algorithm':<checkSum Algorithm Type>, 
+          'value':<SHA1 hash of object>
+        },
+        'dateSysMedatadataModified':<DateTime>,
+        'size':<integer>
       },
       ...
     ]
@@ -207,7 +211,7 @@ Expressed in XML::
             total='_integer_'>
     <objectInfo identifier='_identifier_'>
       <objectFormat>_object class_</objectFormat>
-      <checksum algorithm='SHA-1 | SHA-224 | MD5 | ...'>_SHA1 hash of object</checksum>
+      <checksum algorithm='SHA-1 | SHA-224 | MD5 | ...'>_hash of object_</checksum>
       <dateSysMedatadataModified>_date time last modified_</dateSysMedatadataModified>
       <size>_byte size of object_</size>
     </objectInfo>

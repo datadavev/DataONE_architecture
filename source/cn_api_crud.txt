@@ -96,20 +96,19 @@ operations on a :term:`Coordinating Node`.
 
 ----
 
-.. function:: resolve(token, identifier) -> ObjectLocationList
+.. function:: resolve(token, guid) -> ObjectLocationList
 
    Given an identifier, returns information that a client can use to retrieve
-   the identified target object form the DataONE system. The target may reside
-   on a MN or a CN. The actual content returned will be specific to the type
-   of interface implemented, and is described in detail in the documentation
-   for the implementation (e.g. REST implementation might differ from SOAP
-   implementation).
+   the identified target object from the DataONE system. The target may reside
+   on a MN or a CN.
 
-    :param token: authentication token; ignored for V0.3
+    :param token: authentication token
 
     :type token: :class:`Types.AuthToken`
 
-    :param identifier: Identifier for the object in question
+    :param guid: Identifier for the object in question
+
+    :type guid: :class:`Types.IdentifierType`
 
     :returns: 
       A list of nodes known to contain copies of the target object, plus the

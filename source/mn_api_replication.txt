@@ -50,7 +50,7 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
 ----
 
-.. function::  listObjects (token, startTime, [endTime, replicaStatus, start, count]) -> ObjectList
+.. function:: listObjects (token, startTime, [endTime, objectFormat, replicaStatus, start, count]) -> ObjectList
 
    Retrieve the list of GUIDs for objects owned by the MN that match the
    calling parameters. This method is required to support the process of
@@ -75,6 +75,10 @@ MN-to-MN replication is not part of the V0.3 APIs.
    :param endTime: Indicates the end time for matching objects
 
    :type endTime: :class:`Types.DateTime`
+
+   :param objectFormat: Restrict results to the specified object format.
+
+   :type objectFormat: :class:`Types.ObjectFormatType`
 
    :param replicaStatus: 
 
@@ -113,8 +117,13 @@ MN-to-MN replication is not part of the V0.3 APIs.
      :detailCode: 1540
 
    :raises Exceptions.NotImplemented:
-     :errorCode: 400
+     :errorCode: 400 or 406
      :detailCode: 1560
+
+     Raised if some functionality requested is not implemented. In the case of
+     an optional request parameter not being supported, the errorCode should
+     be 400. If the requested format (through HTTP Accept headers) is not
+     supported, then the standard HTTP 406 error code should be returned.
 
 
 ----

@@ -427,7 +427,12 @@ The Exceptions
    A method is not implemented, or alternatively, features of a particular
    method are not implemented.
 
-   :errorCode: 400
+   :errorCode: 400 or 406. The HTTP error code varies according to what is not
+   implemented. If a method is not implemented, or some optional parmaeter is
+   not supported, then a 400 should be returned. If however, a response format
+   requested through the HTTP Accept header is not supported, then a 406 error
+   code should be returned.
+
 
    :param detailCode:
      Set by the method raising the exception.

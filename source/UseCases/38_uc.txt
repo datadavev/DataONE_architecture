@@ -77,7 +77,6 @@ Post Conditions
   !include ../plantuml.conf
   participant "Client" as itk <<Investigator Toolkit>>
   participant "CRUD API" as c_crud << Coordinating Node >>
-
   itk -> c_crud: reserveIdentifier(token, guid, scope, format)
   c_crud -> c_crud: createDummyEntry
   note right

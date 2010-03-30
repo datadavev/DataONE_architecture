@@ -19,28 +19,25 @@ Function               Parameters
 ====================== =================================
 
 
-::
-
-  search(token, query) -> list of GUIDs
-  getLogRecords(token, fromDate, toDate) -> logRecords
-
-
 ----
 
-.. function:: search (token, query) -> list of metadata GUIDs
+.. function:: search (token, query) -> ObjectList
 
-   Search the metadata catalog and return GUIDs of metadata records that meet
-   the criteria.
+   Search the metadata catalog and return identifiers of metadata records that
+   match the criteria.
 
-   :param token: authentication token; ignored for V0.3
+   :param token: authentication token
+
+   :type token: :class:`Types.AuthToken`
 
    :param query: The criteria for matching the characteristics of the metadata
-     objects of interest. The structure of this query is described in
-     :doc:querying_content.
+     objects of interest. 
+
+   :type query: :class:`Types.QueryType`
 
    :returns: A list of objects that match the specfied search criteria
-   
-   :rtype: GuidList
+
+   :rtype: :class:`Types.ObjectList`
 
    :raises: Exceptions.NotAuthorized
      :errorCode: 401
@@ -49,9 +46,6 @@ Function               Parameters
    :raises: Exceptions.InvalidRequest
      :errorCode: 400
      :detailCode: 4300
-
-   .. todo: Details of query specification for `search(token, query)` needs to
-     be worked out.
 
 
 ----

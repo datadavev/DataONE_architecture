@@ -37,12 +37,12 @@ specified in the future (e.g. CQL, SPARQL).
 Overview
 --------
 
-The basic model is that a query applied against the ``/object/`` collection
-acts as a filter, restricting the results to only those objects whose
-properties match the supplied query expression. The default, or unfiltered
-view of the collection shows all objects (that the user is authorized to
-access). The query does not shape the result, i.e. it does not indicate which
-fields or the structure of the response.
+The basic model is that a query applied against a collection acts as a filter,
+restricting the results to only those objects whose properties match the
+supplied query expression. The default, or unfiltered view of the collection
+shows all objects (that the user is authorized to access). The query does not
+shape the result, i.e. it does not indicate which fields are returned or the
+structure of the response.
 
 There seems to be two basic types of query that need to be supported. One is
 querying against fairly distinct and controlled object attributes that are for
