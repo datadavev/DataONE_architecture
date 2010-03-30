@@ -121,17 +121,21 @@ In HTML:
 .. code-block:: html
 
   <html>
+    <head>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <title>Error: 404 Not Found (1020)</title>
+    </head>
     <body>
       <p>
         <dl>
           <dt>Code</dt>
           <dd class='errorCode'>404</dd>
           <dt>Detail Code</dt>
-          <dd class='detailCode'>14001</dd>
+          <dd class='detailCode'>1020</dd>
         </dl>
       </p>
       <p class='description'>The specified object does not exist on this node.</p>
-      <div class='traceInformation'>
+      <dl class='traceInformation'>
         <dt>identifier</dt>
         <dd>123XYZ</dd>
         <dt>method</dt>
@@ -139,7 +143,7 @@ In HTML:
         <dt>hint</dt>
         <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a> 
             at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
-      </div>
+      </dl>
     </body>
   </html>
 
@@ -148,7 +152,7 @@ In XML:
 
 .. code-block:: xml
 
-  <error errorCode='404' detailCode='14001'>
+  <error errorCode='404' detailCode='1020'>
     <description>The specified object does not exist on this node.</description>
     <traceInformation>
       <value key='identifier'>123XYZ</value>
@@ -161,7 +165,7 @@ In XML:
 In JSON::
 
   {'errorCode':404,
-   'detailCode': 14001,
+   'detailCode': 1020,
    'description': 'The specified object does not exist on this node.',
    'traceInformation': {'identifier':'123XYZ',
                          'method': 'mn.get',
@@ -171,7 +175,7 @@ In JSON::
 
 Log message body::
 
-  [detail:14001][identifier:123XYZ, method:mn.get]The specified object does not exist on this node.
+  [detail:1020][identifier:123XYZ, method:mn.get]The specified object does not exist on this node.
 
 
 
