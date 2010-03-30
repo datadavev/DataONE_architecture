@@ -80,22 +80,31 @@ Post Conditions
   participant "Replication API" as m_rep << Member Node >>
   participant "CRUD API" as m_crud << Member Node >>
 
-  c_sync -> m_rep: listObjects(token, query)
+  c_sync -> m_rep: listObjects(token, startTime, ...)
 
   c_sync <-- m_rep: list of GUIDs
 
   loop for each GUID
     c_sync -> m_crud: getSystemMetadata(token, GUID)
-    m_crud --> m_crud: log (REPLICATE)
+    note right
+      The association between data and 
+      science metadata is created on 
+      the Member Node (or by the ITK).
+    end note
     c_sync <-- m_crud: SystemMetadata
-    c_sync -> c_sync: parse -> data_GUID
-    alt GUID refers to ScienceMetadata
+    c_sync -> c_sync: parse -> is ScienceMetadata?
+    note right
+      Parse the sysmeta to determine if Science Metadata 
+      needs to be retrieved.
+    end note
+    alt GUID refers to data
+      c_sync -> c_crud: create(GUID, SystemMetadata)
+    else GUID refers to ScienceMetadata
       c_sync -> m_crud: get(token, GUID)
       m_crud --> m_crud: log (REPLICATE)
       c_sync <-- m_crud: ScienceMetadata
-      c_sync -> c_crud: create(GUID, ScienceMetadata)
+      c_sync -> c_crud: create(GUID, SystemMetadata, ScienceMetadata)
     end
-    c_sync -> c_crud: create(GUID, SystemMetadata)
   end
   @enduml
 

@@ -111,6 +111,8 @@ Post Conditions
   participant "Authorization API" as n_authorize << Coordinating Node >>
   participant "Object Store" as n_ostore << Coordinating Node >>
   app_client -> n_crud: getSystemMetadata(token, GUID)
+  activate app_client
+  activate n_crud
   n_crud -> n_authorize: isAuthorized(token, GUID, READ)
   n_crud <- n_authorize: True, False, Err.NotFound
   alt NotFound
@@ -118,11 +120,13 @@ Post Conditions
   else False
     app_client <- n_crud: Err.NotAuthorized
   else True
-    n_crud -> n_ostore: readSystemMetdata(GUID)
-    n_crud <- n_ostore: bytes
     n_crud --> n_crud: Log(READ)
+    n_crud -> n_ostore: read(GUID)
+    n_crud <- n_ostore: bytes
     app_client <- n_crud: bytes
+    deactivate n_crud
   end
+  deactivate app_client
   @enduml
 
 
