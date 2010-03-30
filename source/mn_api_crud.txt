@@ -335,9 +335,9 @@ operations on a :term:`Member Node`.
 
 .. function:: getSystemMetadata(token, GUID) -> SystemMetadata
 
-   Describes the science metadata and data object (and likely other objects in
-   the future) identified by the GUID by returning the system metadata object
-   associated with the GUID.
+   Describes the science metadata or data object (and likely other objects in
+   the future) identified by the GUID by returning the associated system
+   metadata object.
 
    If the object does not exist on the node servicing the request, then
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
