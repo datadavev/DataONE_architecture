@@ -419,6 +419,34 @@ The Exceptions
 
    :type traceInformation: dictionary
 
+
+----
+
+.. exception:: NotImplemented(detailCode, description, [traceInformation])
+
+   A method is not implemented, or alternatively, features of a particular
+   method are not implemented.
+
+   :errorCode: 400
+
+   :param detailCode:
+     Set by the method raising the exception.
+
+   :type detailCode: integer
+
+   :param description: 
+     A human readable description of the error. Should indicate the method, or
+     method feature that is not implemented.
+
+   :type description: string
+   
+   :param traceInformation: 
+     Optional. Additional information that can be used to assist debugging an
+     error condition, consisting of a dictionary with string or integer keys and 
+     string values.  
+   
+   :type traceInformation: dictionary
+
 ----
 
 .. exception:: UnsupportedMetadataType(detailCode, description, [traceInformation])
