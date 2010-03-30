@@ -126,12 +126,6 @@ operations on a :term:`Coordinating Node`.
 
      There is no data object identified by the given GUID.
 
-   :raises Exceptions.InvalidRequest: 
-     :errorCode: 400
-     :detailCode: 4160
-
-     The GUID requested identifies a system metadata object.
-
 
 ----
 

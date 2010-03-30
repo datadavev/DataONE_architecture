@@ -28,6 +28,8 @@ Basic information:
 - Cache information should be respected. Caching is an important mechanism for
   achieving scalability 
 
+- Several URL patterns listed below support parameters. These should be
+  interpreted without regard to case (i.e. case insensitive).
 
 Collections exposed by Member Nodes and Coordinating Nodes include:
 
@@ -47,12 +49,12 @@ Version API Method                                         Method      URL
 0.3     :func:`MN_crud.getLogRecords`                       ``GET``     ``/log/``
 0.3     :func:`MN_replication.listObjects`                  ``GET``     `/object/`_
 0.3     :func:`MN_crud.get`                                 ``GET``     `/object/<guid>/`_
-0.4     :func:`MN_crud.create`                              ``GET``     `/object/<guid>/`_
-0.4     :func:`MN_crud.update`                              ``GET``     `/object/<guid>/`_
-0.9     :func:`MN_crud.delete`                              ``GET``     `/object/<guid>/`_
-0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
-0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``   
-0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``
+0.4     :func:`MN_crud.create`                              ``POST``    `/object/<guid>/`_
+0.4     :func:`MN_crud.update`                              ``PUT``     `/object/<guid>/`_
+0.9     :func:`MN_crud.delete`                              ``DELETE``  `/object/<guid>/`_
+0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     `/object/<guid>/meta/`_
+0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``_
+0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``_
 0.4     :func:`MN_capabilities.getCapabilities`
 0.4     :func:`MN_health.getStatus`
 0.6     synchronize
@@ -66,7 +68,7 @@ Version API Method                                         Method      URL
 0.3     :func:`CN_query.search`                             ``GET``     `/object/`_
 0.3     :func:`CN_crud.get`                                 ``GET``     `/object/<guid>/`_ 
 0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     ``/object/<guid>/meta/``
-0.3     :func:`CN_crud.resolve`                             ``GET``     ``/object/<guid>/locate/``
+0.3     :func:`CN_crud.resolve`                             ``GET``     `/object/<guid>/resolve/`_
 0.4     :func:`CN_query.query`
 0.4     :func:`CN_register.register`
 0.4     :func:`CN_crud.create`
@@ -267,7 +269,7 @@ Expressed in RDF/XML::
 
 **Examples**
 
-Retrieve a list of GUIDs from a member node in JSON format::
+Retrieve a list of identifiers from a member node in JSON format::
 
   curl -X GET -H "Accept: application/json" http://mn1.dataone.org/object/
 
@@ -293,7 +295,7 @@ Retrieve a list of GUIDs from a member node in JSON format::
   	  'size':1044} ] }
 
 
-Retrieve a list of GUIDs from a member node in plain text format::
+Retrieve a list of identifiers from a member node in plain text format::
 
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
@@ -319,10 +321,10 @@ Retrieve last modified information about the collection::
 ``/object/<guid>/``
 ^^^^^^^^^^^^^^^^^^^
 
-Operates on individual items of the ``/object/`` collection identified by a
-GUID. 
+Operates on individual items of the ``/object/`` collection identified by an
+identifier.  This URL pattern is implemented by Member and Coordinating Nodes.
 
-Implements the methods:
+Implemented by the methods:
 
 - :func:`MN_crud.get`
 
@@ -345,7 +347,7 @@ Implements the methods:
   ====== ===========================================================================
   HEAD   Returns basic information about the object.
   
-         ``Last-Modified:`` Date collection was last modified.
+         ``Last-Modified:`` Date object was last modified.
   
          ``Content-Type:`` The MIME type of the object
   
@@ -361,7 +363,7 @@ Implements the methods:
          encoded in the request body using `MIME-multipart Mixed Media Type
          <http://tools.ietf.org/html/rfc2046#section-5.1.3>`_, where the 
          object part has the name 'object', and the sysmeta part has the name 
-         'system_metadata'.
+         'systemmetadata'.  Parameter names are not case sensitive.
 
   PUT    Updates an existing instance identified by GUID, implementing 
          :func:`MN_crud.update`.  The DataONE authorization token should be placed 
@@ -382,7 +384,7 @@ Implements the methods:
 **Examples**
 
 
-Retrieve information about the object with identifier "ABC123"::
+(HEAD) Retrieve information about the object with identifier "ABC123"::
 
   curl -I http://mn1.dataone.org/object/ABC123/
 
@@ -391,14 +393,14 @@ Retrieve information about the object with identifier "ABC123"::
   Content-Length: 1040032112
   Content-Type: application/octet-stream
 
-Retrieve the object with identifier "XYZ332"::
+(GET) Retrieve the object with identifier "XYZ332"::
 
   curl http://m1.dataone.org/object/XYZ332/
   
   ... data ...
 
 
-Attempt to retrieve a non-existent object (and show headers in response)::
+(GET) Attempt to retrieve a non-existent object (and show headers in response)::
 
   curl -D - http://m1.dataone.org/object/XYZ33255/
   
@@ -408,18 +410,35 @@ Attempt to retrieve a non-existent object (and show headers in response)::
   Content-Length: 355
   
   
-  <html><head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8">
-  <title>404 Not Found</title>
-  <body>
-  <p>The object with id &quot;XYZ33255&quot; is not available on this system.  
-  Forward the request to the entire DataONE system here: 
-  <a href="http://dataone.org/object/XYZ33255/">http://dataone.org/object/XYZ33255/</a>.
-  </body>
-  </html>  
+  <html>
+    <head>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8">
+      <title>Error: 404 Not Found (1020)</title>
+    </head>
+    <body>
+      <p>
+        <dl>
+          <dt>Code</dt>
+          <dd class="errorCode">404</dd>
+          <dt>Detail Code</dt>
+          <dd class="detailCode">1020</dd>
+        </dl>
+      </p>
+      <p class="description">The specificed object does not exist on this node.</p>
+      <dl class="traceInformation">
+        <dt>identifier</dt>
+        <dd>123XYZ</dd>
+        <dt>method</dt>
+        <dd>mn.get</dd>
+        <dt>hint</dt>
+        <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a>
+            at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
+      </dl>
+    </body>
+  </html>
 
 
-Create a new object with a given identifier::
+(POST) Create a new object with a given identifier::
 
   curl -H "AuthToken: UR45W21A1S19ZE3CC9" \
        -F "file=@datafile.csv;name=object" \
@@ -434,24 +453,23 @@ Create a new object with a given identifier::
   XYZ33256
 
 
-.. TODO:: Show some examples for operations.  Failures should be included.
-
 
 ``/object/<guid>/meta/``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requests the system metadata for the specified object. System metadata is not
-available for system metadata objects, and so the response will be a HTTP
-status 404 indicating the object was not found if a system metadata object is
-requested for another system metadata object.
+Requests the :class:`Types.SystemMetadata` for the specified object. Although
+this access point is supported by both Member and Coordinating Nodes, only the
+responses from Coordinating Nodes should be considered authoritative,
+especially with respect to the :attr:`SystemMetadata.replica` entries.
 
-Implements the methods:
+The ``/object/<guid>/meta`` response format defaults to ``text/xml`` and is
+the only format currently supported. Other formats such as JSON may be
+supported in the future.
+
+
+Implemented by the methods:
 
 - :func:`MN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
-
-- :func:`MN_replication.synchronizationComplete` (``PUT /object/<guid>/meta/``)
-
-- :func:`MN_replication.synchronizationFailed` (``PUT /object/<guid>/meta/``)
 
 - :func:`CN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
 
@@ -475,8 +493,7 @@ Implements the methods:
 
   POST     No Operation
 
-  PUT      Permitted by Coordinating Nodes only.  Used to update the system metadata, 
-           such as after a replication operation has successfully completed.
+  PUT      No Operation
 
   DELETE   No Operation
   ======== ===========================================================================
@@ -484,7 +501,59 @@ Implements the methods:
 
 **Examples**
 
-.. TODO:: Show some examples for operations.  Failures should be included.
+(GET) Retrieve system metadata from a Member Node for object "XYZ332" which
+happens to be science metadata (an EML document) that describes dataset
+identified by "XYZ333"
+
+::
+
+  curl http://m1.dataone.org/object/XYZ332/
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <d1:systemMetadata xmlns:d1="http://dataone.org/coordinating_node_sysmeta_0.1"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://dataone.org/coordinating_node_sysmeta_0.1 https://repository.dataone.org/software/cicore/trunk/schemas/coordinating_node_sysmeta.xsd">
+      <!-- This instance document was auto generated by oXygen XML for testing purposes.
+           It contains no useful information.
+      -->
+      <identifier>Identifier0</identifier>
+      <objectFormat>eml://ecoinformatics.org/eml-2.0.1</objectFormat>
+      <size>0</size>
+      <submitter>uid=jones,o=NCEAS,dc=ecoinformatics,dc=org</submitter>
+      <rightsHolder>uid=jones,o=NCEAS,dc=ecoinformatics,dc=org</rightsHolder>
+      <describes>XYZ333</describes>
+      <checksum algorithm="SHA-1">2e01e17467891f7c933dbaa00e1459d23db3fe4f</checksum>
+      <embargoExpires>2006-05-04T18:13:51.0Z</embargoExpires>
+      <accessRule rule="allow" service="read" principal="Principal0"/>
+      <accessRule rule="allow" service="read" principal="Principal1"/>
+      <replicationPolicy replicationAllowed="true" numberReplicas="2">
+          <preferredMemberNode>MemberNode12</preferredMemberNode>
+          <preferredMemberNode>MemberNode13</preferredMemberNode>
+          <blockedMemberNode>MemberNode6</blockedMemberNode>
+          <blockedMemberNode>MemberNode7</blockedMemberNode>
+      </replicationPolicy>
+      <dateUploaded>2006-05-04T18:13:51.0Z</dateUploaded>
+      <dateSysMetadataModified>2009-05-04T18:13:51.0Z</dateSysMetadataModified>
+      <originMemberNode>mn1.dataone.org/</originMemberNode>
+      <authoritativeMemberNode>mn1.dataone.org/</authoritativeMemberNode>
+  </d1:systemMetadata>
+
+
+(GET) Attempt to retrieve system metadata for an object that does not exist.
+
+::
+
+  curl http://cn.dataone.org/cn/object/SomeObjectID/meta/
+
+  <error errorCode='404' detailCode='4060'>
+    <description>The specified object does not exist on this node.</description>
+    <traceInformation>
+      <value key='identifier'>SomeObjectID</value>
+      <value key='method'>cn.getSystemMetadat</value>
+      <value key='hint'>http://cn.dataone.org/cn/resolve/SomeObjectID</value>
+    </traceInformation>
+  </error>
+
 
 
 ``/object/<guid>/resolve/``
@@ -493,7 +562,7 @@ Implements the methods:
 Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
 hold copies of the object identified by ``<guid>``.
 
-Implements the following methods:
+Implemented by the following methods:
 
 - :func:`CN_crud.resolve` (``GET /object/<guid>/resolve/``)
 
@@ -522,11 +591,15 @@ Implements the following methods:
 
 **Response**
 
-The representation of the response varies according to content type negotiation and should contain::
+The representation of the response varies according to content type negotiation and should contain:
 
-  RESPONSE      = n*[NODE, FULL_URL]
-  NODE          = node service base url
-  FULL_URL      = full url for get object on the node
+.. productionlist::
+   RESPONSE           : IdentifierListType | Exception
+   IdentifierListType : `identifier` + n*[NODE, FULL_URL]
+   NODE               : node service base url
+   FULL_URL           : full url for get object on the node
+   Exception          : NotFound | NotAuthorized
+
 
 The following representations show different encodings for the example
 identifier '1234' that is located on the following nodes:
@@ -534,32 +607,38 @@ identifier '1234' that is located on the following nodes:
 ============================ =================================================
 Node Identifier              GET Object URL
 ============================ =================================================
-mn1.dataone.org/mn           http://mn1.dataone.org/mn/object/1234
-mn2.dataone.org/some_base/mn http://mn2.dataone.org/some_base/mn/object/1234
-cn.dataone.org/mn            http://cn.dataone.org/object/1234
+mn1.dataone.org/mn           ``http://mn1.dataone.org/mn/object/1234``
+mn2.dataone.org/some_base/mn ``http://mn2.dataone.org/some_base/mn/object/1234``
+cn.dataone.org/cn            ``http://cn.dataone.org/object/1234``
 ============================ =================================================
 
 
 CSV representation::
 
+  #1234
+  node,url
   'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
   'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
-  'cn.dataone.org/mn','http://cn.dataone.org/object/1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
 
 JSON representation::
 
-  [ ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object/1234'],
-    ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object/1234'], 
-    ['cn.dataone.org/mn', 'http://cn.dataone.org/object/1234'] ]
+   {
+    'identifier':'1234',
+    'locations': [ 
+      ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object/1234'],
+      ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object/1234'], 
+      ['cn.dataone.org/cn', 'http://cn.dataone.org/cn/object/1234'] ]
+   }
 
 
 XML representation::
 
-  <locations id='1234'>
+  <locations identifier='1234'>
     <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object/1234' />
     <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object/1234' />
-    <location node='cn.dataone.org/' href='http://cn.dataone.org/object/1234' />
+    <location node='cn.dataone.org/cn' href='http://cn.dataone.org/cn/object/1234' />
   </locations>
 
 
@@ -569,7 +648,7 @@ HTML::
   <ol identifier='1234'>
     <a href='http://mn1.dataone.org/mn/object/1234'>mn1.dataone.org/mn</a>
     <a href='http://mn2.dataone.org/some_base/mn/object/1234'>mn1.dataone.org/some_base/mn</a>
-    <a href='http://cn.dataone.org/object/1234'>cn.dataone.org/</a>
+    <a href='http://cn.dataone.org/cn/object/1234'>cn.dataone.org/cn</a>
   </ol>
   ...
 
@@ -580,9 +659,11 @@ Using CURL::
 
   curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/1234/locate/
 
+  #1234
+  node,url
   'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
   'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
-  'cn.dataone.org/mn','http://cn.dataone.org/object/1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
 
 
