@@ -685,7 +685,8 @@ Using CURL::
 
 
 Reserve Collection
-------------------
+~~~~~~~~~~~~~~~~~~
+
 
 
 ``/object/reserve/``
