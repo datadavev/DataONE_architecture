@@ -16,41 +16,75 @@ Goal
 
 Summary 
 
-  xxx
+  The infrastructure must support mechanisms for discovery of content that is
+  relevant to a users interest that is expressed through a query. The response
+  to a query should be a mechanism that enables a user to verify that the
+  query was accurate and sufficient, and should provide a mechanism for the
+  user to retrieve the content that matched the query or forward the result
+  set to some other service.
 
 Actors
-  xxx
+  Coordinating Node, Investigator Toolkit, DataONE Web Interface
 
 Preconditions 
-  xxx
-  
+
+  - Content exists in the DataONE system and is cataloged
+  - A client has some notion of a query to execute
+
 Triggers
-  xxx
+  - A client invokes a search against the DataONE catalog
  
 Post Conditions
-  xxx
+  - The client has a result set that matches the query
+  - The search operation is logged
 
 **Notes**
 
-xxx
+It is expected that the search mechanisms for DataONE will be evolving
+significantly over time, especially with respect to the types and richness of
+the queries that may be supported.
+
+.. figure:: images/33_uc.png
+   :figwidth: 100%
+
+   Use case diagram for use case 33.
 
 
 .. figure:: images/33_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
    Interactions for use case 33.
 
 ..
+  @startuml images/33_uc.png
+  !include ../plantuml.conf
+
+  package "DataONE"
+  actor "Coordinating Node" as CN
+  actor "Client" as ITK
+  usecase "13. Authorization" as author
+  usecase "33. Search" as SEARCH
+  CN -- SEARCH
+  ITK -- SEARCH
+  SEARCH ..> author: <<includes>>
+  @enduml
+
+
+..
   @startuml images/33_interaction.png
   !include ../plantuml.conf
-  title Interactions: 33 - Discovery; Clients should be able to search for data using CN\nmetadata catalogs
+  title Interactions: 33 - Search for content
 
-  actor User
   participant "Client" as app_client << Application >>
-  User -> app_client
   participant "Query API" as c_query << Coordinating Node >>
-  app_client -> c_query: searchForData ()
-  app_client <-- c_query: objectList
+  participant "CRUD API" as c_crud << Coordinating Node >>
+  app_client -> c_query: search(token, query)
+  alt NotAuthorized
+    app_client <-- c_query: NotAuthorized
+  else OK
+    c_query -> c_crud: log(READ)
+    app_client <-- c_query: objectList
+  end
   @enduml
   
   
