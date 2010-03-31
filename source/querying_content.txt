@@ -111,6 +111,7 @@ Suffix  Comparison Operator
 ======= ===========================
 None    Equals (==) (default)
 _eq     Equals (==)
+_ne     Not equal (!=)
 _lt     Less than (<)
 _le     Less than or equals (<=)
 _gt     Greater than (>)
@@ -126,6 +127,17 @@ example::
 could be mapped to the SQL WHERE clause::
 
   WHERE oclass LIKE 'd%'
+
+The general grammar of the query can be expressed as:
+
+.. productionlist::
+   NVPQuery : { `nvpair` }
+   nvpair   : `name` + "=" + `value`
+   name     : string [+ `operator`]
+   operator : "_eq" | "_ne" | "_lt" | "_le" | "_gt" | "_ge"
+   value    : string
+
+
 
 An alternative approach is to use enumerated triples, so for the same query as
 above (with ``a`` referring to "attribute name", ``c`` to "comparison

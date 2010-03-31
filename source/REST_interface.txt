@@ -143,6 +143,19 @@ Implements the functions:
 
 .. note:: startTime <= :attr:`SystemMetadata.dateSysMetadataModified` <= endTime
 
+:jsonvar: 
+  Applicable only when the JSON response is requested. Indicates the variable
+  name that will be prepended to the JSON response. For example, if
+  ``jsonvar=rs1``, the JSON result would start with ``rs1=``.
+
+:orderby:
+  Indicates which attribute will be used to sort the results, and whether the
+  sorting should be in ascending or descending order. The value of the
+  parameter must be a valid attribute name, and should be prefixed with
+  ``asc_`` to indicate ascending order, or ``desc_`` to indicate descending
+  order. If neither the ``asc_`` or ``desc_`` prefix is present, then the
+  default should be ascending.
+
 
 **Response**
 
@@ -219,7 +232,7 @@ and an associated html page that could utilize the JSON result::
 
   <html>
   <head>...
-  <script type="application/javascript">
+  <script type="text/javascript">
   var rs1=false;
   </script>
   <script src="http://cn1.dataone.org/cn/object?qt=solr&jsonvar=rs1&q=..."></script>
@@ -381,6 +394,24 @@ Perform a search against a Coordinating Node::
      } ] 
   }
 
+The search results are the same as the response from
+:func:`MN_replication.listObjects`. At this stage, additional attributes can
+not be specified in the response, though this is likely to change in the
+future.
+
+Ordering of search results is currently unspecified. A simple approach would
+be to add an additional parameter ``orderby`` to the request, the value of
+which would be a combination of an attribute name and and indication of
+ascending or descending order.
+
+So for example, to return the results ordered by dateSysMetadataModified, with
+the oldest records first, the parameter and value of::
+
+  orderby=asc_dateSysMetadataModified
+
+might be specified, and similarly for newest first::
+
+  orderby=desc_dateSysMetadataModified
 
 
 ----
@@ -768,19 +799,24 @@ Implemented by the methods:
 Log Collection
 ~~~~~~~~~~~~~~
 
-The ``/log/`` collection represents access records for all objects within the
-DataONE system. 
+The ``/log/`` collection provide access to the record of object access events
+as recorded by Member and Coordinating Nodes.
 
 
 ``/log/``
 ^^^^^^^^^
 
 List of access records for all objects that are present on the node, ordered
-with newest first.
+with most recent entries first.
 
-Implements the functions:
+Access to logs should support restriction by time range, principal, event
+type, and identifier.
+
+Implemented by the functions:
 
 - :func:`MN_crud.getLogRecords`
+
+- :func:`CN_query.getLogRecords`
 
 
 **Optional Parameters**

@@ -45,129 +45,252 @@ Search the authors of content.
 Search the keywords of content
 
 
+Search Element Types
+~~~~~~~~~~~~~~~~~~~~
+
+Integer
+
+Float
+
+String
+
+DateTime
+
+SpatialFeature (Use WKT_)
+
+Publication (A structured type, perhaps search by decomposing to elements)
+
+ScientificName (A structured type, perhaps search by decomposing to elements)
+
+
+.. _WKT:: http://en.wikipedia.org/wiki/Well-known_text
+
+
 Essential Elements
 ~~~~~~~~~~~~~~~~~~
 
 .. attribute:: author
 
-   
+   (String)
 
-- PI / Author
+   - PI / Author
 
-  - name authority service is desired for some control over names appearing in metadata
+   - name authority service is desired for some control over names appearing in metadata
 
-  - but for search, advantages to keep simple text representation
+   - but for search, advantages to keep simple text representation
 
-  - goal of gradual increase in specificity
-
+   - goal of gradual increase in specificity
 
 
 .. attribute:: keyWord
 
-- Keyword (uncontrolled keywords)
+   (String)
+
+   - Keyword (uncontrolled keywords)
 
 
 .. attribute:: keyConcept
 
-- Key concept -key concepts drawn from a set of ontologies
+   - Key concept -key concepts drawn from a set of ontologies
 
-  - term
+   - term
 
-  - namespace
+   - namespace
 
-- Spatial bounding box (largest bounding rectangle)
+.. attribute:: spatialFeature
 
-- Spatial window (series of spatial envelopes representative of the spatial locations of where the data is collected from / relevant to.).
+   (SpatialFeature)
 
-  - Spatial features (points, bounding boxes, polygons)
+   - Spatial bounding box (largest bounding rectangle)
 
-  - centroid
+   - Spatial window (series of spatial envelopes representative of the spatial
+     locations of where the data is collected from / relevant to.).
 
-  - bounding box
+   - Spatial features (points, bounding boxes, polygons)
 
-  - polygon
+   - centroid
 
-  - ( not largest extent )
+   - bounding box
 
-  - ( need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search )
+   - polygon
 
+   - ( not largest extent )
 
-- Named places
- 
-  - term 
-
-  - type 
-
-  - context (Columbus OH, Columbus GA)
-
-  - namespace of gazeteer  
+   - ( need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search )
 
 
-- Temporal window
+.. attribute:: namedLocation
 
-  - Relative terms (e.g. paleo periods) need to be supported
+   (String)
 
-  - Date ranges
+   - Named places
 
-  - Temporal coverage of the data set  (e.g. searches - during, before, after)
-  
-- Full text search / Text search on abstract
+   - term 
+
+   - type 
+
+   - context (Columbus OH, Columbus GA)
+
+   - namespace of gazeteer  
+
+.. attribute:: earliestDate
+
+   (DateTime)
+
+
+.. attribute:: latestDate
+
+   (DateTime)
+
+   - Temporal window
+
+   - Relative terms (e.g. paleo periods) need to be supported
+
+   - Date ranges
+
+   - Temporal coverage of the data set  (e.g. searches - during, before, after)
+
+.. attribute:: any
+
+   (String)
+
+   - Full text search / Text search on abstract
 
 
 Desirable Elements
 ~~~~~~~~~~~~~~~~~~
+
+.. attribute:: title
+
+   (string)
+
+   - Title (2)
+
+.. attribute:: objectFormat
+
+   (String)
+
+  - Type of data (format) (2)
   
-- Title (2)
+    - original data
 
-- Type of data (format) (2)
-  
-  - original data
+    - summarized versions
 
-  - summarized versions
+    - method used for processing (to generate summary, or original data)
 
-  - method used for processing (to generate summary, or original data)
+    - Resource type (spatial, models, observations, web service, ...)
 
-  - Resource type (spatial, models, observations, web service, ...)
+.. attribute:: variableName
+
+   (String)
+
+   - Scientific variables (from a controlled vocabulary) (1)
+
+.. attribute:: dataDomain
+
+   (String)
+
+   - Domain of data (physics, environmental, ...) (1)
 
 
-- Scientific variables (from a controlled vocabulary) (1)
+.. attribute:: scientificName
 
-- Domain of data (physics, environmental, ...) (1)
+   (String)
 
-- Biological taxonomic extents (1)
+   - Biological taxonomic extents (1)
 
-- Search by publication (1)
+.. attribute:: publication
+
+   (String)
+
+  - Search by publication (1)
 
 
 Some Others
 ~~~~~~~~~~~
 
+.. attribute:: creator
+
+   (String)  Dublin core
+
 - Generator of data (instrument, application)
 
-- Related data (data sets, publications)
+.. attribute:: relatedObject
 
-- Quality / level of curation
+   (String)
 
-- Organizations involved in study
+   - Related data (data sets, publications)
 
-- Size of data (bytes)
+.. attribute:: quality
 
-- Number / location of replicas 
+   (String, controlled vocab)
 
-- Dimensionality of data 
+   - Quality / level of curation
 
-- Units of measure (for sci variables)
+.. attribute:: relatedOrganizations
 
-- Identifier (GUID)
+   (String)
 
-- Temporal coverage, low priority
+   - Organizations involved in study
 
-  - (publication date )
+.. attribute:: size
 
-  - creation date
+   (Integer, long)
 
-  - last modified date
+   - Size of data (bytes)
 
-- Permissions on objects (e.g. available to read by user)
+.. attribute:: replicaCount
+
+   (Integer)
+
+.. attribute:: replicaLocation
+
+   (String)
+
+   - Number / location of replicas 
+
+.. attribute:: dimensions
+
+   (Integer or perhaps float?)
+
+   - Dimensionality of data 
+
+.. attribute:: measurementUnits
+
+   (String)
+
+   - Units of measure (for sci variables)
+
+.. attribute:: identifier
+
+   (:class:`Types.IdentifierType`)
+
+   - Identifier (GUID)
+
+
+.. attribute:: datePublished
+
+.. attribute:: dateCreated
+
+.. attribute:: dateSysMetadataModified
+
+   (DateTime)
+
+  - Temporal coverage, low priority
+
+    - (publication date )
+
+    - creation date
+
+    - last modified date
+
+
+.. attribute:: readPrincipal
+
+.. attribute:: writePrincipal
+
+   (:class:`Types.PrincipalType`)
+
+   - Permissions on objects (e.g. available to read by user)
 
 
