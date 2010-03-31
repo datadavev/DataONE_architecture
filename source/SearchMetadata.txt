@@ -56,14 +56,14 @@ String
 
 DateTime
 
-SpatialFeature (Use WKT_)
+SpatialFeature (use `Well Known Text`_ )
 
 Publication (A structured type, perhaps search by decomposing to elements)
 
 ScientificName (A structured type, perhaps search by decomposing to elements)
 
 
-.. _WKT:: http://en.wikipedia.org/wiki/Well-known_text
+.. _Well Known Text:: http://en.wikipedia.org/wiki/Well-known_text
 
 
 Essential Elements

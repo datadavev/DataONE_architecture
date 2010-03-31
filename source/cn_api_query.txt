@@ -39,6 +39,14 @@ Function               Parameters
 
    :rtype: :class:`Types.ObjectList`
 
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 4290
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4310
+
    :raises: Exceptions.NotAuthorized
      :errorCode: 401
      :detailCode: 4280
@@ -68,6 +76,14 @@ Function               Parameters
      records may be empty
 
    :rtype: :class:`Types.LogRecords`
+
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 4290
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4350
 
    :raises: Exceptions.NotAuthorized
      :errorCode: 401

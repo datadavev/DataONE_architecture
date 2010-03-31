@@ -42,6 +42,14 @@ operations on a :term:`Coordinating Node`.
 
   :rtype: :class:`Types.SystemMetadata`
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 4050
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 4070
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 4040
@@ -82,6 +90,14 @@ operations on a :term:`Coordinating Node`.
 
   :rtype: bytes
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 4010
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 4030
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 4000
@@ -115,6 +131,14 @@ operations on a :term:`Coordinating Node`.
       URLs known to resolve to the node get methods.
 
     :rtype: :class:`Types.ObjectLocationList`
+
+    :raises Exceptions.InvalidToken: 
+      :errorCode: 401
+      :detailCode: 4130
+
+    :raises Exceptions.ServiceFailure
+      :errorCode: 500
+      :detailCode: 4150
 
    :raise Exceptions.NotAuthorized:
      :errorCode: 401
@@ -155,6 +179,10 @@ operations on a :term:`Coordinating Node`.
    :returns: acknowledgement of success or failure
 
    :rtype: boolean
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4115
 
    :raises exceptions.UnspportedMetadataType: 
      :errorCode: 400
@@ -204,6 +232,14 @@ operations on a :term:`Coordinating Node`.
 
     :rtype: :class:`Types.IdentifierType`
 
+    :raises Exceptions.InvalidToken: 
+      :errorCode: 401
+      :detailCode: 4190
+
+    :raises Exceptions.ServiceFailure
+      :errorCode: 500
+      :detailCode: 4210
+
     :raises Exceptions.NotAuthorized:
       :errorCode: 401
       :detailCode: 4180
@@ -245,6 +281,18 @@ operations on a :term:`Coordinating Node`.
    :param IDofObject: The object of the relationship being tested.
 
    :type IDofObject: :class:`Types.IdentifierType`
+
+   :returns: True or False
+
+   :rtype: boolean
+
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 4230
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4270
 
    :raises Exceptions.NotAuthorized:
      :errorCode: 401

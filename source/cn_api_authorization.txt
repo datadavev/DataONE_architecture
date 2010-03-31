@@ -43,6 +43,10 @@ Coordinating Node Authorization API
 
   :rtype: :class:`Types.AuthToken`
 
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 4390
+
   :raises Exceptions.InvalidCredentials: 
     :errorCode: 401
     :detailCode: 4360
@@ -87,6 +91,16 @@ Coordinating Node Authorization API
 
    :rtype: boolean
 
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 4410
+
+     The supplied token is invalid.
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4430
+
    :raises Exceptions.NotFound: 
      :errorCode: 404
      :detailCode: 4400
@@ -130,6 +144,10 @@ Coordinating Node Authorization API
    :returns: Identifier of object if successful.
 
    :rtype: :class:`Types.IdentifierType`
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4490
 
    :raises Exceptions.InvalidToken: 
      :errorCode: 401
@@ -177,6 +195,10 @@ Coordinating Node Authorization API
 
    :rtype: :class:`Types.IdentifierType`
 
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 4530
+
    :raises Exceptions.IdentifierNotUnique: 
      :errorCode: 409
      :detailCode: 4500
@@ -192,7 +214,7 @@ Coordinating Node Authorization API
 
 ----
 
-.. function:: verify(token) -> boolean
+.. function:: verifyToken(token) -> boolean
 
   Test if the provided token is valid. 
 
@@ -210,6 +232,10 @@ Coordinating Node Authorization API
 
   :rtype: boolean
 
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 4550
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 4540
@@ -218,6 +244,11 @@ Coordinating Node Authorization API
     a temporary block may be imposed on a source that calls this method too
     many times within some time interval)
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 4555
+
+    The supplied token is invalid.
 
 ----
 
@@ -226,7 +257,19 @@ Coordinating Node Authorization API
    Test if the user identified by the provided token has authorization for
    operation on the object identified by GUID.
 
-  :raises Exceptions.InvalidToken: The supplied token is invalid.
+  :returns: True or False 
+
+  :rtype: boolean
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 4600
+
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 4620
+  
+    The supplied token is invalid.
 
   :raises Exceptions.NotFound:
     :errorCode: 404

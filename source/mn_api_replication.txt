@@ -108,6 +108,14 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
    :rtype: :class:`Types.ObjectList`
 
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 1530
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1580
+
    :raises Exceptions.NotAuthorized:
      :errorCode: 401
      :detailCode: 1520

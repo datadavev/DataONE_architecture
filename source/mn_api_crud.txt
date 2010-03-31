@@ -46,13 +46,21 @@ operations on a :term:`Member Node`.
 
    :type GUID: :class:`Types.IdentifierType`
 
-   :rtype: bytes
-
    :returns: 
      Bytes of the specified object. For data objects, this will be the actual
      bytes of data. For metadata objects, this will be the representation of
      the object as provided by the Member Node. 
      
+   :rtype: bytes
+
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 1010
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1030
+
    :raises Exceptions.NotAuthorized: 
       :errorCode: 401
       :detailCode: 1000
@@ -114,6 +122,14 @@ operations on a :term:`Member Node`.
   :type sysmeta: :class:`Types.SystemMetadata`
 
   :rtype: :class:`Types.IdentifierType`
+
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 1110
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 1190
 
   :returns: 
    The identifier that was used to insert the document into the system. 
@@ -203,6 +219,14 @@ operations on a :term:`Member Node`.
 
   :rtype: :class:`Types.IdentifierType`
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 1210
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 1310
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 1200
@@ -272,6 +296,14 @@ operations on a :term:`Member Node`.
 
   :rtype: :class:`Types.IdentifierType`
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 1330
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 1350
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 1320
@@ -319,6 +351,14 @@ operations on a :term:`Member Node`.
 
    :rtype: :class:`Types.DescribeResponse`
 
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 1370
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1390
+
    :returns: Tuple of (mime-type, size, date last modified) expressed in
      appropriate format, default being xhtml.
 
@@ -355,6 +395,14 @@ operations on a :term:`Member Node`.
    :returns: System metadata object describing the object.
 
    :rtype: :class:`Types.SystemMetadata`
+
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 1050
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1090
 
    :raises: Exceptions.NotAuthorized
      :errorCode: 401
@@ -404,6 +452,14 @@ operations on a :term:`Member Node`.
 
   :rtype: :class:`Types.Checksum`
 
+  :raises Exceptions.InvalidToken: 
+    :errorCode: 401
+    :detailCode: 1430
+
+  :raises Exceptions.ServiceFailure
+    :errorCode: 500
+    :detailCode: 1410
+
   :raises Exceptions.NotAuthorized:
     :errorCode: 401
     :detailCode: 1400
@@ -445,6 +501,14 @@ operations on a :term:`Member Node`.
 
    :rtype: :class:`Types.LogRecords`
 
+   :raises Exceptions.InvalidToken: 
+     :errorCode: 401
+     :detailCode: 1470
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1490
+
    :raises Exceptions.NotAuthorized:
      :errorCode: 401
      :detailCode: 1460
@@ -464,6 +528,10 @@ operations on a :term:`Member Node`.
    external the API that must be implemented. However, a MN will need to
    implement some sort of logging infrastructure so that it can respond to
    `getLogRecords()`.
+
+   :raises Exceptions.ServiceFailure
+     :errorCode: 500
+     :detailCode: 1510
 
    :raises: Exceptions.InvalidRequest:
      :errorCode: 400
