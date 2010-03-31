@@ -122,7 +122,7 @@ Implements the functions:
 
 - :func:`MN_replication.listObjects`
 
-- Possibly :func:`CN_query.search` if appropriate parameters are specified
+- :func:`CN_query.search` with appropriate parameters
 
 
 **Optional Parameters**
@@ -183,7 +183,12 @@ The structure of the response is::
   SIZE = Byte size of object
 
 
-Expressed in JSON::
+Expressed in JSON. Note that when a JSON response type is requested, the
+service should support an additional parameter "jsonvar" which would cause the
+value of the parameter to be set as a variable name for the resulting JSON
+block (e.g. ``&jsonvar=rs1`` would cause the json output to be "rs1=...").
+This enables the response to be embedded as a script block in a static HTML
+page::
 
   {
     'start': <integer>,
@@ -205,6 +210,22 @@ Expressed in JSON::
       ...
     ]
   }
+
+JSON with ``jsonvar=rs1`` ::
+
+  rs1={ ... }
+
+and an associated html page that could utilize the JSON result::
+
+  <html>
+  <head>...
+  <script type="application/javascript">
+  var rs1=false;
+  </script>
+  <script src="http://cn1.dataone.org/cn/object?qt=solr&jsonvar=rs1&q=..."></script>
+  ...
+  </html>
+
 
 Expressed in CSV, one entry per line, comma delimiting fields, new line
 delimiting records::
@@ -324,6 +345,42 @@ Retrieve last modified information about the collection::
   Last-Modified: Wed, 02 Dec 2009 17:40:03 GMT
   Content-Length: *
   Content-Type: application/json; charset=utf-8
+
+
+Perform a search against a Coordinating Node::
+
+  curl -X GET -H "Accept: application/json" http://cn1.dataone.org/cn/object?qt=solr&q=...
+
+  {
+   'start':0,
+   'count':1000,
+   'total':159734,
+   'objectInfo':[
+     {
+      'identifier': 'ABC123',
+      'objectFormat':'data',
+      'checksum': 
+      {
+       'algorithm':'SHA-1', 
+       'value':'b3a1617100c2b782fe5f9f2050dc714fdd05df28'
+       },
+      'dateSysMetadataModified':'2009-12-02T17:40:03.0Z',
+      'size':1040032112
+     },
+     ...,
+     {
+      'identifier':'XYZ332',
+      'objectFormat':'metadata',
+      'checksum': 
+      {
+         'algorithm':'SHA-1', 
+         'value':'008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07'
+       },
+      'dateSysMetadataModified':'2009-11-30T06:44:19.0Z',
+      'size':1044
+     } ] 
+  }
+
 
 
 ----
@@ -696,9 +753,9 @@ Implemented by the methods:
 
 - :func:`CN_crud.listReservedIdentifiers` (``GET /reserve/``)
 
-- :func:`CN_crud.reserveIdentifier` (``POST /object/<guid>/``)
+- :func:`CN_crud.reserveIdentifier` (``POST /reserve/<guid>/``)
 
-- :func:`CN_crud.deleteReservedIdentifier` (``DELETE /object/<guid>/``)
+- :func:`CN_crud.deleteReservedIdentifier` (``DELETE /reserve/<guid>/``)
 
 
 .. TODO:: Discuss and flesh these out.
