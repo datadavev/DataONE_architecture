@@ -227,6 +227,7 @@ Version   Structure
       UPDATE = 2;
       DELETE = 3;
       REPLICATE = 4;
+      CHANGEOWNER = 5;
     }
 
 
