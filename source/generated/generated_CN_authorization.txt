@@ -264,6 +264,9 @@ Function               Parameters
    Test if the user identified by the provided token has authorization for
    operation on the specified object.
 
+   .. Note:: Should perhaps add convenience methods for "canRead()" and
+   "canWrite()" to verify that a user is able to read / write an object.
+
    :param token:
 
    :type token: :class:`Types.AuthToken`
