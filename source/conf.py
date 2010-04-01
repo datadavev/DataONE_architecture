@@ -66,11 +66,11 @@ release = '0.0.3'
 #today_fmt = '%B %d, %Y'
 
 # List of documents that shouldn't be included in the build.
-unused_docs = ['UseCases/uc_template']
+unused_docs = ['UseCases/uc_template', ]
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = []
+exclude_trees = ['generated', ]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None

@@ -12,6 +12,13 @@ MN-to-MN replication is not part of the V0.3 APIs.
 .. module:: MN_replication
    :synopsis: Handles CN directed replication of content between member nodes.
 
+
+.. include:: generated/generated_MN_replication.txt
+
+-----
+
+.. TODO:: THIS ALL NEEDS TO BE CLEANED UP
+
 ::
   cancelReplication (sess, transID)
   listAllObjects ()
@@ -25,6 +32,7 @@ MN-to-MN replication is not part of the V0.3 APIs.
   listObjects(token, query) -> list of GUIDs
   synchronizationComplete(token, GUID)
   synchronizationFailed(token, GUID, problemDescription)
+
 
 
 .. function::  cancelReplication (sess, transID)
@@ -47,91 +55,6 @@ MN-to-MN replication is not part of the V0.3 APIs.
    :param token: A token with authority to retrieve a list of changed records.
 
 
-
-----
-
-.. function:: listObjects (token, startTime, [endTime, objectFormat, replicaStatus, start, count]) -> ObjectList
-
-   Retrieve the list of GUIDs for objects owned by the MN that match the
-   calling parameters. This method is required to support the process of
-   :term:`Member Node synchronization`. At a minimum, this method should be
-   able to return a list of objects that match::
-
-     startTime <= SystemMetadata.dateSysMetadataModified
-
-   but is expected to also support date range (by also specifying
-   ``endTime``), and should also support slicing of the matching set of
-   records by indicating the starting ``index`` of the response (where 0 is
-   the index of the first item) and the ``count`` of elements to be returned.
-
-   :param token: authentication token
-
-   :type token: :class:`Types.AuthToken`
-   
-   :param startTime: Indicates the earliest time for matching objects
-
-   :type startTime: :class:`Types.DateTime`
-
-   :param endTime: Indicates the end time for matching objects
-
-   :type endTime: :class:`Types.DateTime`
-
-   :param objectFormat: Restrict results to the specified object format.
-
-   :type objectFormat: :class:`Types.ObjectFormatType`
-
-   :param replicaStatus: 
-
-     Indicates if replicated objects should be returned in the list (i.e. any
-     entries present in the :attr:`SystemMetadata.replica`). If ``0``, then no
-     objects that have been replicated should be returned. If ``1``, then any
-     objects can be returned, regardless of replication status. The default
-     value is ``1``.
-
-   :type replicaStatus: integer (0 | 1)
-
-   :param start: 
-     The zero-based index of the first value, relative to the first record of
-     the resultset that matches the parameters.
-
-   :type start: integer
-
-   :param count:
-     The maximum number of entries that should be returned in the response.
-     The Member Node may return less entries than specified in this value.
-
-   :type count: integer
-
-   :returns: 
-     The list of GUIDs that match the query criteria. If none match, an empty
-     list is returned.
-
-   :rtype: :class:`Types.ObjectList`
-
-   :raises Exceptions.InvalidToken: 
-     :errorCode: 401
-     :detailCode: 1530
-
-   :raises Exceptions.ServiceFailure
-     :errorCode: 500
-     :detailCode: 1580
-
-   :raises Exceptions.NotAuthorized:
-     :errorCode: 401
-     :detailCode: 1520
-
-   :raises Exceptions.InvalidRequest: 
-     :errorCode: 400
-     :detailCode: 1540
-
-   :raises Exceptions.NotImplemented:
-     :errorCode: 400 or 406
-     :detailCode: 1560
-
-     Raised if some functionality requested is not implemented. In the case of
-     an optional request parameter not being supported, the errorCode should
-     be 400. If the requested format (through HTTP Accept headers) is not
-     supported, then the standard HTTP 406 error code should be returned.
 
 
 ----
