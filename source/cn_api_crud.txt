@@ -7,19 +7,6 @@ CRUD API
 The ``CN_crud`` API implements methods that enable object management
 operations on a :term:`Coordinating Node`.
 
-.. Table:: Methods exposed by the CN_crud API.
-
-  =================  ==========================================================
-  Function           Parameters
-  =================  ==========================================================
-  getSystemMetadata  ``(token, guid) ->`` :class:`Types.SystemMetadata`
-  get                ``(token, guid) ->`` bytes
-  resolve            ``(token, guid) ->`` :class:`Types.ObjectLocationList`
-  create             ``(systemMetadataGuid, systemMetadata, scienceMetadataGuid, scienceMetadata) ->`` ?
-  reserveId          ``(token, [scope, format]) ->`` :class:`Types.IdentifierType`
-  assertRelation     ``(token, IDofSubject, relationship, IDofObject) ->`` boolean
-  =================  ==========================================================
-
 
 .. include:: generated/generated_CN_crud.txt
 

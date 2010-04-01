@@ -11,14 +11,6 @@ exposes log records held by CNs. This log-related functionality probably needs
 to be split out into the Logging and Alert API (not yet defined).
 
 
-====================== =================================
-Function               Parameters
-====================== =================================
-:func:`search`         ``(token, query) ->`` :class:`Types.ObjectList`
-:func:`getLogRecords`  ``(token, query) ->`` :class:`Types.LogRecords`
-====================== =================================
-
-
 .. include:: generated/generated_CN_query.txt
 
 

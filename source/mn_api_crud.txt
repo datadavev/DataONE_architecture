@@ -8,22 +8,6 @@ The ``MN_crud`` API implements methods that enable object management
 operations on a :term:`Member Node`.  
 
 
-.. Table:: Methods exposed by the MN_crud API.
-
-    ========================= ===================================================
-    Function                  Parameters
-    ========================= ===================================================
-    :func:`get`               ``(token, GUID) -> bytes``
-    :func:`create`            ``(token, GUID, object, sysmeta) ->`` :class:`Types.IdentifierType`
-    :func:`update`            ``(token, GUID, object, obsoletedGUID, sysmeta) ->`` :class:`Types.IdentifierType`
-    :func:`delete`            ``(token, GUID) ->`` :class:`Types.IdentifierType`
-    :func:`describe`          ``(token, GUID) ->`` :class:`Types.DescribeResponse`
-    :func:`getSystemMetadata` ``(token, GUID) ->`` :class:`Types.SystemMetadata`
-    :func:`getChecksum`       ``(token, GUID, [ChecksumAlgorithm]) ->`` :class:`Types.Checksum`
-    :func:`getLogRecords`     ``(token, fromDate, toDate) ->`` :class:`Types.LogRecords`
-    ========================= ===================================================
-
-
 .. include:: generated/generated_MN_crud.txt
 
 
