@@ -60,7 +60,7 @@ maintained by Coordinating Nodes for every object in the system.
    \                :attr:`describes`               :class:`Types.IdentifierType`    0..n
    \                :attr:`describedBy`             :class:`Types.IdentifierType`    0..n
    \                :attr:`checksum`                String                           1
-   \                :attr:`checksumAlgorithm`       String                           1
+   \                :attr:`algorithm`               String                           1
    \                :attr:`embargoExpires`          :class:`Types.DateTime`          0..1
    \                :attr:`accessRule`              :class:`Types.AccessRuleType`    0..n
    \                :attr:`replicationPolicy`       String                           0..1

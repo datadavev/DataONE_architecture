@@ -37,24 +37,19 @@ Function                    Parameters
 
    :rtype: bytes
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4000
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4000)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4001
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4001)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4020
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4020)``
 
      The object specified by the identifier is not present on this (or any) CN.
      The response body should contain a reference to :func:`CN_crud.resolve`.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4030
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4030)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4010
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4010)``
 
 
 
@@ -78,24 +73,19 @@ Function                    Parameters
 
    :rtype: :class:`Types.SystemMetadata`
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4050
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4050)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4051
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4051)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4070
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4070)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4040
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4040)``
 
      The pricipal identified by token does not have READ permission on the
      object.
 
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4060
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4060)``
 
      There is no object identified by ``identifier`` and so no system metadata
      can be returned.
@@ -124,23 +114,18 @@ Function                    Parameters
 
    :rtype: :class:`Types.ObjectLocationList`
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4130
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4130)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4150
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4150)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4120
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4120)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4140
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4140)``
 
      There is no object identified by the given identifier
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4131
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4131)``
 
 
 
@@ -172,24 +157,20 @@ Function                    Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4115
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4115)``
 
-   :raises Exceptions.UnsupportedMetadataTpe:
-     :detailCode: 4100
+   :raises Exceptions.UnsupportedMetadataType: ``(errorCode=400, detailCode=4100)``
 
      The science metadata is not of a type supported by the system
 
 
-   :raises Exceptions.IdenitiferNotUnique:
-     :detailCode: 4110
+   :raises Exceptions.IdentifierNotUnique: ``(errorCode=409, detailCode=4110)``
 
      This should never be raised, but is required asa sanity check on the object
      store
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4101
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4101)``
 
 
 
@@ -225,33 +206,27 @@ Function                    Parameters
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.InvaildToken:
-     :detailCode: 4190
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4190)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4210
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4210)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4180
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4180)``
 
      Supplied credentials dor not have WRITE permission
 
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 4200
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4200)``
 
      The format requested is not a valid format accepted by this service
 
 
-   :raises Exceptions.IdentifierNotUnique:
-     :detailCode: 4210
+   :raises Exceptions.IdentifierNotUnique: ``(errorCode=409, detailCode=4210)``
 
      The requested identifier can not be reserved because it already exists in
      the DataONE system or has already been reserved.
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4191
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4191)``
 
 
 
@@ -283,27 +258,21 @@ Function                    Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4230
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4230)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4270
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4270)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4220
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4220)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4240
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4240)``
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 4260
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4260)``
 
      Raised if the parameters are incorrect (e.g. unknown relationship type
      specified)
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4221
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4221)``
 
 .. TODO::
     Define what is meant by relationship - what is the type for this?

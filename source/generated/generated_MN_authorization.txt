@@ -42,20 +42,16 @@ Function               Parameters
 
    :rtype: :class:`Types.AuthToken`
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1600
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1600)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1620
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1620)``
 
-   :raises Exceptions.InvalidCredentials:
-     :detailCode: 1640
+   :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=1640)``
 
      The supplied credentials were invalid (password + username don't jive)
 
 
-   :raises Exceptions.AuthenticationTimeout:
-     :detailCode: 1680
+   :raises Exceptions.AuthenticationTimeout: ``(errorCode=408, detailCode=1680)``
 
      A response from the authentication ervice was not received before the
      operation timed out.
@@ -78,14 +74,11 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1700
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1700)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1720
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1720)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1740
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1740)``
 
 
 
@@ -115,25 +108,20 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1760
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1760)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1780
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1780)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1800
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1800)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1820
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1820)``
 
      This error is raised if the request comes from a black listed source (e.g.
      a temporary block may be imposed on a source that calls this method too
      many times within some time interval)
 
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1840
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1840)``
 
 
 
@@ -157,17 +145,13 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1860
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1860)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1880
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1880)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1900
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1900)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1920
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1920)``
 
      This error is raised if the request comes from a black listed source (e.g.
      a temporary block may be imposed on a source that calls this method too

@@ -44,24 +44,20 @@ Function               Parameters
 
    :rtype: :class:`Types.AuthToken`
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4390
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4390)``
 
-   :raises Exceptions.InvalidCredentials:
-     :detailCode: 4360
+   :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=4360)``
 
      The supplied credentials were invalid (password + username don't jive)
 
 
-   :raises Exceptions.AuthenticationTimeout:
-     :detailCode: 4380
+   :raises Exceptions.AuthenticationTimeout: ``(errorCode=408, detailCode=4380)``
 
      A response from the authentication ervice was not received before the
      operation timed out.
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4361
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4361)``
 
 
 
@@ -89,30 +85,25 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4410
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4410)``
 
      The supplied token is invalid
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4430
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4430)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4400
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4400)``
 
      The specified object does not exist in the DataONE system
 
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4420
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4420)``
 
      The :term:`principal` does not have permission to alter access control
      rules for the object.
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4401
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4401)``
 
 .. TODO::
     Should permissions cascade? e.g. Should setting permission on a Data Package
@@ -146,27 +137,22 @@ Function               Parameters
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4490
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4490)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4480
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4480)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4440
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4440)``
 
      The supplied principal does not have permission to change ownership of the
      object
 
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4460
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4460)``
 
      The specified object does not exist in the DataONE system
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4441
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4441)``
 
 
 
@@ -197,24 +183,20 @@ Function               Parameters
 
    :rtype: :class:`Types.PrincipalType`
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4530
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4530)``
 
-   :raises Exceptions.IdentifierNotUnique:
-     :detailCode: 4500
+   :raises Exceptions.IdentifierNotUnique: ``(errorCode=409, detailCode=4500)``
 
      The chosen identity already exists in the system
 
 
-   :raises Exceptions.InvalidCredentials:
-     :detailCode: 4520
+   :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=4520)``
 
      Raised if the supplied credentials are invalid, such asa password that is
      too weak or innapropriate user name.
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4501
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4501)``
 
 
 
@@ -238,22 +220,18 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4550
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4550)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4540
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4540)``
 
      This error is raised if the request comes from a black listed source (e.g.
      a temporary block may be imposed on a source that calls this method too
      many times within some time interval)
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4541
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4541)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4555
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4555)``
 
 
 
@@ -283,24 +261,19 @@ Function               Parameters
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 4600
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4600)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 4620
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4620)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 4560
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4560)``
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 4580
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4580)``
 
      This error is raised if the request comes from a black listed source (e.g.
      a temporary block may be imposed on a source that calls this method too
      many times within some time interval)
 
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 4601
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4601)``
 
 

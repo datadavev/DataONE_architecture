@@ -67,14 +67,11 @@ Function              Parameters
 
    :rtype: :class:`Types.ObjectList`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1520
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1520)``
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 1540
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1540)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1560
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1560)``
 
      Raised if some functionality requested is not implemented. In the case of
      an optional request parameter not being supported, the errorCode should be
@@ -82,13 +79,10 @@ Function              Parameters
      supported, then the standard HTTP 406 error code should be returned.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1580
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1580)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1530
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1530)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1521
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1521)``
 
 

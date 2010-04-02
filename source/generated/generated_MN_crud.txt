@@ -21,7 +21,7 @@ Function                    Parameters
 
 .. function:: get(token,guid) -> bytes
 
-   Retrieve an object identified by GUID from the node.
+   Retrieve an object identified by ``guid`` from the node.
 
    The response must contain the bytes of the indicated object, and the checksum
    of the bytes retrieved must match the :attr:`SystemMetadata.Checksum`
@@ -45,27 +45,22 @@ Function                    Parameters
 
    :rtype: bytes
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1000
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1000)``
 
      The provided identity does not have READ permission on the object.
 
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1020
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1020)``
 
      The object specified by GUID does not exist at this node. The description
      should include a reference to the resolve method.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1030
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1030)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1010
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1010)``
 
-   :raises Exceptions.NotImplmented:
-     :detailCode: 1001
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1001)``
 
 .. TODO::
     There may be multiple representations of content (e.g. metadata as XML, RDF,
@@ -87,7 +82,7 @@ Function                    Parameters
 .. function:: getSystemMetadata(token,guid) -> SystemMetadata
 
    Describes the science metadata or data object (and likely other objects in
-   the future) identified by the GUID by returning the associated system
+   the future) identified by ``guid`` by returning the associated system
    metadata object.
 
    If the object does not exist on the node servicing the request, then
@@ -107,28 +102,22 @@ Function                    Parameters
 
    :rtype: :class:`Types.SystemMetadata`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1040
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1040)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1041
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1041)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1060
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1060)``
 
      There is no data or science metadata identified by the given GUID on the
      node where the request was serviced. The error message should provide a
      hint to use the :func:`CN_crud.resolve` mechanism.
 
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 1080
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1080)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1090
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1090)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1050
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1050)``
 
 
 
@@ -138,7 +127,10 @@ Function                    Parameters
 
    Adds a new object to the Member Node, where the object is either a data
    object or a science metadata object. This method is called by clients to
-   create new data objects on Member nodes.
+   create new data objects on Member Nodes.
+
+   The ``guid`` must not exist in the DataONE system or must have been
+   previously reserved using  :func:`CN_crud.reserveIdentifier`.
 
    :param token: The authentication token returned by ``login()``
 
@@ -146,7 +138,7 @@ Function                    Parameters
 
    :param guid: The identifier that should be used in DataONE to identify and
      access the object. This is an Unicode string that follows the constraints
-     on identifiers described in :doc:`GUIDs`. If the identifier is already in
+     on  identifiers described in :doc:`GUIDs`. If the identifier is already in
      use, :exc:`Exceptions.IdentifierNotUnique` will be raised and the client
      should try again with a different, unique identifier.
 
@@ -168,49 +160,42 @@ Function                    Parameters
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1100
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1100)``
 
      The provided identity does not have permission to WRITE to the Member Node.
 
 
-   :raises Exceptions.IdentifierNotUnique:
-     :detailCode: 1120
+   :raises Exceptions.IdentifierNotUnique: ``(errorCode=409, detailCode=1120)``
 
      The requested identifier is already used by another object and therefore
      can not be used for this object. Clients should choose a new identifier
-     that is unique and retry the operation.
+     that is unique and retry the operation or use
+     :func:`CN_crud.reserveIdentifier` to reserve one.
 
 
-   :raises Exceptions.UnsupportedType:
-     :detailCode: 1140
+   :raises Exceptions.UnsupportedType: ``(errorCode=400, detailCode=1140)``
 
      The MN can not deal with the content specified in the data package.
 
 
-   :raises Exceptions.InsufficientResources:
-     :detailCode: 1160
+   :raises Exceptions.InsufficientResources: ``(errorCode=413, detailCode=1160)``
 
      The MN is unable to execute the transfer because it does not have
      sufficient storage space for example.
 
 
-   :raises Exceptions.InvalidSystemMetadata:
-     :detailCode: 1180
+   :raises Exceptions.InvalidSystemMetadata: ``(errorCode=400, detailCode=1180)``
 
      The supplied system metadata is invalid. This could be because some
      required field is not set, the metadata document is malformed, or the value
      of some field is not valid.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1190
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1190)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1110
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1110)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1101
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1101)``
 
 
 
@@ -218,12 +203,17 @@ Function                    Parameters
 
 .. function:: update(token,guid,object,obsoletedGuid,sysmeta) -> IdentifierType
 
-   Creates a new object on the Member Node that explicity updates and obsoletes
+   Creates a new object on the Member Node that explicitly updates and obsoletes
    a previous object, where the object is either a data object or a science
    metadata object. This method is called by clients to update objects on Member
-   nodes.  The object that is being obsoleted is passed in as a parameter, and
-   the Member Node should record the update by storing the Obsoletes and
-   ObsoletedBy fields for the respective objects.
+   Nodes.  The object that is being obsoleted is passed in as a parameter, and
+   the Member Node should record the update by storing the
+   :attr:`SystemMetadata.obsoletes` and obsoletedBy fields for the respective
+   objects in their system metadata.
+
+   The modified system metadata entries must then be available in
+   :func:`MN_replication.listObjects` to ensure that a Coordinating Node will
+   pick up the changes.
 
    :param token: The authentication token returned by ``login()``
 
@@ -260,54 +250,45 @@ Function                    Parameters
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1200
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1200)``
 
-   :raises Exceptions.IdentifierNotUnique:
-     :detailCode: 1220
+   :raises Exceptions.IdentifierNotUnique: ``(errorCode=409, detailCode=1220)``
 
      The requested identifier is already used by another object and therefore
      can not be used for this object.  Clients should choose a new identifier
      that is unique and retry the operation.
 
 
-   :raises Exceptions.UnsupportedType:
-     :detailCode: 1240
+   :raises Exceptions.UnsupportedType: ``(errorCode=400, detailCode=1240)``
 
      The MN can not deal with the object provided.
 
 
-   :raises Exceptions.InsufficientResources:
-     :detailCode: 1260
+   :raises Exceptions.InsufficientResources: ``(errorCode=413, detailCode=1260)``
 
      The MN is unable to execute the transfer because it does not have
      sufficient storage space for example.
 
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1280
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1280)``
 
      The update operation failed because the object which was supposed to be
      updated in the system (indicated via the obsoletedGUID parameter) is not
      present in the DataONE system, so update is an illegal operation.
 
 
-   :raises Exceptions.InvalidSystemMetadata:
-     :detailCode: 1300
+   :raises Exceptions.InvalidSystemMetadata: ``(errorCode=400, detailCode=1300)``
 
      The supplied system metadata is invalid. This could be because some
      required field is not set, the metadata document is malformed, or the value
      of some field is not valid.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1310
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1310)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1210
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1210)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1201
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1201)``
 
 
 
@@ -338,24 +319,19 @@ Function                    Parameters
 
    :rtype: :class:`Types.IdentifierType`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1320
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1320)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1340
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1340)``
 
      The delete operation failed because the object is not present on the node
      servicing the request.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1350
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1350)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1330
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1330)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1321
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1321)``
 
 .. TODO::
     As DataONE is to be an archival system, we need to determine what the
@@ -396,20 +372,15 @@ Function                    Parameters
 
    :rtype: :class:`Types.DescribeResponse`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1360
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1360)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1380
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1380)``
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1390
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1390)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1370
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1370)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1361
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1361)``
 
 
 
@@ -445,28 +416,22 @@ Function                    Parameters
 
    :rtype: :class:`Types.Checksum`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1400
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1400)``
 
-   :raises Exceptions.NotFound:
-     :detailCode: 1420
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1420)``
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 1440
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1440)``
 
      A supplied parameter was invalid, most likely an unsupported checksum
      algorithm was specified, in which case the error message should include an
      enumeration of supported checksum algorithms.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1410
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1410)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1430
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1430)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1401
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1401)``
 
 
 
@@ -493,24 +458,19 @@ Function                    Parameters
 
    :rtype: :class:`Types.LogRecords`
 
-   :raises Exceptions.NotAuthorized:
-     :detailCode: 1460
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1460)``
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 1480
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1480)``
 
      The request parameters were malformed or an invalid date range was
      specified.
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1490
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1490)``
 
-   :raises Exceptions.InvalidToken:
-     :detailCode: 1470
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1470)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1461
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1461)``
 
 
 
@@ -543,16 +503,13 @@ Function                    Parameters
 
    :rtype: 
 
-   :raises Exceptions.InvalidRequest:
-     :detailCode: 1500
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1500)``
 
      Define the type of the Log Event
 
 
-   :raises Exceptions.ServiceFailure:
-     :detailCode: 1510
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1510)``
 
-   :raises Exceptions.NotImplemented:
-     :detailCode: 1501
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1501)``
 
 
