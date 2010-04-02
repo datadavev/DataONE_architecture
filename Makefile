@@ -8,6 +8,7 @@ PAPER         =
 BUILDDIR      = build
 GRAPHVIZ      = /opt/local/bin/dot
 DOCGENERATOR  = python tools/ihwd/ihwd.py
+METHODXLS     = MethodCrossReference.xls
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -18,6 +19,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  generate  to generate doc files from spreadsheet"
 	@echo "  html      to make standalone HTML files"
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
@@ -33,8 +35,8 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-generate:
-	$(DOCGENERATOR) -s ./MethodCrossReference.xls -d ./source/generated
+generate: $(METHODXLS)
+	$(DOCGENERATOR) -s $(METHODXLS) -d ./source/generated
 
 plantuml:
 	GRAPHVIZ_DOT=$(GRAPHVIZ) plantuml source source/UseCases
@@ -43,6 +45,8 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+all: generate html latex
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
@@ -79,7 +83,7 @@ qthelp:
 	@echo "To view the help file:"
 	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/DataONEArchitecture.qhc"
 
-latex:
+latex: generate
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."

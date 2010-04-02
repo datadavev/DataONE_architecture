@@ -8,32 +8,6 @@ Exceptions Raised by MN and CN APIs
 .. contents::
 
 
-.. table:: Summary of exceptions listed here and the corresponding errorCode.
-
-  ============================== ========= ==================================================
-  Exception                      errorCode Description
-  ============================== ========= ==================================================
-  :exc:`AuthenticationTimeout`   408       The client took too long to complete the request
-  :exc:`IdentifierNotUnique`     409       The supplied identifier already exists so conflicts 
-                                           with the state of the resource
-  :exc:`InsufficientResources`   413       This could be 400, 413, or 415, though none of 
-                                           these correspond with the semantics of the error 
-                                           condition.
-  :exc:`InvalidCredentials`      401       The supplied credentials could not be verified
-  :exc:`InvalidRequest`          400       Parameters provided to the call were malformed or 
-                                           inappropriate.
-  :exc:`InvalidSystemMetadata`   400       System Metadata document is invalid, malformed,
-                                           incomplete, or contains erroneous information.
-  :exc:`InvalidToken`            401       The supplied authentication token is not valid
-  :exc:`NotAuthorized`           401       Access to the indicated resource is not permitted 
-                                           with the supplied credentials
-  :exc:`NotFound`                404       The referenced object could not be located
-  :exc:`UnsupportedMetadataType` 400       The supplied science metadata can not be processed
-  :exc:`UnsupportedType`         400       Treated as an invalid request.  Response should 
-                                           indicate the problem with the supplied data.
-  ============================== ========= ==================================================
-
-
 General
 ~~~~~~~
 
