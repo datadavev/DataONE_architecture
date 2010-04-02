@@ -7,8 +7,9 @@ Getting a Handle of Systems Metadata for the Long Haul
   ======== ============================================================ 
   Date     Comment 
   ======== ============================================================ 
-  20100312 (E.A./R.S.) First draft 
-  20100326 (E.A./R.S.) Added more... 
+  20100402 (Allen, Sandusky) Additional text
+  20100326 (Allen) Added more text and structure 
+  20100312 (Allen) First draft 
   ======== ============================================================ 
 
 Introduction
@@ -18,11 +19,11 @@ The DataONE systems metadata is critical to ensuring that scientific
 data, scientific metadata, and other digital objects stored in DataONE 
 are discoverable, accessible, auditable, verifiable, and are associated 
 with meaningful related digital objects. Digital objects in DataONE must 
-also be viable for the long term &ndash; for many decades &ndash; and so 
+also be viable for the long term - for many decades - and so 
 the system metadata must also include provenance information. 
 
 Due primarily to the project deliverable schedule, the current DataONE 
-system metadata definition (reference) is focused on the essential 
+system metadata definition (DataONE, 2010b) is focused on the essential 
 metadata values that must be available to support the earliest versions 
 of DataONE. So far, relatively little attention has been paid to 
 ensuring that system metadata contains appropriate attributes for the 
@@ -33,9 +34,10 @@ carried out by Elizabeth (Betsy) Allen in Spring 2010. The PREMIS Data
 Dictionary for Preservation Metadata (PREMIS Editorial Committee, 2008) 
 was used as a standard against which the explicit and implicit 
 requirements of DataONE would be measured. This project also took the 
-Open Archives Initiative's Object Reuse and Exchange (OAI-ORE) 
-(reference) and the BagIt File Packaging Format (reference) into account 
-as possible standards for aggregations, or packages, of Web resources. 
+Open Archives Initiative's Object Reuse and Exchange (OAI-ORE) (Lagoze 
+et al, 2008) and the BagIt File Packaging Format (Boyko et al, 2009) 
+into account as possible standards for aggregations, or packages, of Web 
+resources.
 
 The document is organized as follows. A set of high-level requirements 
 was developed to represent the general needs of the DataONE system 
@@ -206,24 +208,25 @@ Requirement 4: Support digital object discovery
 Description
 ...........
 
+Digital object discovery by DataONE users is supported primarily by the descriptive metadata associated with data objects ingested into DataONE. The DataONE design refers to this metadata as "scientific metadata" (DataONE, 2010a).
+
+Other digital object scenarios should also be considered. For example,  when managing digital objects for long-term curation and stewardship, DataONE personnel and processes may use the system metadata (DataONE, 2010b) as the means for digital object discovery. 
 
 What PREMIS suggests
 ....................
 
-[Descriptive metadata?]
-
+PREMIS defines descriptive metadata as "...metadata ... used to describe Intellectual Entities" (p.23), and assumes that which in DataONE maps to the scientific metadata submitted to the system. 
 
 What BagIt provides
 ...................
 
-
 What OAI-ORE provides
 .....................
-
 
 DataONE Use Cases
 .................
 
+DataONE Use Case 33 - Search for Data (http://mule1.dataone.org/ArchitectureDocs/UseCases/33_uc.html)
 
 Discussion
 ..........
@@ -472,7 +475,6 @@ because validation takes place right after signing, there is no need for
 the respository to preserve the signature itself through time. The 
 system can record the act of validation as an Event if desired. 
 
-
 What BagIt provides
 ...................
 
@@ -495,8 +497,14 @@ Conclusion
 
 References
 ----------
+Boyko, A., Kunze, J., Littman, J., Madden, L., Vargas, B. (2009). The BagIt File Packaging Format (V0.96). Retrieved April 2, 2010, from http://www.ietf.org/internet-drafts/draft-kunze-bagit-04.txt
+
+DataONE. (2010a). Metadata Attributes for Discovery. Retrieved April 2, 2010, from http://mule1.dataone.org/ArchitectureDocs/SearchMetadata.html.
+
+DataONE. (2010b). System Metadata. Retrieved April 2, 2010, from http://mule1.dataone.org/ArchitectureDocs/SystemMetadata.html.
+
+Lagoze, C., Van de Sompel, H., Johnston, P., Nelson, M., Sanderson, R., Warner, S. (2008). Open Archives Initiative Object Reuse and Exchange: ORE User Guide - Primer. Retrieved April 2, 2010, from http://www.openarchives.org/ore/1.0/primer.
+
 PREMIS Editorial Committee. (2008). Data Dictionary for Preservation 
 Metadata: PREMIS version 2.0. S.l. Retrieved April 2, 2010, from 
 http://www.loc.gov/standards/premis/v2/premis-2-0.pdf. 
-
-
