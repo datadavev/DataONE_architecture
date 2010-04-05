@@ -1,3 +1,17 @@
+Acknowledgements
+================
+
+This design specification for the DataONE infrastructure has been developed
+through support of the National Science Foundation through the projects:
+
+- NSF DBI `0753138`_, "INTEROP: Creation of an International virtual Data cente
+ for the Biodiversity, Ecological and Environmental Sciences"
+
+- NSF OCI `0830944`_, "DataNet Full Proposal: DataNetONE (Observation Network For
+ Earth)"
+
+
+
 About These Documents
 =====================
 
@@ -101,4 +115,7 @@ To build a PDF copy, you will need to install latex and its dependencies. Then r
 
 .. _reStructuredText: http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
+.. _0753138: http://nsf.gov/awardsearch/showAward.do?AwardNumber=0753138
+
+.. _0830944: http://nsf.gov/awardsearch/showAward.do?AwardNumber=0830944
 

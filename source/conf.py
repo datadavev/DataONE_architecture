@@ -44,7 +44,10 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'DataONE Architecture'
-copyright = u'2009, VDC Project, DataONE CCIT'
+copyright = u'''- INTEROP: Creation of an International Virtual Data Center for the Biodiversity, 
+Ecological and Environmental Sciences (NSF Award 0753138); 
+
+- DataNet Full Proposal: DataNetONE (Observation Network for Earth) (NSF Award 0830944)'''
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -61,7 +64,7 @@ release = '0.3'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
-today = '2010-April-04'
+#today = '2010-April-04'
 # Else, today_fmt is used as the format for a strftime call.
 today_fmt = '%Y-%m-%d'
 
@@ -182,9 +185,11 @@ latex_font_size = '10pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
+dv_latex_author = '''Produced by:\\\\INTEROP: Creation of an International Virtual Data Center for the Biodiversity, 
+Ecological and Environmental Sciences (NSF Award 0753138)\\\\and\\\\DataNet Full Proposal: DataNetONE (Observation Network for Earth) (NSF Award 0830944)'''
 latex_documents = [
-  ('index', 'DataONEArchitecture.tex', u'DataONE Architecture Documentation',
-   u'VDC Project, DataONE CCIT', 'manual'),
+  ('index', 'DataONEArchitecture.tex', project,
+   dv_latex_author, 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
