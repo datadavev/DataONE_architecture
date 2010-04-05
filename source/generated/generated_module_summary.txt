@@ -7,17 +7,17 @@
      - Description
    * - :mod:`MN_crud`
      - :func:`MN_crud.get`
-     - Retrieve an object identified by ``guid`` from the node. The response
-       must contain the bytes of the indicated object, and the checksum of the
-       bytes retrieved must match the :attr:`SystemMetadata.Checksum` recorded
-       in the  :class:`Types.SystemMetadata` if the object is science data. If
-       the object does not exist on the node servicing the request, then
+     - Retrieve an object identified by `guid` from the node. The response must
+       contain the bytes of the indicated object, and the checksum of the bytes
+       retrieved must match the :attr:`SystemMetadata.checksum` recorded in the
+       :class:`Types.SystemMetadata` if the object is science data. If the
+       object does not exist on the node servicing the request, then
        :exc:`Exceptions.NotFound` must be raised even if the object exists on
        another node in the DataONE system.
    * - \
      - :func:`MN_crud.getSystemMetadata`
      - Describes the science metadata or data object (and likely other objects
-       in the future) identified by ``guid`` by returning the associated system
+       in the future) identified by `guid` by returning the associated system
        metadata object.
 
        If the object does not exist on the node servicing the request, then
@@ -29,28 +29,29 @@
        object or a science metadata object. This method is called by clients to
        create new data objects on Member Nodes.
 
-       The ``guid`` must not exist in the DataONE system or must have been
+       The `guid` must not exist in the DataONE system or must have been
        previously reserved using  :func:`CN_crud.reserveIdentifier`.
    * - \
      - :func:`MN_crud.update`
-     - Creates a new object on the Member Node that explicitly updates and
-       obsoletes a previous object, where the object is either a data object or
-       a science metadata object. This method is called by clients to update
-       objects on Member Nodes.  The object that is being obsoleted is passed in
-       as a parameter, and the Member Node should record the update by storing
-       the :attr:`SystemMetadata.obsoletes` and obsoletedBy fields for the
-       respective objects in their system metadata. The modified system metadata
-       entries must then be available in :func:`MN_replication.listObjects` to
-       ensure that a Coordinating Node will pick up the changes.
+     - Creates a new `object` on the Member Node that explicitly updates and
+       obsoletes a previous object (identified by `obsoletedGuid`).    This
+       method is called by clients to update objects on Member Nodes.  The
+       object that is being obsoleted is passed in as a parameter, and the
+       Member Node should record the update by storing the
+       :attr:`SystemMetadata.obsoletes` and :attr:`SystemMetadata.obsoletedBy`
+       fields for the respective objects in their system metadata. The modified
+       system metadata entries must then be available in
+       :func:`MN_replication.listObjects` to ensure that a Coordinating Node
+       will pick up the changes.
    * - \
      - :func:`MN_crud.delete`
      - Deletes an object from the Member Node, where the object is either a data
        object or a science metadata object. This method is called by clients to
        delete objects on Member nodes. Member Nodes must check that the caller
        is authorized to perform this function. If the object does not exist on
-       the node servicing the request, then a :exc:`Exceptions.NotFound`
+       the node servicing the request, then an :exc:`Exceptions.NotFound`
        exception is raised. The message body of the exception should contain a
-       hint as to the location of the :func:`CN_crud.Resolve` method.
+       hint as to the location of the :func:`CN_crud.resolve` method.
    * - \
      - :func:`MN_crud.describe`
      - This method provides a lighter weight mechanism than
@@ -87,8 +88,8 @@
      - Retrieve the list of GUIDs for objects owned by the MN that match the
        calling parameters. This method is required to support the process of
        :term:`Member Node synchronization`. At a minimum, this method should be
-       able to return a list of objects that match: ``startTime <=
-       SystemMetadata.dateSysMetadataModified`` but is expected to also support
+       able to return a list of objects that match::   startTime <=
+       SystemMetadata.dateSysMetadataModified but is expected to also support
        date range (by also specifying ``endTime``), and should also support
        slicing of the matching set of records by indicating the starting
        ``index`` of the response (where 0 is the index of the first item) and
@@ -127,8 +128,8 @@
        otherwise an error is raised on those methods.
    * - \
      - :func:`CN_crud.assertRelation`
-     - Tests that the specified relationship between IdOfSubject and IdOfObject
-       exists.
+     - Tests that the specified relationship between `idOfSubject` and
+       `idOfObject` exists.
    * - :mod:`CN_query`
      - :func:`CN_query.search`
      - Search the metadata catalog and return identifiers of metadata records
@@ -148,7 +149,7 @@
        be required.
    * - \
      - :func:`CN_authorization.setAccess`
-     - Sets the access permissions for an object idenitifed by the ``guid``.
+     - Sets the access permissions for an object identified by `guid`.
    * - \
      - :func:`CN_authorization.setOwner`
      - Changes ownership of the specified object to the :term:`principal`

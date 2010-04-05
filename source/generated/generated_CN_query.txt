@@ -80,6 +80,8 @@
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4321)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4322)``
+
 .. TODO::
     Define the response structure and access control rules
 

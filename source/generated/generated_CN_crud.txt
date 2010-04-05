@@ -26,9 +26,9 @@
        :class:`Types.IdentifierType`
    * - :func:`assertRelation`
      - (:class:`token<Types.AuthToken>`,
-       :class:`IdOfSubject<Types.IdentifierType>`,
+       :class:`idOfSubject<Types.IdentifierType>`,
        :class:`relationship<Types.???>`,
-       :class:`IdOfObject<Types.IdentifierType>`) ``->`` boolean
+       :class:`idOfObject<Types.IdentifierType>`) ``->`` boolean
 
 
 
@@ -68,6 +68,8 @@
    :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4030)``
 
    :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4010)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4002)``
 
 
 
@@ -109,6 +111,8 @@
      can be returned.
 
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4052)``
+
 
 
 ----
@@ -145,6 +149,8 @@
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4131)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4132)``
+
 
 
 ----
@@ -167,7 +173,7 @@
 
    :type systemMetadata: :class:`Types.SystemMetadata`
 
-   :param scienceMetadata: The science metadata referneced by ``guid``
+   :param scienceMetadata: The science metadata referenced by `guid`
 
    :type scienceMetadata: bytes
 
@@ -189,6 +195,8 @@
 
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4101)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4102)``
 
 
 
@@ -250,27 +258,27 @@
 
 ----
 
-.. function:: assertRelation(token,IdOfSubject,relationship,IdOfObject) -> boolean
+.. function:: assertRelation(token,idOfSubject,relationship,idOfObject) -> boolean
 
-   Tests that the specified relationship between IdOfSubject and IdOfObject
+   Tests that the specified relationship between `idOfSubject` and `idOfObject`
    exists.
 
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
 
-   :param IdOfSubject: The subject of the relationship being tested
+   :param idOfSubject: The subject of the relationship being tested
 
-   :type IdOfSubject: :class:`Types.IdentifierType`
+   :type idOfSubject: :class:`Types.IdentifierType`
 
-   :param relationship: Relationship between IdOfSubject and IdOfObject being
-     evaluated
+   :param relationship: Relationship between `idOfSubject` and `idOfObject`
+     being evaluated
 
    :type relationship: ???
 
-   :param IdOfObject: The object of the relationship
+   :param idOfObject: The object of the relationship
 
-   :type IdOfObject: :class:`Types.IdentifierType`
+   :type idOfObject: :class:`Types.IdentifierType`
 
    :returns: True or False
 

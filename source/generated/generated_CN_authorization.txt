@@ -76,13 +76,15 @@
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4361)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4362)``
+
 
 
 ----
 
 .. function:: setAccess(token,guid,accessLevel) -> boolean
 
-   Sets the access permissions for an object idenitifed by the ``guid``.
+   Sets the access permissions for an object identified by `guid`.
 
    :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
@@ -122,6 +124,8 @@
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4401)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4402)``
+
 .. TODO::
     Should permissions cascade? e.g. Should setting permission on a Data Package
     cascade to the contained objects as well (the experiment metadata and data)?
@@ -135,9 +139,9 @@
    Changes ownership of the specified object to the :term:`principal` specified
    by userid
 
-   :param token: "The authentication token returned by :func:`login`. Used to
+   :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
-     object."
+     object.
 
    :type token: :class:`Types.AuthToken`
 
@@ -170,6 +174,8 @@
 
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4441)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4442)``
 
 
 
@@ -215,6 +221,8 @@
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4501)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4502)``
+
 
 
 ----
@@ -249,6 +257,8 @@
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4541)``
 
    :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4555)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4542)``
 
 
 
@@ -292,5 +302,7 @@
 
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4601)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4602)``
 
 

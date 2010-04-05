@@ -67,6 +67,8 @@
      operation timed out.
 
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1601)``
+
 
 
 ----
@@ -89,6 +91,8 @@
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1720)``
 
    :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1740)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1701)``
 
 
 
@@ -133,6 +137,8 @@
 
    :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1840)``
 
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1761)``
+
 
 
 ----
@@ -167,5 +173,7 @@
      a temporary block may be imposed on a source that calls this method too
      many times within some time interval)
 
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1861)``
 
 
