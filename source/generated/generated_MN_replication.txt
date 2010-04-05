@@ -20,17 +20,17 @@
 
 .. function:: listObjects(token,startTime,[endTime],[objectFormat],[replicaStatus],[start=0],[count=1000]) -> ObjectList
 
-   Retrieve the list of GUIDs for objects owned by the MN that match the calling
+   Retrieve the list of objects present on the MN that match the calling
    parameters. This method is required to support the process of :term:`Member
    Node synchronization`. At a minimum, this method should be able to return a
    list of objects that match::
 
      startTime <= SystemMetadata.dateSysMetadataModified
 
-   but is expected to also support date range (by also specifying ``endTime``),
+   but is expected to also support date range (by also specifying `endTime`),
    and should also support slicing of the matching set of records by indicating
-   the starting ``index`` of the response (where 0 is the index of the first
-   item) and the ``count`` of elements to be returned.
+   the starting `index` of the response (where 0 is the index of the first item)
+   and the `count` of elements to be returned.
 
    :param token: The authentication token returned by ``login()``
 

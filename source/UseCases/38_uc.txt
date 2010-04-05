@@ -1,4 +1,7 @@
-.. _UC38:
+.. raw:: latex
+
+  \newpage
+  
 
 Use Case 38 - Reserve and Identifier
 ------------------------------------
@@ -13,12 +16,10 @@ Version
   0.3
 
 Goal 
-
   Reserve an identifier to ensure it is available at some reasonable time in
   the future.
 
 Summary 
-
   As new content is added to the DataONE system, it is desirable to reserve an
   identifier in advance of creating the content as it is necessary for the
   client to generate relationships between content that may not exist in the

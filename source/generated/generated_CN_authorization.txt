@@ -25,7 +25,7 @@
        :class:`Types.PrincipalType`
    * - :func:`verifyToken`
      - (:class:`token<Types.AuthToken>`) ``->`` boolean
-   * - :func:`IsAuthorized`
+   * - :func:`isAuthorized`
      - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
        :class:`operation<Types.EventType>`) ``->`` boolean
 
@@ -137,7 +137,7 @@
 .. function:: setOwner(token,guid,userId) -> IdentifierType
 
    Changes ownership of the specified object to the :term:`principal` specified
-   by userid
+   by `userId`
 
    :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
@@ -183,9 +183,9 @@
 
 .. function:: newAccount(username,password,[authSystem]) -> PrincipalType
 
-   Create a new identity in the DataONE system. Note that there should probably
-   be a lot more metadata captred about the new user, and there should be a
-   mechanism for specifying the default access control rules for the new
+   Create a new :term:`principal` in the DataONE system. Note that there should
+   probably be a lot more metadata captured about the new user, and there should
+   be a mechanism for specifying the default access control rules for the new
    account.
 
    :param username: Requested username.  Must be unique within the DataONE
@@ -231,6 +231,9 @@
 
    Test if the provided token is valid.
 
+   The token is passed to the method end point using the normal authentication
+   token transfer mechanism (e.g. HTTP Auth header).
+
    Note that there is a potential security issue here as open access to this
    method enables a malicious user to potentially probe a large number of
    generated tokens to determine properties of the system, and perhaps even
@@ -264,7 +267,7 @@
 
 ----
 
-.. function:: IsAuthorized(token,guid,operation) -> boolean
+.. function:: isAuthorized(token,guid,operation) -> boolean
 
    Test if the user identified by the provided token has authorization for
    operation on the specified object.

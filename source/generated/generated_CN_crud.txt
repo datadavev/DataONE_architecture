@@ -36,8 +36,8 @@
 
 .. function:: get(token,guid) -> bytes
 
-   Retrieves the object identified by ``guid`` from the node. If the object is
-   not present on the node, then an :exc:`Exceptions.NotFound` error is raised
+   Retrieves the object identified by `guid` from the node. If the object is not
+   present on the node, then an :exc:`Exceptions.NotFound` error is raised
    (regardless of whether the object exists on another node in the DataONE
    system).
 
@@ -78,8 +78,8 @@
 .. function:: getSystemMetadata(token,guid) -> SystemMetadata
 
    Returns the :term:`system metadata` that contains DataONE specific
-   information about the object identified by ``guid``. Note that authoritative
-   copies of System Metadata are only available from the Coordinating Nodes.
+   information about the object identified by `guid`. Note that authoritative
+   copies of system metadata are only available from the Coordinating Nodes.
 
    :param token: The authentication token returned by ``login()``
 
@@ -158,11 +158,11 @@
 .. function:: create(guid,systemMetadata,scienceMetadata) -> boolean
 
    This is a method used internally by the CN, not exposed to MNs or the world.
-   Stores the two given objects (systemMetadata, scienceMetadata) in a single
-   atomic action. The scienceMetadata document is optional as ``guid`` may refer
+   Stores the two given objects (system metadata, science metadata) in a single
+   atomic action. The science metadata document is optional as `guid` may refer
    to science data which is not retrieved to the Coordinating Node. This method
    is used as part of the :term:`Member Node synchronization` of science
-   metadata between a MN and the CN.
+   metadata between a MN and a CN.
 
    :param guid: Identifier of the object being registered
 
@@ -206,9 +206,9 @@
 
    Given an optional scope and format, reserves and returns an identifier within
    that scope and format that is unique and will not be used by any other
-   sessions. Future calls to create() and update() that reference this ID must
-   originate from the session in which the identifier was reserved, otherwise an
-   error is raised on those methods.
+   sessions. Future calls to :func:`MN_crud.create` and :func:`MN_crud.update`
+   that reference this ID must originate from the :term:`session` in which the
+   identifier was reserved, otherwise an error is raised on those methods.
 
    :param token: The authentication token returned by ``login()``
 

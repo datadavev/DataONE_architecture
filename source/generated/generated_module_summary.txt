@@ -55,12 +55,12 @@
    * - \
      - :func:`MN_crud.describe`
      - This method provides a lighter weight mechanism than
-       :func:`getSystemMetadata` for a client to determine basic properties of
-       the referenced object. The response should indicate properties that are
-       typically returned in a HTTP HEAD request: the date late modified, the
-       size of the object, the type of the object (the
-       :attr:`SystemMetadata.ObjectFormat`). The principal indicated by
-       ``token`` must have read privileges on the object, otherwise
+       :func:`MN_crud.getSystemMetadata` for a client to determine basic
+       properties of the referenced object. The response should indicate
+       properties that are typically returned in a HTTP HEAD request: the date
+       late modified, the size of the object, the type of the object (the
+       :attr:`SystemMetadata.objectFormat`). The principal indicated by `token`
+       must have read privileges on the object, otherwise
        :exc:`Exceptions.NotAuthorized` is raised. If the object does not exist
        on the node servicing the request, then :exc:`Exceptions.NotFound` must
        be raised even if the object exists on another node in the DataONE
@@ -82,29 +82,29 @@
      - This method is used exclusively internally by a MN. It really isn't part
        of external the API that must be implemented. However, a MN will need to
        implement some sort of logging infrastructure so that it can respond to
-       `getLogRecords()`.
+       :func:`MN_crud.getLogRecords()`.
    * - :mod:`MN_replication`
      - :func:`MN_replication.listObjects`
-     - Retrieve the list of GUIDs for objects owned by the MN that match the
-       calling parameters. This method is required to support the process of
+     - Retrieve the list of objects present on the MN that match the calling
+       parameters. This method is required to support the process of
        :term:`Member Node synchronization`. At a minimum, this method should be
        able to return a list of objects that match::   startTime <=
        SystemMetadata.dateSysMetadataModified but is expected to also support
-       date range (by also specifying ``endTime``), and should also support
-       slicing of the matching set of records by indicating the starting
-       ``index`` of the response (where 0 is the index of the first item) and
-       the ``count`` of elements to be returned.
+       date range (by also specifying `endTime`), and should also support
+       slicing of the matching set of records by indicating the starting `index`
+       of the response (where 0 is the index of the first item) and the `count`
+       of elements to be returned.
    * - :mod:`CN_crud`
      - :func:`CN_crud.get`
-     - Retrieves the object identified by ``guid`` from the node. If the object
-       is not present on the node, then an :exc:`Exceptions.NotFound` error is
+     - Retrieves the object identified by `guid` from the node. If the object is
+       not present on the node, then an :exc:`Exceptions.NotFound` error is
        raised (regardless of whether the object exists on another node in the
        DataONE system).
    * - \
      - :func:`CN_crud.getSystemMetadata`
      - Returns the :term:`system metadata` that contains DataONE specific
-       information about the object identified by ``guid``. Note that
-       authoritative copies of System Metadata are only available from the
+       information about the object identified by `guid`. Note that
+       authoritative copies of system metadata are only available from the
        Coordinating Nodes.
    * - \
      - :func:`CN_crud.resolve`
@@ -114,18 +114,19 @@
    * - \
      - :func:`CN_crud.create`
      - This is a method used internally by the CN, not exposed to MNs or the
-       world. Stores the two given objects (systemMetadata, scienceMetadata) in
-       a single atomic action. The scienceMetadata document is optional as
-       ``guid`` may refer to science data which is not retrieved to the
+       world. Stores the two given objects (system metadata, science metadata)
+       in a single atomic action. The science metadata document is optional as
+       `guid` may refer to science data which is not retrieved to the
        Coordinating Node. This method is used as part of the :term:`Member Node
-       synchronization` of science metadata between a MN and the CN.
+       synchronization` of science metadata between a MN and a CN.
    * - \
      - :func:`CN_crud.reserveIdentifier`
      - Given an optional scope and format, reserves and returns an identifier
        within that scope and format that is unique and will not be used by any
-       other sessions. Future calls to create() and update() that reference this
-       ID must originate from the session in which the identifier was reserved,
-       otherwise an error is raised on those methods.
+       other sessions. Future calls to :func:`MN_crud.create` and
+       :func:`MN_crud.update` that reference this ID must originate from the
+       :term:`session` in which the identifier was reserved, otherwise an error
+       is raised on those methods.
    * - \
      - :func:`CN_crud.assertRelation`
      - Tests that the specified relationship between `idOfSubject` and
@@ -153,23 +154,25 @@
    * - \
      - :func:`CN_authorization.setOwner`
      - Changes ownership of the specified object to the :term:`principal`
-       specified by userid
+       specified by `userId`
    * - \
      - :func:`CN_authorization.newAccount`
-     - Create a new identity in the DataONE system. Note that there should
-       probably be a lot more metadata captred about the new user, and there
-       should be a mechanism for specifying the default access control rules for
-       the new account.
+     - Create a new :term:`principal` in the DataONE system. Note that there
+       should probably be a lot more metadata captured about the new user, and
+       there should be a mechanism for specifying the default access control
+       rules for the new account.
    * - \
      - :func:`CN_authorization.verifyToken`
-     - Test if the provided token is valid. Note that there is a potential
-       security issue here as open access to this method enables a malicious
-       user to potentially probe a large number of generated tokens to determine
-       properties of the system, and perhaps even generate a token that matches
-       a system token. Hence another level of restriction (perhaps network level
-       blocking / limiting) is necessary.
+     - Test if the provided token is valid. The token is passed to the method
+       end point using the normal authentication token transfer mechanism (e.g.
+       HTTP Auth header). Note that there is a potential security issue here as
+       open access to this method enables a malicious user to potentially probe
+       a large number of generated tokens to determine properties of the system,
+       and perhaps even generate a token that matches a system token. Hence
+       another level of restriction (perhaps network level blocking / limiting)
+       is necessary.
    * - \
-     - :func:`CN_authorization.IsAuthorized`
+     - :func:`CN_authorization.isAuthorized`
      - Test if the user identified by the provided token has authorization for
        operation on the specified object. .. Note:: Should perhaps add
        convenience methods for "canRead()" and "canWrite()" to verify that a
@@ -188,16 +191,18 @@
      - Revokes trust in the supplied token, making it invalid for further use
        within the DataONE system.
    * - \
-     - :func:`MN_authorization.IsAuthorized`
+     - :func:`MN_authorization.isAuthorized`
      - Test if the user identified by the provided token has authorization for
        operation on the specified object. .. Note:: Should perhaps add
        convenience methods for "canRead()" and "canWrite()" to verify that a
        user is able to read / write an object.
    * - \
      - :func:`MN_authorization.verifyToken`
-     - Test if the provided token is valid. Note that there is a potential
-       security issue here as open access to this method enables a malicious
-       user to potentially probe a large number of generated tokens to determine
-       properties of the system, and perhaps even generate a token that matches
-       a system token. Hence another level of restriction (perhaps network level
-       blocking / limiting) is necessary.
+     - Test if the provided token is valid. The token is passed to the method
+       end point using the normal authentication token transfer mechanism (e.g.
+       HTTP Auth header). Note that there is a potential security issue here as
+       open access to this method enables a malicious user to potentially probe
+       a large number of generated tokens to determine properties of the system,
+       and perhaps even generate a token that matches a system token. Hence
+       another level of restriction (perhaps network level blocking / limiting)
+       is necessary.

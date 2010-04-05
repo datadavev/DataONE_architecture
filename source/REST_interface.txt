@@ -45,6 +45,9 @@ Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s inc
 :``/reserve/``:
   Identifiers that have been reserved for future use.
 
+.. 
+  include:: generated/generated_rest_summarytable.txt
+
 
 An overview of mapping API methods to URLs in the REST interface. 
 
@@ -777,8 +780,8 @@ Reserve Collection
 
 
 
-``/object/reserve/``
-^^^^^^^^^^^^^^^^^^^^
+``/reserve/``
+^^^^^^^^^^^^^
 
 Implemented by the methods:
 

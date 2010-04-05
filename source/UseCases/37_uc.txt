@@ -6,8 +6,6 @@
 Use Case 37 - Get System Metadata for Object
 --------------------------------------------
 
-.. index:: Use Case 37, getSystemMetadata
-
 Author
   VDC TWG
 
@@ -52,22 +50,19 @@ Post Conditions
 2. If system metadata is not stored on Member Nodes, then Member Nodes should
    always raise :exc:`Exceptions.NotFound` when such a request is received.
 
-----
 
 .. figure:: images/37_uc.png
-   :align: center
    :figwidth: 100%
 
    Use case 37 diagram showing actors and components involved in this action.
 
-----
 
 .. figure:: images/37_interaction.png
    :figwidth: 100%
 
    Sequence diagram for Use Case 37 illustrating the sequence for retrieving
-   the :term:`system metadata` for an object identified by GUID from a
-   Coordinating Node.
+   the system metadata for an object identified by GUID from a Coordinating
+   Node.
 
 
 .. raw:: latex

@@ -14,7 +14,7 @@
        :class:`Types.AuthToken`
    * - :func:`logout`
      - (:class:`token<Types.AuthToken>`) ``->`` boolean
-   * - :func:`IsAuthorized`
+   * - :func:`isAuthorized`
      - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
        :class:`operation<Types.EventType>`) ``->`` boolean
    * - :func:`verifyToken`
@@ -98,7 +98,7 @@
 
 ----
 
-.. function:: IsAuthorized(token,guid,operation) -> boolean
+.. function:: isAuthorized(token,guid,operation) -> boolean
 
    Test if the user identified by the provided token has authorization for
    operation on the specified object.
@@ -146,6 +146,9 @@
 .. function:: verifyToken(token) -> boolean
 
    Test if the provided token is valid.
+
+   The token is passed to the method end point using the normal authentication
+   token transfer mechanism (e.g. HTTP Auth header).
 
    Note that there is a potential security issue here as open access to this
    method enables a malicious user to potentially probe a large number of
