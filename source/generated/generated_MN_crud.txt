@@ -9,11 +9,11 @@
    * - Function
      - Parameters
    * - :func:`get`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       bytes
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` bytes
    * - :func:`getSystemMetadata`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       :class:`Types.SystemMetadata`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` :class:`Types.SystemMetadata`
    * - :func:`create`
      - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
        ``object``, :class:`sysmeta<Types.SystemMetadata>`) ``->``
@@ -24,11 +24,11 @@
        :class:`sysmeta<Types.SystemMetadata>`) ``->``
        :class:`Types.IdentifierType`
    * - :func:`delete`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       :class:`Types.IdentifierType`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` :class:`Types.IdentifierType`
    * - :func:`describe`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       :class:`Types.DescribeResponse`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` :class:`Types.DescribeResponse`
    * - :func:`getChecksum`
      - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
        ``[checksumAlgorithm]``) ``->`` :class:`Types.Checksum`

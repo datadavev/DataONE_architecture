@@ -147,26 +147,17 @@ internally by those components.
    logging
 
 
-.. table:: Ranges of exception :term:`detail code`\s that are expressed by the
-   different APIs.
+Summary of API Functions
+------------------------
 
-  ==================== =============================================================
-  Error Detail Range   API
-  ==================== =============================================================
-  .                    :mod:`CN_crud`
-  .                    :mod:`CN_authorization`
-  .                    :mod:`CN_query`
-  .                    :mod:`CN_replication`
-  .                    :mod:`CN_synchronization`
-  .                    :mod:`CN_register`
-  .                    :mod:`CN_health`
-  .                    :mod:`MN_crud`
-  .                    :mod:`MN_authorization`
-  .                    :mod:`MN_replication`
-  .                    :mod:`MN_capabilities`
-  .                    :mod:`MN_health`
-  .                    :mod:`ITK_APIs`
-  ==================== =============================================================
+.. include:: generated/generated_module_summary.txt
+
+
+Summary of Exceptions
+---------------------
+
+.. include:: generated/generated_exception_summary.txt
+
 
 .. raw:: latex
 

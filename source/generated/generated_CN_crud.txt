@@ -9,14 +9,14 @@
    * - Function
      - Parameters
    * - :func:`get`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       bytes
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` bytes
    * - :func:`getSystemMetadata`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       :class:`Types.SystemMetadata`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` :class:`Types.SystemMetadata`
    * - :func:`resolve`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`) ``->``
-       :class:`Types.ObjectLocationList`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
+       ``->`` :class:`Types.ObjectLocationList`
    * - :func:`create`
      - (:class:`guid<Types.IdentifierType>`,
        :class:`systemMetadata<Types.SystemMetadata>`, ``scienceMetadata``)
@@ -25,7 +25,8 @@
      - (:class:`token<Types.AuthToken>`, ``[scope]``, ``[format]``) ``->``
        :class:`Types.IdentifierType`
    * - :func:`assertRelation`
-     - (:class:`token<Types.AuthToken>`, :class:`IdOfSubject<Types.IdentifierType>`,
+     - (:class:`token<Types.AuthToken>`,
+       :class:`IdOfSubject<Types.IdentifierType>`,
        :class:`relationship<Types.???>`,
        :class:`IdOfObject<Types.IdentifierType>`) ``->`` boolean
 

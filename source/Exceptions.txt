@@ -163,6 +163,9 @@ Log message body::
 The Exceptions
 ~~~~~~~~~~~~~~
 
+.. include:: generated/generated_exception_summary.txt
+
 .. include:: generated/generated_exceptions.txt
+
 
 

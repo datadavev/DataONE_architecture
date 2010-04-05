@@ -9,8 +9,9 @@
    * - Function
      - Parameters
    * - :func:`login`
-     - (``user``, ``password``, :class:`[authSystem]<Types.AuthenticationSystemType>`)
-       ``->`` :class:`Types.AuthToken`
+     - (``user``, ``password``,
+       :class:`[authSystem]<Types.AuthenticationSystemType>`) ``->``
+       :class:`Types.AuthToken`
    * - :func:`logout`
      - (:class:`token<Types.AuthToken>`) ``->`` boolean
    * - :func:`IsAuthorized`
