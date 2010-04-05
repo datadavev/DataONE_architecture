@@ -45,53 +45,8 @@ Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s inc
 :``/reserve/``:
   Identifiers that have been reserved for future use.
 
-.. 
-  include:: generated/generated_rest_summarytable.txt
+.. include:: generated/generated_rest_summarytable.txt
 
-
-An overview of mapping API methods to URLs in the REST interface. 
-
-======= ================================================== =========== ========================================
-Version API Method                                         Method      URL
-======= ================================================== =========== ========================================
-.       MN Operations
-0.3     :func:`MN_crud.getLogRecords`                       ``GET``     ``/log/``
-0.3     :func:`MN_replication.listObjects`                  ``GET``     `/object/`_
-0.3     :func:`MN_crud.get`                                 ``GET``     `/object/<guid>/`_
-0.4     :func:`MN_crud.create`                              ``POST``    `/object/<guid>/`_
-0.4     :func:`MN_crud.update`                              ``PUT``     `/object/<guid>/`_
-0.9     :func:`MN_crud.delete`                              ``DELETE``  `/object/<guid>/`_
-0.3     :func:`MN_crud.getSystemMetadata`                   ``GET``     `/object/<guid>/meta/`_
-0.3     :func:`MN_replication.synchronizationComplete`      ``PUT``     ``/object/<guid>/meta/``
-0.3     :func:`MN_replication.synchronizationFailed`        ``PUT``     ``/object/<guid>/meta/``
-0.4     :func:`MN_capabilities.getCapabilities`
-0.4     :func:`MN_health.getStatus`
-0.6     synchronize
-0.7     :func:`MN_authorization.login`
-0.7     :func:`MN_authorization.authorize`
-0.8     :func:`MN_authorization.isAuthorized`
-.
-.       CN Operations
-0.3     :func:`CN_query.getLogRecords`                      ``GET``     ``/log/``
-0.3     :func:`CN_health.generateReport`                    ``GET``     ``/log/report``
-0.3     :func:`CN_query.search`                             ``GET``     `/object/`_
-0.3     :func:`CN_crud.get`                                 ``GET``     `/object/<guid>/`_ 
-0.3     :func:`CN_crud.getSystemMetadata`                   ``GET``     `/object/<guid>/meta/`_
-0.3     :func:`CN_crud.resolve`                             ``GET``     `/object/<guid>/resolve/`_
-0.4     UNDEF - `CN_crud.listReservedIdentifiers`           ``GET``     `/reserve/`_
-0.4     :func:`CN_crud.reserveIdentifier`                   ``POST``    `/reserve/<guid>/`_
-0.4     UNDEF :func:`CN_crud.deleteReservedIdentifier`      ``DELETE``  `/reserve/<guid>/`_
-0.4     :func:`CN_query.query`
-0.4     :func:`CN_register.register`
-0.4     :func:`CN_crud.create`
-0.6     synchronizationComplete
-0.6     beginTransaction
-0.6     commitTransaction
-0.6     rollbackTransaction
-0.7     :func:`CN_authorization.login`
-0.7     :func:`CN_authorization.authorize`
-0.8     :func:`CN_authorization.isAuthorized`
-======= ================================================== =========== ========================================
 
 .. note:: 
    Previous versions of this document referred to a ``/meta/`` collection. This
