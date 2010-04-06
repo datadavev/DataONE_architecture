@@ -729,6 +729,45 @@ Using CURL::
 
 ----
 
+``/object/<guid>/checksum/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``/object/<guid>/isAuthorized/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``/object/<guid>/assert/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``/object/<guid>/access/``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``/object/<guid>/owner/``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+
 
 Reserve Collection
 ~~~~~~~~~~~~~~~~~~
@@ -750,6 +789,10 @@ Implemented by the methods:
 .. TODO:: Discuss and flesh these out.
 
 
+``/reserve/<guid>/``
+^^^^^^^^^^^^^^^^^^^^
+
+pass
 
 ----
 
@@ -841,3 +884,36 @@ Return only objects of type data or metadata (filter out system metadata)::
   ../object/
   ?qt=nvp
   &oclass=*data
+
+
+Account Collection
+~~~~~~~~~~~~~~~~~~
+
+``/account/``
+^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``/account/login/``
+^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+-----
+
+``/account/logout/``
+^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+-----
+
+``/account/verifyToken/``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
