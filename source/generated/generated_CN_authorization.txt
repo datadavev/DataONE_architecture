@@ -10,24 +10,23 @@
      - Parameters
    * - :func:`login`
      - (``user``, ``password``,
-       :class:`[authSystem]<Types.AuthenticationSystemType>`) ``->``
+       :class:`[authSystem]<Types.AuthenticationSystem>`) ``->``
        :class:`Types.AuthToken`
    * - :func:`setAccess`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
-       :class:`accessLevel<Types.AccessRuleType>`) ``->`` boolean
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+       :class:`accessLevel<Types.AccessRule>`) ``->`` boolean
    * - :func:`setOwner`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
-       :class:`userId<Types.PrincipalType>`) ``->``
-       :class:`Types.IdentifierType`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+       :class:`userId<Types.Principal>`) ``->`` :class:`Types.Identifier`
    * - :func:`newAccount`
      - (``username``, ``password``,
-       :class:`[authSystem]<Types.AuthenticationSystemType>`) ``->``
+       :class:`[authSystem]<Types.AuthenticationSystem>`) ``->``
        :class:`Types.PrincipalType`
    * - :func:`verifyToken`
      - (:class:`token<Types.AuthToken>`) ``->`` boolean
    * - :func:`isAuthorized`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
-       :class:`operation<Types.EventType>`) ``->`` boolean
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+       :class:`operation<Types.Event>`) ``->`` boolean
 
 
 
@@ -55,7 +54,7 @@
    :param authSystem: Place holder for support of multiple authentication
      services for a single user.
 
-   :type authSystem: :class:`Types.AuthenticationSystemType`
+   :type authSystem: :class:`Types.AuthenticationSystem`
 
    :returns: A composite of the user id and authentication token.
 
@@ -70,7 +69,7 @@
 
    :raises Exceptions.AuthenticationTimeout: ``(errorCode=408, detailCode=4380)``
 
-     A response from the authentication ervice was not received before the
+     A response from the authentication service was not received before the
      operation timed out.
 
 
@@ -94,11 +93,11 @@
 
    :param guid: The object for which access control is being edited.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param accessLevel: The desired privileges to be assigned to the object.
 
-   :type accessLevel: :class:`Types.AccessRuleType`
+   :type accessLevel: :class:`Types.AccessRule`
 
    :returns: True if the operation succeeds, otherwise false.
 
@@ -134,7 +133,7 @@
 
 ----
 
-.. function:: setOwner(token,guid,userId) -> IdentifierType
+.. function:: setOwner(token,guid,userId) -> Identifier
 
    Changes ownership of the specified object to the :term:`principal` specified
    by `userId`
@@ -145,18 +144,18 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identiifer of the object to be modified
+   :param guid: Identifier of the object to be modified
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param userId: The principal that will be taking ownership of the specified
      object.
 
-   :type userId: :class:`Types.PrincipalType`
+   :type userId: :class:`Types.Principal`
 
    :returns: Identifier of the object that was modified
 
-   :rtype: :class:`Types.IdentifierType`
+   :rtype: :class:`Types.Identifier`
 
    :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4490)``
 
@@ -199,7 +198,7 @@
 
    :param authSystem: Selection from potentially multiple authentication systems
 
-   :type authSystem: :class:`Types.AuthenticationSystemType`
+   :type authSystem: :class:`Types.AuthenticationSystem`
 
    :returns: The new principal in the DataONE system.  This may be a simple
      identifier.
@@ -216,7 +215,7 @@
    :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=4520)``
 
      Raised if the supplied credentials are invalid, such asa password that is
-     too weak or innapropriate user name.
+     too weak or inappropriate user name.
 
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4501)``
@@ -281,11 +280,11 @@
 
    :param guid:
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param operation:
 
-   :type operation: :class:`Types.EventType`
+   :type operation: :class:`Types.Event`
 
    :returns: True if the operation is allowed
 

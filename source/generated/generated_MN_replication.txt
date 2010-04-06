@@ -11,7 +11,7 @@
    * - :func:`listObjects`
      - (:class:`token<Types.AuthToken>`, :class:`startTime<Types.DateTime>`,
        :class:`[endTime]<Types.DateTime>`,
-       :class:`[objectFormat]<Types.ObjectFormatType>`, ``[replicaStatus]``,
+       :class:`[objectFormat]<Types.ObjectFormat>`, ``[replicaStatus]``,
        ``[start=0]``, ``[count=1000]``) ``->`` :class:`Types.ObjectList`
 
 
@@ -46,7 +46,7 @@
 
    :param objectFormat: Restrict results to the specified object format.
 
-   :type objectFormat: :class:`Types.ObjectFormatType`
+   :type objectFormat: :class:`Types.ObjectFormat`
 
    :param replicaStatus: Indicates if replicated objects should be returned in
      the list (i.e. any entries present in the :attr:`SystemMetadata.replica`).

@@ -9,36 +9,36 @@
    * - Function
      - Parameters
    * - :func:`get`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
-       ``->`` bytes
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+       bytes
    * - :func:`getSystemMetadata`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
-       ``->`` :class:`Types.SystemMetadata`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+       :class:`Types.SystemMetadata`
    * - :func:`create`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
        ``object``, :class:`sysmeta<Types.SystemMetadata>`) ``->``
-       :class:`Types.IdentifierType`
+       :class:`Types.Identifier`
    * - :func:`update`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
-       ``object``, :class:`obsoletedGuid<Types.IdentifierType>`,
-       :class:`sysmeta<Types.SystemMetadata>`) ``->``
-       :class:`Types.IdentifierType`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+       ``object``, :class:`obsoletedGuid<Types.Identifier>`,
+       :class:`sysmeta<Types.SystemMetadata>`) ``->`` :class:`Types.Identifier`
    * - :func:`delete`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
-       ``->`` :class:`Types.IdentifierType`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+       :class:`Types.Identifier`
    * - :func:`describe`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`)
-       ``->`` :class:`Types.DescribeResponse`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+       :class:`Types.DescribeResponse`
    * - :func:`getChecksum`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.IdentifierType>`,
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
        ``[checksumAlgorithm]``) ``->`` :class:`Types.Checksum`
    * - :func:`getLogRecords`
      - (:class:`token<Types.AuthToken>`, :class:`fromDate<Types.DateTime>`,
-       :class:`toDate<Types.DateTime>`) ``->`` :class:`Types.LogRecords`
+       :class:`[toDate]<Types.DateTime>`, :class:`[event]<Types.Event>`) ``->``
+       :class:`Types.LogRecords`
    * - :func:`log`
-     - (:class:`typeOfOperation<Types.EventType>`,
-       :class:`targetGuid<Types.IdentifierType>`,
-       :class:`requestorIdentitity<Types.PrincipalType>`,
+     - (:class:`typeOfOperation<Types.Event>`,
+       :class:`targetGuid<Types.Identifier>`,
+       :class:`requestorIdentitity<Types.Principal>`,
        :class:`dateOfRequest<Types.DateTime>`) ``->``
 
 
@@ -63,7 +63,7 @@
 
    :param guid: The identifier for the object to be retrieved.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :returns: Bytes of the specified object. For data objects, this will be the
      actual bytes of data. For metadata objects, this will be the representation
@@ -124,7 +124,7 @@
    :param guid: Identifier for the science data or science metedata object of
      interest.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :returns: System metadata object describing the object.
 
@@ -151,7 +151,7 @@
 
 ----
 
-.. function:: create(token,guid,object,sysmeta) -> IdentifierType
+.. function:: create(token,guid,object,sysmeta) -> Identifier
 
    Adds a new object to the Member Node, where the object is either a data
    object or a science metadata object. This method is called by clients to
@@ -170,7 +170,7 @@
      use, :exc:`Exceptions.IdentifierNotUnique` will be raised and the client
      should try again with a different, unique identifier.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param object: The data bytes that are to be added to the Member Node.
 
@@ -186,7 +186,7 @@
    :returns: The identifier that was used to insert the document into the
      system.
 
-   :rtype: :class:`Types.IdentifierType`
+   :rtype: :class:`Types.Identifier`
 
    :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1100)``
 
@@ -231,7 +231,7 @@
 
 ----
 
-.. function:: update(token,guid,object,obsoletedGuid,sysmeta) -> IdentifierType
+.. function:: update(token,guid,object,obsoletedGuid,sysmeta) -> Identifier
 
    Creates a new `object` on the Member Node that explicitly updates and
    obsoletes a previous object (identified by `obsoletedGuid`).
@@ -256,7 +256,7 @@
      exception will be raised and the client should try again with a different,
      unique identifier, or use :func:`CN_crud.reserveIdentifier` to reserve one.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param object: The bytes of the data or science metadata object.
 
@@ -266,7 +266,7 @@
      this identifier does not exist in the system, an error is raised and the
      operation does not complete.
 
-   :type obsoletedGuid: :class:`Types.IdentifierType`
+   :type obsoletedGuid: :class:`Types.Identifier`
 
    :param sysmeta: The system metadata document that provides basic information
      about `object`, including a reference to its identifier, access control
@@ -278,7 +278,7 @@
    :returns: The identifier that was used to insert the document into the
      system, which should be the same as `guid`.
 
-   :rtype: :class:`Types.IdentifierType`
+   :rtype: :class:`Types.Identifier`
 
    :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1200)``
 
@@ -326,7 +326,7 @@
 
 ----
 
-.. function:: delete(token,guid) -> IdentifierType
+.. function:: delete(token,guid) -> Identifier
 
    Deletes an object from the Member Node, where the object is either a data
    object or a science metadata object. This method is called by clients to
@@ -344,12 +344,12 @@
 
    :param guid: The identifier of the object to be deleted.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :returns: The identifier that was used to delete the document from the
      system.
 
-   :rtype: :class:`Types.IdentifierType`
+   :rtype: :class:`Types.Identifier`
 
    :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1320)``
 
@@ -401,7 +401,7 @@
 
    :param guid: Identifier for the object in question.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :returns: A set of values providing a basic description of the object.
 
@@ -439,7 +439,7 @@
    :param guid: The identifier of the object the operation is being performed
      on.
 
-   :type guid: :class:`Types.IdentifierType`
+   :type guid: :class:`Types.Identifier`
 
    :param checksumAlgorithm: The name of an algorithm that will be used to
      compute a checksum of the bytes of the object. This value is drawn from a
@@ -476,7 +476,7 @@
 
 ----
 
-.. function:: getLogRecords(token,fromDate,toDate) -> LogRecords
+.. function:: getLogRecords(token,fromDate,[toDate],[event]) -> LogRecords
 
    Retrieve log information from the MN for the specified date range
    (inclusive).
@@ -489,9 +489,15 @@
 
    :type fromDate: :class:`Types.DateTime`
 
-   :param toDate: End time for records in response
+   :param toDate: End time for records in response. If not specified, then
+     defaults to now.
 
    :type toDate: :class:`Types.DateTime`
+
+   :param event: Return only log records for the specified type of event.
+     Default is all.
+
+   :type event: :class:`Types.Event`
 
    :returns:
 
@@ -524,15 +530,15 @@
 
    :param typeOfOperation: Enumerated value
 
-   :type typeOfOperation: :class:`Types.EventType`
+   :type typeOfOperation: :class:`Types.Event`
 
    :param targetGuid: The target of the operation
 
-   :type targetGuid: :class:`Types.IdentifierType`
+   :type targetGuid: :class:`Types.Identifier`
 
    :param requestorIdentitity: Who invoked the operation
 
-   :type requestorIdentitity: :class:`Types.PrincipalType`
+   :type requestorIdentitity: :class:`Types.Principal`
 
    :param dateOfRequest: Time stamp
 

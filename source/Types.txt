@@ -15,41 +15,41 @@ Data Types in CICore
 ========= =============================
 Version   Structure
 ========= =============================
-.         :class:`AccessRuleType`
-.         :class:`AuthenticationSystemType`
+.         :class:`AccessRule`
+.         :class:`AuthenticationSystem`
 .         :class:`AuthToken`
 .         :class:`Capabilities`
 .         :class:`Checksum`
 .         :class:`DateTime`
 .         :class:`DescribeResponse`
 .         :class:`ErrorMessage`
-.         :class:`EventType`
+.         :class:`Event`
 .         :class:`HeartbeatResponse`
-.         :class:`IdentifierFormatType`
+.         :class:`IdentifierFormat`
 .         :class:`IdentifierList`
-.         :class:`IdentifierType`
+.         :class:`Identifier`
 .         :class:`LogRecord`
 .         :class:`LogRecords`
-.         :class:`NodeReferenceType`
-.         :class:`ObjectFormatType`
+.         :class:`NodeReference`
+.         :class:`ObjectFormat`
 .         :class:`ObjectList`
 .         :class:`ObjectLocationList`
 .         :class:`PingResponse`
-.         :class:`PrincipalType`
-.         :class:`QueryType`
+.         :class:`Principal`
+.         :class:`Query`
 .         :class:`Status`
 .         :class:`SystemMetadata`
 ========= =============================
 
 ----
 
-.. class:: AccessRuleType
+.. class:: AccessRule
 
    An access rule.
 
 ----
 
-.. class:: AuthenticationSystemType
+.. class:: AuthenticationSystem
 
   Place holder for support of multiple authentication services for a single
   user.
@@ -214,14 +214,14 @@ Version   Structure
 
 ----
 
-.. class:: EventType
+.. class:: Event
 
   The contolled list of events that are logged, which will include 'CREATE',
   'UPDATE', 'DELETE', 'READ', 'REPLICATE' events
 
   ::
 
-    message EventType {
+    message Event {
       CREATE = 0;
       READ = 1;
       UPDATE = 2;
@@ -239,13 +239,13 @@ Version   Structure
 
 ----
 
-.. class:: IdentifierFormatType
+.. class:: IdentifierFormat
 
   Initially an enumerated list of strings that specify different types of identifiers.
 
   ::
 
-    message IdentifierFormatType {
+    message IdentifierFormat {
       enum IdentifierFormat {
         OID = 0;
         LSID = 1;
@@ -258,7 +258,7 @@ Version   Structure
 
 ----
 
-.. class:: IdentifierType
+.. class:: Identifier
 
   An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
   equivalent to a unicode string of printable characters, excluding
@@ -308,14 +308,14 @@ Version   Structure
 
 ----
 
-.. class:: NodeReferenceType
+.. class:: NodeReference
 
-  MemberNodeIdentifier drawn from the DataONE MemberNodeRegistryService
+  Member Node Identifier drawn from the DataONE Member Node Registry Service
 
 
 ----
 
-.. class:: ObjectFormatType
+.. class:: ObjectFormat
 
   One value from the DataONE Object Format Vocabulary, which may be an adopted
   vocabulary maintained by another organization. ObjectFormatType is currently
@@ -423,7 +423,7 @@ Version   Structure
 
 ----
 
-.. class:: PrincipalType
+.. class:: Principal
 
   Person (user), group, or organization.
 
@@ -434,7 +434,7 @@ Version   Structure
 
 ----
 
-.. class:: QueryType
+.. class:: Query
 
    Queries are used to identify a subset of objects from a collection. The
    form of query used by the DataONE system is likely to evolve significantly
@@ -481,7 +481,6 @@ Version   Structure
 
 
 Expressing a NVP query in a URL
-
 
 
 ----

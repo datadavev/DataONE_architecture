@@ -109,6 +109,8 @@ In HTML:
     <body>
       <p>
         <dl>
+          <dt>Error</dt>
+          <dd class='erroName'>NotFound</dd>
           <dt>Code</dt>
           <dd class='errorCode'>404</dd>
           <dt>Detail Code</dt>
@@ -133,7 +135,7 @@ In XML:
 
 .. code-block:: xml
 
-  <error errorCode='404' detailCode='1020.1'>
+  <error name="NotFound" errorCode='404' detailCode='1020.1'>
     <description>The specified object does not exist on this node.</description>
     <traceInformation>
       <value key='identifier'>123XYZ</value>
@@ -145,7 +147,8 @@ In XML:
 
 In JSON::
 
-  {'errorCode':404,
+  {'name': 'NotFound',
+   'errorCode':404,
    'detailCode': '1020.1',
    'description': 'The specified object does not exist on this node.',
    'traceInformation': {'identifier':'123XYZ',

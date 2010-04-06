@@ -53,7 +53,7 @@
    :param identifier:
      The identifier value that is in conflict
 
-   :type identifier: :class:`Types.IdentifierType`
+   :type identifier: :class:`Types.Identifier`
 
    :param traceInformation:
      Optional additional information to assist with debugging.
@@ -256,7 +256,7 @@
    :param identifier:
      The identifier of the object that can not be located.
 
-   :type identifier: :class:`Types.IdentifierType`
+   :type identifier: :class:`Types.Identifier`
 
    :param traceInformation:
      Optional set of key-value pairs that can include the name of the method
