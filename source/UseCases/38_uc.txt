@@ -3,8 +3,8 @@
   \newpage
   
 
-Use Case 38 - Reserve and Identifier
-------------------------------------
+Use Case 38 - Reserve an Identifier
+-----------------------------------
 
 Author
   VDC TWG
@@ -62,14 +62,16 @@ Post Conditions
   @startuml images/38_uc.png
   !include ../plantuml.conf
 
+  usecase "12. Authentication" as authen
   package "DataONE"
-  actor "Coordinating Node" as CN
-  actor "Client" as ITK
-  usecase "13. Authorization" as author
-  usecase "38. Reserve Identifier" as RES
-  CN -- RES
-  ITK -- RES
-  RES ..> author: <<includes>>
+    actor "Coordinating Node" as CN
+    actor "Client" as ITK
+    usecase "13. Authorization" as author
+    usecase "38. Reserve Identifier" as RES
+    CN -- RES
+    ITK -- RES
+    RES ..> author: <<includes>>
+    RES ..> authen: <<includes>>
   @enduml
 
 

@@ -367,7 +367,7 @@ maintained by ICES
 Identifying Metadata Types
 --------------------------
 
-It is a requirement (#???) of DataONE that users are able to search the
+It is a requirement (#384) of DataONE that users are able to search the
 holdings, and so a mechanism for indexing the content and therefore a
 mechanism for specifying how to retrieve attribute values from the different
 :term:`science metadata` formats is required. This in turn requires that the
@@ -378,7 +378,7 @@ indexing.
 
 - GDFR_
 - UDFR_
-- PROMON_
+- PRONOM_
 
 .. _GDFR: http://www.gdfr.info/docs.htm
 

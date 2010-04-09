@@ -92,13 +92,13 @@ Post Conditions
 
 
 .. figure:: images/04_uc.png
-   :width: 75%
+   :figwidth: 100%
    
    Use case 04.
 
 
 .. figure:: images/04_interaction.png
-  :width: 100%
+  :figwidth: 100%
 
   Create, update, delete, search metadata or data object in Member Node.
 

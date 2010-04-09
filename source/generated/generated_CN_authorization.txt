@@ -272,7 +272,7 @@
    operation on the specified object.
 
    .. Note:: Should perhaps add convenience methods for "canRead()" and
-   "canWrite()" to verify that a user is able to read / write an object.
+     "canWrite()" to verify that a user is able to read / write an object.
 
    :param token:
 

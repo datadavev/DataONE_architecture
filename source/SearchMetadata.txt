@@ -63,7 +63,7 @@ Publication (A structured type, perhaps search by decomposing to elements)
 ScientificName (A structured type, perhaps search by decomposing to elements)
 
 
-.. _Well Known Text:: http://en.wikipedia.org/wiki/Well-known_text
+.. _Well Known Text: http://en.wikipedia.org/wiki/Well-known_text
 
 
 Essential Elements

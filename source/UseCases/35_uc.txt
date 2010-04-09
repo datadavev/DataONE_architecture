@@ -1,5 +1,5 @@
-Use Case 35 - Query Coordinating Node for metadata decribing a Member Node
---------------------------------------------------------------------------
+Use Case 35 - Query Coordinating Node for Metadata Describing a Member Node
+---------------------------------------------------------------------------
 
 Author
   Paul Allen
@@ -19,7 +19,7 @@ Summary
   interacting with them. In particular, clients need to determine the 
   API endpoints for the Member Node. Information supplied might include 
   the capabilities supported and state of health summary.
-   
+
 
 Actors
   - Coordinating Node
@@ -36,7 +36,7 @@ Post Conditions
 
 
 .. figure:: images/35_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
 
    Interactions for use case 35.

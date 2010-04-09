@@ -5,10 +5,10 @@ This design specification for the DataONE infrastructure has been developed
 through support of the National Science Foundation through the projects:
 
 - NSF DBI `0753138`_, "INTEROP: Creation of an International virtual Data cente
- for the Biodiversity, Ecological and Environmental Sciences"
+  for the Biodiversity, Ecological and Environmental Sciences"
 
 - NSF OCI `0830944`_, "DataNet Full Proposal: DataNetONE (Observation Network For
- Earth)"
+  Earth)"
 
 
 
@@ -18,6 +18,7 @@ About These Documents
 These documents are generated using the excellent open source tools Sphinx_
 for the overall document processing and generation, and PlantUML_ for the
 various UML diagrams.
+
 
 Editing Content
 ---------------
