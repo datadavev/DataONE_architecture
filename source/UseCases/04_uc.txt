@@ -1,5 +1,5 @@
-Use Case 04 - CRUD (Create, Update Delete)
-------------------------------------------
+Use Case 04 - Create New Object
+-------------------------------
 
 Author
   VDC TWG
@@ -13,13 +13,11 @@ Version
   Draft
 
 Goal
-  Create, update or delete metadata record on a Member Node.
+  Create new content on a Member Node.
 
-Summary 
-  A user is creating a new metadata record on a Member Node (MN). The
-  mechanism by which the user does this is out of scope for the DataONE
-  system, so this use case continues from the point where a new Data Package
-  is present on the MN.
+Summary
+
+  A user is adding new content on a Member Node (MN).
 
   The metadata is retrieved by the CN using a pull mechanism (CN requests
   content from the MN).

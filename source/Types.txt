@@ -270,7 +270,7 @@ Version   Structure
 
 .. class:: IdentifierList
 
-   A list of idenitfiers, so a list of unicode strings.
+   A list of identifiers, so a list of unicode strings.
 
    ::
    

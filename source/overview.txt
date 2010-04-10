@@ -10,12 +10,13 @@ forth)
 
 2. A consistent scheme for identifying users across all participating nodes.
 
-3. An extensive, extensible search mechanism to assist discovery.
+3. An substantial, extensible search mechanism to assist discovery.
 
-This functionality is available through a set of simple service interfaces and
-components described in these documents.
+This functionality is available through a set of components, service
+interfaces and functionality described in these documents.
 
-The DataONE system is fundamentally composed of three major components:
+DataONE cyberinfrastructure is fundamentally composed of three major
+components:
 
 :Member Nodes:
 
@@ -28,7 +29,7 @@ The DataONE system is fundamentally composed of three major components:
 
 :Coordinating Nodes:
 
-  The operational core of DataONE. The coordinating nodes catalog data and
+  The operational core of DataONE. The Coordinating Nodes catalog data and
   metadata, control the dispersion of data across Member Nodes, keep a replica
   of all metadata, offer services for distributed identity, and offer search
   and discovery capabilities.
@@ -36,28 +37,32 @@ The DataONE system is fundamentally composed of three major components:
 
 :Investigator Toolkit:
 
-  Initially provides a set of libraries for interacting with DataONE CNs and
-  MNs (i.e. a "client library"). As the project develops, the ITK will grow to
-  contain a rich set of applications and tools for interacting with the
-  content available in DataONE (and potentially other Data Nets).
+  Initially providing a set of libraries for interacting with DataONE
+  Coordinating and Member Nodes (i.e. the "client libraries"). As the project
+  develops, the ITK will grow to contain a rich set of applications and tools
+  for interacting with the content available in DataONE (and potentially other
+  Data Nets).
+
 
 .. figure:: images/ServicesOverview.png
-   :width: 100%
+   :figwidth: 100%
 
    General overview of the major components of DataONE and the services they
-   implement. It is invisaged that there will be very few CNs (3 in the first
-   year), many more MNs (hundreds), and even more instances of the ITK.
+   implement. It is invisaged that there will be few coordinating Nodes (three
+   in the first year), more Member Nodes (hundreds ... thousands), and even
+   more instances of the Investigator Toolkit.
 
 
 In the initial version of DataONE, the system will be composed of three
-instances of Coordinating Nodes and at least three instances of Member Nodes.
+Coordinating Node instances and at least three Member Nodes.
 
 
 .. figure:: images/MNOverview.png
-   :width: 50%
+   :figwidth: 100%
 
-   Simple diagram of the MN structure. DataONE service APIs are implemented by
-   a component that interacts with the existing APIs of the Member Node.
+   Component diagram of the high level Member Node structure. DataONE service
+   application programming interfaces (APIs) are implemented by a service
+   layer that interacts with the existing APIs of the Member Node.
 
 
 .. raw:: latex
@@ -65,9 +70,10 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
    \begin{landscape}
 
 .. figure:: images/CNOverview.png
-   :width: 100%
+   :figwidth: 100%
 
-   An estimate of CN components and the services they provide.
+   High level component diagram of the Coordinating Node structure and the
+   service interfaces it exposes.
 
 
 .. raw:: latex
@@ -84,6 +90,8 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
   () "Replication" as mn_repl
   () "Health" as mn_health
   () "Logging" as mn_logging
+  component "Investigator Toolkit" as ITK
+  component "Coordinating Node" as CN
   package "Member Node" #EEEEEE
     component "Existing Services" as mn_existing
     component "DataONE Services" as MN
@@ -94,7 +102,15 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
   MN -- mn_repl
   MN -- mn_health
   MN -- mn_logging
-
+  mn_auth .. CN
+  mn_crud .. CN
+  mn_repl .. CN
+  mn_health .. CN
+  mn_logging .. CN
+  mn_crud .. ITK
+  mn_auth .. ITK
+  mn_health ..ITK
+  mn_logging .. ITK
   @enduml
 
 
@@ -111,84 +127,68 @@ instances of Coordinating Nodes and at least three instances of Member Nodes.
   () "Search" as cn_search
   () "Registration" as cn_register
 
-  
-
+  component "Member Node" as MN
+  component "Investigator Toolkit" as ITK
   package "Coordinating Node" #EEEEEE
-    component "Document Store\n(Metacat)" as ostore
-    component "Science Metadata\nParser / Validator\n(Mercury)" as sparser
-    component "Search Index\n(Mercury / SOLR)" as index
+    component "Document Store" as ostore
+    component "Science Metadata\nParser" as sparser
     component "CN_Service" as cn_service
-    component "System Log" as log
+    component "Search Index" as index
 
-  cn_crud -- cn_service
-  cn_repl -- cn_service
-  cn_register -- cn_service
-  cn_health -- cn_service
+    cn_service --> ostore
+    note right of ostore
+      Prototype implementation uses Metacat
+      as the object store and logging service
+    end note
+    ostore --> cn_service
+    index --> cn_service
+    sparser --> index
+    note right of index
+      Prototype implementation uses Mercury as the
+      search index, which is based on SOLR / Lucene.
+    end note
+    ostore --> sparser
+    note right of sparser
+      Prototype implementation utilizes the
+      metadata parsing capabilities of Mercury
+    end note
+
+  cn_service -- cn_crud
+  cn_service -- cn_repl
+  cn_service -- cn_register
+  cn_service -- cn_health
   cn_service -- cn_authz
   cn_service -- cn_search
   cn_service -- cn_authn
-
-  cn_service --> ostore
-  ostore --> cn_service
-  cn_service --> log
-  log --> cn_service
-  index --> cn_service
-  sparser --> index
-  ostore --> sparser
+  
+  cn_crud .. MN
+  cn_repl .. MN
+  cn_register .. MN
+  cn_authz .. MN
+  cn_authn .. MN
+  
+  cn_crud .. ITK
+  cn_health .. ITK
+  cn_authz .. ITK
+  cn_search .. ITK
+  cn_authn .. ITK
   
   @enduml
-  
-  note right of objectm
-    The Content Manager implements most of the external 
-    interfaces, provides the basis for replication (between MNs),
-    and assists with synchronization (between CNs).
-  endnote
-  
-  note right of sysm
-    The System Directory manages many small pieces of information,
-    providing system level metadata about all content, access control
-    rules, authentication, and registration of member nodes.
-  endnote
-  
-  note right of eparser
-    The metadata parser is used to validate content and to extract
-    specific items of information for generation of the search index.
-  endnote
-
-  '() "Logging" as cn_logging
-  'component "System Status" as status
-  'component "Identity Manager" as identm
-  'component "Access Control" as access
-  'component "MN Registry" as mnregister
-  'component "Message Queue" as queue
-  'component "Synchronizer" as sync
-  'component "MN Replicator" as mn_repl
-  
-  'status -- cn_health
-  'log -- cn_logging
-  'index -- cn_search
-  'mnregister -- cn_register
-  'objectm .. status
-  'objectm .. access
-  'objectm .. identm
-
-  'identm .. sysm
-  'access .. sysm
-  'mnregister .. sysm
-  'mnregister .. queue
-  'sync .. queue
-    
-  @enduml
 
 
-..
+
   figure:: images/new_data.png
-  :height: 8.5in
-  This diagram indicates what happens when new data is present on a MN.
+  :figwidth: 100% 
+
+  Flow of information from deposition by a client using the Investigator
+  Toolkit to a Member Node, through replication of science metadata and object
+  information to the Coordinating Nodes, and finally the replication of
+  content between Member Nodes as directed by a Coordinating Node.
 
 ..
   @startuml images/new_data.png
-  title New data present on MN
+  title Data Lifecycle
+  
   (*) --> "CN Detects new data object" as A1
   A1 --> "Get information about new object" as A2
   A2 --> <> B1

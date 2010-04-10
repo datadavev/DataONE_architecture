@@ -67,13 +67,13 @@ Post Conditions
 
 
 .. figure:: images/08_uc.png
-   :width: 75%
+   :figwidth: 100%
    
    Use case 08.
 
 
 .. figure:: images/08_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
    Communication of Replication Policy Metadata
 

@@ -128,13 +128,13 @@ Post Conditions
 
 
 .. figure:: images/02_uc.png
-   :width: 75%
+   :figwidth: 75%
    
    Use case 02.
 
 
 .. figure:: images/02_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
    Interactions for use case 02.
 
@@ -157,12 +157,10 @@ Post Conditions
 
   package "DataONE"
    actor "Coordinating Node" as CN 
-   actor "Member Node" as MN 
    usecase "13. Authorization" as author
    usecase "02. Search Metadata" as SEARCH
    User -- SEARCH
    CN -- SEARCH
-   MN -- SEARCH
    SEARCH ..> author: <<includes>>
    SEARCH ..> authen: <<includes>>
   @enduml
@@ -171,31 +169,22 @@ Post Conditions
 ..
   @startuml images/02_interaction.png
   !include ../plantuml.conf
-  actor User
   participant "Client" as app_client << Application >>
-  User -> app_client
-
   participant "Query API" as c_query << Coordinating Node >>
-  activate c_query
+  participant "Authentication API" as c_authenticate << Coordinating Node >>
   app_client -> c_query: search(token, query)
-  alt After V0.3
-    note right of c_query
-    The query response is a list of GUIDS.
-    Each GUID needs to be checked for read 
-    access by the auth_token.
-    end note
-    participant "Authentication API" as c_authenticate << Coordinating Node >>
-    c_query -> c_authenticate: isAuthorized(token, resultset, OP_GET)
-    participant "Authentication API" as c_ver << Coordinating Node >>
-    c_authenticate -> c_ver: verify (token)
-    c_authenticate <-- c_ver: T or F
-    loop for each GUID in resultset
-      c_authenticate -> c_ver: isAuthorized(token, GUID, OP_GET)
-      c_authenticate <-- c_ver: T or F
-      end 
+  activate c_query
+  c_query -> c_query: search -> objectList
+  note right of c_query
+    The query response is a list of IDs.
+    Each ID needs to be checked for read 
+    access by the authenticated user.
+  end note
+    loop for ID in objectList
+      c_query -> c_authenticate: isAuthorized(token, ID, OP_GET)
       c_query <-- c_authenticate: T or F
-  end
-  app_client <-- c_query: resultset
+    end 
+  app_client <-- c_query: objectList
   deactivate c_query
   @enduml
 

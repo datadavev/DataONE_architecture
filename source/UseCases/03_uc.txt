@@ -105,12 +105,12 @@ Post Conditions
 
 
 .. figure:: images/03_uc.png
-   :width: 75%
+   :figwidth: 100%
 
    Use case 03.
 
 .. figure:: images/03_interaction.png
-   :width: 100%
+   :figwidth: 100%
 
    Interactions for use case 03.
 
