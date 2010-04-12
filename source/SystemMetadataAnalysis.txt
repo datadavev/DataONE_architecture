@@ -1,4 +1,4 @@
-Getting a Handle of Systems Metadata for the Long Haul 
+Getting a Handle on Systems Metadata for the Long Haul 
 ======================================================
 
 .. module:: SystemMetadata 
@@ -99,8 +99,14 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
+
+(Requirement) System supports data storage https://trac.dataone.org/ticket/383
+
+(Requirement) The infrastructure must survive destruction of one or more data storage nodes https://trac.dataone.org/ticket/411
+
+(Requirement) Data and metadata is replicated to at least one other member node  https://trac.dataone.org/ticket/433
 
 Discussion
 ..........
@@ -151,8 +157,12 @@ What BagIt provides
 What OAI-ORE provides
 .....................
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
+
+(Requirement) The infrastructure must support long term preservation of data https://trac.dataone.org/ticket/410
+
+(Requirement) Maintain original copies of all science metadata https://trac.dataone.org/ticket/439
 
 Discussion
 ..........
@@ -194,8 +204,15 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
+
+(Requirement) Identifiers for all objects https://trac.dataone.org/ticket/317
+
+(Requirement) Support arbitrary unique identifiers https://trac.dataone.org/ticket/385
+
+(Requirement) Identifiers always refer to the same object https://trac.dataone.org/ticket/412
+
 
 
 Discussion
@@ -223,10 +240,12 @@ What BagIt provides
 What OAI-ORE provides
 .....................
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
 DataONE Use Case 33 - Search for Data (http://mule1.dataone.org/ArchitectureDocs/UseCases/33_uc.html)
+
+(Requirement) Enable efficient mechanisms for users to discover content https://trac.dataone.org/ticket/384
 
 Discussion
 ..........
@@ -263,9 +282,10 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) Enable efficient mechanisms for users to discover content https://trac.dataone.org/ticket/384
 
 Discussion
 ----------
@@ -297,9 +317,12 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) The infrastructure must support long term preservation of data https://trac.dataone.org/ticket/410
+
+(Requirement) Maintain original copies of all science metadata https://trac.dataone.org/ticket/439
 
 Discussion
 ..........
@@ -347,9 +370,16 @@ What BagIt provides
 What OAI-ORE provides
 .....................
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) Identifiers for all objects https://trac.dataone.org/ticket/317
+
+(Requirement) Support arbitrary unique identifiers https://trac.dataone.org/ticket/385
+
+(Requirement) Consistent mechanism for identifying users https://trac.dataone.org/ticket/390
+
+(Requirement) Identifiers always refer to the same object https://trac.dataone.org/ticket/412
 
 Discussion
 ..........
@@ -380,9 +410,12 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) The infrastructure must support long term preservation of data https://trac.dataone.org/ticket/410
+
+(Requirement) Maintain original copies of all science metadata https://trac.dataone.org/ticket/439
 
 Discussion
 ..........
@@ -441,24 +474,23 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) The infrastructure must support long term preservation of data https://trac.dataone.org/ticket/410
+
+(Requirement) Maintain original copies of all science metadata https://trac.dataone.org/ticket/439
 
 Discussion
 ..........
 
-
-
 Requirement 10: Ensure that principals are authenticated
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Description
 ...........
 
 Software, organization. public key, 
-
 
 What PREMIS suggests
 ....................
@@ -483,9 +515,12 @@ What OAI-ORE provides
 .....................
 
 
-DataONE Use Cases
-.................
+DataONE use cases and requirements
+..................................
 
+(Requirement) Consistent mechanism for identifying users https://trac.dataone.org/ticket/390
+
+(Requirement) Enable different classes of users commensurate with their roles https://trac.dataone.org/ticket/391
 
 Discussion
 ..........
