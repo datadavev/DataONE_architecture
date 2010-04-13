@@ -5,8 +5,8 @@ The DataONE core cyberinfrastructure implements three significant
 functionalities:
 
 1. Persistent identifiers for all discrete objects in the system (i.e. data,
-metadata, system metadata, annotations, identities, node capabilities, and so
-forth)
+   metadata, system metadata, annotations, identities, node capabilities, and so
+   forth)
 
 2. A consistent scheme for identifying users across all participating nodes.
 
@@ -132,8 +132,8 @@ Coordinating Node instances and at least three Member Nodes.
   package "Coordinating Node" #EEEEEE
     component "Document Store" as ostore
     component "Science Metadata\nParser" as sparser
-    component "CN_Service" as cn_service
     component "Search Index" as index
+    component "CN_Service" as cn_service
 
     cn_service --> ostore
     note right of ostore
@@ -187,9 +187,10 @@ Coordinating Node instances and at least three Member Nodes.
 
 ..
   @startuml images/new_data.png
+  !include plantuml.conf
   title Data Lifecycle
   
-  (*) --> "CN Detects new data object" as A1
+  (*) --> "Client adds new science\ndata + metadata to MN" as A1
   A1 --> "Get information about new object" as A2
   A2 --> <> B1
   --> [metadata] "Retrieve Metadata" as A3

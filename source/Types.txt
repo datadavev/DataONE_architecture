@@ -265,6 +265,11 @@ Version   Structure
   whitespace. All representations of identifiers must be encoded in 7-bit
   ASCII or UTF-8.
 
+  Identifiers have a maximum length of 800 chars. Some discussion on this is
+  described in `ticket 577`_.
+
+
+.. _ticket 577: https://trac.dataone.org/ticket/577 
 
 ----
 
