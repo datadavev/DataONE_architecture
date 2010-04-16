@@ -7,7 +7,7 @@ Getting a Handle on Systems Metadata for the Long Haul
   ======== ============================================================ 
   Date     Comment 
   ======== ============================================================ 
-  20100416 (Sandusky) Additional text
+  20100416 (Sandusky) Additional text; discussions of PREMIS, BagIt, ORE
   20100402 (Allen, Sandusky) Additional text
   20100326 (Allen) Added more text and structure 
   20100312 (Allen) First draft 
@@ -36,22 +36,80 @@ Dictionary for Preservation Metadata was used as a standard against
 which the explicit and implicit requirements of DataONE would be 
 measured: "The PREMIS Data Dictionary defines 'preservation metadata' as 
 the information a repository usees to support the digital preservation 
-process" (PREMIS Editorial Committee, 2008, p.3). PREMIS is focused on the "viabilility, renderability, understandability, authenticity, and identity" of digital objects "in a preservation context" (i.e., DataONE), and pays particular attention to "digital provenance (the history of an object and to the documentation of relationships, especially relationships among different objects within the preservation repository" (p.3). 
+process" (PREMIS Editorial Committee, 2008, p.3). PREMIS is focused on 
+the "viabilility, renderability, understandability, authenticity, and 
+identity" of digital objects "in a preservation context" (i.e., 
+DataONE), and pays particular attention to "digital provenance (the 
+history of an object and to the documentation of relationships, 
+especially relationships among different objects within the preservation 
+repository" (p.3). 
 
-The PREMIS Data Dictionary seeks to identify "core" elements with its set of definitions, where core implies "things that most working preservation repositories are likely to need to know in order to support digital preservation" (p.3). PREMIS also considered "implementability": because of the large amounts of data held within preservation systems, metadata values should  be suppied autmatically and be capable of automated processing: required human intervention should be avoided.
+The PREMIS Data Dictionary seeks to identify "core" elements with its 
+set of definitions, where core implies "things that most working 
+preservation repositories are likely to need to know in order to support 
+digital preservation" (p.3). PREMIS also considered "implementability": 
+because of the large amounts of data held within preservation systems, 
+metadata values should be suppied autmatically and be capable of 
+automated processing: required human intervention should be avoided. 
 
-It should also be noted that PREMIS has been created according to the "1:1 principle" which "asserts that each description describes one and only one resource.... It is not possible to change a file...; on can only create a new file... that is related to the source object" (p.14). The practicality of this principle in DataONE has been debated by the Core Cyberinfrastructure Team, which recognizes its conceptual cleanliness as well as its operational impracticality.
+It should also be noted that PREMIS has been created according to the 
+"1:1 principle" which "asserts that each description describes one and 
+only one resource.... It is not possible to change a file...; on can 
+only create a new file... that is related to the source object" (p.14). 
+The practicality of this principle in DataONE has been debated by the 
+Core Cyberinfrastructure Team, which recognizes its conceptual 
+cleanliness as well as its operational impracticality. 
 
-PREMIS does not specify formats or other requirements for how preservation is implemented in a preservation repository: these are left as local decisions. 
+PREMIS does not specify formats or other requirements for how 
+preservation is implemented in a preservation repository: these are left 
+as local decisions. 
 
-DataONE, as a preservation repository, could aim toward "PREMIS conformance" by implementing metadata elements that share the names and semantics of PREMIS Data Dictionary semantic units. PREMIS is also intended to be a foundation for interoperable preservation repositories (pp.15-16); PREMIS recommends using its semantic unit names to aid this interoperability. This document does not argue for or against seeking PREMIS conformance for DataONE; rather, it seeks to identify and summarize topics and outstanding issues for discussion within the broader DataONE community.
+DataONE, as a preservation repository, could aim toward "PREMIS 
+conformance" by implementing metadata elements that share the names and 
+semantics of PREMIS Data Dictionary semantic units. PREMIS is also 
+intended to be a foundation for interoperable preservation repositories 
+(pp.15-16); PREMIS recommends using its semantic unit names to aid this 
+interoperability. This document does not argue for or against seeking 
+PREMIS conformance for DataONE; rather, it seeks to identify and 
+summarize topics and outstanding issues for discussion within the 
+broader DataONE community. 
 
-This practicum project also took 
-the Open Archives Initiative's Object Reuse and Exchange (OAI-ORE) 
-(Lagoze et al, 2008) and the BagIt File Packaging Format (Boyko et al, 
-2009) into account as possible standards for aggregations, or packages, 
-of Web resources and as possible methods for recording the relationships bewteen preserved objects in DataONE. 
+This practicum project also took the Open Archives Initiative's Object 
+Reuse and Exchange (OAI-ORE) (Lagoze et al, 2008) and the BagIt File 
+Packaging Format (Boyko et al, 2009) into account as possible standards 
+for aggregations, or packages, of Web resources and as possible methods 
+for recording the relationships between preserved objects in DataONE. 
+BagIt is "is a hierarchical file packaging format designed to support 
+disk-based or network-based storage and transfer of generalized digital 
+content" (p.3). OAI-ORE "defines standards for the description and 
+exchange of aggregations of Web resources". This document looks at the 
+points where BagIt and OAI-ORE may play a role in supporting the 
+long-term preservation needs of DataONE. 
 
+BagIt and OAI-ORE have different strengths, and both systems have 
+potential for use within DataONE. Their differences are significant, and 
+so they cannot be viewed as substitutes for each other. The strengths of 
+BagIt include simplicity (text and file/directory orientations; supports 
+opaque payloads; supports aggregation; self-describing); its limitations 
+include its hierarchical structure and what appears to be the 
+"fixed-in-time" nature of a bag: the specification doesn't discuss how 
+the content of a bag might evolve over time, which limits its utility 
+for application to supporting provenance tracking for objects in a 
+preseravation repository. 
+
+OAI-ORE's strengths include its flexibility and extensibility, its 
+graph-based architecture, specifications based upon stable and 
+widely-used technologies included the URI and RDF, and the ability for 
+relationships to be added to existing OAI-ORE resources as time passes. 
+OAI-ORE is also related to other efforts that may play a role in 
+DataONE, such as the Open Annotation Collaboration 
+(http://www.openannotation.org/). OAI-ORE's flexibility has a cost in 
+terms of its complexity, so it will be more costly to develop and 
+maintain a reliable implementation (although its current popularity may 
+mean that existing code implementations may be available for use within 
+DataONE). OAI-ORE is also expressed in XML, which tends to increase 
+storage consumption. Large XML data stores are also time-consuming to 
+parse without optimization. 
 
 The document is organized as follows. A set of high-level requirements 
 was developed to represent the general needs of the DataONE system 
@@ -65,7 +123,6 @@ specified in EML, Dryad, ORNL DAAC, and/or NBII formats as examples. The
 section on each requirement ends with a general discussion of the 
 overall analysis. 
 
-
 System Metadata Requirements
 ----------------------------
 
@@ -78,7 +135,6 @@ relevant to the requirement are described, using scientific data
 specified in EML, Dryad, ORNL DAAC, and/or NBII formats as examples. The 
 section on each requirement ends with a general discussion of the 
 overall analysis. 
-
 
 Requirement 1: Perform replication on digital objects 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,19 +155,14 @@ When a replication is performed, the DataONE system will need to record
 which object was replicated (1.1), the unique identifier of the new copy 
 (1.1), where the replicate is stored in the system (1.7), information on 
 the derivative relationship between the original object and the new one 
-(1.10) [in PREMIS, replication of an object is defined as one type of a derivation relationship; see p.13], and information on the event that created the replicate such as 
-the unique identifier of the event (2.1), type = replication (2.2), time 
-(2.3), who performed the replication (2.6), and a link between the 
-replicated object and the event (2.7).   
+(1.10) [in PREMIS, replication of an object is defined as one type of a 
+derivation relationship; see p.13], and information on the event that 
+created the replicate such as the unique identifier of the event (2.1), 
+type = replication (2.2), time (2.3), who performed the replication 
+(2.6), and a link between the replicated object and the event (2.7). 
 
-
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -164,12 +215,8 @@ the migrated object and the event (2.7).
 When migration for physical media obsolescence occurs, the system should 
 record where the object is now located (1.7.1 contentLocation). 
 
-
-What BagIt provides
-...................
-
-What OAI-ORE provides
-.....................
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -207,14 +254,8 @@ render another file or modules needed by a software program that is
 required to render an object. These relationships are characterized in 1.8.4 "dependency" 
 and 1.8.5.5 "swDependency" respectively. 
 
-
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -246,11 +287,8 @@ What PREMIS suggests
 
 PREMIS defines descriptive metadata as "...metadata ... used to describe Intellectual Entities" (p.23), and assumes that which in DataONE maps to the scientific metadata submitted to the system. 
 
-What BagIt provides
-...................
-
-What OAI-ORE provides
-.....................
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -285,14 +323,8 @@ units for relationships are described under general requirement 3.
 Citation and persistent identifiers, such as LSIDs, are not addressed in 
 PREMIS. 
 
-
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -320,14 +352,8 @@ software/hardware name and type to be recorded, while software version
 (1.8.5.2), software components needed by the software (1.8.5.5), and 
 other information are optional. 
 
-
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -371,14 +397,8 @@ ingestion)(2.1), and record when the event occurred (2.3). Optionally,
 ir could store details about the event, which are non-machine readable 
 (2.4), and any information on the success of the event (2.5). 
   
-
-What BagIt provides
-...................
-
-
-
-What OAI-ORE provides
-.....................
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -412,13 +432,8 @@ where the medium for storing an object is defined. More detailed
 information on media would likely be desirable so that repository 
 managers would know when to refresh the medium. 
 
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -475,14 +490,8 @@ captured through the units event identifier (2.1), event type such as
 and format validation are also types of events that need to be recorded 
 to show authenticity (2.3). 
 
-
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
@@ -517,13 +526,8 @@ because validation takes place right after signing, there is no need for
 the respository to preserve the signature itself through time. The 
 system can record the act of validation as an Event if desired. 
 
-What BagIt provides
-...................
-
-
-What OAI-ORE provides
-.....................
-
+What BagIt and OAI-ORE provide
+..............................
 
 DataONE use cases and requirements
 ..................................
