@@ -131,6 +131,12 @@
      - :func:`CN_crud.assertRelation`
      - Tests that the specified relationship between `idOfSubject` and
        `idOfObject` exists.
+   * - \
+     - :func:`CN_crud.log`
+     - This method is used exclusively internally by a CN. It really isn't part
+       of external the API that must be implemented. However, a CN will need to
+       implement some sort of logging infrastructure so that it can respond to
+       :func:`CN_crud.getLogRecords()`.
    * - :mod:`CN_query`
      - :func:`CN_query.search`
      - Search the metadata catalog and return identifiers of metadata records
@@ -206,3 +212,11 @@
        and perhaps even generate a token that matches a system token. Hence
        another level of restriction (perhaps network level blocking / limiting)
        is necessary.
+   * - :mod:`CN_replication`
+     - :func:`CN_replication.setReplicationStatus`
+     - Update the replication status of the system metadata, ensuring that the
+       change is appropriate for the given state of system metadata.  For
+       example, a MN can not change the status to Requested unless the CN
+       previously requested replication of the object and the replications
+       status of the object (as indicated in the system metadata) is set to
+       Queued.

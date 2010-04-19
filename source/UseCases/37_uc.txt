@@ -16,7 +16,7 @@ Version
   0.3
 
 Goal
-  Retrieve the :term:`system metadata` for an object identified by :term:`GUID`.
+  Retrieve the :term:`system metadata` for an object identified by some :term:`identifier`.
 
 Summary 
 
@@ -25,6 +25,9 @@ Summary
   exists on the node and the user has READ permission on the object, then the
   bytes of the system metadata object are returned, otherwise an error
   condition occurs.
+
+  Note that Member Nodes do not store authoritative copies of system metadata,
+  but they still need to implement this operation.
 
 Actors
   - Client requesting object
@@ -39,16 +42,8 @@ Triggers
   - System metadata is requested from the DataONE system.
 
 Post Conditions
-  - The client has a copy of the system metadata document (or an error message in the case
-    of failure)
-
-
-**Notes**
-
-1. Should the operation be logged?  If so, should it be part of the CRUD log?
-
-2. If system metadata is not stored on Member Nodes, then Member Nodes should
-   always raise :exc:`Exceptions.NotFound` when such a request is received.
+  - The client has a copy of the system metadata document (or an error message
+    in the case of failure)
 
 
 .. figure:: images/37_uc.png
@@ -102,9 +97,9 @@ Post Conditions
   @startuml images/37_interaction.png
   !include ../plantuml.conf
   participant "Client" as app_client << Application >>
-  participant "CRUD API" as n_crud << Coordinating Node >>
-  participant "Authorization API" as n_authorize << Coordinating Node >>
-  participant "Object Store" as n_ostore << Coordinating Node >>
+  participant "CRUD API" as n_crud << Node >>
+  participant "Authorization API" as n_authorize <<  Node >>
+  participant "Object Store" as n_ostore << Node >>
   app_client -> n_crud: getSystemMetadata(token, GUID)
   activate app_client
   activate n_crud
@@ -116,7 +111,7 @@ Post Conditions
     app_client <- n_crud: Err.NotAuthorized
   else True
     n_crud --> n_crud: Log(READ)
-    n_crud -> n_ostore: read(GUID)
+    n_crud -> n_ostore: getSystemMetadata(GUID)
     n_crud <- n_ostore: bytes
     app_client <- n_crud: bytes
     deactivate n_crud

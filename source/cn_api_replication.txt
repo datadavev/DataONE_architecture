@@ -1,14 +1,21 @@
 Replication API
 ~~~~~~~~~~~~~~~
 
-The Replication API handles replication of data and science metadata content
-among member nodes. Such replication is not part of V0.3 functionality.
+.. module:: CN_replication
+   :synopsis: 
+     Supports operations for replication of content between Member Nodes.
 
+
+The Replication API handles replication of data and science metadata content
+among member nodes. 
+
+
+.. include:: generated/generated_CN_replication.txt
+
+
+----
 
 .. TODO:: flesh these out...
-
-.. module:: CN_replication
-   :synopsis: Manages replication of content between Member Nodes
    
 .. function:: getDefaultReplicationPolicy (sess)
 

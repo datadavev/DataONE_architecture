@@ -5,18 +5,42 @@ The DataONE core cyberinfrastructure implements three significant
 functionalities:
 
 1. Persistent identifiers for all discrete objects in the system (i.e. data,
-   metadata, system metadata, annotations, identities, node capabilities, and so
-   forth)
+   metadata, system metadata, annotations, identities, node capabilities, and
+   so forth). The main goal here is to ensure that an identifier can be used
+   reliably in the future without concern about the classic 404-not found
+   error encountered with many web sites.  Objects are replicated across 
+   participant nodes of the DataONE system, so access can generally be 
+   guaranteed even if the original node holding the data   goes offline.
 
 2. A consistent scheme for identifying users across all participating nodes.
+   It is expected that participants in the DataONE infrastructure will have
+   existing systems and requirements for identifying users. One of the goals
+   of DataONE is to support synonymous identity by mapping user identities
+   between different systems.
 
-3. An substantial, extensible search mechanism to assist discovery.
+3. A substantial, extensible search mechanism to assist discovery. The number
+   of objects in DataONE is expected to expand significantly over the years.
+   The total is currently undefined and somewhat dependent on the definition
+   of a data object, but data object counts in the order of millions is not
+   unreasonable. Finding relevant content in such a set of objects obviously
+   requires sophisticated search tools that provide accurate and precise
+   mechanisms for identifying useful subsets of information. The process for
+   search is likely to evolve significantly over the life of the project,
+   starting with simple searches against metadata through to more
+   sophisticated, semantically aware search,
+
+
+Additional capabilities, such as mechanisms for sub-setting, transforming, and
+slicing data; services for visualizing content; and mechanisms supporting
+on-demand services such as remote model and workflow execution will build upon
+these core features.
 
 This functionality is available through a set of components, service
-interfaces and functionality described in these documents.
+interfaces and interactions described in detail in theses document.
 
-DataONE cyberinfrastructure is fundamentally composed of three major
-components:
+There are three major functional components of the DataONE
+cyberinfrastructure: Member Nodes, Coordinating Nodes, and the Investigator
+toolkit.
 
 :Member Nodes:
 
@@ -44,17 +68,16 @@ components:
   Data Nets).
 
 
+
 .. figure:: images/ServicesOverview.png
    :figwidth: 100%
 
-   General overview of the major components of DataONE and the services they
-   implement. It is invisaged that there will be few coordinating Nodes (three
-   in the first year), more Member Nodes (hundreds ... thousands), and even
-   more instances of the Investigator Toolkit.
+   Major components of DataONE and the services they implement. It is
+   invisaged that there will be few coordinating Nodes (three in the first
+   year), more Member Nodes (hundreds ... thousands), and even more instances
+   of the Investigator Toolkit.
 
 
-In the initial version of DataONE, the system will be composed of three
-Coordinating Node instances and at least three Member Nodes.
 
 
 .. figure:: images/MNOverview.png
@@ -85,7 +108,7 @@ Coordinating Node instances and at least three Member Nodes.
   @startuml images/MNOverview.png
   !include plantuml.conf
 
-  () "CRUD" as mn_crud
+  () "Object Store" as mn_crud
   () "Authorization" as mn_auth
   () "Replication" as mn_repl
   () "Health" as mn_health
@@ -119,7 +142,7 @@ Coordinating Node instances and at least three Member Nodes.
   !include plantuml.conf
   skinparam noteFontSize 12
   
-  () "CRUD" as cn_crud
+  () "Object Store" as cn_crud
   () "Authentication" as cn_authn
   () "Authorization" as cn_authz
   () "Replication" as cn_repl

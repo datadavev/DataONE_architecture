@@ -1,8 +1,6 @@
 Getting a Handle on Systems Metadata for the Long Haul 
 ======================================================
 
-.. module:: SystemMetadata 
-
 :Revisions: 
   ======== ============================================================ 
   Date     Comment 

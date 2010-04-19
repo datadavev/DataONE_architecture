@@ -129,9 +129,8 @@ Post Conditions
   deactivate c_sync
   
   activate m_crud_b
-    m_crud_b -> c_sync: verifyReplicationRequest(GUID)
+    m_crud_b -> c_sync: setReplicationStatus(token, GUID, Requested)
     activate c_sync
-      c_sync -> c_sync: setReplicationStatus(GUID, Requested)
       c_sync --> m_crud_b: OK
     deactivate c_sync
 
@@ -140,18 +139,26 @@ Post Conditions
       m_crud_a --> m_crud_a: log(GUID, REPLICATE)
       m_crud_a -> m_crud_b: bytes
     deactivate m_crud_a
-    m_crud_b -> c_sync: getChecksum(GUID)
+    m_crud_b -> c_sync: getChecksum(token, GUID)
+    activate c_sync
     note right
       The MN must verify the checksum of the 
       object before committing storage 
       of the object.
     end note
     c_sync --> m_crud_b: checksum
+    deactivate c_sync
     m_crud_b -> m_crud_b: create(token, GUID, bytes)
     m_crud_b --> m_crud_b: log(GUID, REPLICATE)
-    m_crud_b -> c_sync: signalReplicationComplete(token, GUID)
+    m_crud_b -> c_sync: setReplicationStatus(token, GUID, Complete)
     activate c_sync
-      c_sync -> c_sync: setReplicationStatus(GUID, Completed)
+      c_sync -> m_crud_b: getSystemMetadata(token, GUID)
+      m_crud_b --> c_sync: SystemMetadata
+      note right
+        CN needs a copy of system metadata from
+        MN to verify that copy completed
+      end note
+      c_sync -> c_sync: verifySystemMetadata
       note right
         CN updates the SystemMetadata for GUID,
         setting appropriate values of replica with

@@ -30,6 +30,11 @@ the Sphinx_ document builder.
 
 Formatting guidelines for Sphinx are available at http://sphinx.pocoo.org/contents.html
 
+Portions of content, specifically all the individual function and exception
+descriptions are maintained in an excel spreadsheet (best edited using Open
+Office Calc) since there are many cross references between that content,
+having it generated from the spreadsheet simplifies maintenance.
+
 In general, it is best to edit in UTF-8 using unix style new lines. Note that
 white space is significant and is used primarily for determining which
 formatting sections different blocks of text belong to.
@@ -58,7 +63,6 @@ The convention for different levels of heading used in these documents is::
   ---  Level 2
   ~~~  Level 3
   ...  Level 4
-
 
 
 Building the Documentation
@@ -91,11 +95,13 @@ To actually build a HTML copy of the documents::
 
   $ cd ~/Projects/DataONE/svn/documents/Projects/VDC/docs/service-api/api-documentation
   $ plantuml source source/UseCases
+  $ make generate
   $ make html
 
 To build a PDF copy, you will need to install latex and its dependencies. Then run::
 
-  $ make latex; make -f build/latex/Makefile all-pdf
+  $ make generate
+  $ make latex; cd build/latex; make all-pdf
 
 
 .. _graphviz: http://www.graphviz.org/

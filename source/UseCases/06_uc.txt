@@ -16,15 +16,15 @@ Version
   0.3
 
 Goal
-  Science metadata records present in a Member Node are created in (synchronized to) Coordinating Node.
+  Science metadata records present in a Member Node are synchronized to a
+  Coordinating Node.
 
-Summary 
+Summary
 
-  As data packagesare created the metadata
-  associated with those needs to be replicated to the coordinating nodes.
-
-  After V0.3, if new data packages are present on the MN, then a MN-MN synchronization
-  process is scheduled.
+  As content is added to Member Nodes, the associated system metadata objects
+  and copies of the science metadata are copied to a Coordinating Node. Once
+  the objects are registered with the Coordinating Node they are available for
+  transfer to other Coordinating and Member nodes.
 
 
 Actors
@@ -32,10 +32,12 @@ Actors
 
 Preconditions 
   - CN and MN operational
-  
+  - New content available on a Member Node
+
 Triggers
   -  Periodic polling of MNs
- 
+
+
 Post Conditions
   - All system and science metadata records from a MN are also present on the CN
 
@@ -82,7 +84,7 @@ Post Conditions
 
   c_sync -> m_rep: listObjects(token, startTime, ...)
 
-  c_sync <-- m_rep: list of GUIDs
+  c_sync <-- m_rep: ObjectList
 
   loop for each GUID
     c_sync -> m_crud: getSystemMetadata(token, GUID)
@@ -99,11 +101,13 @@ Post Conditions
     end note
     alt GUID refers to data
       c_sync -> c_crud: create(GUID, SystemMetadata)
+      c_crud -> c_crud: log()
     else GUID refers to ScienceMetadata
       c_sync -> m_crud: get(token, GUID)
       m_crud --> m_crud: log (REPLICATE)
       c_sync <-- m_crud: ScienceMetadata
       c_sync -> c_crud: create(GUID, SystemMetadata, ScienceMetadata)
+      c_crud -> c_crud: log()
     end
   end
   @enduml

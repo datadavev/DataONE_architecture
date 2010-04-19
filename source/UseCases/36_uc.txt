@@ -71,14 +71,19 @@ Post Conditions
   !include ../plantuml.conf
   participant "Client" as itk <<Investigator Toolkit>>
   participant "CRUD API" as c_crud << Coordinating Node >>
+  participant "Authorization API" as c_authorize << Coordinating Node >>
   participant "Object Store" as c_store << Coordinating Node >>
   itk -> c_crud: resolve(token, guid)
   activate c_crud
-  c_crud -> c_store: getSystemMetadata(guid)
-  c_store -> c_crud: SystemMetadata or NotAuthorized
-  alt NotAuthorized
-    c_crud -> itk: NotAuthorized
+  c_crud -> c_authorize: isAuthorized(token, GUID, READ)
+  c_crud <- c_authorize: True, False, Err.NotFound
+  alt False
+    c_crud -> itk: Err.NotAuthorized
+  else Err.NotFound
+    c_crud -> itk: Err.NotFound
   else OK
+    c_crud -> c_store: getSystemMetadata(guid)
+    c_store -> c_crud: SystemMetadata
     c_crud -> c_crud: extract object locations
     c_crud -> itk: objectLocations
   end

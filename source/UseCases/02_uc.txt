@@ -172,6 +172,7 @@ Post Conditions
   participant "Client" as app_client << Application >>
   participant "Query API" as c_query << Coordinating Node >>
   participant "Authentication API" as c_authenticate << Coordinating Node >>
+  participant "CRUD API" as c_crud << Coordinating Node >>
   app_client -> c_query: search(token, query)
   activate c_query
   c_query -> c_query: search -> objectList
@@ -184,6 +185,7 @@ Post Conditions
       c_query -> c_authenticate: isAuthorized(token, ID, OP_GET)
       c_query <-- c_authenticate: T or F
     end 
+  c_query --> c_crud: log
   app_client <-- c_query: objectList
   deactivate c_query
   @enduml
