@@ -94,6 +94,11 @@
        slicing of the matching set of records by indicating the starting `index`
        of the response (where 0 is the index of the first item) and the `count`
        of elements to be returned.
+   * - \
+     - :func:`MN_replication.replicate`
+     - Called by a Coordinating Node to indicate to the Member Node that it
+       should retrieve the specified object from the indicated Member Node and
+       store it locally so that it can be made accessible to the DataONE system.
    * - :mod:`CN_crud`
      - :func:`CN_crud.get`
      - Retrieves the object identified by `guid` from the node. If the object is
@@ -137,6 +142,10 @@
        of external the API that must be implemented. However, a CN will need to
        implement some sort of logging infrastructure so that it can respond to
        :func:`CN_crud.getLogRecords()`.
+   * - \
+     - :func:`CN_crud.getChecksum`
+     - Returns the checksum for the specified object as reported in the system
+       metadata.
    * - :mod:`CN_query`
      - :func:`CN_query.search`
      - Search the metadata catalog and return identifiers of metadata records

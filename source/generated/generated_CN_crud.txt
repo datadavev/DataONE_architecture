@@ -33,6 +33,9 @@
        :class:`targetGuid<Types.Identifier>`,
        :class:`requestorIdentitity<Types.Principal>`,
        :class:`dateOfRequest<Types.DateTime>`) ``->``
+   * - :func:`getChecksum`
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+       :class:`Types.Checksum`
 
 
 
@@ -338,13 +341,44 @@
 
    :rtype: 
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1500)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4800)``
 
      Define the type of the Log Event
 
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1510)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4810)``
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1501)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4801)``
+
+
+
+----
+
+.. function:: getChecksum(token,guid) -> Checksum
+
+   Returns the checksum for the specified object as reported in the system
+   metadata.
+
+   :param token: The authentication token returned by ``login()``
+
+   :type token: :class:`Types.AuthToken`
+
+   :param guid: Identifier of the object
+
+   :type guid: :class:`Types.Identifier`
+
+   :returns: The checksum of the specified object
+
+   :rtype: :class:`Types.Checksum`
+
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4900)``
+
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4901)``
+
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4910)``
+
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4920)``
+
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4930)``
 
 

@@ -125,7 +125,7 @@ Post Conditions
   
   c_sync -> c_sync: setReplicationStatus(GUID, Queued)
   activate c_sync
-    c_sync -> m_crud_b: replicate(token, GUID)
+    c_sync -> m_crud_b: replicate(token, GUID, SourceNode)
   deactivate c_sync
   
   activate m_crud_b
@@ -166,6 +166,7 @@ Post Conditions
       end note
       c_sync --> c_sync: log(GUID, REPLICATE)
       c_sync --> m_crud_b: OK
+      m_crud_b --> c_sync: OK
     deactivate c_sync
   deactivate m_crud_b
 
