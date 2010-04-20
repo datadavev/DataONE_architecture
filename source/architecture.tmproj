@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>generated/generated_module_summary.txt</string>
+	<string>versions.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -316,7 +316,9 @@
 			<key>filename</key>
 			<string>versions.txt</string>
 			<key>lastUsed</key>
-			<date>2010-04-18T15:35:07Z</date>
+			<date>2010-04-19T23:13:52Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -325,6 +327,8 @@
 			<date>2010-03-22T15:52:26Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>UseCases</string>
 			<key>regexFolderFilter</key>
@@ -483,7 +487,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>102</integer>
+			<integer>0</integer>
 		</dict>
 		<key>themes/nose/layout.html</key>
 		<dict>
@@ -557,14 +561,29 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>versions.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>131</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>112</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
+		<string>versions.txt</string>
 		<string>generated/generated_module_summary.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{339, 155}, {1011, 723}}</string>
+	<string>{{339, 332}, {1021, 546}}</string>
 </dict>
 </plist>

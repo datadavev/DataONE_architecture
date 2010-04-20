@@ -21,27 +21,6 @@ Member Node APIs
    mn_api_health
 
 
-======= ========== =======================================================================
-Version Use Cases  Method
-======= ========== =======================================================================
-0.3     .          :func:`MN_crud.getSystemMetadata` ``(token, GUID) -> objectMetadata``
-0.3     .          :func:`MN_crud.get` ``(token, GUID) -> object``
-0.3     .          :func:`MN_crud.getLogRecords` ``(token, fromDate, toDate)``
-0.3     .          :func:`MN_crud.log` ``(typeOfOperation, targetGUID, requestorIdentity, dateOfRequest)``
-.       .          :func:`MN_crud.describe` ``(token, GUID) -> (mime-type, size, date last modified)``
-0.3     .          :func:`MN_replication.listObjects` ``(token, query) -> list of GUIDs``
-0.3     .          :func:`MN_replication.synchronizationComplete` ``(token, GUID)``
-0.3     .          :func:`MN_replication.synchronizationFailed` ``(token, GUID, problemDescription)``
-0.3     .          :func:`MN_health.heartbeat` ``() -> response``
-.       .          :func:`MN_authorization.login` ``(user, password, [auth_system]) -> token``
-.       .          :func:`MN_authorization.logout` ``(token)``
-.       .          :func:`MN_authorization.isAuthorized` ``(token, method, GUID) -> boolean``
-.       .          :func:`MN_authorization.verify` ``verify(token) -> boolean``
-======= ========== =======================================================================
-
-
-
-
 
 .. raw:: latex
 

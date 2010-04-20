@@ -72,19 +72,15 @@
      - ``GET``
      - `/log/`_
    * - 0.7
-     - :func:`CN_authorization.login`
+     - :func:`CN_authentication.login`
      - ``POST``
      - `/account/`_
    * - 0.7
-     - :func:`CN_authorization.setAccess`
-     - ``PUT``
-     - `/object/<guid>/access/`_
-   * - 0.7
-     - :func:`CN_authorization.setOwner`
+     - :func:`CN_authentication.setOwner`
      - ``PUT``
      - `/object/<guid>/owner/`_
    * - 0.7
-     - :func:`CN_authorization.newAccount`
+     - :func:`CN_authentication.newAccount`
      - ``POST``
      - `/account/login/`_
    * - 0.7
@@ -95,6 +91,10 @@
      - :func:`CN_authorization.isAuthorized`
      - ``GET``
      - `/object/<guid>/isAuthorized/`_
+   * - 0.7
+     - :func:`CN_authorization.setAccess`
+     - ``PUT``
+     - `/object/<guid>/access/`_
    * - 0.7
      - :func:`MN_authorization.login`
      - ``POST``

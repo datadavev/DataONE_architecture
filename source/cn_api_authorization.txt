@@ -2,7 +2,7 @@ Coordinating Node Authorization API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. module:: CN_authorization
-   :synopsis: Methods for authentication and authorization
+   :synopsis: Methods for authorization
 
 
 .. include:: generated/generated_CN_authorization.txt
@@ -20,15 +20,5 @@ Coordinating Node Authorization API
    .. Note:: 
       This could be a normal :func:`login` operation using a system user and
       secret that is stored in a secure location.
-
-
-
-
-
-Server Authentication API
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Server authentication is handled by network configuration for V0.3.
-
 
 

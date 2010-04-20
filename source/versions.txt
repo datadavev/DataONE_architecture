@@ -118,10 +118,13 @@ General Schedule for Infrastructure Version 0.x
        - MN - CN communication secured
        - Mercury search index population trigger implemented
        - CN - CN replication of metadata
+       - Design initial web interface for user interaction
+       - Design monitoring functionality to track services and objects
      - - :doc:`/UseCases/02_uc`
        - :doc:`/UseCases/03_uc`
        - :doc:`/UseCases/06_uc`
        - :doc:`/UseCases/10_uc`
+       - :doc:`/UseCases/16_uc`
      - - :func:`MN_crud.get`
        - :func:`MN_crud.getSystemMetadata`
        - :func:`MN_crud.log`
@@ -138,11 +141,16 @@ General Schedule for Infrastructure Version 0.x
        - Search and retrieval supported by ITK
        - Initial implementation of centralized user authentication
        - Identity and credentials propagated through system
+       - Implement web interface for user interaction with CNs
+       - Implement initial mechanisms for tracking objects and service uptime
      - - :doc:`/UseCases/06_uc`
-       - :doc:`/UseCases/16_uc`
        - :doc:`/UseCases/17_uc`
        - :doc:`/UseCases/12_uc`
-     - \
+       - :doc:`/UseCases/13_uc`
+     - - :func:`CN_authentication.login`
+       - :func:`MN_authentication.login`
+       - :func:`CN_authentication.verifyToken`
+       - :func:`CN_authorization.isAuthorized`
    * - 0.6
      - 2010/07
      - - System self manages replication

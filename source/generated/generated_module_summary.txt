@@ -204,8 +204,8 @@
        (inclusive) for the entire DataONE infrastructure
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
-   * - :mod:`CN_authorization`
-     - :func:`CN_authorization.login`
+   * - :mod:`CN_authentication`
+     - :func:`CN_authentication.login`
      - Authenticates a user for interaction with the DataONE system. The
        returned token is trusted throughout the DataONE system as a reliable
        statement as to the identity of the authenticated user. :func:`login` may
@@ -216,25 +216,20 @@
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
    * - \
-     - :func:`CN_authorization.setAccess`
-     - Sets the access permissions for an object identified by `guid`.
-
-       Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
-   * - \
-     - :func:`CN_authorization.setOwner`
+     - :func:`CN_authentication.setOwner`
      - Changes ownership of the specified object to the :term:`principal`
        specified by `userId`
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
    * - \
-     - :func:`CN_authorization.newAccount`
+     - :func:`CN_authentication.newAccount`
      - Create a new :term:`principal` in the DataONE system. Note that there
        should probably be a lot more metadata captured about the new user, and
        there should be a mechanism for specifying the default access control
        rules for the new account.
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
-   * - \
+   * - :mod:`CN_authorization`
      - :func:`CN_authorization.verifyToken`
      - Test if the provided token is valid. The token is passed to the method
        end point using the normal authentication token transfer mechanism (e.g.
@@ -254,6 +249,11 @@
        Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`,
        :doc:`UC02 </UseCases/02_uc>`, :doc:`UC36 </UseCases/36_uc>`, :doc:`UC37
        </UseCases/37_uc>`
+   * - \
+     - :func:`CN_authorization.setAccess`
+     - Sets the access permissions for an object identified by `guid`.
+
+       Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
    * - :mod:`MN_authorization`
      - :func:`MN_authorization.login`
      - Authenticates a user for interaction with the DataONE system. The
