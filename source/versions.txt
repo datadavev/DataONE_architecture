@@ -148,7 +148,6 @@ General Schedule for Infrastructure Version 0.x
        - :doc:`/UseCases/12_uc`
        - :doc:`/UseCases/13_uc`
      - - :func:`CN_authentication.login`
-       - :func:`MN_authentication.login`
        - :func:`CN_authentication.verifyToken`
        - :func:`CN_authorization.isAuthorized`
    * - 0.6

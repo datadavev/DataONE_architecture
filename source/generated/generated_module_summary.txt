@@ -229,8 +229,8 @@
        rules for the new account.
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
-   * - :mod:`CN_authorization`
-     - :func:`CN_authorization.verifyToken`
+   * - \
+     - :func:`CN_authentication.verifyToken`
      - Test if the provided token is valid. The token is passed to the method
        end point using the normal authentication token transfer mechanism (e.g.
        HTTP Auth header). Note that there is a potential security issue here as
@@ -239,7 +239,7 @@
        and perhaps even generate a token that matches a system token. Hence
        another level of restriction (perhaps network level blocking / limiting)
        is necessary.
-   * - \
+   * - :mod:`CN_authorization`
      - :func:`CN_authorization.isAuthorized`
      - Test if the user identified by the provided token has authorization for
        operation on the specified object. .. Note:: Should perhaps add
@@ -278,16 +278,6 @@
 
        Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`,
        :doc:`UC37 </UseCases/37_uc>`
-   * - \
-     - :func:`MN_authorization.verifyToken`
-     - Test if the provided token is valid. The token is passed to the method
-       end point using the normal authentication token transfer mechanism (e.g.
-       HTTP Auth header). Note that there is a potential security issue here as
-       open access to this method enables a malicious user to potentially probe
-       a large number of generated tokens to determine properties of the system,
-       and perhaps even generate a token that matches a system token. Hence
-       another level of restriction (perhaps network level blocking / limiting)
-       is necessary.
    * - :mod:`CN_replication`
      - :func:`CN_replication.setReplicationStatus`
      - Update the replication status of the system metadata, ensuring that the
