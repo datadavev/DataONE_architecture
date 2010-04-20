@@ -66,58 +66,108 @@ project.
 General Schedule for Infrastructure Version 0.x
 -----------------------------------------------
 
-.. table:: Approximate timeline and functionality for version releases.  
+.. list-table:: Approximate timeline and functionality for version releases.
+   :widths: 1 1 10 4 2
+   :header-rows: 1
 
-   ======== ======== ===============================================================
-   Version  Due      Description
-   ======== ======== ===============================================================
-   0.1      2009/09  General architecture laid out
-   \        \        Initial set of user requriements identified
-   \        \        Functional use cases for user requriements drafted
-   0.2      2009/11  Major system components identified, service interfaces specified
-   \        \        Functional use cases filled out, edited for consistency
-   \        \        High level component interactions documented
-   0.3      2010/01  Initial coding on low level functionality and schemas
-   \        \        Functional use cases addressed: 1, 36
-   \        \        Prototype specifications documented
-   \        \        Initial core software components identified
-   \        \        System Metadata schema defined
-   \        \        CN Application library incompatibilities evaluated
-   \        \        Base inter-process communications enabled (Mercury - Metacat)
-   \        \        CN, MN API wrappers generated
-   \        \        Implement reference implementation of MN and CN
-   \        \        Low level logging incorporated into API wrappers
-   0.4      2010/02  Initial implementation of metadata replication and indexing
-   \        \        Functional use cases addressed: 2, 3, 6, 10
-   \        \        Initial implementation of selected MNs
-   \        \        CN Hardware procured
-   \        \        CN implementation using Metacat + Mercury with API wrapper
-   \        \        MN - CN communications secured
-   \        \        Mercury search index population trigger implemented
-   \        \        CN-CN replication of metadata
-   0.5      2010/03  Initial data replication implemented
-   \        \        Functional use cases addressed: 6, 16, 17
-   \        \        MN-MN transfer implemented
-   \        \        Basic search interface available
-   \        \        Basic log reporting enabled
-   \        \        Search operations implemented in ITK library
-   0.6      2010/04  System self manages replication
-   \        \        Functional use cases addressed: 9, 24
-   \        \        CN controlling replication between MNs
-   \        \        Reporting interface for system status
-   0.7      2010/05  Basic authorization and access control
-   \        \        Functional use cases addressed: 12
-   \        \        Initial implementation of centralized user authentication
-   \        \        Identity and credentials propagated through system
-   0.8      2010/06  Basic authorization and access control
-   \        \        Functional use cases addressed: 14  
-   \        \        Initial authorization subsystem implemented
-   \        \        Initial object access control implemented
-   0.9      2010/07  Stress testing
-   \        \        Failure recovery test and evaluation
-   \        \        Writeup, lessons learned
-   \        \        Delegate key long term tasks to working groups
-   ======== ======== ===============================================================
+   * - Version
+     - Date
+     - Description
+     - Use Cases
+     - API Methods
+   * - 0.1
+     - 2009/09
+     - - General architecture laid out
+       - Initial set of user requirements identified
+       - Functional use cases for user requirements drafted
+     - \
+     - \
+   * - 0.2
+     - 2009/11
+     - - Major system components identified
+       - Service interfaces specified
+       - Functional uses cases fleshed out, edited for consistency
+       - High level component interactions documented
+     - \
+     - \
+   * - 0.3
+     - 2010/04
+     - - Initial coding on low level functionality and shemas
+       - Prototype specfications documented
+       - Initial core software components identified
+       - System metadata schema defined
+       - CN library incompatibilities evaluatated
+       - Base inter-process communications enabled (Mercury - Metacat)
+       - CN, MN API wrappers generated
+       - Reference implementations for CN and MN initiated
+       - Low level logging incorporated into API wrappers
+     - - :doc:`/UseCases/01_uc`
+       - :doc:`/UseCases/36_uc`
+     - - :func:`MN_crud.get`
+       - :func:`MN_crud.log`
+       - :func:`CN_crud.get`
+       - :func:`CN_crud.log`
+       - :func:`CN_crud.getSystemMetadata`
+       - :func:`CN_crud.resolve`
+   * - 0.4
+     - 2010/05
+     - - Initial implementation of metadata replication and indexing
+       - Initial implementation of selected MNs
+       - CN Hardware procured
+       - CN implemetation using Metacat + Mercury with API wrapper
+       - MN - CN communication secured
+       - Mercury search index population trigger implemented
+       - CN - CN replication of metadata
+     - - :doc:`/UseCases/02_uc`
+       - :doc:`/UseCases/03_uc`
+       - :doc:`/UseCases/06_uc`
+       - :doc:`/UseCases/10_uc`
+     - - :func:`MN_crud.get`
+       - :func:`MN_crud.getSystemMetadata`
+       - :func:`MN_crud.log`
+       - :func:`MN_replication.listObjects`
+       - :func:`CN_crud.create`
+       - :func:`CN_crud.log`
+       - :func:`CN_query.search`
+   * - 0.5
+     - 2010/06
+     - - Initial data replication implemented
+       - MN - MN transfer implemented
+       - Basic search interface available
+       - Basic log reporting available
+       - Search and retrieval supported by ITK
+       - Initial implementation of centralized user authentication
+       - Identity and credentials propagated through system
+     - - :doc:`/UseCases/06_uc`
+       - :doc:`/UseCases/16_uc`
+       - :doc:`/UseCases/17_uc`
+       - :doc:`/UseCases/12_uc`
+     - \
+   * - 0.6
+     - 2010/07
+     - - System self manages replication
+       - CN controlling replication between MNs
+       - Reporting interface for system status
+     - - :doc:`/UseCases/09_uc`
+       - :doc:`/UseCases/24_uc`
+     - \
+   * - 0.7
+     - 2010/08
+     - - Basic authorization and access control
+       - Initial authorization subsystem implemented
+       - Initial object access control implemented
+     - - :doc:`/UseCases/14_uc`\
+     - \
+   * - 0.8
+     - 2010/09
+     - - Stress testing
+       - Failure recovery test and evaluation
+       - Writeup, lessons learned
+       - Re-design, select alternative components as necessary
+     - \
+     - \
+
+
 
 
 Detail for Version 0.3

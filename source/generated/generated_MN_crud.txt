@@ -57,6 +57,9 @@
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
 
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06
+   </UseCases/06_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
    :param token: The authentication token returned by ``login()``.
 
    :type token: :class:`Types.AuthToken`
@@ -117,6 +120,9 @@
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
 
+   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC37
+   </UseCases/37_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
    :param token: The authentication token returned by ``login()``.
 
    :type token: :class:`Types.AuthToken`
@@ -159,6 +165,9 @@
 
    The `guid` must not exist in the DataONE system or must have been previously
    reserved using  :func:`CN_crud.reserveIdentifier`.
+
+   Appears in functional use cases: :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09
+   </UseCases/09_uc>`, :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by ``login()``
 
@@ -246,6 +255,8 @@
    The modified system metadata entries must then be available in
    :func:`MN_replication.listObjects` to ensure that a Coordinating Node will
    pick up the changes.
+
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by ``login()``
 
@@ -338,6 +349,8 @@
    exception should contain a hint as to the location of the
    :func:`CN_crud.resolve` method.
 
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
@@ -394,6 +407,8 @@
    If the object does not exist on the node servicing the request, then
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
+
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by ``login()``
 
@@ -527,6 +542,11 @@
    external the API that must be implemented. However, a MN will need to
    implement some sort of logging infrastructure so that it can respond to
    :func:`MN_crud.getLogRecords()`.
+
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06
+   </UseCases/06_uc>`, :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09
+   </UseCases/09_uc>`, :doc:`UC16 </UseCases/16_uc>`, :doc:`UC37
+   </UseCases/37_uc>`
 
    :param typeOfOperation: Enumerated value
 

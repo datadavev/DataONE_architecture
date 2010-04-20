@@ -43,6 +43,8 @@
    then an additional parameter identifying the authentication service to use
    will be required.
 
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+
    :param user: User name
 
    :type user: string
@@ -84,6 +86,8 @@
 .. function:: setAccess(token,guid,accessLevel) -> boolean
 
    Sets the access permissions for an object identified by `guid`.
+
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
@@ -138,6 +142,8 @@
    Changes ownership of the specified object to the :term:`principal` specified
    by `userId`
 
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+
    :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
      object.
@@ -186,6 +192,8 @@
    probably be a lot more metadata captured about the new user, and there should
    be a mechanism for specifying the default access control rules for the new
    account.
+
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
 
    :param username: Requested username.  Must be unique within the DataONE
      system.
@@ -273,6 +281,10 @@
 
    .. Note:: Should perhaps add convenience methods for "canRead()" and
      "canWrite()" to verify that a user is able to read / write an object.
+
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC02
+   </UseCases/02_uc>`, :doc:`UC36 </UseCases/36_uc>`, :doc:`UC37
+   </UseCases/37_uc>`
 
    :param token:
 

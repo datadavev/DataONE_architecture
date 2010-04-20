@@ -35,6 +35,8 @@
    then an additional parameter identifying the authentication service to use
    will be required.
 
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+
    :param user: User name
 
    :type user: string
@@ -105,6 +107,9 @@
 
    .. Note:: Should perhaps add convenience methods for "canRead()" and
      "canWrite()" to verify that a user is able to read / write an object.
+
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC37
+   </UseCases/37_uc>`
 
    :param token:
 

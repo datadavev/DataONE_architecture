@@ -23,6 +23,8 @@
    replication of the object and the replications status of the object (as
    indicated in the system metadata) is set to Queued.
 
+   Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
+
    :param token:
 
    :type token: 

@@ -48,6 +48,9 @@
    (regardless of whether the object exists on another node in the DataONE
    system).
 
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC16
+   </UseCases/16_uc>`, :doc:`UC09 </UseCases/09_uc>`
+
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
@@ -87,6 +90,9 @@
    Returns the :term:`system metadata` that contains DataONE specific
    information about the object identified by `guid`. Note that authoritative
    copies of system metadata are only available from the Coordinating Nodes.
+
+   Appears in functional use cases: :doc:`UC36 </UseCases/36_uc>`, :doc:`UC37
+   </UseCases/37_uc>`, :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by ``login()``
 
@@ -130,6 +136,9 @@
    the identified target object from the DataONE system. The target may reside
    on a MN or a CN.
 
+   Appears in functional use cases: :doc:`UC36 </UseCases/36_uc>`, :doc:`UC16
+   </UseCases/16_uc>`
+
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
@@ -170,6 +179,9 @@
    to science data which is not retrieved to the Coordinating Node. This method
    is used as part of the :term:`Member Node synchronization` of science
    metadata between a MN and a CN.
+
+   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
+   </UseCases/16_uc>`
 
    :param guid: Identifier of the object being registered
 
@@ -216,6 +228,8 @@
    sessions. Future calls to :func:`MN_crud.create` and :func:`MN_crud.update`
    that reference this ID must originate from the :term:`session` in which the
    identifier was reserved, otherwise an error is raised on those methods.
+
+   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
 
    :param token: The authentication token returned by ``login()``
 
@@ -321,6 +335,10 @@
    implement some sort of logging infrastructure so that it can respond to
    :func:`CN_crud.getLogRecords()`.
 
+   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC02
+   </UseCases/02_uc>`, :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
+   </UseCases/16_uc>`, :doc:`UC09 </UseCases/09_uc>`
+
    :param typeOfOperation: Enumerated value
 
    :type typeOfOperation: :class:`Types.Event`
@@ -358,6 +376,8 @@
 
    Returns the checksum for the specified object as reported in the system
    metadata.
+
+   Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
 
    :param token: The authentication token returned by ``login()``
 

@@ -35,6 +35,9 @@
    the starting `index` of the response (where 0 is the index of the first item)
    and the `count` of elements to be returned.
 
+   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
+   </UseCases/16_uc>`
+
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
@@ -104,6 +107,8 @@
    Called by a Coordinating Node to indicate to the Member Node that it should
    retrieve the specified object from the indicated Member Node and store it
    locally so that it can be made accessible to the DataONE system.
+
+   Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
 
    :param token: The authentication token returned by ``login()``
 
