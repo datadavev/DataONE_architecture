@@ -26,7 +26,7 @@ An alternative approach to joint copyright was also considered in which
 individual contributors and their institutions would assign copyright to a
 holding entity that would ensure the long-term availability of the
 copyrighted materials.  We did not feel that an existing University should
-play this role, but there was some agreement that a 501.3c entity that had 
+play this role, but there was some agreement that a 501(c)(3) entity that had 
 appropriate language built into its charter documents that would guarantee 
 perpetual availability of the copyrighted material would be appropriate. No
 such entity currently exists, and the institutional agreements to contribute
