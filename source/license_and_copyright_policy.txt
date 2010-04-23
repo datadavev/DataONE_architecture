@@ -22,6 +22,22 @@ software products.  Therefore, our general policy will be that each DataONE
 software product will contain a copyright statement that indicates that all of
 the participating organizations hold joint copyright in the work.
 
+An alternative approach to joint copyright was also considered in which
+individual contributors and their institutions would assign copyright to a
+holding entity that would ensure the long-term availability of the
+copyrighted materials.  We did not feel that an existing University should
+play this role, but there was some agreement that a 501.3c entity that had 
+appropriate language built into its charter documents that would guarantee 
+perpetual availability of the copyrighted material would be appropriate. No
+such entity currently exists, and the institutional agreements to contribute
+copyrighted materials would need to be worked out, so we felt this solution
+would not work for our short term needs, but should be considered for our
+longer-term strategy.  We noted that existing groups like the Apache Software
+Foundation use this model effectively for cross-institutional development,
+although it does take overhead to create and maintain the institutional
+arrangements that make this model possible.  Joint copyright is simpler if
+only because it is the defacto state of our products when multiple
+institutions contribute to development.
 
 Open source licensing
 ---------------------
