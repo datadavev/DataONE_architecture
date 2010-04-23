@@ -36,7 +36,7 @@ longer-term strategy.  We noted that existing groups like the Apache Software
 Foundation use this model effectively for cross-institutional development,
 although it does take overhead to create and maintain the institutional
 arrangements that make this model possible.  Joint copyright is simpler if
-only because it is the defacto state of our products when multiple
+only because it is the de facto state of our products when multiple
 institutions contribute to development.
 
 Open source licensing
