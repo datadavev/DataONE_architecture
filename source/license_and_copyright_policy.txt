@@ -14,13 +14,17 @@ Copyright
 ---------
 Individuals employed by different universities contribute to the development of
 DataONE software, and generally those individuals or the institution that
-employs them would hold copyright on their work.  However, essentially all
-DataONE software products have been and will continue to be jointly designed and
-created by individuals spread across the DataONE participating institutions.  No
-one individual or institution can claim creative ownership of any of the DataONE
-software products.  Therefore, our general policy will be that each DataONE
-software product will contain a copyright statement that indicates that all of
-the participating organizations hold joint copyright in the work.
+employs them would hold copyright on their work.  The subcontract agreements
+between DataONE organizations has a special condition that states that
+subcontractors will grant a license to work to enable the Prime Recipient to 
+meets its obligations to NSF, but it does not transfer copyright in any way.
+However, essentially all DataONE software products have been and will continue
+to be jointly designed and created by individuals spread across the DataONE
+participating institutions.  No one individual or institution can claim creative
+ownership of any of the DataONE software products.  Therefore, our general
+policy will be that each DataONE software product will contain a copyright
+statement that indicates that all of the participating organizations hold joint
+copyright in the work.
 
 An alternative approach to joint copyright was also considered in which
 individual contributors and their institutions would assign copyright to a
