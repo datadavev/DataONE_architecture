@@ -97,6 +97,7 @@ A version of the entire document in PDF is also `available for download`_.
    usecases
    versions
    apis
+   license_and_copyright_policy
    todo
    glossary
 
