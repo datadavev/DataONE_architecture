@@ -175,7 +175,7 @@ page::
           'algorithm':<checkSum Algorithm Type>, 
           'value':<SHA1 hash of object>
         },
-        'dateSysMedatadataModified':<DateTime>,
+        'dateSysMetadataModified':<DateTime>,
         'size':<integer>
       },
       ...
@@ -202,7 +202,7 @@ Expressed in CSV, one entry per line, comma delimiting fields, new line
 delimiting records::
 
   #<start>,<count>,<total>
-  identifier,objectFormat,algorithm,checksum,dateSysMedatadataModified,size
+  identifier,objectFormat,algorithm,checksum,dateSysMetadataModified,size
   "<identifier>","<object class>","<SHA-1 | SHA-224 | MD5 | ...>","<SHA1 hash of object>","<date time last modified>",<byte size of object>
 
 
@@ -212,10 +212,11 @@ Expressed in XML::
             start='_integer_'
             count='_integer_'
             total='_integer_'>
-    <objectInfo identifier='_identifier_'>
+    <objectInfo>
+      <identifier>_identifier_</identifier>
       <objectFormat>_object class_</objectFormat>
       <checksum algorithm='SHA-1 | SHA-224 | MD5 | ...'>_hash of object_</checksum>
-      <dateSysMedatadataModified>_date time last modified_</dateSysMedatadataModified>
+      <dateSysMetadataModified>_date time last modified_</dateSysMetadataModified>
       <size>_byte size of object_</size>
     </objectInfo>
     ...
@@ -236,7 +237,7 @@ Expressed in RDF/XML::
         <rdf:Description rdf:about="http://mn1.dataone.org/object/_identifier_">
           <d1:objectFormat>_object class_</d1:objectFormat>
           <d1:checksum d1:algorithm='SHA-1 | SHA-224 | MD5 | ...'>_SHA1 hash of object</d1:checksum>
-          <d1:dateSysMedatadataModified>_date time last modified_</d1:dateSysMedatadataModified>
+          <d1:dateSysMetadataModified>_date time last modified_</d1:dateSysMetadataModified>
           <d1:size>_byte size of object_</d1:size>
         </rdf:Description>
       </d1:objectInfo>
@@ -301,7 +302,7 @@ Retrieve a list of identifiers from a member node in plain text format::
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
   #0,1000,159734
-  identifier,objectFormat,algorithm,checksum, dateSysMedatadataModified,size
+  identifier,objectFormat,algorithm,checksum, dateSysMetadataModified,size
   "ABC123","data","SHA-1","b3a1617100c2b782fe5f9f2050dc714fdd05df28","2009-12-02T17:40:03.0Z",1040032112
   ...
   "XYZ332","science metadata","SHA-1","008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07","2009-11-30T06:44:19.0Z",1044
