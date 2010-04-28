@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>versions.txt</string>
+	<string>apis.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -37,7 +37,9 @@
 					<key>filename</key>
 					<string>apis.txt</string>
 					<key>lastUsed</key>
-					<date>2010-04-19T01:36:15Z</date>
+					<date>2010-04-27T20:31:31Z</date>
+					<key>selected</key>
+					<true/>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -55,7 +57,7 @@
 					<key>filename</key>
 					<string>CN_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2010-04-19T01:23:08Z</date>
+					<date>2010-04-20T21:56:42Z</date>
 				</dict>
 				<dict>
 					<key>children</key>
@@ -64,7 +66,7 @@
 							<key>filename</key>
 							<string>cn_api_authorization.txt</string>
 							<key>lastUsed</key>
-							<date>2010-04-01T22:58:59Z</date>
+							<date>2010-04-20T21:56:14Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -102,6 +104,12 @@
 							<key>lastUsed</key>
 							<date>2010-03-30T14:39:54Z</date>
 						</dict>
+						<dict>
+							<key>filename</key>
+							<string>cn_api_authentication.txt</string>
+							<key>lastUsed</key>
+							<date>2010-04-20T21:56:07Z</date>
+						</dict>
 					</array>
 					<key>expanded</key>
 					<true/>
@@ -112,7 +120,7 @@
 					<key>filename</key>
 					<string>MN_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2010-03-22T18:59:11Z</date>
+					<date>2010-04-20T22:14:25Z</date>
 				</dict>
 				<dict>
 					<key>children</key>
@@ -148,6 +156,8 @@
 							<date>2010-03-19T16:14:10Z</date>
 						</dict>
 					</array>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>MN APIs</string>
 				</dict>
@@ -279,6 +289,8 @@
 					<date>2009-11-13T16:03:04Z</date>
 				</dict>
 			</array>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>Configuration</string>
 		</dict>
@@ -316,9 +328,7 @@
 			<key>filename</key>
 			<string>versions.txt</string>
 			<key>lastUsed</key>
-			<date>2010-04-19T23:13:52Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2010-04-26T15:43:43Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -327,8 +337,6 @@
 			<date>2010-03-22T15:52:26Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>UseCases</string>
 			<key>regexFolderFilter</key>
@@ -368,12 +376,26 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>5</integer>
+			<integer>2</integer>
+		</dict>
+		<key>MN_APIs.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>11</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>SystemMetadata.txt</key>
 		<dict>
@@ -417,14 +439,70 @@
 			<key>firstVisibleLine</key>
 			<integer>89</integer>
 		</dict>
+		<key>UseCases/12_uc.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>80</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>77</integer>
+		</dict>
+		<key>UseCases/13_uc.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>54</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>7</integer>
+		</dict>
 		<key>apis.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>15</integer>
+				<integer>10</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>25</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>11</integer>
+		</dict>
+		<key>cn_api_authentication.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>cn_api_authorization.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -561,29 +639,14 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>versions.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>131</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>112</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>versions.txt</string>
-		<string>generated/generated_module_summary.txt</string>
+		<string>apis.txt</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{339, 332}, {1021, 546}}</string>
+	<string>{{1763, 184}, {850, 819}}</string>
 </dict>
 </plist>

@@ -113,6 +113,94 @@ Post Conditions
   @enduml
 
 
+Implementation
+~~~~~~~~~~~~~~
+
+Notes: 
+
+Doesn't appear that there's need for any external interfaces for the
+synchronization process - except perhaps for management ops (manipulating
+timing, balancing, queue size, etc).
+
+The synchronization process will certainly be more sophisticated down the road,
+but for now simplicity should be a priority:
+
+- MNs are only scanned by the CN where they are registered (restriction to be
+  dropped down the road).
+
+- listObjects is polled (with max objects set to some limit), with results
+  stored in a queue on the CN
+
+- as the queue is processed and shrinks to some size, then listObjects process
+  is polled again
+
+- the queue is processed by n worker threads, with each task being to pop an
+  entry from the queue, pull the content from the target, and store it in the
+  object store.
+
+- when there is some number of new entries in the object store, then the
+  mercury indexing process needs to kick in. Ideally this should be updating
+  rather than re-creating the index at each pass
+
+This fairly simplistic approach should be enough to get things started. Not
+ideal, but should suffice to get some data moving around. To implement, there
+is need for a few new components - a queue, a place to store state
+information, the code that does the polling, the code that does the object
+retrieval, the worker thread code, and an overall controller service.
+
+Implementation
+
+A thread of execution is responsible for populating a thread-safe queue with
+the output from ListObjects.
+
+::
+
+  integer populateTaskQueue()
+  {
+    AuthToken token = getSystemToken();
+    ThreadSafeQueue taskQueue = getSharedTaskQueue();
+    MemberNodeState mnState = getMemberNodeState();
+    D1cient client = D1Client( mnState.url );
+
+    // get a list of all the new entries since lastCheckTime
+    DateTime tstamp = now();
+
+    // Will actually need to loop here to page through results
+    ObjectList objectList = client.listObjects(token, mnState.lastCheckTime);
+    taskQueue +=  objectList;
+    mnState.lastCheckTime = tstamp;
+    setMemberNodeState(mnState);
+    return objectList.length;
+  }
+
+
+Worker threads are responsible for retrieving each object listed in the
+taskQueue. The number of workers should be adjustable. An obvious target for
+improving efficiency is to enable requesting multiple objects in a single call
+to a MN.
+
+::
+
+  // object is the next entry from the taskQueue
+  bool retrieveObject(ObjectInfo object)
+  {
+    Authtoken token = getSystemToken();
+    D1Client client = D1Client();  //? Need to set the URL of the member 
+    SystemMetadata sysmeta = client.getSystemMetadata( object.identifier );
+    if ( isScienceMetadata(sysmeta.objectClass) )
+    {
+      scimeta = client.get( object.identifier );
+      CN_SERVICE.create( object.identifier, sysmeta, scimeta );
+    }
+    else
+    {
+      CN_SERVICE.create( object.identifier, sysmeta );
+    }
+  }
+
+
+
+
 .. raw:: latex
 
    \newpage
