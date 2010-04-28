@@ -148,18 +148,50 @@ is need for a few new components - a queue, a place to store state
 information, the code that does the polling, the code that does the object
 retrieval, the worker thread code, and an overall controller service.
 
-Implementation
 
-A thread of execution is responsible for populating a thread-safe queue with
-the output from ListObjects.
+In more detail
+..............
+
+Retrieve objects from Member Nodes. getNextMemberNode() gets the next Member
+Node to work on - this could be serial selection from the list of registered
+MNs, could be based on the last update, perhaps from some hint returned in
+MN.ping().
+
+New structures::
+
+  MemberNodeState
+    String url;  //URL of the member node
+    DateTime lastCheckTime;  // time stamp for when the MN was last polled for listOjects
+
+
+  RetrievalTask
+    String url;
+    ObjectInfo objectInfo;
+
+
 
 ::
 
-  integer populateTaskQueue()
+  void populateTaskQueue ()
+  {
+    ThreadSafeQueue taskQueue = getSharedTaskQueue()
+    while ( keepRunning() )
+    {
+      if (taskQueue.length < MIN_TASKS)
+      {
+        MemberNodeState = getNextMemberNode();
+        
+        // This could be executed in a different thread, which would
+        // enable multiple MNs to be polled at a tme if necessary
+        int numNewEntries = loadMNTasks(taskQueue, mnState);
+      }
+    }
+  }
+
+
+  int loadMNTasks(ThreadSafeQueue taskQueue, MemberNodeState mnState)
   {
     AuthToken token = getSystemToken();
-    ThreadSafeQueue taskQueue = getSharedTaskQueue();
-    MemberNodeState mnState = getMemberNodeState();
     D1cient client = D1Client( mnState.url );
 
     // get a list of all the new entries since lastCheckTime
@@ -167,11 +199,16 @@ the output from ListObjects.
 
     // Will actually need to loop here to page through results
     ObjectList objectList = client.listObjects(token, mnState.lastCheckTime);
-    taskQueue +=  objectList;
+    for (ObjectInfo objinfo : objectList)
+    {
+      RetrievalTask task = RetrievalTask(mnState.url, objinfo)
+      taskQueue.push(task)
+    }
     mnState.lastCheckTime = tstamp;
     setMemberNodeState(mnState);
     return objectList.length;
   }
+
 
 
 Worker threads are responsible for retrieving each object listed in the
@@ -182,10 +219,10 @@ to a MN.
 ::
 
   // object is the next entry from the taskQueue
-  bool retrieveObject(ObjectInfo object)
+  bool retrieveObject(String mnurl, ObjectInfo object)
   {
     Authtoken token = getSystemToken();
-    D1Client client = D1Client();  //? Need to set the URL of the member 
+    D1Client client = D1Client(mnurl);
     SystemMetadata sysmeta = client.getSystemMetadata( object.identifier );
     if ( isScienceMetadata(sysmeta.objectClass) )
     {
