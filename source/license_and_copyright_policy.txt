@@ -85,7 +85,7 @@ each source code file that reads::
    This work is jointly copyrighted by participating institutions in DataONE:
 
       Copyright 2010 Regents of the University of California
-      Copyright 2010 The University of Tennessee
+      Copyright 2010 College of Communication and Information · The University of Tennessee
       Copyright 2010 University of Kansas
       Copyright 2010 University of New Mexico
       Copyright 2010 UT-Battelle, LLC
@@ -120,6 +120,9 @@ staff have rights to work done while employed by UT.
 Based on what I'm reading and examples, the correct format for the copyright statement for UT contributions is
 Copyright (year) The University of Tennessee
 
+The College of Communication and Information has rights too since the School of Information Sciences and the Center for Communication and Information Studies is involed. Carol Tenopir suggested a statement such as 
+
+Copyright (year) College of Communication and Information · The University of Tennessee
 
 Oak Ridge National Laboratory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
