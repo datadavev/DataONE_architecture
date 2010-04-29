@@ -77,36 +77,63 @@ Post Conditions
 ..
   @startuml images/06_interaction.png
   !include ../plantuml.conf
-  participant "CRUD API" as c_crud << Coordinating Node >>
-  participant "Synchronization API" as c_sync << Coordinating Node >>
-  participant "Replication API" as m_rep << Member Node >>
-  participant "CRUD API" as m_crud << Member Node >>
+  participant "Registry API" as c_reg << CN >>
+  participant "CRUD API" as c_crud << CN >>
+  participant "Task Queue" as cn_queue << CN >>
+  participant "Notification API" as c_notify << CN >>
+  participant "Synchronization API" as c_sync << CN >>
+  participant "Replication API" as m_rep << MN >>
+  participant "CRUD API" as m_crud << MN >>
+
+  activate cn_queue
+  m_crud -> c_notify: notify(objectCreated, identifier)
+  c_notify -> cn_queue: addTask(NEW_OBJECT, node, identifier)
+  note right
+    notification triggered by successful 
+    create operation on MN.
+  end note
 
   c_sync -> m_rep: listObjects(token, startTime, ...)
-
+  note right
+    Periodic call to listObjects ensures 
+    complete coverage of all MNs
+  end note
+  activate c_sync
+  activate m_rep
   c_sync <-- m_rep: ObjectList
+  deactivate m_rep
+  c_sync -> c_sync: createTasksForNewEntries(ObjectList)
+  c_sync -> cn_queue: appendTasks()
+  deactivate c_sync
 
-  loop for each GUID
+  loop for each task
+    c_sync -> cn_queue: getNextTask()
+    activate c_sync
+    cn_queue --> c_sync: Node, ObjectInfo
     c_sync -> m_crud: getSystemMetadata(token, GUID)
+    activate m_crud
     note right
       The association between data and 
       science metadata is created on 
       the Member Node (or by the ITK).
     end note
     c_sync <-- m_crud: SystemMetadata
-    c_sync -> c_sync: parse -> is ScienceMetadata?
-    note right
-      Parse the sysmeta to determine if Science Metadata 
-      needs to be retrieved.
-    end note
-    alt GUID refers to data
+    deactivate m_crud
+    c_sync -> c_reg: isScienceMetadata(objectInfo.objectFormat)
+    c_reg -> c_sync: True or False
+    alt Fals (GUID refers to data)
       c_sync -> c_crud: create(GUID, SystemMetadata)
+      deactivate c_sync
       c_crud -> c_crud: log()
-    else GUID refers to ScienceMetadata
+    else True (GUID refers to ScienceMetadata)
       c_sync -> m_crud: get(token, GUID)
-      m_crud --> m_crud: log (REPLICATE)
-      c_sync <-- m_crud: ScienceMetadata
+      activate c_sync
+      activate m_crud
+        m_crud --> m_crud: log (REPLICATE)
+        c_sync <-- m_crud: ScienceMetadata
+      deactivate m_crud
       c_sync -> c_crud: create(GUID, SystemMetadata, ScienceMetadata)
+      deactivate c_sync
       c_crud -> c_crud: log()
     end
   end
@@ -116,11 +143,35 @@ Post Conditions
 Implementation
 ~~~~~~~~~~~~~~
 
-Notes: 
+The Member Node synchronization process will operate in an asynchronous
+manner, with a task queue on the CN service containing a list of objects that
+need to added to the coordinating node populated by scheduled calls to
+:func:`MN_crud.listObjects` and through a new notification API that is called
+by a Member Node after a successful create operation. The task queue is
+processed by a pool of worker threads which retrieve the content using
+:func:`MN_crud.get` and store the content in the Coordinating Node using the
+internal :func:`CN_crud.create` method.
 
-Doesn't appear that there's need for any external interfaces for the
-synchronization process - except perhaps for management ops (manipulating
-timing, balancing, queue size, etc).
+The initial implementation will focus on using only scheduled calls to
+:func:`MN_crud.listObjects` to populate the task queue. The scheduling
+information shall be set during the MN registration process.
+
+Multiple threads will be processing the task queue, the number of threads
+should be adjustable by an administrator. The total number of threads hitting
+on a particular MN should be limited, the limit should be specified in the MN
+capabilities recorded during the registration process.
+
+The tasks queue will need to be thread safe. In the future it may be feasible
+to use a distributed queue (based on Apache MQ or Zookeeper for example;
+shared across the CNs) so that processes on any CN can issue the
+:func:`MN_get` requests.
+
+There will likely be a significant load on the system for indexing as new
+content is being added - this is the case for both Mercury and Metacat.
+Options for disabling indexing for bulk load should be considered.
+
+
+
 
 The synchronization process will certainly be more sophisticated down the road,
 but for now simplicity should be a priority:
@@ -208,7 +259,6 @@ New structures::
     setMemberNodeState(mnState);
     return objectList.length;
   }
-
 
 
 Worker threads are responsible for retrieving each object listed in the
