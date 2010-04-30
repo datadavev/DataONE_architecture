@@ -141,4 +141,21 @@ http://www.ucop.edu/ucophome/coordrev/policy/8-19-92att.html
 
 Note in particular sections IV.D and V.
 
+NESCent and Duke University 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Duke's intellectual property policies are here:
+http://www.provost.duke.edu/pdfs/intelProp.pdf
+
+Todd Vision says:
+We discussed this policy with Duke's legal folks ~5 yrs ago, and the
+agreed interpretation of that language is that, since research
+software at NESCent is not commissioned by Duke or serving a
+'utilitarian' purpose within the institution, the copyright for that
+software vests with the individual creators, unless the grant
+explicitly specifies some other arrangement....So with DataONE
+products, we are like UT Knoxville, in that whatever terms DataONE
+decides will govern the software produced in that collaboration.  And
+if nothing is decided, the copyright to any work that Ryan creates
+under DataONE is assigned to Ryan.
 
