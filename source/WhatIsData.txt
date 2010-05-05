@@ -358,7 +358,24 @@ physical, chemical, and biological oceanography, fisheries, marine
 contamination/pollution, and marine meteorology. The ROSCOP database is
 maintained by ICES
 
+Additional specifications in use by relevant agencies
+-----------------------------------------------------
 
+ISO 2146
+~~~~~~~~
+Information and Documentation - Registry Services for Libraries and Related
+Organisations. Used by the Australian National Data Service (ANDS) for 
+describing data collections in ANDS, which for many Australian data sets
+corresponds to the concept of a 'data set' used here. The term 'collection' 
+is loosely defined so that different disciplines can apply it appropriately.
+
+See: http://www.nla.gov.au/wgroups/ISO2146/
+Schema: http://www.nla.gov.au/wgroups/ISO2146/n198.xsd
+
+ANZLIC Metadata Profile
+~~~~~~~~~~~~~~~~~~~~~~~
+A profile of ISO 19115 for Australia.  See:
+http://www.osdm.gov.au/ANZLIC_MetadataProfile_v1-1.pdf?ID=303
 
 .. raw:: latex
 
