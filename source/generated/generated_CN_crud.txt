@@ -22,8 +22,9 @@
        :class:`systemMetadata<Types.SystemMetadata>`, ``scienceMetadata``)
        ``->`` boolean
    * - :func:`reserveIdentifier`
-     - (:class:`token<Types.AuthToken>`, ``[scope]``, ``[format]``) ``->``
-       :class:`Types.Identifier`
+     - (:class:`token<Types.AuthToken>`,
+       :class:`[identifier]<Types.Identifier>`, ``[scope]``, ``[format]``)
+       ``->`` :class:`Types.Identifier`
    * - :func:`assertRelation`
      - (:class:`token<Types.AuthToken>`, :class:`idOfSubject<Types.Identifier>`,
        :class:`relationship<Types.???>`, :class:`idOfObject<Types.Identifier>`)
@@ -221,7 +222,7 @@
 
 ----
 
-.. function:: reserveIdentifier(token,[scope],[format]) -> Identifier
+.. function:: reserveIdentifier(token,[identifier],[scope],[format]) -> Identifier
 
    Given an optional scope and format, reserves and returns an identifier within
    that scope and format that is unique and will not be used by any other
@@ -234,6 +235,11 @@
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
+
+   :param identifier: An optional identifier proposed by the client. If no
+     identifier is provided then one will be automatically generated.
+
+   :type identifier: :class:`Types.Identifier`
 
    :param scope: An optional string to be used to qualify the scope of the
      identifer namespace, which is applied differently depending on the format
