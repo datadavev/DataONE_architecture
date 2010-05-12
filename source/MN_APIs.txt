@@ -15,6 +15,7 @@ Member Node APIs
 .. toctree::
    :maxdepth: 3
 
+   mn_api_authentication
    mn_api_authorization
    mn_api_crud
    mn_api_replication

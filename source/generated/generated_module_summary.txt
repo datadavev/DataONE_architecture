@@ -254,8 +254,8 @@
      - Sets the access permissions for an object identified by `guid`.
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
-   * - :mod:`MN_authorization`
-     - :func:`MN_authorization.login`
+   * - :mod:`MN_authentication`
+     - :func:`MN_authentication.login`
      - Authenticates a user for interaction with the DataONE system. The
        returned token is trusted throughout the DataONE system as a reliable
        statement as to the identity of the authenticated user. :func:`login` may
@@ -266,10 +266,10 @@
 
        Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
    * - \
-     - :func:`MN_authorization.logout`
+     - :func:`MN_authentication.logout`
      - Revokes trust in the supplied token, making it invalid for further use
        within the DataONE system.
-   * - \
+   * - :mod:`MN_authorization`
      - :func:`MN_authorization.isAuthorized`
      - Test if the user identified by the provided token has authorization for
        operation on the specified object. .. Note:: Should perhaps add

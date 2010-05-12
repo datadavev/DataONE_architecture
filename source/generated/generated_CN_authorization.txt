@@ -47,22 +47,22 @@
 
    :rtype: boolean
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4600)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1760)``
 
-   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4620)``
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1840)``
 
-   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4560)``
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1800)``
 
-   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4580)``
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1820)``
 
      This error is raised if the request comes from a black listed source (e.g.
      a temporary block may be imposed on a source that calls this method too
      many times within some time interval)
 
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4601)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1780)``
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4602)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1761)``
 
 
 

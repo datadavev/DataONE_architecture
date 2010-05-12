@@ -56,22 +56,22 @@
 
    :rtype: :class:`Types.AuthToken`
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4390)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1620)``
 
-   :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=4360)``
+   :raises Exceptions.InvalidCredentials: ``(errorCode=401, detailCode=1640)``
 
      The supplied credentials were invalid (password + username don't jive)
 
 
-   :raises Exceptions.AuthenticationTimeout: ``(errorCode=408, detailCode=4380)``
+   :raises Exceptions.AuthenticationTimeout: ``(errorCode=408, detailCode=1680)``
 
      A response from the authentication service was not received before the
      operation timed out.
 
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4361)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1600)``
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4362)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1601)``
 
 
 

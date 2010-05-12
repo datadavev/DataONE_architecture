@@ -66,21 +66,21 @@
 
    :rtype: bytes
 
-   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4000)``
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1000)``
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4001)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1001)``
 
-   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4020)``
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1020)``
 
      The object specified by the identifier is not present on this (or any) CN.
      The response body should contain a reference to :func:`CN_crud.resolve`.
 
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4030)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1030)``
 
-   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4010)``
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1010)``
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4002)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1002)``
 
 
 
@@ -107,25 +107,25 @@
 
    :rtype: :class:`Types.SystemMetadata`
 
-   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=4050)``
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1050)``
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4051)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1041)``
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4070)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1090)``
 
-   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4040)``
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1040)``
 
      The principal identified by token does not have READ permission on the
      object.
 
 
-   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4060)``
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1060)``
 
      There is no object identified by ``identifier`` and so no system metadata
      can be returned.
 
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4052)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1080)``
 
 
 
@@ -365,14 +365,14 @@
 
    :rtype: 
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4800)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1500)``
 
      Define the type of the Log Event
 
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4810)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1510)``
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4801)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1501)``
 
 
 
@@ -397,14 +397,16 @@
 
    :rtype: :class:`Types.Checksum`
 
-   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=4900)``
+   :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1402)``
 
-   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=4901)``
+   :raises Exceptions.ServiceFailure: ``(errorCode=500, detailCode=1410)``
 
-   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=4910)``
+   :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1420)``
 
-   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=4920)``
+   :raises Exceptions.NotAuthorized: ``(errorCode=401, detailCode=1400)``
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=4930)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1402)``
+
+   :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1430)``
 
 

@@ -235,7 +235,7 @@
      - :func:`getChecksum <MN_crud.getChecksum>`
      - InvalidRequest
      - 400
-     - 1440
+     - 1402
    * - :mod:`MN_crud`
      - :func:`getChecksum <MN_crud.getChecksum>`
      - ServiceFailure
@@ -251,11 +251,6 @@
      - NotImplemented
      - 501
      - 1401
-   * - :mod:`MN_crud`
-     - :func:`getChecksum <MN_crud.getChecksum>`
-     - InvalidRequest
-     - 400
-     - 1402
    * - :mod:`MN_crud`
      - :func:`getLogRecords <MN_crud.getLogRecords>`
      - NotAuthorized
@@ -360,62 +355,62 @@
      - :func:`get <CN_crud.get>`
      - NotAuthorized
      - 401
-     - 4000
+     - 1000
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - NotImplemented
      - 501
-     - 4001
+     - 1001
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - NotFound
      - 404
-     - 4020
+     - 1020
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - ServiceFailure
      - 500
-     - 4030
+     - 1030
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - InvalidToken
      - 401
-     - 4010
+     - 1010
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - InvalidRequest
      - 400
-     - 4002
+     - 1002
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - InvalidToken
      - 401
-     - 4050
+     - 1050
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - NotImplemented
      - 501
-     - 4051
+     - 1041
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - ServiceFailure
      - 500
-     - 4070
+     - 1090
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - NotAuthorized
      - 401
-     - 4040
+     - 1040
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - NotFound
      - 404
-     - 4060
+     - 1060
    * - :mod:`CN_crud`
      - :func:`getSystemMetadata <CN_crud.getSystemMetadata>`
      - InvalidRequest
      - 400
-     - 4052
+     - 1080
    * - :mod:`CN_crud`
      - :func:`resolve <CN_crud.resolve>`
      - InvalidToken
@@ -535,42 +530,47 @@
      - :func:`log <CN_crud.log>`
      - InvalidRequest
      - 400
-     - 4800
+     - 1500
    * - :mod:`CN_crud`
      - :func:`log <CN_crud.log>`
      - ServiceFailure
      - 500
-     - 4810
+     - 1510
    * - :mod:`CN_crud`
      - :func:`log <CN_crud.log>`
      - NotImplemented
      - 501
-     - 4801
+     - 1501
    * - :mod:`CN_crud`
      - :func:`getChecksum <CN_crud.getChecksum>`
      - NotImplemented
      - 501
-     - 4900
+     - 1402
    * - :mod:`CN_crud`
      - :func:`getChecksum <CN_crud.getChecksum>`
      - ServiceFailure
      - 500
-     - 4901
+     - 1410
    * - :mod:`CN_crud`
      - :func:`getChecksum <CN_crud.getChecksum>`
      - NotFound
      - 404
-     - 4910
+     - 1420
    * - :mod:`CN_crud`
      - :func:`getChecksum <CN_crud.getChecksum>`
      - NotAuthorized
      - 401
-     - 4920
+     - 1400
    * - :mod:`CN_crud`
      - :func:`getChecksum <CN_crud.getChecksum>`
      - InvalidRequest
      - 400
-     - 4930
+     - 1402
+   * - :mod:`CN_crud`
+     - :func:`getChecksum <CN_crud.getChecksum>`
+     - InvalidToken
+     - 401
+     - 1430
    * - :mod:`CN_query`
      - :func:`search <CN_query.search>`
      - InvalidToken
@@ -600,52 +600,52 @@
      - :func:`getLogRecords <CN_query.getLogRecords>`
      - InvalidToken
      - 401
-     - 4290
+     - 1470
    * - :mod:`CN_query`
      - :func:`getLogRecords <CN_query.getLogRecords>`
      - ServiceFailure
      - 500
-     - 4350
+     - 1490
    * - :mod:`CN_query`
      - :func:`getLogRecords <CN_query.getLogRecords>`
      - NotAuthorized
      - 401
-     - 4320
+     - 1460
    * - :mod:`CN_query`
      - :func:`getLogRecords <CN_query.getLogRecords>`
      - NotImplemented
      - 501
-     - 4321
+     - 1461
    * - :mod:`CN_query`
      - :func:`getLogRecords <CN_query.getLogRecords>`
      - InvalidRequest
      - 400
-     - 4322
+     - 1480
    * - :mod:`CN_authentication`
      - :func:`login <CN_authentication.login>`
      - ServiceFailure
      - 500
-     - 4390
+     - 1620
    * - :mod:`CN_authentication`
      - :func:`login <CN_authentication.login>`
      - InvalidCredentials
      - 401
-     - 4360
+     - 1640
    * - :mod:`CN_authentication`
      - :func:`login <CN_authentication.login>`
      - AuthenticationTimeout
      - 408
-     - 4380
+     - 1680
    * - :mod:`CN_authentication`
      - :func:`login <CN_authentication.login>`
      - NotImplemented
      - 501
-     - 4361
+     - 1600
    * - :mod:`CN_authentication`
      - :func:`login <CN_authentication.login>`
      - InvalidRequest
      - 400
-     - 4362
+     - 1601
    * - :mod:`CN_authentication`
      - :func:`setOwner <CN_authentication.setOwner>`
      - ServiceFailure
@@ -730,32 +730,32 @@
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - ServiceFailure
      - 500
-     - 4600
+     - 1760
    * - :mod:`CN_authorization`
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - InvalidToken
      - 401
-     - 4620
+     - 1840
    * - :mod:`CN_authorization`
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - NotFound
      - 404
-     - 4560
+     - 1800
    * - :mod:`CN_authorization`
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - NotAuthorized
      - 401
-     - 4580
+     - 1820
    * - :mod:`CN_authorization`
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - NotImplemented
      - 501
-     - 4601
+     - 1780
    * - :mod:`CN_authorization`
      - :func:`isAuthorized <CN_authorization.isAuthorized>`
      - InvalidRequest
      - 400
-     - 4602
+     - 1761
    * - :mod:`CN_authorization`
      - :func:`setAccess <CN_authorization.setAccess>`
      - InvalidToken
@@ -786,48 +786,48 @@
      - InvalidRequest
      - 400
      - 4402
-   * - :mod:`MN_authorization`
-     - :func:`login <MN_authorization.login>`
+   * - :mod:`MN_authentication`
+     - :func:`login <MN_authentication.login>`
      - NotImplemented
      - 501
      - 1600
-   * - :mod:`MN_authorization`
-     - :func:`login <MN_authorization.login>`
+   * - :mod:`MN_authentication`
+     - :func:`login <MN_authentication.login>`
      - ServiceFailure
      - 500
      - 1620
-   * - :mod:`MN_authorization`
-     - :func:`login <MN_authorization.login>`
+   * - :mod:`MN_authentication`
+     - :func:`login <MN_authentication.login>`
      - InvalidCredentials
      - 401
      - 1640
-   * - :mod:`MN_authorization`
-     - :func:`login <MN_authorization.login>`
+   * - :mod:`MN_authentication`
+     - :func:`login <MN_authentication.login>`
      - AuthenticationTimeout
      - 408
      - 1680
-   * - :mod:`MN_authorization`
-     - :func:`login <MN_authorization.login>`
+   * - :mod:`MN_authentication`
+     - :func:`login <MN_authentication.login>`
      - InvalidRequest
      - 400
      - 1601
-   * - :mod:`MN_authorization`
-     - :func:`logout <MN_authorization.logout>`
+   * - :mod:`MN_authentication`
+     - :func:`logout <MN_authentication.logout>`
      - ServiceFailure
      - 500
      - 1700
-   * - :mod:`MN_authorization`
-     - :func:`logout <MN_authorization.logout>`
+   * - :mod:`MN_authentication`
+     - :func:`logout <MN_authentication.logout>`
      - NotImplemented
      - 501
      - 1720
-   * - :mod:`MN_authorization`
-     - :func:`logout <MN_authorization.logout>`
+   * - :mod:`MN_authentication`
+     - :func:`logout <MN_authentication.logout>`
      - InvalidToken
      - 401
      - 1740
-   * - :mod:`MN_authorization`
-     - :func:`logout <MN_authorization.logout>`
+   * - :mod:`MN_authentication`
+     - :func:`logout <MN_authentication.logout>`
      - InvalidRequest
      - 400
      - 1701

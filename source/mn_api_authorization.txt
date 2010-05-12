@@ -1,18 +1,11 @@
 Authorization API
 ~~~~~~~~~~~~~~~~~
 
-For Version 0.3: There is no authorization API for this version. All
-authorization and authentication will be handled by network configuration,
-out-of-band with respect to the MN APIs.
-
-
 .. module:: MN_authorization
-   :synopsis: Authentication and authorization operations for Member Nodes
+   :synopsis: Authorization operations for Member Nodes
 
-Provides a mechanism for a User (:term:`principle`) to authenticate themselves
-with the DataONE system and verify that an operation is permitted for an
-authenticated User. See the document :doc:`Authentication` for more details on
-some authentication options.
+Provides a mechanism for a User (:term:`principle`) to verify that an operation is permitted for an authenticated User. See the document
+:doc:`Authentication` for more details on some authentication and authorization options.
 
 
 .. include:: generated/generated_MN_authorization.txt

@@ -472,7 +472,7 @@
 
    :raises Exceptions.NotFound: ``(errorCode=404, detailCode=1420)``
 
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1440)``
+   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1402)``
 
      A supplied parameter was invalid, most likely an unsupported checksum
      algorithm was specified, in which case the error message should include an
@@ -484,8 +484,6 @@
    :raises Exceptions.InvalidToken: ``(errorCode=401, detailCode=1430)``
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=1401)``
-
-   :raises Exceptions.InvalidRequest: ``(errorCode=400, detailCode=1402)``
 
 
 
