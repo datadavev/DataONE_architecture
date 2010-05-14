@@ -208,10 +208,12 @@ delimiting records::
 
 Expressed in XML::
 
-  <ObjectList xmlns='http://ns.dataone.org/core/objects'
-            start='_integer_'
-            count='_integer_'
-            total='_integer_'>
+  <d1:listObjects xmlns:d1="http://dataone.org/service/types/ListObjects/0.1"
+    xmlns:common="http://dataone.org/service/types/common/0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    count="_integer_" 
+    start="_integer_" 
+    total="_integer_">
     <objectInfo>
       <identifier>_identifier_</identifier>
       <objectFormat>_object class_</objectFormat>
@@ -220,7 +222,7 @@ Expressed in XML::
       <size>_byte size of object_</size>
     </objectInfo>
     ...
-  </ObjectList>
+  </d1:listObjects>
 
 
 Expressed in RDF/XML::
