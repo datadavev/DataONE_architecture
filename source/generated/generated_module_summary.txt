@@ -35,7 +35,7 @@
        object or a science metadata object. This method is called by clients to
        create new data objects on Member Nodes.
 
-       The `guid` must not exist in the DataONE system or must have been
+       The `id` must not exist in the DataONE system or must have been
        previously reserved using  :func:`CN_crud.reserveIdentifier`.
 
        Appears in functional use cases: :doc:`UC04 </UseCases/04_uc>`,

@@ -380,6 +380,8 @@ Scenario 4. Authentication Verified Algorithmically by Any Node
 
    \newpage
 
+----
+
 Authentication in HTTP
 ----------------------
 

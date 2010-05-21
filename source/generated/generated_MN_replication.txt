@@ -14,7 +14,7 @@
        :class:`[objectFormat]<Types.ObjectFormat>`, ``[replicaStatus]``,
        ``[start=0]``, ``[count=1000]``) ``->`` :class:`Types.ObjectList`
    * - :func:`replicate`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        :class:`sourceNode<Types.NodeReference>`) ``->`` boolean
 
 
@@ -102,7 +102,7 @@
 
 ----
 
-.. function:: replicate(token,guid,sourceNode) -> boolean
+.. function:: replicate(token,id,sourceNode) -> boolean
 
    Called by a Coordinating Node to indicate to the Member Node that it should
    retrieve the specified object from the indicated Member Node and store it
@@ -114,9 +114,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier of the object that is to be copied.
+   :param id: Identifier of the object that is to be copied.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param sourceNode: The node from which the content should be retrieved.
 

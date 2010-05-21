@@ -1,13 +1,10 @@
 REST Interface
 --------------
 
-:status: DRAFT.  MN portion outlined, CN portion still to do.
-
-:author: Dave V.
-
 :About: 
-  This document proposes a Representational State Transfer (REST) model for
-  DataONE Member Nodes and maps the v0.3 API methods to HTTP REST calls.
+  This document describes the Representational State Transfer (REST) model for
+  DataONE Member and Coordinating Nodes and maps the API methods to HTTP REST
+  calls.
 
 .. contents::
    :local: 
@@ -18,8 +15,8 @@ The REST interface through which the methods described in the sections
 
 Basic information:
 
-- Content is modeled as collections, with GUIDs identifying individual items
-  of a collection.
+- Content is modeled as collections, with :class:`GUIDs <Types.Identifier>`
+  identifying individual items of a collection.
 
 - The HTTP verbs HEAD, GET, POST, PUT, DELETE are used for retrieving
   information about content, retrieving content, creating content, updating
@@ -28,51 +25,143 @@ Basic information:
 - If state information is required (e.g. authentication token), it is passed
   in the HTTP headers.
 
-- Cache information should be respected. Caching is an important mechanism for
-  achieving scalability 
+- Hints to support efficient caching (e.g. content time stamps) should be
+  respected. Caching is an important mechanism for achieving scalability
 
-- Several URL patterns listed below support parameters. These should be
-  interpreted without regard to case (i.e. case insensitive).
+- Several URL patterns listed below support parameters as key, value pairs.
+  Unless otherwise indicted, the key is not case sensitive, though the case of
+  the value is significant.
 
 Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s include:
 
-:``/object/``:
+:``/object``:
   The set of objects available for retrieval from the node.
 
-:``/log/``:
+:``/object/meta``:
+  Metadata about objects available for retrieval from the node.  
+
+:``/log``:
   Log records held on the node.
 
-:``/reserve/``:
+:``/reserve``:
   Identifiers that have been reserved for future use.
+
+:``/account``:
+  Principal and ownership related functionality.
+
 
 .. include:: generated/generated_rest_summarytable.txt
 
 
-.. note:: 
-   Previous versions of this document referred to a ``/meta/`` collection. This
-   has been removed as it is redundant and can be emulated by
-   ``/object/?oclass=sysmeta`` for the collection, and ``/object/123/meta`` for
-   the sysmeta for a specific object.
-
 .. note::
-   GUID is used interchangeably with the term 'identifier' in this document. For all purposes of DataONE, a 'guid' is an identifier.
+   GUID is used interchangeably with the term 'identifier' in this document.
+   For all purposes of DataONE, a 'guid' is an identifier.
 
 
-Object Collection
-~~~~~~~~~~~~~~~~~
+**Serialization**
 
-The ``/object/`` collection represents any object that can be identified
+The format of the response (except for responses from :func:`MN_crud.get` or
+:func:`CN_crud.get`) is determined by the ``Accept:`` header provided in the
+request. Acceptable content types include:
+
+:``application/json``:
+   The response structure is returned as a JSON_ encoded string. The service
+   should support an additional parameter "jsonvar" which would cause the
+   value of the parameter to be set as a variable name for the resulting JSON
+   block (e.g. ``&jsonvar=rs1`` would cause the JSON output to be "rs1=...").
+
+:``text/xml``:
+
+  The response is serialized as XML.
+
+:``application/rdf+xml``:
+
+  The response is serialized in RDF.
+
+:``text/csv``:
+
+  The response is serialized as a comma delimited set of fields, with records delimited by a new line.
+
+:``text/html``:
+
+  A HTML rendering of the response.
+
+Regardless of the format, the response is always encoded using the UTF-8
+character set.
+
+If the service is not able to provide a response in the specified format, then
+the node should return an error code of :exc:`Exceptions.NotImplemented`, with
+the HTTP error code set to 406.
+
+.. _JSON: http://www.json.org/
+
+
+**Parameters in Requests**
+
+Many of the URL patterns described here accept parameters in the URL. In these
+cases, the parameter name is not case sensitive, however the value of the
+parameter should be preserved unless specifically indicated otherwise.
+
+
+----
+
+The Object Collection
+~~~~~~~~~~~~~~~~~~~~~
+
+The ``/object`` collection represents any object that can be identified
 within the DataONE system. These can be :term:`science data`, :term:`science
 metadata`, or potentially other types of objects (e.g. :term:`principal`\s,
 work flows, relationships). It is anticipated that fundamental access and
 manipulation of those new object classes will occur through the same
-``/object/`` collection interface.
+``/object`` collection interface.
 
-The object collection is exposed by both MNs and CNs.
+The object collection is exposed by both MNs and CNs. On a MN, the object
+collection is implemented by :func:`MN_crud.listObjects` and on a CN by
+:func:`CN_query.search`.
 
 
-``/object/``
-^^^^^^^^^^^^
+.. list-table:: Response for HTTP operations on ``/object`` for different HTTP request verbs.
+   :widths: 2 20
+   :header-rows: 1
+
+   * - Verb
+     - Response
+   * - HEAD
+     - Returns information about the collection in the headers, including last
+       modified to indicate when the collection was last updated. Note that
+       the HEAD response is the same as a GET response without a body.
+   * - GET
+     - Return a :class:`Types.ObjectList`
+   * - POST
+     - Creates a new instance with the specified identifier, implementing
+       :func:`MN_crud.create`. The DataONE authorization token should be
+       placed in the appropriate HTTP Header field (to be determined), the
+       identifier to be used, the object content, and sysmeta content are
+       encoded in the request body using `MIME-multipart Mixed Media Type`_,
+       where the identifier part has the name of 'id', the object part has the
+       name 'object', and the sysmeta part has the name 'systemmetadata'.
+       Parameter names are not case sensitive.
+   * - PUT
+     - Updates an existing instance identified by identifier, implementing
+       :func:`MN_crud.update`. The DataONE authorization token should be
+       placed in the appropriate HTTP Header field (to be determined), the
+       identifier to be used, the object content, and sysmeta content are
+       encoded in the request body using `MIME-multipart Mixed Media Type`_,
+       where the identifier part has the name 'id', the object part has the
+       name 'object', and the sysmeta part has the name 'systemmetadata'. The
+       obsoletedGUID parameter should be url-form-encoded in the query string
+       with the name 'obsoletedGUID'.
+   * - DELETE
+     - Removes the specified instance from the collection, implementing
+       :func:`MN_crud.delete`. The DataONE authorization token should be
+       placed in the appropriate HTTP Header field (to be determined). 
+
+
+.. _MIME-multipart Mixed Media Type: http://tools.ietf.org/html/rfc2046#section-5.1.3
+
+
+``GET /object``
+^^^^^^^^^^^^^^^
 
 List of objects that are present on the node, ordered with newest first.
 
@@ -80,86 +169,60 @@ Implements the functions:
 
 - :func:`MN_replication.listObjects`
 
-- :func:`CN_query.search` with appropriate parameters
+- :func:`CN_query.search`
+
+The return value is a :class:`Types.ObjectList`
 
 
-**Optional Parameters**
+**Parameters**
 
-:start: Zero based index of the first item to return
+Parameter names are not case sensitive. The case of values should be preserved
+however, unless otherwise indicated.
 
-:count: Maximum number of items to return
+:start: (optional) Zero based index of the first item to return
 
-:objectFormat: Restrict the response to the specified object class. 
+:count: (optional) Maximum number of items to return
+
+:objectFormat: (optional) Restrict the response to the specified object class. 
 
 :startTime: 
-  Specifies the beginning of the time range from which to return object (>=).
-  Queries against :attr:`SystemMetadata.dateSysMetadataModified`
+  (optional) Specifies the beginning of the time range from which to return
+  object (>=). Queries against :attr:`SystemMetadata.dateSysMetadataModified`
 
 :endTime: 
-  Specifies the end of the time range to which to return object (<=). Queries
-  against :attr:`SystemMetadata.dateSysMetadataModified`
+  (optional) Specifies the end of the time range to which to return object
+  (<=). Queries against :attr:`SystemMetadata.dateSysMetadataModified`
 
 .. note:: startTime <= :attr:`SystemMetadata.dateSysMetadataModified` <= endTime
 
 :jsonvar: 
-  Applicable only when the JSON response is requested. Indicates the variable
-  name that will be prepended to the JSON response. For example, if
-  ``jsonvar=rs1``, the JSON result would start with ``rs1=``.
+  (optional) Applicable only when the JSON response is requested. Indicates
+  the variable name that will be prepended to the JSON response. For example,
+  if ``jsonvar=rs1``, the JSON result would start with ``rs1=``. This enables
+  the response to be embedded as a script block in a static HTML page
 
 :orderby:
-  Indicates which attribute will be used to sort the results, and whether the
-  sorting should be in ascending or descending order. The value of the
-  parameter must be a valid attribute name, and should be prefixed with
+  (optional) Indicates which attribute will be used to sort the results, and
+  whether the sorting should be in ascending or descending order. The value of
+  the parameter must be a valid attribute name, and should be prefixed with
   ``asc_`` to indicate ascending order, or ``desc_`` to indicate descending
   order. If neither the ``asc_`` or ``desc_`` prefix is present, then the
   default should be ascending.
 
+.. TODO:: It is not clear what is meant by "attribute" here
+
 
 **Response**
 
-The expected response when a user agent sends a GET request to a Member Node
-exposing the DataONE REST API ``/object/`` collection is an extract from the
-total list of identifiers that the Member Node is able to provide access to
+:class:`Types.ObjectList` serialized according to the requested format as
+indicated in the ``Accept:`` HTTP header.
+
+The expected response when a user agent sends a GET request to a member node
+exposing the DataONE REST API ``/object`` collection is an extract from the
+total list of identifiers that the member node is able to provide access to
 when the request was received. 
 
-The format of the response is determined by the ``Accept:`` HTTP header
-provided by the client, and may be one of: ``application/json`` (default),
-``text/csv``, ``text/xml``, ``application/rdf+xml``. Regardless of the format,
-the response is always encoded using the UTF-8 character set.
-
-If the requested format is not available, then the node should return an error
-code (:exc:`Exceptions.NotImplemented`, with errorCode set to 406).
-
-The structure of the response is::
-
-  RESPONSE      = RESPONSE_INFO + RESPONSE_BODY
-  RESPONSE_INFO = START + COUNT + TOTAL
-    START       = integer, zero based index of first item
-    COUNT       = integer, number of items in response
-    TOTAL       = integer, total number of items in collection
-  RESPONSE_BODY = n*(guid + GUID_INFO)
-    guid        = object identifier, string
-  GUID_INFO     = OBJECT_CLASS + HASH + TIME_STAMP + SIZE
-  OBJECT_CLASS  = 'data' | 'metadata' 
-  HASH          = SHA-1 | SHA-224 | MD5 hash
-  HASH_TYPE	= algorithm type
-  TIME_STAMP    = ISO8601 formatted date time, GMT, YYYY-MM-DDTHH:mm:SS.FFFZ
-    YYYY        = Year
-    MM          = Month
-    DD          = Day
-    HH          = Hour
-    mm          = Minute
-    SS          = Second
-    FFF         = Fraction of second
-  SIZE = Byte size of object
-
-
-Expressed in JSON. Note that when a JSON response type is requested, the
-service should support an additional parameter "jsonvar" which would cause the
-value of the parameter to be set as a variable name for the resulting JSON
-block (e.g. ``&jsonvar=rs1`` would cause the json output to be "rs1=...").
-This enables the response to be embedded as a script block in a static HTML
-page::
+Example of a JSON response structure::
 
   {
     'start': <integer>,
@@ -247,29 +310,6 @@ Expressed in RDF/XML::
   </rdf:RDF>
 
 
-.. table:: 
-  Response for HTTP operations on ``/object/`` for different HTTP request verbs
-
-  ======= ===========================================================================
-  Verb    Response
-  ======= ===========================================================================
-  HEAD    Returns information about the collection in the headers, including last 
-          modified to indicate when the collection was last updated.  Note that the 
-          HEAD response is the same as a GET response without a body.
-
-  GET     List of GUIDs, expressed in JSON, CSV, xml, or RDF/xml. The
-          response is encoded using the encoding type specified in the client
-          ``Accept:`` header parameter which can be one of
-          ``application/json``, ``text/csv``, ``text/xml``, or
-          ``application/rdf+xml``.  Default is JSON.
-
-  POST    No operation
-
-  PUT     No operation
-
-  DELETE  No operation
-  ======= ===========================================================================
-
 
 **Examples**
 
@@ -304,7 +344,7 @@ Retrieve a list of identifiers from a member node in plain text format::
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
   #0,1000,159734
-  identifier,objectFormat,algorithm,checksum, dateSysMetadataModified,size
+  identifier,objectFormat,algorithm,checksum,dateSysMetadataModified,size
   "ABC123","data","SHA-1","b3a1617100c2b782fe5f9f2050dc714fdd05df28","2009-12-02T17:40:03.0Z",1040032112
   ...
   "XYZ332","science metadata","SHA-1","008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07","2009-11-30T06:44:19.0Z",1044
@@ -378,98 +418,37 @@ might be specified, and similarly for newest first::
 ----
 
 
-``/object/<guid>/``
-^^^^^^^^^^^^^^^^^^^
+``GET /object?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Operates on individual items of the ``/object/`` collection identified by an
-identifier.  This URL pattern is implemented by Member and Coordinating Nodes.
+Operates on individual items of the ``/object`` collection identified by the
+identifier ``<guid>``. This URL pattern is implemented by Member and
+Coordinating Nodes.
 
 Implemented by the methods:
 
 - :func:`MN_crud.get`
 
-- :func:`MN_crud.create`
-
-- :func:`MN_crud.update`
-
-- :func:`MN_crud.delete`
-
 - :func:`CN_crud.get`
-
-
-.. table:: 
-  Response to HTTP requests against ``/object/<guid>/`` for different verbs.
-  GET and HEAD operations are permitted from any origin. POST, PUT, and HEAD
-  operations are only permitted from Coordinating Nodes.
-
-  ====== ===========================================================================
-  Verb   Response
-  ====== ===========================================================================
-  HEAD   Returns basic information about the object.
-  
-         ``Last-Modified:`` Date object was last modified.
-  
-         ``Content-Type:`` The MIME type of the object
-  
-         ``Content-Length:`` Byte size of the object
-
-  GET    Returns the bytes of the object, implementing :func:`MN_crud.get` and
-         :func:`CN_crud.get`
-
-  POST   Creates a new instance with the specified GUID, implementing 
-         :func:`MN_crud.create`. The DataONE authorization token should be placed 
-         in the appropriate HTTP Header field (to be determined), the GUID to be 
-         used is in the request URI, and the object content and sysmeta content are
-         encoded in the request body using `MIME-multipart Mixed Media Type
-         <http://tools.ietf.org/html/rfc2046#section-5.1.3>`_, where the 
-         object part has the name 'object', and the sysmeta part has the name 
-         'systemmetadata'.  Parameter names are not case sensitive.
-
-  PUT    Updates an existing instance identified by GUID, implementing 
-         :func:`MN_crud.update`.  The DataONE authorization token should be placed 
-         in the appropriate HTTP Header field (to be determined), the GUID to be 
-         used is in the request URI, and the object content and sysmeta content are
-         encoded in the request body using `MIME-multipart Mixed Media Type
-         <http://tools.ietf.org/html/rfc2046#section-5.1.3>`_, where the 
-         object part has the name 'object', and the sysmeta part has the name 
-         'system_metadata'.  The obsoletedGUID parameter should be url-form-encoded 
-         in the query string with the name 'obsoletedGUID'.
-
-  DELETE Removes the specified instance from the collection, implementing
-         :func:`MN_crud.delete`. The DataONE authorization token should be placed
-         in the appropriate HTTP Header field (to be determined).
-  ====== ===========================================================================
-
 
 **Examples**
 
-
-(HEAD) Retrieve information about the object with identifier "ABC123"::
-
-  curl -I http://mn1.dataone.org/object/ABC123/
-
-  HTTP/1.1 200 OK
-  Date: Wed, 16 Dec 2009 13:58:34 GMT
-  Content-Length: 1040032112
-  Content-Type: application/octet-stream
-
 (GET) Retrieve the object with identifier "XYZ332"::
 
-  curl http://m1.dataone.org/object/XYZ332/
+  curl http://m1.dataone.org/object?id=XYZ332
   
   ... data ...
 
-
 (GET) Attempt to retrieve a non-existent object (and show headers in response)::
 
-  curl -D - http://m1.dataone.org/object/XYZ33255/
-  
+  curl -D - http://m1.dataone.org/object?id=XYZ33255
+
   HTTP/1.1 404 Not Found
   Content-Type: 
   Date: Wed, 16 Dec 2009 13:58:34 GMT
   Content-Length: 355
-  
-  
+
+
   <html>
     <head>
       <meta http-equiv="content-type" content="text/html;charset=utf-8">
@@ -491,19 +470,48 @@ Implemented by the methods:
         <dt>method</dt>
         <dd>mn.get</dd>
         <dt>hint</dt>
-        <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a>
+        <dd>Please try <a href='http://cn.dataone.org/cn/resolve?id=123XYZ'> resolving</a>
             at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
       </dl>
     </body>
   </html>
 
 
-(POST) Create a new object with a given identifier::
+----
+
+``HEAD /object?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Examples**
+
+(HEAD) Retrieve information about the object with identifier "ABC123"::
+
+  curl -I http://mn1.dataone.org/object?id=ABC123
+
+  HTTP/1.1 200 OK
+  Date: Wed, 16 Dec 2009 13:58:34 GMT
+  Content-Length: 1040032112
+  Content-Type: application/octet-stream
+
+----
+
+
+``POST /object``
+^^^^^^^^^^^^^^^^
+
+Implemented by the methods:
+
+- :func:`MN_crud.create`
+
+**Examples**
+
+(POST) Create a new object with a given identifier (``XYZ33256``)::
 
   curl -H "AuthToken: UR45W21A1S19ZE3CC9" \
        -F "file=@datafile.csv;name=object" \
        -F "file=@sysmeta.xml;name=systemmetdata" \
-       http://m1.dataone.org/object/XYZ33256/
+       -d "id=XYZ33256"
+       http://m1.dataone.org/object
   
   HTTP/1.1 200 Success
   Content-Type: 
@@ -516,60 +524,55 @@ Implemented by the methods:
 ----
 
 
-``/object/<guid>/meta/``
-^^^^^^^^^^^^^^^^^^^^^^^^
+``PUT /object?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implemented by the methods:
+
+- :func:`MN_crud.update`
+
+
+----
+
+
+``DELETE /object?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implemented by the methods:
+
+- :func:`MN_crud.delete`
+
+
+----
+
+
+``GET /object/meta?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Requests the :class:`Types.SystemMetadata` for the specified object. Although
 this access point is supported by both Member and Coordinating Nodes, only the
 responses from Coordinating Nodes should be considered authoritative,
 especially with respect to the :attr:`SystemMetadata.replica` entries.
 
-The ``/object/<guid>/meta`` response format defaults to ``text/xml`` and is
-the only format currently supported. Other formats such as JSON may be
-supported in the future.
+The ``/object/meta`` response format defaults to ``text/xml`` and is the only
+format currently supported. Other formats such as JSON may be supported in the
+future.
 
 
 Implemented by the methods:
 
-- :func:`MN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
+- :func:`MN_crud.getSystemMetadata`
 
-- :func:`CN_crud.getSystemMetadata` (``GET /object/<guid>/meta/``)
-
-
-.. table:: 
-  Responses to HTTP requests against ``/object/<guid>/meta/`` for different
-  verbs.
-
-  ======== ===========================================================================
-  Verb     Response
-  ======== ===========================================================================
-  HEAD     Returns basic information about the system metadata object.
-  
-           ``Last-Modified:`` Date collection was last modified.
-  
-           ``Content-Type:`` The MIME type of the object
-  
-           ``Content-Length:`` Byte size of the object
-
-  GET      Returns the bytes of the system metadata object.
-
-  POST     No Operation
-
-  PUT      No Operation
-
-  DELETE   No Operation
-  ======== ===========================================================================
+- :func:`CN_crud.getSystemMetadata`
 
 
 **Examples**
 
 (GET) Retrieve system metadata from a Member Node for object "XYZ332" which
 happens to be science metadata (an EML document) that describes dataset
-identified by "XYZ333"
+identified by "XYZ333"::
 
-::
-
-  curl http://m1.dataone.org/object/XYZ332/
+  curl http://m1.dataone.org/object/meta?id=XYZ332
 
   <?xml version="1.0" encoding="UTF-8"?>
   <d1:systemMetadata xmlns:d1="http://dataone.org/coordinating_node_sysmeta_0.1"
@@ -601,11 +604,9 @@ identified by "XYZ333"
   </d1:systemMetadata>
 
 
-(GET) Attempt to retrieve system metadata for an object that does not exist.
+(GET) Attempt to retrieve system metadata for an object that does not exist.::
 
-::
-
-  curl http://cn.dataone.org/cn/object/SomeObjectID/meta/
+  curl http://cn.dataone.org/cn/object/meta?id=SomeObjectID
 
   <error errorCode='404' detailCode='4060'>
     <description>The specified object does not exist on this node.</description>
@@ -620,37 +621,29 @@ identified by "XYZ333"
 ----
 
 
-``/object/<guid>/resolve/``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``HEAD /object/meta?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HEAD     Returns basic information about the system metadata object.
+
+         ``Last-Modified:`` Date collection was last modified.
+
+         ``Content-Type:`` The MIME type of the object
+
+         ``Content-Length:`` Byte size of the object
+
+
+----
+
+``GET /object/resolve?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
 hold copies of the object identified by ``<guid>``.
 
 Implemented by the following methods:
 
-- :func:`CN_crud.resolve` (``GET /object/<guid>/resolve/``)
-
-
-.. table:: 
-  Responses to HTTP requests against ``/object/<guid>/resolve/`` for different
-  verbs.
-
-  ======== ===========================================================================
-  Verb     Response
-  ======== ===========================================================================
-  HEAD     Returns basic information resolve response document
-  
-           ``Last-Modified:`` Date the resolve information was last updated for that
-           identifier.  This is helpful to clients that may cache resolve responses.
-  
-  GET      Returns the resolve response document
-
-  POST     No Operation
-
-  PUT      No Operation
-
-  DELETE   No Operation
-  ======== ===========================================================================
+- :func:`CN_crud.resolve` (``GET /object/resolve?id=<guid>``)
 
 
 **Response**
@@ -671,9 +664,9 @@ identifier '1234' that is located on the following nodes:
 ============================ =================================================
 Node Identifier              GET Object URL
 ============================ =================================================
-mn1.dataone.org/mn           ``http://mn1.dataone.org/mn/object/1234``
-mn2.dataone.org/some_base/mn ``http://mn2.dataone.org/some_base/mn/object/1234``
-cn.dataone.org/cn            ``http://cn.dataone.org/object/1234``
+mn1.dataone.org/mn           ``http://mn1.dataone.org/mn/object?id=1234``
+mn2.dataone.org/some_base/mn ``http://mn2.dataone.org/some_base/mn/object?id=1234``
+cn.dataone.org/cn            ``http://cn.dataone.org/object?id=1234``
 ============================ =================================================
 
 
@@ -681,9 +674,9 @@ CSV representation::
 
   #1234
   node,url
-  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
-  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
-  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object?id=1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object?id=1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object?id=1234'
 
 
 JSON representation::
@@ -691,18 +684,18 @@ JSON representation::
    {
     'identifier':'1234',
     'locations': [ 
-      ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object/1234'],
-      ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object/1234'], 
-      ['cn.dataone.org/cn', 'http://cn.dataone.org/cn/object/1234'] ]
+      ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object?id=1234'],
+      ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object?id=1234'], 
+      ['cn.dataone.org/cn', 'http://cn.dataone.org/cn/object?id=1234'] ]
    }
 
 
 XML representation::
 
   <locations identifier='1234'>
-    <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object/1234' />
-    <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object/1234' />
-    <location node='cn.dataone.org/cn' href='http://cn.dataone.org/cn/object/1234' />
+    <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object?id=1234' />
+    <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object?id=1234' />
+    <location node='cn.dataone.org/cn' href='http://cn.dataone.org/cn/object?id=1234' />
   </locations>
 
 
@@ -710,9 +703,9 @@ HTML::
 
   ...
   <ol identifier='1234'>
-    <a href='http://mn1.dataone.org/mn/object/1234'>mn1.dataone.org/mn</a>
-    <a href='http://mn2.dataone.org/some_base/mn/object/1234'>mn1.dataone.org/some_base/mn</a>
-    <a href='http://cn.dataone.org/cn/object/1234'>cn.dataone.org/cn</a>
+    <a href='http://mn1.dataone.org/mn/object?id=1234'>mn1.dataone.org/mn</a>
+    <a href='http://mn2.dataone.org/some_base/mn/object?id=1234'>mn1.dataone.org/some_base/mn</a>
+    <a href='http://cn.dataone.org/cn/object?id=1234'>cn.dataone.org/cn</a>
   </ol>
   ...
 
@@ -721,26 +714,45 @@ HTML::
 
 Using CURL::
 
-  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/1234/locate/
+  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/?id=1234
 
   #1234
   node,url
-  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
-  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
-  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object?id=1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object?id=1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object?id=1234'
+
+----
+
+``HEAD /object/resolve?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HEAD     Returns basic information resolve response document
+
+         ``Last-Modified:`` Date the resolve information was last updated for that
+         identifier.  This is helpful to clients that may cache resolve responses.
+
 
 
 ----
 
-``/object/<guid>/checksum/``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /object/checksum?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
 
 
 ----
 
-``/object/<guid>/isAuthorized/``
+``GET /object/isAuthorized?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+----
+
+``GET /object/assert?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
@@ -748,24 +760,16 @@ pass
 
 ----
 
-``/object/<guid>/assert/``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /object/access?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
 
 
 ----
 
-``/object/<guid>/access/``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-pass
-
-
-----
-
-``/object/<guid>/owner/``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /object/owner?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
 
@@ -777,25 +781,30 @@ Reserve Collection
 
 
 
-``/reserve/``
-^^^^^^^^^^^^^
+``GET /reserve``
+^^^^^^^^^^^^^^^^
 
 Implemented by the methods:
 
-- :func:`CN_crud.listReservedIdentifiers` (``GET /reserve/``)
-
-- :func:`CN_crud.reserveIdentifier` (``POST /reserve/<guid>/``)
-
-- :func:`CN_crud.deleteReservedIdentifier` (``DELETE /reserve/<guid>/``)
-
+- :func:`CN_crud.listReservedIdentifiers` (``GET /reserve``)
 
 .. TODO:: Discuss and flesh these out.
 
+----
 
-``/reserve/<guid>/``
-^^^^^^^^^^^^^^^^^^^^
 
-pass
+``POST /reserve``
+^^^^^^^^^^^^^^^^^
+
+- :func:`CN_crud.reserveIdentifier` (``POST /reserve``)
+
+----
+
+
+``DELETE /reserve?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- :func:`CN_crud.deleteReservedIdentifier` (``DELETE /reserve?guid=<guid>``)
 
 ----
 
@@ -803,12 +812,12 @@ pass
 Log Collection
 ~~~~~~~~~~~~~~
 
-The ``/log/`` collection provide access to the record of object access events
+The ``/log`` collection provide access to the record of object access events
 as recorded by Member and Coordinating Nodes.
 
 
-``/log/``
-^^^^^^^^^
+``GET /log``
+^^^^^^^^^^^^^
 
 List of access records for all objects that are present on the node, ordered
 with most recent entries first.
@@ -825,8 +834,8 @@ Implemented by the functions:
 
 **Optional Parameters**
 
-The ``/log/`` collection supports the same optional parameters as the
-``/object/`` collection.
+The ``/log`` collection supports the same optional parameters as the
+``/object`` collection.
 
 
 Wildcards and Range Operators
@@ -892,31 +901,31 @@ Return only objects of type data or metadata (filter out system metadata)::
 Account Collection
 ~~~~~~~~~~~~~~~~~~
 
-``/account/``
-^^^^^^^^^^^^^
+``POST /account``
+^^^^^^^^^^^^^^^^^
 
 pass
 
 
 ----
 
-``/account/login/``
-^^^^^^^^^^^^^^^^^^^
+``POST /account/login``
+^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
 
 
 -----
 
-``/account/logout/``
-^^^^^^^^^^^^^^^^^^^^
+``GET /account/logout``
+^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
 
 
 -----
 
-``/account/verifyToken/``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /account/verifyToken``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass

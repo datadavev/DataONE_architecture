@@ -26,6 +26,11 @@ DataONE Architecture
 
 **Change Log**
 
+:20100521:
+  - Refactoring the REST API to get around the slash problem
+  - Some edits to authentication
+  - General role up of numerous edits
+
 :20100401:
   - Numerous edits for API consistency
   - Moved to automated API doc generation (ihwd.py)
@@ -88,6 +93,8 @@ Source of these documents is maintained in the project `subversion repository`_.
 
 A version of the entire document in PDF is also `available for download`_.
 
+`Archived revisions`_ of these documents are also available.
+
 .. toctree::
    :maxdepth: 2
    
@@ -114,5 +121,6 @@ Indices and tables
 
 .. _subversion repository: https://repository.dataone.org/documents/Projects/VDC/docs/service-api/api-documentation/
 
-.. _available for download: http://mule1.dataone.org/ArchitectureDocs/DataONEArchitecture.pdf
+.. _available for download: DataONEArchitecture.pdf
 
+.. _Archived revisions: http://mule1.dataone.org/ArchitectureDocs/revisions

@@ -9,17 +9,17 @@
    * - Function
      - Parameters
    * - :func:`isAuthorized`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        :class:`operation<Types.Event>`) ``->`` boolean
    * - :func:`setAccess`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        :class:`accessLevel<Types.AccessRule>`) ``->`` boolean
 
 
 
 ----
 
-.. function:: isAuthorized(token,guid,operation) -> boolean
+.. function:: isAuthorized(token,id,operation) -> boolean
 
    Test if the user identified by the provided token has authorization for
    operation on the specified object.
@@ -35,9 +35,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid:
+   :param id:
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param operation:
 
@@ -68,7 +68,7 @@
 
 ----
 
-.. function:: setAccess(token,guid,accessLevel) -> boolean
+.. function:: setAccess(token,id,accessLevel) -> boolean
 
    Sets the access permissions for an object identified by `guid`.
 
@@ -80,9 +80,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The object for which access control is being edited.
+   :param id: The object for which access control is being edited.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param accessLevel: The desired privileges to be assigned to the object.
 

@@ -9,13 +9,13 @@
    * - Function
      - Parameters
    * - :func:`get`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        bytes
    * - :func:`getSystemMetadata`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        :class:`Types.SystemMetadata`
    * - :func:`resolve`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        :class:`Types.ObjectLocationList`
    * - :func:`create`
      - (:class:`guid<Types.Identifier>`,
@@ -42,7 +42,7 @@
 
 ----
 
-.. function:: get(token,guid) -> bytes
+.. function:: get(token,id) -> bytes
 
    Retrieves the object identified by `guid` from the node. If the object is not
    present on the node, then an :exc:`Exceptions.NotFound` error is raised
@@ -56,9 +56,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier of the object to be retrieved
+   :param id: Identifier of the object to be retrieved
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: For science metadata objects, this will be the exact byte stream of
      the science metadata oject as it was original ingested. Note that
@@ -86,7 +86,7 @@
 
 ----
 
-.. function:: getSystemMetadata(token,guid) -> SystemMetadata
+.. function:: getSystemMetadata(token,id) -> SystemMetadata
 
    Returns the :term:`system metadata` that contains DataONE specific
    information about the object identified by `guid`. Note that authoritative
@@ -99,9 +99,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier for the object of interest.
+   :param id: Identifier for the object of interest.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: A system metadata document describing the object.
 
@@ -131,7 +131,7 @@
 
 ----
 
-.. function:: resolve(token,guid) -> ObjectLocationList
+.. function:: resolve(token,id) -> ObjectLocationList
 
    Given an identifier, returns information that a client can use to retrieve
    the identified target object from the DataONE system. The target may reside
@@ -144,9 +144,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier for the object of interest.
+   :param id: Identifier for the object of interest.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: A list of nodes known to contain copies of the target object, plus
      the URLs known to resolve to the node get methods.

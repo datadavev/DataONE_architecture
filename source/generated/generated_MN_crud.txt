@@ -9,27 +9,27 @@
    * - Function
      - Parameters
    * - :func:`get`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        bytes
    * - :func:`getSystemMetadata`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        :class:`Types.SystemMetadata`
    * - :func:`create`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        ``object``, :class:`sysmeta<Types.SystemMetadata>`) ``->``
        :class:`Types.Identifier`
    * - :func:`update`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        ``object``, :class:`obsoletedGuid<Types.Identifier>`,
        :class:`sysmeta<Types.SystemMetadata>`) ``->`` :class:`Types.Identifier`
    * - :func:`delete`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        :class:`Types.Identifier`
    * - :func:`describe`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`) ``->``
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`) ``->``
        :class:`Types.DescribeResponse`
    * - :func:`getChecksum`
-     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+     - (:class:`token<Types.AuthToken>`, :class:`id<Types.Identifier>`,
        ``[checksumAlgorithm]``) ``->`` :class:`Types.Checksum`
    * - :func:`getLogRecords`
      - (:class:`token<Types.AuthToken>`, :class:`fromDate<Types.DateTime>`,
@@ -45,7 +45,7 @@
 
 ----
 
-.. function:: get(token,guid) -> bytes
+.. function:: get(token,id) -> bytes
 
    Retrieve an object identified by `guid` from the node.
 
@@ -64,9 +64,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The identifier for the object to be retrieved.
+   :param id: The identifier for the object to be retrieved.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: Bytes of the specified object. For data objects, this will be the
      actual bytes of data. For metadata objects, this will be the representation
@@ -110,7 +110,7 @@
 
 ----
 
-.. function:: getSystemMetadata(token,guid) -> SystemMetadata
+.. function:: getSystemMetadata(token,id) -> SystemMetadata
 
    Describes the science metadata or data object (and likely other objects in
    the future) identified by `guid` by returning the associated system metadata
@@ -127,10 +127,10 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier for the science data or science metedata object of
+   :param id: Identifier for the science data or science metedata object of
      interest.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: System metadata object describing the object.
 
@@ -157,13 +157,13 @@
 
 ----
 
-.. function:: create(token,guid,object,sysmeta) -> Identifier
+.. function:: create(token,id,object,sysmeta) -> Identifier
 
    Adds a new object to the Member Node, where the object is either a data
    object or a science metadata object. This method is called by clients to
    create new data objects on Member Nodes.
 
-   The `guid` must not exist in the DataONE system or must have been previously
+   The `id` must not exist in the DataONE system or must have been previously
    reserved using  :func:`CN_crud.reserveIdentifier`.
 
    Appears in functional use cases: :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09
@@ -173,13 +173,13 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The identifier that should be used in DataONE to identify and
+   :param id: The identifier that should be used in DataONE to identify and
      access the object. This is an Unicode string that follows the constraints
      on identifiers described in :doc:`GUIDs`. If the identifier is already in
      use, :exc:`Exceptions.IdentifierNotUnique` will be raised and the client
      should try again with a different, unique identifier.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param object: The data bytes that are to be added to the Member Node.
 
@@ -240,7 +240,7 @@
 
 ----
 
-.. function:: update(token,guid,object,obsoletedGuid,sysmeta) -> Identifier
+.. function:: update(token,id,object,obsoletedGuid,sysmeta) -> Identifier
 
    Creates a new `object` on the Member Node that explicitly updates and
    obsoletes a previous object (identified by `obsoletedGuid`).
@@ -262,12 +262,12 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The globally unique identifier that should be used in DataONE to
+   :param id: The globally unique identifier that should be used in DataONE to
      identify and access the object. If the identifier is already in use, an
      exception will be raised and the client should try again with a different,
      unique identifier, or use :func:`CN_crud.reserveIdentifier` to reserve one.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param object: The bytes of the data or science metadata object.
 
@@ -337,7 +337,7 @@
 
 ----
 
-.. function:: delete(token,guid) -> Identifier
+.. function:: delete(token,id) -> Identifier
 
    Deletes an object from the Member Node, where the object is either a data
    object or a science metadata object. This method is called by clients to
@@ -355,9 +355,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The identifier of the object to be deleted.
+   :param id: The identifier of the object to be deleted.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: The identifier that was used to delete the document from the
      system.
@@ -392,7 +392,7 @@
 
 ----
 
-.. function:: describe(token,guid) -> DescribeResponse
+.. function:: describe(token,id) -> DescribeResponse
 
    This method provides a lighter weight mechanism than
    :func:`MN_crud.getSystemMetadata` for a client to determine basic properties
@@ -414,9 +414,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: Identifier for the object in question.
+   :param id: Identifier for the object in question.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :returns: A set of values providing a basic description of the object.
 
@@ -438,7 +438,7 @@
 
 ----
 
-.. function:: getChecksum(token,guid,[checksumAlgorithm]) -> Checksum
+.. function:: getChecksum(token,id,[checksumAlgorithm]) -> Checksum
 
    Returns a :class:`Types.Checksum` for the specified object using an accepted
    hashing algorithm. The result is used to determine if two instances
@@ -451,10 +451,9 @@
 
    :type token: :class:`Types.AuthToken`
 
-   :param guid: The identifier of the object the operation is being performed
-     on.
+   :param id: The identifier of the object the operation is being performed on.
 
-   :type guid: :class:`Types.Identifier`
+   :type id: :class:`Types.Identifier`
 
    :param checksumAlgorithm: The name of an algorithm that will be used to
      compute a checksum of the bytes of the object. This value is drawn from a
