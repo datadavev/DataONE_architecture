@@ -37,7 +37,11 @@
    then an additional parameter identifying the authentication service to use
    will be required.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_authentication.login`
 
    :param user: User name
 
@@ -82,7 +86,11 @@
    Changes ownership of the specified object to the :term:`principal` specified
    by `userId`
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_authentication.setOwner`
 
    :param token: The authentication token returned by :func:`login`. Used to
      verify that the calling user has authority to modify access control for the
@@ -133,7 +141,11 @@
    be a mechanism for specifying the default access control rules for the new
    account.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_authentication.newAccount`
 
    :param username: Requested username.  Must be unique within the DataONE
      system.
@@ -186,6 +198,8 @@
    generated tokens to determine properties of the system, and perhaps even
    generate a token that matches a system token. Hence another level of
    restriction (perhaps network level blocking / limiting) is necessary.
+
+   :REST URL: MN :ref:`CN_authentication.verifyToken`
 
    :param token: The token to be tested.
 

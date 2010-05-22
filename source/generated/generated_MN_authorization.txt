@@ -24,8 +24,11 @@
    .. Note:: Should perhaps add convenience methods for "canRead()" and
      "canWrite()" to verify that a user is able to read / write an object.
 
-   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC37
-   </UseCases/37_uc>`
+   :Use Cases:
+
+     :doc:`UC01 </UseCases/01_uc>`, :doc:`UC37 </UseCases/37_uc>`
+
+   :REST URL: MN :ref:`MN_authorization.isAuthorized`
 
    :param token:
 

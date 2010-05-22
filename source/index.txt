@@ -30,6 +30,7 @@ DataONE Architecture
   - Refactoring the REST API to get around the slash problem
   - Some edits to authentication
   - General role up of numerous edits
+  - change to version 0.4 of docs, previous iteration preserved.
 
 :20100401:
   - Numerous edits for API consistency

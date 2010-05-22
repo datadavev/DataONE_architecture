@@ -57,8 +57,12 @@
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
 
-   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06
-   </UseCases/06_uc>`, :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
+     </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.get`
 
    :param token: The authentication token returned by ``login()``.
 
@@ -120,8 +124,12 @@
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
 
-   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC37
-   </UseCases/37_uc>`, :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC06 </UseCases/06_uc>`, :doc:`UC37 </UseCases/37_uc>`, :doc:`UC16
+     </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.getSystemMetadata`
 
    :param token: The authentication token returned by ``login()``.
 
@@ -166,8 +174,12 @@
    The `id` must not exist in the DataONE system or must have been previously
    reserved using  :func:`CN_crud.reserveIdentifier`.
 
-   Appears in functional use cases: :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09
-   </UseCases/09_uc>`, :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09 </UseCases/09_uc>`, :doc:`UC16
+     </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.create`
 
    :param token: The authentication token returned by ``login()``
 
@@ -256,7 +268,11 @@
    :func:`MN_replication.listObjects` to ensure that a Coordinating Node will
    pick up the changes.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.update`
 
    :param token: The authentication token returned by ``login()``
 
@@ -349,7 +365,11 @@
    exception should contain a hint as to the location of the
    :func:`CN_crud.resolve` method.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.delete`
 
    :param token: The authentication token returned by ``login()``
 
@@ -408,7 +428,11 @@
    :exc:`Exceptions.NotFound` must be raised even if the object exists on
    another node in the DataONE system.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_crud.describe`
 
    :param token: The authentication token returned by ``login()``
 
@@ -446,6 +470,8 @@
    that the returned checksum is valid for the referenced object either by
    computing it on the fly or by using a cached value that is certain to be
    correct.
+
+   :REST URL: MN :ref:`MN_crud.getChecksum`
 
    :param token: The authentication token returned by ``login()``
 
@@ -492,6 +518,8 @@
 
    Retrieve log information from the MN for the specified date range
    (inclusive).
+
+   :REST URL: MN :ref:`MN_crud.getLogRecords`
 
    :param token: The authentication token returned by ``login()``
 
@@ -540,10 +568,13 @@
    implement some sort of logging infrastructure so that it can respond to
    :func:`MN_crud.getLogRecords()`.
 
-   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06
-   </UseCases/06_uc>`, :doc:`UC04 </UseCases/04_uc>`, :doc:`UC09
-   </UseCases/09_uc>`, :doc:`UC16 </UseCases/16_uc>`, :doc:`UC37
-   </UseCases/37_uc>`
+   :Use Cases:
+
+     :doc:`UC01 </UseCases/01_uc>`, :doc:`UC06 </UseCases/06_uc>`, :doc:`UC04
+     </UseCases/04_uc>`, :doc:`UC09 </UseCases/09_uc>`, :doc:`UC16
+     </UseCases/16_uc>`, :doc:`UC37 </UseCases/37_uc>`
+
+   :REST URL: N/A
 
    :param typeOfOperation: Enumerated value
 

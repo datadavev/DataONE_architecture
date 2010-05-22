@@ -59,7 +59,7 @@
      - `POST /account`_
    * - 0.7
      - :func:`CN_authentication.setOwner`
-     - `PUT /object/owner`_
+     - `PUT /object/owner?id=<guid>`_
    * - 0.7
      - :func:`CN_authentication.newAccount`
      - `POST /account/login`_
@@ -71,7 +71,7 @@
      - `GET /object/isAuthorized?id=<guid>`_
    * - 0.7
      - :func:`CN_authorization.setAccess`
-     - `PUT /object/access`_
+     - `PUT /object/access?id=<guid>`_
    * - 0.7
      - :func:`MN_authentication.login`
      - `POST /account/login`_

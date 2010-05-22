@@ -12,14 +12,14 @@ application that supports the protocol of the particular identifier scheme) is
 able to retrieve the object (and typically some metadata about the object)
 that the identifier refers to.
 
-The entire set of potential Member Nodes is likely to utilize a wide range of
-identifier schemes, and it is unlikely that a given type of Member Node will
+The entire set of potential member nodes is likely to utilize a wide range of
+identifier schemes, and it is unlikely that a given type of member node will
 change the identifier scheme they are utilizing. Hence, DataONE can not resort
 to reliance or promotion of any one scheme without risking the exclusion of
-potential participants.  As a result, DataONE must be identifier agnostic.  
+participants.  As a result, DataONE must be identifier agnostic.  
 
-DataONE will replicate data and associated metadata across many Member Nodes,
-and it is likely that not all MNs will support the same GUID scheme. This
+DataONE will replicate data and associated metadata across many member nodes,
+and it is likely that not all MNs will support the same identifier scheme. This
 leads to the situation where in order to replicate content across MNs, there
 will need to be some sort of mapping between identifiers utilized by the
 different systems.
@@ -32,7 +32,7 @@ Suggested Strategy
    a unicode string (this should be any identifier).
 
 2. 
-   The original identifier first assigned by a Member Node is the identifier
+   The original identifier first assigned by a member node is the identifier
    promoted as the authoritative identifier for that content. Other
    identifiers that may be assigned by MNs that don't support the original
    scheme will be mapped to the original.
@@ -48,7 +48,7 @@ Suggested Strategy
 
 This strategy will enable the use of any identifier that can be represented by
 a string, and will persist the original identifier for the object regardless
-of what happens to the originating Member Node.  
+of what happens to the originating member node.  
 
 An obvious problem with this strategy though is that a particular object may
 have multiple identifiers associated with it, however since the original is
@@ -57,10 +57,10 @@ referenced, regardless of which node the object is located on.
 
 
 .. figure:: images/guid_resolve.png 
-   :width: 100%
+   :figwidth: 100%
 
    Resolving a GUID. In this scenario a user is trying to determine what the
-   ID "A5548D" refers to, and uses the resolution service of a Member Node to
+   ID "A5548D" refers to, and uses the resolution service of a member node to
    that effect.
 
 ..
@@ -143,7 +143,7 @@ referenced, regardless of which node the object is located on.
 
 
 .. figure:: images/guid_a.png
-   :width: 60%
+   :figwidth: 60%
 
    A scenario where two MNs happen to add different content to the system with
    the same identifier. Resolving the identifier without including the

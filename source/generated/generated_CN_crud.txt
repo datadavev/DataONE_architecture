@@ -49,8 +49,12 @@
    (regardless of whether the object exists on another node in the DataONE
    system).
 
-   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC16
-   </UseCases/16_uc>`, :doc:`UC09 </UseCases/09_uc>`
+   :Use Cases:
+
+     :doc:`UC01 </UseCases/01_uc>`, :doc:`UC16 </UseCases/16_uc>`, :doc:`UC09
+     </UseCases/09_uc>`
+
+   :REST URL: MN :ref:`CN_crud.get`
 
    :param token: The authentication token returned by ``login()``
 
@@ -92,8 +96,12 @@
    information about the object identified by `guid`. Note that authoritative
    copies of system metadata are only available from the Coordinating Nodes.
 
-   Appears in functional use cases: :doc:`UC36 </UseCases/36_uc>`, :doc:`UC37
-   </UseCases/37_uc>`, :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC36 </UseCases/36_uc>`, :doc:`UC37 </UseCases/37_uc>`, :doc:`UC16
+     </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_crud.getSystemMetadata`
 
    :param token: The authentication token returned by ``login()``
 
@@ -137,8 +145,11 @@
    the identified target object from the DataONE system. The target may reside
    on a MN or a CN.
 
-   Appears in functional use cases: :doc:`UC36 </UseCases/36_uc>`, :doc:`UC16
-   </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC36 </UseCases/36_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_crud.resolve`
 
    :param token: The authentication token returned by ``login()``
 
@@ -181,8 +192,11 @@
    is used as part of the :term:`Member Node synchronization` of science
    metadata between a MN and a CN.
 
-   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
-   </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: N/A
 
    :param guid: Identifier of the object being registered
 
@@ -230,7 +244,11 @@
    that reference this ID must originate from the :term:`session` in which the
    identifier was reserved, otherwise an error is raised on those methods.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_crud.reserveIdentifier`
 
    :param token: The authentication token returned by ``login()``
 
@@ -290,6 +308,8 @@
    Tests that the specified relationship between `idOfSubject` and `idOfObject`
    exists.
 
+   :REST URL: MN :ref:`CN_crud.assertRelation`
+
    :param token: The authentication token returned by ``login()``
 
    :type token: :class:`Types.AuthToken`
@@ -341,9 +361,13 @@
    implement some sort of logging infrastructure so that it can respond to
    :func:`CN_crud.getLogRecords()`.
 
-   Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`, :doc:`UC02
-   </UseCases/02_uc>`, :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
-   </UseCases/16_uc>`, :doc:`UC09 </UseCases/09_uc>`
+   :Use Cases:
+
+     :doc:`UC01 </UseCases/01_uc>`, :doc:`UC02 </UseCases/02_uc>`, :doc:`UC06
+     </UseCases/06_uc>`, :doc:`UC16 </UseCases/16_uc>`, :doc:`UC09
+     </UseCases/09_uc>`
+
+   :REST URL: N/A
 
    :param typeOfOperation: Enumerated value
 
@@ -383,7 +407,11 @@
    Returns the checksum for the specified object as reported in the system
    metadata.
 
-   Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
+   :Use Cases:
+
+     :doc:`UC09 </UseCases/09_uc>`
+
+   :REST URL: N/A
 
    :param token: The authentication token returned by ``login()``
 

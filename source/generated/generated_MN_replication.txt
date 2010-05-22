@@ -35,8 +35,11 @@
    the starting `index` of the response (where 0 is the index of the first item)
    and the `count` of elements to be returned.
 
-   Appears in functional use cases: :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16
-   </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC06 </UseCases/06_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_replication.listObjects`
 
    :param token: The authentication token returned by ``login()``
 
@@ -108,7 +111,11 @@
    retrieve the specified object from the indicated Member Node and store it
    locally so that it can be made accessible to the DataONE system.
 
-   Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
+   :Use Cases:
+
+     :doc:`UC09 </UseCases/09_uc>`
+
+   :REST URL: N/A
 
    :param token: The authentication token returned by ``login()``
 

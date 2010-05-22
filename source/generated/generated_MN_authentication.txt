@@ -30,7 +30,11 @@
    then an additional parameter identifying the authentication service to use
    will be required.
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`MN_authentication.login`
 
    :param user: User name
 
@@ -74,6 +78,8 @@
 
    Revokes trust in the supplied token, making it invalid for further use within
    the DataONE system.
+
+   :REST URL: MN :ref:`MN_authentication.logout`
 
    :param token: The authentication token returned by ``login()``
 

@@ -24,8 +24,11 @@
    Search the metadata catalog and return identifiers of metadata records that
    match the criteria.
 
-   Appears in functional use cases: :doc:`UC02 </UseCases/02_uc>`, :doc:`UC16
-   </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC02 </UseCases/02_uc>`, :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_query.search`
 
    :param token: The authentication token returned by ``login()``
 
@@ -59,7 +62,11 @@
    Retrieves consolidated log information for the specified date range
    (inclusive) for the entire DataONE infrastructure
 
-   Appears in functional use cases: :doc:`UC16 </UseCases/16_uc>`
+   :Use Cases:
+
+     :doc:`UC16 </UseCases/16_uc>`
+
+   :REST URL: MN :ref:`CN_query.getLogRecords`
 
    :param token: The authentication token returned by ``login()``
 

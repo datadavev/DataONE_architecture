@@ -116,7 +116,7 @@ manipulation of those new object classes will occur through the same
 ``/object`` collection interface.
 
 The object collection is exposed by both MNs and CNs. On a MN, the object
-collection is implemented by :func:`MN_crud.listObjects` and on a CN by
+collection is implemented by :func:`MN_replication.listObjects` and on a CN by
 :func:`CN_query.search`.
 
 
@@ -131,7 +131,9 @@ collection is implemented by :func:`MN_crud.listObjects` and on a CN by
        modified to indicate when the collection was last updated. Note that
        the HEAD response is the same as a GET response without a body.
    * - GET
-     - Return a :class:`Types.ObjectList`
+     - Return a :class:`Types.ObjectList` if called without the ``id`` 
+       parameter in the URL, otherwise returns the object identified by
+       the value of the ``id`` URL paramater.
    * - POST
      - Creates a new instance with the specified identifier, implementing
        :func:`MN_crud.create`. The DataONE authorization token should be
@@ -144,9 +146,10 @@ collection is implemented by :func:`MN_crud.listObjects` and on a CN by
    * - PUT
      - Updates an existing instance identified by identifier, implementing
        :func:`MN_crud.update`. The DataONE authorization token should be
-       placed in the appropriate HTTP Header field (to be determined), the
-       identifier to be used, the object content, and sysmeta content are
-       encoded in the request body using `MIME-multipart Mixed Media Type`_,
+       placed in the appropriate HTTP Header field (to be determined). The 
+       identifier should be provided as the ``id`` URL parameter, and the
+       the object content, and sysmeta content are encoded in the request 
+       body using `MIME-multipart Mixed Media Type`_,
        where the identifier part has the name 'id', the object part has the
        name 'object', and the sysmeta part has the name 'systemmetadata'. The
        obsoletedGUID parameter should be url-form-encoded in the query string
@@ -159,6 +162,10 @@ collection is implemented by :func:`MN_crud.listObjects` and on a CN by
 
 .. _MIME-multipart Mixed Media Type: http://tools.ietf.org/html/rfc2046#section-5.1.3
 
+----
+
+.. _MN_replication.listObjects:
+.. _CN_query.search:
 
 ``GET /object``
 ^^^^^^^^^^^^^^^
@@ -417,6 +424,8 @@ might be specified, and similarly for newest first::
 
 ----
 
+.. _MN_crud.get:
+.. _CN_crud.get:
 
 ``GET /object?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -479,6 +488,8 @@ Implemented by the methods:
 
 ----
 
+.. _MN_crud.describe:
+
 ``HEAD /object?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -495,6 +506,7 @@ Implemented by the methods:
 
 ----
 
+.. _MN_crud.create:
 
 ``POST /object``
 ^^^^^^^^^^^^^^^^
@@ -523,6 +535,7 @@ Implemented by the methods:
 
 ----
 
+.. _MN_crud.update:
 
 ``PUT /object?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -534,6 +547,7 @@ Implemented by the methods:
 
 ----
 
+.. _MN_crud.delete:
 
 ``DELETE /object?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -545,6 +559,8 @@ Implemented by the methods:
 
 ----
 
+.. _MN_crud.getSystemMetadata:
+.. _CN_crud.getSystemMetadata:
 
 ``GET /object/meta?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -634,6 +650,8 @@ HEAD     Returns basic information about the system metadata object.
 
 
 ----
+
+.. _CN_crud.resolve:
 
 ``GET /object/resolve?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -736,34 +754,52 @@ HEAD     Returns basic information resolve response document
 
 ----
 
+.. _MN_crud.getChecksum:
+
 ``GET /object/checksum?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-pass
+Implemented by :func:`MN_crud.getChecksum`
 
 
 ----
+
+.. _MN_authorization.isAuthorized:
+.. _CN_authorization.isAuthorized:
 
 ``GET /object/isAuthorized?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-pass
+Implemented by :func:`MN_authorization.isAuthorized` and :func:`CN_authorization.isAuthorized`
 
 
 ----
+
+.. _CN_crud.assertRelation:
 
 ``GET /object/assert?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-pass
+Implemented by :func:`CN_crud.assertRelation`
 
 
 ----
+
 
 ``GET /object/access?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 pass
+
+
+----
+
+.. _CN_authorization.setAccess:
+
+``PUT /object/access?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implemented by :func:`CN_authorization.setAccess`
 
 
 ----
@@ -774,12 +810,23 @@ pass
 pass
 
 
+----
+
+.. _CN_authentication.setOwner:
+
+``PUT /object/owner?id=<guid>``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implemented by :func:`CN_authentication.setOwner`
+
+
 
 
 Reserve Collection
 ~~~~~~~~~~~~~~~~~~
 
 
+.. _CN_crud.listReservedIdentifiers:
 
 ``GET /reserve``
 ^^^^^^^^^^^^^^^^
@@ -792,6 +839,7 @@ Implemented by the methods:
 
 ----
 
+.. _CN_crud.reserveIdentifier:
 
 ``POST /reserve``
 ^^^^^^^^^^^^^^^^^
@@ -800,6 +848,8 @@ Implemented by the methods:
 
 ----
 
+
+.. _CN_crud.deleteReservedIdentifier:
 
 ``DELETE /reserve?id=<guid>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -815,6 +865,9 @@ Log Collection
 The ``/log`` collection provide access to the record of object access events
 as recorded by Member and Coordinating Nodes.
 
+
+.. _MN_crud.getLogRecords:
+.. _CN_query.getLogRecords:
 
 ``GET /log``
 ^^^^^^^^^^^^^
@@ -837,6 +890,50 @@ Implemented by the functions:
 The ``/log`` collection supports the same optional parameters as the
 ``/object`` collection.
 
+
+
+Account Collection
+~~~~~~~~~~~~~~~~~~
+
+.. _CN_authentication.newAccount:
+
+``POST /account``
+^^^^^^^^^^^^^^^^^
+
+- :func:`CN_authentication.newAccount`
+
+
+----
+
+.. _CN_authentication.login:
+
+``POST /account/login``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+- :func:`CN_authentication.login`
+
+
+-----
+
+``GET /account/logout``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+pass
+
+
+-----
+
+
+.. _CN_authentication.verifyToken:
+
+``GET /account/verifyToken``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- :func:`CN_authentication.verifyToken`
+
+
+
+----
 
 Wildcards and Range Operators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -897,35 +994,3 @@ Return only objects of type data or metadata (filter out system metadata)::
   ?qt=nvp
   &oclass=*data
 
-
-Account Collection
-~~~~~~~~~~~~~~~~~~
-
-``POST /account``
-^^^^^^^^^^^^^^^^^
-
-pass
-
-
-----
-
-``POST /account/login``
-^^^^^^^^^^^^^^^^^^^^^^^
-
-pass
-
-
------
-
-``GET /account/logout``
-^^^^^^^^^^^^^^^^^^^^^^^
-
-pass
-
-
------
-
-``GET /account/verifyToken``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-pass
