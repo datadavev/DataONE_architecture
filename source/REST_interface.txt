@@ -93,6 +93,7 @@ If the service is not able to provide a response in the specified format, then
 the node should return an error code of :exc:`Exceptions.NotImplemented`, with
 the HTTP error code set to 406.
 
+
 .. _JSON: http://www.json.org/
 
 
@@ -101,6 +102,21 @@ the HTTP error code set to 406.
 Many of the URL patterns described here accept parameters in the URL. In these
 cases, the parameter name is not case sensitive, however the value of the
 parameter should be preserved unless specifically indicated otherwise.
+
+Parameter names are identical to the parameter names as described in the
+corresponding method signature.
+
+For requests that use the HTTP POST verb, all parameters are sent as part of
+the request body using an appropriate format.
+
+Requests that use HTTP PUT should include the ``id`` parameter as a URL
+parameter to be consistent with the semantics of the HTTP PUT operation which
+is intended to modify a specific resource.
+
+In all cases where it is required, the ``token`` parameter will be provided in
+the HTTP request header.
+
+.. TODO:: Define the representation of the AuthToken for transfer over HTTP.
 
 
 ----
@@ -168,11 +184,11 @@ collection is implemented by :func:`MN_replication.listObjects` and on a CN by
 .. _CN_query.search:
 
 ``GET /object``
-^^^^^^^^^^^^^^^
+...............
 
 List of objects that are present on the node, ordered with newest first.
 
-Implements the functions:
+Implemented by the methods:
 
 - :func:`MN_replication.listObjects`
 
@@ -428,7 +444,7 @@ might be specified, and similarly for newest first::
 .. _CN_crud.get:
 
 ``GET /object?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.........................
 
 Operates on individual items of the ``/object`` collection identified by the
 identifier ``<guid>``. This URL pattern is implemented by Member and
@@ -439,6 +455,10 @@ Implemented by the methods:
 - :func:`MN_crud.get`
 
 - :func:`CN_crud.get`
+
+Returns the bytes of the specified object.
+
+.. TODO:: How to specify the mime-type of HTTP response stream?
 
 **Examples**
 
@@ -491,7 +511,13 @@ Implemented by the methods:
 .. _MN_crud.describe:
 
 ``HEAD /object?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+..........................
+
+Implemented by the methods:
+
+- :func:`MN_crud.describe`
+
+returns :class:`Types.DescribeResponse`
 
 **Examples**
 
@@ -509,11 +535,13 @@ Implemented by the methods:
 .. _MN_crud.create:
 
 ``POST /object``
-^^^^^^^^^^^^^^^^
+................
 
 Implemented by the methods:
 
 - :func:`MN_crud.create`
+
+Returns :class:`Types.Identifier`
 
 **Examples**
 
@@ -538,24 +566,26 @@ Implemented by the methods:
 .. _MN_crud.update:
 
 ``PUT /object?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.........................
 
 Implemented by the methods:
 
 - :func:`MN_crud.update`
 
+Returns :class:`Types.Identifier`
 
 ----
 
 .. _MN_crud.delete:
 
 ``DELETE /object?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+............................
 
 Implemented by the methods:
 
 - :func:`MN_crud.delete`
 
+Returns :class:`Types.Identifier`
 
 ----
 
@@ -563,7 +593,7 @@ Implemented by the methods:
 .. _CN_crud.getSystemMetadata:
 
 ``GET /object/meta?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..............................
 
 Requests the :class:`Types.SystemMetadata` for the specified object. Although
 this access point is supported by both Member and Coordinating Nodes, only the
@@ -580,6 +610,8 @@ Implemented by the methods:
 - :func:`MN_crud.getSystemMetadata`
 
 - :func:`CN_crud.getSystemMetadata`
+
+Returns :class:`Types.SystemMetadata`
 
 
 **Examples**
@@ -638,7 +670,7 @@ identified by "XYZ333"::
 
 
 ``HEAD /object/meta?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...............................
 
 HEAD     Returns basic information about the system metadata object.
 
@@ -654,7 +686,7 @@ HEAD     Returns basic information about the system metadata object.
 .. _CN_crud.resolve:
 
 ``GET /object/resolve?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.................................
 
 Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
 hold copies of the object identified by ``<guid>``.
@@ -662,6 +694,8 @@ hold copies of the object identified by ``<guid>``.
 Implemented by the following methods:
 
 - :func:`CN_crud.resolve` (``GET /object/resolve?id=<guid>``)
+
+Returns :class:`Types.ObjectLocationList`
 
 
 **Response**
@@ -743,7 +777,7 @@ Using CURL::
 ----
 
 ``HEAD /object/resolve?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..................................
 
 HEAD     Returns basic information resolve response document
 
@@ -757,10 +791,13 @@ HEAD     Returns basic information resolve response document
 .. _MN_crud.getChecksum:
 
 ``GET /object/checksum?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..................................
 
-Implemented by :func:`MN_crud.getChecksum`
+Implemented by the methods:
 
+-:func:`MN_crud.getChecksum`
+
+Returns :class:`Types.Checksum`
 
 ----
 
@@ -768,26 +805,33 @@ Implemented by :func:`MN_crud.getChecksum`
 .. _CN_authorization.isAuthorized:
 
 ``GET /object/isAuthorized?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+......................................
 
-Implemented by :func:`MN_authorization.isAuthorized` and :func:`CN_authorization.isAuthorized`
+Implemented by the methods:
 
+- :func:`MN_authorization.isAuthorized` 
+- :func:`CN_authorization.isAuthorized`
+
+Returns a boolean result.  "1" = true, "0" = false.
 
 ----
 
 .. _CN_crud.assertRelation:
 
-``GET /object/assert?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /object/assert?idOfSubject=<guid>``
+.........................................
 
-Implemented by :func:`CN_crud.assertRelation`
+Implemented by the methods:
 
+- :func:`CN_crud.assertRelation`
+
+Returns a boolean result. "1" = true, "0" = false.
 
 ----
 
 
 ``GET /object/access?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+................................
 
 pass
 
@@ -797,15 +841,18 @@ pass
 .. _CN_authorization.setAccess:
 
 ``PUT /object/access?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+................................
 
-Implemented by :func:`CN_authorization.setAccess`
+Implemented by the methods:
 
+- :func:`CN_authorization.setAccess`
+
+Returns a boolean result. "1" = true, "0" = false.
 
 ----
 
 ``GET /object/owner?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...............................
 
 pass
 
@@ -815,12 +862,15 @@ pass
 .. _CN_authentication.setOwner:
 
 ``PUT /object/owner?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...............................
 
-Implemented by :func:`CN_authentication.setOwner`
+Implemented by the methods:
 
+- :func:`CN_authentication.setOwner`
 
+Returns :class:`Types.Identifier`
 
+----
 
 Reserve Collection
 ~~~~~~~~~~~~~~~~~~
@@ -829,11 +879,13 @@ Reserve Collection
 .. _CN_crud.listReservedIdentifiers:
 
 ``GET /reserve``
-^^^^^^^^^^^^^^^^
+................
 
 Implemented by the methods:
 
 - :func:`CN_crud.listReservedIdentifiers` (``GET /reserve``)
+
+Returns ???
 
 .. TODO:: Discuss and flesh these out.
 
@@ -842,9 +894,13 @@ Implemented by the methods:
 .. _CN_crud.reserveIdentifier:
 
 ``POST /reserve``
-^^^^^^^^^^^^^^^^^
+.................
+
+Implemented by the methods:
 
 - :func:`CN_crud.reserveIdentifier` (``POST /reserve``)
+
+Returns :class:`Types.Identifier`
 
 ----
 
@@ -852,9 +908,13 @@ Implemented by the methods:
 .. _CN_crud.deleteReservedIdentifier:
 
 ``DELETE /reserve?id=<guid>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.............................
+
+Implemented by the methods:
 
 - :func:`CN_crud.deleteReservedIdentifier` (``DELETE /reserve?guid=<guid>``)
+
+Returns :class:`Types.Identifier`
 
 ----
 
@@ -870,7 +930,7 @@ as recorded by Member and Coordinating Nodes.
 .. _CN_query.getLogRecords:
 
 ``GET /log``
-^^^^^^^^^^^^^
+.............
 
 List of access records for all objects that are present on the node, ordered
 with most recent entries first.
@@ -878,11 +938,13 @@ with most recent entries first.
 Access to logs should support restriction by time range, principal, event
 type, and identifier.
 
-Implemented by the functions:
+Implemented by the methods:
 
 - :func:`MN_crud.getLogRecords`
 
 - :func:`CN_query.getLogRecords`
+
+Returns ???
 
 
 **Optional Parameters**
@@ -898,27 +960,37 @@ Account Collection
 .. _CN_authentication.newAccount:
 
 ``POST /account``
-^^^^^^^^^^^^^^^^^
+.................
+
+Implemented by the methods:
 
 - :func:`CN_authentication.newAccount`
 
+Returns ???
 
 ----
 
 .. _CN_authentication.login:
 
 ``POST /account/login``
-^^^^^^^^^^^^^^^^^^^^^^^
+.......................
+
+Implemented by the methods:
 
 - :func:`CN_authentication.login`
 
+Returns :class:`Types.AuthToken`
 
 -----
 
 ``GET /account/logout``
-^^^^^^^^^^^^^^^^^^^^^^^
+.......................
 
-pass
+Implemented by the methods:
+
+- ???
+
+Returns ???
 
 
 -----
@@ -927,16 +999,18 @@ pass
 .. _CN_authentication.verifyToken:
 
 ``GET /account/verifyToken``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+............................
+
+Implemented by the methods:
 
 - :func:`CN_authentication.verifyToken`
 
-
+Returns a boolean result. "1" = true, "0" = false.
 
 ----
 
 Wildcards and Range Operators
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.............................
 
 Several of the REST calls support filtering using wildcards and/or range
 operators. When such filtering is supported, it is explicitly noted in the

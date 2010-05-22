@@ -47,7 +47,7 @@
      - `POST /reserve`_
    * - 0.7
      - :func:`CN_crud.assertRelation`
-     - `GET /object/assert?id=<guid>`_
+     - `GET /object/assert?idOfSubject=<guid>`_
    * - 0.3
      - :func:`CN_query.search`
      - `GET /object`_

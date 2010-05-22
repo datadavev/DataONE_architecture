@@ -29,6 +29,7 @@ Contents
    Exceptions
    Types
    REST_interface
+   Serialization
    querying_content
    logging
 
