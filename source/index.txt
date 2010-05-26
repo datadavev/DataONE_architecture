@@ -26,6 +26,9 @@ DataONE Architecture
 
 **Change Log**
 
+:20100525:
+  - Added integration testing description
+
 :20100521:
   - Refactoring the REST API to get around the slash problem
   - Some edits to authentication
@@ -105,6 +108,7 @@ A version of the entire document in PDF is also `available for download`_.
    usecases
    versions
    apis
+   integration-testing
    license_and_copyright_policy
    todo
    glossary
