@@ -36,7 +36,7 @@ List of integration tests
    :header-rows: 1
 
    * - High
-     - Medium
+     - Due July 31?
      - Low
      - Description
    * - 8 
