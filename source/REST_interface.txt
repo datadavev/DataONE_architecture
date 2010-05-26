@@ -443,8 +443,8 @@ might be specified, and similarly for newest first::
 .. _MN_crud.get:
 .. _CN_crud.get:
 
-``GET /object?id=<guid>``
-.........................
+``GET /object/<guid>``
+......................
 
 Operates on individual items of the ``/object`` collection identified by the
 identifier ``<guid>``. This URL pattern is implemented by Member and
@@ -510,8 +510,8 @@ Returns the bytes of the specified object.
 
 .. _MN_crud.describe:
 
-``HEAD /object?id=<guid>``
-..........................
+``HEAD /object/<guid>``
+.......................
 
 Implemented by the methods:
 
@@ -565,8 +565,8 @@ Returns :class:`Types.Identifier`
 
 .. _MN_crud.update:
 
-``PUT /object?id=<guid>``
-.........................
+``PUT /object/<guid>``
+......................
 
 Implemented by the methods:
 
@@ -578,8 +578,8 @@ Returns :class:`Types.Identifier`
 
 .. _MN_crud.delete:
 
-``DELETE /object?id=<guid>``
-............................
+``DELETE /object/<guid>``
+.........................
 
 Implemented by the methods:
 
@@ -592,8 +592,8 @@ Returns :class:`Types.Identifier`
 .. _MN_crud.getSystemMetadata:
 .. _CN_crud.getSystemMetadata:
 
-``GET /object/meta?id=<guid>``
-..............................
+``GET /meta/<guid>``
+...........................
 
 Requests the :class:`Types.SystemMetadata` for the specified object. Although
 this access point is supported by both Member and Coordinating Nodes, only the
@@ -669,8 +669,8 @@ identified by "XYZ333"::
 ----
 
 
-``HEAD /object/meta?id=<guid>``
-...............................
+``HEAD /meta/<guid>``
+.....................
 
 HEAD     Returns basic information about the system metadata object.
 
@@ -685,8 +685,8 @@ HEAD     Returns basic information about the system metadata object.
 
 .. _CN_crud.resolve:
 
-``GET /object/resolve?id=<guid>``
-.................................
+``GET /resolve/<guid>``
+.......................
 
 Implemented by CNs (possibly MNs by proxy to CN), returns the nodes known to
 hold copies of the object identified by ``<guid>``.
@@ -776,8 +776,8 @@ Using CURL::
 
 ----
 
-``HEAD /object/resolve?id=<guid>``
-..................................
+``HEAD /resolve/<guid>``
+........................
 
 HEAD     Returns basic information resolve response document
 
@@ -790,8 +790,8 @@ HEAD     Returns basic information resolve response document
 
 .. _MN_crud.getChecksum:
 
-``GET /object/checksum?id=<guid>``
-..................................
+``GET /checksum/<guid>``
+........................
 
 Implemented by the methods:
 
@@ -804,8 +804,8 @@ Returns :class:`Types.Checksum`
 .. _MN_authorization.isAuthorized:
 .. _CN_authorization.isAuthorized:
 
-``GET /object/isAuthorized?id=<guid>``
-......................................
+``GET /isAuthorized/<guid>``
+............................
 
 Implemented by the methods:
 
@@ -818,8 +818,8 @@ Returns a boolean result.  "1" = true, "0" = false.
 
 .. _CN_crud.assertRelation:
 
-``GET /object/assert?idOfSubject=<guid>``
-.........................................
+``GET /assertRelation/<idOfSubject>``
+.....................................
 
 Implemented by the methods:
 
@@ -830,8 +830,8 @@ Returns a boolean result. "1" = true, "0" = false.
 ----
 
 
-``GET /object/access?id=<guid>``
-................................
+``GET /accessRules/<guid>``
+...........................
 
 pass
 
@@ -840,8 +840,8 @@ pass
 
 .. _CN_authorization.setAccess:
 
-``PUT /object/access?id=<guid>``
-................................
+``PUT /accessRules/<guid>``
+............................
 
 Implemented by the methods:
 
@@ -851,8 +851,8 @@ Returns a boolean result. "1" = true, "0" = false.
 
 ----
 
-``GET /object/owner?id=<guid>``
-...............................
+``GET /owner/<guid>``
+.....................
 
 pass
 
@@ -861,8 +861,8 @@ pass
 
 .. _CN_authentication.setOwner:
 
-``PUT /object/owner?id=<guid>``
-...............................
+``PUT /owner/<guid>``
+.....................
 
 Implemented by the methods:
 
@@ -907,8 +907,8 @@ Returns :class:`Types.Identifier`
 
 .. _CN_crud.deleteReservedIdentifier:
 
-``DELETE /reserve?id=<guid>``
-.............................
+``DELETE /reserve/<guid>``
+..........................
 
 Implemented by the methods:
 
