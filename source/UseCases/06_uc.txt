@@ -145,36 +145,39 @@ Implementation
 
 The Member Node synchronization process will operate in an asynchronous
 manner, with a task queue on the CN service containing a list of objects that
-need to added to the coordinating node populated by scheduled calls to
-:func:`MN_crud.listObjects` and through a new notification API that is called
-by a Member Node after a successful create operation. The task queue is
-processed by a pool of worker threads which retrieve the content using
-:func:`MN_crud.get` and store the content in the Coordinating Node using the
-internal :func:`CN_crud.create` method.
+need to be added to the coordinating node populated through two mechanisms: 
+
+1. scheduled calls to :func:`MN_crud.listObjects` 
+
+2. through a new notification API that is called by a Member Node after a
+   successful create operation.
+
+The task queue is processed by a pool of workers which retrieve the content
+using :func:`MN_crud.get` and :func:`MN_crud.getSystemMetadata`, and store the
+content in the Coordinating Node using the internal :func:`CN_crud.create`
+method.
 
 The initial implementation will focus on using only scheduled calls to
 :func:`MN_crud.listObjects` to populate the task queue. The scheduling
 information shall be set during the MN registration process.
 
-Multiple threads will be processing the task queue, the number of threads
-should be adjustable by an administrator. The total number of threads hitting
-on a particular MN should be limited, the limit should be specified in the MN
-capabilities recorded during the registration process.
+Multiple threads should be able to process the task queue, and the number of
+threads should be adjustable by an administrator. The total number of threads
+hitting on a particular MN should be limited, the limit should be specified in
+the MN capabilities recorded during the registration process.
 
 The tasks queue will need to be thread safe. In the future it may be feasible
 to use a distributed queue (based on Apache MQ or Zookeeper for example;
 shared across the CNs) so that processes on any CN can issue the
-:func:`MN_get` requests.
+:func:`MN_get` and :func:`MN_getSystemMetadata` requests.
 
 There will likely be a significant load on the system for indexing as new
 content is being added - this is the case for both Mercury and Metacat.
 Options for disabling indexing for bulk load should be considered.
 
 
-
-
 The synchronization process will certainly be more sophisticated down the road,
-but for now simplicity should be a priority:
+but for now (i.e. prototype implementation) simplicity should be a priority:
 
 - MNs are only scanned by the CN where they are registered (restriction to be
   dropped down the road).
@@ -191,7 +194,8 @@ but for now simplicity should be a priority:
 
 - when there is some number of new entries in the object store, then the
   mercury indexing process needs to kick in. Ideally this should be updating
-  rather than re-creating the index at each pass
+  rather than re-creating the index at each pass. This may be initiated by a
+  cron job for the prototype implementation.
 
 This fairly simplistic approach should be enough to get things started. Not
 ideal, but should suffice to get some data moving around. To implement, there
@@ -221,7 +225,7 @@ New structures::
 
 
 
-::
+Populating the harvest task queue pseudo code::
 
   void populateTaskQueue ()
   {
@@ -239,6 +243,8 @@ New structures::
     }
   }
 
+
+Processing the harvest task queue pseudo code::
 
   int loadMNTasks(ThreadSafeQueue taskQueue, MemberNodeState mnState)
   {
@@ -264,9 +270,7 @@ New structures::
 Worker threads are responsible for retrieving each object listed in the
 taskQueue. The number of workers should be adjustable. An obvious target for
 improving efficiency is to enable requesting multiple objects in a single call
-to a MN.
-
-::
+to a MN (later enhancement)::
 
   // object is the next entry from the taskQueue
   bool retrieveObject(String mnurl, ObjectInfo object)
