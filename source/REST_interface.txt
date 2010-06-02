@@ -11,9 +11,10 @@ REST Interface
 
 
 The REST interface through which the methods described in the sections
-:doc:`MN_APIs` and :doc:`CN_APIs`.
+:doc:`MN_APIs` and :doc:`CN_APIs` are called.
 
-Basic information:
+Overview
+~~~~~~~~
 
 - Content is modeled as collections, with :class:`GUIDs <Types.Identifier>`
   identifying individual items of a collection.
@@ -37,7 +38,7 @@ Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s inc
 :``/object``:
   The set of objects available for retrieval from the node.
 
-:``/object/meta``:
+:``/meta``:
   Metadata about objects available for retrieval from the node.  
 
 :``/log``:
@@ -600,7 +601,7 @@ this access point is supported by both Member and Coordinating Nodes, only the
 responses from Coordinating Nodes should be considered authoritative,
 especially with respect to the :attr:`SystemMetadata.replica` entries.
 
-The ``/object/meta`` response format defaults to ``text/xml`` and is the only
+The ``/meta`` response format defaults to ``text/xml`` and is the only
 format currently supported. Other formats such as JSON may be supported in the
 future.
 
@@ -620,7 +621,7 @@ Returns :class:`Types.SystemMetadata`
 happens to be science metadata (an EML document) that describes dataset
 identified by "XYZ333"::
 
-  curl http://m1.dataone.org/object/meta?id=XYZ332
+  curl http://m1.dataone.org/meta/XYZ332
 
   <?xml version="1.0" encoding="UTF-8"?>
   <d1:systemMetadata xmlns:d1="http://dataone.org/coordinating_node_sysmeta_0.1"
@@ -654,7 +655,7 @@ identified by "XYZ333"::
 
 (GET) Attempt to retrieve system metadata for an object that does not exist.::
 
-  curl http://cn.dataone.org/cn/object/meta?id=SomeObjectID
+  curl http://cn.dataone.org/cn/meta/SomeObjectID
 
   <error errorCode='404' detailCode='4060'>
     <description>The specified object does not exist on this node.</description>
