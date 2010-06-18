@@ -6,59 +6,79 @@ State of Health API
 
 ::
 
-  sohQuery (token, service)
   ping() -> pingResponse
-  getStatus(token) -> currentStatus
+  getStatus() -> StatusResponse
+  getObjectStatistics(token) -> objectStatistics
+  getOperationStatistics(token) -> operationStatistics
 
-  ## from v0.3 ##
-  heartbeat() -> response
-  
-
-.. function::  sohQuery (token, service)
 
 .. function:: ping() -> PingResponse
 
-   Low level "are you alive" operation. Response is simple ACK, but may be
-   reasonable to overload with a couple of flags that could indicate
-   availability of new data or change in capabilities.
+  .. note::
+    This method will be used by Use Case 10 "MN Status Reports" for V0.3. For
+    later API versions, getStatus() will be used.
 
-   :returns: A simple chunk of data, perhaps XML, or plain text.
+  Low level "are you alive" operation. Response is simple ACK, but may be
+  reasonable to overload with a couple of flags that could indicate
+  availability of new data or change in capabilities.
+ 
+  The member node should perform some minimal internal functionality testing
+  before answering. However, ping checks will be frequent (every few minutes) so
+  the internal functionality test should not be high impact.
 
-   :rtype: class:`Types.PingResponse`
-
-
-.. function:: getStatus(token) -> currentStatus
-
-   Returns the current status of the MN, perhaps with some accumulation and
-   averaging over the last xxx minutes.
-
-   :param token: Identity with authority to retrieve the status information.
-
-   :returns: A status document in an easily parsed syntax such as JSON or XML
-   
-   :rtype: :class:`Types.Status`
+  :returns: A PingResponse that indicates if the MN considers itself fully
+  functional and includes a timestamp for when the response was produced.
+  
+  :rtype: class:`Types.PingResponse`
 
 
+.. function:: getStatus() -> StatusResponse
 
-.. function:: heartbeat() -> HeartbeatResponse
+  .. note::
+    This method will be used by Use Case 10 "MN Status Reports" for API versions
+    after V0.3. For previous versions, ping() will be used.
 
-   .. note::
-      This method will be used by Use Case 10 "MN Status Reports" for V0.3,
-      but that use case will require the use of ``getStatus(token)`` from this
-      same API for later versions.
+  This function is similar to ping() but returns a more complete status which
+  may include information such as planned service outtages.
+  
+  :returns: A StatusResponse.
+  
+  :rtype: class:`Types.StatusResponse`
 
-   Low level "Are you alive?" operation. The member node should perform some
-   minimal internal functionality testing before answering. However, heartbeat
-   checks will be frequent (every few minutes) so the internal functionality
-   test should not be high impact.
 
-   :returns: 
-     A simple chunk of data, perhaps XML, or plain text. Response is a simple
-     ACK, including the version number of the MN API supported by the MN, an
-     indication if it considers itself fully functional or not, and a
-     timestamp from the MN when the response was produced.
+.. function:: getObjectStatistics(token) -> objectStatistics
 
-   :rtype: :class:`Types.HeartbeatResponse`
+  Returns statistics about the object collection on the MN.
+  
+  :param time: Limit to date range. See Wildcards and Range Operators.
+  
+  :param format: Limit to objects of given format.
+  
+  :param day:
+    Flag that causes a separate set of statistics to be returned for each day.
+    Without this flag, a single, cumulative set of statistics is returned.
+  
+  :param token: Identity with authority to retrieve the statistics.
 
-   .. todo:: 
-      Metrics MNs are to collect and return for the ``getStatus()`` need to be defined.
+  :rtype: :class:`Types.objectStatistics`
+
+
+.. function:: getOperationStatistics(token) -> operationStatistics
+
+  Returns statistics about the operations, such as object creation and access,
+  that have been performed on the MN.
+  
+  :param time: Limit to date range. See Wildcards and Range Operators.
+  
+  :param requestorIdentitity: Limit to operations performed by given requestor.
+  
+  :param day:
+    Flag that causes a separate set of statistics to be returned for each day.
+    Without this flag, a single, cumulative set of statistics is returned.
+    
+  :param token: Identity with authority to retrieve the statistics.
+  
+  :returns: A status document in an easily parsed syntax such as JSON or XML
+  
+  :rtype: :class:`Types.OperationStatistics`
+

@@ -91,6 +91,12 @@ script I use for running PlantUML is::
 
 The plantuml.conf file is in the DataONE subversion source tree.
 
+xlrd and xlwt, Python libraries for reading and writing Microsoft Excel
+documents, are required for generating part of the content. To install on
+Ubuntu::
+
+  $ sudo easy_install xlrd xlwt
+  
 To actually build a HTML copy of the documents::
 
   $ cd ~/Projects/DataONE/svn/documents/Projects/VDC/docs/service-api/api-documentation
@@ -109,6 +115,8 @@ To build a PDF copy, you will need to install latex and its dependencies. Then r
 .. _Sphinx: http://sphinx.pocoo.org/
 
 .. _PlantUML: http://plantuml.sourceforge.net
+
+.. _xlrd: http://pypi.python.org/pypi/xlrd
 
 .. _setuptools: http://pypi.python.org/pypi/setuptools
 

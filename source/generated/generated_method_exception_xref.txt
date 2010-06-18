@@ -351,6 +351,66 @@
      - UnsupportedType
      - 400
      - 2040
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - NotImplemented
+     - 501
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - ServiceFailure
+     - 500
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - NotAuthorized
+     - 401
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - InvalidRequest
+     - 400
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - InsufficientResources
+     - 413
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getObjectStatistics <MN_health.getObjectStatistics>`
+     - UnsupportedType
+     - 400
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - NotImplemented
+     - 501
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - ServiceFailure
+     - 500
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - NotAuthorized
+     - 401
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - InvalidRequest
+     - 400
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - InsufficientResources
+     - 413
+     - 0
+   * - :mod:`MN_health`
+     - :func:`getOperationStatistics <MN_health.getOperationStatistics>`
+     - UnsupportedType
+     - 400
+     - 0
    * - :mod:`CN_crud`
      - :func:`get <CN_crud.get>`
      - NotAuthorized

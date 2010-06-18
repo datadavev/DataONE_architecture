@@ -124,6 +124,14 @@
        store it locally so that it can be made accessible to the DataONE system.
 
        Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
+   * - :mod:`MN_health`
+     - :func:`MN_health.getObjectStatistics`
+     - Called by the monitoring system to find how many objects are stored on
+       the MN, cumulative or for each day in a given range.
+   * - \
+     - :func:`MN_health.getOperationStatistics`
+     - Called by the monitoring system to find how many operations have been
+       performed on the MN, cumulative or for each day in a given range.
    * - :mod:`CN_crud`
      - :func:`CN_crud.get`
      - Retrieves the object identified by `guid` from the node. If the object is

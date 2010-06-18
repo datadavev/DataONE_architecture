@@ -187,7 +187,7 @@ collection is implemented by :func:`MN_replication.listObjects` and on a CN by
 ``GET /object``
 ...............
 
-List of objects that are present on the node, ordered with newest first.
+List of objects that are present on the node. Default ordering is newest first.
 
 Implemented by the methods:
 
@@ -256,7 +256,7 @@ Example of a JSON response structure::
     [
       {
         'identifier':<IdentifierType>,
-        'format':<ObjectFormatType>,
+        'objectFormat':<ObjectFormatType>,
         'checksum': 
         {
           'algorithm':<checkSum Algorithm Type>, 
@@ -289,7 +289,7 @@ Expressed in CSV, one entry per line, comma delimiting fields, new line
 delimiting records::
 
   #<start>,<count>,<total>
-  identifier,format,algorithm,checksum,dateSysMetadataModified,size
+  identifier,objectFormat,algorithm,checksum,dateSysMetadataModified,size
   "<identifier>","<object format>","<SHA-1 | SHA-224 | MD5 | ...>","<SHA1 hash of object>","<date time last modified>",<byte size of object>
 
 
@@ -303,7 +303,7 @@ Expressed in XML::
     total="_integer_">
     <objectInfo>
       <identifier>_identifier_</identifier>
-      <format>_object format_</format>
+      <objectFormat>_object format_</objectFormat>
       <checksum algorithm='SHA-1 | SHA-224 | MD5 | ...'>_hash of object_</checksum>
       <dateSysMetadataModified>_date time last modified_</dateSysMetadataModified>
       <size>_byte size of object_</size>
@@ -324,7 +324,7 @@ Expressed in RDF/XML::
     <rdf:Description rdf:about="_requesting URL_">
       <d1:objectInfo rdf:parseType="Collection">
         <rdf:Description rdf:about="http://mn1.dataone.org/object/_identifier_">
-          <d1:format>_object format_</d1:format>
+          <d1:objectFormat>_object format_</d1:objectFormat>
           <d1:checksum d1:algorithm='SHA-1 | SHA-224 | MD5 | ...'>_SHA1 hash of object</d1:checksum>
           <d1:dateSysMetadataModified>_date time last modified_</d1:dateSysMetadataModified>
           <d1:size>_byte size of object_</d1:size>
@@ -345,7 +345,7 @@ Retrieve a list of identifiers from a member node in JSON format::
    'count':1000,
    'total':159734,
    'objectInfo':[{'identifier': 'ABC123',
-  	  'format':'data',
+  	  'objectFormat':'data',
   	  'checksum': {
   	     'algorithm':'SHA-1', 
   	     'value':'b3a1617100c2b782fe5f9f2050dc714fdd05df28'
@@ -354,7 +354,7 @@ Retrieve a list of identifiers from a member node in JSON format::
   	  'size':1040032112},
   	 ...,
   	 {'identifier':'XYZ332',
-  	  'format':'metadata',
+  	  'objectFormat':'metadata',
   	  'checksum': {
   	     'algorithm':'SHA-1', 
   	     'value':'008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07'
@@ -368,7 +368,7 @@ Retrieve a list of identifiers from a member node in plain text format::
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
   #0,1000,159734
-  identifier,format,algorithm,checksum,dateSysMetadataModified,size
+  identifier,objectFormat,algorithm,checksum,dateSysMetadataModified,size
   "ABC123","data","SHA-1","b3a1617100c2b782fe5f9f2050dc714fdd05df28","2009-12-02T17:40:03.0Z",1040032112
   ...
   "XYZ332","science metadata","SHA-1","008b7d10f4cb282e6054146c5ee3a1ae5f4b4c07","2009-11-30T06:44:19.0Z",1044
@@ -396,7 +396,7 @@ Perform a search against a Coordinating Node::
    'objectInfo':[
      {
       'identifier': 'ABC123',
-      'format':'data',
+      'objectFormat':'data',
       'checksum': 
       {
        'algorithm':'SHA-1', 
@@ -408,7 +408,7 @@ Perform a search against a Coordinating Node::
      ...,
      {
       'identifier':'XYZ332',
-      'format':'metadata',
+      'objectFormat':'metadata',
       'checksum': 
       {
          'algorithm':'SHA-1', 
@@ -631,7 +631,7 @@ identified by "XYZ333"::
            It contains no useful information.
       -->
       <identifier>Identifier0</identifier>
-      <format>eml://ecoinformatics.org/eml-2.0.1</format>
+      <objectFormat>eml://ecoinformatics.org/eml-2.0.1</objectFormat>
       <size>0</size>
       <submitter>uid=jones,o=NCEAS,dc=ecoinformatics,dc=org</submitter>
       <rightsHolder>uid=jones,o=NCEAS,dc=ecoinformatics,dc=org</rightsHolder>

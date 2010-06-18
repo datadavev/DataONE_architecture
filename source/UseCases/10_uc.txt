@@ -20,11 +20,15 @@ Goal
 Summary 
 
   As part of the infrastructure monitoring process, a CN checks on the
-  "liveness" of all Member Nodes. This operation will be performed with
-  moderate frequency (perhaps in the order of once every few minutes). The "lite" version of this use case, implemented for V0.3, is a simple heartbeat check with each Member Node. Later, more in-depth status information will be retrieved from Member Nodes using the ``MN_health.getStatus()`` method.
+  "liveness" of all Member Nodes. This operation will be performed with moderate
+  frequency (perhaps in the order of once every few minutes). The "lite" version
+  of this use case, implemented for V0.3, is a simple ping to each Member Node.
+  Later, more in-depth status information will be retrieved from Member Nodes
+  using the ``MN_health.getStatus()`` method.
 
   The responses from the MNs should report sufficient metrics to gauge their
-  performance in absolute terms and also relative to other MNs. See ``MN_health.getStatus()`` for those metrics.
+  performance in absolute terms and also relative to other MNs. See
+  ``MN_health.getStatus()`` for those metrics.
 
 
 Actors
@@ -68,7 +72,7 @@ Post Conditions
     app_admin -> c_health: generateReport(token)
     loop for each MN
       alt V0.3
-        c_health -> m_health: heartbeat()
+        c_health -> m_health: ping()
         m_health --> c_health: status
       else after V0.3
         c_health -> m_health: getStatus(token)
