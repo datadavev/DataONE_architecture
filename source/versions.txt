@@ -103,12 +103,11 @@ General Schedule for Infrastructure Version 0.x
        - Low level logging incorporated into API wrappers
      - - :doc:`/UseCases/01_uc`
        - :doc:`/UseCases/36_uc`
-     - - :func:`MN_crud.get`
-       - :func:`MN_crud.log`
-       - :func:`CN_crud.get`
-       - :func:`CN_crud.log`
-       - :func:`CN_crud.getSystemMetadata`
-       - :func:`CN_crud.resolve`
+     - - X :func:`MN_crud.get`
+       - done for GMN :func:`MN_crud.log`
+       - X :func:`CN_crud.get`
+       - X :func:`CN_crud.getSystemMetadata`
+       - X :func:`CN_query.search`
    * - 0.4
      - 2010/05
      - - Initial implementation of metadata replication and indexing
@@ -125,13 +124,11 @@ General Schedule for Infrastructure Version 0.x
        - :doc:`/UseCases/06_uc`
        - :doc:`/UseCases/10_uc`
        - :doc:`/UseCases/16_uc`
-     - - :func:`MN_crud.get`
-       - :func:`MN_crud.getSystemMetadata`
-       - :func:`MN_crud.log`
-       - :func:`MN_replication.listObjects`
-       - :func:`CN_crud.create`
+     - - X :func:`MN_crud.getSystemMetadata`
+       - X :func:`MN_replication.listObjects`
+       - X :func:`CN_crud.create`
        - :func:`CN_crud.log`
-       - :func:`CN_query.search`
+       - :func:`CN_crud.resolve`
    * - 0.5
      - 2010/06
      - - Initial data replication implemented
@@ -147,7 +144,7 @@ General Schedule for Infrastructure Version 0.x
        - :doc:`/UseCases/17_uc`
        - :doc:`/UseCases/12_uc`
        - :doc:`/UseCases/13_uc`
-     - - :func:`CN_authentication.login`
+     - - :func:`CN_authentication.login`  (will use IP based auth)
        - :func:`CN_authentication.verifyToken`
        - :func:`CN_authorization.isAuthorized`
    * - 0.6

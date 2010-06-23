@@ -6,7 +6,8 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
-GRAPHVIZ      = /opt/local/bin/dot
+GRAPHVIZ      = /usr/bin/dot
+PLANTUML      = java -jar tools/plantuml.jar
 DOCGENERATOR  = python tools/ihwd/ihwd.py
 METHODXLS     = MethodCrossReference.xls
 
@@ -20,6 +21,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  generate  to generate doc files from spreadsheet"
+	@echo "  plantuml  to generate UML diagrams"
 	@echo "  html      to make standalone HTML files"
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
@@ -39,7 +41,7 @@ generate: $(METHODXLS)
 	$(DOCGENERATOR) -s $(METHODXLS) -d ./source/generated
 
 plantuml:
-	GRAPHVIZ_DOT=$(GRAPHVIZ) plantuml source source/UseCases
+	GRAPHVIZ_DOT=$(GRAPHVIZ) $(PLANTUML) source source/UseCases
 
 html: 
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

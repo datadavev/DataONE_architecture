@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>ITK_APIs.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -43,7 +41,9 @@
 					<key>filename</key>
 					<string>REST_interface.txt</string>
 					<key>lastUsed</key>
-					<date>2010-05-22T01:46:23Z</date>
+					<date>2010-06-21T15:49:46Z</date>
+					<key>selected</key>
+					<true/>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -167,9 +167,7 @@
 					<key>filename</key>
 					<string>ITK_APIs.txt</string>
 					<key>lastUsed</key>
-					<date>2010-05-23T06:02:19Z</date>
-					<key>selected</key>
-					<true/>
+					<date>2010-06-18T16:16:48Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -390,34 +388,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
-		</dict>
-		<key>ITK_APIs.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>9</integer>
-				<key>line</key>
-				<integer>9</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>REST_interface.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>27</integer>
-				<key>line</key>
-				<integer>1003</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>981</integer>
 		</dict>
 		<key>Serialization.txt</key>
 		<dict>
@@ -718,21 +688,9 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>REST_interface.txt</string>
-		<string>Serialization.txt</string>
-		<string>apis.txt</string>
-		<string>ITK_APIs.txt</string>
-		<string>about.txt</string>
-		<string>Types.txt</string>
-		<string>generated/generated_MN_crud.txt</string>
-		<string>index.txt</string>
-		<string>conf.py</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{372, 147}, {1046, 718}}</string>
+	<string>{{173, 11}, {1046, 718}}</string>
 </dict>
 </plist>
