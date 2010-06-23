@@ -95,7 +95,7 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-todo_include_todos = True
+#todo_include_todos = True
 
 # -- Options for HTML output ---------------------------------------------------
 
@@ -185,7 +185,7 @@ latex_font_size = '10pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-dv_latex_author = '''Produced by:\\\\INTEROP: Creation of an International Virtual Data Center for the Biodiversity, 
+dv_latex_author = u'''Produced by:\\\\INTEROP: Creation of an International Virtual Data Center for the Biodiversity, 
 Ecological and Environmental Sciences (NSF Award 0753138)\\\\and\\\\DataNet Full Proposal: DataNetONE (Observation Network for Earth) (NSF Award 0830944)'''
 latex_documents = [
   ('index', 'DataONEArchitecture.tex', project,
@@ -220,3 +220,39 @@ pdf_documents = [
 pdf_default_dpi = 300
 
 pdf_stylesheets = ['sphinx', 'tenpoint', 'letter']
+
+# -- Options for Epub output ---------------------------------------------------
+
+# Bibliographic Dublin Core info.
+epub_title = project
+epub_author = dv_latex_author
+epub_publisher = u'DataONE.org'
+epub_copyright = copyright
+
+# The language of the text. It defaults to the language option
+# or en if the language is not set.
+#epub_language = ''
+
+# The scheme of the identifier. Typical schemes are ISBN or URL.
+#epub_scheme = ''
+
+# The unique identifier of the text. This can be a ISBN number
+# or the project homepage.
+#epub_identifier = ''
+
+# A unique identification for the text.
+#epub_uid = ''
+
+# HTML files that should be inserted before the pages created by sphinx.
+# The format is a list of tuples containing the path and title.
+#epub_pre_files = []
+
+# HTML files shat should be inserted after the pages created by sphinx.
+# The format is a list of tuples containing the path and title.
+#epub_post_files = []
+
+# A list of files that should not be packed into the epub file.
+#epub_exclude_files = []
+
+# The depth of the table of contents in toc.ncx.
+#epub_tocdepth = 3
