@@ -24,71 +24,6 @@
 DataONE Architecture
 ====================
 
-**Change Log**
-
-:20100525:
-  - Added integration testing description
-
-:20100521:
-  - Refactoring the REST API to get around the slash problem
-  - Some edits to authentication
-  - General role up of numerous edits
-  - change to version 0.4 of docs, previous iteration preserved.
-
-:20100401:
-  - Numerous edits for API consistency
-  - Moved to automated API doc generation (ihwd.py)
-
-:20100304: 
-  - Rough merge of v0.3 APIs with full API descriptions
-  - Removed references to v0.3 APIS
-  - Added system metadata lifecycle document
-  - Revised system metadata elements (MJ) 
-
-:20100126: 
-  - Added query document to APIs section.
-  - Added start of logging requirements
-
-:20100120:
-  - Moved system metadata description from Overview to APIs
-
-:20100119:
-  - Adding to REST and Versions
-  - Adding detail on logging information
-  - Switched to theme which offers better use of available screen area
-
-:20100106:
-  - Numerous minor updates, consistency mostly
-
-:20091201: 
-  - Completed consistency of V0.3 APIs and Use Cases
-
-:20091120:
-  - Added section on System Metadata
-
-:20091113:
-  - Numerous edits, some rearrangement of chapters
-
-:20091112:
-  - General editing
-  - Setting up for PDF generation
-
-:20091110: 
- - Incorporating many updates and edits
- - Switch to Sphinx doc generator: easier to manage and better features
-
-:20090927:
- - Split usecases into separate document
- - Added page breaks for rst2pdf
-
-:20090925: 
- - Initial collation of all use cases into single document. 
- - Recast all diagrams to interaction diagrams using PlantUML automated tools
-
-:20090924:
- - Layout document structure, draft templates
-
-
 This document describes portions of the DataONE_ infrastructure. Note that
 content is quite dynamic while the architecture design is being iterated for
 the first release.
@@ -109,6 +44,7 @@ A version of the entire document in PDF is also `available for download`_.
    versions
    apis
    integration-testing
+   itk-overview
    license_and_copyright_policy
    todo
    glossary
