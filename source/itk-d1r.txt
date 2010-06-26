@@ -46,4 +46,37 @@ User stories
 
 Package design
 --------------
-To be completed.
+
+Classes, fields, and methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* D1Client
+   * Fields
+       * endpoint
+       * username
+       * token <AuthToken>
+   * Constructors
+       * d1(CN_URI)
+   * Methods
+       * login(username, password): AuthToken
+       * logout()
+       * getEndpoint(): String
+       * getUsername(): String
+       * getToken(): AuthToken
+       * search(): ResultSet
+       * resolve(guid): [MemberNodeURI]
+       * get(guid): DataPackage
+
+* DataPackage
+   * Fields
+       * metadata
+       * sysmeta
+       * [dataobject]
+   * Constructors
+       * datapackage(Metadata, SystemMetadata)
+   * Methods
+       * getTitle(): String
+       * getCreator(): String
+       * getDisplayURL(): String
+       * getDataObjectCount(): int
+       * getDataObject(index): dataframe
+
