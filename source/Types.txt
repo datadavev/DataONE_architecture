@@ -313,9 +313,23 @@ Version   Structure
 
 ----
 
+.. class:: Node
+
+  A set of values that describe a node, its internet location, the services it
+  supports and its replication policy.
+
+----
+
+.. class:: NodeList
+
+  A list of Node entries that is returned by :func:cn_register.listNodes.
+
+
+----
+
 .. class:: NodeReference
 
-  Member Node Identifier drawn from the DataONE Member Node Registry Service
+  Member node identifier drawn from the DataONE :mod:`cn_register <registry service>`.
 
 
 ----
@@ -417,6 +431,20 @@ Version   Structure
      The full URL for retrieving the object. For example, if identifer was
      "ABX154", then for the Member Node indicated above, this entry would be
      ``http://mn1.dataone.org/mn/object/ABX154``
+
+
+----
+
+.. class:: ObjectStatistics
+
+   A summary of object use information intended primarily for the monitoring service.
+
+
+----
+
+.. class:: OperationStatistics
+
+   A summary of operation calls intended primarily for the monitoring service.
 
 
 ----

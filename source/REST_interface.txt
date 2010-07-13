@@ -1010,8 +1010,43 @@ Returns a boolean result. "1" = true, "0" = false.
 
 ----
 
+
+Nodes Collection
+~~~~~~~~~~~~~~~~
+
+``GET /node``
+.............
+
+Implemented by the methods:
+
+- :func:`CN_register.listNodes`
+
+Returns a list of nodes that have been registered with the DataONE infrastructure.
+
+
+``PUT /node/<id>``
+..................
+
+Implemented by the methods:
+
+- :func:`CN_register.addNodeCapabilities`
+
+TODO
+
+
+``POST /node``
+..............
+
+Implemented by the methods:
+
+- :func:`CN_register.register`
+
+TODO
+
+
+
 Wildcards and Range Operators
-.............................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Several of the REST calls support filtering using wildcards and/or range
 operators. When such filtering is supported, it is explicitly noted in the

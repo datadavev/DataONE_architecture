@@ -1,32 +1,34 @@
 Replication API
 ~~~~~~~~~~~~~~~
 
+The Replication API manages :term:`replication` of system metadata and science
+metadata among coordinating nodes to ensure that complete copies of those
+objects are maintained on all coordinating nodes.
+
+
+.. Note:: Since this will be handled out-of-band with respect to the CN APIs
+  for V0.3, there are no Replication API methods required for V0.3.
+
 .. module:: CN_replication
-   :synopsis: 
-     Supports operations for replication of content between Member Nodes.
+   :synopsis: Manages replication of content between coordinating nodes.
 
+.. TODO:: flesh these out.
 
-The Replication API handles replication of data and science metadata content
-among member nodes. 
-
-
-.. include:: generated/generated_CN_replication.txt
-
-
-----
-
-.. TODO:: flesh these out...
    
-.. function:: getDefaultReplicationPolicy (sess)
+.. function:: pollForNewIDs() -> GuidList
 
-.. function:: getMNReplicateList()
+.. function:: synchronize ()
 
-.. function:: getReplicationPolicy (sess, ID)
+.. function:: verifyAllRecordsReceived ()
 
-.. function:: isReplicationNeeded ()
 
-.. function:: replicateMetadata ()
 
-.. function:: setDefaultReplicationPolicy (sess, policy)
 
-.. function:: setReplicationPolicy (sess, policy, ID)
+.. function:: scheduleSync(nodeID)
+
+   Schedules synchronization operation on the specified member node.
+
+   :param nodeID:  The member node that is being scheduled for synchronization.
+
+   :raises Exceptions.NotFound: The specified member node ID is invalid.
+

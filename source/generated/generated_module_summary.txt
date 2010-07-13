@@ -108,8 +108,8 @@
      - Retrieve the list of objects present on the MN that match the calling
        parameters. This method is required to support the process of
        :term:`Member Node synchronization`. At a minimum, this method should be
-       able to return a list of objects that match::   startTime <=
-       SystemMetadata.dateSysMetadataModified but is expected to also support
+       able to return a list of objects that match::      startTime <=
+       SystemMetadata.dateSysMetadataModified    but is expected to also support
        date range (by also specifying `endTime`), and should also support
        slicing of the matching set of records by indicating the starting `index`
        of the response (where 0 is the index of the first item) and the `count`
@@ -286,8 +286,8 @@
 
        Appears in functional use cases: :doc:`UC01 </UseCases/01_uc>`,
        :doc:`UC37 </UseCases/37_uc>`
-   * - :mod:`CN_replication`
-     - :func:`CN_replication.setReplicationStatus`
+   * - :mod:`CN_data_replication`
+     - :func:`CN_data_replication.setReplicationStatus`
      - Update the replication status of the system metadata, ensuring that the
        change is appropriate for the given state of system metadata.  For
        example, a MN can not change the status to Requested unless the CN
@@ -296,3 +296,15 @@
        Queued.
 
        Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
+   * - :mod:`CN_register`
+     - :func:`CN_register.listNodes`
+     - Returns a list of nodes that have been registered with the DataONE
+       infrastructure.
+
+       Appears in functional use cases: :doc:`UC39 </UseCases/39_uc>`
+   * - \
+     - :func:`CN_register.addNodeCapabilities`
+     - 
+   * - \
+     - :func:`CN_register.register`
+     - 

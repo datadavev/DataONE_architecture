@@ -11,11 +11,14 @@ Glossary
 
   cicore
     Refers to the essential, core components of the DataONE
-    cyberinfrastructure. This includes the :term:`Member Node`\s,
-    :term:`Coordinating Node`\s, and the :term:`Investigator Toolkit` 
+    cyberinfrastructure. This includes the :term:`member node`\s,
+    :term:`coordinating node`\s, and the :term:`Investigator Toolkit`
     libraries.
 
   Coordinating Node
+    See :term:`coordinating node`
+
+  coordinating node
     One of at least three nodes in the DataONE cyberinfrastructure that is
     responsible for maintaining a complete collection of all :term:`science
     metadata`, all :term:`system metadata`, a record of the location of all
@@ -27,13 +30,20 @@ Glossary
 
   Coordinating Node Replication
     In DataONE, refers to the process by which content that appears on any one
-    Coordinating Node is mirrored to all other Coordinating Nodes. See also
-    :term:`Member Node synchronization`.
+    coordinating node is mirrored to all other coordinating nodes. See also
+    :term:`member node synchronization` and :term:`data replication`.
+
+  data
+    See :term:`data`.
 
   Data
     Typically refers to :term:`science data`. Where ambiguity between the
     science data and another form of data, the full term "science data" should
     be used. 
+
+  data replication
+    The transfer of content between member nodes as directed by the
+    coordinating nodes.
 
   DataONE
     An NSF sponsored project implementing cyberinfrastructure according to
@@ -46,45 +56,52 @@ Glossary
 
   GUID
     Globally Unique Identifier. A string of printable unicode characters that
-    uniquely identifies an object within the DataONE infrastructure.
+    uniquely identifies an object within the DataONE infrastructure. See
+    :class:`Types.Identifier`
 
   identifier
     A synonym for :term:`GUID`.
 
   identity 
-    Refers to the properties of a user that enables the DataONE system
-    to distinguish them from other users.
+    Refers to the properties of a user or :term:`principal` that enables the
+    DataONE system to distinguish them from other users.
 
   Investigator Toolkit
     Software libraries, applications, and other tools that enable interaction
     with the DataONE system, typically by enabling storage of content on a
-    Member Node and/or by enabling search and retrieval of content from the
+    member node and/or by enabling search and retrieval of content from the
     DataONE infrastructure.
 
   Member Node
+    See :term:`member node`.
+
+  member node
     A data holding node that implements all or the essential elements of the
-    member mode :term:`API`\s (see :doc:`MN_APIs`). Member Nodes accept
-    content from users and may store content replicated from other Member
-    Nodes as directed by a Coordinating Node.
+    member mode :term:`API`\s (see :doc:`MN_APIs`). Member nodes accept
+    content from users and may store content replicated from other member
+    nodes as directed by a coordinating node.
 
-  Member Node synchronization
-    The process of updating a :term:`Coordinating Node` with the science and
-    system metadata that appears on a :term:`Member Node`.
+  member node synchronization
+    The process of updating a :term:`coordinating node` with the science and
+    system metadata that appears on a :term:`member node`.
 
-  Metadata
+  metadata
     Data describing data. There are currently two distinct forms of metadata
     managed by DataONE, :term:`science metadata` and :term:`system metadata`.
 
   node event log
-    The node event log is implemented on Coordinating Nodes and Member Nodes
+    The node event log is implemented on coordinating nodes and member nodes
     and should record all object access and manipulation events.
 
   principal
     A user that is a recognized :term:`identity` in the DataONE system
 
   replication
-    In DataONE, refers to the transfer of content between Member Nodes as
-    directed by the Coordinating Nodes.  
+    See :term:`coordinating node replication` or :term:`data replication`.
+
+  session
+    In the context of DataONE, a session refers to the operations that occur
+    with a single authentication token.
 
   science data
     Science data that is stored in the DataONE system. See :doc:`WhatIsData`
@@ -92,7 +109,7 @@ Glossary
     always return exact copies of the original data as submitted to DataONE.
 
   science metadata
-    Metadata that describes the data that is replicated across the Member Nodes.
+    Metadata that describes the data that is replicated across the member nodes.
 
   sysmeta
     See :term:`system metadata`
@@ -104,10 +121,9 @@ Glossary
     :term:`sysmeta`\.
 
   token
-    In DataONE, refers to the package of information returned from a login()
-    operation that can be subsequently trusted to accurately and unambiguously
-    identify a :term:`principal`.
-
+    In DataONE, refers to the package of information returned from a
+    :func:`CN_authentication.login` operation that can be subsequently trusted
+    to accurately and unambiguously identify a :term:`principal`.
 
 
 .. _DataNet RFP: http://www.nsf.gov/publications/pub_summ.jsp?WT.z_pims_id=503141&ods_key=nsf07601

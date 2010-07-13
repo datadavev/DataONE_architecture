@@ -81,3 +81,12 @@
    * - 0.7
      - :func:`MN_authorization.isAuthorized`
      - `GET /isAuthorized/<guid>`_
+   * - 
+     - :func:`CN_register.listNodes`
+     - `GET /node`_
+   * - 
+     - :func:`CN_register.addNodeCapabilities`
+     - `PUT /node/<id>`_
+   * - 
+     - :func:`CN_register.register`
+     - `POST /node`_

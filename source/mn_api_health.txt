@@ -4,6 +4,11 @@ State of Health API
 .. module:: MN_health
    :synopsis: Reports on the status of a Member Node
 
+.. include:: generated/generated_MN_health.txt
+
+
+----
+
 ::
 
   ping() -> pingResponse

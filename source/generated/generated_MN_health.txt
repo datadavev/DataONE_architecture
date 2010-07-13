@@ -10,17 +10,19 @@
      - Parameters
    * - :func:`getObjectStatistics`
      - (:class:`token<Types.AuthToken>`, :class:`time<Types.DateTime Range>`,
-       :class:`format<Types.ObjectFormat>`, ``day``) ``->`` objectStatistics
+       :class:`format<Types.ObjectFormat>`, ``day``) ``->``
+       :class:`Types.ObjectStatistics`
    * - :func:`getOperationStatistics`
      - (:class:`token<Types.AuthToken>`, :class:`time<Types.DateTime Range>`,
        :class:`requestorIdentitity<Types.Principal>`, ``day``,
-       :class:`typeOfOperation<Types.Event>`) ``->`` operationStatistics
+       :class:`typeOfOperation<Types.Event>`) ``->``
+       :class:`Types.OperationStatistics`
 
 
 
 ----
 
-.. function:: getObjectStatistics(token,time,format,day) -> objectStatistics
+.. function:: getObjectStatistics(token,time,format,day) -> ObjectStatistics
 
    Called by the monitoring system to find how many objects are stored on the
    MN, cumulative or for each day in a given range.
@@ -45,7 +47,7 @@
 
    :returns: List of statistics.
 
-   :rtype: objectStatistics
+   :rtype: :class:`Types.ObjectStatistics`
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=0)``
 
@@ -63,7 +65,7 @@
 
 ----
 
-.. function:: getOperationStatistics(token,time,requestorIdentitity,day,typeOfOperation) -> operationStatistics
+.. function:: getOperationStatistics(token,time,requestorIdentitity,day,typeOfOperation) -> OperationStatistics
 
    Called by the monitoring system to find how many operations have been
    performed on the MN, cumulative or for each day in a given range.
@@ -92,7 +94,7 @@
 
    :returns: List of statistics.
 
-   :rtype: operationStatistics
+   :rtype: :class:`Types.OperationStatistics`
 
    :raises Exceptions.NotImplemented: ``(errorCode=501, detailCode=0)``
 

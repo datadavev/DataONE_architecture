@@ -1,13 +1,27 @@
 Register API
 ~~~~~~~~~~~~
 
-Register API methods manage registration of Member Nodes and is not
-implemented for for V0.3. Instead, registry information about MNs is managed
-manually.
-
 .. module:: CN_register
-   :synopsis: Methods to manage registration of Member Nodes 
+   :synopsis: Register nodes and their capabilities, retrieve node list
 
+The register API methods are used to maintain a registry of nodes
+participating in the DataONE infrastructure.
+
+Note that the node registry is much the same as the Object collection with a
+restriction on the returned object formats to be member or coordinating nodes.
+It may be prudent for the implementation of the registration API to leverage
+the existing functionality of the object collection rather than implementing a
+parallel data store. In this case, the "science metadata" could be a DC
+description of the node, and the "data" might be the detailed registration
+information including node capabilities, scheduling and so forth.
+
+
+.. include:: generated/generated_CN_register.txt
+
+
+----
+
+xxxx notes xxxx
 
 
 .. function:: addNodeCapabilities (nodeID, capabilities) -> boolean
@@ -56,5 +70,7 @@ manually.
 
 
 .. todo:: 
-   The :func:`verifyCapabilities` will needto check functionality of the MN so
+   The :func:`verifyCapabilities` will need to check functionality of the MN so
    need to define a few service hooks for checking these properties.
+
+

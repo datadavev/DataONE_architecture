@@ -9,7 +9,8 @@
    * - Function
      - Parameters
    * - :func:`setReplicationStatus`
-     - (:class:`guid<Types.Identifier>`, ``status``) ``->`` boolean
+     - (:class:`token<Types.AuthToken>`, :class:`guid<Types.Identifier>`,
+       ``status``) ``->`` boolean
 
 
 
@@ -31,7 +32,7 @@
 
    :param token:
 
-   :type token: 
+   :type token: :class:`Types.AuthToken`
 
    :param guid: Identifier of the object to be replicated between Member Nodes
 

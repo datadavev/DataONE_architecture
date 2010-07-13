@@ -40,7 +40,6 @@ Summary of API Functions
 .. include:: generated/generated_module_summary.txt
 
 
-
 Summary of Exceptions
 ---------------------
 

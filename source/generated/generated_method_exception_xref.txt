@@ -921,33 +921,83 @@
      - InvalidRequest
      - 400
      - 1761
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - ServiceFailure
      - 500
      - 4700
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - NotImplemented
      - 501
      - 4701
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - InvalidToken
      - 401
      - 4710
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - NotAuthorized
      - 401
      - 4720
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - InvalidRequest
      - 400
      - 4730
-   * - :mod:`CN_replication`
-     - :func:`setReplicationStatus <CN_replication.setReplicationStatus>`
+   * - :mod:`CN_data_replication`
+     - :func:`setReplicationStatus <CN_data_replication.setReplicationStatus>`
      - NotFound
      - 404
      - 4740
+   * - :mod:`CN_register`
+     - :func:`listNodes <CN_register.listNodes>`
+     - NotImplemented
+     - 501
+     - 4800
+   * - :mod:`CN_register`
+     - :func:`listNodes <CN_register.listNodes>`
+     - ServiceFailure
+     - 500
+     - 4801
+   * - :mod:`CN_register`
+     - :func:`addNodeCapabilities <CN_register.addNodeCapabilities>`
+     - NotImplemented
+     - 501
+     - 4820
+   * - :mod:`CN_register`
+     - :func:`addNodeCapabilities <CN_register.addNodeCapabilities>`
+     - NotAuthorized
+     - 401
+     - 4821
+   * - :mod:`CN_register`
+     - :func:`addNodeCapabilities <CN_register.addNodeCapabilities>`
+     - ServiceFailure
+     - 500
+     - 4822
+   * - :mod:`CN_register`
+     - :func:`addNodeCapabilities <CN_register.addNodeCapabilities>`
+     - InvalidRequest
+     - 400
+     - 4823
+   * - :mod:`CN_register`
+     - :func:`register <CN_register.register>`
+     - NotImplemented
+     - 501
+     - 4840
+   * - :mod:`CN_register`
+     - :func:`register <CN_register.register>`
+     - NotAuthorized
+     - 401
+     - 4841
+   * - :mod:`CN_register`
+     - :func:`register <CN_register.register>`
+     - ServiceFailure
+     - 500
+     - 4842
+   * - :mod:`CN_register`
+     - :func:`register <CN_register.register>`
+     - InvalidRequest
+     - 400
+     - 4843

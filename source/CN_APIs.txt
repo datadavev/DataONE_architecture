@@ -16,8 +16,8 @@ Coordinating Node APIs
    cn_api_authorization
    cn_api_query
    cn_api_crud
+   cn_api_data_replication
    cn_api_replication
-   cn_api_synchronization
    cn_api_register
    cn_api_health
 

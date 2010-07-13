@@ -28,7 +28,11 @@
    Node synchronization`. At a minimum, this method should be able to return a
    list of objects that match::
 
+
+
      startTime <= SystemMetadata.dateSysMetadataModified
+
+
 
    but is expected to also support date range (by also specifying `endTime`),
    and should also support slicing of the matching set of records by indicating
