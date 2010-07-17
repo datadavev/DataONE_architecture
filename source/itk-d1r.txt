@@ -59,12 +59,16 @@ Package design
 Classes, fields, and methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. Note:: 
+    All of the classes and methods in R are inverted (ie, classes don't contain methods per se, instead, methods are specialized to work on particular classes, and the class is generally passed in as the first parameter of the method call.  So, all signatures below need to have an added parameter for this object to be passed in.
+
 * D1Client
 
    * Fields
 
        * endpoint
        * username
+       * cli <D1Client>
        * token <AuthToken>
 
    * Constructors
@@ -73,32 +77,36 @@ Classes, fields, and methods
 
    * Methods
 
-       * login(username, password): AuthToken
-       * logout()
+       * login(username, password): D1Client
        * getEndpoint(): String
+       * getPackage(guid): DataPackage
+
+       * logout()
        * getUsername(): String
        * getToken(): AuthToken
        * search(): ResultSet
        * resolve(guid): [MemberNodeURI]
-       * get(guid): DataPackage
 
 * DataPackage
 
    * Fields
 
-       * metadata
+       * identifier
+       * scimeta
        * sysmeta
-       * [dataobject]
+       * [dataList]
 
    * Constructors
 
-       * datapackage(Metadata, SystemMetadata)
+       * datapackage(identifier, scimeta, sysmeta)
 
    * Methods
+
+       * addData(dataObject): DataPackage
+       * getDataCount(): int
+       * getData(index): dataframe
 
        * getTitle(): String
        * getCreator(): String
        * getDisplayURL(): String
-       * getDataObjectCount(): int
-       * getDataObject(index): dataframe
 
