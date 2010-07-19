@@ -171,7 +171,7 @@ V0.3 Read operations for Coordinating Nodes.
                      scienceMetadataGUID, scienceMetadata)
 
    This is a method used internally by the CN, not exposed to MNs or the
-   world. Stores the two given objects (systemMetadata, scienceMetadata) in a
+   world. Stores the two given objects (systemMetadata and scienceMetadata) in a
    single atomic action. This method is used as part of the synchronization of
    science metadata between a MN and the CN.
 
@@ -193,7 +193,7 @@ Replication API
 ~~~~~~~~~~~~~~~
 
 The Replication API handles replication of data and science metadata content
-among member nodes. Such replication is not part of V0.3 functionality, so
+among Member Nodes. Such replication is not part of V0.3 functionality, so
 there are no Replication API methods required.
 
 
@@ -219,7 +219,8 @@ manually.
 Server Authentication API
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Server authentication is handled by network configuration for V0.3. No API calls are required.
+Server authentication is handled by network configuration for V0.3. No API calls
+are required.
 
 
 
@@ -230,7 +231,8 @@ The Health API contains methods for determining the status of the DataONE
 infrastructure, including both the CNs and MNs.
 
 .. module:: CN_health_0_3
-   :synopsis: Methods for reporting on the state of health of a CN and on the entire DataONE infrastructure
+   :synopsis: Methods for reporting on the state of health of a CN and on the
+   entire DataONE infrastructure
 
 :: 
 

@@ -8,42 +8,41 @@ User Scenarios
 The user requirements outlined in this document drove much of the process for
 identification of the :doc:`DataONE Functional Use Cases</usecases>` described
 elsewhere. The functional use cases were identified and prioritized over a
-series of meetings funded by the NSF sponsored "Virtual Data Center" (VDC) INTEROP_
-project.
+series of meetings funded by the NSF sponsored "Virtual Data Center" (VDC)
+INTEROP_ project.
 
 
-US 01.  Core Functionality (proposed)
+US 01. Core Functionality (proposed)
 -------------------------------------
 
 DataONE provides the distributed framework (which is comprised of Member and
 Coordinating Nodes as illustrated in Figure 1), sound management, and robust
 technologies that enable long-term preservation of diverse multi-scale,
 multi-discipline, and multi-national observational data. DataONE initially
-emphasizes observational data collected by biological (genome to ecosystem)
-and environmental (atmospheric, ecological, hydrological, and oceanographic)
-scientists, research networks, and environmental observatories. DataNetONE
-will be domain agnostic, progressively expanding to broader domains and
-building on infrastructure and interoperability with DataNet partners.
+emphasizes observational data collected by biological (genome to ecosystem) and
+environmental (atmospheric, ecological, hydrological, and oceanographic)
+scientists, research networks, and environmental observatories. DataNetONE will
+be domain agnostic, progressively expanding to broader domains and building on
+infrastructure and interoperability with DataNet partners.
 
 .. figure:: images/proposal_figure_1.png
    :figwidth: 100%
 
-   DataONE Member Nodes form a robust, distributed network via
-   coordinating services provided by a set of Coordinating Nodes (i.e., Oak
-   Ridge Campus, UC-Santa Barbara, and University of New Mexico) arranged in a
-   high-availability configuration. Scientists and citizens interact with
-   Member Nodes (e.g., South African Environmental Observation Network,
-   California Digital Library, USGS National Biological Information
-   Infrastructure) through software tools that utilize standardized
-   interfaces. This structure supports many different usage scenarios, such as
-   data and metadata management and replication (e.g., using Morpho [black
-   arrows] or the Mercury system [orange arrows]), as well as analysis and
-   modeling (e.g., using commercial software like Matlab [light green arrows]
-   and open-source scientific workflow systems like Kepler [blue arrows]).
-   Coordinating Nodes perform many basic indexing and data replication
-   services to ensure data availability and preservation (e.g., node
-   registration [purple arrow] and monitoring via heartbeat services (red
-   arrow]).
+   DataONE Member Nodes form a robust, distributed network via coordinating
+   services provided by a set of Coordinating Nodes (i.e., Oak Ridge Campus,
+   UC-Santa Barbara, and University of New Mexico) arranged in a
+   high-availability configuration. Scientists and citizens interact with Member
+   Nodes (e.g., South African Environmental Observation Network, California
+   Digital Library, USGS National Biological Information Infrastructure) through
+   software tools that utilize standardized interfaces. This structure supports
+   many different usage scenarios, such as data and metadata management and
+   replication (e.g., using Morpho [black arrows] or the Mercury system [orange
+   arrows]), as well as analysis and modeling (e.g., using commercial software
+   like Matlab [light green arrows] and open-source scientific workflow systems
+   like Kepler [blue arrows]). Coordinating Nodes perform many basic indexing
+   and data replication services to ensure data availability and preservation
+   (e.g., node registration [purple arrow] and monitoring via heartbeat services
+   (red arrow]).
 
 
 .. raw:: latex
@@ -56,15 +55,15 @@ US 02. Value Added Services (proposed)
 
 DataONE is not the end, but rather the means to enable scientists and citizens
 to address and better understand the difficult and complex biological,
-environmental, social, and technological challenges affecting human,
-ecosystem, and planetary sustainability. The comprehensive
-cyber-infrastructure allows novel questions to be asked that require
-harnessing the enormity of existing data and developing new methods to combine
-and analyze diverse data resources (Figure 2).
+environmental, social, and technological challenges affecting human, ecosystem,
+and planetary sustainability. The comprehensive cyber-infrastructure allows
+novel questions to be asked that require harnessing the enormity of existing
+data and developing new methods to combine and analyze diverse data resources
+(Figure 2).
 
 DataONE will accomplish its goals by making scientists, students, librarians,
-and citizens active participants in the data life cycle—especially, the data
-preservation process. By supporting community- derived interoperability
+and citizens active participants in the data life cycle, especially the data
+preservation process. By supporting community derived interoperability
 standards and incorporating new value-added and innovative technologies (e.g.,
 for semantic and geospatial information, scientific workflows, and advanced
 visualization) into the scientific process, DataONE will facilitate
@@ -72,10 +71,9 @@ sophisticated data integration, analysis, interpretation, and understanding. A
 strong education and outreach program focuses on scientists and students
 learning to better and more easily manage, preserve, analyze, and visualize
 Earth observational data. Citizen scientists are actively engaged in data
-preservation and scientific discovery through their involvement in programs
-such as the USA National Phenology Network (USA-NPN) and numerous Cornell
-Laboratory of Ornithology citizen science efforts (e.g., eBird, Project
-FeederWatch).
+preservation and scientific discovery through their involvement in programs such
+as the USA National Phenology Network (USA-NPN) and numerous Cornell Laboratory
+of Ornithology citizen science efforts (e.g., eBird, Project FeederWatch).
 
 .. figure:: images/proposal_figure_2.png
    :figwidth: 100%
@@ -115,7 +113,7 @@ in all Member Nodes; and (3) an **Investigator Toolkit** that provides a
 complete and evolving set of tools for data and metadata management by
 scientists and curators throughout the entire data life cycle (Figure 3).
 Initially, there will be three Coordinating Nodes geographically dispersed at
-ORC, UNM, and UCSB. A small number of additional coordinating nodes may be
+ORC, UNM, and UCSB. A small number of additional Coordinating Nodes may be
 implemented as DataNetONE expands in scope, sustainable funding, and
 international presence.
 
@@ -141,7 +139,7 @@ US 04. Spread and Impact of Invasive Species
 
 Invasive species are:
 
-- Expensive - response estimates up to $138bn per year in the US1
+- Expensive - response estimates up to $138bn per year in the US.
 
 - Complex - many interactions and factors determine invasiveness and impact
 
@@ -149,13 +147,14 @@ Invasive species are:
   material and confusion for access and collation of relevant biodiversity
   information
 
-Outcome is suboptimal consideration of potential biotic risks associated with
-imports of new products, packing, shipping methods or from new regions,
+The outcome is suboptimal consideration of potential biotic risks associated
+with imports of new products, packing, shipping methods or products from new
+regions.
 
-DataONE eliminates confusion for information access and integration,
-providing domain relevant knowledge to researchers, border agents and to
-inform policy makers on potential impact or savings associated with new or
-ongoing trade relationships.
+DataONE eliminates confusion related to information access and integration,
+providing domain relevant knowledge to researchers, border agents and to inform
+policy makers on potential impact or savings associated with new or ongoing
+trade relationships.
 
 .. figure:: images/invasives.jpg
    :width: 100%

@@ -30,10 +30,9 @@ infrastructure, including both the CNs and MNs.
    .. note:: 
       This method is used by Use Case 10 "MN Status Reports" for V0.3. However
       instead of a complete set of detailed status reports, the V0.3
-      implementation of the use case will utilize thee the
-      ``MN_health.heartbeat()`` method to compile very basic information
-      about the MNs. Later versions of this method will use the richer
-      ``MN_health.getStatus(token)`` method.
+      implementation of the use case will utilize the ``MN_health.heartbeat()``
+      method to compile very basic information about the MNs. Later versions of
+      this method will use the richer ``MN_health.getStatus(token)`` method.
 
    :param token: Identity with authority to generate reports.
    

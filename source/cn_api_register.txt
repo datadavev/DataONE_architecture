@@ -8,12 +8,12 @@ The register API methods are used to maintain a registry of nodes
 participating in the DataONE infrastructure.
 
 Note that the node registry is much the same as the Object collection with a
-restriction on the returned object formats to be member or coordinating nodes.
-It may be prudent for the implementation of the registration API to leverage
-the existing functionality of the object collection rather than implementing a
-parallel data store. In this case, the "science metadata" could be a DC
-description of the node, and the "data" might be the detailed registration
-information including node capabilities, scheduling and so forth.
+restriction on the returned object formats to be Member Nodes or Coordinating
+Nodes. It may be prudent for the implementation of the registration API to
+leverage the existing functionality of the object collection rather than
+implementing a parallel data store. In this case, the "science metadata" could
+be a DC description of the node, and the "data" might be the detailed
+registration information including node capabilities, scheduling and so forth.
 
 
 .. include:: generated/generated_CN_register.txt

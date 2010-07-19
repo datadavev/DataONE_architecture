@@ -12,13 +12,13 @@ application that supports the protocol of the particular identifier scheme) is
 able to retrieve the object (and typically some metadata about the object)
 that the identifier refers to.
 
-The entire set of potential member nodes is likely to utilize a wide range of
-identifier schemes, and it is unlikely that a given type of member node will
+The entire set of potential Member Nodes is likely to utilize a wide range of
+identifier schemes, and it is unlikely that a given type of Member Node will
 change the identifier scheme they are utilizing. Hence, DataONE can not resort
 to reliance or promotion of any one scheme without risking the exclusion of
-participants.  As a result, DataONE must be identifier agnostic.  
+participants. As a result, DataONE must be identifier agnostic.  
 
-DataONE will replicate data and associated metadata across many member nodes,
+DataONE will replicate data and associated metadata across many Member Nodes,
 and it is likely that not all MNs will support the same identifier scheme. This
 leads to the situation where in order to replicate content across MNs, there
 will need to be some sort of mapping between identifiers utilized by the
@@ -29,10 +29,10 @@ Suggested Strategy
 
 1. 
    DataONE supports all identifier schemes where the ID can be represented as
-   a unicode string (this should be any identifier).
+   a Unicode string (this should be any identifier).
 
 2. 
-   The original identifier first assigned by a member node is the identifier
+   The original identifier first assigned by a Member Node is the identifier
    promoted as the authoritative identifier for that content. Other
    identifiers that may be assigned by MNs that don't support the original
    scheme will be mapped to the original.
@@ -48,7 +48,7 @@ Suggested Strategy
 
 This strategy will enable the use of any identifier that can be represented by
 a string, and will persist the original identifier for the object regardless
-of what happens to the originating member node.  
+of what happens to the originating Member Node.  
 
 An obvious problem with this strategy though is that a particular object may
 have multiple identifiers associated with it, however since the original is
@@ -60,7 +60,7 @@ referenced, regardless of which node the object is located on.
    :figwidth: 100%
 
    Resolving a GUID. In this scenario a user is trying to determine what the
-   ID "A5548D" refers to, and uses the resolution service of a member node to
+   ID "A5548D" refers to, and uses the resolution service of a Member Node to
    that effect.
 
 ..
@@ -202,10 +202,10 @@ longer available. This raises a number of implementation issues, noted below.
 Particular issues include how to handle data which is regularly updated and
 things like status changes.
 
-A member node may use its own internal identification scheme, but must be able
+A Member Node may use its own internal identification scheme, but must be able
 to retrieve an object based on its DataONE globally unique identifier.
 
-Member nodes may generate their own unique identifiers, such as DOI's,
+Member Nodes may generate their own unique identifiers, such as DOI's,
 Handles, PURLs, or UUID's. The only requirement is that the identifier is
 unique across the space of DataONE. This implies that CN's must have
 functionality to 
@@ -220,7 +220,7 @@ be able to accept and resolve the supplied DataONE identifier. That is, an
 object, no matter where it is within the DataONE network must be retrievable
 by its DataONE identifier, regardless of location. There was a lot of
 discussion on this point, and this is my interpretation of the conclusion. I
-believe we came out with the point that if a receiving member node assigns its
+believe we came out with the point that if a receiving Member Node assigns its
 own permanent identifier, then that creates more confusion, requires the MN to
 register that second ID with the CNs, and we can have confusion regarding the
 citation (for example) of the piece of data. It also makes tracking things
@@ -242,7 +242,7 @@ Questions for Further Consideration
 If a MN uses a DOI for a data set identifier, is it appropriate to include
 doi: in the identifier. For example, 10.3334/ORNLDAAC/840 is the DOI for a
 particular data set at the ORNL DAAC. Both "doi:10.3334/ORNLDAAC/840" and
-"10.3334/ORNLDAAC/840" can be presumed to be unique identifiers.  Which should
+"10.3334/ORNLDAAC/840" can be presumed to be unique identifiers. Which should
 be used? 
 
 BEW: My personal preference is to use the one with the resolution
@@ -306,7 +306,7 @@ some type of an identifier that aggregates all versions of an object and which
 always points to the latest version of that object? How does D1 know that an
 object is a new version of an existing object? Update operation should take
 the old identifier and the new identifier. That would allow for the tracking
-of updates. A member node may track versions. Could create an interface
+of updates. A Member Node may track versions. Could create an interface
 specification for "latest version" where the CN calls the authoritative MN for
 the DS and asks for the identifier of the latest version of a particular
 identifier. Points back to the need for what amounts to meta-metadata - where
@@ -317,12 +317,11 @@ an observation point, which is either a location (e.g. buoy, possibly with
 different identifiers for different depths) or a leg of a trip, with multiple
 observations along a path.
 
-For identifiers, we may need to specify the character space. What happens when
-a MN stores unique identifiers in a database field that supports just ASCII,
-but a different MN does it's unique identifiers in some other character set?
-PURL is a possible unique identifier, but we can get into cases now where
-URL's have characters from other language character sets (such as Arabic,
-Kanji, Ö)
+For identifiers, we may need to specify the character space. What happens when a
+MN stores unique identifiers in a database field that supports just ASCII, but a
+different MN does its unique identifiers in some other character set? PURL is a
+possible unique identifier, but we can get into cases now where URLs have
+characters from other language character sets (such as Arabic, Kanji, Ö)
 
 What happens when a request for a replicated version of a data set comes to
 the replicate MN and the data set has been updated and the originating MN has

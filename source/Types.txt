@@ -67,7 +67,7 @@ Version   Structure
 
 .. class:: Capabilities
 
-  Describes the capabilities of a MemberNode.
+  Describes the capabilities of a Member Node.
 
 
 ----
@@ -106,7 +106,7 @@ Version   Structure
 
   Valid representations include:
   
-  - `HTTP Full Date`_ format.  e.g. `Sun, 06 Nov 1994 08:49:37 GMT`
+  - `HTTP Full Date`_ format. e.g. `Sun, 06 Nov 1994 08:49:37 GMT`
   - `YYYY-MM-DDTHH:MM:SS.mmmmmm`
   - `YYYYMMDDTHHMMSS.mmmmmm`
   - `YYYY-MM-DDTHH:MM:SS.mmmmmm+HH:MM`
@@ -185,22 +185,21 @@ Version   Structure
 
   .. attribute:: errorCode
 
-    The error code.  This is the HTTP error code (i.e. 4xx)
+    The error code. This is the HTTP error code (i.e. 4xx)
 
   .. attribute:: detailCode
 
-    A more detailed error code which provides a precise indication of where
-    the exception was raised. This is a string formatting using a dot
-    notation, where the first word is an integer value that is uniquely
-    associated with a DataONE API call and additional words may be appended to
-    provide application specific detail about the error. For example,
-    :func:`MN_crud.get` returns a detail code of 1020 with a
-    :exc:`Exceptions.NotFound` error. A specific Member Node implementation
-    may append additional error codes, for example: "1020.1.14" might indicate
-    that the NotFound error was caused by an IO error that indicated the
-    requested file did not exist, as opposed to some other IO error raised by
-    the system. Detail code words beyond the first word are application
-    specific.
+    A more detailed error code which provides a precise indication of where the
+    exception was raised. This is a string formatting using a dot notation,
+    where the first word is an integer value that is uniquely associated with a
+    DataONE API call and additional words may be appended to provide application
+    specific detail about the error. For example, :func:`MN_crud.get` returns a
+    detail code of 1020 with a :exc:`Exceptions.NotFound` error. A specific
+    Member Node implementation may append additional error codes, for example:
+    "1020.1.14" might indicate that the NotFound error was caused by an IO error
+    that indicated the requested file did not exist, as opposed to some other IO
+    error raised by the system. Detail code words beyond the first word are
+    application specific.
 
   .. attribute:: description
 
@@ -208,7 +207,7 @@ Version   Structure
 
   .. attribute:: traceInformation
 
-    A dictionary of key, value pairs that can provide more information about
+    A dictionary of key-value pairs that can provide more information about
     the error condition.
 
 
@@ -261,7 +260,7 @@ Version   Structure
 .. class:: Identifier
 
   An :term:`identifier` (:term:`GUID`) in the DataONE system. This is
-  equivalent to a unicode string of printable characters, excluding
+  equivalent to a Unicode string of printable characters, excluding
   whitespace. All representations of identifiers must be encoded in 7-bit
   ASCII or UTF-8.
 
@@ -275,7 +274,7 @@ Version   Structure
 
 .. class:: IdentifierList
 
-   A list of identifiers, so a list of unicode strings.
+   A list of identifiers, so a list of Unicode strings.
 
    ::
    
@@ -293,10 +292,8 @@ Version   Structure
   :: 
 
     message LogRecord {
-      required string timestamp = 1;
-      
+      required string timestamp = 1;    
     }
-
 
 ----
 
@@ -310,12 +307,11 @@ Version   Structure
       repeated LogRecord entry = 1;
     }
 
-
 ----
 
 .. class:: Node
 
-  A set of values that describe a node, its internet location, the services it
+  A set of values that describe a node, its Internet location, the services it
   supports and its replication policy.
 
 ----
@@ -329,7 +325,7 @@ Version   Structure
 
 .. class:: NodeReference
 
-  Member node identifier drawn from the DataONE :mod:`cn_register <registry service>`.
+  Member Node identifier drawn from the DataONE :mod:`cn_register <registry service>`.
 
 
 ----
@@ -338,10 +334,9 @@ Version   Structure
 
   One value from the DataONE Object Format Vocabulary, which may be an adopted
   vocabulary maintained by another organization. ObjectFormatType is currently
-  (prototype implementation)a string, however it seems likely that this will
-  require a more structured type in the future as the requirements of this
+  (in the prototype implementation) a string, however it seems likely that this
+  will require a more structured type in the future as the requirements of this
   type are better defined.
-
 
 ----
 
@@ -423,7 +418,7 @@ Version   Structure
   .. attribute:: node
 
      A node identifier. Currently, this should be the node name + base path. For
-     example, a member node with domain name "mn1.dataone.org" that serves
+     example, a Member Node with domain name "mn1.dataone.org" that serves
      content from /mn would be identified as ``mn1.dataone.org/mn``
 
   .. attribute:: url
@@ -463,7 +458,6 @@ Version   Structure
   PrincipalIdentifier drawn from the DataONE IdentityProviderService/
 
   Used by :mod:`SystemMetadata`
-
 
 ----
 
@@ -521,7 +515,6 @@ Expressing a NVP query in a URL
 .. class:: Status
 
   The response from :func:`MN_health.getStatus`
-
 
 ----
 

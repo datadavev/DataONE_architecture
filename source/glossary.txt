@@ -11,14 +11,14 @@ Glossary
 
   cicore
     Refers to the essential, core components of the DataONE
-    cyberinfrastructure. This includes the :term:`member node`\s,
-    :term:`coordinating node`\s, and the :term:`Investigator Toolkit`
+    cyberinfrastructure. This includes the :term:`Member Node`\s,
+    :term:`Coordinating Node`\s, and the :term:`Investigator Toolkit`
     libraries.
 
   Coordinating Node
-    See :term:`coordinating node`
+    See :term:`Coordinating Node`
 
-  coordinating node
+  Coordinating Node
     One of at least three nodes in the DataONE cyberinfrastructure that is
     responsible for maintaining a complete collection of all :term:`science
     metadata`, all :term:`system metadata`, a record of the location of all
@@ -30,8 +30,8 @@ Glossary
 
   Coordinating Node Replication
     In DataONE, refers to the process by which content that appears on any one
-    coordinating node is mirrored to all other coordinating nodes. See also
-    :term:`member node synchronization` and :term:`data replication`.
+    Coordinating Node is mirrored to all other Coordinating Nodes. See also
+    :term:`Member Node synchronization` and :term:`data replication`.
 
   data
     See :term:`data`.
@@ -42,8 +42,8 @@ Glossary
     be used. 
 
   data replication
-    The transfer of content between member nodes as directed by the
-    coordinating nodes.
+    The transfer of content between Member Nodes as directed by the
+    Coordinating Nodes.
 
   DataONE
     An NSF sponsored project implementing cyberinfrastructure according to
@@ -55,7 +55,7 @@ Glossary
     :mod:`Exceptions`.
 
   GUID
-    Globally Unique Identifier. A string of printable unicode characters that
+    Globally Unique Identifier. A string of printable Unicode characters that
     uniquely identifies an object within the DataONE infrastructure. See
     :class:`Types.Identifier`
 
@@ -69,35 +69,35 @@ Glossary
   Investigator Toolkit
     Software libraries, applications, and other tools that enable interaction
     with the DataONE system, typically by enabling storage of content on a
-    member node and/or by enabling search and retrieval of content from the
+    Member Node and/or by enabling search and retrieval of content from the
     DataONE infrastructure.
 
   Member Node
-    See :term:`member node`.
+    See :term:`Member Node`.
 
-  member node
+  Member Node
     A data holding node that implements all or the essential elements of the
-    member mode :term:`API`\s (see :doc:`MN_APIs`). Member nodes accept
+    member mode :term:`API`\s (see :doc:`MN_APIs`). Member Nodes accept
     content from users and may store content replicated from other member
-    nodes as directed by a coordinating node.
+    nodes as directed by a Coordinating Node.
 
-  member node synchronization
-    The process of updating a :term:`coordinating node` with the science and
-    system metadata that appears on a :term:`member node`.
+  Member Node synchronization
+    The process of updating a :term:`Coordinating Node` with the science and
+    system metadata that appears on a :term:`Member Node`.
 
   metadata
     Data describing data. There are currently two distinct forms of metadata
     managed by DataONE, :term:`science metadata` and :term:`system metadata`.
 
   node event log
-    The node event log is implemented on coordinating nodes and member nodes
+    The node event log is implemented on Coordinating Nodes and Member Nodes
     and should record all object access and manipulation events.
 
   principal
     A user that is a recognized :term:`identity` in the DataONE system
 
   replication
-    See :term:`coordinating node replication` or :term:`data replication`.
+    See :term:`Coordinating Node replication` or :term:`data replication`.
 
   session
     In the context of DataONE, a session refers to the operations that occur
@@ -109,7 +109,7 @@ Glossary
     always return exact copies of the original data as submitted to DataONE.
 
   science metadata
-    Metadata that describes the data that is replicated across the member nodes.
+    Metadata that describes the data that is replicated across the Member Nodes.
 
   sysmeta
     See :term:`system metadata`

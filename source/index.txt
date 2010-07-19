@@ -4,7 +4,8 @@
    contain the root `toctree` directive.
 
 ..
-  Note that regularly updated HTML renderings of these documents are available at: 
+  Note that regularly updated HTML renderings of these documents are available
+  at: 
   
   http://mule1.dataone.org/ArchitectureDocs/index.html
   

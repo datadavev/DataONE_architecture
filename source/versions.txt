@@ -35,7 +35,7 @@ features for this series beyond the initial specifications involves
 configuration of test environments and core API implementation libraries that
 are then used to add DataONE features and functionality to various existing
 data resources and component applications. The end result of the 0.x series
-will be three coordinating nodes and at least three member nodes that
+will be three Coordinating Nodes and at least three Member Nodes that
 implement DataONE functionality to replicate metadata and data, enable search
 and discovery, and supports remote administration and monitoring. Another
 important output from the prototyping activities will be documentation and

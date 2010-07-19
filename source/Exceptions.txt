@@ -15,18 +15,19 @@ All exceptions raised by APIS methods in DataONE cicore must include three
 basic elements of information and an optional element ``traceInformation`` as
 detailed in :class:`Types.ErrorMessage`, repeated here for convenience.
 
-================= ===============================================================
+================= ==============================================================
 Element           Description
-================= ===============================================================
-errorCode         The error code.  This is the HTTP error code (i.e. 4xx)
+================= ==============================================================
+errorCode         The error code. This is the HTTP error code (i.e. 4xx)
 detailCode        A code that can be mapped to a specific location in the 
-                  source code of the implementation.  Implemented as a string with
-                  dot notation to indicate progressive levels of detail.
+                  source code of the implementation. Implemented as a string
+                  with dot notation to indicate progressive levels of detail.
 description       A human readable message describing what happened
-traceInformation  An optional dictionary of values that provides more information about
-                  the error condition (e.g. calling parameters).  Note that traceInformation
-                  should never contain sensitive information.
-================= ===============================================================
+traceInformation  An optional dictionary of values that provides more
+                  information about the error condition (e.g. calling
+                  parameters). Note that traceInformation should never contain
+                  sensitive information.
+================= ==============================================================
 
 There will be conditions encountered where exceptions are raised in the APIs
 which are not exposed to HTTP. In these cases, the ``detailCode`` and
@@ -40,9 +41,9 @@ HTTP Exception Handling Codes
 HTTP error codes of relevance to the DataONE cicore are repeated here for
 convenience. Refer to the `HTTP specification`_ for a complete reference.
 
-==== =================== ==========================================
+==== =================== =======================================================
 Code Meaning             Description
-==== =================== ==========================================
+==== =================== =======================================================
 400  Bad Request         Bad request if the request REST operation is invalid,
                          serialization is erroneous, mime type is not supported, 
                          or resource is not supported.  
@@ -74,10 +75,11 @@ Code Meaning             Description
 500  Internal Server     The server encountered an unexpected condition which 
      Error               prevented it from fulfilling the request.
 501  Not Implemented     The server does not support the functionality required 
-                         to fulfill the request. This is the appropriate response 
-                         when the server does not recognize the request method and 
-                         is not capable of supporting it for any resource.
-==== =================== ==========================================
+                         to fulfill the request. This is the appropriate
+                         response  when the server does not recognize the
+                         request method and is not capable of supporting it for
+                         any resource.
+==== =================== =======================================================
 
 .. _HTTP specification: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
@@ -125,7 +127,7 @@ In HTML:
         <dd>mn.get</dd>
         <dt>hint</dt>
         <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a> 
-            at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
+            at a <a href='http://dataone.org'>DataONE</a> Coordinating Node.</dd>
       </dl>
     </body>
   </html>
@@ -147,14 +149,18 @@ In XML:
 
 In JSON::
 
-  {'name': 'NotFound',
-   'errorCode':404,
-   'detailCode': '1020.1',
-   'description': 'The specified object does not exist on this node.',
-   'traceInformation': {'identifier':'123XYZ',
-                         'method': 'mn.get',
-                         'hint':'http://cn.dataone.org/cn/resolve/123XYZ'}
-   }
+  {
+    'name': 'NotFound',
+    'errorCode':404,
+    'detailCode': '1020.1',
+    'description': 'The specified object does not exist on this node.',
+    'traceInformation':
+    {
+      'identifier':'123XYZ',
+      'method': 'mn.get',
+      'hint':'http://cn.dataone.org/cn/resolve/123XYZ'
+    }
+  }
 
 
 Log message body. This type of representation is presented here as a
@@ -171,6 +177,4 @@ The Exceptions
 .. include:: generated/generated_exception_summary.txt
 
 .. include:: generated/generated_exceptions.txt
-
-
 

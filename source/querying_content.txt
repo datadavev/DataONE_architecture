@@ -165,7 +165,7 @@ Metacat Path Query
 Metacat is an XML database, and so must support mechanisms for querying not
 just the attribute name, but also its location relative to other elements of
 the document (similar to XPath). The path query also indicates the elements
-that will be returned in the response.  An `example path query`_::
+that will be returned in the response. An `example path query`_::
 
   <pathquery version="1.0">
     <meta_file_id>unspecified</meta_file_id>

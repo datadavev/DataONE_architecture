@@ -73,10 +73,10 @@ Post Conditions
     loop for each MN
       alt V0.3
         c_health -> m_health: ping()
-        m_health --> c_health: status
+        m_health --> c_health: PingResponse
       else after V0.3
         c_health -> m_health: getStatus(token)
-        m_health --> c_health: status
+        m_health --> c_health: StatusResponse
       end
     end
     note right of c_health

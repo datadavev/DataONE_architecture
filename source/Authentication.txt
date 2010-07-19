@@ -13,17 +13,18 @@ the DataONE infrastructure.
 Overview
 --------
 
-Users and services authenticate in DataONE for the following purposes:
+Users and services authenticate in DataONE to confirm their identity. The
+identity is then used for:
 
-- To confirm their identity
+- Indicating ownership of objects
 
-Identity is utilized in the DataONE infrastructure to:
+- Recording activity within DataONE, such as object access, for reporting
+  purposes
 
-- To indicate ownership of objects
+Further, the authenticated identity is used as the basis for authorization
+within the DataONE infrastructure for:
 
-- To confirm or deny access to an object (read / write) through some access control rules
-
-- To record who accesses or uses objects for reporting purposes
+- Controlling access to objects (using access control rules)
 
 Four scenarios of identity provider arrangements are outlined below: 
 
@@ -45,8 +46,8 @@ of time.
 
 Access control rules are carried in the :class:`Types.SystemMetadata` for each
 object, and authoritative copies of the system metadata are held on the
-coordinating nodes. Hence, authorization always occurs through the
-coordinating nodes.
+Coordinating Nodes. Hence, authorization always occurs through the
+Coordinating Nodes.
 
 
 Requirements of Authentication and Authorization
@@ -108,7 +109,7 @@ individual when setting privileges for a large number of users.
 
 Fit Criteria
 
-* A well defined set of standard groups is identified and can be easily manage
+* A well defined set of standard groups is identified and can be easily managed
   (e.g. administrators, data contributors, data readers)
 
 * Users can be assigned to and removed from groups
@@ -162,14 +163,14 @@ available through DataONE.
 
 Fit Criteria
 
-* Access control rules can be evaluted for any token in an average of xxx
-  milliseconds
+* Access control rules can be evaluted for any token in a predetermined average
+  time frame
 
-* Access control rules must not take longer than xxx milliseconds to evaluate
+* Access control rules must not take longer than a predetermine amount of time
+  to evaluate
 
 * Access control must not block critical operations (e.g replications,
-  synchronization)
-
+  synchronization).
 
 
 .. _Users are authenticated by Coordinating Nodes:
@@ -245,7 +246,7 @@ Scenario 2. Authentication provided by MN
    always go to a CN, which then forwards the request to the appropriate MN.
 
    This requires that the token contains properties that reliably indicates
-   both the appropriate member node and the principal.
+   both the appropriate Member Node and the principal.
 
 ..
   @startuml images/authenticate_case_b.png

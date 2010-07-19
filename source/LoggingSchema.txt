@@ -12,23 +12,23 @@ Logging Schema
   ======== ============================================================
 
 
-This schema for logging documents specifies the information returned by 
-DataONE when requests for logs have been made from either Coordinating 
-Nodes or Member Nodes.  The log information is maintained dynamically by
-both the Coordinating Nodes and Member Nodes whenever a significant event
-occurs for a tracked object in the system.  Tracked objects include all data
-objects and science metadata objects in the system.  Events of significance
-include the insertion, update, deletion, or reading of these objects.
+This schema for logging documents specifies the information returned by DataONE
+when requests for logs have been made from either Coordinating Nodes or Member
+Nodes. The log information is maintained dynamically by both the Coordinating
+Nodes and Member Nodes whenever a significant event occurs for a tracked object
+in the system. Tracked objects include all data objects and science metadata
+objects in the system. Events of significance include the insertion, update,
+deletion, or reading of these objects.
 
 Log data are considered operational information needed to run DataONE, and can
-be read by all coordinating nodes in the course of service provision. In order
+be read by all Coordinating Nodes in the course of service provision. In order
 to reduce issues with third-party tracking of data status information, users can
 read log information for an object if they have the access rights to read the
 corresponding object on which the event was logged.
 
 
-The following list of fields represents the set of information returned
-upon a request for logging.
+The following list of fields represents the set of information returned upon a
+request for logging.
 
 .. table:: 
    **Table 1.** Quick reference to the Logging fields described in
@@ -165,8 +165,8 @@ Logging fields
 .. attribute:: memberNode
 
   The Member Node Identifier of the node on which this logged event
-  occurred.  This field is used to distinguish log records that occur at the
-  same time on different member nodes, such as simultaneous downloads.
+  occurred. This field is used to distinguish log records that occur at the
+  same time on different Member Nodes, such as simultaneous downloads.
 
   :Cardinality:
     1

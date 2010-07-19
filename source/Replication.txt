@@ -5,7 +5,8 @@ Replication Notes
 :Author: Dave V
 
 
-This document contains notes about replication that may be of some use in DataONE.
+This document contains notes about replication that may be of some use in
+DataONE.
 
 General
 -------
@@ -29,7 +30,7 @@ There's basically three models for dealing with replication in this case:
 
  - single master, two slaves
  - ring - write one, it writes to the next, and so on.
- - multi-master.  Write to any, replication to others.
+ - multi-master. Write to any, replication to others.
 
 Multi-master replication would be the ideal option, as each CN would then
 offer identical functionality rather than the alternative of redirecting
@@ -49,7 +50,7 @@ Member Nodes
 Replication of data is achieved by copying content between Member Nodes until
 sufficient copies have been made to address concerns of access (x% of MNs may
 be offline and the content can still be reached) and efficiency of access
-(internet distance between client and the MN).
+(Internet distance between client and the MN).
 
 Resources
 ---------
@@ -202,7 +203,7 @@ Disadvantages
  
 .. _mm_replication: http://www.dbspecialists.com/files/presentations/mm_replication.html
 
-.. _389 Directory Server: https://help.ubuntu.com/community/FedoraDirectoryServer
+.. _389 Directory Server: https://help.Ubuntu.com/community/FedoraDirectoryServer
 
 .. _distributed version control: http://en.wikipedia.org/wiki/Distributed_revision_control
 

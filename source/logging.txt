@@ -133,7 +133,7 @@ Holdings**
     Investigator Toolkit  --> "Number of times tools are downloaded"
     
     - Log analysis
-    - Text needs to be clarified.  ITK isn't a place
+    - Text needs to be clarified. ITK isn't a place
     - supporting information (videos, documents, ...)
 
 15. !!! (CN LOG) Number of metadata catalog searches completed – (note: over
@@ -187,30 +187,30 @@ Holdings**
 
 22. Baseline assessment of scientists completed
 
-23.  Number of repeat assessments of scientists completed
+23. Number of repeat assessments of scientists completed
 
-24.  Baseline assessment of other stakeholders completed
+24. Baseline assessment of other stakeholders completed
 
-25.  Number of repeat assessments of other stakeholders completed
+25. Number of repeat assessments of other stakeholders completed
 
-26.  Number of DataONE Partnership Agreements established
+26. Number of DataONE Partnership Agreements established
 
 
 **Education and Outreach**
 
 27. Number of education modules developed and/or accessible through DataONE
 
-28.  Number of times education modules are downloaded
+28. Number of times education modules are downloaded
 
-29.  Number of best practices guides developed and/or accessible through DataONE
+29. Number of best practices guides developed and/or accessible through DataONE
 
-30.  Number of times best practices guides are downloaded
+30. Number of times best practices guides are downloaded
 
-31.  Number of training sessions or workshops offered (e.g., at meetings)
+31. Number of training sessions or workshops offered (e.g., at meetings)
 
-32.  Number of workshop participants
+32. Number of workshop participants
 
-33.  Number of people in DataONE International Users Group
+33. Number of people in DataONE International Users Group
 
 
 **Sustainability**

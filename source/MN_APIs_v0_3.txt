@@ -19,7 +19,7 @@ CRUD API
 ~~~~~~~~
 
 .. module:: MN_crud_0_3
-   :synopsis: Read operations on member nodes.
+   :synopsis: Read operations on Member Nodes.
 
 ::
 
@@ -49,7 +49,7 @@ CRUD API
    .. todo::
 
      Q. What happens if the GUID is valid within DataONE, but isn't on this MN?
-     Is NotFound raised? Or, does the member node forward the request to a CN?
+     Is NotFound raised? Or, does the Member Node forward the request to a CN?
 
      A. Choices are: 1) raise NotFound. 2) resolve the GUID and return
      redirect. 3) redirect to a CN. 4) resolve the GUID and proxy content.
@@ -75,7 +75,7 @@ CRUD API
    .. todo:: 
 
       What happens if the GUID is valid within DataONE, but isn't on this MN?
-      Is NotFound raised? Or, does the member node forward the request to a
+      Is NotFound raised? Or, does the Member Node forward the request to a
       CN?
 
 
@@ -246,7 +246,7 @@ Reports on the status of a Member Node.
       but that use case will require the use of ``getStatus(token)`` from this
       same API for later versions.
 
-   Low level "Are you alive?" operation. The member node should perform some
+   Low level "Are you alive?" operation. The Member Node should perform some
    minimal internal functionality testing before answering. However, heartbeat
    checks will be frequent (every few minutes) so the internal functionality
    test should not be high impact.

@@ -11,5 +11,3 @@ details on some authentication options.
 
 .. include:: generated/generated_MN_authentication.txt
 
-
-

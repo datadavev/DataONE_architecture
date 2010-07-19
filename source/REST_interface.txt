@@ -3,8 +3,8 @@ REST Interface
 
 :About: 
   This document describes the Representational State Transfer (REST) model for
-  DataONE Member and Coordinating Nodes and maps the API methods to HTTP REST
-  calls.
+  DataONE Member and Coordinating Nodes and maps the DataONE API to a RESTful
+  web service.
 
 .. contents::
    :local: 
@@ -27,13 +27,14 @@ Overview
   in the HTTP headers.
 
 - Hints to support efficient caching (e.g. content time stamps) should be
-  respected. Caching is an important mechanism for achieving scalability
+  respected. Caching is an important mechanism for achieving scalability.
 
 - Several URL patterns listed below support parameters as key, value pairs.
   Unless otherwise indicted, the key is not case sensitive, though the case of
   the value is significant.
 
-Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s include:
+Collections exposed by :term:`Member Node`\s and :term:`Coordinating Node`\s
+include:
 
 :``/object``:
   The set of objects available for retrieval from the node.
@@ -81,7 +82,8 @@ request. Acceptable content types include:
 
 :``text/csv``:
 
-  The response is serialized as a comma delimited set of fields, with records delimited by a new line.
+  The response is serialized as a comma delimited set of fields, with records
+  delimited by a new line.
 
 :``text/html``:
 
@@ -137,7 +139,8 @@ collection is implemented by :func:`MN_replication.listObjects` and on a CN by
 :func:`CN_query.search`.
 
 
-.. list-table:: Response for HTTP operations on ``/object`` for different HTTP request verbs.
+.. list-table:: Response for HTTP operations on ``/object`` for different HTTP
+                request verbs.
    :widths: 2 20
    :header-rows: 1
 
@@ -150,7 +153,7 @@ collection is implemented by :func:`MN_replication.listObjects` and on a CN by
    * - GET
      - Return a :class:`Types.ObjectList` if called without the ``id`` 
        parameter in the URL, otherwise returns the object identified by
-       the value of the ``id`` URL paramater.
+       the value of the ``id`` URL parameter.
    * - POST
      - Creates a new instance with the specified identifier, implementing
        :func:`MN_crud.create`. The DataONE authorization token should be
@@ -241,9 +244,9 @@ however, unless otherwise indicated.
 :class:`Types.ObjectList` serialized according to the requested format as
 indicated in the ``Accept:`` HTTP header.
 
-The expected response when a user agent sends a GET request to a member node
+The expected response when a user agent sends a GET request to a Member Node
 exposing the DataONE REST API ``/object`` collection is an extract from the
-total list of identifiers that the member node is able to provide access to
+total list of identifiers that the Member Node is able to provide access to
 when the request was received. 
 
 Example of a JSON response structure::
@@ -337,7 +340,7 @@ Expressed in RDF/XML::
 
 **Examples**
 
-Retrieve a list of identifiers from a member node in JSON format::
+Retrieve a list of identifiers from a Member Node in JSON format::
 
   curl -X GET -H "Accept: application/json" http://mn1.dataone.org/object/
 
@@ -363,7 +366,7 @@ Retrieve a list of identifiers from a member node in JSON format::
   	  'size':1044} ] }
 
 
-Retrieve a list of identifiers from a member node in plain text format::
+Retrieve a list of identifiers from a Member Node in plain text format::
 
   curl -X GET -H "Accept: text/csv" http://mn1.dataone.org/object/
 
@@ -501,7 +504,7 @@ Returns the bytes of the specified object.
         <dd>mn.get</dd>
         <dt>hint</dt>
         <dd>Please try <a href='http://cn.dataone.org/cn/resolve?id=123XYZ'> resolving</a>
-            at a <a href='http://dataone.org'>DataONE</a> coordinating node.</dd>
+            at a <a href='http://dataone.org'>DataONE</a> Coordinating Node.</dd>
       </dl>
     </body>
   </html>

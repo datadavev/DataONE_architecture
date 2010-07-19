@@ -87,7 +87,7 @@ Support scientific use cases                          X
 Client discovery services                             X      
 Batch ingest for data / metadata                      X      
 Stress and load testing                               X      
-Coordinating node failover / load balancing*          X      
+Coordinating Node failover / load balancing*          X      
 Data and metadata validation                                 X
 Data and metadata migration                                  X
 Workflow support                                             X
@@ -215,7 +215,7 @@ Replication of Data and Metadata
 
   :doc:`Use Case 06</UseCases/06_uc>` - MN Synchronize: Copy metadata record
   from Member Node to Coordinating Node. As data are created or modified, the
-  metadata associated with those is copied to the to the coordinating nodes.
+  metadata associated with those is copied to the to the Coordinating Nodes.
   The presence of new or changed information on a Member Node (MN) is made
   known to a Coordinating Node (CN) through the status information in a ping()
   response. If so indicated, the CN schedules a synchronization operation with
@@ -245,14 +245,14 @@ Basic Logging Infrastructure
   this use case could be deferred to year 2.
 
   :doc:`Use Case 17</UseCases/17_uc>` - CRUD Logs Aggregated at CNs: All CRUD
-  logs are aggregated at coordinating nodes. Implementation of this use case
+  logs are aggregated at Coordinating Nodes. Implementation of this use case
   could be deferred to year 2.
 
 Basic Member Node Registry Services
 
   :doc:`Use Case 03</UseCases/03_uc>` - Register MN: Register a new Member
   Node. This use case describes the technical process for addition of a new
-  member node (MN) to the DataONE infrastructure. It is assumed that the
+  Member Node (MN) to the DataONE infrastructure. It is assumed that the
   appropriate social contracts have been formed and the MN is operational,
   ready to be connected.
 
@@ -400,7 +400,7 @@ Enhance the Logging Infrastructure
   operations on metadata and data are logged at each node.
 
   :doc:`Use Case 17</UseCases/17_uc>` - CRUD Logs Aggregated at CNs: All CRUD
-  logs are aggregated at coordinating nodes.
+  logs are aggregated at Coordinating Nodes.
 
   :doc:`Use Case 18</UseCases/18_uc>` - MN Retrieve Aggregated Logs: Member
   nodes can request aggregated CRUD log for {time period/object id/userid} for
@@ -443,7 +443,7 @@ Batch Ingest
 Coordination Node Failover and Load Balancing 
 
   :doc:`Use Case 29</UseCases/29_uc>` - CN Load Balancing: Load Balancing -
-  Requests to coordinating nodes are load balanced. Implementation of this use
+  Requests to Coordinating Nodes are load balanced. Implementation of this use
   case could be deferred to years 4-5.
 
 

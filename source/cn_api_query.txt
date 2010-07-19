@@ -6,7 +6,7 @@ Query API
      Handles queries against science metadata, system metdata, and log
      records held by CNs
 
-The Query API handles searches of science metadata and system metadata.  It also 
+The Query API handles searches of science metadata and system metadata. It also 
 exposes log records held by CNs. This log-related functionality probably needs
 to be split out into the Logging and Alert API (not yet defined).
 
@@ -27,7 +27,7 @@ to be split out into the Logging and Alert API (not yet defined).
 .. function:: getLogRecords (nodeID, fromDate, toDate)
 
 .. function:: query (token, query)
-    This is a DUPE of search().  Clean up use cases.
+    This is a DUPE of search(). Clean up use cases.
 
 .. function:: searchForData ()
     This is a DUPE of search(). Clean up use cases.

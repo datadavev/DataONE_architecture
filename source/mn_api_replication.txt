@@ -10,7 +10,7 @@ MN-to-MN replication is not part of the V0.3 APIs.
 
 
 .. module:: MN_replication
-   :synopsis: Handles CN directed replication of content between member nodes.
+   :synopsis: Handles CN directed replication of content between Member Nodes.
 
 
 .. include:: generated/generated_MN_replication.txt

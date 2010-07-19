@@ -2,7 +2,7 @@ CRUD API
 ~~~~~~~~
 
 .. module:: MN_crud
-   :synopsis: Create, read, update, and delete operations on member nodes
+   :synopsis: Create, read, update, and delete operations on Member Nodes
 
 The ``MN_crud`` API implements methods that enable object management
 operations on a :term:`Member Node`.  
@@ -13,7 +13,7 @@ operations on a :term:`Member Node`.
 
 ----
 
-.. Note:: Stuff past here seems to be a bit bogus.  Needs to be revisted.
+.. Note:: Stuff past here seems to be a bit bogus. Needs to be revisted.
 
 ----
 

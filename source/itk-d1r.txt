@@ -27,7 +27,7 @@ User stories
 * A scientist with R on their system can easily install d1r from CRAN_
 
 * A scientist can load a data object using its DataONE identifier from the 
-  DataONE system into R for further processing by other R functions.  The
+  DataONE system into R for further processing by other R functions. The
   data objects supported should minimally include:
 
    * Data Tables in CSV and other delimited formats

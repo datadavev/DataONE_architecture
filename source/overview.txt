@@ -8,7 +8,7 @@ functionalities:
    metadata, system metadata, annotations, identities, node capabilities, and
    so forth). The main goal here is to ensure that an identifier can be used
    reliably in the future without concern about the classic 404-not found
-   error encountered with many web sites.  Objects are replicated across 
+   error encountered with many web sites. Objects are replicated across 
    participant nodes of the DataONE system, so access can generally be 
    guaranteed even if the original node holding the data   goes offline.
 
@@ -73,7 +73,7 @@ toolkit.
    :figwidth: 100%
 
    Major components of DataONE and the services they implement. It is
-   invisaged that there will be few coordinating Nodes (three in the first
+   invisaged that there will be few Coordinating Nodes (three in the first
    year), more Member Nodes (hundreds ... thousands), and even more instances
    of the Investigator Toolkit.
 

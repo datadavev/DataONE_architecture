@@ -27,7 +27,7 @@ State of Health API
   reasonable to overload with a couple of flags that could indicate
   availability of new data or change in capabilities.
  
-  The member node should perform some minimal internal functionality testing
+  The Member Node should perform some minimal internal functionality testing
   before answering. However, ping checks will be frequent (every few minutes) so
   the internal functionality test should not be high impact.
 

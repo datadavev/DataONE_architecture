@@ -1,12 +1,11 @@
 Overview
 ========
 
-An important early part in the process of system architecture is identifying
-the functional requirements that the resulting system should be able to
-address. Use cases are helpful for this as they describe how actors (typically
-entities external to the system) interact with system components. Interaction
-diagrams help define the interfaces and messages transmitted between
-components.
+An important early part in the process of system architecture is identifying the
+functional requirements that the resulting system should be able to address. Use
+cases are helpful for this as they describe how actors (typically entities
+external to the system) interact with system components. Interaction diagrams
+help define the interfaces and messages transmitted between components.
 
 
 Use Case Layout
@@ -16,7 +15,7 @@ Each use case document is structured following a common template which
 includes the following elements.
 
 Author
- Who generated the use case.  This will usually be "VDC TWG".
+ Who generated the use case. This will usually be "VDC TWG".
 
 Date
  Date the use case was identified and known subsequent modifications.

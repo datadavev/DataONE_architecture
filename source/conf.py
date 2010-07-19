@@ -26,7 +26,8 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.todo', 
               'sphinx.ext.pngmath', 
               'sphinx.ext.ifconfig',
-              'sphinx.ext.graphviz']
+              'sphinx.ext.graphviz',
+              'rst2pdf.pdfbuilder']
 
 #extensions.append('rst2pdf.pdfbuilder')
 
