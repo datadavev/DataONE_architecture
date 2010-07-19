@@ -26,8 +26,8 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.todo', 
               'sphinx.ext.pngmath', 
               'sphinx.ext.ifconfig',
-              'sphinx.ext.graphviz',
-              'rst2pdf.pdfbuilder']
+              'sphinx.ext.graphviz', ]
+#              'rst2pdf.pdfbuilder', ]
 
 #extensions.append('rst2pdf.pdfbuilder')
 
@@ -70,7 +70,7 @@ release = '0.4'
 today_fmt = '%Y-%m-%d'
 
 # List of documents that shouldn't be included in the build.
-unused_docs = ['UseCases/uc_template', ]
+unused_docs = ['UseCases/uc_template', 'MN_APIs_v0_3', 'CN_APIs_v0_3']
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
@@ -212,15 +212,30 @@ latex_preamble = '\\usepackage{pdflscape}'
 #latex_use_modindex = True
 
 pdf_documents = [
-  #('index', 'DataONEArchitecture_0_0_4', u'DataONE Architecture Documentation',
-  # u'VDC Project, DataONE CCIT', 'manual'),
-  ('MN_APIs_v0_3', 'MN_APIs_v0_3', u'MN API 0.3',
-  u'VDC Project, DataONE CCIT', 'manual'),
+  ('index', 'DataONEArchitecture_0_0_4', u'DataONE Architecture Documentation',
+   u'VDC Project, DataONE CCIT', 'manual'),
+  #('MN_APIs_v0_3', 'MN_APIs_v0_3', u'MN API 0.3',
+  #u'VDC Project, DataONE CCIT', 'manual'),
 ]
 
-pdf_default_dpi = 300
+pdf_default_dpi = 400
 
 pdf_stylesheets = ['sphinx', 'tenpoint', 'letter']
+
+pdf_fit_mode = "shrink"
+
+pdf_break_level = 1
+
+pdf_breakside = 'any'
+
+pdf_use_index = True
+
+pdf_use_modindex = True
+
+pdf_use_coverpage = True
+
+pdf_splittables = True
+
 
 # -- Options for Epub output ---------------------------------------------------
 
