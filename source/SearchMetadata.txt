@@ -48,19 +48,19 @@ Search the keywords of content
 Search Element Types
 ~~~~~~~~~~~~~~~~~~~~
 
-Integer
+* Integer
 
-Float
+* Float
 
-String
+* String
 
-DateTime
+* DateTime
 
-SpatialFeature (use `Well Known Text`_ )
+* SpatialFeature (use `Well Known Text`_ )
 
-Publication (A structured type, perhaps search by decomposing to elements)
+* Publication (A structured type, perhaps search by decomposing to elements)
 
-ScientificName (A structured type, perhaps search by decomposing to elements)
+* ScientificName (A structured type, perhaps search by decomposing to elements)
 
 
 .. _Well Known Text: http://en.wikipedia.org/wiki/Well-known_text
@@ -73,13 +73,13 @@ Essential Elements
 
    (String)
 
-   - PI / Author
+   - Principle Investigator (PI) / Author
 
-   - name authority service is desired for some control over names appearing in metadata
+   - Name authority service is desired for some control over names appearing in metadata
 
-   - but for search, advantages to keep simple text representation
+   - For search, advantages to keep simple text representation
 
-   - goal of gradual increase in specificity
+   - Goal of gradual increase in specificity
 
 
 .. attribute:: keyWord
@@ -93,9 +93,9 @@ Essential Elements
 
    - Key concept -key concepts drawn from a set of ontologies
 
-   - term
+   - Term
 
-   - namespace
+   - Namespace
 
 .. attribute:: spatialFeature
 
@@ -104,19 +104,19 @@ Essential Elements
    - Spatial bounding box (largest bounding rectangle)
 
    - Spatial window (series of spatial envelopes representative of the spatial
-     locations of where the data is collected from / relevant to.).
+     locations of where the data is collected from or relevant to)
 
    - Spatial features (points, bounding boxes, polygons)
 
-   - centroid
+   - Centroid
 
-   - bounding box
+   - Bounding box
 
-   - polygon
+   - Polygon
 
-   - ( not largest extent )
+   - (not largest extent)
 
-   - ( need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search )
+   - (need to resolve the semantics of the bounding box search - e.g. if centroids are recorded but fall outside of bounding box search)
 
 
 .. attribute:: namedLocation
@@ -125,13 +125,13 @@ Essential Elements
 
    - Named places
 
-   - term 
+   - Term 
 
-   - type 
+   - Type 
 
-   - context (Columbus OH, Columbus GA)
+   - Context (Columbus OH, Columbus GA)
 
-   - namespace of gazeteer  
+   - Namespace of gazetteer  
 
 .. attribute:: earliestDate
 
@@ -144,7 +144,7 @@ Essential Elements
 
    - Temporal window
 
-   - Relative terms (e.g. paleo periods) need to be supported
+   - Relative terms (e.g. terms from the Geologic time scale) need to be supported
 
    - Date ranges
 
@@ -172,11 +172,11 @@ Desirable Elements
 
   - Type of data (format) (2)
   
-    - original data
+    - Original data
 
-    - summarized versions
+    - Summarized versions
 
-    - method used for processing (to generate summary, or original data)
+    - Method used for processing (to generate summary, or original data)
 
     - Resource type (spatial, models, observations, web service, ...)
 
@@ -223,7 +223,7 @@ Some Others
 
 .. attribute:: quality
 
-   (String, controlled vocab)
+   (String, controlled vocabulary)
 
    - Quality / level of curation
 
@@ -278,11 +278,11 @@ Some Others
 
   - Temporal coverage, low priority
 
-    - (publication date )
+    - Publication date
 
-    - creation date
+    - Creation date
 
-    - last modified date
+    - Last modified date
 
 
 .. attribute:: readPrincipal

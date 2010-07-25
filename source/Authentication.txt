@@ -84,7 +84,7 @@ Fit Criteria
 * Authentication and authorization mechanisms are recognized consistently by
   all participant nodes and services of the cicore.
 
-* Existing user directories in use in environmental science community can
+* Existing user directories in use in environmental science communities can
   directly contribute identities (not "yet another" identity system)
 
 

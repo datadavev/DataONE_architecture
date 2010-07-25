@@ -2,7 +2,7 @@ Replication Notes
 =================
 
 
-:Author: Dave V
+:Author: Dave Vieglas
 
 
 This document contains notes about replication that may be of some use in
@@ -21,7 +21,7 @@ General
 Coordinating Nodes
 ------------------
 
-CNs need to keep a copy of all experiment metadata, and it is expected that
+CNs need to keep a copy of all science metadata, and it is expected that
 each CN will be replicated with the others, so that each will appear the same.
 
 There will be three CNs to start with.
@@ -29,8 +29,8 @@ There will be three CNs to start with.
 There's basically three models for dealing with replication in this case:
 
  - single master, two slaves
- - ring - write one, it writes to the next, and so on.
- - multi-master. Write to any, replication to others.
+ - ring - write one, it writes to the next, and so on
+ - multi-master. Write to any, replication to others
 
 Multi-master replication would be the ideal option, as each CN would then
 offer identical functionality rather than the alternative of redirecting
@@ -38,10 +38,10 @@ offer identical functionality rather than the alternative of redirecting
 
 There are basically two categories of information that are replicated:
 
-  - experiment metadata, which is information about a data set
+  - science metadata, which is information about a data set
 
   - system metadata, which is information that is used to keep track of things
-    such as the experiment metadata, MN capabilities and state, perhaps groups
+    such as the science metadata, MN capabilities and state, perhaps groups
     and access control lists, identity mappings
 
 Member Nodes
@@ -74,9 +74,9 @@ Coordinating Node Object Store
 
 The CN object store (CN-OS) is responsible for holding a copy of all science
 and system metadata, enabling retrieval of objects by an identifier and for
-ensuring that the local copy is in synch with the other CNs. The CN-OS may
-thus be likened to a replicated dictionary with the identifiers being keys and
-the science or system metadata documents being the values.
+ensuring that the local copy is synchronized with the other CNs. The CN-OS is
+analogous to a replicated dictionary with the identifiers being keys and the
+science or system metadata documents being the values.
 
 The CN-OS should support operations:
 
@@ -96,7 +96,7 @@ Metacat As Replicating Object Manager
 -------------------------------------
 
 Metacat_ is a flexible metadata database that utilizes XML as a common syntax
-for representing various types of metadata. In a general sense, Metacat can be
+for representing various types of metadata. In general, Metacat can be
 considered functionally equivalent to an XML database.
 
 Metacat supports replication of documents between instances, with replication
@@ -108,7 +108,7 @@ being triggered by several events:
 - Lock, when a lock is requested on a document (replication after lock received)
 
 With Metacat filling the role of the Coordinating Node Object Store, each CN
-Metacat instance of would replicate with the other instances on the CNs. The
+Metacat instance would replicate with the other instances on the CNs. The
 configuration for DataONE CNs would be something like:
 
 ===== ========== ========= ============= ====
@@ -130,8 +130,8 @@ Using a Distributed Lock Manager
 --------------------------------
 
 Apache Zookeeper_ can be used as a distributed lock manager to assist with
-synchronization of records especially across the CNs. Zookeeper is interesting
-because it can potentially scale to many more than three CNs.
+synchronization of records, especially across the CNs. Zookeeper is
+interesting because it can potentially scale to many more than three CNs.
 
 In this case we would create a globally synchronous lock on a specific GUID
 (essentially the same as the Lock operation of Metacat). The basic procedure
@@ -196,7 +196,7 @@ Disadvantages
 - No per-object access control
 - Potential for collisions for object instances
 - How to (automatically) resolve conflicts?
-- Limitations on the absolute number of files per folder / filesystem
+- Limitations on the absolute number of files per folder/filesystem
 
 
 .. _DRBD: http://www.drbd.org/home/what-is-drbd/

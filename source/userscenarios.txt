@@ -16,12 +16,12 @@ US 01. Core Functionality (proposed)
 -------------------------------------
 
 DataONE provides the distributed framework (which is comprised of Member and
-Coordinating Nodes as illustrated in Figure 1), sound management, and robust
+Coordinating Nodes as illustrated below), sound management, and robust
 technologies that enable long-term preservation of diverse multi-scale,
 multi-discipline, and multi-national observational data. DataONE initially
-emphasizes observational data collected by biological (genome to ecosystem) and
-environmental (atmospheric, ecological, hydrological, and oceanographic)
-scientists, research networks, and environmental observatories. DataNetONE will
+emphasizes observational data collected by biological (genome to ecosystem)
+and environmental (atmospheric, ecological, hydrological, and oceanographic)
+scientists, research networks, and environmental observatories. DataONE will
 be domain agnostic, progressively expanding to broader domains and building on
 infrastructure and interoperability with DataNet partners.
 
@@ -55,11 +55,11 @@ US 02. Value Added Services (proposed)
 
 DataONE is not the end, but rather the means to enable scientists and citizens
 to address and better understand the difficult and complex biological,
-environmental, social, and technological challenges affecting human, ecosystem,
-and planetary sustainability. The comprehensive cyber-infrastructure allows
-novel questions to be asked that require harnessing the enormity of existing
-data and developing new methods to combine and analyze diverse data resources
-(Figure 2).
+environmental, social, and technological challenges affecting human,
+ecosystem, and planetary sustainability. The comprehensive
+cyber-infrastructure allows novel questions to be asked that require
+harnessing the enormity of existing data and developing new methods to combine
+and analyze diverse data resources (see figure below).
 
 DataONE will accomplish its goals by making scientists, students, librarians,
 and citizens active participants in the data life cycle, especially the data
@@ -71,9 +71,10 @@ sophisticated data integration, analysis, interpretation, and understanding. A
 strong education and outreach program focuses on scientists and students
 learning to better and more easily manage, preserve, analyze, and visualize
 Earth observational data. Citizen scientists are actively engaged in data
-preservation and scientific discovery through their involvement in programs such
-as the USA National Phenology Network (USA-NPN) and numerous Cornell Laboratory
-of Ornithology citizen science efforts (e.g., eBird, Project FeederWatch).
+preservation and scientific discovery through their involvement in programs
+such as the USA National Phenology Network (USA-NPN) and numerous Cornell
+Laboratory of Ornithology citizen science efforts (e.g., eBird, Project
+FeederWatch).
 
 .. figure:: images/proposal_figure_2.png
    :figwidth: 100%
@@ -99,23 +100,23 @@ sciences. Data are collected by tens of thousands of scientists around the
 world who have the expertise to describe and archive these data, as well as
 curate them. Attempting to centralize this curation function is inherently
 untenable and will not scale. Thus, DataONE will achieve both scalability and
-sustainability through a highly distributed system architecture (Figures 1 and
-4) that utilizes the **DataNet Service Interface** to access uniform services
-provided and used by three types of cyber-infrastructure: (1) **Member Nodes**
-located at institutions distributed throughout academia, libraries, government
-agencies, and other organizations that provide local data storage, curation,
-and metadata for a set of data resources that are collected or affiliated with
-that institution; (2) **Coordinating Nodes** that are
-geographically-distributed (Figure 3) to provide a high-availability,
-fault-tolerant, and scalable set of coordinating services to the Member Nodes,
-including a complete metadata index and data replication services for all data
-in all Member Nodes; and (3) an **Investigator Toolkit** that provides a
-complete and evolving set of tools for data and metadata management by
-scientists and curators throughout the entire data life cycle (Figure 3).
-Initially, there will be three Coordinating Nodes geographically dispersed at
-ORC, UNM, and UCSB. A small number of additional Coordinating Nodes may be
-implemented as DataNetONE expands in scope, sustainable funding, and
-international presence.
+sustainability through a highly distributed system architecture (Figures from
+"Core Architecture" and below) that utilizes the **DataONE Service Interface**
+to access uniform services provided and used by three types of
+cyber-infrastructure: (1) **Member Nodes** located at institutions distributed
+throughout academia, libraries, government agencies, and other organizations
+that provide local data storage, curation, and metadata for a set of data
+resources that are collected or affiliated with that institution; (2)
+**Coordinating Nodes** that are geographically-distributed to provide a
+high-availability, fault-tolerant, and scalable set of coordinating services
+to the Member Nodes, including a complete metadata index and data replication
+services for all data in all Member Nodes; and (3) an **Investigator Toolkit**
+that provides a complete and evolving set of tools for data and metadata
+management by scientists and curators throughout the entire data life cycle
+(Figure 3). Initially, there will be three Coordinating Nodes geographically
+dispersed at ORC, UNM, and UCSB. A small number of additional Coordinating
+Nodes may be implemented as DataNetONE expands in scope, sustainable funding,
+and international presence.
 
 .. figure:: images/proposal_figure_4.png
    :figwidth: 100%
@@ -157,13 +158,13 @@ policy makers on potential impact or savings associated with new or ongoing
 trade relationships.
 
 .. figure:: images/invasives.jpg
-   :width: 100%
+   :width: 50%
 
    Some examples of economically important invasive species in the
    United States.
 
 
-Specifically, DataNetONE addresses:
+Specifically, DataONE addresses:
 
 - Volume – combines majority of digitized species occurrence information
   through GBIF,NBII, IABIN and other partnerships
@@ -188,7 +189,7 @@ Specifically, DataNetONE addresses:
 
    Japanese honeysuckle (`Lonicera japonica`_) was brought to the United
    States from Asia as ground cover to prevent erosion. As an invasive
-   species, it can topple small trees and schurbs by its weight. The resulting
+   species, it can topple small trees and schrubs by its weight. The resulting
    change in forest structure may negatively affect songbird populations.
 
 

@@ -27,7 +27,7 @@ functionalities:
    mechanisms for identifying useful subsets of information. The process for
    search is likely to evolve significantly over the life of the project,
    starting with simple searches against metadata through to more
-   sophisticated, semantically aware search,
+   sophisticated, semantically aware search.
 
 
 Additional capabilities, such as mechanisms for sub-setting, transforming, and
@@ -39,15 +39,14 @@ This functionality is available through a set of components, service
 interfaces and interactions described in detail in theses document.
 
 There are three major functional components of the DataONE
-cyberinfrastructure: Member Nodes, Coordinating Nodes, and the Investigator
-toolkit.
+cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Investigator toolkit (ITK).
 
 :Member Nodes:
 
-  Existing and new data repositories. These systems offer heterogeneous
-  implementations across a variety of data types and support a variety of
-  metadata types. All data is stored on Member Nodes, and the DataONE
-  infrastructure, in particular the Coordinating Nodes assist with
+  Existing and new community data repositories. These systems offer
+  heterogeneous implementations across a variety of data types and support a
+  variety of metadata types. All data is stored on Member Nodes, and the
+  DataONE infrastructure, in particular the Coordinating Nodes assist with
   coordinating distribution of data between MNs.
 
 
@@ -73,7 +72,7 @@ toolkit.
    :figwidth: 100%
 
    Major components of DataONE and the services they implement. It is
-   invisaged that there will be few Coordinating Nodes (three in the first
+   envisioned that there will be few Coordinating Nodes (three in the first
    year), more Member Nodes (hundreds ... thousands), and even more instances
    of the Investigator Toolkit.
 

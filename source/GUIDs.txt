@@ -13,15 +13,15 @@ able to retrieve the object (and typically some metadata about the object)
 that the identifier refers to.
 
 The entire set of potential Member Nodes is likely to utilize a wide range of
-identifier schemes, and it is unlikely that a given type of Member Node will
+identifier schemes, and it is unlikely that a given Member Node will
 change the identifier scheme they are utilizing. Hence, DataONE can not resort
 to reliance or promotion of any one scheme without risking the exclusion of
-participants. As a result, DataONE must be identifier agnostic.  
+participants. As such, DataONE must be identifier agnostic.  
 
 DataONE will replicate data and associated metadata across many Member Nodes,
-and it is likely that not all MNs will support the same identifier scheme. This
-leads to the situation where in order to replicate content across MNs, there
-will need to be some sort of mapping between identifiers utilized by the
+and it is likely that not all MNs will support the same identifier scheme.
+This leads to the situation where in order to replicate content across MNs,
+there will need to be some sort of mapping between identifiers utilized by the
 different systems.
 
 Suggested Strategy
@@ -46,14 +46,14 @@ Suggested Strategy
    (CN or MN). A caching system (e.g. memcached) should be used to improve
    resolution performance (can be primed with existing IDs).
 
-This strategy will enable the use of any identifier that can be represented by
-a string, and will persist the original identifier for the object regardless
-of what happens to the originating Member Node.  
+This strategy will enable the use of any identifier that is represented by a
+string, and will persist the original identifier for the object regardless of
+what happens to the originating Member Node.
 
-An obvious problem with this strategy though is that a particular object may
-have multiple identifiers associated with it, however since the original is
-persisted, it will be the primary identifier by which that content will be
-referenced, regardless of which node the object is located on.
+An obvious concern with this strategy is that a single object may have
+multiple identifiers associated with it. Since the original identifier is
+persisted, however, it will be the primary identifier by which that content
+will be referenced, regardless of which node the object is located on.
 
 
 .. figure:: images/guid_resolve.png 
@@ -183,7 +183,7 @@ Notes from the 20090602 Albuquerque Meeting
 -------------------------------------------
 
 These lightly edited notes were taken by Bruce Wilson of the group discussion
-about identifiers held during the VDC-TWG 20090602 Albuquerque Meeting.
+about identifiers during the VDC-TWG 20090602 Albuquerque Meeting.
 
 Original notes are located in subversion at:
 
@@ -205,10 +205,16 @@ things like status changes.
 A Member Node may use its own internal identification scheme, but must be able
 to retrieve an object based on its DataONE globally unique identifier.
 
-Member Nodes may generate their own unique identifiers, such as DOI's,
-Handles, PURLs, or UUID's. The only requirement is that the identifier is
+Member Nodes may generate their own unique identifiers, such as DOIs_,
+Handles_, PURLs_, or UUIDs_. The only requirement is that the identifier is
 unique across the space of DataONE. This implies that CN's must have
-functionality to 
+functionality to:
+
+.. _DOIs: http://www.doi.org/
+.. _Handles: http://www.handle.net/
+.. _PURLs: http://purl.org/docs/index.html
+.. _UUIDs: http://en.wikipedia.org/wiki/UUID
+
 
 (a) check that an identifier is unique and 
 
@@ -226,8 +232,8 @@ register that second ID with the CNs, and we can have confusion regarding the
 citation (for example) of the piece of data. It also makes tracking things
 like metrics, since the originating MN must then find out all other
 identifiers for the data and search for all of those. And while it can be
-argued that nobody ìownsî the data, there is (currently) a culture and need
-for the original archive to feel like it still can get credit for that
+argued that nobody "owns" the data, there is (currently) a culture and need
+for the original archive to feel like it still can receive credit for that
 investment.
 
 A system doesn't need to maintain every version, but it does need to be able
@@ -317,11 +323,11 @@ an observation point, which is either a location (e.g. buoy, possibly with
 different identifiers for different depths) or a leg of a trip, with multiple
 observations along a path.
 
-For identifiers, we may need to specify the character space. What happens when a
-MN stores unique identifiers in a database field that supports just ASCII, but a
-different MN does its unique identifiers in some other character set? PURL is a
-possible unique identifier, but we can get into cases now where URLs have
-characters from other language character sets (such as Arabic, Kanji, Ö)
+For identifiers, we may need to specify the character space. What happens when
+a MN stores unique identifiers in a database field that supports just ASCII,
+but a different MN does its unique identifiers in some other character set?
+PURL is a possible unique identifier, but we can get into cases now where URLs
+have characters from other language character sets (such as Arabic, Kanji, Ö)
 
 What happens when a request for a replicated version of a data set comes to
 the replicate MN and the data set has been updated and the originating MN has
@@ -337,14 +343,15 @@ like a stream, where the on-the-fly processing is used to get a dynamic subset
 or dynamic reprojection? Examples of this sort of situation include the stream
 gauge data or the Atmospheric Radiation Measurement (ARM) archive. Ameriflux
 Flux tower data is a simpler case, in that they work on the basis of a
-site-year as a unit of data. The World Oceanic DataBase, however, operates on
-a location (and possibly depth) as a unit of data. Many of these are updated
-quarterly. Each unit of data has an identifier, unique within WODB, and WODB
-publishes a data stream that indicates what data packages were updated at what
-point in time. It is possible to determine whether a particular data package
-changed between two points in time. The differences are human interpretable,
-but it is not possible (in any generally automated fashion) to recreate the
-data stream for a particular data package at an arbitrary point in prior time.
+site-year as a unit of data. The World Oceanic DataBase (WODB), however,
+operates on a location (and possibly depth) as a unit of data. Many of these
+are updated quarterly. Each unit of data has an identifier, unique within
+WODB, and WODB publishes a data stream that indicates what data packages were
+updated at what point in time. It is possible to determine whether a
+particular data package changed between two points in time. The differences
+are human interpretable, but it is not possible (in any generally automated
+fashion) to recreate the data stream for a particular data package at an
+arbitrary point in prior time.
 
 Do the CN's need a method to determine the object type for an identifier? Do
 identifiers need to be unique across all types of identified objects?

@@ -7,7 +7,7 @@ Cross Domain Indexing and Access for Data and Metadata
 Problem
 -------
 
-DataNet requires storage, search, and retrieval of information (data and
+DataONE requires storage, search, and retrieval of information (data and
 metadata) from a wide variety of data services (e.g. Mercury, Metacat, and
 OpenDAP). All of these systems have different data service interfaces, support
 different metadata standards, and implement different query mechanism and
@@ -72,7 +72,7 @@ the Dublin Core terms to search across all types of metadata. In this case, a
 "dublin core metadata extractor" extracts term values from a metadata document
 and updates an index that supports DC fields with the values and the
 document GUID. Searches on the index return the document GUID, which is then
-retrieved using the MN api.
+retrieved using the MN API.
 
 Problems:
 
@@ -105,17 +105,17 @@ Content Model Approach
 ----------------------
 
 Similar to the indexing approach, but in addition to the lowest common
-denomiator format, objects may make more detailed metadata/data available by
+denominator format, objects may make more detailed metadata/data available by
 advertising that they exhibit specific content models. These content models
-may be dictated by central DN1 community, or may be agreed upon by a small
+may be dictated by central DataONE community, or may be agreed upon by a small
 group of Member Nodes.
 
 Problems:
 
-- A central registry of data/metadata formats must be maintained. 
+- A central registry of data/metadata formats must be maintained
 
 - Burden is on Member Nodes to make sure they adhere to published content
-  models.
+  models
 
 Advantages:
 
@@ -130,10 +130,10 @@ Advantages:
 
 - Will work even for Member Nodes that only understand
   lowest-common-denominator formats, while nodes that understand more complex
-  data/metadata will benefit from more specific searching and data management.
+  data/metadata will benefit from more specific searching and data management
 
 - Multiple communities can be accommodated, even if they have overlapping
-  and/or inconsistent standards.
+  and/or inconsistent standards
 
 
 .. raw:: latex
