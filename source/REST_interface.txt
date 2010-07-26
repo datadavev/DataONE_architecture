@@ -468,13 +468,13 @@ Returns the bytes of the specified object.
 
 (GET) Retrieve the object with identifier "XYZ332"::
 
-  curl http://m1.dataone.org/object?id=XYZ332
+  curl http://m1.dataone.org/object/XYZ332
   
   ... data ...
 
 (GET) Attempt to retrieve a non-existent object (and show headers in response)::
 
-  curl -D - http://m1.dataone.org/object?id=XYZ33255
+  curl -D - http://m1.dataone.org/object/XYZ33255
 
   HTTP/1.1 404 Not Found
   Content-Type: 
@@ -503,7 +503,7 @@ Returns the bytes of the specified object.
         <dt>method</dt>
         <dd>mn.get</dd>
         <dt>hint</dt>
-        <dd>Please try <a href='http://cn.dataone.org/cn/resolve?id=123XYZ'> resolving</a>
+        <dd>Please try <a href='http://cn.dataone.org/cn/resolve/123XYZ'> resolving</a>
             at a <a href='http://dataone.org'>DataONE</a> Coordinating Node.</dd>
       </dl>
     </body>
@@ -697,7 +697,7 @@ hold copies of the object identified by ``<guid>``.
 
 Implemented by the following methods:
 
-- :func:`CN_crud.resolve` (``GET /object/resolve?id=<guid>``)
+- :func:`CN_crud.resolve` (``GET /object/resolve/<guid>``)
 
 Returns :class:`Types.ObjectLocationList`
 
@@ -720,9 +720,9 @@ identifier '1234' that is located on the following nodes:
 ============================ =================================================
 Node Identifier              GET Object URL
 ============================ =================================================
-mn1.dataone.org/mn           ``http://mn1.dataone.org/mn/object?id=1234``
-mn2.dataone.org/some_base/mn ``http://mn2.dataone.org/some_base/mn/object?id=1234``
-cn.dataone.org/cn            ``http://cn.dataone.org/object?id=1234``
+mn1.dataone.org/mn           ``http://mn1.dataone.org/mn/object/1234``
+mn2.dataone.org/some_base/mn ``http://mn2.dataone.org/some_base/mn/object/1234``
+cn.dataone.org/cn            ``http://cn.dataone.org/object/1234``
 ============================ =================================================
 
 
@@ -730,9 +730,9 @@ CSV representation::
 
   #1234
   node,url
-  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object?id=1234'
-  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object?id=1234'
-  'cn.dataone.org/cn','http://cn.dataone.org/cn/object?id=1234'
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
 
 JSON representation::
@@ -740,18 +740,18 @@ JSON representation::
    {
     'identifier':'1234',
     'locations': [ 
-      ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object?id=1234'],
-      ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object?id=1234'], 
-      ['cn.dataone.org/cn', 'http://cn.dataone.org/cn/object?id=1234'] ]
+      ['mn1.dataone.org/mn', 'http://mn1.dataone.org/mn/object/1234'],
+      ['mn2.dataone.org/some_base/mn', 'http://mn2.dataone.org/some_base/mn/object/1234'], 
+      ['cn.dataone.org/cn', 'http://cn.dataone.org/cn/object/1234'] ]
    }
 
 
 XML representation::
 
   <locations identifier='1234'>
-    <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object?id=1234' />
-    <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object?id=1234' />
-    <location node='cn.dataone.org/cn' href='http://cn.dataone.org/cn/object?id=1234' />
+    <location node='mn1.dataone.org/mn' href='http://mn1.dataone.org/mn/object/1234' />
+    <location node='mn2.dataone.org/some_base/mn' href='http://mn1.dataone.org/some_base/mn/object/1234' />
+    <location node='cn.dataone.org/cn' href='http://cn.dataone.org/cn/object/1234' />
   </locations>
 
 
@@ -759,9 +759,9 @@ HTML::
 
   ...
   <ol identifier='1234'>
-    <a href='http://mn1.dataone.org/mn/object?id=1234'>mn1.dataone.org/mn</a>
-    <a href='http://mn2.dataone.org/some_base/mn/object?id=1234'>mn1.dataone.org/some_base/mn</a>
-    <a href='http://cn.dataone.org/cn/object?id=1234'>cn.dataone.org/cn</a>
+    <a href='http://mn1.dataone.org/mn/object/1234'>mn1.dataone.org/mn</a>
+    <a href='http://mn2.dataone.org/some_base/mn/object/1234'>mn1.dataone.org/some_base/mn</a>
+    <a href='http://cn.dataone.org/cn/object/1234'>cn.dataone.org/cn</a>
   </ol>
   ...
 
@@ -770,13 +770,13 @@ HTML::
 
 Using CURL::
 
-  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/?id=1234
+  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/1234
 
   #1234
   node,url
-  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object?id=1234'
-  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object?id=1234'
-  'cn.dataone.org/cn','http://cn.dataone.org/cn/object?id=1234'
+  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
+  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
+  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
 ----
 
