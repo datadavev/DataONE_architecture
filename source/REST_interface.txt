@@ -1047,6 +1047,102 @@ Implemented by the methods:
 TODO
 
 
+Monitor Collection
+~~~~~~~~~~~~~~~~~~
+
+The ``/monitor`` collection represents various performance and utilization
+metrics of Member Nodes. It is exposed by Member Nodes.
+
+
+``GET /monitor``
+.......................
+
+Returns the number of object related events that have occured.
+
+Implemented by the methods:
+
+- :func:`MN_monitor.listObjects`.
+
+Returns :class:`Types.MonitorList`
+
+
+**Parameters**
+
+:day: (optional) Flag that causes the number of object related events to be
+  reported for each day in which one or more events occurred. Without this flag,
+  the number of events is cumulative.
+
+:time: (optional) (range operators supported) Filter on date-time ranges.
+  Date-times must be ISO8601 compatible.
+
+:ip_address: (optional) (wildcards supported) Filter on IP address.
+
+:operationtype: (optional) (wildcards supported) Filter on operation type.
+
+:format: (optional) (wildcards supported) Filter on objectFormat.
+
+
+**Response**
+
+:class:`Types.MonitorList`.
+
+The response format defaults to text/xml and is the only format currently
+supported. Other formats such as JSON may be supported in the future.
+
+
+**Examples**
+
+Retrieve a cumulative count of all object related events on MN::
+
+  curl -X GET -H "Accept: text/xml" http://mn1.dataone.org/monitor
+
+  <?xml version="1.0" ?>
+  <ns1:monitorObject xmlns:ns1="http://dataone.org/service/types/monitorObject/0.1">
+    <monitorObjectEntry>
+      <date>2010-07-23</date>
+      <count>100</count>
+    </monitorObjectEntry>
+  </ns1:monitorObject>
+
+Retrieve a count of object related events for all objects based on EML for each
+day in 1980 (arguments are on separate lines for readability)::
+
+  curl -X GET -H "Accept: text/xml" http://mn1.dataone.org
+    /monitor
+    ?day
+    &time_ge=1980-01-01
+    &time_lt=1981-01-01
+    &format=eml:*
+  
+  <?xml version="1.0" ?>
+  <ns1:monitorList xmlns:ns1="http://dataone.org/service/types/monitorObject/0.1">
+    <monitorInfo>
+      <date>1980-01-19</date>
+      <count>1</count>
+    </monitorInfo>
+    <monitorInfo>
+      <date>1980-02-08</date>
+      <count>1</count>
+    </monitorInfo>
+    <monitorInfo>
+      <date>1980-03-22</date>
+      <count>1</count>
+    </monitorInfo>
+    <monitorInfo>
+      <date>1980-04-20</date>
+      <count>1</count>
+    </monitorInfo>
+    <monitorInfo>
+      <date>1980-05-06</date>
+      <count>1</count>
+    </monitorInfo>
+    <monitorInfo>
+      <date>1980-08-29</date>
+      <count>1</count>
+    </monitorInfo>
+  </ns1:monitorList>
+
+
 
 Wildcards and Range Operators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1091,15 +1187,15 @@ of January, 2010 UTC::
   ../object/
   ?qt=nvp
   &oclass=data
-  &lastModified_gt=20100101T060000+00
+  &lastModified_gt=2010-01-01T06:00:00Z
 
 Return only objects of type system metadata that were last modified in 2005::
 
   ../object/
   ?qt=nvp
   &oclass=metadata
-  &lastModified_ge=20050101T000000+00
-  &lastModified_lt=20060101T000000+00
+  &lastModified_ge=2005-01-01-T00:00:00Z
+  &lastModified_lt=2006-01-01-T00:00:00Z
 
 Return only objects of type data or metadata (filter out system metadata)::
 

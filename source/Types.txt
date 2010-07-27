@@ -30,6 +30,7 @@ Version   Structure
 .         :class:`Identifier`
 .         :class:`LogRecord`
 .         :class:`LogRecords`
+.         :class:`MonitorList`
 .         :class:`NodeReference`
 .         :class:`ObjectFormat`
 .         :class:`ObjectList`
@@ -264,8 +265,8 @@ Version   Structure
   whitespace. All representations of identifiers must be encoded in 7-bit
   ASCII or UTF-8.
 
-  Identifiers have a maximum length of 800 chars. Some discussion on this is
-  described in `ticket 577`_.
+  Identifiers have a maximum length of 800 characters. Some discussion on this
+  is described in `ticket 577`_.
 
 
 .. _ticket 577: https://trac.dataone.org/ticket/577 
@@ -304,7 +305,33 @@ Version   Structure
   ::
 
     message LogRecords {
-      repeated LogRecord entry = 1;
+      repeated LogRecord entry = 0;
+    }
+
+----
+
+.. class:: MonitorList
+
+  A list of MonitorInfo instances.
+
+  ::
+
+    message MonitorList {
+      repeated LogRecord entry = 0;
+    }
+
+----
+
+.. class:: MonitorInfo
+
+  A single log entry as reported by a Member Node or Coordinating Node through
+  the getMonitorInfos methods.
+
+  :: 
+
+    message MonitorInfo {
+      required DateTime time = 0;
+      required uint64 size = 1;
     }
 
 ----
