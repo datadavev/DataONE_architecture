@@ -82,13 +82,13 @@ As a consequence, each DataONE product should include a copyright and license
 statement in a file at the root of the source and binary distributions and in
 each source code file that reads::
     
-   This work was created by participants in the DataONE project, and is jointly 
-   copyrighted by participating institutions in DataONE. For more information on
-   DataONE, see our web site at http://dataone.org.
+   This work was created by participants in the DataONE project, and is 
+   jointly copyrighted by participating institutions in DataONE. For 
+   more information on DataONE, see our web site at http://dataone.org.
 
      Copyright 2010
 
-   This work is Licensed under the Apache License, Version 2.0 (the "License");
+   Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
