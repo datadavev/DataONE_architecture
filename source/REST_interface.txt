@@ -1017,6 +1017,10 @@ Returns a boolean result. "1" = true, "0" = false.
 Nodes Collection
 ~~~~~~~~~~~~~~~~
 
+Returns a list of nodes that have been registered with the DataONE
+infrastructure. This list is also referred to as the registry.
+
+
 ``GET /node``
 .............
 
@@ -1024,7 +1028,7 @@ Implemented by the methods:
 
 - :func:`CN_register.listNodes`
 
-Returns a list of nodes that have been registered with the DataONE infrastructure.
+Returns :class:`Types.NodeList`
 
 
 ``PUT /node/<id>``
@@ -1055,7 +1059,7 @@ metrics of Member Nodes. It is exposed by Member Nodes.
 
 
 ``GET /monitor``
-.......................
+................
 
 Returns the number of object related events that have occured.
 

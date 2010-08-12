@@ -26,10 +26,8 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.todo', 
               'sphinx.ext.pngmath', 
               'sphinx.ext.ifconfig',
-              'sphinx.ext.graphviz', ]
-#              'rst2pdf.pdfbuilder', ]
-
-#extensions.append('rst2pdf.pdfbuilder')
+              'sphinx.ext.graphviz',
+              'rst2pdf.pdfbuilder', ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -234,7 +232,7 @@ pdf_use_modindex = True
 
 pdf_use_coverpage = True
 
-pdf_splittables = True
+pdf_splittables = False
 
 
 # -- Options for Epub output ---------------------------------------------------
