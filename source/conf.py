@@ -216,9 +216,9 @@ pdf_documents = [
   #u'VDC Project, DataONE CCIT', 'manual'),
 ]
 
-pdf_default_dpi = 400
+#pdf_default_dpi = 400
 
-pdf_stylesheets = ['sphinx', 'tenpoint', 'letter']
+pdf_stylesheets = ['sphinx', ]
 
 pdf_fit_mode = "shrink"
 
@@ -230,10 +230,11 @@ pdf_use_index = True
 
 pdf_use_modindex = True
 
-pdf_use_coverpage = True
+pdf_use_coverpage = False
 
 pdf_splittables = False
 
+pdf_page_template = 'cutePage'
 
 # -- Options for Epub output ---------------------------------------------------
 

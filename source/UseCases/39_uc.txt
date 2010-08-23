@@ -15,12 +15,10 @@ Version
   Draft
 
 Goal
-
   Execute a series of method calls against all member and coordinating nodes
   to ensure that the responses are as expected for both success and failure.
 
 Summary 
-
   Part of the process for testing conformance of API implementation by member
   and coordinating nodes is to ensure that the responses to individual calls
   are as expected in the case of both successful requests and those that cause
@@ -28,21 +26,17 @@ Summary
 
 
 Actors
-
   - Coordinating Node
   - Client API
   - Test suite
 
 Preconditions 
-
   - Coordinating nodes operational
   
 Triggers
-
   - Tests against all nodes are initiated
  
 Post Conditions
-
   - All API methods of all member nodes are tested
   - All API methods of all coordinating nodes are tested
 
@@ -68,3 +62,7 @@ Post Conditions
   end
   @enduml
 
+
+.. raw:: latex
+
+   \newpage

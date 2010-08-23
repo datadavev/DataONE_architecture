@@ -2,13 +2,13 @@ Integration Testing
 ===================
 
 While each of the individual components of the DataONE system are designed and
-tested independently, we also need to design effective tests of the full system
-functionality. To fulfill many of the use cases, many of the components in the
-DataONE infrastructure need to interact in a sequenced manner with particular
-inputs and outputs. The integration tests are designed to allow individual
-components to be exercised in these particular use case scenarios with known
-inputs in order to verify that the correct output is produced, and that adequate
-performace, reliability, and scalability metrics can be met.
+tested independently, we also need to design effective tests of the full
+system functionality. To fulfill many of the use cases, many of the components
+in the DataONE infrastructure need to interact in a sequenced manner with
+particular inputs and outputs. The integration tests are designed to allow
+individual components to be exercised in these particular use case scenarios
+with known inputs in order to verify that the correct output is produced, and
+that adequate performance, reliability, and scalability metrics can be met.
 
 Test framework
 --------------
@@ -102,12 +102,13 @@ List of integration tests
      - \
      - Load testing to determime the break points  (how far can we scale).
 
-       * Relates to risk register issue that CN's don't scale to handle the load.  
-       * What is the target that we should be able to handle. Suggestion is
-         that we want to be able to handle 100 Member Node traffic. This may
-         not be a big issue until we get to handling high frequency updates
-         (e.g. sensor data). Thought: look at the milestone 3 metrics and test
-         at 5x that number.  
+       Relates to risk register issue that CN's don't scale to handle the load.  
+
+       What is the target that we should be able to handle. Suggestion is that
+       we want to be able to handle 100 Member Node traffic. This may not be a
+       big issue until we get to handling high frequency updates (e.g. sensor
+       data). Thought: look at the milestone 3 metrics and test at 5x that
+       number.
    * - 1
      - \
      - \

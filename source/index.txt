@@ -31,13 +31,12 @@ the first release.
 
 Source of these documents is maintained in the project `subversion repository`_.
 
-A version of the entire document in PDF is also `available for download`_.
 
-`Archived revisions`_ of these documents are also available.
+Contents:
 
 .. toctree::
    :maxdepth: 2
-   
+
    about
    overview
    userscenarios

@@ -66,6 +66,7 @@ project.
 General Schedule for Infrastructure Version 0.x
 -----------------------------------------------
 
+
 .. list-table:: Approximate timeline and functionality for version releases.
    :widths: 1 1 10 4 2
    :header-rows: 1
@@ -77,101 +78,99 @@ General Schedule for Infrastructure Version 0.x
      - API Methods
    * - 0.1
      - 2009/09
-     - - General architecture laid out
-       - Initial set of user requirements identified
-       - Functional use cases for user requirements drafted
+     - | * General architecture laid out
+       | * Initial set of user requirements identified
+       | * Functional use cases for user requirements drafted
      - \
      - \
    * - 0.2
      - 2009/11
-     - - Major system components identified
-       - Service interfaces specified
-       - Functional uses cases fleshed out, edited for consistency
-       - High level component interactions documented
+     - | * Major system components identified
+       | * Service interfaces specified
+       | * Functional uses cases fleshed out, edited for consistency
+       | * High level component interactions documented
      - \
      - \
    * - 0.3
      - 2010/04
-     - - Initial coding on low level functionality and shemas
-       - Prototype specfications documented
-       - Initial core software components identified
-       - System metadata schema defined
-       - CN library incompatibilities evaluatated
-       - Base inter-process communications enabled (Mercury - Metacat)
-       - CN, MN API wrappers generated
-       - Reference implementations for CN and MN initiated
-       - Low level logging incorporated into API wrappers
-     - - :doc:`/UseCases/01_uc`
-       - :doc:`/UseCases/36_uc`
-     - - X :func:`MN_crud.get`
-       - done for GMN :func:`MN_crud.log`
-       - X :func:`CN_crud.get`
-       - X :func:`CN_crud.getSystemMetadata`
-       - X :func:`CN_query.search`
+     - | * Initial coding on low level functionality and shemas
+       | * Prototype specfications documented
+       | * Initial core software components identified
+       | * System metadata schema defined
+       | * CN library incompatibilities evaluatated
+       | * Base inter-process communications enabled (Mercury - Metacat)
+       | * CN, MN API wrappers generated
+       | * Reference implementations for CN and MN initiated
+       | * Low level logging incorporated into API wrappers
+     - | * :doc:`/UseCases/01_uc`
+       | * :doc:`/UseCases/36_uc`
+     - | * X :func:`MN_crud.get`
+       | * done for GMN :func:`MN_crud.log`
+       | * X :func:`CN_crud.get`
+       | * X :func:`CN_crud.getSystemMetadata`
+       | * X :func:`CN_query.search`
    * - 0.4
      - 2010/05
-     - - Initial implementation of metadata replication and indexing
-       - Initial implementation of selected MNs
-       - CN Hardware procured
-       - CN implemetation using Metacat + Mercury with API wrapper
-       - MN - CN communication secured
-       - Mercury search index population trigger implemented
-       - CN - CN replication of metadata
-       - Design initial web interface for user interaction
-       - Design monitoring functionality to track services and objects
-     - - :doc:`/UseCases/02_uc`
-       - :doc:`/UseCases/03_uc`
-       - :doc:`/UseCases/06_uc`
-       - :doc:`/UseCases/10_uc`
-       - :doc:`/UseCases/16_uc`
-     - - X :func:`MN_crud.getSystemMetadata`
-       - X :func:`MN_replication.listObjects`
-       - X :func:`CN_crud.create`
-       - :func:`CN_crud.log`
-       - :func:`CN_crud.resolve`
+     - | * Initial implementation of metadata replication and indexing
+       | * Initial implementation of selected MNs
+       | * CN Hardware procured
+       | * CN implemetation using Metacat + Mercury with API wrapper
+       | * MN - CN communication secured
+       | * Mercury search index population trigger implemented
+       | * CN - CN replication of metadata
+       | * Design initial web interface for user interaction
+       | * Design monitoring functionality to track services and objects
+     - | * :doc:`/UseCases/02_uc`
+       | * :doc:`/UseCases/03_uc`
+       | * :doc:`/UseCases/06_uc`
+       | * :doc:`/UseCases/10_uc`
+       | * :doc:`/UseCases/16_uc`
+     - | * X :func:`MN_crud.getSystemMetadata`
+       | * X :func:`MN_replication.listObjects`
+       | * X :func:`CN_crud.create`
+       | * :func:`CN_crud.log`
+       | * :func:`CN_crud.resolve`
    * - 0.5
      - 2010/06
-     - - Initial data replication implemented
-       - MN - MN transfer implemented
-       - Basic search interface available
-       - Basic log reporting available
-       - Search and retrieval supported by ITK
-       - Initial implementation of centralized user authentication
-       - Identity and credentials propagated through system
-       - Implement web interface for user interaction with CNs
-       - Implement initial mechanisms for tracking objects and service uptime
-     - - :doc:`/UseCases/06_uc`
-       - :doc:`/UseCases/17_uc`
-       - :doc:`/UseCases/12_uc`
-       - :doc:`/UseCases/13_uc`
-     - - :func:`CN_authentication.login`  (will use IP based auth)
-       - :func:`CN_authentication.verifyToken`
-       - :func:`CN_authorization.isAuthorized`
+     - | * Initial data replication implemented
+       | * MN - MN transfer implemented
+       | * Basic search interface available
+       | * Basic log reporting available
+       | * Search and retrieval supported by ITK
+       | * Initial implementation of centralized user authentication
+       | * Identity and credentials propagated through system
+       | * Implement web interface for user interaction with CNs
+       | * Implement initial mechanisms for tracking objects and service uptime
+     - | * :doc:`/UseCases/06_uc`
+       | * :doc:`/UseCases/17_uc`
+       | * :doc:`/UseCases/12_uc`
+       | * :doc:`/UseCases/13_uc`
+     - | * :func:`CN_authentication.login`  (will use IP based auth)
+       | * :func:`CN_authentication.verifyToken`
+       | * :func:`CN_authorization.isAuthorized`
    * - 0.6
      - 2010/07
-     - - System self manages replication
-       - CN controlling replication between MNs
-       - Reporting interface for system status
-     - - :doc:`/UseCases/09_uc`
-       - :doc:`/UseCases/24_uc`
+     - | * System self manages replication
+       | * CN controlling replication between MNs
+       | * Reporting interface for system status
+     - | * :doc:`/UseCases/09_uc`
+       | * :doc:`/UseCases/24_uc`
      - \
    * - 0.7
      - 2010/08
-     - - Basic authorization and access control
-       - Initial authorization subsystem implemented
-       - Initial object access control implemented
-     - - :doc:`/UseCases/14_uc`\
+     - | * Basic authorization and access control
+       | * Initial authorization subsystem implemented
+       | * Initial object access control implemented
+     - | * :doc:`/UseCases/14_uc`\
      - \
    * - 0.8
      - 2010/09
-     - - Stress testing
-       - Failure recovery test and evaluation
-       - Writeup, lessons learned
-       - Re-design, select alternative components as necessary
+     - | * Stress testing
+       | * Failure recovery test and evaluation
+       | * Writeup, lessons learned
+       | * Re-design, select alternative components as necessary
      - \
      - \
-
-
 
 
 Detail for Version 0.3
