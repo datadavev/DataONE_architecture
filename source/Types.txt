@@ -31,6 +31,8 @@ Version   Structure
 .         :class:`LogRecord`
 .         :class:`LogRecords`
 .         :class:`MonitorList`
+.         :class:`Node`
+.         :class:`NodeList`
 .         :class:`NodeReference`
 .         :class:`ObjectFormat`
 .         :class:`ObjectList`
@@ -341,11 +343,14 @@ Version   Structure
   A set of values that describe a node, its Internet location, the services it
   supports and its replication policy.
 
+
 ----
 
 .. class:: NodeList
 
   A list of Node entries that is returned by :func:cn_register.listNodes.
+
+  NodeList is described in :mod:`NodeList`.
 
 
 ----
