@@ -51,6 +51,9 @@ include:
 :``/account``:
   Principal and ownership related functionality.
 
+:``/node``:
+  Service and status information for all nodes on the system.
+
 
 .. include:: generated/generated_rest_summarytable.txt
 

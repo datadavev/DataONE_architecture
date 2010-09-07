@@ -348,7 +348,7 @@ Version   Structure
 
 .. class:: NodeList
 
-  A list of Node entries that is returned by :func:cn_register.listNodes.
+  A list of Node entries that is returned by :func:`cn_register.listNodes()`.
 
   NodeList is described in :mod:`NodeList`.
 
