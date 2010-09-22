@@ -34,70 +34,86 @@ List of integration tests
           tests were considered Medium (M) priority.
 
 .. list-table:: High-level integration tests with prioritized votes
-   :widths: 1 1 1 30
+   :widths: 1 1 1 1 30
    :header-rows: 1
 
-   * - High
+   * - #
+     - High
      - Due July 31?
      - Low
      - Description
-   * - 8 
+   * - 1
+     - 8 
      - July 31
      - \
      - Use case 36 (resolve)
-   * - 8
+   * - 2
+     - 8
      - July 31
      - \
      - Use case 2  (query)
-   * - 8
+   * - 3
+     - 8
      - July 31
      - \
      - Completing the loop: publish data set, be sure it is retrievable exactly as submitted
-   * - 6 
+   * - 4
+     - 6 
      - July 31
      - \
      - Use case 1 (get). Note: need to test for non-existant ID's, test access control, test for malicious content
-   * - 6
+   * - 5
+     - 6
      - \
      - \
      - Can a downed CN be revived/repopulated?
    * - 6
+     - 6
      - \
      - \
      - Testing for invalid input and known problems such as XSS and SQL Injection
-   * - 5 
+   * - 7
+     - 5 
      - \
      - \
      - Use case 6 (synchronize). Note: what is needed for reschronize and recovery from outage.  
-   * - 5
+   * - 8
+     - 5
      - July 31
      - 1
      - Do the Java Stacks and Python stacks return the same thing for the same object
-   * - 4
+   * - 9
+     - 4
      - July 31
      - \
      - Does CN metadata replication work
-   * - 3
+   * - 10
+     - 3
      - \
      - \
      - Broadly, test node failures, including CN and MN. Mostly concerned with read access at this point. MN1 submits data, gets replicated to MN2, MN1 goes down, test access to data even in the absence of the owning Member Node.
-   * - 2
+   * - 11
+     - 2
      - \
      - \
      - Use case 16 (log CRUD operations)
-   * - 2
+   * - 12
+     - 2
      - \
      - \
      - Test that invalid documents are properly logged on harvest and that logs are machine parseable
-   * - 2
+   * - 13
+     - 2
      - July 31
      - \
      - Consistency Check on CN's ( Test that the checksums at CN's match)
-   * - 2 
+   * - 14
+     - 2 
      - \
      - \
      - Use case 9 (MN-MN replication): includes testing replication policies
-   * - 2
+   * - 15
+     - 2
      - \
      - \
      - Load testing to determime the break points  (how far can we scale).
@@ -109,111 +125,138 @@ List of integration tests
        big issue until we get to handling high frequency updates (e.g. sensor
        data). Thought: look at the milestone 3 metrics and test at 5x that
        number.
-   * - 1
+   * - 16
+     - 1
      - \
      - \
      - Does an insertion via a MN replication request work?
-   * - 1
+   * - 17
+     - 1
      - \
      - \
      - Serve up data from a replicated MN when home MN is inavailable
-   * - 1
+   * - 18
+     - 1
      - \
      - \
      - Data and Metadata re-synchronization when MN and CN come back from outage
-   * - 1
+   * - 19
+     - 1
      - July 31
      - \
      - Testing authentication and access control. Includes testing actions that should be rejected.  
-   * - 1
+   * - 20
+     - 1
      - \
      - \
      - Testing that system metadata is properly validated. Resilience against a "loco" node with malformed metadata (both operator error and malicious users)
-   * - \
+   * - 21
+     - \
      - \
      - \
      - Use case 12 (User Authentication)
-   * - \
+   * - 22
+     - \
      - \
      - \
      - Use case 13 (User authorization)
-   * - \
+   * - 23
+     - \
      - \
      - \
      - Use case 14 (system authenication and authorization)
-   * - \
+   * - 24
+     - \
      - \
      - \
      - Integration tests across multiple Member Nodes and Coordinating Nodes. For example, inserting documents at the same time but in different places to ensure it works and we don't have deadlocks showing up. 
-   * - 1
+   * - 25
+     - 1
      - \
      - 1
      - Threshold tests for heartbeats and other status testing.  
-   * - 1
+   * - 26
+     - 1
      - \
      - 1
      - General penetration testing (WebInspect as a specific example)
-   * - \
+   * - 27
+     - \
      - \
      - 1 
      - Use case 17 (CRUD logs aggregated at CN) Not impmemented yet
-   * - \
+   * - 28
+     - \
      - \
      - 1 
      - Use case 24 (MN and CN's support transactions)
-   * - \
+   * - 29
+     - \
      - \
      - 1
      - Does a MN data/metadata insertion prevent a race condition, even if insertion deviuosly tries to trigger a race condition
-   * - 2
+   * - 30
+     - 2
      - \
      - 2
      - Test that the ITK libraries work properly on all supported (advertised)  OS platforms, hardware, and software combinations
-   * - 1
+   * - 31
+     - 1
      - \
      - 2 
      - Race condition:  What happens if two MN's submit the same thing?
-   * - 1
+   * - 32
+     - 1
      - \
      - 3
      - Testing the logging and auditing functions. Ditto on the reporting functions. There should be unit tests for this within the software stacks, but this needs to verify that, for example, a Member Node action is logged at the MN and at the CN.  
-   * - \
+   * - 33
+     - \
      - \
      - 3
      - Performance testing (particularly as a function of load)
-   * - \
+   * - 34
+     - \
      - \
      - 3
      - Accessibility -- 508 compliance as a floor, but going beyond this to appropriate level of accessibility.  
-   * - \
+   * - 35
+     - \
      - \
      - 3
      - Test replication policies.  (duplicative test of above?) Side issue: unit testing to see if replication policy is inconsistent. More an issue for rule-based replication policies. Precedence of operations may fix this, but what happens when the replication policy resolves to zero replication nodes allowed (or replication nodes less than required number of replication nodes)?  
-   * - \
+   * - 36
+     - \
      - \
      - 3
      - Usability testing (generally) -- push off to a different category from Integration testing.  
-   * - \
+   * - 37
+     - \
      - \
      - 4
      - Response time test (both API and GUI). Relates back to performance testing.
-   * - \
+   * - 38
+     - \
      - \
      - 4
      - Testing validity of science metadata (compliance with standards). See issue in parking lot.  
-   * - \
+   * - 39
+     - \
      - \
      - 4
      - Use case 3 (register -- manual operation)
-   * - \
+   * - 40
+     - \
      - \
      - 4
      - Deployment testing -- can we test that dependancies have been resolved, perhaps a particular issue for the ITK, but also for the various Member Node stacks.  
-   * - \
+   * - 41
+     - \
      - \
      - 5
      - Test that the libraries can check for dependancies, so that when the library intializes it checks that the necessary dependancies have been installed. Some of this is handled with egg installations.  ??what happens if something changes after the installation? Library needs to manage these issues, and emit appropriate error codes.  
-   * - \
+   * - 42
+     - \
      - \
      - 5
      - Use case 10 (MN status reports)

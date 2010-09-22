@@ -12,4 +12,6 @@ applications that would fit into each category.
    itk-web
    itk-metadata
    itk-analysis
-
+   itk-libraries
+   itk-d1-client
+   
