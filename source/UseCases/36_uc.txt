@@ -1,5 +1,5 @@
-Use Case 36 - Query Coordinating Node for location of data object
--------------------------------------------------------------------
+Use Case 36 - Resolve an Object Location
+----------------------------------------
 
 Author
   Paul Allen
@@ -15,12 +15,17 @@ Goal
 
 Summary 
 
-  Within DataONE, a registered data object may be held on one or more Member
-  Nodes (depending on replication policy). Clients must be able to ask a
-  Coordinating Node for those locations.
+  Within DataONE, a registered object may be held on one or more Member Nodes
+  (depending on replication policy) and in the case of science metadata, on
+  Coordinating Nodes. Clients must be able to ask a Coordinating Node for
+  those locations.
 
-  Ideally, the response to this query is a list of member node 
-  identifiers and the URL endpoint of their DataONE API implementation.
+  The response to this query is a list of member node identifiers and
+  the URL endpoint of their DataONE API implementation.
+
+  The client will need to retrieve information about the node from the node
+  registry (Use case 35) in order to accurately determine the URL that can be used to
+  retrieve the object bytes (Use case 01).
 
 Actors
   - Coordinating Node
@@ -29,12 +34,14 @@ Actors
 Preconditions 
   - Coordinating Nodes are operational
   - Client has an identifier for an object
+  - Object exists in the DataONE system and has been recorded by the
+    Coordinating Nodes
 
 Triggers
   - Request by client
 
 Post Conditions
-  - Client has more information about the Member Node
+  - Client has more information about the location of the object.
 
 
 .. figure:: images/36_uc.png

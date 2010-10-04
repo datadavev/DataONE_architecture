@@ -102,7 +102,7 @@ Version   Structure
 
 .. class:: DateTime
 
-  A string that completely identifies a specific point in time.
+  A string that completely identifies a specific time.
 
   - Must include date and time
   - If not specified, then the time zone is 0, i.e. GMT
@@ -433,32 +433,49 @@ Version   Structure
       repeated ObjectLocation locations = 2;
     }
 
+
+.. class:: ObjectLocation
+
+   Portion of an ObjectLocationList indicating the node from which the object
+   can be retrieved. 
+
+   ::
+
     message ObjectLocation {
       required string node = 1;
       required string url = 2;
+      optional integer preference = 3;
     }
+
 
   .. attribute:: identifier
 
-     The identifier that this ObjectLocationList refers to.
+     The identifier that this ObjectLocationList refers to (e.g. the
+     identifier for the science metadata or data object).
 
   .. attribute:: locations
 
-     List of ObjectLocation entries that indicate the nodes on which the object
-     is located.
+     List of ``ObjectLocation`` entries that indicate the nodes on which the
+     object is located.
 
   .. attribute:: node
 
-     A node identifier. Currently, this should be the node name + base path. For
-     example, a Member Node with domain name "mn1.dataone.org" that serves
-     content from /mn would be identified as ``mn1.dataone.org/mn``
+     A node identifier. Node identifiers follow the same composition rules as
+     other identifiers in the system and no meaning should be implied from the
+     construct other than as a unique identifier for the node.
 
   .. attribute:: url
 
      The full URL for retrieving the object. For example, if identifer was
-     "ABX154", then for the Member Node indicated above, this entry would be
-     ``http://mn1.dataone.org/mn/object/ABX154``
+     "ABX154", and the node had a base URL of ``http://mn1.dataone.org/mn``
+     then the value would be ``http://mn1.dataone.org/mn/object/ABX154``
 
+  .. attribute:: preference
+
+     A weighting parameter that provides a hint to the caller for the relative
+     preference for nodes from which the content should be retrieved. Higher
+     values have higher preference. Values are only relative to each other in
+     a particular response.
 
 ----
 

@@ -47,7 +47,9 @@ cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Inves
   heterogeneous implementations across a variety of data types and support a
   variety of metadata types. All data is stored on Member Nodes, and the
   DataONE infrastructure, in particular the Coordinating Nodes assist with
-  coordinating distribution of data between MNs.
+  coordinating distribution of data between MNs. Existing data repositories
+  need to implement the DataONE Member Node APIs in order to participate in
+  the DataONE network.
 
 
 :Coordinating Nodes:
@@ -55,7 +57,8 @@ cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Inves
   The operational core of DataONE. The Coordinating Nodes catalog data and
   metadata, control the dispersion of data across Member Nodes, keep a replica
   of all metadata, offer services for distributed identity, and offer search
-  and discovery capabilities.
+  and discovery capabilities. Coordinating nodes are geographically distinct
+  mirror images of each other, operating in a multi-master configuration.
 
 
 :Investigator Toolkit:
@@ -72,11 +75,9 @@ cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Inves
    :figwidth: 100%
 
    Major components of DataONE and the services they implement. It is
-   envisioned that there will be few Coordinating Nodes (three in the first
-   year), more Member Nodes (hundreds ... thousands), and even more instances
-   of the Investigator Toolkit.
-
-
+   envisioned that there will be few Coordinating Nodes (three initially),
+   more Member Nodes (tens ... hundreds), and even more instances of the
+   Investigator Toolkit.
 
 
 .. figure:: images/MNOverview.png
@@ -160,7 +161,8 @@ cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Inves
     cn_service --> ostore
     note right of ostore
       Prototype implementation uses Metacat
-      as the object store and logging service
+      as the object store, logging service and 
+      CN-CN replication
     end note
     ostore --> cn_service
     index --> cn_service
@@ -196,46 +198,6 @@ cyberinfrastructure: Member Nodes (MNs), Coordinating Nodes (CNs), and the Inves
   cn_authn .. ITK
   
   @enduml
-
-
-
-  figure:: images/new_data.png
-  :figwidth: 100% 
-
-  Flow of information from deposition by a client using the Investigator
-  Toolkit to a Member Node, through replication of science metadata and object
-  information to the Coordinating Nodes, and finally the replication of
-  content between Member Nodes as directed by a Coordinating Node.
-
-..
-  @startuml images/new_data.png
-  !include plantuml.conf
-  title Data Lifecycle
-  
-  (*) --> "Client adds new science\ndata + metadata to MN" as A1
-  A1 --> "Get information about new object" as A2
-  A2 --> <> B1
-  --> [metadata] "Retrieve Metadata" as A3
-  --> [data] "test" as A4
-  A3 --> "Store Metadata, update system metadata" as A5
-  A5 --> ===B2===
-  --> "Parse Metadata"
-  --> "Update Search Index"
-  --> "Update system metadata: indexed"
-  --> (*)
-  ===B2=== --> "Find Host (MN2)"
-  --> "Request Host Copy (MN2)"
-  --> ===B3===
-  --> "Check MN transfer status" as A10
-  --> <> B4
-  --> [incomplete] A10
-  --> [done] "Update system metadata: new host"
-  --> (*)
-  ===B3=== --> "MN2 Get data from MN1"
-  --> "Retrieve Data"
-  --> "Done"
-  --> (*)
-  @enduml  
 
 
 

@@ -41,7 +41,12 @@ clean:
 generate: $(METHODXLS)
 	$(DOCGENERATOR) -s $(METHODXLS) -d ./source/generated
 
-plantuml:
+plantuml: plantuml_source plantuml_usecase
+
+plantuml_source:
+	GRAPHVIZ_DOT=$(GRAPHVIZ) $(PLANTUML) source source
+
+plantuml_usecase:
 	GRAPHVIZ_DOT=$(GRAPHVIZ) $(PLANTUML) source source/UseCases
 
 html: 

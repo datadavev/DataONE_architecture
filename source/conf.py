@@ -74,7 +74,18 @@ release = '0.4'
 today_fmt = '%Y-%m-%d'
 
 # List of documents that shouldn't be included in the build.
-unused_docs = ['UseCases/uc_template', 'MN_APIs_v0_3', 'CN_APIs_v0_3']
+unused_docs = ['UseCases/uc_template', 
+               'MN_APIs_v0_3', 
+               'CN_APIs_v0_3',
+               'REST_overview',
+               'REST_object',
+               'REST_meta',
+               'REST_resolve',
+               'REST_reserve',
+               'REST_log',
+               'REST_account',
+               'REST_nodes',
+               'REST_monitor']
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.

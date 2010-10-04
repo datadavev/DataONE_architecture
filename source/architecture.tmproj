@@ -2,10 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>conf.py</string>
 	<key>documents</key>
 	<array>
+		<dict>
+			<key>filename</key>
+			<string>about.txt</string>
+			<key>lastUsed</key>
+			<date>2010-08-23T20:58:33Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>overview.txt</string>
+			<key>lastUsed</key>
+			<date>2010-08-24T23:21:20Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>WhatIsData.txt</string>
+			<key>lastUsed</key>
+			<date>2010-08-23T21:03:31Z</date>
+		</dict>
 		<dict>
 			<key>filename</key>
 			<string>SystemMetadataAnalysis.txt</string>
@@ -17,20 +33,6 @@
 			<string>userscenarios.txt</string>
 			<key>lastUsed</key>
 			<date>2010-07-14T12:50:24Z</date>
-			<key>selected</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>glossary.txt</string>
-			<key>lastUsed</key>
-			<date>2010-07-12T17:43:04Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>about.txt</string>
-			<key>lastUsed</key>
-			<date>2010-07-30T14:06:32Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -280,6 +282,8 @@
 					<date>2010-05-22T01:58:54Z</date>
 				</dict>
 			</array>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>APIs</string>
 		</dict>
@@ -305,13 +309,7 @@
 			<key>filename</key>
 			<string>index.txt</string>
 			<key>lastUsed</key>
-			<date>2010-07-30T14:07:14Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>overview.txt</string>
-			<key>lastUsed</key>
-			<date>2010-04-19T00:47:28Z</date>
+			<date>2010-08-23T20:45:38Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -338,7 +336,7 @@
 					<key>filename</key>
 					<string>conf.py</string>
 					<key>lastUsed</key>
-					<date>2010-08-06T12:43:59Z</date>
+					<date>2010-08-23T20:45:44Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -368,13 +366,9 @@
 			<key>filename</key>
 			<string>Replication.txt</string>
 			<key>lastUsed</key>
-			<date>2010-07-12T14:51:57Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>todo.txt</string>
-			<key>lastUsed</key>
-			<date>2010-03-20T04:39:25Z</date>
+			<date>2010-08-24T23:21:23Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -396,9 +390,15 @@
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>WhatIsData.txt</string>
+			<string>todo.txt</string>
 			<key>lastUsed</key>
-			<date>2010-03-22T15:52:26Z</date>
+			<date>2010-03-20T04:39:25Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>glossary.txt</string>
+			<key>lastUsed</key>
+			<date>2010-07-12T17:43:04Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -485,33 +485,19 @@
 			<key>firstVisibleLine</key>
 			<integer>7</integer>
 		</dict>
-		<key>conf.py</key>
+		<key>WhatIsData.txt</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>28</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>165</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>159</integer>
-		</dict>
-		<key>index.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>42</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
 			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>15</integer>
 		</dict>
 		<key>themes/nose/layout.html</key>
 		<dict>
@@ -586,14 +572,9 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>index.txt</string>
-		<string>conf.py</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{277, 8}, {1137, 770}}</string>
+	<string>{{294, 34}, {1137, 770}}</string>
 </dict>
 </plist>
