@@ -7,13 +7,17 @@ Object Resolution Service
 .......................
 
 Implemented by CNs, returns the nodes known to hold copies of the object
-identified by ``<guid>``.
+identified by ``<guid>``. The object resolution process is intended to provide
+a simple mechanism for a client to discover from which node(s) a particular
+object may be retrieved, and this information is returned as a list of node
+identifiers. Details about method interfaces (i.e. REST URLs) exposed by a
+particular node can be determined by examining the response from the ``node``
+collection. For convenience, the actual `GET /object/<guid>`_ URL is also
+provided for retrieving the object bytes.
 
-Implemented by the following methods:
+The resolve service is implemented by the following methods:
 
 - :func:`CN_crud.resolve` (``GET /object/resolve/<guid>``)
-
-Returns :class:`Types.ObjectLocationList`
 
 
 **Response**
@@ -109,19 +113,6 @@ HTML in response to ``Accept: text/html``::
   </ul>
   ...
 
-
-
-
-
-Using CURL::
-
-  curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/1234
-
-  #1234
-  node,url
-  'mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234'
-  'mn2.dataone.org/some_base/mn','http://mn2.dataone.org/some_base/mn/object/1234'
-  'cn.dataone.org/cn','http://cn.dataone.org/cn/object/1234'
 
 ----
 
