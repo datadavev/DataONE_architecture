@@ -78,9 +78,6 @@ identified by "XYZ333"::
   </error>
 
 
-----
-
-
 ``HEAD /meta/<guid>``
 .....................
 
@@ -93,8 +90,6 @@ HEAD     Returns basic information about the system metadata object.
          ``Content-Length:`` Byte size of the object
 
 
-----
-
 .. _MN_crud.getChecksum:
 
 ``GET /checksum/<guid>``
@@ -106,10 +101,9 @@ Implemented by the methods:
 
 Returns :class:`Types.Checksum`
 
-----
-
 .. _MN_authorization.isAuthorized:
 .. _CN_authorization.isAuthorized:
+
 
 ``GET /isAuthorized/<guid>``
 ............................
@@ -121,7 +115,6 @@ Implemented by the methods:
 
 Returns a boolean result.  "1" = true, "0" = false.
 
-----
 
 .. _CN_crud.assertRelation:
 
@@ -134,16 +127,12 @@ Implemented by the methods:
 
 Returns a boolean result. "1" = true, "0" = false.
 
-----
-
 
 ``GET /accessRules/<guid>``
 ...........................
 
 pass
 
-
-----
 
 .. _CN_authorization.setAccess:
 
@@ -156,15 +145,12 @@ Implemented by the methods:
 
 Returns a boolean result. "1" = true, "0" = false.
 
-----
 
 ``GET /owner/<guid>``
 .....................
 
 pass
 
-
-----
 
 .. _CN_authentication.setOwner:
 

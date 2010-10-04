@@ -423,8 +423,8 @@ Version   Structure
 
 .. class:: ObjectLocationList
 
-   A list of nodes and full :func:`CN_crud.get` and / or :func:`MN_crud.get`
-   URLs that can be used to retrieve the object.
+   A list of nodes and node service base URLs known to hold a copy of an
+   object.
 
   ::
   
@@ -443,7 +443,7 @@ Version   Structure
 
     message ObjectLocation {
       required string node = 1;
-      required string url = 2;
+      required string baseURL = 2;
       optional integer preference = 3;
     }
 
@@ -464,11 +464,9 @@ Version   Structure
      other identifiers in the system and no meaning should be implied from the
      construct other than as a unique identifier for the node.
 
-  .. attribute:: url
+  .. attribute:: baseURL
 
-     The full URL for retrieving the object. For example, if identifer was
-     "ABX154", and the node had a base URL of ``http://mn1.dataone.org/mn``
-     then the value would be ``http://mn1.dataone.org/mn/object/ABX154``
+     The current base URL for services implemented on the target node.
 
   .. attribute:: preference
 

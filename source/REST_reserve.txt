@@ -17,7 +17,6 @@ Returns ???
 
 .. TODO:: Discuss and flesh these out.
 
-----
 
 .. _CN_crud.reserveIdentifier:
 
@@ -29,8 +28,6 @@ Implemented by the methods:
 - :func:`CN_crud.reserveIdentifier` (``POST /reserve``)
 
 Returns :class:`Types.Identifier`
-
-----
 
 
 .. _CN_crud.deleteReservedIdentifier:

@@ -135,6 +135,12 @@ The content of ``authorization-token-string`` is currently (2010-10-04)
 undefined except that it will be a string that may be several kilobytes in
 length, but unlikely to be more than 10 kilobytes.
 
+Note that although the HTTP spec does not impose a size limit on HTTP header
+entries, practical limits are set by web servers. For example, the default
+limit HTTP header field sizes for Apache is `8190 bytes`_.
+
+.. _8190 bytes: http://httpd.apache.org/docs/2.2/mod/core.html#limitrequestfieldsize
+
 
 Wildcards and Range Operators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -173,25 +179,15 @@ Wildcards and range operators cannot be combined in a single NVP.
 
 **Examples**
 
-Return only objects of type data that have been modified since 6AM on the first
-of January, 2010 UTC::
+Return only objects that have been modified since 6AM on the first of January,
+2010 UTC::
 
-  ../object/
-  ?qt=nvp
-  &oclass=data
-  &lastModified_gt=2010-01-01T06:00:00Z
+  ../object?qt=nvp&lastModified_gt=2010-01-01T06:00:00Z
 
-Return only objects of type system metadata that were last modified in 2005::
+Return only objects that were last modified in 2005::
 
-  ../object/
-  ?qt=nvp
-  &oclass=metadata
-  &lastModified_ge=2005-01-01-T00:00:00Z
-  &lastModified_lt=2006-01-01-T00:00:00Z
+  ../object?qt=nvp&lastModified_ge=2005-01-01-T00:00:00Z&lastModified_lt=2006-01-01-T00:00:00Z
 
-Return only objects of type data or metadata (filter out system metadata)::
+.. TODO:: Define the fields that should be supported for filtering for each type of collection.
 
-  ../object/
-  ?qt=nvp
-  &oclass=*data
 

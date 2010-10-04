@@ -12,8 +12,9 @@ a simple mechanism for a client to discover from which node(s) a particular
 object may be retrieved, and this information is returned as a list of node
 identifiers. Details about method interfaces (i.e. REST URLs) exposed by a
 particular node can be determined by examining the response from the ``node``
-collection. For convenience, the actual `GET /object/<guid>`_ URL is also
-provided for retrieving the object bytes.
+collection. For convenience, the node base URL is also provided, from which
+`GET /object/<guid>`_, `GET /meta/<guid>`_ and other object specific URLs can
+be constructed.
 
 The resolve service is implemented by the following methods:
 
@@ -26,6 +27,9 @@ The response is of type :class:`Types.ObjectLocationList`. The response is
 serialized according to the usual content type negotiation as indicated in the
 following examples where the location of a science metadata object "1234" is
 resolved.
+
+Where multiple entries are returned for the object location, they should be
+placed in descending order by preference (i.e. highest preference first).
 
 **Examples**
 
@@ -42,27 +46,27 @@ XML (default) in response to ``Accept: text/xml``::
     <identifier>1234</identifier>
     <objectLocation>
       <nodeIdentifier>mn1</nodeIdentifier>
-      <url>http://mn1.dataone.org/mn/object/1234</url>
+      <baseURL>http://mn1.dataone.org/mn</baseURL>
       <preference>100</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>mn2</nodeIdentifier>
-      <url>http://mn2.dataone.org/some_base/object/1234</url>
+      <baseURL>http://mn2.dataone.org/some_base</baseURL>
       <preference>75</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn1</nodeIdentifier>
-      <url>http://cn1.dataone.org/cn/object/1234</url>
+      <baseURL>http://cn1.dataone.org/cn</baseURL>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn2</nodeIdentifier>
-      <url>http://cn2.dataone.org/cn/object/1234</url>
+      <baseURL>http://cn2.dataone.org/cn</baseURL>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn2</nodeIdentifier>
-      <url>http://cn2.dataone.org/cn/object/1234</url>
+      <baseURL>http://cn2.dataone.org/cn</baseURL>
       <preference>1</preference>
     </objectLocation>
   </objectLocationList>
@@ -77,11 +81,11 @@ JSON::
   {
     'identifier':'1234',
     'locations': [ 
-      ['mn1', 'http://mn1.dataone.org/mn/object/1234',100],
-      ['mn2', 'http://mn2.dataone.org/some_base/object/1234',75], 
-      ['cn1', 'http://cn1.dataone.org/cn/object/1234',1],
-      ['cn2', 'http://cn2.dataone.org/cn/object/1234',1],
-      ['cn3', 'http://cn3.dataone.org/cn/object/1234',1],
+      ['mn1', 'http://mn1.dataone.org/mn',100],
+      ['mn2', 'http://mn2.dataone.org/some_base',75], 
+      ['cn1', 'http://cn1.dataone.org/cn',1],
+      ['cn2', 'http://cn2.dataone.org/cn',1],
+      ['cn3', 'http://cn3.dataone.org/cn',1],
       ]
    }
 
@@ -92,11 +96,11 @@ CSV in response to ``Accept: text/csv`` or ``Accept: text/plain``::
   
   #1234
   node,url,preference
-  'mn1','http://mn1.dataone.org/mn/object/1234',100
-  'mn2','http://mn2.dataone.org/some_base/object/1234',75
-  'cn1','http://cn1.dataone.org/cn/object/1234',1
-  'cn2','http://cn2.dataone.org/cn/object/1234',1
-  'cn3','http://cn3.dataone.org/cn/object/1234',1
+  'mn1','http://mn1.dataone.org/mn',100
+  'mn2','http://mn2.dataone.org/some_base',75
+  'cn1','http://cn1.dataone.org/cn',1
+  'cn2','http://cn2.dataone.org/cn',1
+  'cn3','http://cn3.dataone.org/cn',1
 
 
 HTML in response to ``Accept: text/html``::
@@ -105,16 +109,14 @@ HTML in response to ``Accept: text/html``::
 
   ...
   <ul identifier='1234'>
-    <li><a href='http://mn1.dataone.org/mn/object/1234' preference='100'>mn1</a></li>
-    <li><a href='http://mn2.dataone.org/some_base/object/1234' preference='75'>mn2</a></li>
-    <li><a href='http://cn1.dataone.org/cn/object/1234' preference='1'>cn1</a></li>
-    <li><a href='http://cn2.dataone.org/cn/object/1234' preference='1'>cn2</a></li>
-    <li><a href='http://cn3.dataone.org/cn/object/1234' preference='1'>cn3</a></li>
+    <li><a href='http://mn1.dataone.org/mn' preference='100'>mn1</a></li>
+    <li><a href='http://mn2.dataone.org/some_base' preference='75'>mn2</a></li>
+    <li><a href='http://cn1.dataone.org/cn' preference='1'>cn1</a></li>
+    <li><a href='http://cn2.dataone.org/cn' preference='1'>cn2</a></li>
+    <li><a href='http://cn3.dataone.org/cn' preference='1'>cn3</a></li>
   </ul>
   ...
 
-
-----
 
 ``HEAD /resolve/<guid>``
 ........................

@@ -12,7 +12,6 @@ Implemented by the methods:
 
 Returns ???
 
-----
 
 .. _CN_authentication.login:
 
@@ -25,7 +24,6 @@ Implemented by the methods:
 
 Returns :class:`Types.AuthToken`
 
------
 
 ``GET /account/logout``
 .......................
@@ -35,9 +33,6 @@ Implemented by the methods:
 - ???
 
 Returns ???
-
-
------
 
 
 .. _CN_authentication.verifyToken:

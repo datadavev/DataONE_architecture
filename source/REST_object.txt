@@ -56,8 +56,6 @@ collection is implemented by :func:`MN_replication.listObjects` and on a CN by
 
 .. _MIME-multipart Mixed Media Type: http://tools.ietf.org/html/rfc2046#section-5.1.3
 
-----
-
 .. _MN_replication.listObjects:
 .. _CN_query.search:
 
@@ -316,8 +314,6 @@ might be specified, and similarly for newest first::
   orderby=desc_dateSysMetadataModified
 
 
-----
-
 .. _MN_crud.get:
 .. _CN_crud.get:
 
@@ -384,8 +380,6 @@ Returns the bytes of the specified object.
   </html>
 
 
-----
-
 .. _MN_crud.describe:
 .. _CN_crud.describe:
 
@@ -413,8 +407,6 @@ returns :class:`Types.DescribeResponse`
   Date: Wed, 16 Dec 2009 13:58:34 GMT
   Content-Length: 1040032112
   Content-Type: application/octet-stream
-
-----
 
 
 .. _MN_crud.create:
@@ -449,8 +441,6 @@ Returns :class:`Types.Identifier`
   XYZ33256
 
 
-----
-
 .. _MN_crud.update:
 
 ``PUT /object/<guid>``
@@ -462,7 +452,6 @@ Implemented by the methods:
 
 Returns :class:`Types.Identifier`
 
-----
 
 .. _MN_crud.delete:
 
