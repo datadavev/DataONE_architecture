@@ -418,3 +418,83 @@ NodeList fields
 
   :Required Version: 0.5
 
+
+
+  The object format in protocol buffer format
+  A set of values that describe a node, its Internet location, the services it
+  supports and its replication policy.
+
+  ::
+  
+    message Node
+    {
+      required NodeReference identifier = 1;
+      required NonEmptyString name = 2;
+      required NonEmptyString description = 3;
+      required anyURI baseURL = 4;
+      repeated Service services = 5;
+      optional Synchronization synchronization = 6;
+      optional NodeHealth health = 7;
+      required boolean replicate = 8;
+      required boolean synchronize = 9;
+      required NMToken(string) type = 10;
+      
+      message Service
+      {
+        required ServiceName name = 0;
+        required string version = 1;
+        boolean available = 2;
+        repeated ServiceMethod method = 3;
+        
+        message ServiceMethod
+        {
+          optional NMToken name = 0;
+          required xs:token rest = 1;
+          required boolean implemented = 2;
+        }
+      }
+      
+      message Synchronization
+      {
+        required dateTime lastHarvested = 0;
+        required dateTime lastCompleteHarvest = 1;
+        required Schedule schedule = 2;
+        
+        message Schedule
+        {
+          required crontabEntryType sec = 0;
+          required crontabEntryType min = 1;
+          required crontabEntryType hour = 2;
+          required crontabEntryType mday = 3;
+          required crontabEntryType mon = 4;
+          required crontabEntryType year = 5;
+          required crontabEntryType wday = 6;
+        }
+      }
+      
+      message NodeHealth
+      {
+        required Ping ping = 0;
+        required Status status = 1;
+        required State state = 2;
+        
+        message Ping
+        {
+          optional boolean success = 0;
+          optional dateTime lastSuccess = 1;
+        }
+      
+        message Status
+        {
+          optional boolean success = 0;
+          optional dateTime dateChecked = 1;
+        }
+        
+        enum State 
+        {
+          UP = 0;
+          DOWN = 1;
+          UNKNOWN = 2;
+        }
+      }
+    }

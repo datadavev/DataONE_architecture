@@ -444,7 +444,8 @@ Version   Structure
     message ObjectLocation {
       required string node = 1;
       required string baseURL = 2;
-      optional integer preference = 3;
+      required string url = 3;
+      optional integer preference = 4;
     }
 
 
@@ -466,14 +467,21 @@ Version   Structure
 
   .. attribute:: baseURL
 
-     The current base URL for services implemented on the target node.
+     The current base URL for services implemented on the target node. For example:
+     ``http://mn1.dataone.org/mn/``
+
+  .. attribute:: url
+
+     The full URL for retrieving the object. This is composed of: the baseURL followed
+     by (REST) method, and finally the object identifier For example, if identifer was
+     "ABX154": ``http://mn1.dataone.org/mn/object/ABX154``
 
   .. attribute:: preference
 
      A weighting parameter that provides a hint to the caller for the relative
      preference for nodes from which the content should be retrieved. Higher
      values have higher preference. Values are only relative to each other in
-     a particular response.
+     a particular response. Nodes with equal weights get equal values.
 
 ----
 
