@@ -47,26 +47,31 @@ XML (default) in response to ``Accept: text/xml``::
     <objectLocation>
       <nodeIdentifier>mn1</nodeIdentifier>
       <baseURL>http://mn1.dataone.org/mn</baseURL>
+      <url>http://mn1.dataone.org/mn/object/1234</url>
       <preference>100</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>mn2</nodeIdentifier>
       <baseURL>http://mn2.dataone.org/some_base</baseURL>
+      <url>http://mn2.dataone.org/some_base/object/1234</url>
       <preference>75</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn1</nodeIdentifier>
       <baseURL>http://cn1.dataone.org/cn</baseURL>
+      <url>http://cn1.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn2</nodeIdentifier>
       <baseURL>http://cn2.dataone.org/cn</baseURL>
+      <url>http://cn2.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
-      <nodeIdentifier>cn2</nodeIdentifier>
-      <baseURL>http://cn2.dataone.org/cn</baseURL>
+      <nodeIdentifier>cn3</nodeIdentifier>
+      <baseURL>http://cn3.dataone.org/cn</baseURL>
+      <urlL>http://cn3.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
   </objectLocationList>
@@ -81,11 +86,11 @@ JSON::
   {
     'identifier':'1234',
     'locations': [ 
-      ['mn1', 'http://mn1.dataone.org/mn',100],
-      ['mn2', 'http://mn2.dataone.org/some_base',75], 
-      ['cn1', 'http://cn1.dataone.org/cn',1],
-      ['cn2', 'http://cn2.dataone.org/cn',1],
-      ['cn3', 'http://cn3.dataone.org/cn',1],
+      ['mn1', 'http://mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234',100],
+      ['mn2', 'http://mn2.dataone.org/some_base','http://mn2.dataone.org/some_base/object/1234',75], 
+      ['cn1', 'http://cn1.dataone.org/cn','http://cn1.dataone.org/cn/object/1234',1],
+      ['cn2', 'http://cn2.dataone.org/cn','http://cn2.dataone.org/cn/object/1234',1],
+      ['cn3', 'http://cn3.dataone.org/cn','http://cn3.dataone.org/cn/object/1234',1],
       ]
    }
 
@@ -95,12 +100,12 @@ CSV in response to ``Accept: text/csv`` or ``Accept: text/plain``::
   curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/1234
   
   #1234
-  node,url,preference
-  'mn1','http://mn1.dataone.org/mn',100
-  'mn2','http://mn2.dataone.org/some_base',75
-  'cn1','http://cn1.dataone.org/cn',1
-  'cn2','http://cn2.dataone.org/cn',1
-  'cn3','http://cn3.dataone.org/cn',1
+  node,baseURL,url,preference
+  'mn1','http://mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234',100
+  'mn2','http://mn2.dataone.org/some_base','http://mn2.dataone.org/some_base/object/1234',75
+  'cn1','http://cn1.dataone.org/cn','http://cn1.dataone.org/cn/object/1234',1
+  'cn2','http://cn2.dataone.org/cn','http://cn2.dataone.org/cn/object/1234',1
+  'cn3','http://cn3.dataone.org/cn','http://cn3.dataone.org/cn/object/1234',1
 
 
 HTML in response to ``Accept: text/html``::
@@ -109,11 +114,11 @@ HTML in response to ``Accept: text/html``::
 
   ...
   <ul identifier='1234'>
-    <li><a href='http://mn1.dataone.org/mn' preference='100'>mn1</a></li>
-    <li><a href='http://mn2.dataone.org/some_base' preference='75'>mn2</a></li>
-    <li><a href='http://cn1.dataone.org/cn' preference='1'>cn1</a></li>
-    <li><a href='http://cn2.dataone.org/cn' preference='1'>cn2</a></li>
-    <li><a href='http://cn3.dataone.org/cn' preference='1'>cn3</a></li>
+    <li><a href='http://mn1.dataone.org/mn/object/1234' baseURL='http://mn1..dataone.org/mn' preference='100'>mn1</a></li>
+    <li><a href='http://mn2.dataone.org/some_base/object/1234' baseURL='http://mn2.dataone.org/some_base' preference='75'>mn2</a></li>
+    <li><a href='http://cn1.dataone.org/cn/object/1234' baseURL='http://cn1.dataone.org/cn' preference='1'>cn1</a></li>
+    <li><a href='http://cn2.dataone.org/cn/object/1234' baseURL='http://cn2.dataone.org/cn' preference='1'>cn2</a></li>
+    <li><a href='http://cn3.dataone.org/cn/object/1234' baseURL='http://cn3.dataone.org/cn' preference='1'>cn3</a></li>
   </ul>
   ...
 
