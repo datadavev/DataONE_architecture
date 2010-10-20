@@ -295,7 +295,23 @@ Version   Structure
   :: 
 
     message LogRecord {
-      required string timestamp = 1;    
+
+      enum EventType {
+        create = 0;
+        read = 1;
+        update = 2;
+        delete = 3;
+        replicate = 4;
+      }
+      
+      required Identifier entryID = 0;
+      required Identifier identifier = 1;
+      required ipAddress = 2;
+      required userAgent = 3;
+      required Principal principal = 4;
+      required EventType event = 5;
+      required dateTime dateLogged = 6;
+      required NodeReference memberNode = 7;
     }
 
 ----
@@ -307,7 +323,10 @@ Version   Structure
   ::
 
     message LogRecords {
-      repeated LogRecord entry = 0;
+      required int start = 0;
+      required int count = 1;
+      required int total = 2;
+      repeated LogRecord entry = 3;
     }
 
 ----

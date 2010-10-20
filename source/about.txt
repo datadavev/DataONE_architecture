@@ -15,27 +15,40 @@ through support of the National Science Foundation through the projects:
 About These Documents
 =====================
 
-These documents are generated using Sphinx_ for the overall document
-processing and generation, and PlantUML_ for the various UML diagrams.
+These documents are generated using the excellent open source tools Sphinx_
+for the overall document processing and generation, and PlantUML_ for the
+various UML diagrams.
 
 
-Conventions
------------
+Editing Content
+---------------
 
-Text Formatting
-~~~~~~~~~~~~~~~
-
-All content is formatted using reStructuredText_, which is simply well
-formatted plain text. It is similar to the plain text formatting used in wiki
-pages, though enriched by many features of the Sphinx_ document builder.
+All of these documents are formatted using reStructuredText_, which is simply
+well formatted plain text. In many respects it is similar to the plain text
+formatting used in wiki pages, though enriched by the many nice features of
+the Sphinx_ document builder.
 
 Formatting guidelines for Sphinx are available at
 http://sphinx.pocoo.org/contents.html
 
 Portions of content, specifically all the individual function and exception
-descriptions, are maintained in an Excel spreadsheet (best edited using
-OpenOffice Calc). This is because of the many cross-references that need to be
-maintained in those documents.
+descriptions are maintained in an Excel spreadsheet (best edited using
+OpenOffice Calc) since there are many cross references between that content,
+having it generated from the spreadsheet simplifies maintenance.
+
+In general, it is best to edit in UTF-8 using UNIX® style new lines. Note that
+white space is significant and is used primarily for determining which
+formatting sections different blocks of text belong to.
+
+.. warning:: 
+
+  In these documents, indentation is used for grouping text so that Sphinx_
+  can format it correctly. Because of this, it is important to use a
+  consistent means of indenting the text. We have chosen to use two spaces for
+  each level of indentation. Accordingly, please do not use tabs when editing
+  these documents as tabs may cause Sphinx_ to format the text incorrectly.
+  You may find it easiest to correctly edit these documents by setting your
+  editor to replace one tab with two spaces.
 
 reStructuredText_ can be edited with any plain text editor. These documents
 have been edited mainly with TextMate_ on OS X, which offers a preview feature
@@ -44,35 +57,9 @@ for editing reStructuredText_ are jEdit and Komodo Edit. There are also
 various plugins available for editors to assist with reStructuredText
 formatting.
 
-Character Encoding
-~~~~~~~~~~~~~~~~~~
-
-
-In general, it is best to edit in UTF-8 using UNIX® style new lines. Note that
-white space is significant and is used primarily for determining which
-formatting sections different blocks of text belong to.
-
-
-Spaces and Tabs
-~~~~~~~~~~~~~~~
-
-.. warning:: 
-
-   Ensure your editor is set to use "soft tabs" or replace tabs with (2)
-   spaces.
-
-
-In these documents, indentation is used for grouping text so that Sphinx_ can
-format it correctly. Because of this, it is important to use a consistent
-means of indenting the text. We have chosen to use two spaces for each level
-of indentation. Accordingly, please do not use tabs when editing these
-documents as the formatting will not come out correctly. You may find it
-easiest to correctly edit these documents by setting your editor to replace
-one tab with two spaces.
-
-
-Heading Levels
-~~~~~~~~~~~~~~
+Follow the normal procedures for working with the subversion repository. After
+checking in, your edits should appear in the `built out version`_ of the docs
+within five minutes.
 
 The convention for different levels of heading used in these documents is::
 
@@ -84,10 +71,6 @@ The convention for different levels of heading used in these documents is::
 
 Building the Documentation
 --------------------------
-
-Follow the normal procedures for working with the subversion repository. After
-checking in, your edits should appear in the `built out version`_ of the docs
-within five minutes.
 
 Sphinx_ and PlantUML_ are required to build the design documents from the
 source. Both of these have a dependency on Graphviz_ for diagram generation.
@@ -125,6 +108,10 @@ To build a HTML copy of the documents::
   $ make generate
   $ make html
 
+To build a PDF copy, you will need to install latex and its dependencies. Then run::
+
+  $ make generate
+  $ make latex; cd build/latex; make all-pdf
 
 
 .. _Graphviz: http://www.graphviz.org/
