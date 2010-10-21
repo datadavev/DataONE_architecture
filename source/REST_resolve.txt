@@ -12,9 +12,14 @@ a simple mechanism for a client to discover from which node(s) a particular
 object may be retrieved, and this information is returned as a list of node
 identifiers. Details about method interfaces (i.e. REST URLs) exposed by a
 particular node can be determined by examining the response from the ``node``
-collection. For convenience, the node base URL is also provided, from which
-`GET /object/<guid>`_, `GET /meta/<guid>`_ and other object specific URLs can
-be constructed.
+collection. For convenience, the `GET /object/<guid>`_ URL is included in the
+response as is the base URL of the node REST services.
+
+Note also that the same functionality as resolve() can be implemented by
+retrieving a copy of the system metadata for the object and utilizing the node
+registry to discover the base URL from which the client can construct the
+get() URL. Resolve is provided for efficiency since the response size is much
+smaller.
 
 The resolve service is implemented by the following methods:
 
@@ -46,37 +51,35 @@ XML (default) in response to ``Accept: text/xml``::
     <identifier>1234</identifier>
     <objectLocation>
       <nodeIdentifier>mn1</nodeIdentifier>
-      <baseURL>http://mn1.dataone.org/mn</baseURL>
+      <baseUrl>http://mn1.dataone.org/mn</baseUrl>
       <url>http://mn1.dataone.org/mn/object/1234</url>
       <preference>100</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>mn2</nodeIdentifier>
-      <baseURL>http://mn2.dataone.org/some_base</baseURL>
+      <baseUrl>http://mn2.dataone.org/mn</baseUrl>
       <url>http://mn2.dataone.org/some_base/object/1234</url>
       <preference>75</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn1</nodeIdentifier>
-      <baseURL>http://cn1.dataone.org/cn</baseURL>
+      <baseUrl>http://cn1.dataone.org/mn</baseUrl>
       <url>http://cn1.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn2</nodeIdentifier>
-      <baseURL>http://cn2.dataone.org/cn</baseURL>
+      <baseUrl>http://cn2.dataone.org/mn</baseUrl>
       <url>http://cn2.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
     <objectLocation>
       <nodeIdentifier>cn3</nodeIdentifier>
-      <baseURL>http://cn3.dataone.org/cn</baseURL>
-      <urlL>http://cn3.dataone.org/cn/object/1234</url>
+      <baseUrl>http://cn3.dataone.org/mn</baseUrl>
+      <url>http://cn3.dataone.org/cn/object/1234</url>
       <preference>1</preference>
     </objectLocation>
   </objectLocationList>
-
-.. Note:: I wonder if there's a way we can make this even more verbose...
 
 
 JSON::
@@ -100,7 +103,7 @@ CSV in response to ``Accept: text/csv`` or ``Accept: text/plain``::
   curl -X GET -H "Accept: text/csv" http://cn.dataone.org/object/resolve/1234
   
   #1234
-  node,baseURL,url,preference
+  node,baseUrl,url,preference
   'mn1','http://mn1.dataone.org/mn','http://mn1.dataone.org/mn/object/1234',100
   'mn2','http://mn2.dataone.org/some_base','http://mn2.dataone.org/some_base/object/1234',75
   'cn1','http://cn1.dataone.org/cn','http://cn1.dataone.org/cn/object/1234',1
@@ -123,12 +126,8 @@ HTML in response to ``Accept: text/html``::
   ...
 
 
-``HEAD /resolve/<guid>``
-........................
+.. TODO:: 
 
-HEAD     Returns basic information resolve response document
-
-         ``Last-Modified:`` Date the resolve information was last updated for that
-         identifier.  This is helpful to clients that may cache resolve responses.
-
-
+   Evaluate if it might be useful to support HEAD requests against resolve.
+   The response may contain for example, the timestamp for when an entry was
+   last modified which can be used for client side cache management.

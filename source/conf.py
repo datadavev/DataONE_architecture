@@ -49,7 +49,9 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.pngmath', 
               'sphinx.ext.ifconfig',
               'sphinx.ext.graphviz',
-              'rst2pdf.pdfbuilder', ]
+              'rst2pdf.pdfbuilder', 
+              'sphinx.ext.todo',
+              'sphinx.ext.inheritance_diagram']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -127,7 +129,7 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-#todo_include_todos = True
+todo_include_todos = True
 
 # -- Options for HTML output ---------------------------------------------------
 

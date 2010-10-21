@@ -44,27 +44,8 @@ Version   Structure
 .         :class:`SystemMetadata`
 ========= =============================
 
-----
 
-.. class:: AccessRule
-
-   An access rule.
-
-----
-
-.. class:: AuthenticationSystem
-
-  Place holder for support of multiple authentication services for a single
-  user.
-
-
-----
-
-.. class:: AuthToken
-
-  An AuthToken is used to identify a principal and to assert that the identity
-  of the principal has been verified by the DataONE authentication infrastructure.
-
+.. include:: types_auth.txt
 
 ----
 
@@ -124,94 +105,60 @@ Version   Structure
 
 .. class:: DescribeResponse  
 
-  Provides a hint about the type, size and state of an object.
+  Provides a low cost hint about the type, size and state of an object.
+  Describe responses are encoded in the header of the HTTP response and so
+  differ in the serialization mechanism used by other REST calls.
 
   ::
-  
-    message ObjectFormat
-    {
-      required string objectFormat = 1;
-    }
-
 
     message DescribeResponse 
     {
-      required ObjectFormat objectFormat = 1;
-      required uint64 size = 2;
-      required DateTime dateSysMetadataModified = 3;
-      required Checksum checksum = 4;
+      required ObjectFormat DataONE-ObjectFormat = 1;
+      required uint64 Content-Length = 2;
+      required DateTime Last-Modified = 3;
+      required Checksum DataONE-Checksum = 4;
     }
 
 
-  .. attribute:: objectFormat
+  .. attribute:: DataONE-ObjectFormat
 
      The value of the :attr:`SystemMetadata.objectFormat` entry available in
      the :class:`SystemMetadata`.
 
-  .. attribute:: size
+  .. attribute:: Content-Length
 
-     Size of the object in bytes
+     Size of the object in bytes, the value of :attr:`SystemMetadata.size`
+     from :class:`SystemMetadata`.
 
-  .. attribute:: dateSysMetadataModified
+  .. attribute:: Last-Modified
 
      A :class:`DateTime` value that indicates when the :term:`system metadata`
-     associated with the object was last modified.
+     associated with the object was last modified, i.e. the value of
+     :attr:`SystemMetadata.dateSysMetadataModified` for the object.
 
-  .. attribute:: checksum
+  .. attribute:: DataONE-Checksum
 
-     A :class:`Checksum` value that provides the computed checksum value of the
-     referenced object.
+     The algorithm (:attr:`SystemMetadata.algorithm`) and :class:`Checksum`
+     (:attr:`SystemMetadata.checksum`) of the object being examined, drawn
+     from the :class:`SystemMetadata`. The algorithm and checksum are
+     separated by a single comma with the algorithm first.
+
+
+  Example of a HEAD response on object "ABC123"::
+
+    curl -I http://mn1.dataone.org/mn/object/ABC123
+
+    HTTP/1.1 200 OK
+    Last-Modified: Wed, 16 Dec 2009 13:58:34 GMT
+    Content-Length: 10400
+    Content-Type: application/octet-stream
+    DataONE-ObjectFormat: eml://ecoinformatics.org/eml-2.0.1
+    DataONE-Checksum: SHA-1,2e01e17467891f7c933dbaa00e1459d23db3fe4f
+
 
 ----
 
-.. class:: ErrorMessage
-
-   The information that is returned with :doc:`Exceptions`.
-
-   ::
-   
-     message ErrorMessage 
-     {
-       required int32 errorCode = 1;
-       required string detailCode = 2;
-       required string description = 3;
-       
-       message KVPair 
-       {
-         required string key = 1;
-         required string value = 2;
-       }
-       
-       repeated KVPair traceInformation = 4;
-     }
-
-
-  .. attribute:: errorCode
-
-    The error code. This is the HTTP error code (i.e. 4xx)
-
-  .. attribute:: detailCode
-
-    A more detailed error code which provides a precise indication of where the
-    exception was raised. This is a string formatting using a dot notation,
-    where the first word is an integer value that is uniquely associated with a
-    DataONE API call and additional words may be appended to provide application
-    specific detail about the error. For example, :func:`MN_crud.get` returns a
-    detail code of 1020 with a :exc:`Exceptions.NotFound` error. A specific
-    Member Node implementation may append additional error codes, for example:
-    "1020.1.14" might indicate that the NotFound error was caused by an IO error
-    that indicated the requested file did not exist, as opposed to some other IO
-    error raised by the system. Detail code words beyond the first word are
-    application specific.
-
-  .. attribute:: description
-
-    A human readable message describing what happened
-
-  .. attribute:: traceInformation
-
-    A dictionary of key-value pairs that can provide more information about
-    the error condition.
+.. include:: types_errors.txt
 
 
 ----
@@ -452,6 +399,16 @@ Version   Structure
       repeated ObjectLocation locations = 2;
     }
 
+.. attribute:: identifier
+
+   The identifier that this ObjectLocationList refers to (e.g. the
+   identifier for the science metadata or data object).
+
+.. attribute:: locations
+
+   List of ``ObjectLocation`` entries that indicate the nodes on which the
+   object is located.
+
 
 .. class:: ObjectLocation
 
@@ -462,21 +419,11 @@ Version   Structure
 
     message ObjectLocation {
       required string node = 1;
-      required string baseURL = 2;
+      required string baseUrl = 2;
       required string url = 3;
       optional integer preference = 4;
     }
 
-
-  .. attribute:: identifier
-
-     The identifier that this ObjectLocationList refers to (e.g. the
-     identifier for the science metadata or data object).
-
-  .. attribute:: locations
-
-     List of ``ObjectLocation`` entries that indicate the nodes on which the
-     object is located.
 
   .. attribute:: node
 
@@ -484,16 +431,16 @@ Version   Structure
      other identifiers in the system and no meaning should be implied from the
      construct other than as a unique identifier for the node.
 
-  .. attribute:: baseURL
+  .. attribute:: baseUrl
 
      The current base URL for services implemented on the target node. For example:
      ``http://mn1.dataone.org/mn/``
 
   .. attribute:: url
 
-    The full URL for retrieving the object. For example, if identifer was
-    "ABX154", and the node had a base URL of ``http://mn1.dataone.org/mn``
-    then the value would be ``http://mn1.dataone.org/mn/object/ABX154`` 
+    The full URL for retrieving the object bytes. For example, if identifer
+    was "ABX154", and the node had a base URL of ``http://mn1.dataone.org/mn``
+    then the value would be ``http://mn1.dataone.org/mn/object/ABX154``
 
   .. attribute:: preference
 

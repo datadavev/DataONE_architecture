@@ -101,6 +101,18 @@ System Metadata fields
   not try to infer versioning semantics based on the content of the Identifiers
   -- rather, this information is found in the Obsoletes and ObsoletedBy fields.
 
+  Note that identifiers are used in a number of REST API calls as parts of the
+  URL path. As such, all special characters such as "/", " ", "+", ":", "\",
+  "%" must be properly encoded, e.g. "%2F", "%20", "%2B", "%3A", "%5C", "%25"
+  respectively when used in REST method calls. For example, the getObject()
+  call for an object with identifier::
+
+    http://some.location.name/mydata.cgi?id=2088
+
+  would be::
+
+    http://mn1.server.name/mn/http%3A%2F%2Fsome.location.name%2Fmydata.cgi%3Fid%3D2088
+
   :Cardinality:
     1
 

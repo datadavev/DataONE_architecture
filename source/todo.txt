@@ -5,53 +5,6 @@
 TO DO List
 ==========
 
-List of things that need to be completed in these documents to reach a final
-draft stage.
-
-The schema for ObjectLocationList? is specified here:
-
-     http://mule1.dataone.org/ArchitectureDocs/Types.html#Types.ObjectLocationList
-
-This schema is confusing and imprecise and needs to be clarified. The schema
-is particularly unclear about the 'node' field, which it defines as:
-
-node
-
-A node identifier. Currently, this should be the node name + base path. For
-example, a Member Node with domain name “mn1.dataone.org” that serves content
-from /mn would be identified as mn1.dataone.org/mn
-
-This definition conflates three different fields as if they were one
-(identifier, baseUrl, and name). These three separate concepts are used in the
-node registry definitions, and should be reused here. This use of the term
-node should be changed to match the semantics of the 'baseUrl' field in the
-node registry. We can also consider adding in an 'identifier' field to provide
-the node identifier. The Node name may also be useful for clients that want to
-present a choice of download locations that is more human readable . So I
-suggest the following new data structures for ObjectLocationList? and
-ObjectLocation?:
-
-message ObjectLocationList? {
-
-    required IdentifierType? identifier = 1;
-    repeated ObjectLocation? locations = 2;
-
-}
-
-message ObjectLocation? {
-
-    required string name = 1;
-    required NodeReference? identifier = 2;
-    required string baseUrl = 3;
-    required string url = 4;
-
-}
-
-If these design changes are made, then the java and python client stacks and
-all MN and CN implementations of resolve() would need to be modified suitably,
-so separate tasks would need to be entered for those component changes.
-
-
 .. todolist::
 
 

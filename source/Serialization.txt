@@ -81,7 +81,7 @@ DescribeResponse
 Returned in response to :func:`MN_crud.describe` which is called using the
 HTTP HEAD verb. As such, the response is entirely in the HTTP headers (no body).
 
-:Content-Length: <size>
+:Content-Length: :attr:`SystemMetadata.size`
 :Last-Modified: <dateSysMetadataModified>
 :DataONE-ObjectFormat: <objectFormat>
 :DataONE-Checksum: <checksumAlgorithm>,<checksum>
