@@ -182,9 +182,19 @@ Version   Structure
 
 ----
 
-.. class:: HeartbeatResponse
+.. class:: PingResponse
 
-  The response from :func:`MN_health.heartbeat`
+  The response from :func:`MN_health.ping`. This is currently (2010-10-21) a
+  HTTP response with status code 200 and no payload.
+
+
+----
+
+.. class:: StatusResponse
+
+  The response from :func:`MN_health.getStatus`. This is currently
+  (2010-10-21) undefined. This opertation *may* replace ping() on closer
+  evaluation of the design notes.
 
 ----
 

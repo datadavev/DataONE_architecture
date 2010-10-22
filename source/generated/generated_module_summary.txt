@@ -125,6 +125,16 @@
 
        Appears in functional use cases: :doc:`UC09 </UseCases/09_uc>`
    * - :mod:`MN_health`
+     - :func:`MN_health.ping`
+     - Low level "are you alive" operation. Response is simple ACK, but may be
+       reasonable to overload with a couple of flags that could indicate
+       availability of new data or change in capabilities. The Member Node
+       should perform some minimal internal functionality testing before
+       answering. However, ping checks will be frequent (every few minutes) so
+       the internal functionality test should not be high impact.
+
+       Appears in functional use cases: :doc:`UC10 </UseCases/10_uc>`
+   * - \
      - :func:`MN_health.getObjectStatistics`
      - Called by the monitoring system to find how many objects are stored on
        the MN, cumulative or for each day in a given range.
@@ -132,6 +142,12 @@
      - :func:`MN_health.getOperationStatistics`
      - Called by the monitoring system to find how many operations have been
        performed on the MN, cumulative or for each day in a given range.
+   * - \
+     - :func:`MN_health.getStatus`
+     - This function is similar to ping() but returns a more complete status
+       which may include information such as planned service outtages.
+
+       Appears in functional use cases: :doc:`UC10 </UseCases/10_uc>`
    * - :mod:`CN_crud`
      - :func:`CN_crud.get`
      - Retrieves the object identified by `guid` from the node. If the object is

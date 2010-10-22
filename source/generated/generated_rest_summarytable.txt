@@ -33,6 +33,15 @@
    * - 0.3
      - :func:`MN_replication.listObjects`
      - `GET /object`_
+   * - 0.4
+     - :func:`MN_health.ping`
+     - `GET /health/ping`_
+   * - 0.4
+     - :func:`MN_health.getObjectStatistics`
+     - `GET /monitor/object`_
+   * - 0.6
+     - :func:`MN_health.getStatus`
+     - `GET /health/status`_
    * - 0.3
      - :func:`CN_crud.get`
      - `GET /object/<guid>`_
