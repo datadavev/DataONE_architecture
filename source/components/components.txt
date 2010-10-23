@@ -24,23 +24,26 @@ Dependency Graph
        ];
 
      node [
-       shape = "class"
+       shape = "record"
        fontname = "Courier"
        fontsize = 8
        fontcolor = "black"];   
 
-     arch [label="d1-architecture"];
-     schemas [label="d1-schemas"]
-     commonjava [label="d1-common-java"];
-     commonpython [label="d1-common-python"];
+     arch [label="d1_architecture\n/documents/Projects/documentation/architecture"
+           URL="https://repository.dataone.org/documents/Projects/documentation/architecture"];
+     schemas [label="d1_schemas"]
+     commonjava [label="d1_common_java"];
+     commonpython [label="d1_common_python"];
+     javalib [label="d1_clientlib_java"];
+     pythonlib [label="d1_clientlib_python"];
 
      
      subgraph cluster_CN {
        label="Coordinating Node stack";
        color="#888888";
-       cnsvc [label="d1-cn-service"];
-       indexer [label="d1-indexer"];
-       sync [label="d1-synchronization"];
+       cnsvc [label="d1_cn_service"];
+       indexer [label="d1_indexer"];
+       sync [label="d1_synchronization"];
      }
 
      subgraph cluster_MN {
@@ -56,14 +59,12 @@ Dependency Graph
      subgraph cluster_ITK {
        label="Investigator Toolkit"
        color = "#888888"
-       javalib [label="d1-clientlib-java"];
-       pythonlib [label="d1-clientlib-python"];
        cli [label="d1-client-cli"];
        fuse [label="d1-client-fuse"];
        r [label="d1-client-r"];       
      }
 
-     cacti [label="d1-cacti"];
+     monitor [label="d1-monitor"];
      base [label="d1-debian-base"];
      
      schemas -> arch [style="dotted"];
@@ -73,9 +74,12 @@ Dependency Graph
      commonpython -> schemas;
      metacat -> commonjava;
      javalib -> commonjava;
+     javalib -> arch [style="dotted"];
+     pythonlib -> arch [style="dotted"];
      
      cnsvc -> commonjava;
      cnsvc -> metacat;
+     cnsvc -> arch [style="dotted"];
      indexer -> commonjava;
      sync -> commonjava;
      sync -> javalib;
@@ -86,6 +90,7 @@ Dependency Graph
      r -> javalib;
      
      gmn -> pythonlib;
+     gmn -> arch [style="dotted"];
      mndaac -> pythonlib;
      mndaac -> gmn;
      mndryad -> pythonlib;
@@ -96,59 +101,33 @@ Dependency Graph
 
 
 
-Core Components
----------------
-
-:d1-architecture: Architecture documentation.
-
-:d1-schemas: The core schemas used for defining serialization.
-
-:d1-common-java: Base DataONE library in Java.
-
-:d1-common-python: Base DataONE library in Python.
-
-:metacat: The Metacat application.
-
-
-CN Components
--------------
-
-d1-cn-service
-
-d1-indexer
-
-d1-synchronization
-
-
-MN Components
--------------
-
-d1-mn-generic
-
-d1-mn-daac
-
-d1-mn-dryad
-
-d1-mn-fedora
+====== =================== ================ ================================================
+Group  Product Name        Issue Category   Description
+====== =================== ================ ================================================
+Core                                       
+.      d1_architecture     architecture     The system architecture documentation
+.      d1_schemas          schemas          The core schemas used for defining serialization
+.      d1_common-java      common_java      Base DataONE library in Java
+.      d1_common-python    common_python    Base DataONE library in Python
+.      metacat             metacat          The Metacat application
+CN                         
+.      d1_cn_service       cn_service      
+.      d1_indexer          indexer
+.      d1_synchronization  synchronization
+MN                         
+.      d1_mn_generic       mn_generic
+.      d1_mn_daac          mn_daac
+.      d1_mn_dryad         mn_dryad
+.      d1_mn_fedora        mn_fedora
+ITK                        
+.      d1_libclient_java   libclient_java
+.      d1_libclient_python libclient_python
+.      d1_client_cli       client_cli
+.      d1_client_fuse      client_fuse
+.      d1_client_r         client_r
+Other
+.      d1-monitor          monitor
+.      d1-debian-base      debian-base
+====== =================== ================ ================================================
 
 
-ITK Components
---------------
-
-d1-clientlib-java
-
-d1-clientlib-python
-
-d1-client-cli
-
-d1-client-fuse
-
-d1-client-r
-
-
-Other Components
-----------------
-
-d1-cacti
-
-d1-debian-base
