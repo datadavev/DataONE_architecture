@@ -31,11 +31,16 @@ Dependency Graph
 
      arch [label="d1_architecture\n/documents/Projects/documentation/architecture"
            URL="https://repository.dataone.org/documents/Projects/documentation/architecture"];
-     schemas [label="d1_schemas"]
-     commonjava [label="d1_common_java"];
-     commonpython [label="d1_common_python"];
-     javalib [label="d1_clientlib_java"];
-     pythonlib [label="d1_clientlib_python"];
+     schemas [label="d1_schemas\n/software/cicore/trunk/d1_schemas"
+              URL="https://repository.dataone.org/software/cicore/trunk/d1_schemas"]
+     commonjava [label="d1_common_java\n/software/cicore/trunk/d1_common_java"
+                 URL="https://repository.dataone.org/software/cicore/trunk/d1_common_java"];
+     commonpython [label="d1_common_python\n/software/cicore/trunk/d1_common_python"
+                   URL="https://repository.dataone.org/software/cicore/trunk/d1_common_python"];
+     javalib [label="d1_clientlib_java\n/software/cicore/trunk/d1_libclient_java"
+              URL="https://repository.dataone.org/software/cicore/trunk/d1_libclient_java"];
+     pythonlib [label="d1_clientlib_python\n/software/cicore/trunk/d1_libclient_python"
+                URL="https://repository.dataone.org/software/cicore/trunk/d1_libclient_python"];
 
      
      subgraph cluster_CN {

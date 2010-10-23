@@ -228,7 +228,7 @@ Version   Structure
   is described in `ticket 577`_.
 
 
-.. _ticket 577: https://trac.dataone.org/ticket/577 
+.. _ticket 577: https://redmine.dataone.org/issues/577
 
 ----
 
@@ -428,20 +428,20 @@ Version   Structure
    ::
 
     message ObjectLocation {
-      required string node = 1;
-      required string baseUrl = 2;
+      required string nodeIdentifier = 1;
+      required string baseURL = 2;
       required string url = 3;
       optional integer preference = 4;
     }
 
 
-  .. attribute:: node
+  .. attribute:: nodeIdentifier
 
      A node identifier. Node identifiers follow the same composition rules as
      other identifiers in the system and no meaning should be implied from the
      construct other than as a unique identifier for the node.
 
-  .. attribute:: baseUrl
+  .. attribute:: baseURL
 
      The current base URL for services implemented on the target node. For example:
      ``http://mn1.dataone.org/mn/``
